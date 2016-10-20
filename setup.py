@@ -10,7 +10,7 @@ reqs = [str(ir.req) for ir in install_reqs]
 
 setup(
     name="pyswitchlib",
-    version="0.1.7",
+    version="0.1.8",
     packages=find_packages(),
     author="Brocade Comm",
     description="pySwitchLib Library for Brocade switches (SLXOS/NOS)",
