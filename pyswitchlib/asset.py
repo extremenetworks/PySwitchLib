@@ -3,6 +3,7 @@ import requests
 import weakref
 import re
 import os
+import sys
 import xml.etree.ElementTree as ElementTree
 import xmltodict
 import json
@@ -149,7 +150,15 @@ class Asset(object):
         return json.dumps(xmltodict.parse(xml))
 
     def _get_supported_module(self):
-        pybind_dir = os.path.abspath('pybind' + os.sep + self._os_type)
+        pybind_dir = ''
+        site_dir = sys.path
+
+        for site_path in site_dir:
+            pybind_dir = os.path.join(site_path, 'pybind')
+            if os.path.isdir(pybind_dir):
+                pybind_dir = os.path.join(pybind_dir, self._os_type)
+                break
+
         pybind_ver_tree = {}
 
         max_depth = 1
