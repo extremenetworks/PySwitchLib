@@ -46,7 +46,6 @@ class Asset(object):
         return getattr(self._proxied, name)
 
     def _rest_operation(self, rest_commands):
-        header = {"Resource-Depth" : "2"}
         auth = self._auth
         del self._overall_status[:]
 
@@ -65,6 +64,7 @@ class Asset(object):
             elif rest_cmd[3] == "discover":
                 uri_prefix_path = self._rest_discover_path
 
+            header = {"Resource-Depth" : str(rest_cmd[4])}
             url = "http://"+self._ip_addr+uri_prefix_path
 
             if rest_cmd[0] == "GET":
@@ -78,15 +78,19 @@ class Asset(object):
             elif rest_cmd[0] == "DELETE":
                 self._response = self._session.delete(url + rest_cmd[1], auth=auth)
 
-            json = ''
+            json_output = json.loads('{"ouput": ""}')
+            text_response = self._response.text
 
-            if rest_cmd[3] == 'rpc' or rest_cmd[3] == 'operational' or rest_cmd[0] == 'GET' and (self._response.status_code >= 200 and self._response.status_code <= 299):
+            if self._response.status_code >= 200 and self._response.status_code <= 299:
                 if re.match('^<', self._response.text):
-                    json = self._xml_to_json(self._response.text)
-                else:
-                    json = "{'error': " + self._response.text + "}"
+                    if rest_cmd[3] != "rpc":
+                        text_response = '<output>\r\n' + self._response.text + '</output>\r\n'
 
-            self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text, 'json': json}}})
+                    json_output = json.loads(self._xml_to_json(text_response))
+            else:
+                json_output = json.loads('{"output": "' + self._response.text.strip() + '"}')
+
+            self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text, 'json': json_output}}})
 
         return self._get_results()
 
@@ -101,7 +105,7 @@ class Asset(object):
         return self._overall_success, self._overall_status
     def _update_fw_version(self):
         rest_command = (
-            ["POST", "/show-firmware-version", "", "rpc"],
+            ["POST", "/show-firmware-version", "", "rpc", 1],
         )
 
         self._rest_operation(rest_command)
@@ -124,7 +128,7 @@ class Asset(object):
 
     def _update_uri_prefix_paths(self):
         rest_command = (
-            ["GET", "", "", "discover"],
+            ["GET", "", "", "discover", 1],
         )
 
         self._rest_operation(rest_command)
