@@ -88,7 +88,7 @@ class Asset(object):
 
                     json_output = json.loads(self._xml_to_json(text_response))
             else:
-                json_output = json.loads('{"output": "' + self._response.text.strip() + '"}')
+                json_output = json.loads('{"output": ' + json.dumps(str(self._response.text)) + '}')
 
             self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text, 'json': json_output}}})
 
