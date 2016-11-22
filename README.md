@@ -3,14 +3,14 @@
 
 Install
 ::
-sudo pip install pySwitchLib
-sudo pip install pybind
+    sudo pip install pySwitchLib
+    sudo pip install pybind
 
 
 In a python program do this:
 ::
-import pySwitchLib
-import pybind
+    import pySwitchLib
+    import pybind
 
 
 ## 0.1.15:
