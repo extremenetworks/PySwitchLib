@@ -4,9 +4,17 @@ import weakref
 import re
 import os
 import sys
+import threading
 import xml.etree.ElementTree as ElementTree
 import xmltodict
 import json
+
+class RestInterfaceError(Exception):                                                                                                                                                
+    def __init__(self, value):                                                                                                                                                      
+        self.value = value                                                                                                                                                          
+                                                                                                                                                                                    
+    def __str__(self):                                                                                                                                                              
+        return repr(self.value)  
 
 class Asset(object):
     """
@@ -14,27 +22,34 @@ class Asset(object):
     Asset provides connection information for PySwitchLib APIs.    """
 
 
-    def __init__(self, ip_addr='', auth=('admin', 'password'), fw_ver=''):
+    def __init__(self, ip_addr='', auth=('admin', 'password'), fw_ver='', timeout=1800):
         self._ip_addr = ip_addr
         self._auth = auth
         self._os_type = 'nos'
         self._os_ver = fw_ver
+        self._session_timeout = timeout
         self._session = requests.Session()
         self._response = requests.Response()
         self._overall_success = True
         self._overall_status = []
 
         def on_deletion (killed_ref):
+            self._cleanup_timer_handle()
             self._session.close()
 
         self._weakref = weakref.ref(self, on_deletion)
 
+        self._rest_session_auth_token_expiration = 160 
+        self._rest_session_auth_token_expired = '_EXPIRED_'
+        self._rest_session_auth_token = self._rest_session_auth_token_expired
+        self._rest_session_timer_handle = None
         self._rest_config_path = '/rest/config/running'
         self._rest_operational_path = '/rest/operational-state'
         self._rest_rpc_path = '/rest/operational-state'
         self._rest_discover_path = '/rest'
         self._module_obj = None
 
+        self._create_timer_handle()
         self._update_uri_prefix_paths()
         self._update_fw_version()
         self._supported_module_name = self._get_supported_module()
@@ -45,11 +60,16 @@ class Asset(object):
     def __getattr__(self, name):
         return getattr(self._proxied, name)
 
-    def _rest_operation(self, rest_commands):
+    def _rest_operation(self, rest_commands=None, timeout=None):
         auth = self._auth
         del self._overall_status[:]
+    
+        if isinstance(timeout, basestring):
+            if timeout == '':
+                timeout = self._session_timeout
 
-        response = self._response
+        self._cleanup_timer_handle()
+        self._create_timer_handle()
 
         for rest_cmd in rest_commands:
             if len(rest_cmd) < 4:
@@ -67,18 +87,42 @@ class Asset(object):
             header = {"Resource-Depth" : str(rest_cmd[4])}
             url = "http://"+self._ip_addr+uri_prefix_path
 
-            if rest_cmd[0] == "GET":
-                self._response = self._session.get(url + rest_cmd[1], headers=header, auth=auth)
-            elif rest_cmd[0] == "POST":
-                self._response = self._session.post(url + rest_cmd[1], auth=auth, data=rest_cmd[2])
-            elif rest_cmd[0] == "PUT":
-                self._response = self._session.put(url + rest_cmd[1], auth=auth, data=rest_cmd[2])
-            elif rest_cmd[0] == "PATCH":
-                self._response = self._session.patch(url + rest_cmd[1], auth=auth, data=rest_cmd[2])
-            elif rest_cmd[0] == "DELETE":
-                self._response = self._session.delete(url + rest_cmd[1], auth=auth)
+            if self._rest_session_auth_token != self._rest_session_auth_token_expired:
+                self._session.headers.update({'Authentication-Token': self._rest_session_auth_token})
+            else:
+                if 'Authentication-Token' in self._session.headers:
+                    self._session.headers.pop('Authentication-Token')
 
-            json_output = json.loads('{"ouput": ""}')
+            if rest_cmd[0] == "GET":
+                if self._rest_session_auth_token == self._rest_session_auth_token_expired:
+                    self._response = self._session.get(url + rest_cmd[1], headers=header, auth=auth, timeout=timeout)
+                else:
+                    self._response = self._session.get(url + rest_cmd[1], headers=header, timeout=timeout)
+            elif rest_cmd[0] == "POST":
+                if self._rest_session_auth_token == self._rest_session_auth_token_expired:
+                    self._response = self._session.post(url + rest_cmd[1], auth=auth, data=rest_cmd[2], timeout=timeout)
+                else:
+                    self._response = self._session.post(url + rest_cmd[1], data=rest_cmd[2], timeout=timeout)
+            elif rest_cmd[0] == "PUT":
+                if self._rest_session_auth_token == self._rest_session_auth_token_expired:
+                    self._response = self._session.put(url + rest_cmd[1], auth=auth, data=rest_cmd[2], timeout=timeout)
+                else:
+                    self._response = self._session.put(url + rest_cmd[1], data=rest_cmd[2], timeout=timeout)
+            elif rest_cmd[0] == "PATCH":
+                if self._rest_session_auth_token == self._rest_session_auth_token_expired:
+                    self._response = self._session.patch(url + rest_cmd[1], auth=auth, data=rest_cmd[2], timeout=timeout)
+                else:
+                    self._response = self._session.patch(url + rest_cmd[1], data=rest_cmd[2], timeout=timeout)
+            elif rest_cmd[0] == "DELETE":
+                if self._rest_session_auth_token == self._rest_session_auth_token_expired:
+                    self._response = self._session.delete(url + rest_cmd[1], auth=auth, timeout=timeout)
+                else:
+                    self._response = self._session.delete(url + rest_cmd[1], timeout=timeout)
+
+            if 'Authentication-Token' in self._response.headers:                                                                                                                    
+                self._rest_session_auth_token = self._response.headers['Authentication-Token']
+
+            json_output = json.loads('{"output": ""}')
             text_response = self._response.text
 
             if self._response.status_code >= 200 and self._response.status_code <= 299:
@@ -88,9 +132,13 @@ class Asset(object):
 
                     json_output = json.loads(self._xml_to_json(text_response))
             else:
+                self._rest_session_auth_token = self._rest_session_auth_token_expired
                 json_output = json.loads('{"output": ' + json.dumps(str(self._response.text)) + '}')
 
             self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text, 'json': json_output}}})
+
+        if not self._rest_session_timer_handle.is_alive():                                                                                                                          
+            self._rest_session_timer_handle.start()                                                                                                                                 
 
         return self._get_results()
 
@@ -111,6 +159,10 @@ class Asset(object):
         self._rest_operation(rest_command)
 
         status, result = self._get_results()
+
+        if status == False:                                                                                                                                                         
+            if result[0][self._ip_addr]['response']['status_code'] == 404:                                                                                                          
+                raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
 
         try:
             rest_root = ElementTree.fromstring(re.sub(' xmlns[^ \t\n\r\f\v>]+', '', result[0][self._ip_addr]['response']['text']))
@@ -134,6 +186,10 @@ class Asset(object):
         self._rest_operation(rest_command)
 
         status, result = self._get_results()
+
+        if status == False:                                                                                                                                                         
+            if result[0][self._ip_addr]['response']['status_code'] == 404:                                                                                                          
+                raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
 
         try:
             rest_root = ElementTree.fromstring(re.sub(' xmlns[^ \t\n\r\f\v>]+|y:', '', result[0][self._ip_addr]['response']['text']))
@@ -235,5 +291,26 @@ class Asset(object):
     def _load_module(self, supported_module_name=''):
         if supported_module_name:
             self._module_obj =  __import__(supported_module_name, fromlist=['*'])
+
+    def _auth_token_expiration(self):
+        self._rest_session_auth_token = self._rest_session_auth_token_expired
+        self._cleanup_timer_handle()
+        self._create_timer_handle()
+
+    def _create_timer_handle(self):
+        self._rest_session_timer_handle = threading.Timer(self._rest_session_auth_token_expiration, self._auth_token_expiration)
+        self._rest_session_timer_handle.daemon = True
+
+    def _cleanup_timer_handle(self):
+        if self._rest_session_timer_handle:
+            if self._rest_session_timer_handle.is_alive():
+                self._rest_session_timer_handle.cancel()
+                self._rest_session_timer_handle = None
+
+    def get_os_type(self):
+        return self._os_type
+
+    def get_os_version(self):
+        return self._os_ver
 
 
