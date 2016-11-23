@@ -1,16 +1,15 @@
 # pySwitchLib
 
 
-Install
-::
+Install required packages:
 ```
     sudo pip install pySwitchLib
     sudo pip install pybind
+    sudo pip install pyangbind
 ```
 
 
-In a python program do this:
-::
+Inside a python program do this:
 ```
     import pySwitchLib
     import pybind
@@ -25,4 +24,6 @@ In a python program do this:
 * RestInterfaceError expection raised when asset can connect to IP, but web server is not available. Request from BFO team.
 
 ## 0.1.16:
-* Rename README.md to README.rst
+* Updated README.md with change information
+
+
