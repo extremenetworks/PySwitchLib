@@ -8,6 +8,7 @@ import threading
 import xml.etree.ElementTree as ElementTree
 import xmltodict
 import json
+import logging
 
 class RestInterfaceError(Exception):                                                                                                                                                
     def __init__(self, value):                                                                                                                                                      
@@ -19,25 +20,30 @@ class RestInterfaceError(Exception):
 class Asset(object):
     """
     This is an auto-generated class for the PySwitchLib device asset.
-    Asset provides connection information for PySwitchLib APIs.    """
+    Asset provides connection information for PySwitchLib APIs.
+    """
 
-
-    def __init__(self, ip_addr='', auth=('admin', 'password'), fw_ver='', timeout=1800):
-        self._ip_addr = ip_addr
-        self._auth = auth
-        self._os_type = 'nos'
-        self._os_ver = fw_ver
-        self._session_timeout = timeout
-        self._session = requests.Session()
-        self._response = requests.Response()
-        self._overall_success = True
-        self._overall_status = []
-
+    def __init__(self, ip_addr='', auth=('admin', 'password'), fw_ver='', timeout=''):
         def on_deletion (killed_ref):
             self._cleanup_timer_handle()
             self._session.close()
 
         self._weakref = weakref.ref(self, on_deletion)
+
+        self._ip_addr = ip_addr
+        self._auth = auth
+        self._os_type = 'nos'
+        self._os_ver = fw_ver
+        self._default_connection_timeout = 60                                                                                                                                       
+        self._default_response_timeout = 1800                                                                                                                                       
+        self._session_timeout = (self._default_connection_timeout, self._default_response_timeout) 
+        self._session = requests.Session()
+        self._response = requests.Response()
+        self._overall_success = True
+        self._overall_status = []
+
+        if timeout != '':
+            self._session_timeout = timeout
 
         self._rest_session_auth_token_expiration = 160 
         self._rest_session_auth_token_expired = '_EXPIRED_'
@@ -48,6 +54,7 @@ class Asset(object):
         self._rest_rpc_path = '/rest/operational-state'
         self._rest_discover_path = '/rest'
         self._module_obj = None
+        self._logger = logging.getLogger(__name__)
 
         self._create_timer_handle()
         self._update_uri_prefix_paths()
@@ -93,6 +100,8 @@ class Asset(object):
                 if 'Authentication-Token' in self._session.headers:
                     self._session.headers.pop('Authentication-Token')
 
+            self._logger.info('Request: ' + rest_cmd[0] + ' ' + url + rest_cmd[1] + ' ' + rest_cmd[2])
+
             if rest_cmd[0] == "GET":
                 if self._rest_session_auth_token == self._rest_session_auth_token_expired:
                     self._response = self._session.get(url + rest_cmd[1], headers=header, auth=auth, timeout=timeout)
@@ -137,6 +146,8 @@ class Asset(object):
 
             self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text, 'json': json_output}}})
 
+            self._logger.info('Response: ' + str(self._response.status_code) + ' ' + str(json_output))
+
         if not self._rest_session_timer_handle.is_alive():                                                                                                                          
             self._rest_session_timer_handle.start()                                                                                                                                 
 
@@ -151,6 +162,7 @@ class Asset(object):
                     self._overall_success = False
 
         return self._overall_success, self._overall_status
+
     def _update_fw_version(self):
         rest_command = (
             ["POST", "/show-firmware-version", "", "rpc", 1],
@@ -171,6 +183,12 @@ class Asset(object):
                 if 'Network Operating System' in rest_root.find('show-firmware-version').find('os-name').text:
                     self._os_type = 'nos'
                 elif 'SLX' in rest_root.find('show-firmware-version').find('os-name').text:
+                    self._os_type = 'slxos'
+
+            if 'Server' in self._response.headers:
+                if 'NOS' in self._response.headers['Server']:
+                    self._os_type = 'nos'
+                elif 'SLX' in self._response.headers['Server']:
                     self._os_type = 'slxos'
 
             if rest_root.find('show-firmware-version').find('os-version') is not None:
@@ -255,7 +273,7 @@ class Asset(object):
             supported_os_version.append(os_version_tuple[0])
         else:
             for major in sorted(pybind_ver_tree, reverse=True):
-                if os_version_tuple[0] >= major:
+                if os_version_tuple[0] >= re.sub('\D', '', major):
                     supported_os_version.append(major)
                     break;
 
