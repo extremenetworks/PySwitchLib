@@ -16,6 +16,16 @@ Inside a python program do this:
 ```
 
 
+## 0.1.17:
+* Added sphinx apidocs for pyswitchlib documentation generation.
+* Organized API methods in separate files under api directory.
+* Fixed missing kwargs for certain update API's.  Including interface_*_channel_group_update().
+* Added workaround to detect SLX Fusion OS type. "show-firmware-rpc" in Fusion branch is returning "NOS" os type.
+* Added tox framework (WIP)
+
+## 0.1.16:
+* Updated README.md with change information
+
 ## 0.1.15:
 * Added persistent sessions for REST requests. Authentication Token renewed after 160 seconds between REST requests and in case of failed REST responses.
 * Timeout kwarg added to asset and API's. Default asset timeout is 1800 seconds. API timeouts override asset timeout.
@@ -23,7 +33,7 @@ Inside a python program do this:
 * Request from BFO team
 * RestInterfaceError expection raised when asset can connect to IP, but web server is not available. Request from BFO team.
 
-## 0.1.16:
-* Updated README.md with change information
+
+
 
 
