@@ -219,6 +219,15 @@ class PySwitchLib(object):
 
                     if match:
                         update_object_rest_data = match.group(1)
+
+                    if temp_pybind_obj == False:                                                                                                                                    
+                        rest_operation = 'DELETE'                                                                                                                                   
+                        update_object_rest_data = '' 
+                    else:                                                                                                                                                           
+                        if operation_type == 'update_patch':                                                                                                                        
+                            rest_operation = 'PATCH'                                                                                                                                
+                        elif operation_type == 'update_put':                                                                                                                        
+                            rest_operation = 'PUT' 
                     
                     rest_commands.append([rest_operation, rest_uri, update_object_rest_data, 'config', resource_depth])
         else:

@@ -45,10 +45,12 @@ def acl_mirror_source_get(self, source=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -82,10 +84,12 @@ def acl_state_vxlan_acl_get(self, vxlan_acl=None, resource_depth=1, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -132,10 +136,12 @@ def acl_state_vxlan_acl_extended_data_get(self, vxlan_acl=None, extended_data=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -169,10 +175,12 @@ def adj_neighbor_entries_state_adj_neighbor_get(self, adj_neighbor=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -213,10 +221,12 @@ def adj_neighbor_entries_state_adj_neighbor_adj_area_get(self, adj_neighbor=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -254,10 +264,12 @@ def alias_config_alias_get(self, alias=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -295,10 +307,12 @@ def alias_config_user_get(self, user=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -346,10 +360,12 @@ def alias_config_user_alias_get(self, user=None, alias=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -430,10 +446,12 @@ def arp_get(self, arp_entry=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -472,10 +490,12 @@ def arp_access_list_get(self, access_list=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -542,10 +562,12 @@ def arp_access_list_permit_ip_get(self, access_list=None, permit_list=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -582,10 +604,12 @@ def bd_vc_peer_state_get(self, bd_vc_peer_state=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -632,10 +656,12 @@ def bd_vc_peer_state_bd_vc_peer_data_get(self, bd_vc_peer_state=None, bd_vc_peer
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -688,10 +714,12 @@ def bd_vc_peer_state_bd_vc_peer_data_vc_assigned_lsp_get(self, bd_vc_peer_state=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -744,10 +772,12 @@ def bd_vc_peer_state_bd_vc_peer_data_vc_proto_tnnl_get(self, bd_vc_peer_state=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -790,10 +820,12 @@ def bridge_domain_get(self, bridge_domain=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -846,10 +878,12 @@ def bridge_domain_logical_interface_ethernet_get(self, bridge_domain=None, ether
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -902,10 +936,12 @@ def bridge_domain_logical_interface_port_channel_get(self, bridge_domain=None, p
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -942,10 +978,12 @@ def bridge_domain_mac_state_get(self, bridge_domain_mac_state=None, resource_dep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1007,10 +1045,12 @@ def bridge_domain_peer_get(self, bridge_domain=None, peer=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1047,10 +1087,12 @@ def bridge_domain_state_bridge_domain_list_get(self, bridge_domain_list=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1097,10 +1139,12 @@ def bridge_domain_state_bridge_domain_list_outer_vlan_list_get(self, bridge_doma
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1153,10 +1197,12 @@ def bridge_domain_state_bridge_domain_list_outer_vlan_list_tagged_ports_list_get
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1209,10 +1255,12 @@ def bridge_domain_state_bridge_domain_list_outer_vlan_list_untagged_ports_list_g
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1250,10 +1298,12 @@ def cee_map_get(self, cee_map=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1313,10 +1363,12 @@ def cee_map_priority_group_table_get(self, cee_map=None, priority_group_table=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1350,10 +1402,12 @@ def cfm_state_cfm_connectivity_domain_get(self, domain=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1394,10 +1448,12 @@ def cfm_state_cfm_connectivity_domain_ma_get(self, domain=None, ma=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1447,10 +1503,12 @@ def cfm_state_cfm_connectivity_domain_ma_mep_get(self, domain=None, ma=None, mep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1509,10 +1567,12 @@ def cfm_state_cfm_connectivity_domain_ma_mep_rmep_get(self, domain=None, ma=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1565,10 +1625,12 @@ def cfm_state_cfm_connectivity_domain_ma_mip_get(self, domain=None, ma=None, mip
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1602,10 +1664,12 @@ def cfm_state_cfm_detail_domain_get(self, domain=None, resource_depth=1, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1646,10 +1710,12 @@ def cfm_state_cfm_detail_domain_ma_get(self, domain=None, ma=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1699,10 +1765,12 @@ def cfm_state_cfm_detail_domain_ma_mep_get(self, domain=None, ma=None, mep=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1761,10 +1829,12 @@ def cfm_state_cfm_detail_domain_ma_mep_rmep_get(self, domain=None, ma=None, mep=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1817,10 +1887,12 @@ def cfm_state_cfm_detail_domain_ma_mip_get(self, domain=None, ma=None, mip=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1858,10 +1930,12 @@ def class_map_get(self, class_map=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1904,10 +1978,12 @@ def cluster_get(self, cluster=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -1966,10 +2042,12 @@ def cluster_client_get(self, cluster=None, client=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2022,10 +2100,12 @@ def cluster_peer_get(self, cluster=None, peer=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2062,10 +2142,12 @@ def counts_state_bad_lsp_log_get(self, bad_lsp_log=None, resource_depth=1, api_t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2102,10 +2184,12 @@ def cpu_cfg_state_cpu_cfg_slot_get(self, cpu_cfg_slot=None, resource_depth=1, ap
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2152,10 +2236,12 @@ def cpu_cfg_state_cpu_cfg_slot_cpu_cfg_data_get(self, cpu_cfg_slot=None, cpu_cfg
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2202,10 +2288,12 @@ def cpu_cfg_state_cpu_cfg_slot_cpu_cfg_group_get(self, cpu_cfg_slot=None, cpu_cf
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2261,10 +2349,12 @@ def cpu_cfg_state_cpu_cfg_slot_cpu_cfg_group_cpu_cfg_data_get(self, cpu_cfg_slot
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2320,10 +2410,12 @@ def cpu_cfg_state_cpu_cfg_slot_cpu_cfg_group_cpu_cfg_prio_get(self, cpu_cfg_slot
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2388,10 +2480,12 @@ def cpu_cfg_state_cpu_cfg_slot_cpu_cfg_group_cpu_cfg_prio_cpu_cfg_data_get(self,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2428,10 +2522,12 @@ def cpu_info_state_cpu_info_egid_get(self, cpu_info_egid=None, resource_depth=1,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2465,10 +2561,12 @@ def cpu_interface_state_get(self, cpu_interface_state=None, resource_depth=1, ap
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2505,10 +2603,12 @@ def crypto_ca_get(self, ca=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2557,10 +2657,12 @@ def crypto_key_get(self, key=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2598,10 +2700,12 @@ def diag_post_rbridge_id_get(self, rbridge_id=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2640,10 +2744,12 @@ def dpod_get(self, port_id=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2677,10 +2783,12 @@ def dscp_exp_state_qos_mpls_get(self, qos_mpls=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2718,10 +2826,12 @@ def event_handler_get(self, event_handler_list=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2758,10 +2868,12 @@ def event_handler_activate_get(self, name=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2821,10 +2933,12 @@ def event_handler_trigger_get(self, event_handler_list=None, trigger=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2858,10 +2972,12 @@ def exp_dscp_state_qos_mpls_get(self, qos_mpls=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2895,10 +3011,12 @@ def exp_traffic_class_state_qos_mpls_get(self, qos_mpls=None, resource_depth=1, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2936,10 +3054,12 @@ def fabric_route_mcast_rbridge_id_get(self, rbridge_id=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -2977,10 +3097,12 @@ def fcoe_fabric_map_get(self, fcoe_fabric_map=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3028,10 +3150,12 @@ def fcoe_fabric_map_fcf_group_get(self, fcoe_fabric_map=None, fcoe_fcf_map=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3069,10 +3193,12 @@ def fcoe_fcoe_map_get(self, fcoe_map=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3110,10 +3236,12 @@ def filter_change_update_delay_get(self, filter_change_update_delay=None, resour
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3152,10 +3280,12 @@ def hardware_connector_get(self, connector=None, resource_depth=1, api_timeout='
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3193,10 +3323,12 @@ def hardware_connector_group_get(self, connector_group=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3234,10 +3366,12 @@ def hardware_custom_profile_kap_get(self, kap_custom_profile=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3275,10 +3409,12 @@ def hardware_flexport_get(self, flexport=None, resource_depth=1, api_timeout='')
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3317,10 +3453,12 @@ def hardware_port_group_get(self, port_group=None, resource_depth=1, api_timeout
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3361,10 +3499,12 @@ def http_server_use_vrf_get(self, use_vrf=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3404,10 +3544,12 @@ def igmp_snooping_state_igmp_groups_get(self, igmp_groups=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3460,10 +3602,12 @@ def igmp_snooping_state_igmp_groups_igmp_groups_get(self, igmp_groups=None, igmp
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3516,10 +3660,12 @@ def igmp_snooping_state_igmp_groups_igmp_groups_expiry_time_get(self, igmp_group
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3566,10 +3712,12 @@ def igmp_snooping_state_igmp_groups_igmp_groups_igmpv3_sources_get(self, igmp_gr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3625,10 +3773,12 @@ def igmp_snooping_state_igmp_groups_igmp_groups_igmpv3_sources_excl_src_ip_get(s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3684,10 +3834,12 @@ def igmp_snooping_state_igmp_groups_igmp_groups_igmpv3_sources_incl_src_ip_get(s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3721,10 +3873,12 @@ def igmp_snooping_state_igmp_l3_interfaces_get(self, igmp_l3_interfaces=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3765,10 +3919,12 @@ def igmp_snooping_state_igmp_l3_interfaces_igmp_l3_interfaces_get(self, igmp_l3_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3809,10 +3965,12 @@ def igmp_snooping_state_igmp_l3_interfaces_igmp_l3_interfaces_igmp_querier_get(s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3849,10 +4007,12 @@ def igmp_snooping_state_igmp_multicast_snooping_vlans_get(self, igmp_multicast_s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3899,10 +4059,12 @@ def igmp_snooping_state_igmp_multicast_snooping_vlans_igmp_multicast_snooping_vl
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3949,10 +4111,12 @@ def igmp_snooping_state_igmp_multicast_snooping_vlans_igmp_multicast_snooping_vl
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -3989,10 +4153,12 @@ def igmp_snooping_state_igmp_snooping_mrouters_get(self, igmp_snooping_mrouters=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4039,10 +4205,12 @@ def igmp_snooping_state_igmp_snooping_mrouters_igmp_snooping_mrouters_get(self, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4089,10 +4257,12 @@ def igmp_snooping_state_igmp_snooping_mrouters_igmp_snooping_mrouters_expiry_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4129,10 +4299,12 @@ def igmp_snooping_state_igmp_snooping_vlans_get(self, igmp_snooping_vlans=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4179,10 +4351,12 @@ def igmp_snooping_state_igmp_snooping_vlans_igmp_snooping_vlans_get(self, igmp_s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4229,10 +4403,12 @@ def igmp_snooping_state_igmp_snooping_vlans_igmp_snooping_vlans_fast_leave_get(s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4279,10 +4455,12 @@ def igmp_snooping_state_igmp_snooping_vlans_igmp_snooping_vlans_vlan_groups_get(
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4316,10 +4494,12 @@ def igmp_snooping_state_igmp_statistics_igmp_statistics_get(self, igmp_statistic
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4353,10 +4533,12 @@ def igmp_snooping_state_igmp_statistics_igmp_statistics_error_bad_checksum_get(s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4390,10 +4572,12 @@ def igmp_snooping_state_multicast_ssm_mapping_ssm_maps_get(self, ssm_maps=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4430,10 +4614,12 @@ def igmp_snooping_state_pim_snp_groups_get(self, pim_snp_groups=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4486,10 +4672,12 @@ def igmp_snooping_state_pim_snp_groups_pim_snp_groups_get(self, pim_snp_groups=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4542,10 +4730,12 @@ def igmp_snooping_state_pim_snp_groups_pim_snp_groups_expiry_time_get(self, pim_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4592,10 +4782,12 @@ def igmp_snooping_state_pim_snp_groups_pim_snp_groups_pim_snp_sources_get(self, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4648,10 +4840,12 @@ def igmp_snooping_state_pim_snp_groups_pim_snp_groups_pim_snp_sources_pim_snp_sg
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4695,10 +4889,12 @@ def igmp_snooping_state_pim_snp_groups_pim_snp_groups_pim_snp_wg_member_ports_ge
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4736,10 +4932,12 @@ def interface_ethernet_get(self, ethernet=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4800,10 +4998,12 @@ def interface_ethernet_ip_access_group_get(self, ethernet=None, access_group=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4860,10 +5060,12 @@ def interface_ethernet_ip_address_get(self, ethernet=None, address=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4918,10 +5120,12 @@ def interface_ethernet_ip_dhcp_relay_get(self, ethernet=None, servers=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -4969,10 +5173,12 @@ def interface_ethernet_ip_igmp_static_group_get(self, ethernet=None, igmpl3_stat
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5033,10 +5239,12 @@ def interface_ethernet_ipv6_access_group_get(self, ethernet=None, access_group=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5090,10 +5298,12 @@ def interface_ethernet_ipv6_address_get(self, ethernet=None, ipv6_address=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5148,10 +5358,12 @@ def interface_ethernet_ipv6_dhcp_relay_get(self, ethernet=None, servers=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5202,10 +5414,12 @@ def interface_ethernet_ipv6_nd_address_get(self, ethernet=None, suppressing_addr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5253,10 +5467,12 @@ def interface_ethernet_ipv6_nd_prefix_get(self, ethernet=None, prefix=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5304,10 +5520,12 @@ def interface_ethernet_ipv6_nd_ra_dns_server_get(self, ethernet=None, ra_dns_ser
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5352,10 +5570,12 @@ def interface_ethernet_ipv6_nd_ra_domain_name_get(self, ethernet=None, ra_domain
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5403,10 +5623,12 @@ def interface_ethernet_ipv6_neighbor_get(self, ethernet=None, neighbor=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5454,10 +5676,12 @@ def interface_ethernet_ipv6_vrrp_extended_group_get(self, ethernet=None, vrrpv3e
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5521,10 +5745,12 @@ def interface_ethernet_ipv6_vrrp_extended_group_track_get(self, ethernet=None, v
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5581,10 +5807,12 @@ def interface_ethernet_ipv6_vrrp_extended_group_virtual_ip_get(self, ethernet=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5632,10 +5860,12 @@ def interface_ethernet_ipv6_vrrp_group_get(self, ethernet=None, vrrpv3_group=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5699,10 +5929,12 @@ def interface_ethernet_ipv6_vrrp_group_track_get(self, ethernet=None, vrrpv3_gro
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5759,10 +5991,12 @@ def interface_ethernet_ipv6_vrrp_group_virtual_ip_get(self, ethernet=None, vrrpv
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5816,10 +6050,12 @@ def interface_ethernet_isis_auth_key_get(self, ethernet=None, interface_auth_key
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5873,10 +6109,12 @@ def interface_ethernet_isis_hello_interval_get(self, ethernet=None, interface_he
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5930,10 +6168,12 @@ def interface_ethernet_isis_hello_multiplier_get(self, ethernet=None, interface_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -5987,10 +6227,12 @@ def interface_ethernet_isis_ipv6_metric_get(self, ethernet=None, interface_ipv6_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6044,10 +6286,12 @@ def interface_ethernet_isis_metric_get(self, ethernet=None, interface_metric=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6095,10 +6339,12 @@ def interface_ethernet_logical_interface_ethernet_get(self, ethernet=None, ether
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6159,10 +6405,12 @@ def interface_ethernet_mac_access_group_get(self, ethernet=None, access_group=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6210,10 +6458,12 @@ def interface_ethernet_port_profile_port_profile_get(self, ethernet=None, port_t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6261,10 +6511,12 @@ def interface_ethernet_qos_flowcontrol_pfc_get(self, ethernet=None, pfc=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6312,10 +6564,12 @@ def interface_ethernet_qos_random_detect_traffic_class_get(self, ethernet=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6375,10 +6629,12 @@ def interface_ethernet_qos_rx_queue_multicast_get(self, ethernet=None, queue_siz
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6438,10 +6694,12 @@ def interface_ethernet_qos_rx_queue_unicast_get(self, ethernet=None, queue_size=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6508,10 +6766,12 @@ def interface_ethernet_rmon_collection_history_get(self, ethernet=None, history_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6566,10 +6826,12 @@ def interface_ethernet_rmon_collection_stats_get(self, ethernet=None, ether_stat
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6617,10 +6879,12 @@ def interface_ethernet_spanning_tree_instance_get(self, ethernet=None, instance=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6668,10 +6932,12 @@ def interface_ethernet_spanning_tree_vlan_get(self, ethernet=None, vlan=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6743,10 +7009,12 @@ def interface_ethernet_storm_control_ingress_get(self, ethernet=None, ingress=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6800,10 +7068,12 @@ def interface_ethernet_switchport_access_mac_group_rspan_vlan_classification_acc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6857,10 +7127,12 @@ def interface_ethernet_switchport_access_mac_group_vlan_classification_access_vl
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6914,10 +7186,12 @@ def interface_ethernet_switchport_access_mac_rspan_vlan_classification_access_rs
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -6971,10 +7245,12 @@ def interface_ethernet_switchport_access_mac_vlan_classification_access_vlan_get
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7028,10 +7304,12 @@ def interface_ethernet_switchport_port_security_get(self, ethernet=None, port_se
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7085,10 +7363,12 @@ def interface_ethernet_switchport_port_security_sticky_get(self, ethernet=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7142,10 +7422,12 @@ def interface_ethernet_switchport_trunk_allowed_trunk_rspan_vlan_classification_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7199,10 +7481,12 @@ def interface_ethernet_switchport_trunk_allowed_trunk_rspan_vlan_classification_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7250,10 +7534,12 @@ def interface_ethernet_switchport_trunk_trunk_vlan_classification_allowed_vlan_a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7301,10 +7587,12 @@ def interface_ethernet_switchport_trunk_trunk_vlan_classification_allowed_vlan_r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7358,10 +7646,12 @@ def interface_ethernet_track_interface_get(self, ethernet=None, interface=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7415,10 +7705,12 @@ def interface_ethernet_vrrp_group_get(self, ethernet=None, vrrp=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7488,10 +7780,12 @@ def interface_ethernet_vrrp_group_track_get(self, ethernet=None, vrrp=None, inte
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7554,10 +7848,12 @@ def interface_ethernet_vrrp_group_virtual_ip_get(self, ethernet=None, vrrp=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7594,10 +7890,12 @@ def interface_fcoe_get(self, fcoe=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7635,10 +7933,12 @@ def interface_fibrechannel_get(self, fc_port=None, resource_depth=1, api_timeout
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7676,10 +7976,12 @@ def interface_fortygigabitethernet_get(self, fortygigabitethernet=None, resource
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7740,10 +8042,12 @@ def interface_fortygigabitethernet_ip_access_group_get(self, fortygigabitetherne
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7800,10 +8104,12 @@ def interface_fortygigabitethernet_ip_address_get(self, fortygigabitethernet=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7858,10 +8164,12 @@ def interface_fortygigabitethernet_ip_dhcp_relay_get(self, fortygigabitethernet=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7909,10 +8217,12 @@ def interface_fortygigabitethernet_ip_igmp_static_group_get(self, fortygigabitet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -7973,10 +8283,12 @@ def interface_fortygigabitethernet_ipv6_access_group_get(self, fortygigabitether
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8030,10 +8342,12 @@ def interface_fortygigabitethernet_ipv6_address_get(self, fortygigabitethernet=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8088,10 +8402,12 @@ def interface_fortygigabitethernet_ipv6_dhcp_relay_get(self, fortygigabitetherne
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8139,10 +8455,12 @@ def interface_fortygigabitethernet_ipv6_nd_prefix_get(self, fortygigabitethernet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8190,10 +8508,12 @@ def interface_fortygigabitethernet_ipv6_neighbor_get(self, fortygigabitethernet=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8241,10 +8561,12 @@ def interface_fortygigabitethernet_ipv6_vrrp_extended_group_get(self, fortygigab
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8308,10 +8630,12 @@ def interface_fortygigabitethernet_ipv6_vrrp_extended_group_track_get(self, fort
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8368,10 +8692,12 @@ def interface_fortygigabitethernet_ipv6_vrrp_extended_group_virtual_ip_get(self,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8419,10 +8745,12 @@ def interface_fortygigabitethernet_ipv6_vrrp_group_get(self, fortygigabitetherne
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8486,10 +8814,12 @@ def interface_fortygigabitethernet_ipv6_vrrp_group_track_get(self, fortygigabite
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8546,10 +8876,12 @@ def interface_fortygigabitethernet_ipv6_vrrp_group_virtual_ip_get(self, fortygig
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8610,10 +8942,12 @@ def interface_fortygigabitethernet_mac_access_group_get(self, fortygigabitethern
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8661,10 +8995,12 @@ def interface_fortygigabitethernet_port_profile_port_profile_get(self, fortygiga
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8712,10 +9048,12 @@ def interface_fortygigabitethernet_qos_flowcontrol_pfc_get(self, fortygigabiteth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8763,10 +9101,12 @@ def interface_fortygigabitethernet_qos_random_detect_traffic_class_get(self, for
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8833,10 +9173,12 @@ def interface_fortygigabitethernet_rmon_collection_history_get(self, fortygigabi
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8891,10 +9233,12 @@ def interface_fortygigabitethernet_rmon_collection_stats_get(self, fortygigabite
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8942,10 +9286,12 @@ def interface_fortygigabitethernet_spanning_tree_instance_get(self, fortygigabit
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -8993,10 +9339,12 @@ def interface_fortygigabitethernet_spanning_tree_vlan_get(self, fortygigabitethe
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9068,10 +9416,12 @@ def interface_fortygigabitethernet_storm_control_ingress_get(self, fortygigabite
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9125,10 +9475,12 @@ def interface_fortygigabitethernet_switchport_access_rspan_vlan_get(self, fortyg
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9182,10 +9534,12 @@ def interface_fortygigabitethernet_switchport_access_vlan_get(self, fortygigabit
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9233,10 +9587,12 @@ def interface_fortygigabitethernet_switchport_port_security_get(self, fortygigab
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9287,10 +9643,12 @@ def interface_fortygigabitethernet_switchport_port_security_sticky_get(self, for
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9344,10 +9702,12 @@ def interface_fortygigabitethernet_switchport_private_vlan_association_trunk_get
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9408,10 +9768,12 @@ def interface_fortygigabitethernet_switchport_private_vlan_mapping_get(self, for
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9465,10 +9827,12 @@ def interface_fortygigabitethernet_switchport_private_vlan_trunk_allowed_vlan_ad
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9522,10 +9886,12 @@ def interface_fortygigabitethernet_switchport_private_vlan_trunk_allowed_vlan_re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9579,10 +9945,12 @@ def interface_fortygigabitethernet_switchport_trunk_allowed_rspan_vlan_add_get(s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9636,10 +10004,12 @@ def interface_fortygigabitethernet_switchport_trunk_allowed_rspan_vlan_remove_ge
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9687,10 +10057,12 @@ def interface_fortygigabitethernet_switchport_trunk_allowed_vlan_add_get(self, f
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9738,10 +10110,12 @@ def interface_fortygigabitethernet_switchport_trunk_allowed_vlan_remove_get(self
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9795,10 +10169,12 @@ def interface_fortygigabitethernet_track_interface_get(self, fortygigabitetherne
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9852,10 +10228,12 @@ def interface_fortygigabitethernet_vlan_classifier_activate_group_get(self, fort
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9909,10 +10287,12 @@ def interface_fortygigabitethernet_vrrp_group_get(self, fortygigabitethernet=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -9982,10 +10362,12 @@ def interface_fortygigabitethernet_vrrp_group_track_get(self, fortygigabitethern
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10048,10 +10430,12 @@ def interface_fortygigabitethernet_vrrp_group_virtual_ip_get(self, fortygigabite
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10089,10 +10473,12 @@ def interface_gigabitethernet_get(self, gigabitethernet=None, resource_depth=1, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10153,10 +10539,12 @@ def interface_gigabitethernet_ip_access_group_get(self, gigabitethernet=None, ac
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10213,10 +10601,12 @@ def interface_gigabitethernet_ip_address_get(self, gigabitethernet=None, address
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10271,10 +10661,12 @@ def interface_gigabitethernet_ip_dhcp_relay_get(self, gigabitethernet=None, serv
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10322,10 +10714,12 @@ def interface_gigabitethernet_ip_igmp_static_group_get(self, gigabitethernet=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10386,10 +10780,12 @@ def interface_gigabitethernet_ipv6_access_group_get(self, gigabitethernet=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10443,10 +10839,12 @@ def interface_gigabitethernet_ipv6_address_get(self, gigabitethernet=None, ipv6_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10501,10 +10899,12 @@ def interface_gigabitethernet_ipv6_dhcp_relay_get(self, gigabitethernet=None, se
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10552,10 +10952,12 @@ def interface_gigabitethernet_ipv6_nd_prefix_get(self, gigabitethernet=None, pre
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10603,10 +11005,12 @@ def interface_gigabitethernet_ipv6_neighbor_get(self, gigabitethernet=None, neig
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10654,10 +11058,12 @@ def interface_gigabitethernet_ipv6_vrrp_extended_group_get(self, gigabitethernet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10721,10 +11127,12 @@ def interface_gigabitethernet_ipv6_vrrp_extended_group_track_get(self, gigabitet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10781,10 +11189,12 @@ def interface_gigabitethernet_ipv6_vrrp_extended_group_virtual_ip_get(self, giga
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10832,10 +11242,12 @@ def interface_gigabitethernet_ipv6_vrrp_group_get(self, gigabitethernet=None, vr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10899,10 +11311,12 @@ def interface_gigabitethernet_ipv6_vrrp_group_track_get(self, gigabitethernet=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -10959,10 +11373,12 @@ def interface_gigabitethernet_ipv6_vrrp_group_virtual_ip_get(self, gigabitethern
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11023,10 +11439,12 @@ def interface_gigabitethernet_mac_access_group_get(self, gigabitethernet=None, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11074,10 +11492,12 @@ def interface_gigabitethernet_port_profile_port_profile_get(self, gigabitetherne
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11125,10 +11545,12 @@ def interface_gigabitethernet_qos_random_detect_traffic_class_get(self, gigabite
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11195,10 +11617,12 @@ def interface_gigabitethernet_rmon_collection_history_get(self, gigabitethernet=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11253,10 +11677,12 @@ def interface_gigabitethernet_rmon_collection_stats_get(self, gigabitethernet=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11304,10 +11730,12 @@ def interface_gigabitethernet_spanning_tree_instance_get(self, gigabitethernet=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11355,10 +11783,12 @@ def interface_gigabitethernet_spanning_tree_vlan_get(self, gigabitethernet=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11430,10 +11860,12 @@ def interface_gigabitethernet_storm_control_ingress_get(self, gigabitethernet=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11487,10 +11919,12 @@ def interface_gigabitethernet_switchport_access_rspan_vlan_get(self, gigabitethe
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11544,10 +11978,12 @@ def interface_gigabitethernet_switchport_access_vlan_get(self, gigabitethernet=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11595,10 +12031,12 @@ def interface_gigabitethernet_switchport_port_security_get(self, gigabitethernet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11649,10 +12087,12 @@ def interface_gigabitethernet_switchport_port_security_sticky_get(self, gigabite
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11706,10 +12146,12 @@ def interface_gigabitethernet_switchport_private_vlan_association_trunk_get(self
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11770,10 +12212,12 @@ def interface_gigabitethernet_switchport_private_vlan_mapping_get(self, gigabite
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11827,10 +12271,12 @@ def interface_gigabitethernet_switchport_private_vlan_trunk_allowed_vlan_add_get
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11884,10 +12330,12 @@ def interface_gigabitethernet_switchport_private_vlan_trunk_allowed_vlan_remove_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11941,10 +12389,12 @@ def interface_gigabitethernet_switchport_trunk_allowed_rspan_vlan_add_get(self, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -11998,10 +12448,12 @@ def interface_gigabitethernet_switchport_trunk_allowed_rspan_vlan_remove_get(sel
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12049,10 +12501,12 @@ def interface_gigabitethernet_switchport_trunk_allowed_vlan_add_get(self, gigabi
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12100,10 +12554,12 @@ def interface_gigabitethernet_switchport_trunk_allowed_vlan_remove_get(self, gig
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12157,10 +12613,12 @@ def interface_gigabitethernet_track_interface_get(self, gigabitethernet=None, in
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12214,10 +12672,12 @@ def interface_gigabitethernet_vlan_classifier_activate_group_get(self, gigabitet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12271,10 +12731,12 @@ def interface_gigabitethernet_vrrp_group_get(self, gigabitethernet=None, vrrp=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12344,10 +12806,12 @@ def interface_gigabitethernet_vrrp_group_track_get(self, gigabitethernet=None, v
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12410,10 +12874,12 @@ def interface_gigabitethernet_vrrp_group_virtual_ip_get(self, gigabitethernet=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12451,10 +12917,12 @@ def interface_hundredgigabitethernet_get(self, hundredgigabitethernet=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12515,10 +12983,12 @@ def interface_hundredgigabitethernet_ip_access_group_get(self, hundredgigabiteth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12575,10 +13045,12 @@ def interface_hundredgigabitethernet_ip_address_get(self, hundredgigabitethernet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12633,10 +13105,12 @@ def interface_hundredgigabitethernet_ip_dhcp_relay_get(self, hundredgigabitether
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12684,10 +13158,12 @@ def interface_hundredgigabitethernet_ip_igmp_static_group_get(self, hundredgigab
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12748,10 +13224,12 @@ def interface_hundredgigabitethernet_ipv6_access_group_get(self, hundredgigabite
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12805,10 +13283,12 @@ def interface_hundredgigabitethernet_ipv6_address_get(self, hundredgigabitethern
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12863,10 +13343,12 @@ def interface_hundredgigabitethernet_ipv6_dhcp_relay_get(self, hundredgigabiteth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12914,10 +13396,12 @@ def interface_hundredgigabitethernet_ipv6_nd_prefix_get(self, hundredgigabitethe
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -12965,10 +13449,12 @@ def interface_hundredgigabitethernet_ipv6_neighbor_get(self, hundredgigabitether
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13016,10 +13502,12 @@ def interface_hundredgigabitethernet_ipv6_vrrp_extended_group_get(self, hundredg
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13083,10 +13571,12 @@ def interface_hundredgigabitethernet_ipv6_vrrp_extended_group_track_get(self, hu
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13143,10 +13633,12 @@ def interface_hundredgigabitethernet_ipv6_vrrp_extended_group_virtual_ip_get(sel
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13194,10 +13686,12 @@ def interface_hundredgigabitethernet_ipv6_vrrp_group_get(self, hundredgigabiteth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13261,10 +13755,12 @@ def interface_hundredgigabitethernet_ipv6_vrrp_group_track_get(self, hundredgiga
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13321,10 +13817,12 @@ def interface_hundredgigabitethernet_ipv6_vrrp_group_virtual_ip_get(self, hundre
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13385,10 +13883,12 @@ def interface_hundredgigabitethernet_mac_access_group_get(self, hundredgigabitet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13436,10 +13936,12 @@ def interface_hundredgigabitethernet_port_profile_port_profile_get(self, hundred
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13487,10 +13989,12 @@ def interface_hundredgigabitethernet_qos_flowcontrol_pfc_get(self, hundredgigabi
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13538,10 +14042,12 @@ def interface_hundredgigabitethernet_qos_random_detect_traffic_class_get(self, h
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13608,10 +14114,12 @@ def interface_hundredgigabitethernet_rmon_collection_history_get(self, hundredgi
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13666,10 +14174,12 @@ def interface_hundredgigabitethernet_rmon_collection_stats_get(self, hundredgiga
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13717,10 +14227,12 @@ def interface_hundredgigabitethernet_spanning_tree_instance_get(self, hundredgig
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13768,10 +14280,12 @@ def interface_hundredgigabitethernet_spanning_tree_vlan_get(self, hundredgigabit
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13843,10 +14357,12 @@ def interface_hundredgigabitethernet_storm_control_ingress_get(self, hundredgiga
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13900,10 +14416,12 @@ def interface_hundredgigabitethernet_switchport_access_rspan_vlan_get(self, hund
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -13957,10 +14475,12 @@ def interface_hundredgigabitethernet_switchport_access_vlan_get(self, hundredgig
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14008,10 +14528,12 @@ def interface_hundredgigabitethernet_switchport_port_security_get(self, hundredg
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14062,10 +14584,12 @@ def interface_hundredgigabitethernet_switchport_port_security_sticky_get(self, h
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14119,10 +14643,12 @@ def interface_hundredgigabitethernet_switchport_private_vlan_association_trunk_g
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14183,10 +14709,12 @@ def interface_hundredgigabitethernet_switchport_private_vlan_mapping_get(self, h
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14240,10 +14768,12 @@ def interface_hundredgigabitethernet_switchport_private_vlan_trunk_allowed_vlan_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14297,10 +14827,12 @@ def interface_hundredgigabitethernet_switchport_private_vlan_trunk_allowed_vlan_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14354,10 +14886,12 @@ def interface_hundredgigabitethernet_switchport_trunk_allowed_rspan_vlan_add_get
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14411,10 +14945,12 @@ def interface_hundredgigabitethernet_switchport_trunk_allowed_rspan_vlan_remove_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14462,10 +14998,12 @@ def interface_hundredgigabitethernet_switchport_trunk_allowed_vlan_add_get(self,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14513,10 +15051,12 @@ def interface_hundredgigabitethernet_switchport_trunk_allowed_vlan_remove_get(se
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14570,10 +15110,12 @@ def interface_hundredgigabitethernet_track_interface_get(self, hundredgigabiteth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14627,10 +15169,12 @@ def interface_hundredgigabitethernet_vlan_classifier_activate_group_get(self, hu
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14684,10 +15228,12 @@ def interface_hundredgigabitethernet_vrrp_group_get(self, hundredgigabitethernet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14757,10 +15303,12 @@ def interface_hundredgigabitethernet_vrrp_group_track_get(self, hundredgigabitet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14823,10 +15371,12 @@ def interface_hundredgigabitethernet_vrrp_group_virtual_ip_get(self, hundredgiga
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14864,10 +15414,12 @@ def interface_loopback_get(self, loopback=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14915,10 +15467,12 @@ def interface_loopback_ip_address_get(self, loopback=None, address=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -14972,10 +15526,12 @@ def interface_loopback_ipv6_address_get(self, loopback=None, ipv6_address=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15028,10 +15584,12 @@ def interface_loopback_isis_auth_key_get(self, loopback=None, interface_auth_key
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15084,10 +15642,12 @@ def interface_loopback_isis_hello_interval_get(self, loopback=None, interface_he
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15140,10 +15700,12 @@ def interface_loopback_isis_hello_multiplier_get(self, loopback=None, interface_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15196,10 +15758,12 @@ def interface_loopback_isis_ipv6_metric_get(self, loopback=None, interface_ipv6_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15252,10 +15816,12 @@ def interface_loopback_isis_metric_get(self, loopback=None, interface_metric=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15294,10 +15860,12 @@ def interface_management_get(self, management=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15335,10 +15903,12 @@ def interface_port_channel_get(self, port_channel=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15399,10 +15969,12 @@ def interface_port_channel_ip_access_group_get(self, port_channel=None, access_g
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15453,10 +16025,12 @@ def interface_port_channel_ip_address_get(self, port_channel=None, address=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15510,10 +16084,12 @@ def interface_port_channel_ip_dhcp_relay_get(self, port_channel=None, servers=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15560,10 +16136,12 @@ def interface_port_channel_ip_igmp_static_group_get(self, port_channel=None, sta
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15624,10 +16202,12 @@ def interface_port_channel_ipv6_access_group_get(self, port_channel=None, access
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15680,10 +16260,12 @@ def interface_port_channel_ipv6_address_get(self, port_channel=None, ipv6_addres
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15737,10 +16319,12 @@ def interface_port_channel_ipv6_dhcp_relay_get(self, port_channel=None, servers=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15787,10 +16371,12 @@ def interface_port_channel_ipv6_nd_prefix_get(self, port_channel=None, prefix=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15837,10 +16423,12 @@ def interface_port_channel_ipv6_neighbor_get(self, port_channel=None, neighbor=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15888,10 +16476,12 @@ def interface_port_channel_ipv6_vrrp_extended_group_get(self, port_channel=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -15955,10 +16545,12 @@ def interface_port_channel_ipv6_vrrp_extended_group_track_get(self, port_channel
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16015,10 +16607,12 @@ def interface_port_channel_ipv6_vrrp_extended_group_virtual_ip_get(self, port_ch
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16066,10 +16660,12 @@ def interface_port_channel_ipv6_vrrp_group_get(self, port_channel=None, vrrpv3=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16133,10 +16729,12 @@ def interface_port_channel_ipv6_vrrp_group_track_get(self, port_channel=None, vr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16193,10 +16791,12 @@ def interface_port_channel_ipv6_vrrp_group_virtual_ip_get(self, port_channel=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16243,10 +16843,12 @@ def interface_port_channel_logical_interface_port_channel_get(self, port_channel
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16307,10 +16909,12 @@ def interface_port_channel_mac_access_group_get(self, port_channel=None, access_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16358,10 +16962,12 @@ def interface_port_channel_port_profile_port_profile_get(self, port_channel=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16409,10 +17015,12 @@ def interface_port_channel_qos_flowcontrol_pfc_get(self, port_channel=None, pfc=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16460,10 +17068,12 @@ def interface_port_channel_qos_random_detect_traffic_class_get(self, port_channe
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16511,10 +17121,12 @@ def interface_port_channel_spanning_tree_instance_get(self, port_channel=None, i
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16562,10 +17174,12 @@ def interface_port_channel_spanning_tree_vlan_get(self, port_channel=None, vlan=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16618,10 +17232,12 @@ def interface_port_channel_switchport_access_mac_group_vlan_classification_acces
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16674,10 +17290,12 @@ def interface_port_channel_switchport_access_mac_vlan_classification_access_vlan
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16730,10 +17348,12 @@ def interface_port_channel_switchport_access_vlan_get(self, port_channel=None, v
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16781,10 +17401,12 @@ def interface_port_channel_switchport_port_security_get(self, port_channel=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16835,10 +17457,12 @@ def interface_port_channel_switchport_port_security_sticky_get(self, port_channe
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16891,10 +17515,12 @@ def interface_port_channel_switchport_private_vlan_association_trunk_get(self, p
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -16954,10 +17580,12 @@ def interface_port_channel_switchport_private_vlan_mapping_get(self, port_channe
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17010,10 +17638,12 @@ def interface_port_channel_switchport_private_vlan_trunk_allowed_vlan_add_get(se
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17066,10 +17696,12 @@ def interface_port_channel_switchport_private_vlan_trunk_allowed_vlan_remove_get
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17116,10 +17748,12 @@ def interface_port_channel_switchport_trunk_allowed_vlan_add_get(self, port_chan
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17166,10 +17800,12 @@ def interface_port_channel_switchport_trunk_allowed_vlan_remove_get(self, port_c
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17216,10 +17852,12 @@ def interface_port_channel_switchport_trunk_trunk_vlan_classification_allowed_vl
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17266,10 +17904,12 @@ def interface_port_channel_switchport_trunk_trunk_vlan_classification_allowed_vl
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17323,10 +17963,12 @@ def interface_port_channel_track_interface_get(self, port_channel=None, interfac
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17379,10 +18021,12 @@ def interface_port_channel_vlan_classifier_activate_group_get(self, port_channel
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17436,10 +18080,12 @@ def interface_port_channel_vrrp_group_get(self, port_channel=None, vrrp=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17509,10 +18155,12 @@ def interface_port_channel_vrrp_group_track_get(self, port_channel=None, vrrp=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17575,10 +18223,12 @@ def interface_port_channel_vrrp_group_virtual_ip_get(self, port_channel=None, vr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17616,10 +18266,12 @@ def interface_tengigabitethernet_get(self, tengigabitethernet=None, resource_dep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17680,10 +18332,12 @@ def interface_tengigabitethernet_ip_access_group_get(self, tengigabitethernet=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17740,10 +18394,12 @@ def interface_tengigabitethernet_ip_address_get(self, tengigabitethernet=None, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17798,10 +18454,12 @@ def interface_tengigabitethernet_ip_dhcp_relay_get(self, tengigabitethernet=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17849,10 +18507,12 @@ def interface_tengigabitethernet_ip_igmp_static_group_get(self, tengigabitethern
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17913,10 +18573,12 @@ def interface_tengigabitethernet_ipv6_access_group_get(self, tengigabitethernet=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -17970,10 +18632,12 @@ def interface_tengigabitethernet_ipv6_address_get(self, tengigabitethernet=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18028,10 +18692,12 @@ def interface_tengigabitethernet_ipv6_dhcp_relay_get(self, tengigabitethernet=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18079,10 +18745,12 @@ def interface_tengigabitethernet_ipv6_nd_prefix_get(self, tengigabitethernet=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18130,10 +18798,12 @@ def interface_tengigabitethernet_ipv6_neighbor_get(self, tengigabitethernet=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18181,10 +18851,12 @@ def interface_tengigabitethernet_ipv6_vrrp_extended_group_get(self, tengigabitet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18248,10 +18920,12 @@ def interface_tengigabitethernet_ipv6_vrrp_extended_group_track_get(self, tengig
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18308,10 +18982,12 @@ def interface_tengigabitethernet_ipv6_vrrp_extended_group_virtual_ip_get(self, t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18359,10 +19035,12 @@ def interface_tengigabitethernet_ipv6_vrrp_group_get(self, tengigabitethernet=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18426,10 +19104,12 @@ def interface_tengigabitethernet_ipv6_vrrp_group_track_get(self, tengigabitether
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18486,10 +19166,12 @@ def interface_tengigabitethernet_ipv6_vrrp_group_virtual_ip_get(self, tengigabit
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18550,10 +19232,12 @@ def interface_tengigabitethernet_mac_access_group_get(self, tengigabitethernet=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18601,10 +19285,12 @@ def interface_tengigabitethernet_port_profile_port_profile_get(self, tengigabite
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18652,10 +19338,12 @@ def interface_tengigabitethernet_qos_flowcontrol_pfc_get(self, tengigabitetherne
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18703,10 +19391,12 @@ def interface_tengigabitethernet_qos_random_detect_traffic_class_get(self, tengi
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18773,10 +19463,12 @@ def interface_tengigabitethernet_rmon_collection_history_get(self, tengigabiteth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18831,10 +19523,12 @@ def interface_tengigabitethernet_rmon_collection_stats_get(self, tengigabitether
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18882,10 +19576,12 @@ def interface_tengigabitethernet_spanning_tree_instance_get(self, tengigabitethe
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -18933,10 +19629,12 @@ def interface_tengigabitethernet_spanning_tree_vlan_get(self, tengigabitethernet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19008,10 +19706,12 @@ def interface_tengigabitethernet_storm_control_ingress_get(self, tengigabitether
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19065,10 +19765,12 @@ def interface_tengigabitethernet_switchport_access_rspan_vlan_get(self, tengigab
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19122,10 +19824,12 @@ def interface_tengigabitethernet_switchport_access_vlan_get(self, tengigabitethe
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19173,10 +19877,12 @@ def interface_tengigabitethernet_switchport_port_security_get(self, tengigabitet
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19227,10 +19933,12 @@ def interface_tengigabitethernet_switchport_port_security_sticky_get(self, tengi
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19284,10 +19992,12 @@ def interface_tengigabitethernet_switchport_private_vlan_association_trunk_get(s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19348,10 +20058,12 @@ def interface_tengigabitethernet_switchport_private_vlan_mapping_get(self, tengi
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19405,10 +20117,12 @@ def interface_tengigabitethernet_switchport_private_vlan_trunk_allowed_vlan_add_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19462,10 +20176,12 @@ def interface_tengigabitethernet_switchport_private_vlan_trunk_allowed_vlan_remo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19519,10 +20235,12 @@ def interface_tengigabitethernet_switchport_trunk_allowed_rspan_vlan_add_get(sel
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19576,10 +20294,12 @@ def interface_tengigabitethernet_switchport_trunk_allowed_rspan_vlan_remove_get(
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19627,10 +20347,12 @@ def interface_tengigabitethernet_switchport_trunk_allowed_vlan_add_get(self, ten
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19678,10 +20400,12 @@ def interface_tengigabitethernet_switchport_trunk_allowed_vlan_remove_get(self, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19735,10 +20459,12 @@ def interface_tengigabitethernet_track_interface_get(self, tengigabitethernet=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19792,10 +20518,12 @@ def interface_tengigabitethernet_vlan_classifier_activate_group_get(self, tengig
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19849,10 +20577,12 @@ def interface_tengigabitethernet_vrrp_group_get(self, tengigabitethernet=None, v
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19922,10 +20652,12 @@ def interface_tengigabitethernet_vrrp_group_track_get(self, tengigabitethernet=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -19988,10 +20720,12 @@ def interface_tengigabitethernet_vrrp_group_virtual_ip_get(self, tengigabitether
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20028,10 +20762,12 @@ def interface_tunnel_get(self, tunnel=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20069,10 +20805,12 @@ def interface_ve_get(self, ve=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20132,10 +20870,12 @@ def interface_ve_ip_access_group_get(self, ve=None, access_group=None, resource_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20191,10 +20931,12 @@ def interface_ve_ip_address_get(self, ve=None, address=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20248,10 +20990,12 @@ def interface_ve_ip_dhcp_relay_get(self, ve=None, servers=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20299,10 +21043,12 @@ def interface_ve_ip_fabric_virtual_gateway_get(self, ve=None, ip_anycast_gateway
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20365,10 +21111,12 @@ def interface_ve_ip_fabric_virtual_gateway_track_interface_get(self, ve=None, ip
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20424,10 +21172,12 @@ def interface_ve_ip_fabric_virtual_gateway_track_network_get(self, ve=None, ip_l
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20483,10 +21233,12 @@ def interface_ve_ip_fabric_virtual_gateway_track_next_hop_get(self, ve=None, ip_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20533,10 +21285,12 @@ def interface_ve_ip_igmp_static_group_get(self, ve=None, ve_igmpl3_static_group=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20596,10 +21350,12 @@ def interface_ve_ipv6_access_group_get(self, ve=None, access_group=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20652,10 +21408,12 @@ def interface_ve_ipv6_address_get(self, ve=None, ipv6_address=None, resource_dep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20709,10 +21467,12 @@ def interface_ve_ipv6_dhcp_relay_get(self, ve=None, servers=None, resource_depth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20760,10 +21520,12 @@ def interface_ve_ipv6_fabric_virtual_gateway_get(self, ve=None, ipv6_anycast_gat
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20819,10 +21581,12 @@ def interface_ve_ipv6_fabric_virtual_gateway_gateway_address_get(self, ve=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20885,10 +21649,12 @@ def interface_ve_ipv6_fabric_virtual_gateway_track_interface_get(self, ve=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -20944,10 +21710,12 @@ def interface_ve_ipv6_fabric_virtual_gateway_track_network_get(self, ve=None, ip
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21003,10 +21771,12 @@ def interface_ve_ipv6_fabric_virtual_gateway_track_next_hop_get(self, ve=None, i
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21056,10 +21826,12 @@ def interface_ve_ipv6_nd_address_get(self, ve=None, suppressing_address=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21106,10 +21878,12 @@ def interface_ve_ipv6_nd_prefix_get(self, ve=None, prefix=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21156,10 +21930,12 @@ def interface_ve_ipv6_nd_ra_dns_server_get(self, ve=None, ra_dns_server=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21203,10 +21979,12 @@ def interface_ve_ipv6_nd_ra_domain_name_get(self, ve=None, ra_domain_name=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21253,10 +22031,12 @@ def interface_ve_ipv6_neighbor_get(self, ve=None, neighbor=None, resource_depth=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21303,10 +22083,12 @@ def interface_ve_ipv6_vrrp_extended_group_get(self, ve=None, vrrpv3e=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21369,10 +22151,12 @@ def interface_ve_ipv6_vrrp_extended_group_track_get(self, ve=None, vrrpv3e=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21428,10 +22212,12 @@ def interface_ve_ipv6_vrrp_extended_group_track_network_get(self, ve=None, vrrpv
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21487,10 +22273,12 @@ def interface_ve_ipv6_vrrp_extended_group_virtual_ip_get(self, ve=None, vrrpv3e=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21537,10 +22325,12 @@ def interface_ve_ipv6_vrrp_group_get(self, ve=None, vrrpv3=None, resource_depth=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21603,10 +22393,12 @@ def interface_ve_ipv6_vrrp_group_track_get(self, ve=None, vrrpv3=None, interface
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21662,10 +22454,12 @@ def interface_ve_ipv6_vrrp_group_virtual_ip_get(self, ve=None, vrrpv3=None, virt
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21718,10 +22512,12 @@ def interface_ve_isis_auth_key_get(self, ve=None, interface_auth_key=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21774,10 +22570,12 @@ def interface_ve_isis_hello_interval_get(self, ve=None, interface_hello_interval
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21830,10 +22628,12 @@ def interface_ve_isis_hello_multiplier_get(self, ve=None, interface_hello_multip
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21886,10 +22686,12 @@ def interface_ve_isis_ipv6_metric_get(self, ve=None, interface_ipv6_metric=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21942,10 +22744,12 @@ def interface_ve_isis_metric_get(self, ve=None, interface_metric=None, resource_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -21992,10 +22796,12 @@ def interface_ve_vrrp_extended_group_get(self, ve=None, vrrpe=None, resource_dep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22058,10 +22864,12 @@ def interface_ve_vrrp_extended_group_track_get(self, ve=None, vrrpe=None, interf
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22117,10 +22925,12 @@ def interface_ve_vrrp_extended_group_track_network_get(self, ve=None, vrrpe=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22176,10 +22986,12 @@ def interface_ve_vrrp_extended_group_virtual_ip_get(self, ve=None, vrrpe=None, v
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22232,10 +23044,12 @@ def interface_ve_vrrp_group_get(self, ve=None, vrrp=None, resource_depth=1, api_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22304,10 +23118,12 @@ def interface_ve_vrrp_group_track_get(self, ve=None, vrrp=None, interface=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22369,10 +23185,12 @@ def interface_ve_vrrp_group_virtual_ip_get(self, ve=None, vrrp=None, virtual_ip=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22425,10 +23243,12 @@ def interface_vlan_ip_igmp_snooping_mrouter_interface_get(self, vlan=None, inter
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22493,10 +23313,12 @@ def interface_vlan_ip_igmp_static_group_get(self, vlan=None, static_group=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22549,10 +23371,12 @@ def interface_vlan_ipv6_mld_snooping_mrouter_interface_get(self, vlan=None, inte
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22617,10 +23441,12 @@ def interface_vlan_ipv6_mld_static_group_get(self, vlan=None, static_group=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22680,10 +23506,12 @@ def interface_vlan_mac_access_group_get(self, vlan=None, access_group=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22722,10 +23550,12 @@ def ip_access_list_extended_get(self, extended=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -22990,10 +23820,12 @@ def ip_access_list_extended_seq_get(self, extended=None, seq=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23032,10 +23864,12 @@ def ip_access_list_standard_get(self, standard=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23114,10 +23948,12 @@ def ip_access_list_standard_seq_get(self, standard=None, seq=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23176,10 +24012,12 @@ def ip_as_path_access_list_get(self, access_list=None, resource_depth=1, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23235,10 +24073,12 @@ def ip_community_list_extended_get(self, extended=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23297,10 +24137,12 @@ def ip_community_list_standard_get(self, standard=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23338,10 +24180,12 @@ def ip_dns_name_server_get(self, name_server=None, resource_depth=1, api_timeout
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23390,10 +24234,12 @@ def ip_extcommunity_list_get(self, extcommunity_list=None, resource_depth=1, api
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23439,10 +24285,12 @@ def ip_extcommunity_list_standard_get(self, standard=None, resource_depth=1, api
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23482,10 +24330,12 @@ def ip_igmp_ssm_map_get(self, igmps_prefix_list=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23529,10 +24379,12 @@ def ip_import_routes_get(self, routes=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23606,10 +24458,12 @@ def ip_prefix_list_get(self, prefix_list=None, resource_depth=1, api_timeout='')
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23647,10 +24501,12 @@ def ip_receive_access_group_get(self, access_group=None, resource_depth=1, api_t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23697,10 +24553,12 @@ def ip_route_get(self, static_route_nh_vrf=None, resource_depth=1, api_timeout='
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23744,10 +24602,12 @@ def ip_route_static_bfd_get(self, bfd_static_route=None, resource_depth=1, api_t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -23786,10 +24646,12 @@ def ipv6_access_list_extended_get(self, extended=None, resource_depth=1, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24054,10 +24916,12 @@ def ipv6_access_list_extended_seq_get(self, extended=None, seq=None, resource_de
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24096,10 +24960,12 @@ def ipv6_access_list_standard_get(self, standard=None, resource_depth=1, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24178,10 +25044,12 @@ def ipv6_access_list_standard_seq_get(self, standard=None, seq=None, resource_de
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24225,10 +25093,12 @@ def ipv6_import_routes_get(self, routes=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24265,10 +25135,12 @@ def ipv6_nd_ra_dns_server_get(self, dns_server_global=None, resource_depth=1, ap
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24302,10 +25174,12 @@ def ipv6_nd_ra_domain_name_get(self, domain_name_global=None, resource_depth=1, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24379,10 +25253,12 @@ def ipv6_prefix_list_get(self, prefix_list=None, resource_depth=1, api_timeout='
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24420,10 +25296,12 @@ def ipv6_receive_access_group_get(self, access_group=None, resource_depth=1, api
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24461,10 +25339,12 @@ def ipv6_route_get(self, route=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24519,10 +25399,12 @@ def ipv6_route_static_bfd_get(self, bfd_ipv6_link_local_static_route=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24560,10 +25442,12 @@ def ipv6_router_ospf_get(self, ospf=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24611,10 +25495,12 @@ def ipv6_router_ospf_area_get(self, ospf=None, area=None, resource_depth=1, api_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24683,10 +25569,12 @@ def ipv6_router_ospf_area_range_get(self, ospf=None, area=None, area_range=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24743,10 +25631,12 @@ def ipv6_router_ospf_area_virtual_link_get(self, ospf=None, area=None, virtual_l
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24794,10 +25684,12 @@ def ipv6_router_ospf_distance_get(self, ospf=None, distance=None, resource_depth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24845,10 +25737,12 @@ def ipv6_router_ospf_summary_address_get(self, ospf=None, summary_address=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24885,10 +25779,12 @@ def isis_state_database_get(self, database=None, resource_depth=1, api_timeout='
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -24938,10 +25834,12 @@ def isis_state_database_lsp_entry_get(self, database=None, lsp_entry=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25000,10 +25898,12 @@ def isis_state_database_lsp_entry_lsp_tlv_entry_get(self, database=None, lsp_ent
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25071,10 +25971,12 @@ def isis_state_database_lsp_entry_lsp_tlv_entry_sub_tlv_entry_get(self, database
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25108,10 +26010,12 @@ def isis_state_host_table_isis_router_entry_get(self, isis_router_entry=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25145,10 +26049,12 @@ def isis_state_interface_brief_isis_intf_brief_get(self, isis_intf_brief=None, r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25182,10 +26088,12 @@ def isis_state_interface_detail_isis_intf_get(self, isis_intf=None, resource_dep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25229,10 +26137,12 @@ def isis_state_interface_detail_isis_intf_ip6_info_get(self, isis_intf=None, ip6
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25276,10 +26186,12 @@ def isis_state_interface_detail_isis_intf_ip_info_get(self, isis_intf=None, ip_i
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25328,10 +26240,12 @@ def isis_state_ipv4_routes_ipv4_route_entry_get(self, ipv4_route_entry=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25387,10 +26301,12 @@ def isis_state_ipv4_routes_ipv4_route_entry_nh_info_get(self, ipv4_route_entry=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25452,10 +26368,12 @@ def isis_state_ipv4_routes_ipv4_route_entry_nh_info_lsp_info_get(self, ipv4_rout
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25495,10 +26413,12 @@ def isis_state_ipv6_routes_ipv6_route_entry_get(self, ipv6_route_entry=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25545,10 +26465,12 @@ def isis_state_ipv6_routes_ipv6_route_entry_nh_info_get(self, ipv6_route_entry=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25585,10 +26507,12 @@ def isis_state_router_isis_config_is_address_family_v4_summary_address_v4_get(se
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25622,10 +26546,12 @@ def isis_state_router_isis_config_is_address_family_v6_summary_prefix_v6_get(sel
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25659,10 +26585,12 @@ def isis_state_router_isis_config_isis_system_info_nsap_get(self, nsap=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25699,10 +26627,12 @@ def isns_vrf_forwarding_get(self, isns_vrf=None, resource_depth=1, api_timeout='
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25750,10 +26680,12 @@ def isns_vrf_forwarding_discovery_domain_get(self, isns_vrf=None, isns_discovery
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25801,10 +26733,12 @@ def isns_vrf_forwarding_discovery_domain_set_get(self, isns_vrf=None, isns_disco
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25844,10 +26778,12 @@ def ldap_server_host_get(self, host=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25891,10 +26827,12 @@ def ldap_server_maprole_group_get(self, group=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25932,10 +26870,12 @@ def line_get(self, line=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -25978,10 +26918,12 @@ def linecard_get(self, linecards=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26019,10 +26961,12 @@ def logging_auditlog_class_get(self, class_=None, resource_depth=1, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26057,10 +27001,12 @@ def logging_raslog_message_get(self, msgid=None, resource_depth=1, api_timeout='
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26095,10 +27041,12 @@ def logging_raslog_module_get(self, modid=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26152,10 +27100,12 @@ def logging_syslog_server_get(self, syslog_server=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26189,10 +27139,12 @@ def logical_interface_state_main_interface_physical_get(self, main_interface_phy
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26231,10 +27183,12 @@ def mac_access_list_extended_get(self, extended=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26325,10 +27279,12 @@ def mac_access_list_extended_seq_get(self, extended=None, seq=None, resource_dep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26367,10 +27323,12 @@ def mac_access_list_standard_get(self, standard=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26440,10 +27398,12 @@ def mac_access_list_standard_seq_get(self, standard=None, seq=None, resource_dep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26505,10 +27465,12 @@ def mac_address_table_static_get(self, static=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26546,10 +27508,12 @@ def mac_group_get(self, mac_group=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26594,10 +27558,12 @@ def mac_group_mac_get(self, mac_group=None, mac_group_entry=None, resource_depth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26634,10 +27600,12 @@ def mct_l2ys_state_show_cluster_mem_vlan_get(self, show_cluster_mem_vlan=None, r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26674,10 +27642,12 @@ def mct_state_show_cluster_get(self, show_cluster=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26730,10 +27700,12 @@ def mct_state_show_cluster_client_info_list_get(self, show_cluster=None, client_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26780,10 +27752,12 @@ def mct_state_show_cluster_peer_info_list_get(self, show_cluster=None, peer_info
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26820,10 +27794,12 @@ def mctd_client_state_state_show_cluster_mctd_client_get(self, show_cluster_mctd
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26860,10 +27836,12 @@ def mctd_client_state_state_show_cluster_mem_vlan_get(self, show_cluster_mem_vla
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26901,10 +27879,12 @@ def monitor_session_get(self, session=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26938,10 +27918,12 @@ def mpls_state_auto_bandwidth_template_get(self, auto_bandwidth_template=None, r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -26982,10 +27964,12 @@ def mpls_state_auto_bandwidth_template_associated_paths_get(self, auto_bandwidth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27022,10 +28006,12 @@ def mpls_state_autobw_threshold_table_entry_get(self, autobw_threshold_table_ent
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27065,10 +28051,12 @@ def mpls_state_dynamic_bypass_dynamic_bypass_interface_get(self, dynamic_bypass_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27118,10 +28106,12 @@ def mpls_state_dynamic_bypass_dynamic_bypass_interface_mp_infos_get(self, dynami
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27164,10 +28154,12 @@ def mpls_state_forwarding_entry_get(self, forwarding_entry=None, resource_depth=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27204,10 +28196,12 @@ def mpls_state_interface_get(self, interface=None, resource_depth=1, api_timeout
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27241,10 +28235,12 @@ def mpls_state_ldp_fec_ldp_fec_prefix_longer_get(self, ldp_fec_prefix_longer=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27285,10 +28281,12 @@ def mpls_state_ldp_fec_ldp_fec_prefix_longer_prefix_prefix_get(self, ldp_fec_pre
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27338,10 +28336,12 @@ def mpls_state_ldp_fec_ldp_fec_prefix_longer_prefix_prefix_prefix_downstream_get
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27388,10 +28388,12 @@ def mpls_state_ldp_fec_ldp_fec_prefix_longer_prefix_prefix_prefix_nexthops_get(s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27441,10 +28443,12 @@ def mpls_state_ldp_fec_ldp_fec_prefix_longer_prefix_prefix_prefix_upstream_get(s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27481,10 +28485,12 @@ def mpls_state_ldp_fec_ldp_fec_prefix_prefix_prefix_downstream_get(self, prefix_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27518,10 +28524,12 @@ def mpls_state_ldp_fec_ldp_fec_prefix_prefix_prefix_nexthops_get(self, prefix_ne
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27558,10 +28566,12 @@ def mpls_state_ldp_fec_ldp_fec_prefix_prefix_prefix_upstream_get(self, prefix_up
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27595,10 +28605,12 @@ def mpls_state_ldp_fec_ldp_fec_prefixes_prefix_get(self, prefix=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27639,10 +28651,12 @@ def mpls_state_ldp_fec_ldp_fec_prefixes_prefix_nexthops_get(self, prefix=None, n
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27679,10 +28693,12 @@ def mpls_state_ldp_fec_ldp_fec_vcid_get(self, ldp_fec_vcid=None, resource_depth=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27729,10 +28745,12 @@ def mpls_state_ldp_fec_ldp_fec_vcid_vc_downstream_get(self, ldp_fec_vcid=None, v
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27779,10 +28797,12 @@ def mpls_state_ldp_fec_ldp_fec_vcid_vc_upstream_get(self, ldp_fec_vcid=None, vc_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27819,10 +28839,12 @@ def mpls_state_ldp_fec_ldp_fec_vcs_vc_get(self, vc=None, resource_depth=1, api_t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27859,10 +28881,12 @@ def mpls_state_ldp_interface_ldp_interface_data_get(self, ldp_interface_data=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27899,10 +28923,12 @@ def mpls_state_ldp_ldp_database_get(self, ldp_database=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27949,10 +28975,12 @@ def mpls_state_ldp_ldp_database_mpls_ldp_database_downstream_get(self, ldp_datab
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -27999,10 +29027,12 @@ def mpls_state_ldp_ldp_database_mpls_ldp_database_upstream_get(self, ldp_databas
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28045,10 +29075,12 @@ def mpls_state_ldp_ldp_neighbors_neighbor_get(self, neighbor=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28082,10 +29114,12 @@ def mpls_state_ldp_ldp_session_get(self, ldp_session=None, resource_depth=1, api
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28129,10 +29163,12 @@ def mpls_state_ldp_ldp_session_filtered_fecs_in_get(self, ldp_session=None, filt
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28176,10 +29212,12 @@ def mpls_state_ldp_ldp_session_filtered_fecs_out_get(self, ldp_session=None, fil
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28223,10 +29261,12 @@ def mpls_state_ldp_ldp_session_session_ldp_stats_ldp_protocol_errors_instance_to
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28270,10 +29310,12 @@ def mpls_state_ldp_ldp_session_session_ldp_stats_ldp_protocol_stats_instance_tot
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28307,10 +29349,12 @@ def mpls_state_ldp_path_get(self, path=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28354,10 +29398,12 @@ def mpls_state_ldp_path_downstream_sessions_get(self, path=None, downstream_sess
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28401,10 +29447,12 @@ def mpls_state_ldp_path_upstream_sessions_get(self, path=None, upstream_sessions
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28441,10 +29489,12 @@ def mpls_state_ldp_statistics_ldp_protocol_errors_instance_since_clear_protocol_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28481,10 +29531,12 @@ def mpls_state_ldp_statistics_ldp_protocol_errors_instance_total_protocol_errors
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28521,10 +29573,12 @@ def mpls_state_ldp_statistics_ldp_protocol_stats_instance_since_clear_protocol_s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28561,10 +29615,12 @@ def mpls_state_ldp_statistics_ldp_protocol_stats_instance_total_protocol_stats_g
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28601,10 +29657,12 @@ def mpls_state_ldp_targeted_peer_get(self, targeted_peer=None, resource_depth=1,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28647,10 +29705,12 @@ def mpls_state_ldp_tunnels_ldp_tunnels_get(self, ldp_tunnels=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28700,10 +29760,12 @@ def mpls_state_ldp_tunnels_ldp_tunnels_out_segments_get(self, ldp_tunnels=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28737,10 +29799,12 @@ def mpls_state_lsp_get(self, lsp=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28793,10 +29857,12 @@ def mpls_state_lsp_backup_backup_ingress_get(self, lsp=None, backup_ingress=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28849,10 +29915,12 @@ def mpls_state_lsp_backup_backup_transit_get(self, lsp=None, backup_transit=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28896,10 +29964,12 @@ def mpls_state_lsp_frr_exclude_any_get(self, lsp=None, exclude_any=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28943,10 +30013,12 @@ def mpls_state_lsp_frr_include_all_get(self, lsp=None, include_all=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -28990,10 +30062,12 @@ def mpls_state_lsp_frr_include_any_get(self, lsp=None, include_any=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29043,10 +30117,12 @@ def mpls_state_lsp_instances_get(self, lsp=None, instances=None, resource_depth=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29105,10 +30181,12 @@ def mpls_state_lsp_instances_config_exclude_any_get(self, lsp=None, instances=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29164,10 +30242,12 @@ def mpls_state_lsp_instances_config_exclude_interfaces_get(self, lsp=None, insta
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29226,10 +30306,12 @@ def mpls_state_lsp_instances_config_frr_exclude_any_get(self, lsp=None, instance
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29288,10 +30370,12 @@ def mpls_state_lsp_instances_config_frr_include_all_get(self, lsp=None, instance
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29350,10 +30434,12 @@ def mpls_state_lsp_instances_config_frr_include_any_get(self, lsp=None, instance
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29412,10 +30498,12 @@ def mpls_state_lsp_instances_config_include_all_get(self, lsp=None, instances=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29474,10 +30562,12 @@ def mpls_state_lsp_instances_config_include_any_get(self, lsp=None, instances=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29542,10 +30632,12 @@ def mpls_state_lsp_instances_cspf_exclude_hops_get(self, lsp=None, instances=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29610,10 +30702,12 @@ def mpls_state_lsp_instances_cspf_path_hops_get(self, lsp=None, instances=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29678,10 +30772,12 @@ def mpls_state_lsp_instances_rsvp_session_rro_hops_get(self, lsp=None, instances
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29722,10 +30818,12 @@ def mpls_state_lsp_secondary_path_get(self, lsp=None, secondary_path=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29775,10 +30873,12 @@ def mpls_state_lsp_secondary_path_config_exclude_any_get(self, lsp=None, seconda
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29828,10 +30928,12 @@ def mpls_state_lsp_secondary_path_config_include_all_get(self, lsp=None, seconda
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29881,10 +30983,12 @@ def mpls_state_lsp_secondary_path_config_include_any_get(self, lsp=None, seconda
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29921,10 +31025,12 @@ def mpls_state_memory_pools_get(self, pools=None, resource_depth=1, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -29971,10 +31077,12 @@ def mpls_state_memory_pools_sub_pools_get(self, pools=None, sub_pools=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30011,10 +31119,12 @@ def mpls_state_memory_stats_get(self, stats=None, resource_depth=1, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30048,10 +31158,12 @@ def mpls_state_path_get(self, path=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30095,10 +31207,12 @@ def mpls_state_path_path_hops_get(self, path=None, path_hops=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30139,10 +31253,12 @@ def mpls_state_path_path_lsps_get(self, path=None, path_lsps=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30176,10 +31292,12 @@ def mpls_state_policy_admin_groups_get(self, admin_groups=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30213,10 +31331,12 @@ def mpls_state_policy_rsvp_flooding_thresholds_get(self, rsvp_flooding_threshold
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30253,10 +31373,12 @@ def mpls_state_route_get(self, route=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30299,10 +31421,12 @@ def mpls_state_rsvp_igp_sync_link_get(self, link=None, resource_depth=1, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30355,10 +31479,12 @@ def mpls_state_rsvp_igp_sync_link_lsp_get(self, link=None, lsp=None, resource_de
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30420,10 +31546,12 @@ def mpls_state_rsvp_igp_sync_link_lsp_cspf_hop_get(self, link=None, lsp=None, cs
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30485,10 +31613,12 @@ def mpls_state_rsvp_igp_sync_link_lsp_link_get(self, link=None, lsp=None, link_=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30550,10 +31680,12 @@ def mpls_state_rsvp_igp_sync_link_lsp_rro_hop_get(self, link=None, lsp=None, rro
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30590,10 +31722,12 @@ def mpls_state_rsvp_igp_sync_lsp_get(self, lsp=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30640,10 +31774,12 @@ def mpls_state_rsvp_igp_sync_lsp_cspf_hop_get(self, lsp=None, cspf_hop=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30690,10 +31826,12 @@ def mpls_state_rsvp_igp_sync_lsp_link_get(self, lsp=None, link=None, resource_de
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30740,10 +31878,12 @@ def mpls_state_rsvp_igp_sync_lsp_rro_hop_get(self, lsp=None, rro_hop=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30780,10 +31920,12 @@ def mpls_state_rsvp_interfaces_get(self, interfaces=None, resource_depth=1, api_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30820,10 +31962,12 @@ def mpls_state_rsvp_neighbors_get(self, neighbors=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30878,10 +32022,12 @@ def mpls_state_rsvp_sessions_get(self, sessions=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -30946,10 +32092,12 @@ def mpls_state_rsvp_sessions_psbs_get(self, sessions=None, psbs=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31023,10 +32171,12 @@ def mpls_state_rsvp_sessions_psbs_session_ero_hops_get(self, sessions=None, psbs
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31100,10 +32250,12 @@ def mpls_state_rsvp_sessions_psbs_session_rro_hops_get(self, sessions=None, psbs
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31140,10 +32292,12 @@ def mpls_state_statistics_oam_return_codes_get(self, return_codes=None, resource
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31186,10 +32340,12 @@ def mpls_state_te_database_area_get(self, area=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31245,10 +32401,12 @@ def mpls_state_te_database_area_node_get(self, area=None, node=None, resource_de
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31337,10 +32495,12 @@ def mpls_state_te_database_area_node_link_get(self, area=None, node=None, link=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31435,10 +32595,12 @@ def mpls_state_te_database_area_node_link_srlg_get(self, area=None, node=None, l
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31500,10 +32662,12 @@ def mpls_state_te_database_area_node_srlg_get(self, area=None, node=None, srlg=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31540,10 +32704,12 @@ def mpls_state_te_router_id_map_get(self, router_id_map=None, resource_depth=1, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31580,10 +32746,12 @@ def mpls_state_transit_traffic_statistics_get(self, transit_traffic_statistics=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31620,10 +32788,12 @@ def mpls_state_tunnel_traffic_statistics_get(self, tunnel_traffic_statistics=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31661,10 +32831,12 @@ def nas_server_ip_get(self, server_ip=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31712,10 +32884,12 @@ def nas_server_ip_vlan_get(self, server_ip=None, vlan=None, resource_depth=1, ap
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31763,10 +32937,12 @@ def nas_server_ip_vrf_get(self, server_ip=None, vrf=None, resource_depth=1, api_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31804,10 +32980,12 @@ def nsx_controller_get(self, nsx_controller=None, resource_depth=1, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31863,10 +33041,12 @@ def ntp_authentication_key_get(self, authentication_key=None, resource_depth=1, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31904,10 +33084,12 @@ def ntp_server_get(self, server=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31945,10 +33127,12 @@ def openflow_controller_get(self, openflow_controller=None, resource_depth=1, ap
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -31982,10 +33166,12 @@ def openflow_state_controller_get(self, controller=None, resource_depth=1, api_t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32022,10 +33208,12 @@ def openflow_state_detail_controller_detail_list_get(self, controller_detail_lis
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32072,10 +33260,12 @@ def openflow_state_detail_controller_detail_list_controller_async_list_get(self,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32109,10 +33299,12 @@ def openflow_state_detail_hybrid_interfaces_get(self, hybrid_interfaces=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32149,10 +33341,12 @@ def openflow_state_flow_flow_info_list_get(self, flow_info_list=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32199,10 +33393,12 @@ def openflow_state_flow_flow_info_list_flow_action_list_get(self, flow_info_list
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32239,10 +33435,12 @@ def openflow_state_flow_id_flow_action_list_get(self, flow_action_list=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32282,10 +33480,12 @@ def openflow_state_flow_interface_get(self, flow_interface=None, resource_depth=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32335,10 +33535,12 @@ def openflow_state_flow_interface_flow_info_list_get(self, flow_interface=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32397,10 +33599,12 @@ def openflow_state_flow_interface_flow_info_list_flow_action_list_get(self, flow
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32437,10 +33641,12 @@ def openflow_state_group_group_info_list_get(self, group_info_list=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32487,10 +33693,12 @@ def openflow_state_group_group_info_list_group_bucket_list_get(self, group_info_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32546,10 +33754,12 @@ def openflow_state_group_group_info_list_group_bucket_list_group_action_list_get
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32586,10 +33796,12 @@ def openflow_state_group_id_group_bucket_list_get(self, group_bucket_list=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32636,10 +33848,12 @@ def openflow_state_group_id_group_bucket_list_group_action_list_get(self, group_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32673,10 +33887,12 @@ def openflow_state_interface_get(self, interface=None, resource_depth=1, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32713,10 +33929,12 @@ def openflow_state_meter_id_meterband_info_list_get(self, meterband_info_list=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32753,10 +33971,12 @@ def openflow_state_meter_meter_info_list_get(self, meter_info_list=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32803,10 +34023,12 @@ def openflow_state_meter_meter_info_list_meterband_info_list_get(self, meter_inf
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32846,10 +34068,12 @@ def openflow_state_queues_interface_queue_info_list_get(self, queue_info_list=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32886,10 +34110,12 @@ def openflow_state_resources_group_resouces_list_get(self, group_resouces_list=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32926,10 +34152,12 @@ def openflow_state_resources_slot_resouces_list_get(self, slot_resouces_list=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -32976,10 +34204,12 @@ def openflow_state_resources_slot_resouces_list_slot_match_profile_list_get(self
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33035,10 +34265,12 @@ def openflow_state_resources_slot_resouces_list_slot_match_profile_list_slot_chi
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33078,10 +34310,12 @@ def opstest_state_arpentries_arpe_get(self, arpe=None, resource_depth=1, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33118,10 +34352,12 @@ def opstest_state_routes_route_get(self, route=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33168,10 +34404,12 @@ def opstest_state_routes_route_children_get(self, route=None, children=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33227,10 +34465,12 @@ def opstest_state_routes_route_children_layer2_get(self, route=None, children=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33267,10 +34507,12 @@ def overlay_access_list_type_vxlan_extended_get(self, extended=None, resource_de
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33433,10 +34675,12 @@ def overlay_access_list_type_vxlan_extended_seq_get(self, extended=None, ext_seq
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33473,10 +34717,12 @@ def overlay_access_list_type_vxlan_standard_get(self, standard=None, resource_de
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33575,10 +34821,12 @@ def overlay_access_list_type_vxlan_standard_seq_get(self, standard=None, seq=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33616,10 +34864,12 @@ def overlay_gateway_get(self, overlay_gateway=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33670,10 +34920,12 @@ def overlay_gateway_attach_vlan_get(self, overlay_gateway=None, vlan=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33721,10 +34973,12 @@ def overlay_gateway_map_get(self, overlay_gateway=None, vlan_vni_mapping=None, r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33802,10 +35056,12 @@ def overlay_gateway_monitor_get(self, overlay_gateway=None, monitor=None, resour
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33871,10 +35127,12 @@ def overlay_gateway_sflow_get(self, overlay_gateway=None, sflow=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33922,10 +35180,12 @@ def overlay_gateway_site_get(self, overlay_gateway=None, site=None, resource_dep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -33982,10 +35242,12 @@ def overlay_gateway_site_ip_get(self, overlay_gateway=None, site=None, tunnel_ds
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34022,10 +35284,12 @@ def overlay_transit_get(self, overlay_transit=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34078,10 +35342,12 @@ def overlay_transit_overlay_get(self, overlay_transit=None, transit_overlay=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34121,10 +35387,12 @@ def overlay_transit_state_extended_data_get(self, extended_data=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34161,10 +35429,12 @@ def ovsdb_server_get(self, ovsdb_server=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34201,10 +35471,12 @@ def pim_anycast_state_get(self, pim_anycast_state=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34251,10 +35523,12 @@ def pim_anycast_state_peer_list_get(self, pim_anycast_state=None, peer_list=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34291,10 +35565,12 @@ def pim_ecmp_state_get(self, pim_ecmp_state=None, resource_depth=1, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34347,10 +35623,12 @@ def pim_ecmp_state_pim_ecmp_get(self, pim_ecmp_state=None, pim_ecmp=None, resour
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34384,10 +35662,12 @@ def pim_global_state_interfaces_get(self, interfaces=None, resource_depth=1, api
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34431,10 +35711,12 @@ def pim_global_state_interfaces_pim_interface_data_get(self, interfaces=None, pi
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34471,10 +35753,12 @@ def police_priority_map_get(self, police_priority_map=None, resource_depth=1, ap
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34512,10 +35796,12 @@ def policy_map_get(self, policy_map=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34563,10 +35849,12 @@ def policy_map_class_get(self, policy_map=None, class_=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34604,10 +35892,12 @@ def port_channel_redundancy_group_get(self, port_channel_redundancy_group=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34658,10 +35948,12 @@ def port_channel_redundancy_group_port_channel_get(self, port_channel_redundancy
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34699,10 +35991,12 @@ def port_profile_get(self, port_profile=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34740,10 +36034,12 @@ def port_profile_domain_get(self, port_profile_domain=None, resource_depth=1, ap
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34791,10 +36087,12 @@ def port_profile_domain_port_profile_get(self, port_profile_domain=None, profile
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34842,10 +36140,12 @@ def port_profile_qos_profile_qos_flowcontrol_pfc_get(self, port_profile=None, pf
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34890,10 +36190,12 @@ def port_profile_static_get(self, port_profile=None, static=None, resource_depth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -34947,10 +36249,12 @@ def port_profile_vlan_profile_switchport_access_vlan_get(self, port_profile=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35004,10 +36308,12 @@ def port_profile_vlan_profile_switchport_trunk_allowed_vlan_add_get(self, port_p
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35061,10 +36367,12 @@ def port_profile_vlan_profile_switchport_trunk_allowed_vlan_remove_get(self, por
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35108,10 +36416,12 @@ def preprovision_rbridge_id_get(self, rbridge_id=None, resource_depth=1, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35148,10 +36458,12 @@ def protocol_cfm_domain_name_get(self, domain_name=None, resource_depth=1, api_t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35198,10 +36510,12 @@ def protocol_cfm_domain_name_ma_name_get(self, domain_name=None, ma_name=None, r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35257,10 +36571,12 @@ def protocol_cfm_domain_name_ma_name_mep_get(self, domain_name=None, ma_name=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35325,10 +36641,12 @@ def protocol_cfm_domain_name_ma_name_mep_remote_mep_get(self, domain_name=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35367,10 +36685,12 @@ def protocol_lldp_profile_get(self, profile=None, resource_depth=1, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35408,10 +36728,12 @@ def protocol_spanning_tree_mstp_instance_get(self, instance=None, resource_depth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35449,10 +36771,12 @@ def protocol_spanning_tree_pvst_vlan_get(self, vlan=None, resource_depth=1, api_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35490,10 +36814,12 @@ def protocol_spanning_tree_rpvst_vlan_get(self, vlan=None, resource_depth=1, api
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35530,10 +36856,12 @@ def pw_profile_get(self, pw_profile=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35570,10 +36898,12 @@ def qos_cpu_slot_get(self, slot=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35620,10 +36950,12 @@ def qos_cpu_slot_group_get(self, slot=None, group=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35679,10 +37011,12 @@ def qos_cpu_slot_group_prio_get(self, slot=None, group=None, group_prio=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35768,10 +37102,12 @@ def qos_map_cos_mutation_get(self, cos_mutation=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35818,10 +37154,12 @@ def qos_map_cos_mutation_map_get(self, cos_mutation=None, cos_to_cos_mappings=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35907,10 +37245,12 @@ def qos_map_cos_traffic_class_get(self, cos_traffic_class=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35957,10 +37297,12 @@ def qos_map_cos_traffic_class_map_get(self, cos_traffic_class=None, cos_to_tc_dp
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -35998,10 +37340,12 @@ def qos_map_dscp_cos_get(self, dscp_cos=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36048,10 +37392,12 @@ def qos_map_dscp_cos_map_get(self, dscp_cos=None, dscp_to_cos_mapping=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36098,10 +37444,12 @@ def qos_map_dscp_cos_mark_get(self, dscp_cos=None, mark=None, resource_depth=1, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36139,10 +37487,12 @@ def qos_map_dscp_mutation_get(self, dscp_mutation=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36189,10 +37539,12 @@ def qos_map_dscp_mutation_map_get(self, dscp_mutation=None, dscp_to_dscp_mapping
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36239,10 +37591,12 @@ def qos_map_dscp_mutation_mark_get(self, dscp_mutation=None, mark=None, resource
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36280,10 +37634,12 @@ def qos_map_dscp_traffic_class_get(self, dscp_traffic_class=None, resource_depth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36330,10 +37686,12 @@ def qos_map_dscp_traffic_class_map_get(self, dscp_traffic_class=None, dscp_to_tc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36380,10 +37738,12 @@ def qos_map_dscp_traffic_class_mark_get(self, dscp_traffic_class=None, mark=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36420,10 +37780,12 @@ def qos_map_traffic_class_cos_get(self, traffic_class_cos=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36476,10 +37838,12 @@ def qos_map_traffic_class_cos_map_get(self, traffic_class_cos=None, tc_dp_to_cos
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36516,10 +37880,12 @@ def qos_mpls_map_dscp_exp_get(self, dscp_exp=None, resource_depth=1, api_timeout
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36566,10 +37932,12 @@ def qos_mpls_map_dscp_exp_dscp_get(self, dscp_exp=None, dscp=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36606,10 +37974,12 @@ def qos_mpls_map_exp_dscp_get(self, exp_dscp=None, resource_depth=1, api_timeout
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36656,10 +38026,12 @@ def qos_mpls_map_exp_dscp_exp_get(self, exp_dscp=None, exp=None, resource_depth=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36696,10 +38068,12 @@ def qos_mpls_map_exp_traffic_class_get(self, exp_traffic_class=None, resource_de
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36746,10 +38120,12 @@ def qos_mpls_map_exp_traffic_class_exp_get(self, exp_traffic_class=None, exp=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36786,10 +38162,12 @@ def qos_mpls_map_inexp_outexp_get(self, inexp_outexp=None, resource_depth=1, api
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36836,10 +38214,12 @@ def qos_mpls_map_inexp_outexp_in_exp_get(self, inexp_outexp=None, in_exp=None, r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36876,10 +38256,12 @@ def qos_mpls_map_traffic_class_exp_get(self, traffic_class_exp=None, resource_de
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -36941,10 +38323,12 @@ def qos_mpls_map_traffic_class_exp_traffic_class_get(self, traffic_class_exp=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37000,10 +38384,12 @@ def qos_red_profile_get(self, red_profile=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37047,10 +38433,12 @@ def qos_service_policy_get(self, service_policy=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37084,10 +38472,12 @@ def queues_state_queue_interface_list_get(self, queue_interface_list=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37134,10 +38524,12 @@ def queues_state_queue_interface_list_queue_info_list_get(self, queue_interface_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37177,10 +38569,12 @@ def radius_server_host_get(self, host=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37218,10 +38612,12 @@ def rbridge_id_get(self, rbridge_id=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37269,10 +38665,12 @@ def rbridge_id_ag_nport_interface_fiberchannel_get(self, rbridge_id=None, nport=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37320,10 +38718,12 @@ def rbridge_id_ag_pg_get(self, rbridge_id=None, pg=None, resource_depth=1, api_t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37413,10 +38813,12 @@ def rbridge_id_arp_get(self, rbridge_id=None, arp_entry=None, resource_depth=1, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37463,10 +38865,12 @@ def rbridge_id_bp_rate_limit_queue_get(self, rbridge_id=None, queue=None, resour
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37513,10 +38917,12 @@ def rbridge_id_crypto_ca_get(self, rbridge_id=None, ca=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37575,10 +38981,12 @@ def rbridge_id_crypto_key_get(self, rbridge_id=None, key=None, resource_depth=1,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37625,10 +39033,12 @@ def rbridge_id_event_handler_activate_get(self, rbridge_id=None, name=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37675,10 +39085,12 @@ def rbridge_id_evpn_instance_get(self, rbridge_id=None, evpn_instance=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37731,10 +39143,12 @@ def rbridge_id_evpn_instance_route_target_both_get(self, rbridge_id=None, evpn_i
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37787,10 +39201,12 @@ def rbridge_id_evpn_instance_route_target_export_get(self, rbridge_id=None, evpn
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37843,10 +39259,12 @@ def rbridge_id_evpn_instance_route_target_import_get(self, rbridge_id=None, evpn
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37902,10 +39320,12 @@ def rbridge_id_evpn_instance_vni_get(self, rbridge_id=None, evpn_instance=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -37970,10 +39390,12 @@ def rbridge_id_evpn_instance_vni_route_target_both_get(self, rbridge_id=None, ev
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38038,10 +39460,12 @@ def rbridge_id_evpn_instance_vni_route_target_export_get(self, rbridge_id=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38106,10 +39530,12 @@ def rbridge_id_evpn_instance_vni_route_target_import_get(self, rbridge_id=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38157,10 +39583,12 @@ def rbridge_id_fabric_port_channel_get(self, rbridge_id=None, port_channel=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38209,10 +39637,12 @@ def rbridge_id_fcoe_fabric_map_get(self, rbridge_id=None, fcoe_enode_fabric_map=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38259,10 +39689,12 @@ def rbridge_id_filter_change_update_delay_get(self, rbridge_id=None, filter_chan
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38312,10 +39744,12 @@ def rbridge_id_http_server_use_vrf_get(self, rbridge_id=None, use_vrf=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38362,10 +39796,12 @@ def rbridge_id_interface_loopback_get(self, rbridge_id=None, loopback=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38421,10 +39857,12 @@ def rbridge_id_interface_loopback_ip_address_get(self, rbridge_id=None, loopback
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38486,10 +39924,12 @@ def rbridge_id_interface_loopback_ipv6_address_get(self, rbridge_id=None, loopba
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38536,10 +39976,12 @@ def rbridge_id_interface_ve_get(self, rbridge_id=None, ve=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38608,10 +40050,12 @@ def rbridge_id_interface_ve_ip_access_group_get(self, rbridge_id=None, ve=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38676,10 +40120,12 @@ def rbridge_id_interface_ve_ip_address_get(self, rbridge_id=None, ve=None, addre
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38735,10 +40181,12 @@ def rbridge_id_interface_ve_ip_anycast_address_get(self, rbridge_id=None, ve=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38801,10 +40249,12 @@ def rbridge_id_interface_ve_ip_dhcp_relay_get(self, rbridge_id=None, ve=None, se
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38860,10 +40310,12 @@ def rbridge_id_interface_ve_ip_fabric_virtual_gateway_get(self, rbridge_id=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -38935,10 +40387,12 @@ def rbridge_id_interface_ve_ip_fabric_virtual_gateway_track_interface_get(self, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39003,10 +40457,12 @@ def rbridge_id_interface_ve_ip_fabric_virtual_gateway_track_network_get(self, rb
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39071,10 +40527,12 @@ def rbridge_id_interface_ve_ip_fabric_virtual_gateway_track_next_hop_get(self, r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39130,10 +40588,12 @@ def rbridge_id_interface_ve_ip_igmp_static_group_get(self, rbridge_id=None, ve=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39202,10 +40662,12 @@ def rbridge_id_interface_ve_ipv6_access_group_get(self, rbridge_id=None, ve=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39267,10 +40729,12 @@ def rbridge_id_interface_ve_ipv6_address_get(self, rbridge_id=None, ve=None, ipv
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39326,10 +40790,12 @@ def rbridge_id_interface_ve_ipv6_anycast_address_get(self, rbridge_id=None, ve=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39392,10 +40858,12 @@ def rbridge_id_interface_ve_ipv6_dhcp_relay_get(self, rbridge_id=None, ve=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39451,10 +40919,12 @@ def rbridge_id_interface_ve_ipv6_fabric_virtual_gateway_get(self, rbridge_id=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39526,10 +40996,12 @@ def rbridge_id_interface_ve_ipv6_fabric_virtual_gateway_track_interface_get(self
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39594,10 +41066,12 @@ def rbridge_id_interface_ve_ipv6_fabric_virtual_gateway_track_network_get(self, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39662,10 +41136,12 @@ def rbridge_id_interface_ve_ipv6_fabric_virtual_gateway_track_next_hop_get(self,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39721,10 +41197,12 @@ def rbridge_id_interface_ve_ipv6_nd_prefix_get(self, rbridge_id=None, ve=None, p
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39780,10 +41258,12 @@ def rbridge_id_interface_ve_ipv6_neighbor_get(self, rbridge_id=None, ve=None, ne
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39839,10 +41319,12 @@ def rbridge_id_interface_ve_ipv6_vrrp_extended_group_get(self, rbridge_id=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39914,10 +41396,12 @@ def rbridge_id_interface_ve_ipv6_vrrp_extended_group_track_get(self, rbridge_id=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -39982,10 +41466,12 @@ def rbridge_id_interface_ve_ipv6_vrrp_extended_group_track_network_get(self, rbr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40050,10 +41536,12 @@ def rbridge_id_interface_ve_ipv6_vrrp_extended_group_virtual_ip_get(self, rbridg
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40109,10 +41597,12 @@ def rbridge_id_interface_ve_ipv6_vrrp_group_get(self, rbridge_id=None, ve=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40184,10 +41674,12 @@ def rbridge_id_interface_ve_ipv6_vrrp_group_track_get(self, rbridge_id=None, ve=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40252,10 +41744,12 @@ def rbridge_id_interface_ve_ipv6_vrrp_group_virtual_ip_get(self, rbridge_id=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40311,10 +41805,12 @@ def rbridge_id_interface_ve_vrrp_extended_group_get(self, rbridge_id=None, ve=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40386,10 +41882,12 @@ def rbridge_id_interface_ve_vrrp_extended_group_track_get(self, rbridge_id=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40454,10 +41952,12 @@ def rbridge_id_interface_ve_vrrp_extended_group_track_network_get(self, rbridge_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40522,10 +42022,12 @@ def rbridge_id_interface_ve_vrrp_extended_group_virtual_ip_get(self, rbridge_id=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40587,10 +42089,12 @@ def rbridge_id_interface_ve_vrrp_group_get(self, rbridge_id=None, ve=None, vrrp=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40668,10 +42172,12 @@ def rbridge_id_interface_ve_vrrp_group_track_get(self, rbridge_id=None, ve=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40742,10 +42248,12 @@ def rbridge_id_interface_ve_vrrp_group_virtual_ip_get(self, rbridge_id=None, ve=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40813,10 +42321,12 @@ def rbridge_id_ip_as_path_access_list_get(self, rbridge_id=None, access_list=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40882,10 +42392,12 @@ def rbridge_id_ip_community_list_extended_get(self, rbridge_id=None, extended=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -40954,10 +42466,12 @@ def rbridge_id_ip_community_list_standard_get(self, rbridge_id=None, standard=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41016,10 +42530,12 @@ def rbridge_id_ip_extcommunity_list_get(self, rbridge_id=None, extcommunity_list
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41073,10 +42589,12 @@ def rbridge_id_ip_import_routes_get(self, rbridge_id=None, routes=None, resource
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41159,10 +42677,12 @@ def rbridge_id_ip_prefix_list_get(self, rbridge_id=None, prefix_list=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41218,10 +42738,12 @@ def rbridge_id_ip_route_get(self, rbridge_id=None, static_route_nh_vrf=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41274,10 +42796,12 @@ def rbridge_id_ip_route_static_bfd_get(self, rbridge_id=None, bfd_static_route=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41331,10 +42855,12 @@ def rbridge_id_ipv6_import_routes_get(self, rbridge_id=None, routes=None, resour
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41417,10 +42943,12 @@ def rbridge_id_ipv6_prefix_list_get(self, rbridge_id=None, prefix_list=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41468,10 +42996,12 @@ def rbridge_id_ipv6_route_get(self, rbridge_id=None, route=None, resource_depth=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41536,10 +43066,12 @@ def rbridge_id_ipv6_route_static_bfd_get(self, rbridge_id=None, bfd_ipv6_link_lo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41587,10 +43119,12 @@ def rbridge_id_ipv6_router_ospf_get(self, rbridge_id=None, ospf=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41647,10 +43181,12 @@ def rbridge_id_ipv6_router_ospf_area_get(self, rbridge_id=None, ospf=None, area=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41728,10 +43264,12 @@ def rbridge_id_ipv6_router_ospf_area_range_get(self, rbridge_id=None, ospf=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41797,10 +43335,12 @@ def rbridge_id_ipv6_router_ospf_area_virtual_link_get(self, rbridge_id=None, osp
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41857,10 +43397,12 @@ def rbridge_id_ipv6_router_ospf_distance_get(self, rbridge_id=None, ospf=None, d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41917,10 +43459,12 @@ def rbridge_id_ipv6_router_ospf_summary_address_get(self, rbridge_id=None, ospf=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -41973,10 +43517,12 @@ def rbridge_id_linecard_get(self, rbridge_id=None, linecards=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42021,10 +43567,12 @@ def rbridge_id_maps_email_get(self, rbridge_id=None, email_list=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42081,10 +43629,12 @@ def rbridge_id_maps_group_get(self, rbridge_id=None, logicalgroup=None, resource
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42128,10 +43678,12 @@ def rbridge_id_maps_policy_get(self, rbridge_id=None, policy=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42187,10 +43739,12 @@ def rbridge_id_maps_policy_rule_get(self, rbridge_id=None, policy=None, ruleacti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42238,10 +43792,12 @@ def rbridge_id_maps_relay_get(self, rbridge_id=None, relay=None, resource_depth=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42309,10 +43865,12 @@ def rbridge_id_maps_rule_get(self, rbridge_id=None, rule=None, resource_depth=1,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42359,10 +43917,12 @@ def rbridge_id_openflow_logical_instance_get(self, rbridge_id=None, logical_inst
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42418,10 +43978,12 @@ def rbridge_id_openflow_logical_instance_controller_get(self, rbridge_id=None, l
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42477,10 +44039,12 @@ def rbridge_id_openflow_logical_instance_version_get(self, rbridge_id=None, logi
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42539,10 +44103,12 @@ def rbridge_id_route_map_get(self, rbridge_id=None, route_map=None, resource_dep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42610,10 +44176,12 @@ def rbridge_id_route_map_set_ip_get(self, rbridge_id=None, route_map=None, next_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42681,10 +44249,12 @@ def rbridge_id_route_map_set_ip_global_get(self, rbridge_id=None, route_map=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42752,10 +44322,12 @@ def rbridge_id_route_map_set_ipv6_get(self, rbridge_id=None, route_map=None, nex
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42823,10 +44395,12 @@ def rbridge_id_route_map_set_ipv6_global_get(self, rbridge_id=None, route_map=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42873,10 +44447,12 @@ def rbridge_id_router_bgp_address_family_ipv4_unicast_aggregate_address_get(self
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42923,10 +44499,12 @@ def rbridge_id_router_bgp_address_family_ipv4_unicast_neighbor_get(self, rbridge
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -42973,10 +44551,12 @@ def rbridge_id_router_bgp_address_family_ipv4_unicast_network_get(self, rbridge_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43023,10 +44603,12 @@ def rbridge_id_router_bgp_address_family_ipv4_unicast_static_network_get(self, r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43073,10 +44655,12 @@ def rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_get(self, rbridge_id=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43132,10 +44716,12 @@ def rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_aggregate_address_get(
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43203,10 +44789,12 @@ def rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_listen_range_get(self,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43262,10 +44850,12 @@ def rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_neighbor_get(self, rbr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43321,10 +44911,12 @@ def rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_network_get(self, rbri
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43380,10 +44972,12 @@ def rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_static_network_get(sel
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43430,10 +45024,12 @@ def rbridge_id_router_bgp_address_family_ipv6_unicast_aggregate_address_get(self
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43480,10 +45076,12 @@ def rbridge_id_router_bgp_address_family_ipv6_unicast_neighbor_get(self, rbridge
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43530,10 +45128,12 @@ def rbridge_id_router_bgp_address_family_ipv6_unicast_network_get(self, rbridge_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43580,10 +45180,12 @@ def rbridge_id_router_bgp_address_family_ipv6_unicast_vrf_get(self, rbridge_id=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43639,10 +45241,12 @@ def rbridge_id_router_bgp_address_family_ipv6_unicast_vrf_aggregate_address_get(
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43698,10 +45302,12 @@ def rbridge_id_router_bgp_address_family_ipv6_unicast_vrf_neighbor_get(self, rbr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43757,10 +45363,12 @@ def rbridge_id_router_bgp_address_family_ipv6_unicast_vrf_network_get(self, rbri
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43807,10 +45415,12 @@ def rbridge_id_router_bgp_address_family_l2vpn_evpn_neighbor_get(self, rbridge_i
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43869,10 +45479,12 @@ def rbridge_id_router_bgp_listen_range_get(self, rbridge_id=None, listen_range=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43919,10 +45531,12 @@ def rbridge_id_router_bgp_neighbor_get(self, rbridge_id=None, neighbor_addr=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -43969,10 +45583,12 @@ def rbridge_id_router_ospf_get(self, rbridge_id=None, ospf=None, resource_depth=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44028,10 +45644,12 @@ def rbridge_id_router_ospf_area_get(self, rbridge_id=None, ospf=None, area=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44115,10 +45733,12 @@ type-3 summarization
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44183,10 +45803,12 @@ def rbridge_id_router_ospf_area_virtual_link_get(self, rbridge_id=None, ospf=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44272,10 +45894,12 @@ def rbridge_id_router_ospf_deny_redistribute_get(self, rbridge_id=None, ospf=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44331,10 +45955,12 @@ def rbridge_id_router_ospf_distance_get(self, rbridge_id=None, ospf=None, distan
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44390,10 +46016,12 @@ def rbridge_id_router_ospf_neighbor_get(self, rbridge_id=None, ospf=None, neighb
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44479,10 +46107,12 @@ def rbridge_id_router_ospf_permit_redistribute_get(self, rbridge_id=None, ospf=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44544,10 +46174,12 @@ def rbridge_id_router_ospf_summary_address_get(self, rbridge_id=None, ospf=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44609,10 +46241,12 @@ def rbridge_id_router_pim_bsr_candidate_interface_get(self, rbridge_id=None, bsr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44665,10 +46299,12 @@ def rbridge_id_router_pim_rp_address_get(self, rbridge_id=None, rp_address=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44727,10 +46363,12 @@ def rbridge_id_router_pim_rp_candidate_get(self, rbridge_id=None, rp_cand_grp_pr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44783,10 +46421,12 @@ def rbridge_id_router_pim_rp_candidate_group_range_get(self, rbridge_id=None, rp
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44836,10 +46476,12 @@ def rbridge_id_router_pim_rp_candidate_interface_get(self, rbridge_id=None, rp_c
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44886,10 +46528,12 @@ def rbridge_id_secpolicy_active_policy_get(self, rbridge_id=None, policies=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44942,10 +46586,12 @@ def rbridge_id_secpolicy_active_policy_member_entry_get(self, rbridge_id=None, p
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -44992,10 +46638,12 @@ def rbridge_id_secpolicy_defined_policy_get(self, rbridge_id=None, policies=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45048,10 +46696,12 @@ def rbridge_id_secpolicy_defined_policy_member_entry_get(self, rbridge_id=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45125,10 +46775,12 @@ passwords as encrypted.(Default=disable)
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45180,10 +46832,12 @@ will be sent to this host
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45233,10 +46887,12 @@ def rbridge_id_ssh_server_use_vrf_get(self, rbridge_id=None, use_vrf=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45286,10 +46942,12 @@ def rbridge_id_telnet_server_use_vrf_get(self, rbridge_id=None, use_vrf=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45349,10 +47007,12 @@ def rbridge_id_threshold_monitor_interface_policy_get(self, rbridge_id=None, pol
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45406,10 +47066,12 @@ def rbridge_id_threshold_monitor_security_policy_get(self, rbridge_id=None, poli
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45469,10 +47131,12 @@ def rbridge_id_threshold_monitor_sfp_policy_get(self, rbridge_id=None, policy=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45520,10 +47184,12 @@ def rbridge_id_vrf_get(self, rbridge_id=None, vrf=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45623,10 +47289,12 @@ def rbridge_id_vrf_address_family_ipv4_unicast_arp_get(self, rbridge_id=None, vr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45690,10 +47358,12 @@ def rbridge_id_vrf_address_family_ipv4_unicast_ip_import_routes_get(self, rbridg
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45759,10 +47429,12 @@ def rbridge_id_vrf_address_family_ipv4_unicast_ip_route_get(self, rbridge_id=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45825,10 +47497,12 @@ def rbridge_id_vrf_address_family_ipv4_unicast_ip_route_static_bfd_get(self, rbr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45888,10 +47562,12 @@ def rbridge_id_vrf_address_family_ipv4_unicast_route_target_get(self, rbridge_id
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -45955,10 +47631,12 @@ def rbridge_id_vrf_address_family_ipv6_unicast_ipv6_import_routes_get(self, rbri
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46030,10 +47708,12 @@ def rbridge_id_vrf_address_family_ipv6_unicast_ipv6_route_get(self, rbridge_id=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46108,10 +47788,12 @@ def rbridge_id_vrf_address_family_ipv6_unicast_ipv6_route_static_bfd_get(self, r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46171,10 +47853,12 @@ def rbridge_id_vrf_address_family_ipv6_unicast_route_target_get(self, rbridge_id
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46234,10 +47918,12 @@ def rbridge_id_vrf_route_target_get(self, rbridge_id=None, vrf=None, route_targe
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46324,10 +48010,12 @@ def rmon_alarm_get(self, alarm_entry=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46387,10 +48075,12 @@ def rmon_event_get(self, event_entry=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46434,10 +48124,12 @@ def role_name_get(self, name=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46487,10 +48179,12 @@ def route_map_get(self, route_map=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46550,10 +48244,12 @@ def route_map_set_ip_get(self, route_map=None, next_hop=None, resource_depth=1, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46613,10 +48309,12 @@ def route_map_set_ip_global_get(self, route_map=None, next_global_hop=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46675,10 +48373,12 @@ def route_map_set_ip_next_hop_get(self, route_map=None, next_hop_list=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46738,10 +48438,12 @@ def route_map_set_ipv6_get(self, route_map=None, next_hop=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46801,10 +48503,12 @@ def route_map_set_ipv6_global_get(self, route_map=None, next_global_hop=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46841,10 +48545,12 @@ def router_bgp_address_family_evpn_neighbor_get(self, af_evpn_neighbor=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46881,10 +48587,12 @@ def router_bgp_address_family_ipv4_unicast_aggregate_address_get(self, aggregate
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46921,10 +48629,12 @@ def router_bgp_address_family_ipv4_unicast_neighbor_get(self, af_ipv4_neighbor_a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -46961,10 +48671,12 @@ def router_bgp_address_family_ipv4_unicast_network_get(self, network=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47001,10 +48713,12 @@ def router_bgp_address_family_ipv4_unicast_static_network_get(self, static_netwo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47041,10 +48755,12 @@ def router_bgp_address_family_ipv4_unicast_vrf_get(self, af_vrf=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47091,10 +48807,12 @@ def router_bgp_address_family_ipv4_unicast_vrf_aggregate_address_get(self, af_vr
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47141,10 +48859,12 @@ def router_bgp_address_family_ipv4_unicast_vrf_neighbor_get(self, af_vrf=None, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47191,10 +48911,12 @@ def router_bgp_address_family_ipv4_unicast_vrf_network_get(self, af_vrf=None, ne
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47241,10 +48963,12 @@ def router_bgp_address_family_ipv4_unicast_vrf_static_network_get(self, af_vrf=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47281,10 +49005,12 @@ def router_bgp_address_family_ipv6_unicast_aggregate_address_get(self, aggregate
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47321,10 +49047,12 @@ def router_bgp_address_family_ipv6_unicast_neighbor_get(self, af_ipv6_neighbor_a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47361,10 +49089,12 @@ def router_bgp_address_family_ipv6_unicast_network_get(self, network=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47401,10 +49131,12 @@ def router_bgp_address_family_ipv6_unicast_vrf_get(self, af_ipv6_vrf=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47451,10 +49183,12 @@ def router_bgp_address_family_ipv6_unicast_vrf_aggregate_address_get(self, af_ip
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47501,10 +49235,12 @@ def router_bgp_address_family_ipv6_unicast_vrf_neighbor_get(self, af_ipv6_vrf=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47551,10 +49287,12 @@ def router_bgp_address_family_ipv6_unicast_vrf_network_get(self, af_ipv6_vrf=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47591,10 +49329,12 @@ def router_bgp_neighbor_get(self, neighbor_addr=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47643,10 +49383,12 @@ def router_isis_address_family_ipv4_unicast_summary_address_get(self, summary_ad
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47701,10 +49443,12 @@ def router_isis_address_family_ipv6_unicast_spf_interval_get(self, spf6_interval
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47741,10 +49485,12 @@ def router_isis_address_family_ipv6_unicast_summary_prefix_get(self, summary_pre
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47781,10 +49527,12 @@ def router_isis_net_get(self, net=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47839,10 +49587,12 @@ def router_isis_spf_interval_get(self, spf_interval=None, resource_depth=1, api_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47879,10 +49629,12 @@ def router_mpls_autobw_template_get(self, autobw_template=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47925,10 +49677,12 @@ def router_mpls_autobw_threshold_table_bandwidth_get(self, autobw_threshold_tabl
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -47965,10 +49719,12 @@ def router_mpls_bypass_lsp_get(self, bypass_lsp=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48022,10 +49778,12 @@ def router_mpls_bypass_lsp_exclude_interface_get(self, bypass_lsp=None, exclude_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48062,10 +49820,12 @@ def router_mpls_cspf_group_get(self, cspf_group=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48112,10 +49872,12 @@ def router_mpls_cspf_group_from_get(self, cspf_group=None, cspf_group_ip=None, r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48168,10 +49930,12 @@ def router_mpls_cspf_group_link_get(self, cspf_group=None, cspf_group_link=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48218,10 +49982,12 @@ def router_mpls_cspf_group_node_get(self, cspf_group=None, cspf_group_node=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48268,10 +50034,12 @@ def router_mpls_cspf_group_subnet_get(self, cspf_group=None, cspf_group_subnet=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48308,10 +50076,12 @@ def router_mpls_ldp_session_get(self, ldp_session=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48348,10 +50118,12 @@ def router_mpls_ldp_targeted_peer_get(self, ldp_targeted_peer=None, resource_dep
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48388,10 +50160,12 @@ def router_mpls_lsp_get(self, lsp=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48438,10 +50212,12 @@ def router_mpls_lsp_secondary_path_get(self, lsp=None, secondary_path=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48485,10 +50261,12 @@ def router_mpls_mpls_interface_get(self, mpls_interface=None, resource_depth=1, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48525,10 +50303,12 @@ def router_mpls_path_get(self, path=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48581,10 +50361,12 @@ def router_mpls_path_hop_get(self, path=None, path_hop=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48631,10 +50413,12 @@ def router_mpls_path_insert_get(self, path=None, path_insert=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48677,10 +50461,12 @@ def router_mpls_policy_admin_group_get(self, policy_admin_group=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48717,10 +50503,12 @@ def router_ospf_get(self, ospf=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48767,10 +50555,12 @@ def router_ospf_area_get(self, ospf=None, area=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48845,10 +50635,12 @@ type-3 summarization
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48904,10 +50696,12 @@ def router_ospf_area_virtual_link_get(self, ospf=None, area=None, virtual_link=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -48984,10 +50778,12 @@ def router_ospf_deny_redistribute_get(self, ospf=None, redistribute=None, resour
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49034,10 +50830,12 @@ def router_ospf_distance_get(self, ospf=None, distance=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49084,10 +50882,12 @@ def router_ospf_neighbor_get(self, ospf=None, neighbor=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49164,10 +50964,12 @@ def router_ospf_permit_redistribute_get(self, ospf=None, redistribute=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49220,10 +51022,12 @@ def router_ospf_summary_address_get(self, ospf=None, summary_address=None, resou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49266,10 +51070,12 @@ def router_pim_anycast_rp_get(self, anycast_rp=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49306,10 +51112,12 @@ def router_pim_anycast_rp_ip_get(self, anycast_rp_ip=None, resource_depth=1, api
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49361,10 +51169,12 @@ def router_pim_bsr_candidate_interface_get(self, bsr_cand_interface=None, resour
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49407,10 +51217,12 @@ def router_pim_rp_address_get(self, rp_address=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49450,10 +51262,12 @@ def router_pim_rp_candidate_interface_get(self, rp_cand_interface=None, resource
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49490,10 +51304,12 @@ def router_pim_rp_candidate_prefix_get(self, rp_cand_grp_prefix=None, resource_d
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49549,10 +51365,12 @@ def rule_get(self, rule=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49590,10 +51408,12 @@ def secpolicy_active_policy_get(self, policies=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49638,10 +51458,12 @@ def secpolicy_active_policy_member_entry_get(self, policies=None, member_entry=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49679,10 +51501,12 @@ def secpolicy_defined_policy_get(self, policies=None, resource_depth=1, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49727,10 +51551,12 @@ def secpolicy_defined_policy_member_entry_get(self, policies=None, member_entry=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49781,10 +51607,12 @@ def sflow_collector_get(self, collector=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49828,10 +51656,12 @@ def sflow_profile_get(self, sflow_profile=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49868,10 +51698,12 @@ def sfm_state_connectivity_get(self, connectivity=None, resource_depth=1, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49908,10 +51740,12 @@ def sfm_state_links_get(self, links=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49948,10 +51782,12 @@ def sfm_state_mcast_get(self, mcast=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -49988,10 +51824,12 @@ def sfm_state_queue_get(self, queue=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50028,10 +51866,12 @@ def sfm_state_serdesmode_get(self, serdesmode=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50068,10 +51908,12 @@ def sfm_state_statistics_get(self, statistics=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50108,10 +51950,12 @@ def sfm_state_thresholds_get(self, thresholds=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50154,10 +51998,12 @@ def show_client_id_df_info_state_get(self, show_client_id_df_info_state=None, re
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50207,10 +52053,12 @@ def snmp_server_community_get(self, community=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50245,10 +52093,12 @@ def snmp_server_context_get(self, context=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50316,10 +52166,12 @@ def snmp_server_group_get(self, group=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50362,10 +52214,12 @@ sent to this host
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50403,10 +52257,12 @@ def snmp_server_mib_community_map_get(self, community_map=None, resource_depth=1
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50483,10 +52339,12 @@ passwords as encrypted.(Default=disable)
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50529,10 +52387,12 @@ will be sent to this host
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50576,10 +52436,12 @@ def snmp_server_view_get(self, view=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50616,10 +52478,12 @@ def spf_log_state_get(self, spf_log_state=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50666,10 +52530,12 @@ def spf_log_state_spf_log_levels_get(self, spf_log_state=None, spf_log_levels=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50725,10 +52591,12 @@ def spf_log_state_spf_log_levels_spf_log_events_get(self, spf_log_state=None, sp
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50769,10 +52637,12 @@ def ssh_server_use_vrf_get(self, use_vrf=None, resource_depth=1, api_timeout='')
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50809,10 +52679,12 @@ def sub_interface_statistics_state_bridge_domain_statistics_get(self, bridge_dom
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50859,10 +52731,12 @@ def sub_interface_statistics_state_bridge_domain_statistics_lif_statistics_get(s
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50899,10 +52773,12 @@ def sub_interface_statistics_state_vlan_statistics_get(self, vlan_statistics=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50949,10 +52825,12 @@ def sub_interface_statistics_state_vlan_statistics_port_statistics_get(self, vla
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -50990,10 +52868,12 @@ def switch_attributes_get(self, rbridge_id=None, resource_depth=1, api_timeout='
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51028,10 +52908,12 @@ def system_monitor_mail_fru_get(self, email_list=None, resource_depth=1, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51066,10 +52948,12 @@ def system_monitor_mail_interface_get(self, email_list=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51107,10 +52991,12 @@ def system_monitor_mail_relay_get(self, relay=None, resource_depth=1, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51145,10 +53031,12 @@ def system_monitor_mail_security_get(self, email_list=None, resource_depth=1, ap
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51183,10 +53071,12 @@ def system_monitor_mail_sfp_get(self, email_list=None, resource_depth=1, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51226,10 +53116,12 @@ def tacacs_server_host_get(self, host=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51270,10 +53162,12 @@ def telnet_server_use_vrf_get(self, use_vrf=None, resource_depth=1, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51324,10 +53218,12 @@ def threshold_monitor_interface_policy_get(self, policy=None, area=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51372,10 +53268,12 @@ def threshold_monitor_security_policy_get(self, policy=None, area=None, resource
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51426,10 +53324,12 @@ def threshold_monitor_sfp_policy_get(self, policy=None, area=None, resource_dept
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51463,10 +53363,12 @@ def tm_state_non_empty_voq_get(self, non_empty_voq=None, resource_depth=1, api_t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51509,10 +53411,12 @@ def tm_state_tm_max_buff_util_data_get(self, tm_max_buff_util_data=None, resourc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51561,10 +53465,12 @@ def tm_state_tm_top_discard_pkt_data_get(self, tm_top_discard_pkt_data=None, res
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51613,10 +53519,12 @@ def tm_state_tm_top_max_queue_depth_data_get(self, tm_top_max_queue_depth_data=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51659,10 +53567,12 @@ def tm_state_tmcpustatsslot_get(self, tmcpustatsslot=None, resource_depth=1, api
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51699,10 +53609,12 @@ def tm_state_tmcpustatsslotallgrp_get(self, tmcpustatsslotallgrp=None, resource_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51745,10 +53657,12 @@ def tm_state_tmdevicestataggr_get(self, tmdevicestataggr=None, resource_depth=1,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51797,10 +53711,12 @@ def tm_state_tmvoqstatistics_get(self, tmvoqstatistics=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51837,10 +53753,12 @@ def topology_group_get(self, topology_group=None, resource_depth=1, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51877,10 +53795,12 @@ def topology_group_state_topology_group_data_get(self, topology_group_data=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51927,10 +53847,12 @@ def topology_group_state_topology_group_data_member_bd_get(self, topology_group_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -51977,10 +53899,12 @@ def topology_group_state_topology_group_data_member_vlan_get(self, topology_grou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52014,10 +53938,12 @@ def traffic_class_exp_state_qos_mpls_get(self, qos_mpls=None, resource_depth=1, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52092,10 +54018,12 @@ def username_get(self, username=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52132,10 +54060,12 @@ def vc_peer_state_vc_peer_data_get(self, vc_peer_data=None, resource_depth=1, ap
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52179,10 +54109,12 @@ def vc_peer_state_vc_peer_data_vc_assigned_lsp_get(self, vc_peer_data=None, vc_a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52226,10 +54158,12 @@ def vc_peer_state_vc_peer_data_vc_proto_tnnl_get(self, vc_peer_data=None, vc_pro
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52267,10 +54201,12 @@ def vcenter_get(self, vcenter=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52308,10 +54244,12 @@ def vcs_virtual_ip_address_get(self, address=None, resource_depth=1, api_timeout
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52349,10 +54287,12 @@ def vcs_virtual_ipv6_address_get(self, address=None, resource_depth=1, api_timeo
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52390,10 +54330,12 @@ def vlan_get(self, vlan=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52448,10 +54390,12 @@ def vlan_classifier_group_get(self, group=None, resource_depth=1, api_timeout=''
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52488,10 +54432,12 @@ def vlan_classifier_rule_get(self, rule=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52544,10 +54490,12 @@ def vlan_ip_igmp_snooping_mrouter_interface_get(self, vlan=None, igmps_interface
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52612,10 +54560,12 @@ def vlan_ip_igmp_snooping_static_group_get(self, vlan=None, igmps_static_group=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52668,10 +54618,12 @@ def vlan_ipv6_mld_snooping_mrouter_interface_get(self, vlan=None, interface=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52736,10 +54688,12 @@ def vlan_ipv6_mld_snooping_static_group_get(self, vlan=None, static_group=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52799,10 +54753,12 @@ def vlan_mac_access_group_get(self, vlan=None, access_group=None, resource_depth
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52840,10 +54796,12 @@ def vrf_get(self, vrf=None, resource_depth=1, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52913,10 +54871,12 @@ def vrf_address_family_ipv4_unicast_arp_get(self, vrf=None, arp_entry=None, reso
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -52971,10 +54931,12 @@ def vrf_address_family_ipv4_unicast_ip_import_routes_get(self, vrf=None, routes=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53035,10 +54997,12 @@ def vrf_address_family_ipv4_unicast_ip_route_get(self, vrf=None, static_route_nh
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53092,10 +55056,12 @@ def vrf_address_family_ipv4_unicast_ip_route_static_bfd_get(self, vrf=None, bfd_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53150,10 +55116,12 @@ def vrf_address_family_ipv6_unicast_ipv6_import_routes_get(self, vrf=None, route
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53220,10 +55188,12 @@ def vrf_address_family_ipv6_unicast_ipv6_route_get(self, vrf=None, ipv6_static_r
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53289,10 +55259,12 @@ def vrf_address_family_ipv6_unicast_ipv6_route_static_bfd_get(self, vrf=None, bf
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53346,10 +55318,12 @@ def vrf_route_target_get(self, vrf=None, route_target=None, resource_depth=1, ap
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53389,10 +55363,12 @@ def vxlan_stats_acl_state_extended_stats_data_get(self, extended_stats_data=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53431,10 +55407,12 @@ def zoning_defined_configuration_alias_get(self, alias=None, resource_depth=1, a
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53485,10 +55463,12 @@ only one member at a time.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53527,10 +55507,12 @@ def zoning_defined_configuration_cfg_get(self, cfg=None, resource_depth=1, api_t
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53581,10 +55563,12 @@ only one member at a time.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53623,10 +55607,12 @@ def zoning_defined_configuration_zone_get(self, zone=None, resource_depth=1, api
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'
@@ -53678,10 +55664,12 @@ only one member at a time.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'get'

@@ -16,10 +16,12 @@ def activate_status_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -51,10 +53,12 @@ def bna_config_cmd_rpc(self, src=None, dest=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -86,10 +90,12 @@ def bna_config_cmd_status_rpc(self, session_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -117,10 +123,12 @@ def clear_mpls_auto_bandwidth_sample_history_all_rpc(self, output=None, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -151,10 +159,12 @@ def clear_mpls_auto_bandwidth_sample_history_lsp_rpc(self, lsp_name=None, api_ti
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -182,10 +192,12 @@ def clear_mpls_auto_bandwidth_statistics_all_rpc(self, output=None, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -216,10 +228,12 @@ def clear_mpls_auto_bandwidth_statistics_lsp_rpc(self, lsp_name=None, api_timeou
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -250,10 +264,12 @@ def clear_mpls_bypass_lsp_rpc(self, mpls_clear_bypass_lsp_name_in=None, api_time
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -287,10 +303,12 @@ def clear_mpls_ldp_neighbor_rpc(self, mpls_clear_all_ldp_sessions=None, mpls_cle
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -318,10 +336,12 @@ def clear_mpls_ldp_statistics_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -349,10 +369,12 @@ def clear_mpls_rsvp_statistics_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -386,10 +408,12 @@ def clear_mpls_rsvp_statistics_neighbor_rpc(self, clear_mpls_rsvp_statistics_nei
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -465,10 +489,12 @@ def clear_mpls_statistics_rpc(self, mpls_clear_statistics_type=None, mpls_clear_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -511,10 +537,12 @@ def clear_mpls_statistics_ldp_transit_rpc(self, clear_statistics_ldp_transit_fec
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -545,10 +573,12 @@ def clear_mpls_statistics_ldp_tunnel_rpc(self, clear_statistics_ldp_tunnel_id=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -577,10 +607,12 @@ def dad_status_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -621,10 +653,12 @@ def fcoe_get_interface_rpc(self, fcoe_intf_name=None, fcoe_intf_rbridge_id=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -674,10 +708,12 @@ def fcoe_get_login_rpc(self, fcoe_login_interface=None, fcoe_login_vfid=None, fc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -782,10 +818,12 @@ def firmware_download_rpc(self, rbridge_id=None, auto_activate=None, coldboot=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -817,10 +855,12 @@ def fwdl_status_rpc(self, fwdl_tid=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -872,10 +912,12 @@ represents error scenario and should not be used.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -904,10 +946,12 @@ def get_contained_in_id_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -935,10 +979,12 @@ def get_flexports_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -996,10 +1042,12 @@ represents error scenario and should not be used.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1028,10 +1076,12 @@ def get_interface_switchport_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1077,10 +1127,12 @@ represents error scenario and should not be used.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1109,10 +1161,12 @@ def get_last_config_update_time_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1164,10 +1218,12 @@ represents error scenario and should not be used.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1213,10 +1269,12 @@ represents error scenario and should not be used.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1270,10 +1328,12 @@ def get_mac_address_table_rpc(self, mac_address=None, last_mac_address_details=N
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1319,10 +1379,12 @@ represents error scenario and should not be used.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1350,10 +1412,12 @@ def get_mpls_autobw_template_brief_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1381,10 +1445,12 @@ def get_mpls_autobw_template_detail_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1412,10 +1478,12 @@ def get_mpls_ldp_neighbor_brief_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1443,10 +1511,12 @@ def get_mpls_ldp_neighbor_detail_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1474,10 +1544,12 @@ def get_mpls_ldp_session_brief_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1505,10 +1577,12 @@ def get_mpls_ldp_session_detail_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1541,10 +1615,12 @@ retrieve info from
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1576,10 +1652,12 @@ def get_netconf_client_capabilities_rpc(self, session_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1617,10 +1695,12 @@ def get_port_channel_detail_rpc(self, aggregator_id=None, last_aggregator_id=Non
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1684,10 +1764,12 @@ represents error scenario and should not be used.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1747,10 +1829,12 @@ def get_port_profile_status_rpc(self, rbridge_id=None, port_profile_name=None, p
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1790,10 +1874,12 @@ represents error scenario and should not be used.
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1821,10 +1907,12 @@ def get_show_cfm_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1856,10 +1944,12 @@ def get_system_uptime_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1947,10 +2037,12 @@ def get_tunnel_info_rpc(self, page_cursor=None, id=None, mode=None, gw_name=None
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -1996,10 +2088,12 @@ def get_tunnel_statistics_rpc(self, page_cursor=None, id=None, mode=None, gw_nam
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2028,10 +2122,12 @@ def get_vcs_details_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2069,10 +2165,12 @@ def get_vlan_brief_rpc(self, vlan_id=None, last_rcvd_vlan_id=None, api_timeout='
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2122,10 +2220,12 @@ def get_vmpolicy_macaddr_rpc(self, mac=None, vcenter=None, datacenter=None, last
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2175,10 +2275,12 @@ def get_vnetwork_dvpgs_rpc(self, name=None, vcenter=None, datacenter=None, last_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2228,10 +2330,12 @@ def get_vnetwork_dvs_rpc(self, name=None, vcenter=None, datacenter=None, last_rc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2281,10 +2385,12 @@ def get_vnetwork_hosts_rpc(self, vcenter=None, datacenter=None, name=None, last_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2334,10 +2440,12 @@ def get_vnetwork_portgroups_rpc(self, name=None, vcenter=None, datacenter=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2387,10 +2495,12 @@ def get_vnetwork_vms_rpc(self, name=None, vcenter=None, datacenter=None, last_rc
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2440,10 +2550,12 @@ def get_vnetwork_vswitches_rpc(self, name=None, vcenter=None, datacenter=None, l
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2471,10 +2583,12 @@ def isns_get_device_brief_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2506,10 +2620,12 @@ def isns_get_discovery_domain_rpc(self, isns_dd_name=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2541,10 +2657,12 @@ def isns_get_discovery_domain_set_rpc(self, isns_dds_name=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2572,10 +2690,12 @@ def isns_get_last_device_timestamp_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2603,10 +2723,12 @@ def isns_get_server_role_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2637,10 +2759,12 @@ def isns_get_vrf_forwarding_rpc(self, isns_vrf_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2713,10 +2837,12 @@ def l2traceroute_rpc(self, src_mac=None, dest_mac=None, vlan_id=None, rbridge_id
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2747,10 +2873,12 @@ def l2traceroute_result_rpc(self, session_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2809,10 +2937,12 @@ logical-chassis or comma seperated rbridge-ids like 'rbridge-id 3,4,7-9,20'
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2843,10 +2973,12 @@ def logical_chassis_fwdl_status_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2878,10 +3010,12 @@ def maps_get_all_policy_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2912,10 +3046,12 @@ def maps_get_default_rules_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2947,10 +3083,12 @@ def maps_get_rules_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -2981,10 +3119,12 @@ def maps_re_apply_policy_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3015,10 +3155,12 @@ def mpls_adjust_bandwidth_lsp_rpc(self, lsp_name=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3046,10 +3188,12 @@ def mpls_adjust_bandwidth_lsp_all_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3080,10 +3224,12 @@ def mpls_reopt_lsp_rpc(self, mpls_reoptimize_lsp_name_in=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3114,10 +3260,12 @@ def redundancy_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3155,10 +3303,12 @@ def reload_rpc(self, rbridge_id=None, system=None, standby=None, api_timeout='')
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3187,10 +3337,12 @@ def show_bare_metal_state_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3222,10 +3374,12 @@ def show_clock_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3260,10 +3414,12 @@ def show_fabric_trunk_info_rpc(self, rbridge_id=None, all=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3292,10 +3448,12 @@ def show_fibrechannel_interface_info_rpc(self, all=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3327,10 +3485,12 @@ def show_firmware_version_rpc(self, switchid=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3359,10 +3519,12 @@ def show_linkinfo_rpc(self, all=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3390,10 +3552,12 @@ def show_mpls_bfd_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3421,10 +3585,12 @@ def show_mpls_bypass_bypass_lsp_extensive_rpc(self, output=None, api_timeout='')
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3452,10 +3618,12 @@ def show_mpls_bypass_lsp_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3483,10 +3651,12 @@ def show_mpls_bypass_lsp_debug_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3514,10 +3684,12 @@ def show_mpls_bypass_lsp_detail_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3545,10 +3717,12 @@ def show_mpls_dynamic_bypass_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3576,10 +3750,12 @@ def show_mpls_dynamic_bypass_interface_brief_rpc(self, output=None, api_timeout=
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3607,10 +3783,12 @@ def show_mpls_interface_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3638,10 +3816,12 @@ def show_mpls_interface_detail_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3679,10 +3859,12 @@ def show_mpls_interface_one_interface_rpc(self, interface_type=None, interface_n
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3710,10 +3892,12 @@ def show_mpls_ldp_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3741,10 +3925,12 @@ def show_mpls_ldp_fec_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3772,10 +3958,12 @@ def show_mpls_ldp_fec_prefix_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3809,10 +3997,12 @@ def show_mpls_ldp_fec_prefix_filtered_rpc(self, ldp_fec_prefix_filtered=None, ld
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3843,10 +4033,12 @@ def show_mpls_ldp_fec_prefix_prefix_rpc(self, ldp_fec_prefix=None, api_timeout='
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3877,10 +4069,12 @@ def show_mpls_ldp_fec_prefix_prefix_filter_rpc(self, ldp_fec_prefix_filter=None,
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3914,10 +4108,12 @@ def show_mpls_ldp_fec_prefix_prefix_longer_rpc(self, ldp_fec_prefix=None, ldp_fe
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3945,10 +4141,12 @@ def show_mpls_ldp_fec_summary_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -3976,10 +4174,12 @@ def show_mpls_ldp_fec_vc_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4010,10 +4210,12 @@ def show_mpls_ldp_fec_vc_id_rpc(self, ldp_fec_vc_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4041,10 +4243,12 @@ def show_mpls_ldp_path_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4075,10 +4279,12 @@ def show_mpls_ldp_path_one_rpc(self, ldp_path_ip=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4121,10 +4327,12 @@ def show_mpls_ldp_peer_br_rpc(self, ldp_peer_brief=None, ldp_peer_detail=None, l
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4167,10 +4375,12 @@ def show_mpls_ldp_peer_det_rpc(self, ldp_peer_brief=None, ldp_peer_detail=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4213,10 +4423,12 @@ def show_mpls_ldp_peer_det_rec_rpc(self, ldp_peer_brief=None, ldp_peer_detail=No
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4244,10 +4456,12 @@ def show_mpls_ldp_statistics_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4275,10 +4489,12 @@ def show_mpls_ldp_targeted_peer_all_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4309,10 +4525,12 @@ def show_mpls_ldp_targeted_peer_one_rpc(self, ldp_targeted_peer_ip=None, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4340,10 +4558,12 @@ def show_mpls_lsp_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4371,10 +4591,12 @@ def show_mpls_lsp_debug_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4402,10 +4624,12 @@ def show_mpls_lsp_detail_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4433,10 +4657,12 @@ def show_mpls_lsp_extensive_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4464,10 +4690,12 @@ def show_mpls_policy_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4513,10 +4741,12 @@ def show_mpls_route_rpc(self, prefix_address_and_len=None, prefix_address=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4544,10 +4774,12 @@ def show_mpls_rsvp_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4575,10 +4807,12 @@ def show_mpls_rsvp_interface_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4606,10 +4840,12 @@ def show_mpls_rsvp_interface_detail_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4647,10 +4883,12 @@ def show_mpls_rsvp_interface_one_interface_rpc(self, interface_type=None, interf
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4678,10 +4916,12 @@ def show_mpls_rsvp_neighbor_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4709,10 +4949,12 @@ def show_mpls_rsvp_neighbor_detail_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4743,10 +4985,12 @@ def show_mpls_rsvp_neighbor_one_neighbor_rpc(self, mpls_rsvp_neighbor_peer_ip_ad
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4774,10 +5018,12 @@ def show_mpls_rsvp_session_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4805,10 +5051,12 @@ def show_mpls_rsvp_session_detail_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4836,10 +5084,12 @@ def show_mpls_rsvp_session_extensive_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4867,10 +5117,12 @@ def show_mpls_rsvp_session_name_rpc(self, session_name=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4898,10 +5150,12 @@ def show_mpls_rsvp_session_wide_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4929,10 +5183,12 @@ def show_mpls_rsvp_statistics_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -4969,10 +5225,12 @@ def show_mpls_statistics_ldp_transit_rpc(self, ldp_transit_stats=None, ldp_trans
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5006,10 +5264,12 @@ def show_mpls_statistics_ldp_tunnel_rpc(self, ldp_tunnel_stats=None, ldp_tunnel_
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5037,10 +5297,12 @@ def show_mpls_statistics_oam_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5068,10 +5330,12 @@ def show_mpls_summary_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5144,10 +5408,12 @@ def show_mpls_te_path_rpc(self, ipAddr=None, bandwidth=None, cspfCompMode=None, 
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5179,10 +5445,12 @@ def show_ntp_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5211,10 +5479,12 @@ def show_portindex_interface_info_rpc(self, all=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5252,10 +5522,12 @@ def show_raslog_rpc(self, rbridge_id=None, number_of_latest_events=None, api_tim
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5287,10 +5559,12 @@ def show_support_save_status_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5322,10 +5596,12 @@ def show_system_info_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5357,10 +5633,12 @@ def show_system_monitor_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5389,10 +5667,12 @@ def show_vcs_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5424,10 +5704,12 @@ def show_zoning_enabled_configuration_rpc(self, zone_name_pattern=None, last_rcv
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5456,10 +5738,12 @@ def user_session_info_rpc(self, output=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5497,10 +5781,12 @@ def vcs_rbridge_config_rpc(self, vcs_id=None, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
@@ -5532,10 +5818,12 @@ def vcs_rbridge_context_rpc(self, rbridge_id=None, api_timeout=''):
 		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
 		:type api_timeout: (long or tuple)
 
-		:returns: (bool, list):
-			Returns a tuple. * First element (bool): The overall success or failure of the API. * Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+		:returns: (bool, list)
+			Returns a tuple.
+			* First element (bool): The overall success or failure of the API.
+			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
 
-		:raises: AttributeError, ConnectionError
+		:raises: ValueError, ConnectionError
     """
 
     operation_type = 'rpc'
