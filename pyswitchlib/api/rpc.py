@@ -2,26 +2,32 @@ def activate_status_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: Please enter 'all' for activating all nodes in the logical-chassis or individual rbridge-ids of the form 1,2,3-6
-		:type rbridge_id: (unicode)
-		
-			.. note::
-				* pattern - [0-9]+(-[0-9]+)?(,[0-9]+(-[0-9]+)?)*
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: unicode
+    :param rbridge_id: Please enter 'all' for activating all nodes in the logical-chassis or individual rbridge-ids of the form 1,2,3-6
 
-		:raises: ValueError, ConnectionError
+        * pattern restriction: ::
+
+            '[0-9]+(-[0-9]+)?(,[0-9]+(-[0-9]+)?)*'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -39,26 +45,31 @@ def bna_config_cmd_rpc(self, src=None, dest=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param src: kwarg.
-		:type src: (unicode)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param dest: kwarg.
-		:type dest: (unicode)
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type src: unicode
+    :param src: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type dest: unicode
+    :param dest: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -76,26 +87,32 @@ def bna_config_cmd_status_rpc(self, session_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param session_id: kwarg.
-		:type session_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type session_id: long
+    :param session_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -113,22 +130,27 @@ def clear_mpls_auto_bandwidth_sample_history_all_rpc(self, output=None, api_time
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -146,25 +168,31 @@ def clear_mpls_auto_bandwidth_sample_history_lsp_rpc(self, lsp_name=None, api_ti
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param lsp_name: kwarg.
-		:type lsp_name: (unicode)
-		
-			.. note::
-				* length - [u'1..64']
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type lsp_name: unicode
+    :param lsp_name: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -182,22 +210,27 @@ def clear_mpls_auto_bandwidth_statistics_all_rpc(self, output=None, api_timeout=
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -215,25 +248,31 @@ def clear_mpls_auto_bandwidth_statistics_lsp_rpc(self, lsp_name=None, api_timeou
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param lsp_name: kwarg.
-		:type lsp_name: (unicode)
-		
-			.. note::
-				* length - [u'1..64']
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type lsp_name: unicode
+    :param lsp_name: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -251,25 +290,31 @@ def clear_mpls_bypass_lsp_rpc(self, mpls_clear_bypass_lsp_name_in=None, api_time
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param mpls_clear_bypass_lsp_name_in: Bypass-lsp Name
-		:type mpls_clear_bypass_lsp_name_in: (unicode)
-		
-			.. note::
-				* length - [u'1..64']
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type mpls_clear_bypass_lsp_name_in: unicode
+    :param mpls_clear_bypass_lsp_name_in: Bypass-lsp Name
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -287,28 +332,36 @@ def clear_mpls_ldp_neighbor_rpc(self, mpls_clear_all_ldp_sessions=None, mpls_cle
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param mpls_clear_all_ldp_sessions: kwarg.
-		:type mpls_clear_all_ldp_sessions: (YANGBool)
+        * SLXOS: 16r.1.00b    
 
-		:param mpls_clear_one_ldp_sessions: kwarg.
-		:type mpls_clear_one_ldp_sessions: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type mpls_clear_all_ldp_sessions: YANGBool
+    :param mpls_clear_all_ldp_sessions: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type mpls_clear_one_ldp_sessions: unicode
+    :param mpls_clear_one_ldp_sessions: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -326,22 +379,27 @@ def clear_mpls_ldp_statistics_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -359,22 +417,27 @@ def clear_mpls_rsvp_statistics_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -392,28 +455,36 @@ def clear_mpls_rsvp_statistics_neighbor_rpc(self, clear_mpls_rsvp_statistics_nei
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param clear_mpls_rsvp_statistics_neighbor_address: kwarg.
-		:type clear_mpls_rsvp_statistics_neighbor_address: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+        * SLXOS: 16r.1.00b    
 
-		:param clear_mpls_rsvp_statistics_neighbor_all: kwarg.
-		:type clear_mpls_rsvp_statistics_neighbor_all: (YANGBool)
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type clear_mpls_rsvp_statistics_neighbor_address: unicode
+    :param clear_mpls_rsvp_statistics_neighbor_address: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * pattern restriction: ::
 
-		:raises: ValueError, ConnectionError
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type clear_mpls_rsvp_statistics_neighbor_all: YANGBool
+    :param clear_mpls_rsvp_statistics_neighbor_all: Keyword argument.
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -431,70 +502,91 @@ def clear_mpls_statistics_rpc(self, mpls_clear_statistics_type=None, mpls_clear_
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param mpls_clear_statistics_type: kwarg.
-		:type mpls_clear_statistics_type: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * SLXOS: 16r.1.00b    
 
-		:param mpls_clear_statistics_transit_ldp_fec_prefix: kwarg.
-		:type mpls_clear_statistics_transit_ldp_fec_prefix: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))
+    **Instance Argument(s)**:
 
-		:param mpls_clear_statistics_transit_ldp_prefix_address: kwarg.
-		:type mpls_clear_statistics_transit_ldp_prefix_address: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    :type mpls_clear_statistics_type: long
+    :param mpls_clear_statistics_type: Keyword argument.
 
-		:param mpls_clear_statistics_transit_ldp_prefix_mask: kwarg.
-		:type mpls_clear_statistics_transit_ldp_prefix_mask: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+        * range restriction: ::
 
-		:param mpls_clear_statistics_transit_label_id: kwarg.
-		:type mpls_clear_statistics_transit_label_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+            ['0..4294967295']
 
-		:param mpls_clear_statistics_tunnel_ldp_id: kwarg.
-		:type mpls_clear_statistics_tunnel_ldp_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    :type mpls_clear_statistics_transit_ldp_fec_prefix: unicode
+    :param mpls_clear_statistics_transit_ldp_fec_prefix: Keyword argument.
 
-		:param mpls_clear_statistics_tunnel_rsvp_bypass: kwarg.
-		:type mpls_clear_statistics_tunnel_rsvp_bypass: (int)
-		
-			.. note::
-				* range - ['0..255']
+        * pattern restriction: ::
 
-		:param mpls_clear_statistics_tunnel_name: kwarg.
-		:type mpls_clear_statistics_tunnel_name: (unicode)
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))'
 
-		:param mpls_clear_statistics_tunnel_dest: kwarg.
-		:type mpls_clear_statistics_tunnel_dest: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    :type mpls_clear_statistics_transit_ldp_prefix_address: unicode
+    :param mpls_clear_statistics_transit_ldp_prefix_address: Keyword argument.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+        * pattern restriction: ::
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
 
-		:raises: ValueError, ConnectionError
+    :type mpls_clear_statistics_transit_ldp_prefix_mask: unicode
+    :param mpls_clear_statistics_transit_ldp_prefix_mask: Keyword argument.
+
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type mpls_clear_statistics_transit_label_id: long
+    :param mpls_clear_statistics_transit_label_id: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type mpls_clear_statistics_tunnel_ldp_id: long
+    :param mpls_clear_statistics_tunnel_ldp_id: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type mpls_clear_statistics_tunnel_rsvp_bypass: int
+    :param mpls_clear_statistics_tunnel_rsvp_bypass: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..255']
+
+    :type mpls_clear_statistics_tunnel_name: unicode
+    :param mpls_clear_statistics_tunnel_name: Keyword argument.
+
+    :type mpls_clear_statistics_tunnel_dest: unicode
+    :param mpls_clear_statistics_tunnel_dest: Keyword argument.
+
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -512,37 +604,51 @@ def clear_mpls_statistics_ldp_transit_rpc(self, clear_statistics_ldp_transit_fec
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param clear_statistics_ldp_transit_fec_prefix: kwarg.
-		:type clear_statistics_ldp_transit_fec_prefix: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))
+        * SLXOS: 16r.1.00b    
 
-		:param clear_statistics_ldp_transit_fec_prefix_address: kwarg.
-		:type clear_statistics_ldp_transit_fec_prefix_address: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    **Instance Argument(s)**:
 
-		:param clear_statistics_ldp_transit_fec_prefix_mask: kwarg.
-		:type clear_statistics_ldp_transit_fec_prefix_mask: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    :type clear_statistics_ldp_transit_fec_prefix: unicode
+    :param clear_statistics_ldp_transit_fec_prefix: Keyword argument.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+        * pattern restriction: ::
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))'
 
-		:raises: ValueError, ConnectionError
+    :type clear_statistics_ldp_transit_fec_prefix_address: unicode
+    :param clear_statistics_ldp_transit_fec_prefix_address: Keyword argument.
+
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type clear_statistics_ldp_transit_fec_prefix_mask: unicode
+    :param clear_statistics_ldp_transit_fec_prefix_mask: Keyword argument.
+
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -560,25 +666,31 @@ def clear_mpls_statistics_ldp_tunnel_rpc(self, clear_statistics_ldp_tunnel_id=No
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param clear_statistics_ldp_tunnel_id: kwarg.
-		:type clear_statistics_ldp_tunnel_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type clear_statistics_ldp_tunnel_id: long
+    :param clear_statistics_ldp_tunnel_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -596,23 +708,28 @@ def dad_status_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -630,35 +747,42 @@ def fcoe_get_interface_rpc(self, fcoe_intf_name=None, fcoe_intf_rbridge_id=None,
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param fcoe_intf_name: kwarg.
-		:type fcoe_intf_name: (unicode)
-		
-			.. note::
-				* length - [u'3..32']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param fcoe_intf_rbridge_id: kwarg.
-		:type fcoe_intf_rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    **Instance Argument(s)**:
 
-		:param fcoe_intf_include_stats: kwarg.
-		:type fcoe_intf_include_stats: (YANGBool)
+    :type fcoe_intf_name: unicode
+    :param fcoe_intf_name: Keyword argument.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+        * length restriction: ::
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+            ['3..32']
 
-		:raises: ValueError, ConnectionError
+    :type fcoe_intf_rbridge_id: long
+    :param fcoe_intf_rbridge_id: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type fcoe_intf_include_stats: YANGBool
+    :param fcoe_intf_include_stats: Keyword argument.
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -676,44 +800,53 @@ def fcoe_get_login_rpc(self, fcoe_login_interface=None, fcoe_login_vfid=None, fc
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param fcoe_login_interface: kwarg.
-		:type fcoe_login_interface: (unicode)
-		
-			.. note::
-				* length - [u'3..32']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param fcoe_login_vfid: kwarg.
-		:type fcoe_login_vfid: (long)
-		
-			.. note::
-				* range - ['-2147483648..2147483647']
+    **Instance Argument(s)**:
 
-		:param fcoe_login_vlan: kwarg.
-		:type fcoe_login_vlan: (long)
-		
-			.. note::
-				* range - ['-2147483648..2147483647']
+    :type fcoe_login_interface: unicode
+    :param fcoe_login_interface: Keyword argument.
 
-		:param fcoe_login_rbridge_id: kwarg.
-		:type fcoe_login_rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * length restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            ['3..32']
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type fcoe_login_vfid: long
+    :param fcoe_login_vfid: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['-2147483648..2147483647']
+
+    :type fcoe_login_vlan: long
+    :param fcoe_login_vlan: Keyword argument.
+
+        * range restriction: ::
+
+            ['-2147483648..2147483647']
+
+    :type fcoe_login_rbridge_id: long
+    :param fcoe_login_rbridge_id: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -731,99 +864,107 @@ def firmware_download_rpc(self, rbridge_id=None, auto_activate=None, coldboot=No
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: Please enter 'all' for activating all nodes in the logical-chassis or individual rbridge-ids of the form 1,2,3-6
-		:type rbridge_id: (unicode)
-		
-			.. note::
-				* pattern - [0-9]+(-[0-9]+)?(,[0-9]+(-[0-9]+)?)*
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param auto_activate: To activate new firmware on all nodes
-		:type auto_activate: (YANGBool)
+    **Instance Argument(s)**:
 
-		:param coldboot: Perform non ISSU firmware download.
-		:type coldboot: (YANGBool)
+    :type rbridge_id: unicode
+    :param rbridge_id: Please enter 'all' for activating all nodes in the logical-chassis or individual rbridge-ids of the form 1,2,3-6
 
-	**Child Instance Keyword Arg Tuple(s)**:
-		:param scp: kwarg tuple.
-		:type scp: (user, password, host, directory, file).
+        * pattern restriction: ::
 
-		:param user: Username
-		:type user: (unicode)
+            '[0-9]+(-[0-9]+)?(,[0-9]+(-[0-9]+)?)*'
 
-		:param password: Password
-		:type password: (unicode)
+    :type auto_activate: YANGBool
+    :param auto_activate: To activate new firmware on all nodes
 
-		:param host: Host ipv4/ipv6 address
-		:type host: (unicode)
+    :type coldboot: YANGBool
+    :param coldboot: Perform non ISSU firmware download.
 
-		:param directory: Directory
-		:type directory: (unicode)
+    **Child Instance Keyword Argument Tuple(s)**:
 
-		:param file: Package release file, example - release.plist
-		:type file: (unicode)
-		:param usb: kwarg tuple.
-		:type usb: (directory).
+    :type scp: user, password, host, directory, file
+    :param scp: Keyword argument tuple.
 
-		:param directory: Directory
-		:type directory: (unicode)
-		:param ftp: kwarg tuple.
-		:type ftp: (user, password, host, directory, file).
+    :type user: unicode
+    :param user: **scp** tuple argument:  Username
 
-		:param user: Username
-		:type user: (unicode)
+    :type password: unicode
+    :param password: **scp** tuple argument:  Password
 
-		:param password: Password
-		:type password: (unicode)
+    :type host: unicode
+    :param host: **scp** tuple argument:  Host ipv4/ipv6 address
 
-		:param host: Host ipv4/ipv6 address
-		:type host: (unicode)
+    :type directory: unicode
+    :param directory: **scp** tuple argument:  Directory
 
-		:param directory: Directory
-		:type directory: (unicode)
+    :type file: unicode
+    :param file: **scp** tuple argument:  Package release file, example - release.plist
+    :type usb: directory
+    :param usb: Keyword argument tuple.
 
-		:param file: Package release file, example - release.plist
-		:type file: (unicode)
-		:param sftp: kwarg tuple.
-		:type sftp: (user, password, host, directory, file, port, host_key_check).
+    :type directory: unicode
+    :param directory: **usb** tuple argument:  Directory
+    :type ftp: user, password, host, directory, file
+    :param ftp: Keyword argument tuple.
 
-		:param user: Username
-		:type user: (unicode)
+    :type user: unicode
+    :param user: **ftp** tuple argument:  Username
 
-		:param password: Password
-		:type password: (unicode)
+    :type password: unicode
+    :param password: **ftp** tuple argument:  Password
 
-		:param host: Host ipv4/ipv6 address
-		:type host: (unicode)
+    :type host: unicode
+    :param host: **ftp** tuple argument:  Host ipv4/ipv6 address
 
-		:param directory: Directory
-		:type directory: (unicode)
+    :type directory: unicode
+    :param directory: **ftp** tuple argument:  Directory
 
-		:param file: Package release file, example - release.plist
-		:type file: (unicode)
+    :type file: unicode
+    :param file: **ftp** tuple argument:  Package release file, example - release.plist
+    :type sftp: user, password, host, directory, file, port, host_key_check
+    :param sftp: Keyword argument tuple.
 
-		:param port: Server port number (default 22)
-		:type port: (long)
-		
-			.. note::
-				* range - ['-2147483648..2147483647']
+    :type user: unicode
+    :param user: **sftp** tuple argument:  Username
 
-		:param host_key_check: Enable strict host key check
-		:type host_key_check: (YANGBool)
+    :type password: unicode
+    :param password: **sftp** tuple argument:  Password
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type host: unicode
+    :param host: **sftp** tuple argument:  Host ipv4/ipv6 address
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type directory: unicode
+    :param directory: **sftp** tuple argument:  Directory
 
-		:raises: ValueError, ConnectionError
+    :type file: unicode
+    :param file: **sftp** tuple argument:  Package release file, example - release.plist
+
+    :type port: long
+    :param port: **sftp** tuple argument:  Server port number (default 22)
+
+        * range restriction: ::
+
+            ['-2147483648..2147483647']
+
+    :type host_key_check: YANGBool
+    :param host_key_check: **sftp** tuple argument:  Enable strict host key check
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -841,26 +982,32 @@ def fwdl_status_rpc(self, fwdl_tid=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param fwdl_tid: kwarg.
-		:type fwdl_tid: (long)
-		
-			.. note::
-				* range - ['-2147483648..2147483647']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type fwdl_tid: long
+    :param fwdl_tid: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['-2147483648..2147483647']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -878,46 +1025,68 @@ def get_arp_rpc(self, interface_type=None, interface_name=None, dynamic=None, st
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param interface_type: The type of the interface. An 'unknown' type 
-represents error scenario and should not be used.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['l2vlan', 'gigabitethernet', 'hundredgigabitethernet', 'loopback', 'fortygigabitethernet', 'unknown', 'fibrechannel', 'port-channel', 'tengigabitethernet']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?(([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    **Instance Argument(s)**:
 
-		:param dynamic: kwarg.
-		:type dynamic: (YANGBool)
+    :type interface_type: unicode
+    :param interface_type: The type of the interface. An 'unknown' type represents error scenario and should not be used.
 
-		:param static: kwarg.
-		:type static: (YANGBool)
+        * enumeration restriction: ::
 
-		:param ip_address: kwarg.
-		:type ip_address: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+            ['l2vlan',
+            'gigabitethernet',
+            'hundredgigabitethernet',
+            'loopback',
+            'fortygigabitethernet',
+            'unknown',
+            'fibrechannel',
+            'port-channel',
+            'tengigabitethernet']
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type interface_name: unicode
+    :param interface_name: The Interface value.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * length restriction: ::
 
-		:raises: ValueError, ConnectionError
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type dynamic: YANGBool
+    :param dynamic: Keyword argument.
+
+    :type static: YANGBool
+    :param static: Keyword argument.
+
+    :type ip_address: unicode
+    :param ip_address: Keyword argument.
+
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -935,23 +1104,28 @@ def get_contained_in_id_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -969,22 +1143,27 @@ def get_flexports_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1002,52 +1181,86 @@ def get_interface_detail_rpc(self, interface_type=None, interface_name=None, las
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param interface_type: The type of the interface. An 'unknown' type 
-represents error scenario and should not be used.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['l2vlan', 'gigabitethernet', 'hundredgigabitethernet', 'loopback', 'fortygigabitethernet', 'unknown', 'fibrechannel', 'port-channel', 'tengigabitethernet']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?(([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    **Instance Argument(s)**:
 
-	**Child Instance Keyword Arg Tuple(s)**:
-		:param last_rcvd_interface: kwarg tuple.
-		:type last_rcvd_interface: (interface_type, interface_name).
+    :type interface_type: unicode
+    :param interface_type: The type of the interface. An 'unknown' type represents error scenario and should not be used.
 
-		:param interface_type: The type of the interface. An 'unknown' type 
-represents error scenario and should not be used.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['l2vlan', 'gigabitethernet', 'hundredgigabitethernet', 'loopback', 'fortygigabitethernet', 'unknown', 'fibrechannel', 'port-channel', 'tengigabitethernet']
+        * enumeration restriction: ::
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?(([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+            ['l2vlan',
+            'gigabitethernet',
+            'hundredgigabitethernet',
+            'loopback',
+            'fortygigabitethernet',
+            'unknown',
+            'fibrechannel',
+            'port-channel',
+            'tengigabitethernet']
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type interface_name: unicode
+    :param interface_name: The Interface value.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * length restriction: ::
 
-		:raises: ValueError, ConnectionError
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    **Child Instance Keyword Argument Tuple(s)**:
+
+    :type last_rcvd_interface: interface_type, interface_name
+    :param last_rcvd_interface: Keyword argument tuple.
+
+    :type interface_type: unicode
+    :param interface_type: **last_rcvd_interface** tuple argument:  The type of the interface. An 'unknown' type represents error scenario and should not be used.
+
+        * enumeration restriction: ::
+
+            ['l2vlan',
+            'gigabitethernet',
+            'hundredgigabitethernet',
+            'loopback',
+            'fortygigabitethernet',
+            'unknown',
+            'fibrechannel',
+            'port-channel',
+            'tengigabitethernet']
+
+    :type interface_name: unicode
+    :param interface_name: **last_rcvd_interface** tuple argument:  The Interface value.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1065,23 +1278,28 @@ def get_interface_switchport_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1099,40 +1317,60 @@ def get_ip_interface_rpc(self, interface_type=None, interface_name=None, rbridge
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param interface_type: The type of the interface. An 'unknown' type 
-represents error scenario and should not be used.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['l2vlan', 'gigabitethernet', 'hundredgigabitethernet', 'loopback', 'fortygigabitethernet', 'unknown', 'fibrechannel', 'port-channel', 'tengigabitethernet']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?(([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    **Instance Argument(s)**:
 
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    :type interface_type: unicode
+    :param interface_type: The type of the interface. An 'unknown' type represents error scenario and should not be used.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+        * enumeration restriction: ::
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+            ['l2vlan',
+            'gigabitethernet',
+            'hundredgigabitethernet',
+            'loopback',
+            'fortygigabitethernet',
+            'unknown',
+            'fibrechannel',
+            'port-channel',
+            'tengigabitethernet']
 
-		:raises: ValueError, ConnectionError
+    :type interface_name: unicode
+    :param interface_name: The Interface value.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1150,23 +1388,28 @@ def get_last_config_update_time_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1184,46 +1427,67 @@ def get_lldp_neighbor_detail_rpc(self, interface_type=None, interface_name=None,
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param interface_type: The type of the interface. An 'unknown' type 
-represents error scenario and should not be used.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['l2vlan', 'gigabitethernet', 'hundredgigabitethernet', 'loopback', 'fortygigabitethernet', 'unknown', 'fibrechannel', 'port-channel', 'tengigabitethernet']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?(([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    **Instance Argument(s)**:
 
-		:param last_rcvd_ifindex: kwarg.
-		:type last_rcvd_ifindex: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    :type interface_type: unicode
+    :param interface_type: The type of the interface. An 'unknown' type represents error scenario and should not be used.
 
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * enumeration restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            ['l2vlan',
+            'gigabitethernet',
+            'hundredgigabitethernet',
+            'loopback',
+            'fortygigabitethernet',
+            'unknown',
+            'fibrechannel',
+            'port-channel',
+            'tengigabitethernet']
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type interface_name: unicode
+    :param interface_name: The Interface value.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type last_rcvd_ifindex: long
+    :param last_rcvd_ifindex: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1241,40 +1505,60 @@ def get_mac_acl_for_intf_rpc(self, interface_type=None, interface_name=None, dir
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param interface_type: The type of the interface. An 'unknown' type 
-represents error scenario and should not be used.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['l2vlan', 'gigabitethernet', 'hundredgigabitethernet', 'loopback', 'fortygigabitethernet', 'unknown', 'fibrechannel', 'port-channel', 'tengigabitethernet']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?(([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    **Instance Argument(s)**:
 
-		:param direction: kwarg.
-		:type direction: (unicode)
-		
-			.. note::
-				* enum - ['all', 'in', 'out']
+    :type interface_type: unicode
+    :param interface_type: The type of the interface. An 'unknown' type represents error scenario and should not be used.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+        * enumeration restriction: ::
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+            ['l2vlan',
+            'gigabitethernet',
+            'hundredgigabitethernet',
+            'loopback',
+            'fortygigabitethernet',
+            'unknown',
+            'fibrechannel',
+            'port-channel',
+            'tengigabitethernet']
 
-		:raises: ValueError, ConnectionError
+    :type interface_name: unicode
+    :param interface_name: The Interface value.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type direction: unicode
+    :param direction: Keyword argument.
+
+        * enumeration restriction: ::
+
+            ['all', 'in', 'out']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1292,48 +1576,58 @@ def get_mac_address_table_rpc(self, mac_address=None, last_mac_address_details=N
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param mac_address: kwarg.
-		:type mac_address: (unicode)
-		
-			.. note::
-				* pattern - [0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-	**Child Instance Keyword Arg Tuple(s)**:
-		:param last_mac_address_details: kwarg tuple.
-		:type last_mac_address_details: (last_mac_address, last_vlan_id, last_mac_type).
+    **Instance Argument(s)**:
 
-		:param last_mac_address: tuple arg.
-		:type last_mac_address: (unicode)
-		
-			.. note::
-				* pattern - [0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}
+    :type mac_address: unicode
+    :param mac_address: Keyword argument.
 
-		:param last_vlan_id: tuple arg.
-		:type last_vlan_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * pattern restriction: ::
 
-		:param last_mac_type: tuple arg.
-		:type last_mac_type: (unicode)
-		
-			.. note::
-				* enum - ['fpma', 'static', 'dynamic', 'system']
+            '[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}'
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Child Instance Keyword Argument Tuple(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type last_mac_address_details: last_mac_address, last_vlan_id, last_mac_type
+    :param last_mac_address_details: Keyword argument tuple.
 
-		:raises: ValueError, ConnectionError
+    :type last_mac_address: unicode
+    :param last_mac_address: **last_mac_address_details** tuple argument.
+
+        * pattern restriction: ::
+
+            '[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}'
+
+    :type last_vlan_id: long
+    :param last_vlan_id: **last_mac_address_details** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type last_mac_type: unicode
+    :param last_mac_type: **last_mac_address_details** tuple argument.
+
+        * enumeration restriction: ::
+
+            ['fpma', 'static', 'dynamic', 'system']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1351,40 +1645,60 @@ def get_media_detail_rpc(self, interface_type=None, interface_name=None, rbridge
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param interface_type: The type of the interface. An 'unknown' type 
-represents error scenario and should not be used.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['l2vlan', 'gigabitethernet', 'hundredgigabitethernet', 'loopback', 'fortygigabitethernet', 'unknown', 'fibrechannel', 'port-channel', 'tengigabitethernet']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?(([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    **Instance Argument(s)**:
 
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    :type interface_type: unicode
+    :param interface_type: The type of the interface. An 'unknown' type represents error scenario and should not be used.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+        * enumeration restriction: ::
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+            ['l2vlan',
+            'gigabitethernet',
+            'hundredgigabitethernet',
+            'loopback',
+            'fortygigabitethernet',
+            'unknown',
+            'fibrechannel',
+            'port-channel',
+            'tengigabitethernet']
 
-		:raises: ValueError, ConnectionError
+    :type interface_name: unicode
+    :param interface_name: The Interface value.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1402,22 +1716,27 @@ def get_mpls_autobw_template_brief_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1435,22 +1754,27 @@ def get_mpls_autobw_template_detail_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1468,22 +1792,27 @@ def get_mpls_ldp_neighbor_brief_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1501,22 +1830,27 @@ def get_mpls_ldp_neighbor_detail_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1534,22 +1868,27 @@ def get_mpls_ldp_session_brief_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1567,22 +1906,27 @@ def get_mpls_ldp_session_detail_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1600,27 +1944,32 @@ def get_nameserver_detail_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: <NUMBER:1-239>;;rbridge-id of switch to
-retrieve info from
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: long
+    :param rbridge_id: <NUMBER:1-239>;;rbridge-id of switch toretrieve info from
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1638,26 +1987,32 @@ def get_netconf_client_capabilities_rpc(self, session_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param session_id: kwarg.
-		:type session_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type session_id: long
+    :param session_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1675,32 +2030,39 @@ def get_port_channel_detail_rpc(self, aggregator_id=None, last_aggregator_id=Non
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param aggregator_id: kwarg.
-		:type aggregator_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param last_aggregator_id: kwarg.
-		:type last_aggregator_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type aggregator_id: long
+    :param aggregator_id: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * range restriction: ::
 
-		:raises: ValueError, ConnectionError
+            ['0..4294967295']
+
+    :type last_aggregator_id: long
+    :param last_aggregator_id: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1718,58 +2080,93 @@ def get_port_profile_for_intf_rpc(self, rbridge_id=None, interface_type=None, in
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param interface_type: The type of the interface. An 'unknown' type 
-represents error scenario and should not be used.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['l2vlan', 'gigabitethernet', 'hundredgigabitethernet', 'loopback', 'fortygigabitethernet', 'unknown', 'fibrechannel', 'port-channel', 'tengigabitethernet']
+    **Instance Argument(s)**:
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?(([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
 
-	**Child Instance Keyword Arg Tuple(s)**:
-		:param last_received_interface_info: kwarg tuple.
-		:type last_received_interface_info: (interface_type, interface_name).
+        * range restriction: ::
 
-		:param interface_type: The type of the interface. An 'unknown' type 
-represents error scenario and should not be used.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['l2vlan', 'gigabitethernet', 'hundredgigabitethernet', 'loopback', 'fortygigabitethernet', 'unknown', 'fibrechannel', 'port-channel', 'tengigabitethernet']
+            ['0..4294967295']
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?(([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    :type interface_type: unicode
+    :param interface_type: The type of the interface. An 'unknown' type represents error scenario and should not be used.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+        * enumeration restriction: ::
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+            ['l2vlan',
+            'gigabitethernet',
+            'hundredgigabitethernet',
+            'loopback',
+            'fortygigabitethernet',
+            'unknown',
+            'fibrechannel',
+            'port-channel',
+            'tengigabitethernet']
 
-		:raises: ValueError, ConnectionError
+    :type interface_name: unicode
+    :param interface_name: The Interface value.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    **Child Instance Keyword Argument Tuple(s)**:
+
+    :type last_received_interface_info: interface_type, interface_name
+    :param last_received_interface_info: Keyword argument tuple.
+
+    :type interface_type: unicode
+    :param interface_type: **last_received_interface_info** tuple argument:  The type of the interface. An 'unknown' type represents error scenario and should not be used.
+
+        * enumeration restriction: ::
+
+            ['l2vlan',
+            'gigabitethernet',
+            'hundredgigabitethernet',
+            'loopback',
+            'fortygigabitethernet',
+            'unknown',
+            'fibrechannel',
+            'port-channel',
+            'tengigabitethernet']
+
+    :type interface_name: unicode
+    :param interface_name: **last_received_interface_info** tuple argument:  The Interface value.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1787,54 +2184,67 @@ def get_port_profile_status_rpc(self, rbridge_id=None, port_profile_name=None, p
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param port_profile_name: kwarg.
-		:type port_profile_name: (unicode)
-		
-			.. note::
-				* pattern - [a-zA-Z]{1}([-a-zA-Z0-9\.\\\\@#\+\*\(\)=\{~\}%<>=$_\[\]\|]{0,63})
+    **Instance Argument(s)**:
 
-		:param port_profile_status: kwarg.
-		:type port_profile_status: (unicode)
-		
-			.. note::
-				* enum - ['applied', 'activated', 'associated']
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
 
-	**Child Instance Keyword Arg Tuple(s)**:
-		:param last_received_port_profile_info: kwarg tuple.
-		:type last_received_port_profile_info: (profile_name, profile_mac).
+        * range restriction: ::
 
-		:param profile_name: tuple arg.
-		:type profile_name: (unicode)
-		
-			.. note::
-				* pattern - [a-zA-Z]{1}([-a-zA-Z0-9\.\\\\@#\+\*\(\)=\{~\}%<>=$_\[\]\|]{0,63})
+            ['0..4294967295']
 
-		:param profile_mac: tuple arg.
-		:type profile_mac: (unicode)
-		
-			.. note::
-				* pattern - [0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}
+    :type port_profile_name: unicode
+    :param port_profile_name: Keyword argument.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+        * pattern restriction: ::
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+            '[a-zA-Z]{1}([-a-zA-Z0-9\.\\\\@#\+\*\(\)=\{~\}%<>'
+            '=$_\[\]\|]{0,63})'
 
-		:raises: ValueError, ConnectionError
+    :type port_profile_status: unicode
+    :param port_profile_status: Keyword argument.
+
+        * enumeration restriction: ::
+
+            ['applied', 'activated', 'associated']
+
+    **Child Instance Keyword Argument Tuple(s)**:
+
+    :type last_received_port_profile_info: profile_name, profile_mac
+    :param last_received_port_profile_info: Keyword argument tuple.
+
+    :type profile_name: unicode
+    :param profile_name: **last_received_port_profile_info** tuple argument.
+
+        * pattern restriction: ::
+
+            '[a-zA-Z]{1}([-a-zA-Z0-9\.\\\\@#\+\*\(\)=\{~\}%<>'
+            '=$_\[\]\|]{0,63})'
+
+    :type profile_mac: unicode
+    :param profile_mac: **last_received_port_profile_info** tuple argument.
+
+        * pattern restriction: ::
+
+            '[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1852,34 +2262,53 @@ def get_portchannel_info_by_intf_rpc(self, interface_type=None, interface_name=N
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param interface_type: The type of the interface. An 'unknown' type 
-represents error scenario and should not be used.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['l2vlan', 'gigabitethernet', 'hundredgigabitethernet', 'loopback', 'fortygigabitethernet', 'unknown', 'fibrechannel', 'port-channel', 'tengigabitethernet']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?(([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type interface_type: unicode
+    :param interface_type: The type of the interface. An 'unknown' type represents error scenario and should not be used.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * enumeration restriction: ::
 
-		:raises: ValueError, ConnectionError
+            ['l2vlan',
+            'gigabitethernet',
+            'hundredgigabitethernet',
+            'loopback',
+            'fortygigabitethernet',
+            'unknown',
+            'fibrechannel',
+            'port-channel',
+            'tengigabitethernet']
+
+    :type interface_name: unicode
+    :param interface_name: The Interface value.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1897,22 +2326,27 @@ def get_show_cfm_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1930,26 +2364,32 @@ def get_system_uptime_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -1967,82 +2407,101 @@ def get_tunnel_info_rpc(self, page_cursor=None, id=None, mode=None, gw_name=None
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.0.1a, 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param page_cursor: kwarg.
-		:type page_cursor: (unicode)
+        * NOS: 7.0.1a, 7.1.0    
 
-		:param id: kwarg.
-		:type id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    **Instance Argument(s)**:
 
-		:param mode: kwarg.
-		:type mode: (unicode)
-		
-			.. note::
-				* enum - ['vxlan']
+    :type page_cursor: unicode
+    :param page_cursor: Keyword argument.
 
-		:param gw_name: kwarg.
-		:type gw_name: (unicode)
-		
-			.. note::
-				* pattern - [-_a-zA-Z0-9]{1,32}
+    :type id: long
+    :param id: Keyword argument.
 
-		:param src_ip: kwarg.
-		:type src_ip: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+        * range restriction: ::
 
-		:param dest_ip: kwarg.
-		:type dest_ip: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+            ['0..4294967295']
 
-		:param config_src: kwarg.
-		:type config_src: (unicode)
-		
-			.. note::
-				* enum - ['bgp-evpn', 'vtep-controller', 'site-config']
+    :type mode: unicode
+    :param mode: Keyword argument.
 
-		:param site_name: kwarg.
-		:type site_name: (unicode)
-		
-			.. note::
-				* pattern - [-_a-zA-Z0-9]{1,63}
+        * enumeration restriction: ::
 
-		:param admin_state: kwarg.
-		:type admin_state: (unicode)
-		
-			.. note::
-				* enum - ['down', 'up']
+            ['vxlan']
 
-		:param oper_state: kwarg.
-		:type oper_state: (unicode)
-		
-			.. note::
-				* enum - ['down', 'up']
+    :type gw_name: unicode
+    :param gw_name: Keyword argument.
 
-		:param bfd_state: kwarg.
-		:type bfd_state: (unicode)
-		
-			.. note::
-				* enum - ['down', 'up']
+        * pattern restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            '[-_a-zA-Z0-9]{1,32}'
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type src_ip: unicode
+    :param src_ip: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type dest_ip: unicode
+    :param dest_ip: Keyword argument.
+
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type config_src: unicode
+    :param config_src: Keyword argument.
+
+        * enumeration restriction: ::
+
+            ['bgp-evpn', 'vtep-controller', 'site-config']
+
+    :type site_name: unicode
+    :param site_name: Keyword argument.
+
+        * pattern restriction: ::
+
+            '[-_a-zA-Z0-9]{1,63}'
+
+    :type admin_state: unicode
+    :param admin_state: Keyword argument.
+
+        * enumeration restriction: ::
+
+            ['down', 'up']
+
+    :type oper_state: unicode
+    :param oper_state: Keyword argument.
+
+        * enumeration restriction: ::
+
+            ['down', 'up']
+
+    :type bfd_state: unicode
+    :param bfd_state: Keyword argument.
+
+        * enumeration restriction: ::
+
+            ['down', 'up']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2060,40 +2519,48 @@ def get_tunnel_statistics_rpc(self, page_cursor=None, id=None, mode=None, gw_nam
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.0.1a, 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param page_cursor: kwarg.
-		:type page_cursor: (unicode)
+        * NOS: 7.0.1a, 7.1.0    
 
-		:param id: kwarg.
-		:type id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    **Instance Argument(s)**:
 
-		:param mode: kwarg.
-		:type mode: (unicode)
-		
-			.. note::
-				* enum - ['vxlan']
+    :type page_cursor: unicode
+    :param page_cursor: Keyword argument.
 
-		:param gw_name: kwarg.
-		:type gw_name: (unicode)
-		
-			.. note::
-				* pattern - [-_a-zA-Z0-9]{1,32}
+    :type id: long
+    :param id: Keyword argument.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+        * range restriction: ::
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+            ['0..4294967295']
 
-		:raises: ValueError, ConnectionError
+    :type mode: unicode
+    :param mode: Keyword argument.
+
+        * enumeration restriction: ::
+
+            ['vxlan']
+
+    :type gw_name: unicode
+    :param gw_name: Keyword argument.
+
+        * pattern restriction: ::
+
+            '[-_a-zA-Z0-9]{1,32}'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2111,23 +2578,28 @@ def get_vcs_details_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2145,32 +2617,39 @@ def get_vlan_brief_rpc(self, vlan_id=None, last_rcvd_vlan_id=None, api_timeout='
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param vlan_id: kwarg.
-		:type vlan_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param last_rcvd_vlan_id: kwarg.
-		:type last_rcvd_vlan_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type vlan_id: long
+    :param vlan_id: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * range restriction: ::
 
-		:raises: ValueError, ConnectionError
+            ['0..4294967295']
+
+    :type last_rcvd_vlan_id: long
+    :param last_rcvd_vlan_id: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2188,44 +2667,53 @@ def get_vmpolicy_macaddr_rpc(self, mac=None, vcenter=None, datacenter=None, last
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param mac: kwarg.
-		:type mac: (unicode)
-		
-			.. note::
-				* pattern - [0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param vcenter: kwarg.
-		:type vcenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    **Instance Argument(s)**:
 
-		:param datacenter: kwarg.
-		:type datacenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    :type mac: unicode
+    :param mac: Keyword argument.
 
-		:param last_rcvd_instance: kwarg.
-		:type last_rcvd_instance: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * pattern restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            '[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}'
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type vcenter: unicode
+    :param vcenter: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..80']
+
+    :type datacenter: unicode
+    :param datacenter: Keyword argument.
+
+        * length restriction: ::
+
+            ['1..80']
+
+    :type last_rcvd_instance: long
+    :param last_rcvd_instance: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2243,44 +2731,53 @@ def get_vnetwork_dvpgs_rpc(self, name=None, vcenter=None, datacenter=None, last_
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param name: kwarg.
-		:type name: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param vcenter: kwarg.
-		:type vcenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    **Instance Argument(s)**:
 
-		:param datacenter: kwarg.
-		:type datacenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    :type name: unicode
+    :param name: Keyword argument.
 
-		:param last_rcvd_instance: kwarg.
-		:type last_rcvd_instance: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * length restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            ['1..80']
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type vcenter: unicode
+    :param vcenter: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..80']
+
+    :type datacenter: unicode
+    :param datacenter: Keyword argument.
+
+        * length restriction: ::
+
+            ['1..80']
+
+    :type last_rcvd_instance: long
+    :param last_rcvd_instance: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2298,44 +2795,53 @@ def get_vnetwork_dvs_rpc(self, name=None, vcenter=None, datacenter=None, last_rc
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param name: kwarg.
-		:type name: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param vcenter: kwarg.
-		:type vcenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    **Instance Argument(s)**:
 
-		:param datacenter: kwarg.
-		:type datacenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    :type name: unicode
+    :param name: Keyword argument.
 
-		:param last_rcvd_instance: kwarg.
-		:type last_rcvd_instance: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * length restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            ['1..80']
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type vcenter: unicode
+    :param vcenter: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..80']
+
+    :type datacenter: unicode
+    :param datacenter: Keyword argument.
+
+        * length restriction: ::
+
+            ['1..80']
+
+    :type last_rcvd_instance: long
+    :param last_rcvd_instance: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2353,44 +2859,53 @@ def get_vnetwork_hosts_rpc(self, vcenter=None, datacenter=None, name=None, last_
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param vcenter: kwarg.
-		:type vcenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param datacenter: kwarg.
-		:type datacenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    **Instance Argument(s)**:
 
-		:param name: kwarg.
-		:type name: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    :type vcenter: unicode
+    :param vcenter: Keyword argument.
 
-		:param last_rcvd_instance: kwarg.
-		:type last_rcvd_instance: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * length restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            ['1..80']
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type datacenter: unicode
+    :param datacenter: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..80']
+
+    :type name: unicode
+    :param name: Keyword argument.
+
+        * length restriction: ::
+
+            ['1..80']
+
+    :type last_rcvd_instance: long
+    :param last_rcvd_instance: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2408,44 +2923,53 @@ def get_vnetwork_portgroups_rpc(self, name=None, vcenter=None, datacenter=None, 
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param name: kwarg.
-		:type name: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param vcenter: kwarg.
-		:type vcenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    **Instance Argument(s)**:
 
-		:param datacenter: kwarg.
-		:type datacenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    :type name: unicode
+    :param name: Keyword argument.
 
-		:param last_rcvd_instance: kwarg.
-		:type last_rcvd_instance: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * length restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            ['1..80']
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type vcenter: unicode
+    :param vcenter: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..80']
+
+    :type datacenter: unicode
+    :param datacenter: Keyword argument.
+
+        * length restriction: ::
+
+            ['1..80']
+
+    :type last_rcvd_instance: long
+    :param last_rcvd_instance: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2463,44 +2987,53 @@ def get_vnetwork_vms_rpc(self, name=None, vcenter=None, datacenter=None, last_rc
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param name: kwarg.
-		:type name: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param vcenter: kwarg.
-		:type vcenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    **Instance Argument(s)**:
 
-		:param datacenter: kwarg.
-		:type datacenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    :type name: unicode
+    :param name: Keyword argument.
 
-		:param last_rcvd_instance: kwarg.
-		:type last_rcvd_instance: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * length restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            ['1..80']
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type vcenter: unicode
+    :param vcenter: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..80']
+
+    :type datacenter: unicode
+    :param datacenter: Keyword argument.
+
+        * length restriction: ::
+
+            ['1..80']
+
+    :type last_rcvd_instance: long
+    :param last_rcvd_instance: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2518,44 +3051,53 @@ def get_vnetwork_vswitches_rpc(self, name=None, vcenter=None, datacenter=None, l
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param name: kwarg.
-		:type name: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param vcenter: kwarg.
-		:type vcenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    **Instance Argument(s)**:
 
-		:param datacenter: kwarg.
-		:type datacenter: (unicode)
-		
-			.. note::
-				* length - [u'1..80']
+    :type name: unicode
+    :param name: Keyword argument.
 
-		:param last_rcvd_instance: kwarg.
-		:type last_rcvd_instance: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * length restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            ['1..80']
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type vcenter: unicode
+    :param vcenter: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..80']
+
+    :type datacenter: unicode
+    :param datacenter: Keyword argument.
+
+        * length restriction: ::
+
+            ['1..80']
+
+    :type last_rcvd_instance: long
+    :param last_rcvd_instance: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2573,22 +3115,27 @@ def isns_get_device_brief_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2606,26 +3153,35 @@ def isns_get_discovery_domain_rpc(self, isns_dd_name=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param isns_dd_name: kwarg.
-		:type isns_dd_name: (unicode)
-		
-			.. note::
-				* length - [u'1..255']
-				* pattern - [-_0-9a-zA-Z]{1,255}
+        * NOS: 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type isns_dd_name: unicode
+    :param isns_dd_name: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..255']
+
+        * pattern restriction: ::
+
+            '[-_0-9a-zA-Z]{1,255}'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2643,26 +3199,35 @@ def isns_get_discovery_domain_set_rpc(self, isns_dds_name=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param isns_dds_name: kwarg.
-		:type isns_dds_name: (unicode)
-		
-			.. note::
-				* length - [u'1..255']
-				* pattern - [-_0-9a-zA-Z]{1,255}
+        * NOS: 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type isns_dds_name: unicode
+    :param isns_dds_name: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..255']
+
+        * pattern restriction: ::
+
+            '[-_0-9a-zA-Z]{1,255}'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2680,22 +3245,27 @@ def isns_get_last_device_timestamp_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2713,22 +3283,27 @@ def isns_get_server_role_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2746,25 +3321,31 @@ def isns_get_vrf_forwarding_rpc(self, isns_vrf_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param isns_vrf_id: kwarg.
-		:type isns_vrf_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type isns_vrf_id: long
+    :param isns_vrf_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2782,67 +3363,83 @@ def l2traceroute_rpc(self, src_mac=None, dest_mac=None, vlan_id=None, rbridge_id
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param src_mac: kwarg.
-		:type src_mac: (unicode)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
 
-		:param dest_mac: kwarg.
-		:type dest_mac: (unicode)
+    **Instance Argument(s)**:
 
-		:param vlan_id: kwarg.
-		:type vlan_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    :type src_mac: unicode
+    :param src_mac: Keyword argument.
 
-		:param rbridge_id: Syntax: rbridge-id [rbridge-id]
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    :type dest_mac: unicode
+    :param dest_mac: Keyword argument.
 
-		:param src_ip: kwarg.
-		:type src_ip: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    :type vlan_id: long
+    :param vlan_id: Keyword argument.
 
-		:param dest_ip: kwarg.
-		:type dest_ip: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+        * range restriction: ::
 
-		:param l4protocol: kwarg.
-		:type l4protocol: (unicode)
-		
-			.. note::
-				* enum - ['UDP', 'TCP']
+            ['0..4294967295']
 
-		:param l4_src_port: kwarg.
-		:type l4_src_port: (int)
-		
-			.. note::
-				* range - ['0..65535']
+    :type rbridge_id: long
+    :param rbridge_id: Syntax: rbridge-id [rbridge-id]
 
-		:param l4_dest_port: kwarg.
-		:type l4_dest_port: (int)
-		
-			.. note::
-				* range - ['0..65535']
+        * range restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            ['0..4294967295']
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type src_ip: unicode
+    :param src_ip: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type dest_ip: unicode
+    :param dest_ip: Keyword argument.
+
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type l4protocol: unicode
+    :param l4protocol: Keyword argument.
+
+        * enumeration restriction: ::
+
+            ['UDP', 'TCP']
+
+    :type l4_src_port: int
+    :param l4_src_port: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..65535']
+
+    :type l4_dest_port: int
+    :param l4_dest_port: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..65535']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2860,25 +3457,31 @@ def l2traceroute_result_rpc(self, session_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param session_id: kwarg.
-		:type session_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type session_id: long
+    :param session_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2896,53 +3499,59 @@ def logical_chassis_fwdl_sanity_rpc(self, user=None, password=None, host=None, d
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param user: Username
-		:type user: (unicode)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
 
-		:param password: Password
-		:type password: (unicode)
+    **Instance Argument(s)**:
 
-		:param host: Host ipv4/ipv6 address
-		:type host: (unicode)
+    :type user: unicode
+    :param user: Username
 
-		:param directory: Directory
-		:type directory: (unicode)
+    :type password: unicode
+    :param password: Password
 
-		:param file: Package release file, example - release.plist
-		:type file: (unicode)
+    :type host: unicode
+    :param host: Host ipv4/ipv6 address
 
-		:param rbridge_id: Enter 'all' for firmware download on all nodes in the 
-logical-chassis or comma seperated rbridge-ids like 'rbridge-id 3,4,7-9,20'
-		:type rbridge_id: (unicode)
-		
-			.. note::
-				* pattern - [0-9]+(-[0-9]+)?(,[0-9]+(-[0-9]+)?)*
+    :type directory: unicode
+    :param directory: Directory
 
-		:param auto_activate: To activate new firmware on all nodes
-		:type auto_activate: (YANGBool)
+    :type file: unicode
+    :param file: Package release file, example - release.plist
 
-		:param coldboot: Perform non ISSU firmware download.
-		:type coldboot: (YANGBool)
+    :type rbridge_id: unicode
+    :param rbridge_id: Enter 'all' for firmware download on all nodes in the logical-chassis or comma seperated rbridge-ids like 'rbridge-id 3,4,7-9,20'
 
-		:param protocol: Protocol type : ftp, scp or sftp
-		:type protocol: (unicode)
-		
-			.. note::
-				* enum - ['ftp', 'scp', 'sftp']
+        * pattern restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            '[0-9]+(-[0-9]+)?(,[0-9]+(-[0-9]+)?)*'
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type auto_activate: YANGBool
+    :param auto_activate: To activate new firmware on all nodes
 
-		:raises: ValueError, ConnectionError
+    :type coldboot: YANGBool
+    :param coldboot: Perform non ISSU firmware download.
+
+    :type protocol: unicode
+    :param protocol: Protocol type : ftp, scp or sftp
+
+        * enumeration restriction: ::
+
+            ['ftp', 'scp', 'sftp']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2960,25 +3569,31 @@ def logical_chassis_fwdl_status_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: Please enter 'all' for activating all nodes in the logical-chassis or individual rbridge-ids of the form 1,2,3-6
-		:type rbridge_id: (unicode)
-		
-			.. note::
-				* pattern - [0-9]+(-[0-9]+)?(,[0-9]+(-[0-9]+)?)*
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: unicode
+    :param rbridge_id: Please enter 'all' for activating all nodes in the logical-chassis or individual rbridge-ids of the form 1,2,3-6
 
-		:raises: ValueError, ConnectionError
+        * pattern restriction: ::
+
+            '[0-9]+(-[0-9]+)?(,[0-9]+(-[0-9]+)?)*'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -2996,26 +3611,32 @@ def maps_get_all_policy_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3033,25 +3654,31 @@ def maps_get_default_rules_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.0.1a, 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 7.0.1a, 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3069,26 +3696,32 @@ def maps_get_rules_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3106,25 +3739,31 @@ def maps_re_apply_policy_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.0.1a, 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 7.0.1a, 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3142,25 +3781,31 @@ def mpls_adjust_bandwidth_lsp_rpc(self, lsp_name=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param lsp_name: kwarg.
-		:type lsp_name: (unicode)
-		
-			.. note::
-				* length - [u'1..64']
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type lsp_name: unicode
+    :param lsp_name: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3178,22 +3823,27 @@ def mpls_adjust_bandwidth_lsp_all_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3211,25 +3861,31 @@ def mpls_reopt_lsp_rpc(self, mpls_reoptimize_lsp_name_in=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param mpls_reoptimize_lsp_name_in: kwarg.
-		:type mpls_reoptimize_lsp_name_in: (unicode)
-		
-			.. note::
-				* length - [u'1..64']
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type mpls_reoptimize_lsp_name_in: unicode
+    :param mpls_reoptimize_lsp_name_in: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3247,25 +3903,31 @@ def redundancy_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 7.0.1a, 7.1.0    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: Please enter 'all' or an individual rbridge-id in the range 1-239
-		:type rbridge_id: (unicode)
-		
-			.. note::
-				* length - [u'1..3']
+        * NOS: 7.0.1a, 7.1.0    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: unicode
+    :param rbridge_id: Please enter 'all' or an individual rbridge-id in the range 1-239
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..3']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3283,32 +3945,38 @@ def reload_rpc(self, rbridge_id=None, system=None, standby=None, api_timeout='')
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: Rbridge-id (use only with  reload system)
-		:type rbridge_id: (unicode)
-		
-			.. note::
-				* length - [u'1..3']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param system: Reboots the chassis
-		:type system: (YANGBool)
+    **Instance Argument(s)**:
 
-		:param standby: Reboots the standby MM
-		:type standby: (YANGBool)
+    :type rbridge_id: unicode
+    :param rbridge_id: Rbridge-id (use only with  reload system)
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+        * length restriction: ::
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+            ['1..3']
 
-		:raises: ValueError, ConnectionError
+    :type system: YANGBool
+    :param system: Reboots the chassis
+
+    :type standby: YANGBool
+    :param standby: Reboots the standby MM
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3326,23 +3994,28 @@ def show_bare_metal_state_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3360,26 +4033,32 @@ def show_clock_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3397,29 +4076,35 @@ def show_fabric_trunk_info_rpc(self, rbridge_id=None, all=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: Syntax: rbridge-id [rbridge-id]
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param all: All rbridges in fabric
-		:type all: (YANGBool)
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type rbridge_id: long
+    :param rbridge_id: Syntax: rbridge-id [rbridge-id]
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * range restriction: ::
 
-		:raises: ValueError, ConnectionError
+            ['0..4294967295']
+
+    :type all: YANGBool
+    :param all: All rbridges in fabric
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3437,23 +4122,28 @@ def show_fibrechannel_interface_info_rpc(self, all=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param all: kwarg.
-		:type all: (YANGBool)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type all: YANGBool
+    :param all: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3471,26 +4161,32 @@ def show_firmware_version_rpc(self, switchid=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param switchid: kwarg.
-		:type switchid: (unicode)
-		
-			.. note::
-				* length - [u'1..3']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type switchid: unicode
+    :param switchid: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..3']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3508,23 +4204,28 @@ def show_linkinfo_rpc(self, all=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param all: kwarg.
-		:type all: (YANGBool)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type all: YANGBool
+    :param all: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3542,22 +4243,27 @@ def show_mpls_bfd_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3575,22 +4281,27 @@ def show_mpls_bypass_bypass_lsp_extensive_rpc(self, output=None, api_timeout='')
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3608,22 +4319,27 @@ def show_mpls_bypass_lsp_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3641,22 +4357,27 @@ def show_mpls_bypass_lsp_debug_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3674,22 +4395,27 @@ def show_mpls_bypass_lsp_detail_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3707,22 +4433,27 @@ def show_mpls_dynamic_bypass_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3740,22 +4471,27 @@ def show_mpls_dynamic_bypass_interface_brief_rpc(self, output=None, api_timeout=
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3773,22 +4509,27 @@ def show_mpls_interface_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3806,22 +4547,27 @@ def show_mpls_interface_detail_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3839,32 +4585,43 @@ def show_mpls_interface_one_interface_rpc(self, interface_type=None, interface_n
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param interface_type: kwarg.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['ethernet', 've']
+        * SLXOS: 16r.1.00b    
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type interface_type: unicode
+    :param interface_type: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * enumeration restriction: ::
 
-		:raises: ValueError, ConnectionError
+            ['ethernet', 've']
+
+    :type interface_name: unicode
+    :param interface_name: The Interface value.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
+            '[0-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3882,22 +4639,27 @@ def show_mpls_ldp_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3915,22 +4677,27 @@ def show_mpls_ldp_fec_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3948,22 +4715,27 @@ def show_mpls_ldp_fec_prefix_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -3981,28 +4753,33 @@ def show_mpls_ldp_fec_prefix_filtered_rpc(self, ldp_fec_prefix_filtered=None, ld
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_fec_prefix_filtered: kwarg.
-		:type ldp_fec_prefix_filtered: (YANGBool)
+        * SLXOS: 16r.1.00b    
 
-		:param ldp_fec_prefix_filtered_in: kwarg.
-		:type ldp_fec_prefix_filtered_in: (YANGBool)
+    **Instance Argument(s)**:
 
-		:param ldp_fec_prefix_filtered_out: kwarg.
-		:type ldp_fec_prefix_filtered_out: (YANGBool)
+    :type ldp_fec_prefix_filtered: YANGBool
+    :param ldp_fec_prefix_filtered: Keyword argument.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type ldp_fec_prefix_filtered_in: YANGBool
+    :param ldp_fec_prefix_filtered_in: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type ldp_fec_prefix_filtered_out: YANGBool
+    :param ldp_fec_prefix_filtered_out: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4020,25 +4797,33 @@ def show_mpls_ldp_fec_prefix_prefix_rpc(self, ldp_fec_prefix=None, api_timeout='
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_fec_prefix: kwarg.
-		:type ldp_fec_prefix: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type ldp_fec_prefix: unicode
+    :param ldp_fec_prefix: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4056,25 +4841,30 @@ def show_mpls_ldp_fec_prefix_prefix_filter_rpc(self, ldp_fec_prefix_filter=None,
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_fec_prefix_filter: kwarg.
-		:type ldp_fec_prefix_filter: (YANGBool)
+        * SLXOS: 16r.1.00b    
 
-		:param ldp_fec_prefix_filter_string: kwarg.
-		:type ldp_fec_prefix_filter_string: (unicode)
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type ldp_fec_prefix_filter: YANGBool
+    :param ldp_fec_prefix_filter: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type ldp_fec_prefix_filter_string: unicode
+    :param ldp_fec_prefix_filter_string: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4092,28 +4882,36 @@ def show_mpls_ldp_fec_prefix_prefix_longer_rpc(self, ldp_fec_prefix=None, ldp_fe
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_fec_prefix: kwarg.
-		:type ldp_fec_prefix: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))
+        * SLXOS: 16r.1.00b    
 
-		:param ldp_fec_prefix_longer: kwarg.
-		:type ldp_fec_prefix_longer: (YANGBool)
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type ldp_fec_prefix: unicode
+    :param ldp_fec_prefix: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * pattern restriction: ::
 
-		:raises: ValueError, ConnectionError
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))'
+
+    :type ldp_fec_prefix_longer: YANGBool
+    :param ldp_fec_prefix_longer: Keyword argument.
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4131,22 +4929,27 @@ def show_mpls_ldp_fec_summary_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4164,22 +4967,27 @@ def show_mpls_ldp_fec_vc_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4197,25 +5005,31 @@ def show_mpls_ldp_fec_vc_id_rpc(self, ldp_fec_vc_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_fec_vc_id: kwarg.
-		:type ldp_fec_vc_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type ldp_fec_vc_id: long
+    :param ldp_fec_vc_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4233,22 +5047,27 @@ def show_mpls_ldp_path_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4266,25 +5085,33 @@ def show_mpls_ldp_path_one_rpc(self, ldp_path_ip=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_path_ip: kwarg.
-		:type ldp_path_ip: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type ldp_path_ip: unicode
+    :param ldp_path_ip: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4302,37 +5129,46 @@ def show_mpls_ldp_peer_br_rpc(self, ldp_peer_brief=None, ldp_peer_detail=None, l
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_peer_brief: kwarg.
-		:type ldp_peer_brief: (YANGBool)
+        * SLXOS: 16r.1.00b    
 
-		:param ldp_peer_detail: kwarg.
-		:type ldp_peer_detail: (YANGBool)
+    **Instance Argument(s)**:
 
-		:param ldp_peer_ip: kwarg.
-		:type ldp_peer_ip: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    :type ldp_peer_brief: YANGBool
+    :param ldp_peer_brief: Keyword argument.
 
-		:param ldp_peer_ip_lblspid: kwarg.
-		:type ldp_peer_ip_lblspid: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    :type ldp_peer_detail: YANGBool
+    :param ldp_peer_detail: Keyword argument.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type ldp_peer_ip: unicode
+    :param ldp_peer_ip: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * pattern restriction: ::
 
-		:raises: ValueError, ConnectionError
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type ldp_peer_ip_lblspid: long
+    :param ldp_peer_ip_lblspid: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4350,37 +5186,46 @@ def show_mpls_ldp_peer_det_rpc(self, ldp_peer_brief=None, ldp_peer_detail=None, 
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_peer_brief: kwarg.
-		:type ldp_peer_brief: (YANGBool)
+        * SLXOS: 16r.1.00b    
 
-		:param ldp_peer_detail: kwarg.
-		:type ldp_peer_detail: (YANGBool)
+    **Instance Argument(s)**:
 
-		:param ldp_peer_ip: kwarg.
-		:type ldp_peer_ip: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    :type ldp_peer_brief: YANGBool
+    :param ldp_peer_brief: Keyword argument.
 
-		:param ldp_peer_ip_lblspid: kwarg.
-		:type ldp_peer_ip_lblspid: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    :type ldp_peer_detail: YANGBool
+    :param ldp_peer_detail: Keyword argument.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type ldp_peer_ip: unicode
+    :param ldp_peer_ip: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * pattern restriction: ::
 
-		:raises: ValueError, ConnectionError
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type ldp_peer_ip_lblspid: long
+    :param ldp_peer_ip_lblspid: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4398,37 +5243,46 @@ def show_mpls_ldp_peer_det_rec_rpc(self, ldp_peer_brief=None, ldp_peer_detail=No
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_peer_brief: kwarg.
-		:type ldp_peer_brief: (YANGBool)
+        * SLXOS: 16r.1.00b    
 
-		:param ldp_peer_detail: kwarg.
-		:type ldp_peer_detail: (YANGBool)
+    **Instance Argument(s)**:
 
-		:param ldp_peer_ip: kwarg.
-		:type ldp_peer_ip: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    :type ldp_peer_brief: YANGBool
+    :param ldp_peer_brief: Keyword argument.
 
-		:param ldp_peer_ip_lblspid: kwarg.
-		:type ldp_peer_ip_lblspid: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    :type ldp_peer_detail: YANGBool
+    :param ldp_peer_detail: Keyword argument.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type ldp_peer_ip: unicode
+    :param ldp_peer_ip: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * pattern restriction: ::
 
-		:raises: ValueError, ConnectionError
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type ldp_peer_ip_lblspid: long
+    :param ldp_peer_ip_lblspid: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4446,22 +5300,27 @@ def show_mpls_ldp_statistics_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4479,22 +5338,27 @@ def show_mpls_ldp_targeted_peer_all_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4512,25 +5376,33 @@ def show_mpls_ldp_targeted_peer_one_rpc(self, ldp_targeted_peer_ip=None, api_tim
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_targeted_peer_ip: kwarg.
-		:type ldp_targeted_peer_ip: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type ldp_targeted_peer_ip: unicode
+    :param ldp_targeted_peer_ip: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4548,22 +5420,27 @@ def show_mpls_lsp_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4581,22 +5458,27 @@ def show_mpls_lsp_debug_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4614,22 +5496,27 @@ def show_mpls_lsp_detail_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4647,22 +5534,27 @@ def show_mpls_lsp_extensive_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4680,22 +5572,27 @@ def show_mpls_policy_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4713,40 +5610,54 @@ def show_mpls_route_rpc(self, prefix_address_and_len=None, prefix_address=None, 
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param prefix_address_and_len: kwarg.
-		:type prefix_address_and_len: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))
+        * SLXOS: 16r.1.00b    
 
-		:param prefix_address: kwarg.
-		:type prefix_address: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    **Instance Argument(s)**:
 
-		:param subnet_mask: kwarg.
-		:type subnet_mask: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    :type prefix_address_and_len: unicode
+    :param prefix_address_and_len: Keyword argument.
 
-		:param longer: kwarg.
-		:type longer: (YANGBool)
+        * pattern restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))'
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type prefix_address: unicode
+    :param prefix_address: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type subnet_mask: unicode
+    :param subnet_mask: Keyword argument.
+
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type longer: YANGBool
+    :param longer: Keyword argument.
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4764,22 +5675,27 @@ def show_mpls_rsvp_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4797,22 +5713,27 @@ def show_mpls_rsvp_interface_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4830,22 +5751,27 @@ def show_mpls_rsvp_interface_detail_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4863,32 +5789,43 @@ def show_mpls_rsvp_interface_one_interface_rpc(self, interface_type=None, interf
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param interface_type: kwarg.
-		:type interface_type: (unicode)
-		
-			.. note::
-				* enum - ['ethernet', 've']
+        * SLXOS: 16r.1.00b    
 
-		:param interface_name: The Interface value.
-		:type interface_name: (unicode)
-		
-			.. note::
-				* length - [u'3..16']
-				* pattern - ((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(:[1-4])?)
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type interface_type: unicode
+    :param interface_type: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * enumeration restriction: ::
 
-		:raises: ValueError, ConnectionError
+            ['ethernet', 've']
+
+    :type interface_name: unicode
+    :param interface_name: The Interface value.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
+            '[0-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4906,22 +5843,27 @@ def show_mpls_rsvp_neighbor_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4939,22 +5881,27 @@ def show_mpls_rsvp_neighbor_detail_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -4972,25 +5919,33 @@ def show_mpls_rsvp_neighbor_one_neighbor_rpc(self, mpls_rsvp_neighbor_peer_ip_ad
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param mpls_rsvp_neighbor_peer_ip_addr: kwarg.
-		:type mpls_rsvp_neighbor_peer_ip_addr: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type mpls_rsvp_neighbor_peer_ip_addr: unicode
+    :param mpls_rsvp_neighbor_peer_ip_addr: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * pattern restriction: ::
+
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5008,22 +5963,27 @@ def show_mpls_rsvp_session_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5041,22 +6001,27 @@ def show_mpls_rsvp_session_detail_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5074,22 +6039,27 @@ def show_mpls_rsvp_session_extensive_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5107,22 +6077,27 @@ def show_mpls_rsvp_session_name_rpc(self, session_name=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param session_name: kwarg.
-		:type session_name: (unicode)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type session_name: unicode
+    :param session_name: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5140,22 +6115,27 @@ def show_mpls_rsvp_session_wide_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5173,22 +6153,27 @@ def show_mpls_rsvp_statistics_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5206,31 +6191,39 @@ def show_mpls_statistics_ldp_transit_rpc(self, ldp_transit_stats=None, ldp_trans
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_transit_stats: kwarg.
-		:type ldp_transit_stats: (YANGBool)
+        * SLXOS: 16r.1.00b    
 
-		:param ldp_transit_stats_fec_prefix: kwarg.
-		:type ldp_transit_stats_fec_prefix: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+    **Instance Argument(s)**:
 
-		:param ldp_transit_stats_fec_prefix_longer: kwarg.
-		:type ldp_transit_stats_fec_prefix_longer: (YANGBool)
+    :type ldp_transit_stats: YANGBool
+    :param ldp_transit_stats: Keyword argument.
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type ldp_transit_stats_fec_prefix: unicode
+    :param ldp_transit_stats_fec_prefix: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * pattern restriction: ::
 
-		:raises: ValueError, ConnectionError
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+
+    :type ldp_transit_stats_fec_prefix_longer: YANGBool
+    :param ldp_transit_stats_fec_prefix_longer: Keyword argument.
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5248,28 +6241,34 @@ def show_mpls_statistics_ldp_tunnel_rpc(self, ldp_tunnel_stats=None, ldp_tunnel_
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ldp_tunnel_stats: kwarg.
-		:type ldp_tunnel_stats: (YANGBool)
+        * SLXOS: 16r.1.00b    
 
-		:param ldp_tunnel_stats_vif: kwarg.
-		:type ldp_tunnel_stats_vif: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type ldp_tunnel_stats: YANGBool
+    :param ldp_tunnel_stats: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type ldp_tunnel_stats_vif: long
+    :param ldp_tunnel_stats_vif: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5287,22 +6286,27 @@ def show_mpls_statistics_oam_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5320,22 +6324,27 @@ def show_mpls_summary_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5353,67 +6362,80 @@ def show_mpls_te_path_rpc(self, ipAddr=None, bandwidth=None, cspfCompMode=None, 
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param ipAddr: kwarg.
-		:type ipAddr: (unicode)
-		
-			.. note::
-				* pattern - (([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?
+        * SLXOS: 16r.1.00b    
 
-		:param bandwidth: kwarg.
-		:type bandwidth: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    **Instance Argument(s)**:
 
-		:param cspfCompMode: kwarg.
-		:type cspfCompMode: (unicode)
-		
-			.. note::
-				* enum - ['use-igp-metric', 'use-te-metric']
+    :type ipAddr: unicode
+    :param ipAddr: Keyword argument.
 
-		:param excludeAny: kwarg.
-		:type excludeAny: (unicode)
+        * pattern restriction: ::
 
-		:param hopLimit: kwarg.
-		:type hopLimit: (int)
-		
-			.. note::
-				* range - ['0..255']
+            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
+            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
+            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
 
-		:param includeAny: kwarg.
-		:type includeAny: (unicode)
+    :type bandwidth: long
+    :param bandwidth: Keyword argument.
 
-		:param includeAll: kwarg.
-		:type includeAll: (unicode)
+        * range restriction: ::
 
-		:param tePathName: kwarg.
-		:type tePathName: (unicode)
+            ['0..4294967295']
 
-		:param priority: kwarg.
-		:type priority: (int)
-		
-			.. note::
-				* range - ['0..255']
+    :type cspfCompMode: unicode
+    :param cspfCompMode: Keyword argument.
 
-		:param tieBreaking: kwarg.
-		:type tieBreaking: (unicode)
-		
-			.. note::
-				* enum - ['most-fill', 'random', 'least-fill']
+        * enumeration restriction: ::
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+            ['use-igp-metric', 'use-te-metric']
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type excludeAny: unicode
+    :param excludeAny: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type hopLimit: int
+    :param hopLimit: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..255']
+
+    :type includeAny: unicode
+    :param includeAny: Keyword argument.
+
+    :type includeAll: unicode
+    :param includeAll: Keyword argument.
+
+    :type tePathName: unicode
+    :param tePathName: Keyword argument.
+
+    :type priority: int
+    :param priority: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..255']
+
+    :type tieBreaking: unicode
+    :param tieBreaking: Keyword argument.
+
+        * enumeration restriction: ::
+
+            ['most-fill', 'random', 'least-fill']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5431,26 +6453,32 @@ def show_ntp_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5468,23 +6496,28 @@ def show_portindex_interface_info_rpc(self, all=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param all: kwarg.
-		:type all: (YANGBool)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type all: YANGBool
+    :param all: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5502,32 +6535,39 @@ def show_raslog_rpc(self, rbridge_id=None, number_of_latest_events=None, api_tim
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (unicode)
-		
-			.. note::
-				* length - [u'1..3']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param number_of_latest_events: kwarg.
-		:type number_of_latest_events: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type rbridge_id: unicode
+    :param rbridge_id: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * length restriction: ::
 
-		:raises: ValueError, ConnectionError
+            ['1..3']
+
+    :type number_of_latest_events: long
+    :param number_of_latest_events: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5545,26 +6585,32 @@ def show_support_save_status_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (unicode)
-		
-			.. note::
-				* length - [u'1..3']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: unicode
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..3']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5582,26 +6628,32 @@ def show_system_info_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (unicode)
-		
-			.. note::
-				* length - [u'1..3']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: unicode
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * length restriction: ::
+
+            ['1..3']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5619,26 +6671,32 @@ def show_system_monitor_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (long)
-		
-			.. note::
-				* range - ['0..4294967295']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: long
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5656,23 +6714,28 @@ def show_vcs_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5690,26 +6753,31 @@ def show_zoning_enabled_configuration_rpc(self, zone_name_pattern=None, last_rcv
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param zone_name_pattern: <WORD>;;Enabled-Zone-Name
-		:type zone_name_pattern: (unicode)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param last_rcvd_zone_name: <WORD>;;Enabled-Zone-Name
-		:type last_rcvd_zone_name: (unicode)
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type zone_name_pattern: unicode
+    :param zone_name_pattern: <WORD>;;Enabled-Zone-Name
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type last_rcvd_zone_name: unicode
+    :param last_rcvd_zone_name: <WORD>;;Enabled-Zone-Name
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5727,23 +6795,28 @@ def user_session_info_rpc(self, output=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param output: kwarg.
-		:type output: (output)
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type output: output
+    :param output: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5761,32 +6834,39 @@ def vcs_rbridge_config_rpc(self, vcs_id=None, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param vcs_id: kwarg.
-		:type vcs_id: (int)
-		
-			.. note::
-				* range - ['0..65535']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (int)
-		
-			.. note::
-				* range - ['0..65535']
+    **Instance Argument(s)**:
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    :type vcs_id: int
+    :param vcs_id: Keyword argument.
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+        * range restriction: ::
 
-		:raises: ValueError, ConnectionError
+            ['0..65535']
+
+    :type rbridge_id: int
+    :param rbridge_id: Keyword argument.
+
+        * range restriction: ::
+
+            ['0..65535']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
@@ -5804,26 +6884,32 @@ def vcs_rbridge_context_rpc(self, rbridge_id=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
-	**Supported Versions**:
-		* NOS: 6.0.2b, 7.0.1a, 7.1.0
-		* SLXOS: 16r.1.00b    
+    **Supported Versions**:
 
-	**This Instance Arg(s)**:
-		:param rbridge_id: kwarg.
-		:type rbridge_id: (int)
-		
-			.. note::
-				* range - ['0..65535']
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
 
-		:param api_timeout: Timeout for connection and response in seconds.  If tuple specified, then first value is for connection timeout and second value is for response timeout.
-		:type api_timeout: (long or tuple)
+    **Instance Argument(s)**:
 
-		:returns: (bool, list)
-			Returns a tuple.
-			* First element (bool): The overall success or failure of the API.
-			* Second element (list): List of REST request/response dictionaries, keyed by the asset's ip address.
+    :type rbridge_id: int
+    :param rbridge_id: Keyword argument.
 
-		:raises: ValueError, ConnectionError
+        * range restriction: ::
+
+            ['0..65535']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
     """
 
     operation_type = 'rpc'
