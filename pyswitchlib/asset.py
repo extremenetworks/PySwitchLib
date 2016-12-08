@@ -34,6 +34,7 @@ class Asset(object):
         self._auth = auth
         self._os_type = 'nos'
         self._os_ver = fw_ver
+        self._os_full_ver = fw_ver
         self._default_connection_timeout = 60                                                                                                                                       
         self._default_response_timeout = 1800                                                                                                                                       
         self._session_timeout = (self._default_connection_timeout, self._default_response_timeout) 
@@ -193,6 +194,9 @@ class Asset(object):
 
             if rest_root.find('show-firmware-version').find('os-version') is not None:
                 self._os_ver = rest_root.find('show-firmware-version').find('os-version').text
+
+            if rest_root.find('show-firmware-version').find('firmware-full-version') is not None:
+                self._os_full_ver = rest_root.find('show-firmware-version').find('firmware-full-version').text
         except:
             pass
 
@@ -331,4 +335,6 @@ class Asset(object):
     def get_os_version(self):
         return self._os_ver
 
+    def get_os_full_version(self):
+        return self._os_full_ver
 
