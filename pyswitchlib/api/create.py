@@ -28151,7 +28151,7 @@ def ip_as_path_access_list_create(self, access_list=None, api_timeout=''):
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ip_reg_expr: unicode
     :param ip_reg_expr: **access_list** tuple argument.
@@ -28217,7 +28217,7 @@ def ip_community_list_extended_create(self, extended=None, api_timeout=''):
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ip_community_reg_expr: unicode
     :param ip_community_reg_expr: **extended** tuple argument.
@@ -28283,7 +28283,7 @@ def ip_community_list_standard_create(self, standard=None, api_timeout=''):
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type std_community_expr: unicode
     :param std_community_expr: **standard** tuple argument.
@@ -28409,7 +28409,7 @@ def ip_extcommunity_list_create(self, extcommunity_list=None, api_timeout=''):
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ext_community_expr: unicode
     :param ext_community_expr: **extcommunity_list** tuple argument:  Ext-community-list
@@ -28496,7 +28496,7 @@ def ip_extcommunity_list_standard_create(self, standard=None, api_timeout=''):
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ext_community_expr: unicode
     :param ext_community_expr: **standard** tuple argument:  Ext-community-list
@@ -28712,7 +28712,7 @@ def ip_prefix_list_create(self, prefix_list=None, api_timeout=''):
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type prefix_ipp: unicode
     :param prefix_ipp: **prefix_list** tuple argument.
@@ -29041,18 +29041,22 @@ def ipv6_access_list_extended_seq_create(self, extended=None, seq=None, api_time
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type src_mask: unicode
     :param src_mask: **seq** tuple argument.
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type sport: unicode
     :param sport: **seq** tuple argument.
@@ -29268,18 +29272,22 @@ def ipv6_access_list_extended_seq_create(self, extended=None, seq=None, api_time
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type dst_mask: unicode
     :param dst_mask: **seq** tuple argument.
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type dport: unicode
     :param dport: **seq** tuple argument.
@@ -29672,18 +29680,22 @@ def ipv6_access_list_standard_seq_create(self, standard=None, seq=None, api_time
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type src_mask: unicode
     :param src_mask: **seq** tuple argument.
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type count: YANGBool
     :param count: **seq** tuple argument:  Packet count
@@ -29906,7 +29918,7 @@ def ipv6_prefix_list_create(self, prefix_list=None, api_timeout=''):
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ipv6_prefix_ipp: unicode
     :param ipv6_prefix_ipp: **prefix_list** tuple argument.
@@ -40739,6 +40751,10 @@ def overlay_gateway_attach_vlan_create(self, overlay_gateway=None, vlan=None, ap
     :type mac: unicode
     :param mac: **vlan** tuple argument:  Configure VLAN-MAC attachment
 
+        * pattern restriction: ::
+
+            '[0-9a-fA-F]{4}(\.[0-9a-fA-F]{4}){2}'
+
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
 
@@ -49048,7 +49064,7 @@ def rbridge_id_ip_as_path_access_list_create(self, rbridge_id=None, access_list=
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ip_reg_expr: unicode
     :param ip_reg_expr: **access_list** tuple argument.
@@ -49126,7 +49142,7 @@ def rbridge_id_ip_community_list_extended_create(self, rbridge_id=None, extended
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ip_community_reg_expr: unicode
     :param ip_community_reg_expr: **extended** tuple argument.
@@ -49204,7 +49220,7 @@ def rbridge_id_ip_community_list_standard_create(self, rbridge_id=None, standard
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type std_community_expr: unicode
     :param std_community_expr: **standard** tuple argument.
@@ -49294,7 +49310,7 @@ def rbridge_id_ip_extcommunity_list_create(self, rbridge_id=None, extcommunity_l
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ext_community_expr: unicode
     :param ext_community_expr: **extcommunity_list** tuple argument:  Ext-community-list
@@ -49483,7 +49499,7 @@ def rbridge_id_ip_prefix_list_create(self, rbridge_id=None, prefix_list=None, ap
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type prefix_ipp: unicode
     :param prefix_ipp: **prefix_list** tuple argument.
@@ -49795,7 +49811,7 @@ def rbridge_id_ipv6_prefix_list_create(self, rbridge_id=None, prefix_list=None, 
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ipv6_prefix_ipp: unicode
     :param ipv6_prefix_ipp: **prefix_list** tuple argument.
@@ -51238,7 +51254,7 @@ def rbridge_id_route_map_create(self, rbridge_id=None, route_map=None, api_timeo
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -51308,7 +51324,7 @@ def rbridge_id_route_map_set_ip_create(self, rbridge_id=None, route_map=None, ne
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -51392,7 +51408,7 @@ def rbridge_id_route_map_set_ip_global_create(self, rbridge_id=None, route_map=N
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -51476,7 +51492,7 @@ def rbridge_id_route_map_set_ipv6_create(self, rbridge_id=None, route_map=None, 
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -51562,7 +51578,7 @@ def rbridge_id_route_map_set_ipv6_global_create(self, rbridge_id=None, route_map
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -55992,7 +56008,7 @@ def route_map_create(self, route_map=None, api_timeout=''):
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -56053,7 +56069,7 @@ def route_map_set_ip_create(self, route_map=None, next_hop=None, api_timeout='')
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -56128,7 +56144,7 @@ def route_map_set_ip_global_create(self, route_map=None, next_global_hop=None, a
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -56202,7 +56218,7 @@ def route_map_set_ip_next_hop_create(self, route_map=None, next_hop_list=None, a
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -56277,7 +56293,7 @@ def route_map_set_ipv6_create(self, route_map=None, next_hop=None, api_timeout='
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -56354,7 +56370,7 @@ def route_map_set_ipv6_global_create(self, route_map=None, next_global_hop=None,
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -57809,12 +57825,12 @@ def router_mpls_bypass_lsp_exclude_interface_create(self, bypass_lsp=None, exclu
 
         * length restriction: ::
 
-            ['3..16']
+            ['1..16']
 
         * pattern restriction: ::
 
-            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
-            '[0-9])(:[1-4])?)'
+            '((([0-9]|[1][0-6])/([1-9]|[1-9][0-9]|[1-9][0-9]['
+            '0-9])(:[1-4])?)|([0-9]([0-9])?([0-9])?([0-9])?))'
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -58352,12 +58368,12 @@ def router_mpls_mpls_interface_create(self, mpls_interface=None, api_timeout='')
 
         * length restriction: ::
 
-            ['3..16']
+            ['1..16']
 
         * pattern restriction: ::
 
-            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
-            '[0-9])(:[1-4])?)'
+            '((([0-9]|[1][0-6])/([1-9]|[1-9][0-9]|[1-9][0-9]['
+            '0-9])(:[1-4])?)|([0-9]([0-9])?([0-9])?([0-9])?))'
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.

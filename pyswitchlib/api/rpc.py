@@ -3419,12 +3419,12 @@ def show_mpls_interface_one_interface_rpc(self, interface_type=None, interface_n
 
         * length restriction: ::
 
-            ['3..16']
+            ['1..16']
 
         * pattern restriction: ::
 
-            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
-            '[0-9])(:[1-4])?)'
+            '((([0-9]|[1][0-6])/([1-9]|[1-9][0-9]|[1-9][0-9]['
+            '0-9])(:[1-4])?)|([0-9]([0-9])?([0-9])?([0-9])?))'
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -4015,12 +4015,12 @@ def show_mpls_rsvp_interface_one_interface_rpc(self, interface_type=None, interf
 
         * length restriction: ::
 
-            ['3..16']
+            ['1..16']
 
         * pattern restriction: ::
 
-            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
-            '[0-9])(:[1-4])?)'
+            '((([0-9]|[1][0-6])/([1-9]|[1-9][0-9]|[1-9][0-9]['
+            '0-9])(:[1-4])?)|([0-9]([0-9])?([0-9])?([0-9])?))'
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.

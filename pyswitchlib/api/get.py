@@ -29710,7 +29710,7 @@ def ip_as_path_access_list_get(self, access_list=None, resource_depth=1, api_tim
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ip_reg_expr: unicode
     :param ip_reg_expr: **access_list** tuple argument.
@@ -29779,7 +29779,7 @@ def ip_community_list_extended_get(self, extended=None, resource_depth=1, api_ti
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ip_community_reg_expr: unicode
     :param ip_community_reg_expr: **extended** tuple argument.
@@ -29848,7 +29848,7 @@ def ip_community_list_standard_get(self, standard=None, resource_depth=1, api_ti
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type std_community_expr: unicode
     :param std_community_expr: **standard** tuple argument.
@@ -29980,7 +29980,7 @@ def ip_extcommunity_list_get(self, extcommunity_list=None, resource_depth=1, api
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ext_community_expr: unicode
     :param ext_community_expr: **extcommunity_list** tuple argument:  Ext-community-list
@@ -30070,7 +30070,7 @@ def ip_extcommunity_list_standard_get(self, standard=None, resource_depth=1, api
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ext_community_expr: unicode
     :param ext_community_expr: **standard** tuple argument:  Ext-community-list
@@ -30295,7 +30295,7 @@ def ip_prefix_list_get(self, prefix_list=None, resource_depth=1, api_timeout='')
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type prefix_ipp: unicode
     :param prefix_ipp: **prefix_list** tuple argument.
@@ -30639,18 +30639,22 @@ def ipv6_access_list_extended_seq_get(self, extended=None, seq=None, resource_de
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type src_mask: unicode
     :param src_mask: **seq** tuple argument.
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type sport: unicode
     :param sport: **seq** tuple argument.
@@ -30866,18 +30870,22 @@ def ipv6_access_list_extended_seq_get(self, extended=None, seq=None, resource_de
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type dst_mask: unicode
     :param dst_mask: **seq** tuple argument.
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type dport: unicode
     :param dport: **seq** tuple argument.
@@ -31276,18 +31284,22 @@ def ipv6_access_list_standard_seq_get(self, standard=None, seq=None, resource_de
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type src_mask: unicode
     :param src_mask: **seq** tuple argument.
 
         * pattern restriction: ::
 
-            '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-'
-            '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
-            '9]|25[0-5])(%[\p{N}\p{L}]+)?'
+            '((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}('
+            '(([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25'
+            '[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5'
+            ']|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\p{N}\p{L}]+'
+            ')?'
 
     :type count: YANGBool
     :param count: **seq** tuple argument:  Packet count
@@ -31522,7 +31534,7 @@ def ipv6_prefix_list_get(self, prefix_list=None, resource_depth=1, api_timeout='
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ipv6_prefix_ipp: unicode
     :param ipv6_prefix_ipp: **prefix_list** tuple argument.
@@ -42919,6 +42931,10 @@ def overlay_gateway_attach_vlan_get(self, overlay_gateway=None, vlan=None, resou
     :type mac: unicode
     :param mac: **vlan** tuple argument:  Configure VLAN-MAC attachment
 
+        * pattern restriction: ::
+
+            '[0-9a-fA-F]{4}(\.[0-9a-fA-F]{4}){2}'
+
     :type resource_depth: long
     :param resource_depth: Maximum depth for returned results from the GET response. (Default: 1 level(s) deep.)
 
@@ -51661,7 +51677,7 @@ def rbridge_id_ip_as_path_access_list_get(self, rbridge_id=None, access_list=Non
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ip_reg_expr: unicode
     :param ip_reg_expr: **access_list** tuple argument.
@@ -51742,7 +51758,7 @@ def rbridge_id_ip_community_list_extended_get(self, rbridge_id=None, extended=No
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ip_community_reg_expr: unicode
     :param ip_community_reg_expr: **extended** tuple argument.
@@ -51823,7 +51839,7 @@ def rbridge_id_ip_community_list_standard_get(self, rbridge_id=None, standard=No
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type std_community_expr: unicode
     :param std_community_expr: **standard** tuple argument.
@@ -51916,7 +51932,7 @@ def rbridge_id_ip_extcommunity_list_get(self, rbridge_id=None, extcommunity_list
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ext_community_expr: unicode
     :param ext_community_expr: **extcommunity_list** tuple argument:  Ext-community-list
@@ -52111,7 +52127,7 @@ def rbridge_id_ip_prefix_list_get(self, rbridge_id=None, prefix_list=None, resou
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type prefix_ipp: unicode
     :param prefix_ipp: **prefix_list** tuple argument.
@@ -52435,7 +52451,7 @@ def rbridge_id_ipv6_prefix_list_get(self, rbridge_id=None, prefix_list=None, res
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type ipv6_prefix_ipp: unicode
     :param ipv6_prefix_ipp: **prefix_list** tuple argument.
@@ -53935,7 +53951,7 @@ def rbridge_id_route_map_get(self, rbridge_id=None, route_map=None, resource_dep
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -54008,7 +54024,7 @@ def rbridge_id_route_map_set_ip_get(self, rbridge_id=None, route_map=None, next_
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -54095,7 +54111,7 @@ def rbridge_id_route_map_set_ip_global_get(self, rbridge_id=None, route_map=None
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -54182,7 +54198,7 @@ def rbridge_id_route_map_set_ipv6_get(self, rbridge_id=None, route_map=None, nex
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -54271,7 +54287,7 @@ def rbridge_id_route_map_set_ipv6_global_get(self, rbridge_id=None, route_map=No
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -58881,7 +58897,7 @@ def route_map_get(self, route_map=None, resource_depth=1, api_timeout=''):
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -58945,7 +58961,7 @@ def route_map_set_ip_get(self, route_map=None, next_hop=None, resource_depth=1, 
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -59023,7 +59039,7 @@ def route_map_set_ip_global_get(self, route_map=None, next_global_hop=None, reso
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -59100,7 +59116,7 @@ def route_map_set_ip_next_hop_get(self, route_map=None, next_hop_list=None, reso
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -59178,7 +59194,7 @@ def route_map_set_ipv6_get(self, route_map=None, next_hop=None, resource_depth=1
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -59258,7 +59274,7 @@ def route_map_set_ipv6_global_get(self, route_map=None, next_global_hop=None, re
 
         * enumeration restriction: ::
 
-            ['receive', 'send']
+            ['deny', 'permit']
 
     :type instance: int
     :param instance: **route_map** tuple argument.
@@ -60794,12 +60810,12 @@ def router_mpls_bypass_lsp_exclude_interface_get(self, bypass_lsp=None, exclude_
 
         * length restriction: ::
 
-            ['3..16']
+            ['1..16']
 
         * pattern restriction: ::
 
-            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
-            '[0-9])(:[1-4])?)'
+            '((([0-9]|[1][0-6])/([1-9]|[1-9][0-9]|[1-9][0-9]['
+            '0-9])(:[1-4])?)|([0-9]([0-9])?([0-9])?([0-9])?))'
 
     :type resource_depth: long
     :param resource_depth: Maximum depth for returned results from the GET response. (Default: 1 level(s) deep.)
@@ -61367,12 +61383,12 @@ def router_mpls_mpls_interface_get(self, mpls_interface=None, resource_depth=1, 
 
         * length restriction: ::
 
-            ['3..16']
+            ['1..16']
 
         * pattern restriction: ::
 
-            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
-            '[0-9])(:[1-4])?)'
+            '((([0-9]|[1][0-6])/([1-9]|[1-9][0-9]|[1-9][0-9]['
+            '0-9])(:[1-4])?)|([0-9]([0-9])?([0-9])?([0-9])?))'
 
     :type resource_depth: long
     :param resource_depth: Maximum depth for returned results from the GET response. (Default: 1 level(s) deep.)

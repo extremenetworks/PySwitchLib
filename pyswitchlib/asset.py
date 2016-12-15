@@ -338,3 +338,4 @@ class Asset(object):
     def get_os_full_version(self):
         return self._os_full_ver
 
+
