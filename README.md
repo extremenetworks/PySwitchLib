@@ -16,6 +16,11 @@ Inside a python program do this:
 ```
 
 
+## 0.1.18:
+* Fixed source ip collision for ipv4/ipv6 acls
+* Exposed update APIs for all interfaces at the list level
+* Fixed boolean False issue
+
 ## 0.1.17:
 * Added sphinx apidocs for pyswitchlib documentation generation.
 * Organized API methods in separate files under api directory.
