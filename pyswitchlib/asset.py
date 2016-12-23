@@ -68,7 +68,7 @@ class Asset(object):
     def __getattr__(self, name):
         return getattr(self._proxied, name)
 
-    def _rest_operation(self, rest_commands=None, timeout=None):
+    def _rest_operation(self, rest_commands=None, yang_list=None, timeout=None):
         auth = self._auth
         del self._overall_status[:]
     
@@ -144,6 +144,9 @@ class Asset(object):
             else:
                 self._rest_session_auth_token = self._rest_session_auth_token_expired
                 json_output = json.loads('{"output": ' + json.dumps(str(self._response.text)) + '}')
+
+            if yang_list:
+                self._format_dict_output(container=json_output, keys=yang_list)
 
             self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text, 'json': json_output}}})
 
@@ -329,13 +332,58 @@ class Asset(object):
                 self._rest_session_timer_handle.cancel()
                 self._rest_session_timer_handle = None
 
+    def _format_dict_output(self, container=None, keys=None):
+        if keys and container:
+            if isinstance(container, dict):
+                for k in container:
+                    if isinstance(container[k], dict):
+                        if k.lower() in keys:
+                            keys.remove(k.lower())
+                            container[k] = [container[k]]
+                            self._format_dict_output(container=container[k], keys=keys)
+                        else:
+                            self._format_dict_output(container=container[k], keys=keys)
+                    elif isinstance(container[k], list):
+                        for elem in container[k]:
+                            self._format_dict_output(container=elem, keys=keys)
+            elif isinstance(container, list):
+                for elem in container:
+                    self._format_dict_output(container=elem, keys=keys)
+
     def get_os_type(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+
+        :rtype: *string*
+        :returns: Returns "nos" or "slxos" of the approprate switch type.
+        """
         return self._os_type
 
     def get_os_version(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+
+        :rtype: *string*
+        :returns: Returns "os-version" value from the show-firmware-version RPC call.
+        """
         return self._os_ver
 
     def get_os_full_version(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+
+        :rtype: *string*
+        :returns: Returns "full-firmware-version" value from the show-firmware-version RPC call.
+        """
         return self._os_full_ver
+
+    def get_dict_output(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+
+        :rtype: *dict*
+        :returns: Returns the json output response from the last api call.
+        """
+        return self._overall_status[0][self._ip_addr]['response']['json']['output']
 
 

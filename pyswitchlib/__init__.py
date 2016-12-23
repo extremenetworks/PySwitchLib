@@ -169,13 +169,9 @@ class PySwitchLib(object):
         rest_data = ''
         rest_commands = []
 
-        if operation_type == 'create' or operation_type == 'rpc':
+        if operation_type == 'create':
             rest_operation = 'POST'
             rest_uri = pybind_object._rest_uri_for_post()
-
-            if operation_type == 'rpc':
-                if rest_uri == '/':
-                    rest_uri = pybind_object._rest_uri()
         elif operation_type == 'update_patch':
             rest_operation = 'PATCH'
             rest_uri = pybind_object._rest_uri()
@@ -184,9 +180,6 @@ class PySwitchLib(object):
             rest_uri = pybind_object._rest_uri()
         elif operation_type == 'delete':
             rest_operation = 'DELETE'
-            rest_uri = pybind_object._rest_uri()
-        elif operation_type == 'get':
-            rest_operation = 'GET'
             rest_uri = pybind_object._rest_uri()
 
         label_list_items = lambda x: x
@@ -230,21 +223,87 @@ class PySwitchLib(object):
                             rest_operation = 'PUT' 
                     
                     rest_commands.append([rest_operation, rest_uri, update_object_rest_data, 'config', resource_depth])
+
+            rest_commands.reverse()
         else:
             pybind_object = pybind_object._parent
             
             rest_data = dicttoxml(json.loads(pybindJSON.dumps(pybind_object, mode='rest'), object_pairs_hook=OrderedDict), root=False, attr_type=False, item_func=label_list_items)
 
-            if operation_type == 'rpc':
-                rest_commands.append([rest_operation, rest_uri, rest_data, 'rpc', resource_depth])
-            else:
-                if rest_data:
-                    end_marker = rest_data.rsplit('<', 1)[1].strip('/')
+            if rest_data:
+                end_marker = rest_data.rsplit('<', 1)[1].strip('/')
 
-                    rest_data = rest_data.rsplit('<', 1)[0]
-                    rest_data = rest_data.split(end_marker, 1)[-1]
+                rest_data = rest_data.rsplit('<', 1)[0]
+                rest_data = rest_data.split(end_marker, 1)[-1]
             
-                rest_commands.append([rest_operation, rest_uri, rest_data, 'config', resource_depth])
+            rest_commands.append([rest_operation, rest_uri, rest_data, 'config', resource_depth])
 
         return self._rest_operation(rest_commands=rest_commands, timeout=timeout)
+
+    def _config_get_worker(self, operation_type=None, pybind_object=None, bindings_list=None, composed_child_list=None, resource_depth=None, timeout=''):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        rest_operation = 'GET'
+        rest_uri = pybind_object._rest_uri()
+        rest_data = ''
+        rest_commands = []
+        yang_list = []
+
+        rest_commands.append([rest_operation, rest_uri, rest_data, 'config', resource_depth])
+
+        yang_list.extend(self._get_bindings_list_yang_name(bindings_list=bindings_list))
+        yang_list.extend(self._get_child_list_yang_name(composed_child_list=composed_child_list))
+
+        return self._rest_operation(rest_commands=rest_commands, yang_list=yang_list, timeout=timeout)
+
+    def _rpc_worker(self, operation_type=None, pybind_object=None, resource_depth=None, timeout=''):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        rest_operation = 'POST'
+        rest_uri = pybind_object._rest_uri_for_post()
+        rest_data = ''
+        rest_commands = []
+
+        if rest_uri == '/':
+            rest_uri = pybind_object._rest_uri()
+
+        label_list_items = lambda x: x
+
+        pybind_object = pybind_object._parent
+        
+        rest_data = dicttoxml(json.loads(pybindJSON.dumps(pybind_object, mode='rest'), object_pairs_hook=OrderedDict), root=False, attr_type=False, item_func=label_list_items)
+
+        rest_commands.append([rest_operation, rest_uri, rest_data, 'rpc', resource_depth])
+
+        return self._rest_operation(rest_commands=rest_commands, timeout=timeout)
+
+    def _get_bindings_list_yang_name(self, bindings_list=None):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        yang_name_list = []
+
+        for bindings_tuple in bindings_list:
+            if self._module_name == bindings_tuple[2]:
+                yang_name_list.append(bindings_tuple[0].split('.')[-1].replace('_', '-'))
+        
+        return yang_name_list
+
+    def _get_child_list_yang_name(self, composed_child_list=None):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        yang_name_list = []
+
+        for child_tuple in composed_child_list:
+            if self._module_name in child_tuple[0]:
+                yang_name_list.append(child_tuple[1])
+
+        return yang_name_list
 
