@@ -1,4 +1,4 @@
-pybind==0.1.18
+pybind==0.1.19
 pyangbind-brcd==0.6.9
 xmltodict
 dicttoxml

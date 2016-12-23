@@ -16,6 +16,11 @@ Inside a python program do this:
 ```
 
 
+## 0.1.19:
+* get_dict_output() method added on asset object to easily access output response from last issued API.  Also YANG list elements will consistently be returned as a python list type regardless of single instance or multiple instances created
+* Fixed out of order update for interface channel-groups api
+* Added back missing RPCs.  Inadvertently removed when filtering out incorrect "output" input parameters for RPCs
+
 ## 0.1.18:
 * Fixed source ip collision for ipv4/ipv6 acls
 * Exposed update APIs for all interfaces at the list level
