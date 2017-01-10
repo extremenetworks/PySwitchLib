@@ -17,10 +17,10 @@ class PySwitchLib(object):
     import api.rpc
 
     locals().update(api.create.__dict__)
-    locals().update(api.update.__dict__)                                                                                                                                            
-    locals().update(api.delete.__dict__)                                                                                                                                            
-    locals().update(api.get.__dict__)                                                                                                                                               
-    locals().update(api.rpc.__dict__) 
+    locals().update(api.update.__dict__)
+    locals().update(api.delete.__dict__)
+    locals().update(api.get.__dict__)
+    locals().update(api.rpc.__dict__)
 
 
     def __init__(self, module_name='', module_obj=None, rest_operation=None):
@@ -235,6 +235,9 @@ class PySwitchLib(object):
 
                 rest_data = rest_data.rsplit('<', 1)[0]
                 rest_data = rest_data.split(end_marker, 1)[-1]
+
+                if operation_type == 'create' and end_marker[:-1] in rest_uri:
+                    rest_uri = rest_uri.split(end_marker[:-1], 1)[0]
             
             rest_commands.append([rest_operation, rest_uri, rest_data, 'config', resource_depth])
 
