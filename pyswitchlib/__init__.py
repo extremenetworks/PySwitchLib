@@ -101,7 +101,7 @@ class PySwitchLib(object):
 
                 for kwarg in kwargs:
                     if kwarg in bindings_keyval['kwargs_key_name']:
-                        if bindings_keyval['extra_keyval']:
+                        if bindings_keyval['extra_keyval'] and kwargs[kwarg] is not None:
                             kwargs_map = {}
                             key_instance = []
 
@@ -208,24 +208,26 @@ class PySwitchLib(object):
 
                     update_object_rest_data = rest_data
 
-                    match = re.match(r'.*(<{0}.*{0}>).*'.format(yang_leaf_name), update_object_rest_data)
+                    match = re.match(r'.*(<{0}>.*</{0}>).*'.format(rest_name), update_object_rest_data)
 
                     if match:
                         update_object_rest_data = match.group(1)
 
-                    if temp_pybind_obj == False:                                                                                                                                    
-                        rest_operation = 'DELETE'                                                                                                                                   
-                        update_object_rest_data = '' 
-                    else:                                                                                                                                                           
-                        if operation_type == 'update_patch':                                                                                                                        
-                            rest_operation = 'PATCH'                                                                                                                                
-                        elif operation_type == 'update_put':                                                                                                                        
+                    if temp_pybind_obj == False:
+                        rest_operation = 'DELETE'
+                        update_object_rest_data = ''
+                    else:
+                        if operation_type == 'update_patch':
+                            rest_operation = 'PATCH'
+                        elif operation_type == 'update_put':
                             rest_operation = 'PUT' 
-                    
+
                     rest_commands.append([rest_operation, rest_uri, update_object_rest_data, 'config', resource_depth])
 
             rest_commands.reverse()
         else:
+            uri = pybind_object._rest_uri() 
+
             pybind_object = pybind_object._parent
             
             rest_data = dicttoxml(json.loads(pybindJSON.dumps(pybind_object, mode='rest'), object_pairs_hook=OrderedDict), root=False, attr_type=False, item_func=label_list_items)
@@ -238,6 +240,10 @@ class PySwitchLib(object):
 
                 if operation_type == 'create' and end_marker[:-1] in rest_uri:
                     rest_uri = rest_uri.split(end_marker[:-1], 1)[0]
+            else:
+                if operation_type == 'create':
+                    uri = uri.split('/')[-1]
+                    rest_data = '<' + uri + '> </' + uri + '>'
             
             rest_commands.append([rest_operation, rest_uri, rest_data, 'config', resource_depth])
 

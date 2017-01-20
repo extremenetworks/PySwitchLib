@@ -3637,6 +3637,56 @@ def hardware_connector_create(self, connector=None, api_timeout=''):
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def hardware_connector_breakout_create(self, connector=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type connector: name
+    :param connector: Keyword argument tuple.
+
+    :type name: unicode
+    :param name: **connector** tuple argument.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
+            '[0-9]))'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.hardware.connector', u'connector')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.hardware.connector.breakout', 'pybind.slxos.v16r_1_00b.brocade_hardware', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, connector=connector)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def hardware_connector_group_create(self, connector_group=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -7042,6 +7092,56 @@ def interface_ethernet_isis_metric_create(self, ethernet=None, interface_metric=
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def interface_ethernet_isis_reverse_metric_create(self, ethernet=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ethernet: name
+    :param ethernet: Keyword argument tuple.
+
+    :type name: unicode
+    :param name: **ethernet** tuple argument.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
+            '[0-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.interface.ethernet', u'ethernet')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.interface.ethernet.interface_eth_isis_conf.intf_isis.interface_isis.interface_reverse_metric', 'pybind.slxos.v16r_1_00b.brocade_interface', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ethernet=ethernet)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def interface_ethernet_logical_interface_ethernet_create(self, ethernet=None, ethernet_=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -8450,6 +8550,56 @@ def interface_ethernet_switchport_trunk_allowed_trunk_rspan_vlan_classification_
     bindings_keyval = {'kwargs_key_name': u'remove', 'keyval': 'trunk_vlan_id, trunk_ctag_id', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ethernet=ethernet, remove=remove)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def interface_ethernet_switchport_trunk_tag_create(self, ethernet=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ethernet: name
+    :param ethernet: Keyword argument tuple.
+
+    :type name: unicode
+    :param name: **ethernet** tuple argument.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9]'
+            '[0-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.interface.ethernet', u'ethernet')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.interface.ethernet.switchport.trunk.tag', 'pybind.slxos.v16r_1_00b.brocade_interface', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ethernet=ethernet)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -11547,6 +11697,57 @@ def interface_fortygigabitethernet_switchport_trunk_allowed_vlan_remove_create(s
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def interface_fortygigabitethernet_switchport_trunk_tag_create(self, fortygigabitethernet=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type fortygigabitethernet: name
+    :param fortygigabitethernet: Keyword argument tuple.
+
+    :type name: unicode
+    :param name: **fortygigabitethernet** tuple argument.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.interface.fortygigabitethernet', u'fortygigabitethernet'), ('pybind.nos.v7_0_1a.interface.fortygigabitethernet', u'fortygigabitethernet'), ('pybind.nos.v6_0_2b.interface.fortygigabitethernet', u'fortygigabitethernet')]
+    bindings_list = [('pybind.nos.v6_0_2b.interface.fortygigabitethernet.switchport.trunk.tag', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.interface.fortygigabitethernet.switchport.trunk.tag', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.interface.fortygigabitethernet.switchport.trunk.tag', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, fortygigabitethernet=fortygigabitethernet)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def interface_fortygigabitethernet_track_interface_create(self, fortygigabitethernet=None, interface=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -14485,6 +14686,57 @@ def interface_gigabitethernet_switchport_trunk_allowed_vlan_remove_create(self, 
     bindings_keyval = {'kwargs_key_name': u'remove', 'keyval': 'trunk_vlan_id', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, gigabitethernet=gigabitethernet, remove=remove)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def interface_gigabitethernet_switchport_trunk_tag_create(self, gigabitethernet=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type gigabitethernet: name
+    :param gigabitethernet: Keyword argument tuple.
+
+    :type name: unicode
+    :param name: **gigabitethernet** tuple argument.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.interface.gigabitethernet', u'gigabitethernet'), ('pybind.nos.v7_0_1a.interface.gigabitethernet', u'gigabitethernet'), ('pybind.nos.v6_0_2b.interface.gigabitethernet', u'gigabitethernet')]
+    bindings_list = [('pybind.nos.v6_0_2b.interface.gigabitethernet.switchport.trunk.tag', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.interface.gigabitethernet.switchport.trunk.tag', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.interface.gigabitethernet.switchport.trunk.tag', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, gigabitethernet=gigabitethernet)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -17492,6 +17744,57 @@ def interface_hundredgigabitethernet_switchport_trunk_allowed_vlan_remove_create
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def interface_hundredgigabitethernet_switchport_trunk_tag_create(self, hundredgigabitethernet=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type hundredgigabitethernet: name
+    :param hundredgigabitethernet: Keyword argument tuple.
+
+    :type name: unicode
+    :param name: **hundredgigabitethernet** tuple argument.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_0_1a.interface.hundredgigabitethernet', u'hundredgigabitethernet'), ('pybind.nos.v6_0_2b.interface.hundredgigabitethernet', u'hundredgigabitethernet'), ('pybind.nos.v7_1_0.interface.hundredgigabitethernet', u'hundredgigabitethernet')]
+    bindings_list = [('pybind.nos.v6_0_2b.interface.hundredgigabitethernet.switchport.trunk.tag', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.interface.hundredgigabitethernet.switchport.trunk.tag', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.interface.hundredgigabitethernet.switchport.trunk.tag', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, hundredgigabitethernet=hundredgigabitethernet)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def interface_hundredgigabitethernet_track_interface_create(self, hundredgigabitethernet=None, interface=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -18376,6 +18679,51 @@ def interface_loopback_isis_metric_create(self, loopback=None, interface_metric=
     bindings_keyval = {'kwargs_key_name': u'interface_metric', 'keyval': 'interface_metric_level', 'extra_keyval': 'interface_metric_level, interface_metric_val'}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, loopback=loopback, interface_metric=interface_metric)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def interface_loopback_isis_reverse_metric_create(self, loopback=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type loopback: id
+    :param loopback: Keyword argument tuple.
+
+    :type id: long
+    :param id: **loopback** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.interface.loopback', u'loopback')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.interface.loopback.intf_isis.interface_isis.interface_reverse_metric', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'id', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, loopback=loopback)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -20638,6 +20986,52 @@ def interface_port_channel_switchport_trunk_allowed_vlan_remove_create(self, por
     bindings_keyval = {'kwargs_key_name': u'remove', 'keyval': 'trunk_vlan_id', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, port_channel=port_channel, remove=remove)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def interface_port_channel_switchport_trunk_tag_create(self, port_channel=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type port_channel: name
+    :param port_channel: Keyword argument tuple.
+
+    :type name: long
+    :param name: **port_channel** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.interface.port_channel', u'port_channel'), ('pybind.nos.v7_0_1a.interface.port_channel', u'port_channel'), ('pybind.nos.v6_0_2b.interface.port_channel', u'port_channel'), ('pybind.slxos.v16r_1_00b.interface.port_channel', u'port_channel')]
+    bindings_list = [('pybind.nos.v6_0_2b.interface.port_channel.switchport.trunk.tag', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.interface.port_channel.switchport.trunk.tag', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.interface.port_channel.switchport.trunk.tag', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.interface.port_channel.switchport.trunk.tag', 'pybind.slxos.v16r_1_00b.brocade_interface', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, port_channel=port_channel)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -23733,6 +24127,57 @@ def interface_tengigabitethernet_switchport_trunk_allowed_vlan_remove_create(sel
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def interface_tengigabitethernet_switchport_trunk_tag_create(self, tengigabitethernet=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type tengigabitethernet: name
+    :param tengigabitethernet: Keyword argument tuple.
+
+    :type name: unicode
+    :param name: **tengigabitethernet** tuple argument.
+
+        * length restriction: ::
+
+            ['3..16']
+
+        * pattern restriction: ::
+
+            '((([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-3][0-9])/)?('
+            '([0-9]|[1][0-6]))/([1-9]|[1-9][0-9]|[1-9][0-9][0'
+            '-9])(:[1-4])?)'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_0_1a.interface.tengigabitethernet', u'tengigabitethernet'), ('pybind.nos.v7_1_0.interface.tengigabitethernet', u'tengigabitethernet'), ('pybind.nos.v6_0_2b.interface.tengigabitethernet', u'tengigabitethernet')]
+    bindings_list = [('pybind.nos.v6_0_2b.interface.tengigabitethernet.switchport.trunk.tag', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.interface.tengigabitethernet.switchport.trunk.tag', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.interface.tengigabitethernet.switchport.trunk.tag', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, tengigabitethernet=tengigabitethernet)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def interface_tengigabitethernet_track_interface_create(self, tengigabitethernet=None, interface=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -26440,6 +26885,51 @@ def interface_ve_isis_metric_create(self, ve=None, interface_metric=None, api_ti
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def interface_ve_isis_reverse_metric_create(self, ve=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ve: name
+    :param ve: Keyword argument tuple.
+
+    :type name: long
+    :param name: **ve** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.interface.ve', u've')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.interface.ve.intf_isis.interface_isis.interface_reverse_metric', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ve=ve)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def interface_ve_vrrp_extended_group_create(self, ve=None, vrrpe=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -28811,7 +29301,7 @@ def ip_receive_access_group_create(self, access_group=None, api_timeout=''):
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
-def ip_route_create(self, static_route_nh_vrf=None, api_timeout=''):
+def ip_route_create(self, static_route_nh=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
@@ -28822,11 +29312,11 @@ def ip_route_create(self, static_route_nh_vrf=None, api_timeout=''):
 
     **Instance Keyword Argument Tuple**:
 
-    :type static_route_nh_vrf: static_route_next_vrf_dest, next_hop_vrf, static_route_next_hop
-    :param static_route_nh_vrf: Keyword argument tuple.
+    :type static_route_nh: static_route_dest, static_route_next_hop
+    :param static_route_nh: Keyword argument tuple.
 
-    :type static_route_next_vrf_dest: unicode
-    :param static_route_next_vrf_dest: **static_route_nh_vrf** tuple argument:  A.B.C.D/L ;; Destination IP address
+    :type static_route_dest: unicode
+    :param static_route_dest: **static_route_nh** tuple argument:  A.B.C.D/L ;; Destination IP address
 
         * pattern restriction: ::
 
@@ -28834,11 +29324,8 @@ def ip_route_create(self, static_route_nh_vrf=None, api_timeout=''):
             '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
             '9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))'
 
-    :type next_hop_vrf: unicode
-    :param next_hop_vrf: **static_route_nh_vrf** tuple argument:  Next Hop Vrf Name
-
     :type static_route_next_hop: unicode
-    :param static_route_next_hop: **static_route_nh_vrf** tuple argument:  A.B.C.D ;; Next hop IP address
+    :param static_route_next_hop: **static_route_nh** tuple argument:  A.B.C.D ;; Next hop IP address
 
         * pattern restriction: ::
 
@@ -28862,12 +29349,12 @@ def ip_route_create(self, static_route_nh_vrf=None, api_timeout=''):
 
     operation_type = 'create'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2b.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_common_def', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v6_0_2b.brocade_common_def', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_common_def', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v7_0_1a.brocade_common_def', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_common_def', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v7_1_0.brocade_common_def', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.ip.rtm_config.route.static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ip.rtm_config.route.static_route_oif_vrf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    bindings_list = [('pybind.nos.v6_0_2b.ip.rtm_config.route.static_route_nh', 'pybind.nos.v6_0_2b.brocade_common_def', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_common_def', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.ip.rtm_config.route.static_route_oif', 'pybind.nos.v6_0_2b.brocade_common_def', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v6_0_2b.brocade_common_def', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.ip.rtm_config.route.static_route_nh', 'pybind.nos.v7_0_1a.brocade_common_def', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_common_def', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.ip.rtm_config.route.static_route_oif', 'pybind.nos.v7_0_1a.brocade_common_def', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v7_0_1a.brocade_common_def', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.ip.rtm_config.route.static_route_nh', 'pybind.nos.v7_1_0.brocade_common_def', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_common_def', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.ip.rtm_config.route.static_route_oif', 'pybind.nos.v7_1_0.brocade_common_def', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v7_1_0.brocade_common_def', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.ip.rtm_config.route.static_route_nh', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ip.rtm_config.route.static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ip.rtm_config.route.static_route_oif', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ip.rtm_config.route.static_route_oif_vrf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
     compositions_keyval_list = []
-    bindings_keyval = {'kwargs_key_name': u'static_route_oif_vrf', 'keyval': 'static_route_next_vrf_dest, next_hop_vrf, static_route_oif_type, static_route_oif_name', 'extra_keyval': ''}
+    bindings_keyval = {'kwargs_key_name': u'static_route_nh_vrf', 'keyval': 'static_route_next_vrf_dest, next_hop_vrf, static_route_next_hop', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, static_route_nh_vrf=static_route_nh_vrf)
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, static_route_nh=static_route_nh)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -30060,7 +30547,7 @@ def ipv6_route_create(self, route=None, api_timeout=''):
 
     operation_type = 'create'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2b.ipv6.ipv6route.route', 'pybind.nos.v6_0_2b.brocade_common_def', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.ipv6.ipv6route.route', 'pybind.nos.v7_0_1a.brocade_common_def', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.ipv6.ipv6route.route', 'pybind.nos.v7_1_0.brocade_common_def', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.ipv6.ipv6route.route', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ipv6.route.link_local_static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ipv6.route.static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ipv6.route.static_route_oif', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    bindings_list = [('pybind.nos.v6_0_2b.ipv6.ipv6route.route', 'pybind.nos.v6_0_2b.brocade_common_def', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.ipv6.ipv6route.route', 'pybind.nos.v7_0_1a.brocade_common_def', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.ipv6.ipv6route.route', 'pybind.nos.v7_1_0.brocade_common_def', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.ipv6.ipv6route.route', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ipv6.route.link_local_static_route_nh', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ipv6.route.link_local_static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ipv6.route.static_route_nh', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ipv6.route.static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.ipv6.route.static_route_oif', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': u'static_route_oif', 'keyval': 'static_route_dest, static_route_oif_type, static_route_oif_name', 'extra_keyval': ''}
@@ -30267,6 +30754,77 @@ def ipv6_router_ospf_area_create(self, ospf=None, area=None, api_timeout=''):
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def ipv6_router_ospf_area_nssa_default_information_originate_create(self, ospf=None, area=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type area: area_id
+    :param area: Keyword argument tuple.
+
+    :type area_id: unicode
+    :param area_id: **area** tuple argument.
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0'
+            '-5])\.)(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9'
+            ']|25[0-5])\.){2}([0-9]|[1-9][0-9]|1[0-9][0-9]|2['
+            '0-4][0-9]|25[0-5]))|(([0-9])|([1-9]([0-9]{1,8}))'
+            '|([1]([0-9]{1,9}))|([2][0]([0-9]{1,8}))|([2][1]['
+            '0-3]([0-9]{1,7}))|([2][1][4][0-6]([0-9]{1,6}))|('
+            '[2][1][4][7][0-3]([0-9]{1,5}))|([2][1][4][7][4]['
+            '0-7]([0-9]{1,4}))|([2][1][4][7][4][8][0-2]([0-9]'
+            '{1,3}))|([2][1][4][7][4][8][3][0-5]([0-9]{1,2}))'
+            '|([2][1][4][7][4][8][3][6][0-3][0-9])|([2][1][4]'
+            '[7][4][8][3][6][4][0-7]))'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf', u'ospf'), ('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.area', u'area')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.area.nssa.area_default_information_originate', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'area_id', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': 'area_default_information_originate_metric, area_default_information_originate_metric_type'}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf, area=area)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def ipv6_router_ospf_area_range_create(self, ospf=None, area=None, area_range=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -30453,6 +31011,57 @@ def ipv6_router_ospf_area_virtual_link_create(self, ospf=None, area=None, virtua
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def ipv6_router_ospf_default_information_originate_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.global_default_information_originate', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': 'global_default_information_originate_always, global_default_information_originate_metric, global_default_information_originate_metric_type'}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def ipv6_router_ospf_distance_create(self, ospf=None, distance=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -30513,6 +31122,414 @@ def ipv6_router_ospf_distance_create(self, ospf=None, distance=None, api_timeout
     bindings_keyval = {'kwargs_key_name': u'distance', 'keyval': 'route_type', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf, distance=distance)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def ipv6_router_ospf_log_adjacency_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.log.log_adjacency', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def ipv6_router_ospf_log_bad_packet_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.log.log_bad_packet', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def ipv6_router_ospf_max_metric_router_lsa_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.max_metric.router_lsa', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def ipv6_router_ospf_redistribute_bgp_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.redistribute.redistribute_bgp', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def ipv6_router_ospf_redistribute_connected_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.redistribute.redistribute_connected', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def ipv6_router_ospf_redistribute_isis_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.redistribute.redistribute_isis', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def ipv6_router_ospf_redistribute_ospf_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.redistribute.redistribute_ospf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def ipv6_router_ospf_redistribute_static_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.ipv6.router.ospf.redistribute.redistribute_static', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -41950,7 +42967,7 @@ def port_profile_create(self, port_profile=None, api_timeout=''):
 
     operation_type = 'create'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2b.port_profile_global.port_profile', 'pybind.nos.v6_0_2b.brocade_port_profile', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.port_profile_global.port_profile', 'pybind.nos.v7_0_1a.brocade_port_profile', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.port_profile_global.port_profile', 'pybind.nos.v7_1_0.brocade_port_profile', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.port_profile_global.port_profile', 'pybind.slxos.v16r_1_00b.brocade_port_profile', 'pybind.slxos.v16r_1_00b')]
+    bindings_list = [('pybind.nos.v6_0_2b.port_profile', 'pybind.nos.v6_0_2b.brocade_port_profile', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.port_profile_global.port_profile', 'pybind.nos.v6_0_2b.brocade_port_profile', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.port_profile', 'pybind.nos.v7_0_1a.brocade_port_profile', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.port_profile_global.port_profile', 'pybind.nos.v7_0_1a.brocade_port_profile', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.port_profile', 'pybind.nos.v7_1_0.brocade_port_profile', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.port_profile_global.port_profile', 'pybind.nos.v7_1_0.brocade_port_profile', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.port_profile', 'pybind.slxos.v16r_1_00b.brocade_port_profile', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.port_profile_global.port_profile', 'pybind.slxos.v16r_1_00b.brocade_port_profile', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': u'port_profile', 'keyval': 'name', 'extra_keyval': ''}
@@ -42066,6 +43083,53 @@ def port_profile_domain_port_profile_create(self, port_profile_domain=None, prof
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def port_profile_qos_profile_create(self, port_profile=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type port_profile: name
+    :param port_profile: Keyword argument tuple.
+
+    :type name: unicode
+    :param name: **port_profile** tuple argument:  Port-profile name (Max Size - 128)
+
+        * pattern restriction: ::
+
+            '[a-zA-Z]{1}([-a-zA-Z0-9\.\\\\@#\+\*\(\)=\{~\}%<>'
+            '=$_\[\]\|]{0,127})'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.port_profile', 'port_profile'), ('pybind.nos.v7_0_1a.port_profile', 'port_profile'), ('pybind.nos.v6_0_2b.port_profile', 'port_profile'), ('pybind.slxos.v16r_1_00b.port_profile', 'port_profile')]
+    bindings_list = [('pybind.nos.v6_0_2b.port_profile.qos_profile', 'pybind.nos.v6_0_2b.brocade_port_profile', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.port_profile.qos_profile', 'pybind.nos.v7_0_1a.brocade_port_profile', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.port_profile.qos_profile', 'pybind.nos.v7_1_0.brocade_port_profile', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.port_profile.qos_profile', 'pybind.slxos.v16r_1_00b.brocade_port_profile', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, port_profile=port_profile)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def port_profile_qos_profile_qos_flowcontrol_pfc_create(self, port_profile=None, pfc=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -42177,6 +43241,53 @@ def port_profile_static_create(self, port_profile=None, static=None, api_timeout
     bindings_keyval = {'kwargs_key_name': u'static', 'keyval': 'mac_address', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, port_profile=port_profile, static=static)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def port_profile_vlan_profile_create(self, port_profile=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type port_profile: name
+    :param port_profile: Keyword argument tuple.
+
+    :type name: unicode
+    :param name: **port_profile** tuple argument:  Port-profile name (Max Size - 128)
+
+        * pattern restriction: ::
+
+            '[a-zA-Z]{1}([-a-zA-Z0-9\.\\\\@#\+\*\(\)=\{~\}%<>'
+            '=$_\[\]\|]{0,127})'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_0_1a.port_profile', 'port_profile'), ('pybind.nos.v7_1_0.port_profile', 'port_profile'), ('pybind.nos.v6_0_2b.port_profile', 'port_profile'), ('pybind.slxos.v16r_1_00b.port_profile', 'port_profile')]
+    bindings_list = [('pybind.nos.v6_0_2b.port_profile.vlan_profile', 'pybind.nos.v6_0_2b.brocade_port_profile', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.port_profile.vlan_profile', 'pybind.nos.v7_0_1a.brocade_port_profile', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.port_profile.vlan_profile', 'pybind.nos.v7_1_0.brocade_port_profile', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.port_profile.vlan_profile', 'pybind.slxos.v16r_1_00b.brocade_port_profile', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}, {'keyval': 'name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, port_profile=port_profile)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -42680,6 +43791,40 @@ def protocol_cfm_domain_name_ma_name_mep_remote_mep_create(self, domain_name=Non
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def protocol_lldp_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.nos.v6_0_2b.protocol.lldp', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.protocol.lldp', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.protocol.lldp', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.protocol.lldp', 'pybind.slxos.v16r_1_00b.brocade_interface', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def protocol_lldp_profile_create(self, profile=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -42730,6 +43875,40 @@ def protocol_lldp_profile_create(self, profile=None, api_timeout=''):
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def protocol_spanning_tree_mstp_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.nos.v6_0_2b.protocol.spanning_tree.mstp', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.protocol.spanning_tree.mstp', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.protocol.spanning_tree.mstp', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.protocol.spanning_tree.mstp', 'pybind.slxos.v16r_1_00b.brocade_interface', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def protocol_spanning_tree_mstp_instance_create(self, instance=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -42773,6 +43952,40 @@ def protocol_spanning_tree_mstp_instance_create(self, instance=None, api_timeout
     bindings_keyval = {'kwargs_key_name': u'instance', 'keyval': 'id', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, instance=instance)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def protocol_spanning_tree_pvst_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.nos.v6_0_2b.protocol.spanning_tree.pvst', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.protocol.spanning_tree.pvst', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.protocol.spanning_tree.pvst', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.protocol.spanning_tree.pvst', 'pybind.slxos.v16r_1_00b.brocade_interface', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -42822,6 +44035,40 @@ def protocol_spanning_tree_pvst_vlan_create(self, vlan=None, api_timeout=''):
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def protocol_spanning_tree_rpvst_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.nos.v6_0_2b.protocol.spanning_tree.rpvst', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.protocol.spanning_tree.rpvst', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.protocol.spanning_tree.rpvst', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.protocol.spanning_tree.rpvst', 'pybind.slxos.v16r_1_00b.brocade_interface', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def protocol_spanning_tree_rpvst_vlan_create(self, vlan=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -42865,6 +44112,108 @@ def protocol_spanning_tree_rpvst_vlan_create(self, vlan=None, api_timeout=''):
     bindings_keyval = {'kwargs_key_name': u'vlan', 'keyval': 'id', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, vlan=vlan)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def protocol_spanning_tree_rstp_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.nos.v6_0_2b.protocol.spanning_tree.rstp', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.protocol.spanning_tree.rstp', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.protocol.spanning_tree.rstp', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.protocol.spanning_tree.rstp', 'pybind.slxos.v16r_1_00b.brocade_interface', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def protocol_spanning_tree_stp_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.nos.v6_0_2b.protocol.spanning_tree.stp', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.protocol.spanning_tree.stp', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.protocol.spanning_tree.stp', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.protocol.spanning_tree.stp', 'pybind.slxos.v16r_1_00b.brocade_interface', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def protocol_udld_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.nos.v6_0_2b.protocol.udld', 'pybind.nos.v6_0_2b.brocade_interface', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.protocol.udld', 'pybind.nos.v7_0_1a.brocade_interface', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.protocol.udld', 'pybind.nos.v7_1_0.brocade_interface', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.protocol.udld', 'pybind.slxos.v16r_1_00b.brocade_interface', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -49549,7 +50898,7 @@ def rbridge_id_ip_prefix_list_create(self, rbridge_id=None, prefix_list=None, ap
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
-def rbridge_id_ip_route_create(self, rbridge_id=None, static_route_nh_vrf=None, api_timeout=''):
+def rbridge_id_ip_route_create(self, rbridge_id=None, static_route_nh=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
@@ -49571,11 +50920,11 @@ def rbridge_id_ip_route_create(self, rbridge_id=None, static_route_nh_vrf=None, 
 
     **Instance Keyword Argument Tuple**:
 
-    :type static_route_nh_vrf: static_route_next_vrf_dest, next_hop_vrf, static_route_next_hop
-    :param static_route_nh_vrf: Keyword argument tuple.
+    :type static_route_nh: static_route_dest, static_route_next_hop
+    :param static_route_nh: Keyword argument tuple.
 
-    :type static_route_next_vrf_dest: unicode
-    :param static_route_next_vrf_dest: **static_route_nh_vrf** tuple argument:  A.B.C.D/L ;; Destination IP address
+    :type static_route_dest: unicode
+    :param static_route_dest: **static_route_nh** tuple argument:  A.B.C.D/L ;; Destination IP address
 
         * pattern restriction: ::
 
@@ -49583,11 +50932,8 @@ def rbridge_id_ip_route_create(self, rbridge_id=None, static_route_nh_vrf=None, 
             '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
             '9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))'
 
-    :type next_hop_vrf: unicode
-    :param next_hop_vrf: **static_route_nh_vrf** tuple argument:  Next Hop Vrf Name
-
     :type static_route_next_hop: unicode
-    :param static_route_next_hop: **static_route_nh_vrf** tuple argument:  A.B.C.D ;; Next hop IP address
+    :param static_route_next_hop: **static_route_nh** tuple argument:  A.B.C.D ;; Next hop IP address
 
         * pattern restriction: ::
 
@@ -49610,13 +50956,13 @@ def rbridge_id_ip_route_create(self, rbridge_id=None, static_route_nh_vrf=None, 
     """
 
     operation_type = 'create'
-    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id')]
-    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ip.rtm_config.route.static_route_nh', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ip.rtm_config.route.static_route_oif', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ip.rtm_config.route.static_route_nh', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ip.rtm_config.route.static_route_oif', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ip.rtm_config.route.static_route_nh', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ip.rtm_config.route.static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ip.rtm_config.route.static_route_oif', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ip.rtm_config.route.static_route_oif_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
     composed_child_list = []
     compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}]
-    bindings_keyval = {'kwargs_key_name': u'static_route_oif_vrf', 'keyval': 'static_route_next_vrf_dest, next_hop_vrf, static_route_oif_type, static_route_oif_name', 'extra_keyval': ''}
+    bindings_keyval = {'kwargs_key_name': u'static_route_nh', 'keyval': 'static_route_dest, static_route_next_hop', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, static_route_nh_vrf=static_route_nh_vrf)
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, static_route_nh=static_route_nh)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -49916,7 +51262,7 @@ def rbridge_id_ipv6_route_create(self, rbridge_id=None, route=None, api_timeout=
 
     operation_type = 'create'
     compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.slxos.v16r_1_00b.rbridge_id', 'rbridge_id')]
-    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.ipv6route.route', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.route.static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.route.static_route_oif', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.ipv6route.route', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.route.static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.route.static_route_oif', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.ipv6route.route', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.route.static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.route.static_route_oif', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.rbridge_id.ipv6.ipv6route.route', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.ipv6route.route', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.route.link_local_static_route_nh', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.route.static_route_nh', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.route.static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.route.static_route_oif', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.ipv6route.route', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.route.link_local_static_route_nh', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.route.static_route_nh', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.route.static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.route.static_route_oif', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.ipv6route.route', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.route.link_local_static_route_nh', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.route.static_route_nh', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.route.static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.route.static_route_oif', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.rbridge_id.ipv6.ipv6route.route', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
     compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}]
     bindings_keyval = {'kwargs_key_name': u'route', 'keyval': 'dest', 'extra_keyval': ''}
@@ -50162,6 +51508,87 @@ def rbridge_id_ipv6_router_ospf_area_create(self, rbridge_id=None, ospf=None, ar
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def rbridge_id_ipv6_router_ospf_area_nssa_default_information_originate_create(self, rbridge_id=None, ospf=None, area=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type area: area_id
+    :param area: Keyword argument tuple.
+
+    :type area_id: unicode
+    :param area_id: **area** tuple argument.
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0'
+            '-5])\.)(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9'
+            ']|25[0-5])\.){2}([0-9]|[1-9][0-9]|1[0-9][0-9]|2['
+            '0-4][0-9]|25[0-5]))|(([0-9])|([1-9]([0-9]{1,8}))'
+            '|([1]([0-9]{1,9}))|([2][0]([0-9]{1,8}))|([2][1]['
+            '0-3]([0-9]{1,7}))|([2][1][4][0-6]([0-9]{1,6}))|('
+            '[2][1][4][7][0-3]([0-9]{1,5}))|([2][1][4][7][4]['
+            '0-7]([0-9]{1,4}))|([2][1][4][7][4][8][0-2]([0-9]'
+            '{1,3}))|([2][1][4][7][4][8][3][0-5]([0-9]{1,2}))'
+            '|([2][1][4][7][4][8][3][6][0-3][0-9])|([2][1][4]'
+            '[7][4][8][3][6][4][0-7]))'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf.area', u'area'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf.area', u'area'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf.area', u'area')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf.area.nssa.area_default_information_originate', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf.area.nssa.area_default_information_originate', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf.area.nssa.area_default_information_originate', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'area_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'area_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'area_id', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': 'area_default_information_originate_metric, area_default_information_originate_metric_type'}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf, area=area)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def rbridge_id_ipv6_router_ospf_area_range_create(self, rbridge_id=None, ospf=None, area=None, area_range=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -50368,6 +51795,67 @@ def rbridge_id_ipv6_router_ospf_area_virtual_link_create(self, rbridge_id=None, 
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def rbridge_id_ipv6_router_ospf_default_information_originate_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf.global_default_information_originate', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf.global_default_information_originate', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf.global_default_information_originate', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': 'global_default_information_originate_always, global_default_information_originate_metric, global_default_information_originate_metric_type'}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def rbridge_id_ipv6_router_ospf_distance_create(self, rbridge_id=None, ospf=None, distance=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -50438,6 +51926,433 @@ def rbridge_id_ipv6_router_ospf_distance_create(self, rbridge_id=None, ospf=None
     bindings_keyval = {'kwargs_key_name': u'distance', 'keyval': 'route_type', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf, distance=distance)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_ipv6_router_ospf_log_adjacency_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf.log.log_adjacency', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf.log.log_adjacency', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf.log.log_adjacency', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_ipv6_router_ospf_log_bad_packet_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf.log.log_bad_packet', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf.log.log_bad_packet', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf.log.log_bad_packet', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_ipv6_router_ospf_max_metric_router_lsa_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf.max_metric.router_lsa', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf.max_metric.router_lsa', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf.max_metric.router_lsa', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_ipv6_router_ospf_redistribute_bgp_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf.redistribute.redistribute_bgp', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf.redistribute.redistribute_bgp', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf.redistribute.redistribute_bgp', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_ipv6_router_ospf_redistribute_connected_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf.redistribute.redistribute_connected', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf.redistribute.redistribute_connected', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf.redistribute.redistribute_connected', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_ipv6_router_ospf_redistribute_ospf_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf.redistribute.redistribute_ospf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf.redistribute.redistribute_ospf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf.redistribute.redistribute_ospf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_ipv6_router_ospf_redistribute_static_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  OSPF instance for the VRF 
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.ipv6.router.ospf.redistribute.redistribute_static', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.ipv6.router.ospf.redistribute.redistribute_static', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.ipv6.router.ospf.redistribute.redistribute_static', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -51628,6 +53543,51 @@ def rbridge_id_route_map_set_ipv6_global_create(self, rbridge_id=None, route_map
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def rbridge_id_router_bgp_create(self, rbridge_id=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.router.router_bgp', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.router.router_bgp', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.router_bgp', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def rbridge_id_router_bgp_address_family_ipv4_unicast_aggregate_address_create(self, rbridge_id=None, aggregate_address=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -52734,6 +54694,51 @@ def rbridge_id_router_bgp_address_family_ipv6_unicast_vrf_network_create(self, r
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def rbridge_id_router_bgp_address_family_l2vpn_evpn_create(self, rbridge_id=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id')]
+    bindings_list = [('pybind.nos.v7_0_1a.rbridge_id.router.router_bgp.address_family.l2vpn.evpn', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.router_bgp.address_family.l2vpn.evpn', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def rbridge_id_router_bgp_address_family_l2vpn_evpn_neighbor_create(self, rbridge_id=None, evpn_neighbor_ipv4=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -53261,6 +55266,61 @@ def rbridge_id_router_ospf_area_virtual_link_create(self, rbridge_id=None, ospf=
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def rbridge_id_router_ospf_default_information_originate_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.router.ospf.default_information_originate', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf.default_information_originate', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf.default_information_originate', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': 'always, def_orig_metric, def_orig_metric_type, def_orig_route_map'}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def rbridge_id_router_ospf_deny_redistribute_create(self, rbridge_id=None, ospf=None, redistribute=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -53431,6 +55491,171 @@ def rbridge_id_router_ospf_distance_create(self, rbridge_id=None, ospf=None, dis
     bindings_keyval = {'kwargs_key_name': u'distance', 'keyval': 'route_type', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf, distance=distance)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_router_ospf_log_adjacency_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.router.ospf.log.adjacency', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf.log.adjacency', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf.log.adjacency', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_router_ospf_log_bad_packet_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.router.ospf.log.bad_packet', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf.log.bad_packet', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf.log.bad_packet', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_router_ospf_max_metric_router_lsa_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.router.ospf.max_metric.router_lsa', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf.max_metric.router_lsa', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf.max_metric.router_lsa', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -53609,6 +55834,226 @@ def rbridge_id_router_ospf_permit_redistribute_create(self, rbridge_id=None, osp
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def rbridge_id_router_ospf_redistribute_bgp_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.router.ospf.redistribute.bgp', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf.redistribute.bgp', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf.redistribute.bgp', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_router_ospf_redistribute_connected_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.router.ospf.redistribute.connected', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf.redistribute.connected', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf.redistribute.connected', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_router_ospf_redistribute_ospf_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.router.ospf.redistribute.redistribute_ospf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf.redistribute.redistribute_ospf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf.redistribute.redistribute_ospf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_router_ospf_redistribute_static_create(self, rbridge_id=None, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf', u'ospf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf', u'ospf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.router.ospf.redistribute.static', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.router.ospf.redistribute.static', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.ospf.redistribute.static', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def rbridge_id_router_ospf_summary_address_create(self, rbridge_id=None, ospf=None, summary_address=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -53684,6 +56129,51 @@ def rbridge_id_router_ospf_summary_address_create(self, rbridge_id=None, ospf=No
     bindings_keyval = {'kwargs_key_name': u'summary_address', 'keyval': 'sum_address, sum_address_mask', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, ospf=ospf, summary_address=summary_address)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_router_pim_create(self, rbridge_id=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.router.hide_pim_holder.pim', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.router.hide_pim_holder.pim', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.router.hide_pim_holder.pim', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -54542,7 +57032,7 @@ def rbridge_id_telnet_server_use_vrf_create(self, rbridge_id=None, use_vrf=None,
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
-def rbridge_id_threshold_monitor_interface_policy_create(self, rbridge_id=None, policy=None, area=None, api_timeout=''):
+def rbridge_id_threshold_monitor_interface_policy_create(self, rbridge_id=None, policy=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
@@ -54563,33 +57053,13 @@ def rbridge_id_threshold_monitor_interface_policy_create(self, rbridge_id=None, 
 
             ['0..4294967295']
 
+    **Instance Keyword Argument Tuple**:
+
     :type policy: policy_name
     :param policy: Keyword argument tuple.
 
     :type policy_name: unicode
     :param policy_name: **policy** tuple argument.
-
-    **Instance Keyword Argument Tuple**:
-
-    :type area: type, area_value
-    :param area: Keyword argument tuple.
-
-    :type type: unicode
-    :param type: **area** tuple argument:  Interface types that can be configured independent of speed
-
-        * enumeration restriction: ::
-
-            ['Ethernet']
-
-    :type area_value: unicode
-    :param area_value: **area** tuple argument.
-
-        * enumeration restriction: ::
-
-            ['MissingTerminationCharacter',
-            'CRCAlignErrors',
-            'IFG',
-            'SymbolErrors']
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -54606,17 +57076,17 @@ def rbridge_id_threshold_monitor_interface_policy_create(self, rbridge_id=None, 
     """
 
     operation_type = 'create'
-    compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.interface.policy', u'policy'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.interface.policy', u'policy'), ('pybind.slxos.v16r_1_00b.rbridge_id', 'rbridge_id'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.interface.policy', u'policy'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.interface.policy', u'policy')]
-    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.interface.policy.area', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.interface.policy.area', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.interface.policy.area', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.interface.policy.area', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b')]
+    compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.interface.policy', u'policy'), ('pybind.slxos.v16r_1_00b.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.interface.policy', u'policy'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.interface.policy', u'policy'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.interface.policy', u'policy')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.interface.policy', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.interface.policy.area', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.interface.policy', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.interface.policy.area', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.interface.policy', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.interface.policy.area', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.interface.policy', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.interface.policy.area', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
-    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}]
-    bindings_keyval = {'kwargs_key_name': u'area', 'keyval': 'type, area_value', 'extra_keyval': ''}
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}]
+    bindings_keyval = {'kwargs_key_name': u'policy', 'keyval': 'policy_name', 'extra_keyval': 'policy_name'}
     composed_child_leafval_list = []
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, policy=policy, area=area)
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, policy=policy)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
-def rbridge_id_threshold_monitor_security_policy_create(self, rbridge_id=None, policy=None, area=None, api_timeout=''):
+def rbridge_id_threshold_monitor_security_policy_create(self, rbridge_id=None, policy=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
@@ -54636,6 +57106,8 @@ def rbridge_id_threshold_monitor_security_policy_create(self, rbridge_id=None, p
         * range restriction: ::
 
             ['0..4294967295']
+
+    **Instance Keyword Argument Tuple**:
 
     :type policy: sec_policy_name
     :param policy: Keyword argument tuple.
@@ -54643,18 +57115,6 @@ def rbridge_id_threshold_monitor_security_policy_create(self, rbridge_id=None, p
     :type sec_policy_name: unicode
     :param sec_policy_name: **policy** tuple argument.
 
-    **Instance Keyword Argument Tuple**:
-
-    :type area: sec_area_value
-    :param area: Keyword argument tuple.
-
-    :type sec_area_value: unicode
-    :param sec_area_value: **area** tuple argument:  Security Areas
-
-        * enumeration restriction: ::
-
-            ['telnet-violation', 'login-violation']
-
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
 
@@ -54670,17 +57130,17 @@ def rbridge_id_threshold_monitor_security_policy_create(self, rbridge_id=None, p
     """
 
     operation_type = 'create'
-    compositions_list = [('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.security.policy', u'policy'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.security.policy', u'policy'), ('pybind.slxos.v16r_1_00b.rbridge_id', 'rbridge_id'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.security.policy', u'policy'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.security.policy', u'policy')]
-    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.security.policy.area', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.security.policy.area', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.security.policy.area', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.security.policy.area', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b')]
+    compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.security.policy', u'policy'), ('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.security.policy', u'policy'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.slxos.v16r_1_00b.rbridge_id', 'rbridge_id'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.security.policy', u'policy'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.security.policy', u'policy')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.security.policy', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.security.policy.area', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.security.policy', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.security.policy.area', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.security.policy', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.security.policy.area', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.security.policy', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.security.policy.area', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
-    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}]
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}]
     bindings_keyval = {'kwargs_key_name': u'area', 'keyval': 'sec_area_value', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, policy=policy, area=area)
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, policy=policy)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
-def rbridge_id_threshold_monitor_sfp_policy_create(self, rbridge_id=None, policy=None, area=None, api_timeout=''):
+def rbridge_id_threshold_monitor_sfp_policy_create(self, rbridge_id=None, policy=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
@@ -54701,40 +57161,13 @@ def rbridge_id_threshold_monitor_sfp_policy_create(self, rbridge_id=None, policy
 
             ['0..4294967295']
 
+    **Instance Keyword Argument Tuple**:
+
     :type policy: policy_name
     :param policy: Keyword argument tuple.
 
     :type policy_name: unicode
     :param policy_name: **policy** tuple argument.
-
-    **Instance Keyword Argument Tuple**:
-
-    :type area: type, area_value
-    :param area: Keyword argument tuple.
-
-    :type type: unicode
-    :param type: **area** tuple argument:  SFP types that can be configured
-
-        * enumeration restriction: ::
-
-            ['10GLR',
-            '1GLR',
-            '100GSR',
-            '10GUSR',
-            '1GSR',
-            '10GSR',
-            'QSFP']
-
-    :type area_value: unicode
-    :param area_value: **area** tuple argument.
-
-        * enumeration restriction: ::
-
-            ['Current',
-            'RXP',
-            'TXP',
-            'Voltage',
-            'Temperature']
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -54751,13 +57184,13 @@ def rbridge_id_threshold_monitor_sfp_policy_create(self, rbridge_id=None, policy
     """
 
     operation_type = 'create'
-    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.sfp.policy', u'policy'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.sfp.policy', u'policy'), ('pybind.slxos.v16r_1_00b.rbridge_id', 'rbridge_id'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.sfp.policy', u'policy'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.sfp.policy', u'policy')]
-    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.sfp.policy.area', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.sfp.policy.area', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.sfp.policy.area', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.sfp.policy.area', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b')]
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.sfp.policy', u'policy'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.sfp.policy', u'policy'), ('pybind.slxos.v16r_1_00b.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.sfp.policy', u'policy'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.sfp.policy', u'policy')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.sfp.policy', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.threshold_monitor.sfp.policy.area', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.sfp.policy', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.threshold_monitor.sfp.policy.area', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.sfp.policy', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.threshold_monitor.sfp.policy.area', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.sfp.policy', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.rbridge_id.threshold_monitor.sfp.policy.area', 'pybind.slxos.v16r_1_00b.brocade_rbridge', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
-    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}]
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}]
     bindings_keyval = {'kwargs_key_name': u'area', 'keyval': 'type, area_value', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, policy=policy, area=area)
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, policy=policy)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -54819,6 +57252,67 @@ def rbridge_id_vrf_create(self, rbridge_id=None, vrf=None, api_timeout=''):
     composed_child_list = []
     compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}]
     bindings_keyval = {'kwargs_key_name': u'vrf', 'keyval': 'vrf_name', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, vrf=vrf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_vrf_address_family_ipv4_unicast_create(self, rbridge_id=None, vrf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type vrf: vrf_name
+    :param vrf: Keyword argument tuple.
+
+    :type vrf_name: unicode
+    :param vrf_name: **vrf** tuple argument:  <WORD:1-32>;;Name of VRF
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.vrf', u'vrf'), ('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.vrf', u'vrf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.vrf', u'vrf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ip.unicast', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ip.unicast', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ip.unicast', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, vrf=vrf)
 
@@ -55055,7 +57549,7 @@ def rbridge_id_vrf_address_family_ipv4_unicast_ip_import_routes_create(self, rbr
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
-def rbridge_id_vrf_address_family_ipv4_unicast_ip_route_create(self, rbridge_id=None, vrf=None, static_route_nh_vrf=None, api_timeout=''):
+def rbridge_id_vrf_address_family_ipv4_unicast_ip_route_create(self, rbridge_id=None, vrf=None, static_route_nh=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
@@ -55093,11 +57587,11 @@ def rbridge_id_vrf_address_family_ipv4_unicast_ip_route_create(self, rbridge_id=
 
     **Instance Keyword Argument Tuple**:
 
-    :type static_route_nh_vrf: static_route_next_vrf_dest, next_hop_vrf, static_route_next_hop
-    :param static_route_nh_vrf: Keyword argument tuple.
+    :type static_route_nh: static_route_dest, static_route_next_hop
+    :param static_route_nh: Keyword argument tuple.
 
-    :type static_route_next_vrf_dest: unicode
-    :param static_route_next_vrf_dest: **static_route_nh_vrf** tuple argument:  A.B.C.D/L ;; Destination IP address
+    :type static_route_dest: unicode
+    :param static_route_dest: **static_route_nh** tuple argument:  A.B.C.D/L ;; Destination IP address
 
         * pattern restriction: ::
 
@@ -55105,11 +57599,8 @@ def rbridge_id_vrf_address_family_ipv4_unicast_ip_route_create(self, rbridge_id=
             '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
             '9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))'
 
-    :type next_hop_vrf: unicode
-    :param next_hop_vrf: **static_route_nh_vrf** tuple argument:  Next Hop Vrf Name
-
     :type static_route_next_hop: unicode
-    :param static_route_next_hop: **static_route_nh_vrf** tuple argument:  A.B.C.D ;; Next hop IP address
+    :param static_route_next_hop: **static_route_nh** tuple argument:  A.B.C.D ;; Next hop IP address
 
         * pattern restriction: ::
 
@@ -55132,13 +57623,13 @@ def rbridge_id_vrf_address_family_ipv4_unicast_ip_route_create(self, rbridge_id=
     """
 
     operation_type = 'create'
-    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.vrf', u'vrf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.vrf', u'vrf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.vrf', u'vrf')]
-    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_oif_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_oif_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_oif_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.vrf', u'vrf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.vrf', u'vrf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.vrf', u'vrf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_nh', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_oif', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_oif_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_nh', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_oif', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_oif_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_nh', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_oif', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ip.unicast.ip.route.static_route_oif_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
     composed_child_list = []
     compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}]
     bindings_keyval = {'kwargs_key_name': u'static_route_nh_vrf', 'keyval': 'static_route_next_vrf_dest, next_hop_vrf, static_route_next_hop', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, vrf=vrf, static_route_nh_vrf=static_route_nh_vrf)
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, vrf=vrf, static_route_nh=static_route_nh)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -55299,6 +57790,67 @@ def rbridge_id_vrf_address_family_ipv4_unicast_route_target_create(self, rbridge
     bindings_keyval = {'kwargs_key_name': u'route_target', 'keyval': 'action, target_community', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, vrf=vrf, route_target=route_target)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def rbridge_id_vrf_address_family_ipv6_unicast_create(self, rbridge_id=None, vrf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type rbridge_id: rbridge_id
+    :param rbridge_id: Keyword argument tuple.
+
+    :type rbridge_id: long
+    :param rbridge_id: **rbridge_id** tuple argument.
+
+        * range restriction: ::
+
+            ['0..4294967295']
+
+    :type vrf: vrf_name
+    :param vrf: Keyword argument tuple.
+
+    :type vrf_name: unicode
+    :param vrf_name: **vrf** tuple argument:  <WORD:1-32>;;Name of VRF
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.vrf', u'vrf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.vrf', u'vrf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.vrf', u'vrf')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rbridge_id=rbridge_id, vrf=vrf)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -55478,7 +58030,7 @@ def rbridge_id_vrf_address_family_ipv6_unicast_ipv6_route_create(self, rbridge_i
 
     operation_type = 'create'
     compositions_list = [('pybind.nos.v7_1_0.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_1_0.rbridge_id.vrf', u'vrf'), ('pybind.nos.v7_0_1a.rbridge_id', 'rbridge_id'), ('pybind.nos.v7_0_1a.rbridge_id.vrf', u'vrf'), ('pybind.nos.v6_0_2b.rbridge_id', 'rbridge_id'), ('pybind.nos.v6_0_2b.rbridge_id.vrf', u'vrf')]
-    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_oif', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_oif', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_oif', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
+    bindings_list = [('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh_vrf', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_oif', 'pybind.nos.v6_0_2b.brocade_rbridge', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh_vrf', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_oif', 'pybind.nos.v7_0_1a.brocade_rbridge', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh_vrf', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.rbridge_id.vrf.address_family.ipv6.unicast.ipv6.route.static_route_oif', 'pybind.nos.v7_1_0.brocade_rbridge', 'pybind.nos.v7_1_0')]
     composed_child_list = []
     compositions_keyval_list = [{'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}, {'keyval': 'rbridge_id', 'extra_keyval': ''}, {'keyval': 'vrf_name', 'extra_keyval': ''}]
     bindings_keyval = {'kwargs_key_name': u'static_route_nh_vrf', 'keyval': 'static_route_next_vrf_dest, next_hop_vrf, static_route_next_hop', 'extra_keyval': ''}
@@ -56420,6 +58972,39 @@ def route_map_set_ipv6_global_create(self, route_map=None, next_global_hop=None,
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def router_bgp_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.router_bgp', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def router_bgp_address_family_evpn_neighbor_create(self, af_evpn_neighbor=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -56605,6 +59190,72 @@ def router_bgp_address_family_ipv4_unicast_network_create(self, network=None, ap
     bindings_keyval = {'kwargs_key_name': u'network', 'keyval': 'network_ipv4_address', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, network=network)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_bgp_address_family_ipv4_unicast_next_hop_mpls_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.router_bgp.address_family.ipv4.ipv4_unicast.default_vrf.next_hop_mpls', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_bgp_address_family_ipv4_unicast_redistribute_isis_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.router_bgp.address_family.ipv4.ipv4_unicast.default_vrf.af_ipv4_uc_and_vrf_cmds_call_point_holder.redistribute.redistribute_isis', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -57083,6 +59734,39 @@ def router_bgp_address_family_ipv6_unicast_network_create(self, network=None, ap
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def router_bgp_address_family_ipv6_unicast_redistribute_isis_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.router_bgp.address_family.ipv6.ipv6_unicast.default_vrf.af_ipv6_uc_and_vrf_cmds_call_point_holder.redistribute.redistribute_isis', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def router_bgp_address_family_ipv6_unicast_vrf_create(self, af_ipv6_vrf=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -57352,9 +60036,341 @@ def router_bgp_neighbor_create(self, neighbor_addr=None, api_timeout=''):
     bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.router_bgp.router_bgp_attributes.neighbor.neighbor_ips.neighbor_addr', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.routing_system.router.router_bgp.router_bgp_attributes.neighbor.neighbor_ipv6s.neighbor_ipv6_addr', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.routing_system.router.router_bgp.router_bgp_attributes.neighbor.peer_grps.neighbor_peer_grp', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
     compositions_keyval_list = []
-    bindings_keyval = {'kwargs_key_name': u'neighbor_ipv6_addr', 'keyval': 'router_bgp_neighbor_ipv6_address', 'extra_keyval': ''}
+    bindings_keyval = {'kwargs_key_name': u'neighbor_peer_grp', 'keyval': 'router_bgp_neighbor_peer_grp', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, neighbor_addr=neighbor_addr)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_fabric_virtual_gateway_address_family_ipv4_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.nos.v6_0_2b.router.fabric_virtual_gateway.address_family.ipv4', 'pybind.nos.v6_0_2b.brocade_common_def', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.router.fabric_virtual_gateway.address_family.ipv4', 'pybind.nos.v7_0_1a.brocade_common_def', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.router.fabric_virtual_gateway.address_family.ipv4', 'pybind.nos.v7_1_0.brocade_common_def', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.router.fabric_virtual_gateway.address_family.ipv4', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_fabric_virtual_gateway_address_family_ipv6_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * NOS: 6.0.2b, 7.0.1a, 7.1.0
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.nos.v6_0_2b.router.fabric_virtual_gateway.address_family.ipv6', 'pybind.nos.v6_0_2b.brocade_common_def', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.router.fabric_virtual_gateway.address_family.ipv6', 'pybind.nos.v7_0_1a.brocade_common_def', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.router.fabric_virtual_gateway.address_family.ipv6', 'pybind.nos.v7_1_0.brocade_common_def', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.router.fabric_virtual_gateway.address_family.ipv6', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv4_unicast_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv4.af_ipv4_unicast', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv4_unicast_ldp_sync_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv4.af_ipv4_unicast.af_ipv4_attributes.ldp_sync', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv4_unicast_redistribute_bgp_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv4.af_ipv4_unicast.af_ipv4_attributes.af_common_attributes.redistribute.bgp', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv4_unicast_redistribute_connected_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv4.af_ipv4_unicast.af_ipv4_attributes.af_common_attributes.redistribute.connected', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv4_unicast_redistribute_isis_level_2_into_level_1_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv4.af_ipv4_unicast.af_ipv4_attributes.af_common_attributes.redistribute.isis.level_2.into.level2_into_level1', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv4_unicast_redistribute_ospf_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv4.af_ipv4_unicast.af_ipv4_attributes.af_common_attributes.redistribute.ospf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv4_unicast_redistribute_static_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv4.af_ipv4_unicast.af_ipv4_attributes.af_common_attributes.redistribute.static', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -57417,6 +60433,237 @@ def router_isis_address_family_ipv4_unicast_summary_address_create(self, summary
     bindings_keyval = {'kwargs_key_name': u'summary_address', 'keyval': 'summary_ip, summary_ip_mask', 'extra_keyval': 'summary_ip, summary_ip_mask, summary_ip_level1, summary_ip_level2'}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, summary_address=summary_address)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv6_unicast_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv6.af_ipv6_unicast', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv6_unicast_multi_topology_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv6.af_ipv6_unicast.af_ipv6_attributes.multi_topology', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv6_unicast_redistribute_bgp_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv6.af_ipv6_unicast.af_ipv6_attributes.af_common_attributes.redistribute.bgp', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv6_unicast_redistribute_connected_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv6.af_ipv6_unicast.af_ipv6_attributes.af_common_attributes.redistribute.connected', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv6_unicast_redistribute_isis_level_2_into_level_1_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv6.af_ipv6_unicast.af_ipv6_attributes.af_common_attributes.redistribute.isis.level_2.into.level2_into_level1', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv6_unicast_redistribute_ospf_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv6.af_ipv6_unicast.af_ipv6_attributes.af_common_attributes.redistribute.ospf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_address_family_ipv6_unicast_redistribute_static_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.address_family.ipv6.af_ipv6_unicast.af_ipv6_attributes.af_common_attributes.redistribute.static', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -57577,6 +60824,39 @@ def router_isis_net_create(self, net=None, api_timeout=''):
     bindings_keyval = {'kwargs_key_name': u'net', 'keyval': 'net_cmd', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, net=net)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_isis_reverse_metric_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.isis.router_isis_cmds_holder.router_isis_attributes.reverse_metric', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -58147,6 +61427,138 @@ def router_mpls_cspf_group_subnet_create(self, cspf_group=None, cspf_group_subne
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def router_mpls_dynamic_bypass_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.dynamic_bypass', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_ldp_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.ldp', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_ldp_eol_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.ldp.ldp_holder.ldp_eol', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_ldp_graceful_restart_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.ldp.ldp_holder.ldp_gr', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def router_mpls_ldp_session_create(self, ldp_session=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -58286,6 +61698,96 @@ def router_mpls_lsp_create(self, lsp=None, api_timeout=''):
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def router_mpls_lsp_autobw_create(self, lsp=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type lsp: lsp_name
+    :param lsp: Keyword argument tuple.
+
+    :type lsp_name: unicode
+    :param lsp_name: **lsp** tuple argument:  ASCII string;;Name (up to 64 characters)
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.lsp', u'lsp')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.lsp.lsp_auto_bandwidth', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'lsp_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, lsp=lsp)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_lsp_frr_create(self, lsp=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type lsp: lsp_name
+    :param lsp: Keyword argument tuple.
+
+    :type lsp_name: unicode
+    :param lsp_name: **lsp** tuple argument:  ASCII string;;Name (up to 64 characters)
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.lsp', u'lsp')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.lsp.lsp_frr', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'lsp_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, lsp=lsp)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def router_mpls_lsp_secondary_path_create(self, lsp=None, secondary_path=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -58343,6 +61845,61 @@ def router_mpls_lsp_secondary_path_create(self, lsp=None, secondary_path=None, a
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def router_mpls_lsp_secondary_path_autobw_create(self, lsp=None, secondary_path=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type lsp: lsp_name
+    :param lsp: Keyword argument tuple.
+
+    :type lsp_name: unicode
+    :param lsp_name: **lsp** tuple argument:  ASCII string;;Name (up to 64 characters)
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type secondary_path: secpath_name
+    :param secondary_path: Keyword argument tuple.
+
+    :type secpath_name: unicode
+    :param secpath_name: **secondary_path** tuple argument:  Set secondary explicit path
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.lsp', u'lsp'), ('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.lsp.secondary_path', u'secondary_path')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.lsp.secondary_path.lsp_secpath_auto_bandwidth', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'lsp_name', 'extra_keyval': ''}, {'keyval': 'secpath_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, lsp=lsp, secondary_path=secondary_path)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def router_mpls_mpls_interface_create(self, mpls_interface=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -58395,6 +61952,234 @@ def router_mpls_mpls_interface_create(self, mpls_interface=None, api_timeout='')
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': u'mpls_interface', 'keyval': 'interface_type, interface_name', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, mpls_interface=mpls_interface)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_mpls_interface_dynamic_bypass_create(self, mpls_interface=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type mpls_interface: interface_type, interface_name
+    :param mpls_interface: Keyword argument tuple.
+
+    :type interface_type: unicode
+    :param interface_type: **mpls_interface** tuple argument.
+
+        * enumeration restriction: ::
+
+            ['ethernet', 've']
+
+    :type interface_name: unicode
+    :param interface_name: **mpls_interface** tuple argument:  The Interface value.
+
+        * length restriction: ::
+
+            ['1..16']
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1][0-6])/([1-9]|[1-9][0-9]|[1-9][0-9]['
+            '0-9])(:[1-4])?)|([0-9]([0-9])?([0-9])?([0-9])?))'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.mpls_interface', u'mpls_interface')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.mpls_interface.interface_dynamic_bypass', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'interface_type, interface_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, mpls_interface=mpls_interface)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_mpls_interface_rsvp_hello_create(self, mpls_interface=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type mpls_interface: interface_type, interface_name
+    :param mpls_interface: Keyword argument tuple.
+
+    :type interface_type: unicode
+    :param interface_type: **mpls_interface** tuple argument.
+
+        * enumeration restriction: ::
+
+            ['ethernet', 've']
+
+    :type interface_name: unicode
+    :param interface_name: **mpls_interface** tuple argument:  The Interface value.
+
+        * length restriction: ::
+
+            ['1..16']
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1][0-6])/([1-9]|[1-9][0-9]|[1-9][0-9]['
+            '0-9])(:[1-4])?)|([0-9]([0-9])?([0-9])?([0-9])?))'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.mpls_interface', u'mpls_interface')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.mpls_interface.rsvp.interface_rsvp_hello', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'interface_type, interface_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': 'rsvp_hello_interval, rsvp_hello_tolerance'}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, mpls_interface=mpls_interface)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_mpls_interface_rsvp_refresh_reduction_bundle_message_create(self, mpls_interface=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type mpls_interface: interface_type, interface_name
+    :param mpls_interface: Keyword argument tuple.
+
+    :type interface_type: unicode
+    :param interface_type: **mpls_interface** tuple argument.
+
+        * enumeration restriction: ::
+
+            ['ethernet', 've']
+
+    :type interface_name: unicode
+    :param interface_name: **mpls_interface** tuple argument:  The Interface value.
+
+        * length restriction: ::
+
+            ['1..16']
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1][0-6])/([1-9]|[1-9][0-9]|[1-9][0-9]['
+            '0-9])(:[1-4])?)|([0-9]([0-9])?([0-9])?([0-9])?))'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.mpls_interface', u'mpls_interface')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.mpls_interface.rsvp.interface_refresh_reduction.bundle_message', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'interface_type, interface_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, mpls_interface=mpls_interface)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_mpls_interface_rsvp_reliable_messaging_create(self, mpls_interface=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type mpls_interface: interface_type, interface_name
+    :param mpls_interface: Keyword argument tuple.
+
+    :type interface_type: unicode
+    :param interface_type: **mpls_interface** tuple argument.
+
+        * enumeration restriction: ::
+
+            ['ethernet', 've']
+
+    :type interface_name: unicode
+    :param interface_name: **mpls_interface** tuple argument:  The Interface value.
+
+        * length restriction: ::
+
+            ['1..16']
+
+        * pattern restriction: ::
+
+            '((([0-9]|[1][0-6])/([1-9]|[1-9][0-9]|[1-9][0-9]['
+            '0-9])(:[1-4])?)|([0-9]([0-9])?([0-9])?([0-9])?))'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.mpls_interface', u'mpls_interface')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.mpls_interface.rsvp.interface_reliable_messaging', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'interface_type, interface_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, mpls_interface=mpls_interface)
 
@@ -58570,6 +62355,39 @@ def router_mpls_path_insert_create(self, path=None, path_insert=None, api_timeou
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def router_mpls_policy_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.policy', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def router_mpls_policy_admin_group_create(self, policy_admin_group=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -58619,6 +62437,171 @@ def router_mpls_policy_admin_group_create(self, policy_admin_group=None, api_tim
     bindings_keyval = {'kwargs_key_name': u'policy_admin_group', 'keyval': 'admin_group_name, admin_group_number', 'extra_keyval': 'admin_group_name, admin_group_number'}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, policy_admin_group=policy_admin_group)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_policy_auto_bandwidth_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.policy.global_auto_bandwidth', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_rsvp_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.rsvp', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_rsvp_hello_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.rsvp.global_rsvp_hello', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': 'global_rsvp_hello_interval, global_rsvp_hello_tolerance'}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_rsvp_refresh_reduction_bundle_message_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.rsvp.g_refresh_reduction.bundle_message', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_mpls_rsvp_reliable_messaging_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.mpls_config.router.mpls.mpls_cmds_holder.rsvp.g_reliable_messaging', 'pybind.slxos.v16r_1_00b.brocade_mpls', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -58915,6 +62898,51 @@ def router_ospf_area_virtual_link_create(self, ospf=None, area=None, virtual_lin
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def router_ospf_default_information_originate_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf.default_information_originate', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': 'always, def_orig_metric, def_orig_metric_type, def_orig_route_map'}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def router_ospf_deny_redistribute_create(self, ospf=None, redistribute=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -59065,6 +63093,186 @@ def router_ospf_distance_create(self, ospf=None, distance=None, api_timeout=''):
     bindings_keyval = {'kwargs_key_name': u'distance', 'keyval': 'route_type', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf, distance=distance)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_ospf_ldp_sync_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf.ldp_sync', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': 'ldp_sync_hold_down'}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_ospf_log_adjacency_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf.log.adjacency', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_ospf_log_bad_packet_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf.log.bad_packet', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_ospf_max_metric_router_lsa_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf.max_metric.router_lsa', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -59223,6 +63431,186 @@ def router_ospf_permit_redistribute_create(self, ospf=None, redistribute=None, a
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def router_ospf_redistribute_bgp_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf.redistribute.bgp', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_ospf_redistribute_connected_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf.redistribute.connected', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_ospf_redistribute_ospf_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf.redistribute.redistribute_ospf', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_ospf_redistribute_static_create(self, ospf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type ospf: vrf
+    :param ospf: Keyword argument tuple.
+
+    :type vrf: unicode
+    :param vrf: **ospf** tuple argument:  Create a VRF
+
+        * length restriction: ::
+
+            ['1..64']
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf', u'ospf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.ospf.redistribute.static', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def router_ospf_summary_address_create(self, ospf=None, summary_address=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -59288,6 +63676,39 @@ def router_ospf_summary_address_create(self, ospf=None, summary_address=None, ap
     bindings_keyval = {'kwargs_key_name': u'summary_address', 'keyval': 'sum_address, sum_address_mask', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, ospf=ospf, summary_address=summary_address)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_pim_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.hide_pim_holder.pim', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -59601,6 +64022,72 @@ def router_pim_rp_candidate_prefix_create(self, rp_cand_grp_prefix=None, api_tim
     bindings_keyval = {'kwargs_key_name': u'rp_cand_grp_prefix', 'keyval': 'rp_cand_prefix_name', 'extra_keyval': 'rp_cand_prefix_name'}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, rp_cand_grp_prefix=rp_cand_grp_prefix)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_pim_rpf_ecmp_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.hide_pim_holder.pim.rpf.ecmp', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def router_pim_ssm_enable_create(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v16r_1_00b.routing_system.router.hide_pim_holder.pim.ssm_enable', 'pybind.slxos.v16r_1_00b.brocade_common_def', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -61616,7 +66103,7 @@ def telnet_server_use_vrf_create(self, use_vrf=None, api_timeout=''):
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
-def threshold_monitor_interface_policy_create(self, policy=None, area=None, api_timeout=''):
+def threshold_monitor_interface_policy_create(self, policy=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
@@ -61625,35 +66112,13 @@ def threshold_monitor_interface_policy_create(self, policy=None, area=None, api_
         * NOS: 6.0.2b, 7.0.1a, 7.1.0
         * SLXOS: 16r.1.00b    
 
-    **Parent Instance Keyword Argument Tuple(s)**:
+    **Instance Keyword Argument Tuple**:
 
     :type policy: policy_name
     :param policy: Keyword argument tuple.
 
     :type policy_name: unicode
     :param policy_name: **policy** tuple argument.
-
-    **Instance Keyword Argument Tuple**:
-
-    :type area: type, area_value
-    :param area: Keyword argument tuple.
-
-    :type type: unicode
-    :param type: **area** tuple argument:  Interface types that can be configured independent of speed
-
-        * enumeration restriction: ::
-
-            ['Ethernet']
-
-    :type area_value: unicode
-    :param area_value: **area** tuple argument.
-
-        * enumeration restriction: ::
-
-            ['MissingTerminationCharacter',
-            'CRCAlignErrors',
-            'IFG',
-            'SymbolErrors']
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -61671,16 +66136,16 @@ def threshold_monitor_interface_policy_create(self, policy=None, area=None, api_
 
     operation_type = 'create'
     compositions_list = [('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.interface.policy', u'policy'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.interface.policy', u'policy'), ('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.interface.policy', u'policy'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.interface.policy', u'policy')]
-    bindings_list = [('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.interface.policy.area', 'pybind.nos.v6_0_2b.brocade_threshold_monitor', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.interface.policy.area', 'pybind.nos.v7_0_1a.brocade_threshold_monitor', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.interface.policy.area', 'pybind.nos.v7_1_0.brocade_threshold_monitor', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.interface.policy.area', 'pybind.slxos.v16r_1_00b.brocade_threshold_monitor', 'pybind.slxos.v16r_1_00b')]
+    bindings_list = [('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.interface.policy', 'pybind.nos.v6_0_2b.brocade_threshold_monitor', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.interface.policy.area', 'pybind.nos.v6_0_2b.brocade_threshold_monitor', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.interface.policy', 'pybind.nos.v7_0_1a.brocade_threshold_monitor', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.interface.policy.area', 'pybind.nos.v7_0_1a.brocade_threshold_monitor', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.interface.policy', 'pybind.nos.v7_1_0.brocade_threshold_monitor', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.interface.policy.area', 'pybind.nos.v7_1_0.brocade_threshold_monitor', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.interface.policy', 'pybind.slxos.v16r_1_00b.brocade_threshold_monitor', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.interface.policy.area', 'pybind.slxos.v16r_1_00b.brocade_threshold_monitor', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
     compositions_keyval_list = [{'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}]
-    bindings_keyval = {'kwargs_key_name': u'area', 'keyval': 'type, area_value', 'extra_keyval': ''}
+    bindings_keyval = {'kwargs_key_name': u'policy', 'keyval': 'policy_name', 'extra_keyval': 'policy_name'}
     composed_child_leafval_list = []
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, policy=policy, area=area)
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, policy=policy)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
-def threshold_monitor_security_policy_create(self, policy=None, area=None, api_timeout=''):
+def threshold_monitor_security_policy_create(self, policy=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
@@ -61689,25 +66154,13 @@ def threshold_monitor_security_policy_create(self, policy=None, area=None, api_t
         * NOS: 6.0.2b, 7.0.1a, 7.1.0
         * SLXOS: 16r.1.00b    
 
-    **Parent Instance Keyword Argument Tuple(s)**:
+    **Instance Keyword Argument Tuple**:
 
     :type policy: sec_policy_name
     :param policy: Keyword argument tuple.
 
     :type sec_policy_name: unicode
     :param sec_policy_name: **policy** tuple argument.
-
-    **Instance Keyword Argument Tuple**:
-
-    :type area: sec_area_value
-    :param area: Keyword argument tuple.
-
-    :type sec_area_value: unicode
-    :param sec_area_value: **area** tuple argument:  Security Areas
-
-        * enumeration restriction: ::
-
-            ['telnet-violation', 'login-violation']
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -61725,16 +66178,16 @@ def threshold_monitor_security_policy_create(self, policy=None, area=None, api_t
 
     operation_type = 'create'
     compositions_list = [('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.security.policy', u'policy'), ('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.security.policy', u'policy'), ('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.security.policy', u'policy'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.security.policy', u'policy')]
-    bindings_list = [('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.security.policy.area', 'pybind.nos.v6_0_2b.brocade_threshold_monitor', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.security.policy.area', 'pybind.nos.v7_0_1a.brocade_threshold_monitor', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.security.policy.area', 'pybind.nos.v7_1_0.brocade_threshold_monitor', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.security.policy.area', 'pybind.slxos.v16r_1_00b.brocade_threshold_monitor', 'pybind.slxos.v16r_1_00b')]
+    bindings_list = [('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.security.policy', 'pybind.nos.v6_0_2b.brocade_threshold_monitor', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.security.policy.area', 'pybind.nos.v6_0_2b.brocade_threshold_monitor', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.security.policy', 'pybind.nos.v7_0_1a.brocade_threshold_monitor', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.security.policy.area', 'pybind.nos.v7_0_1a.brocade_threshold_monitor', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.security.policy', 'pybind.nos.v7_1_0.brocade_threshold_monitor', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.security.policy.area', 'pybind.nos.v7_1_0.brocade_threshold_monitor', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.security.policy', 'pybind.slxos.v16r_1_00b.brocade_threshold_monitor', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.security.policy.area', 'pybind.slxos.v16r_1_00b.brocade_threshold_monitor', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
     compositions_keyval_list = [{'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}, {'keyval': 'sec_policy_name', 'extra_keyval': 'sec_policy_name'}]
     bindings_keyval = {'kwargs_key_name': u'area', 'keyval': 'sec_area_value', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, policy=policy, area=area)
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, policy=policy)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
-def threshold_monitor_sfp_policy_create(self, policy=None, area=None, api_timeout=''):
+def threshold_monitor_sfp_policy_create(self, policy=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
@@ -61743,42 +66196,13 @@ def threshold_monitor_sfp_policy_create(self, policy=None, area=None, api_timeou
         * NOS: 6.0.2b, 7.0.1a, 7.1.0
         * SLXOS: 16r.1.00b    
 
-    **Parent Instance Keyword Argument Tuple(s)**:
+    **Instance Keyword Argument Tuple**:
 
     :type policy: policy_name
     :param policy: Keyword argument tuple.
 
     :type policy_name: unicode
     :param policy_name: **policy** tuple argument.
-
-    **Instance Keyword Argument Tuple**:
-
-    :type area: type, area_value
-    :param area: Keyword argument tuple.
-
-    :type type: unicode
-    :param type: **area** tuple argument:  SFP types that can be configured
-
-        * enumeration restriction: ::
-
-            ['10GLR',
-            '1GLR',
-            '100GSR',
-            '10GUSR',
-            '1GSR',
-            '10GSR',
-            'QSFP']
-
-    :type area_value: unicode
-    :param area_value: **area** tuple argument.
-
-        * enumeration restriction: ::
-
-            ['Current',
-            'RXP',
-            'TXP',
-            'Voltage',
-            'Temperature']
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -61796,12 +66220,12 @@ def threshold_monitor_sfp_policy_create(self, policy=None, area=None, api_timeou
 
     operation_type = 'create'
     compositions_list = [('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.sfp.policy', u'policy'), ('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.sfp.policy', u'policy'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.sfp.policy', u'policy'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.sfp.policy', u'policy')]
-    bindings_list = [('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.sfp.policy.area', 'pybind.nos.v6_0_2b.brocade_threshold_monitor', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.sfp.policy.area', 'pybind.nos.v7_0_1a.brocade_threshold_monitor', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.sfp.policy.area', 'pybind.nos.v7_1_0.brocade_threshold_monitor', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.sfp.policy.area', 'pybind.slxos.v16r_1_00b.brocade_threshold_monitor', 'pybind.slxos.v16r_1_00b')]
+    bindings_list = [('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.sfp.policy', 'pybind.nos.v6_0_2b.brocade_threshold_monitor', 'pybind.nos.v6_0_2b'), ('pybind.nos.v6_0_2b.threshold_monitor_hidden.threshold_monitor.sfp.policy.area', 'pybind.nos.v6_0_2b.brocade_threshold_monitor', 'pybind.nos.v6_0_2b'), ('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.sfp.policy', 'pybind.nos.v7_0_1a.brocade_threshold_monitor', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_0_1a.threshold_monitor_hidden.threshold_monitor.sfp.policy.area', 'pybind.nos.v7_0_1a.brocade_threshold_monitor', 'pybind.nos.v7_0_1a'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.sfp.policy', 'pybind.nos.v7_1_0.brocade_threshold_monitor', 'pybind.nos.v7_1_0'), ('pybind.nos.v7_1_0.threshold_monitor_hidden.threshold_monitor.sfp.policy.area', 'pybind.nos.v7_1_0.brocade_threshold_monitor', 'pybind.nos.v7_1_0'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.sfp.policy', 'pybind.slxos.v16r_1_00b.brocade_threshold_monitor', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.threshold_monitor_hidden.threshold_monitor.sfp.policy.area', 'pybind.slxos.v16r_1_00b.brocade_threshold_monitor', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
     compositions_keyval_list = [{'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}, {'keyval': 'policy_name', 'extra_keyval': 'policy_name'}]
     bindings_keyval = {'kwargs_key_name': u'area', 'keyval': 'type, area_value', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, policy=policy, area=area)
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, policy=policy)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -63428,6 +67852,57 @@ def vrf_create(self, vrf=None, api_timeout=''):
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def vrf_address_family_ipv4_unicast_create(self, vrf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type vrf: vrf_name
+    :param vrf: Keyword argument tuple.
+
+    :type vrf_name: unicode
+    :param vrf_name: **vrf** tuple argument:  <WORD:1-32>;;Name of VRF
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.vrf', 'vrf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.vrf.address_family.ip.unicast', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, vrf=vrf)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def vrf_address_family_ipv4_unicast_arp_create(self, vrf=None, arp_entry=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -63599,7 +68074,7 @@ def vrf_address_family_ipv4_unicast_ip_import_routes_create(self, vrf=None, rout
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
-def vrf_address_family_ipv4_unicast_ip_route_create(self, vrf=None, static_route_nh_vrf=None, api_timeout=''):
+def vrf_address_family_ipv4_unicast_ip_route_create(self, vrf=None, static_route_nh=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
 
@@ -63627,11 +68102,11 @@ def vrf_address_family_ipv4_unicast_ip_route_create(self, vrf=None, static_route
 
     **Instance Keyword Argument Tuple**:
 
-    :type static_route_nh_vrf: static_route_next_vrf_dest, next_hop_vrf, static_route_next_hop
-    :param static_route_nh_vrf: Keyword argument tuple.
+    :type static_route_nh: static_route_dest, static_route_next_hop
+    :param static_route_nh: Keyword argument tuple.
 
-    :type static_route_next_vrf_dest: unicode
-    :param static_route_next_vrf_dest: **static_route_nh_vrf** tuple argument:  A.B.C.D/L ;; Destination IP address
+    :type static_route_dest: unicode
+    :param static_route_dest: **static_route_nh** tuple argument:  A.B.C.D/L ;; Destination IP address
 
         * pattern restriction: ::
 
@@ -63639,21 +68114,8 @@ def vrf_address_family_ipv4_unicast_ip_route_create(self, vrf=None, static_route
             '5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-'
             '9]|25[0-5])/(([0-9])|([1-2][0-9])|(3[0-2]))'
 
-    :type next_hop_vrf: unicode
-    :param next_hop_vrf: **static_route_nh_vrf** tuple argument:  Next Hop Vrf Name
-
-        * length restriction: ::
-
-            ['1..32']
-
-        * pattern restriction: ::
-
-            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
-            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
-            '-Z0-9]\.?)|\.'
-
     :type static_route_next_hop: unicode
-    :param static_route_next_hop: **static_route_nh_vrf** tuple argument:  A.B.C.D ;; Next hop IP address
+    :param static_route_next_hop: **static_route_nh** tuple argument:  A.B.C.D ;; Next hop IP address
 
         * pattern restriction: ::
 
@@ -63677,12 +68139,12 @@ def vrf_address_family_ipv4_unicast_ip_route_create(self, vrf=None, static_route
 
     operation_type = 'create'
     compositions_list = [('pybind.slxos.v16r_1_00b.vrf', 'vrf')]
-    bindings_list = [('pybind.slxos.v16r_1_00b.vrf.address_family.ip.unicast.ip.route.static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ip.unicast.ip.route.static_route_oif_vrf', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.vrf.address_family.ip.unicast.ip.route.static_route_nh', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ip.unicast.ip.route.static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ip.unicast.ip.route.static_route_oif', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ip.unicast.ip.route.static_route_oif_vrf', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
     compositions_keyval_list = [{'keyval': 'vrf_name', 'extra_keyval': ''}]
-    bindings_keyval = {'kwargs_key_name': u'static_route_nh_vrf', 'keyval': 'static_route_next_vrf_dest, next_hop_vrf, static_route_next_hop', 'extra_keyval': ''}
+    bindings_keyval = {'kwargs_key_name': u'static_route_nh', 'keyval': 'static_route_dest, static_route_next_hop', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, vrf=vrf, static_route_nh_vrf=static_route_nh_vrf)
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, vrf=vrf, static_route_nh=static_route_nh)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -63757,6 +68219,57 @@ def vrf_address_family_ipv4_unicast_ip_route_static_bfd_create(self, vrf=None, b
     bindings_keyval = {'kwargs_key_name': u'bfd_static_route', 'keyval': 'bfd_static_route_dest, bfd_static_route_src', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, vrf=vrf, bfd_static_route=bfd_static_route)
+
+    return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
+def vrf_address_family_ipv6_unicast_create(self, vrf=None, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 16r.1.00b    
+
+    **Parent Instance Keyword Argument Tuple(s)**:
+
+    :type vrf: vrf_name
+    :param vrf: Keyword argument tuple.
+
+    :type vrf_name: unicode
+    :param vrf_name: **vrf** tuple argument:  <WORD:1-32>;;Name of VRF
+
+        * length restriction: ::
+
+            ['1..32']
+
+        * pattern restriction: ::
+
+            '((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-'
+            '9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA'
+            '-Z0-9]\.?)|\.'
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    """
+
+    operation_type = 'create'
+    compositions_list = [('pybind.slxos.v16r_1_00b.vrf', 'vrf')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b')]
+    composed_child_list = []
+    compositions_keyval_list = [{'keyval': 'vrf_name', 'extra_keyval': ''}]
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, vrf=vrf)
 
     return self._config_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -63922,10 +68435,10 @@ def vrf_address_family_ipv6_unicast_ipv6_route_create(self, vrf=None, ipv6_stati
 
     operation_type = 'create'
     compositions_list = [('pybind.slxos.v16r_1_00b.vrf', 'vrf')]
-    bindings_list = [('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast.ipv6.route.static_route_oif', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast.ipv6.route.ipv6_static_route_oif_vrf', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast.ipv6.route.link_local_static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast.ipv6.route.static_route_nh_vrf', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b'), ('pybind.slxos.v16r_1_00b.vrf.address_family.ipv6.unicast.ipv6.route.static_route_oif', 'pybind.slxos.v16r_1_00b.brocade_vrf', 'pybind.slxos.v16r_1_00b')]
     composed_child_list = []
     compositions_keyval_list = [{'keyval': 'vrf_name', 'extra_keyval': ''}]
-    bindings_keyval = {'kwargs_key_name': u'static_route_oif', 'keyval': 'static_route_dest, static_route_oif_type, static_route_oif_name', 'extra_keyval': ''}
+    bindings_keyval = {'kwargs_key_name': u'static_route_nh', 'keyval': 'static_route_dest, static_route_next_hop', 'extra_keyval': ''}
     composed_child_leafval_list = []
     pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, vrf=vrf, ipv6_static_route_oif_vrf=ipv6_static_route_oif_vrf)
 
