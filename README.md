@@ -16,6 +16,16 @@ Inside a python program do this:
 ```
 
 
+
+## 0.1.20:
+* Supported NOS Versions:
+** nos6.0.2c (ga)
+** nos7.0.1b (based on bld13)
+* Added presence container create/delete support.  Specifically for rbridge-id router bgp enable/disable
+* Added delete API counter parts for corresponding update APIs.
+* Fixed xml payload formation for update operations.  Uses rest alt-name instead of yang name.
+* Fixed IPv6 deletion issue.  REST URI formation in pyswitchlib was incorrect.  drop-node-names should only apply to containers.
+
 ## 0.1.19:
 * get_dict_output() method added on asset object to easily access output response from last issued API.  Also YANG list elements will consistently be returned as a python list type regardless of single instance or multiple instances created
 * Fixed out of order update for interface channel-groups api
