@@ -89,7 +89,7 @@ class PySwitchLib(object):
                                         pybind_parent_extra_key_assignment = getattr(pybind_parent_obj, '_set_' + key)
                                         pybind_parent_extra_key_assignment(parent_kwargs_map[key])
                             else:
-                                if type(kwargs[composition_tuple[1]]) == 'tuple':
+                                if isinstance(kwargs[composition_tuple[1]], tuple):
                                     pybind_module = pybind_module(' '.join(kwargs[composition_tuple[1]]))
                                 else:
                                     pybind_module = pybind_module(kwargs[composition_tuple[1]])
@@ -121,7 +121,7 @@ class PySwitchLib(object):
                                     pybind_extra_key_assignment = getattr(pybind_obj, '_set_' + key)
                                     pybind_extra_key_assignment(kwargs_map[key])
                         else:
-                            if type(kwargs[kwarg]) == 'tuple':
+                            if isinstance(kwargs[kwarg], tuple):
                                 pybind_obj = pybind_obj(' '.join(kwargs[kwarg]))
                             elif kwargs[kwarg] is not None:
                                 pybind_obj = pybind_obj(kwargs[kwarg])
