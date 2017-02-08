@@ -169,23 +169,33 @@ class PySwitchLib(object):
         rest_data = ''
         rest_commands = []
 
-        if operation_type == 'create':
+        if 'create' == operation_type:
             rest_operation = 'POST'
             rest_uri = pybind_object._rest_uri_for_post()
-        elif operation_type == 'update_patch':
+        elif 'update_patch' in operation_type:
             rest_operation = 'PATCH'
             rest_uri = pybind_object._rest_uri()
-        elif operation_type == 'update_put':
+        elif 'update_put' in operation_type:
             rest_operation = 'PUT'
             rest_uri = pybind_object._rest_uri()
-        elif operation_type == 'delete':
+        elif 'delete' == operation_type:
             rest_operation = 'DELETE'
             rest_uri = pybind_object._rest_uri()
 
         label_list_items = lambda x: x
 
         if 'update' in operation_type:
+            update_object_rest_data = ''
+            update_key_count = 0
+            delete_key_count = 0
             rest_data =  dicttoxml(json.loads(pybindJSON.dumps(pybind_object, mode='rest'), object_pairs_hook=OrderedDict), root=False, attr_type=False, item_func=label_list_items)
+
+            for key in pybind_object.elements():
+                update_object_name = getattr(pybind_object, '_get_' + key)
+                update_object = update_object_name()
+
+                if update_object._is_keyval == False and update_object._changed() == True:
+                    update_key_count += 1
 
             for key in pybind_object.elements():
                 update_object_name = getattr(pybind_object, '_get_' + key)
@@ -206,23 +216,37 @@ class PySwitchLib(object):
                     if hasattr(temp_pybind_obj, '_pyangbind_elements'):
                         rest_data = dicttoxml(json.loads(pybindJSON.dumps(temp_pybind_obj, mode='rest'), object_pairs_hook=OrderedDict), root=False, attr_type=False, item_func=label_list_items)
 
-                    update_object_rest_data = rest_data
-
-                    match = re.match(r'.*(<{0}>.*</{0}>).*'.format(rest_name), update_object_rest_data)
+                    match = re.match(r'.*(<{0}>.*</{0}>).*'.format(rest_name), rest_data)
 
                     if match:
                         update_object_rest_data = match.group(1)
 
                     if temp_pybind_obj == False:
                         rest_operation = 'DELETE'
-                        update_object_rest_data = ''
                     else:
-                        if operation_type == 'update_patch':
+                        if 'update_patch' in operation_type:
                             rest_operation = 'PATCH'
-                        elif operation_type == 'update_put':
+                        elif 'update_put' in operation_type:
                             rest_operation = 'PUT' 
 
-                    rest_commands.append([rest_operation, rest_uri, update_object_rest_data, 'config', resource_depth])
+                    if rest_operation == 'DELETE':
+                        delete_key_count += 1
+                        rest_commands.append([rest_operation, rest_uri, '', 'config', resource_depth])
+                    elif 'bulk' not in operation_type:
+                        rest_commands.append([rest_operation, rest_uri, update_object_rest_data, 'config', resource_depth])
+                        
+            if 'bulk' in operation_type:
+                if 'update_patch' in operation_type:
+                    rest_operation = 'PATCH'
+                elif 'update_put' in operation_type:
+                    rest_operation = 'PUT'
+
+                update_object = update_object._parent
+                rest_uri = update_object._rest_uri()
+                rest_uri_end_element = rest_uri.split('/')[-1]
+                update_object_rest_data = '<{0}>{1}</{0}>'.format(rest_uri_end_element, rest_data)
+
+                rest_commands.append([rest_operation, rest_uri, update_object_rest_data, 'config', resource_depth])
 
             rest_commands.reverse()
         else:
