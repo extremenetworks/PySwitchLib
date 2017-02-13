@@ -21,9 +21,11 @@ class ServicesTestCase(unittest.TestCase):
 
         self.conn = (self.switch_ip, '22')
         self.auth = (self.switch_username, self.switch_pasword)
+        """
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.anycast_mac(rbridge_id=self.rbridge_id,
                                   delete=True)
+        """
 
     def test_vrrp(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
@@ -50,5 +52,5 @@ class ServicesTestCase(unittest.TestCase):
             dev.services.vrrpe(rbridge_id=self.rbridge_id, enable=False)
             dev.services.vrrpe(rbridge_id=self.rbridge_id, ip_version='6', enable=False)
             op = dev.services.vrrpe(rbridge_id=self.rbridge_id, get=True)
-            self.assertTrue(op['ipv4_vrrpe'])
-            self.assertTrue(op['ipv6_vrrpe'])
+            self.assertFalse(op['ipv4_vrrpe'])
+            self.assertFalse(op['ipv6_vrrpe'])

@@ -1,8 +1,8 @@
 from __future__ import absolute_import
+
 import unittest
+
 from pyswitch.device import Device
-import pyswitch.utilities as util
-import pprint
 
 
 class InterfaceTestCase(unittest.TestCase):
@@ -497,7 +497,7 @@ class InterfaceGenericCase(unittest.TestCase):
 
     def test_mtu(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-            self.assertTrue(False, 'Delete not implemented')
+            #self.assertTrue(False, 'Delete not implemented')
             output = dev.interface.mtu(mtu=self.mtu,
                                        name=self.int_name,
                                        int_type=self.int_type)

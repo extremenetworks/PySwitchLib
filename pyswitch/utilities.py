@@ -194,9 +194,9 @@ def valid_vlan_id(vlan_id, extended=True):
         True
         >>> extended = False
         >>> vlan = '6789'
-        >>> pyswitch.utilities.valid_vlan_id(vlan, extended=extended)
+        >>> pyswitch.os.base.utilities.valid_vlan_id(vlan, extended=extended)
         False
-        >>> pyswitch.utilities.valid_vlan_id(vlan)
+        >>> pyswitch.os.base.utilities.valid_vlan_id(vlan)
         True
     """
     minimum_vlan_id = 1
@@ -227,20 +227,22 @@ def valid_interface(int_type, name):
         >>> pyswitch.utilities.valid_interface(int_type, name)
         True
         >>> name = '5/0'
-        >>> pyswitch.utilities.valid_interface(int_type, name)
+        >>> pyswitch.os.base.utilities.valid_interface(int_type, name)
         False
         >>> int_type = 'port_channel'
         >>> name = '1'
-        >>> pyswitch.utilities.valid_interface(int_type, name)
+        >>> pyswitch.os.base.utilities.valid_interface(int_type, name)
         True
         >>> int_type = 'port_channel'
         >>> name = '1/0'
-        >>> pyswitch.utilities.valid_interface(int_type, name)
+        >>> pyswitch.os.base.utilities.valid_interface(int_type, name)
         False
     """
 
     if int_type == 'port_channel':
         return valid_port_channel_name(name)
+    if int_type == 've':
+        return valid_vlan_id(name)
     else:
         return valid_physical_name(name,int_type)
 

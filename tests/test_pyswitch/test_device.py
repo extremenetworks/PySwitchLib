@@ -28,6 +28,16 @@ class DeviceTestCase(unittest.TestCase):
             with Device(conn=self.conn, auth=self.auth) as dev:
                 dev.firmware_version
 
+    def test_get_os_type(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            print dev.os_type
+            pprint.pprint(dev.firmware_version)
+
+
+        self.conn = ('10.24.4.215', '22')
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            print dev.os_type
+            pprint.pprint(dev.firmware_version)
 
     def test_firmware_version(self):
         with Device(conn=self.conn, auth=self.auth) as dev:

@@ -77,23 +77,22 @@ class InterfaceVRFTestCase(unittest.TestCase):
             output = dev.interface.vrf(get=True,
                                        rbridge_id=self.rbridge_id)
             self.assertIn(
-                {'vrf_name': self.vrf, 'rbridge_id': self.rbridge_id}, output)
+                {'vrf_name': self.vrf}, output)
             output = dev.interface.vrf(vrf_name=self.vrf,
                                        rbridge_id=self.rbridge_id, delete=True)
             output = dev.interface.vrf(get=True,
                                        rbridge_id=self.rbridge_id)
             self.assertNotIn(
-                {'vrf_name': self.vrf, 'rbridge_id': self.rbridge_id}, output)
-
+                {'vrf_name': self.vrf}, output)
 
     def test_vrf_afi(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-            dev.interface.vrf_afi(vrf_name=self.vrf,afi='ipv4',rbridge_id=self.rbridge_id)
+            dev.interface.vrf_afi(vrf_name=self.vrf, afi='ipv4', rbridge_id=self.rbridge_id)
 
-            op = dev.interface.vrf_afi(vrf_name=self.vrf, rbridge_id=self.rbridge_id,get=True)
-            self.assertEqual({'ipv4': True, 'ipv6': False},op)
+            op = dev.interface.vrf_afi(vrf_name=self.vrf, rbridge_id=self.rbridge_id, get=True)
+            self.assertEqual({'ipv4': True, 'ipv6': False}, op)
 
-            dev.interface.vrf_afi(vrf_name=self.vrf, afi='ipv4', rbridge_id=self.rbridge_id,delete=True)
+            dev.interface.vrf_afi(vrf_name=self.vrf, afi='ipv4', rbridge_id=self.rbridge_id, delete=True)
 
             op = dev.interface.vrf_afi(vrf_name=self.vrf, rbridge_id=self.rbridge_id, get=True)
             self.assertEqual({'ipv4': False, 'ipv6': False}, op)
@@ -118,8 +117,7 @@ class InterfaceVRFTestCase(unittest.TestCase):
             output = dev.interface.vrf_route_distiniguisher(
                 get=True, vrf_name=self.vrf, rbridge_id=self.rbridge_id)
             print output
-            self.assertIn({'rd': self.rd, 'vrf_name': self.vrf,
-                           'rbridge_id': self.rbridge_id}, output)
+            self.assertIn({'rd': self.rd, 'vrf_name': self.vrf}, output)
 
             output = dev.interface.vrf_route_distiniguisher(
                 vrf_name=self.vrf, delete=True, rbridge_id=self.rbridge_id, rd=self.rd)
@@ -152,31 +150,19 @@ class InterfaceVRFTestCase(unittest.TestCase):
 
     def test_fabric_isl(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-            op = dev.interface.fabric_isl(
-                int_type=self.int_type,
-                name=self.int_name,
-                enabled=False)
-            op = dev.interface.fabric_isl(
-                int_type=self.int_type, name=self.int_name, get=True)
-            self.assertIsNone(op)
-            op = dev.interface.fabric_isl(
-                int_type=self.int_type, name=self.int_name, enabled=True)
-            op = dev.interface.fabric_isl(
-                int_type=self.int_type, name=self.int_name, get=True)
-            self.assertTrue(op)
+            with self.assertRaises(ValueError) as context:
+                op = dev.interface.fabric_isl(
+                    int_type=self.int_type,
+                    name=self.int_name,
+                    enabled=False)
+
 
     def test_fabric_trunk(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-            op = dev.interface.fabric_trunk(
-                int_type=self.int_type, name=self.int_name, enabled=False)
-            op = dev.interface.fabric_trunk(
-                int_type=self.int_type, name=self.int_name, get=True)
-            self.assertIsNone(op)
-            op = dev.interface.fabric_trunk(
-                int_type=self.int_type, name=self.int_name, enabled=True)
-            op = dev.interface.fabric_trunk(
-                int_type=self.int_type, name=self.int_name, get=True)
-            self.assertTrue(op)
+            with self.assertRaises(ValueError) as context:
+                op = dev.interface.fabric_trunk(
+                    int_type=self.int_type, name=self.int_name, enabled=False)
+
 
     def tearDown(self):
         with Device(conn=self.conn, auth=self.auth) as dev:

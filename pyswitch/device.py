@@ -14,26 +14,60 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-from netmiko import ConnectHandler
-import pyswitchlib.asset
-import pyswitch.utilities as util
-import pyswitch.utilities
-import xml.etree.ElementTree as ElementTree
-import re
-import pyswitch.system
-import pyswitch.services
-import pyswitch.lldp
-import pyswitch.vcs
-import pyswitch.interface
-import pyswitch.snmp
-#import pyswitch.bgp
-import pyswitch.fabric_service
 import logging
+import sys
+
 import requests.exceptions
 
+import pyswitch.os.base.fabric_service
+import pyswitch.os.base.lldp
+import pyswitch.os.base.snmp
+import pyswitch.os.base.vcs
+import pyswitch.os.nos.base.interface
+import pyswitch.os.nos.base.services
+import pyswitch.os.slxos.base.services
+import pyswitch.os.nos.base.system
+import pyswitch.os.slxos.base.interface
+import pyswitch.os.slxos.base.system
+import pyswitch.utilities as util
+import pyswitchlib.asset
 
-NOS_ATTRS = ['bgp', 'snmp', 'interface', 'lldp', 'system', 'services',
-             'fabric_service', 'vcs', 'firmware', 'ras']
+NOS_ATTRS = ['snmp', 'interface', 'lldp', 'system', 'services',
+             'fabric_service', 'vcs']
+NOS_VERSIONS = {
+    '7.0.1': {
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.nos.base.interface.Interface,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.nos.base.system.System,
+        'services': pyswitch.os.nos.base.services.Services,
+        'fabric_service': pyswitch.os.base.fabric_service.FabricService,
+        'vcs': pyswitch.os.base.vcs.VCS
+
+    },
+    '7.1.0': {
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.nos.base.interface.Interface,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.nos.base.system.System,
+        'services': pyswitch.os.nos.base.services.Services,
+        'fabric_service': pyswitch.os.base.fabric_service.FabricService,
+        'vcs': pyswitch.os.base.vcs.VCS
+    },
+}
+
+SLXOS_VERSIONS = {
+    '17.1.0': {
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.slxos.base.interface.Interface,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.slxos.base.system.System,
+        'services': pyswitch.os.slxos.base.services.Services,
+        'fabric_service': pyswitch.os.base.fabric_service.FabricService,
+        'vcs': pyswitch.os.base.vcs.VCS
+
+    },
+}
 
 
 class DeviceCommError(Exception):
@@ -44,7 +78,6 @@ class DeviceCommError(Exception):
 
 
 class Reply:
-
     def __init__(self, json):
         self.json = json
 
@@ -79,15 +112,14 @@ class Device(object):
 
         self.reconnect()
 
-        setattr(self, 'system', pyswitch.system.System(self._callback))
-        setattr(self, 'services', pyswitch.services.Services(self._callback))
-        setattr(self, 'snmp', pyswitch.snmp.SNMP(self._callback))
-        setattr(self, 'lldp', pyswitch.lldp.LLDP(self._callback))
-        setattr(self, 'vcs', pyswitch.vcs.VCS(self._callback))
-        setattr(self,'interface',pyswitch.interface.Interface(self._callback))
-        #setattr(self, 'bgp', pyswitch.bgp.BGP(self._callback))
-        setattr(self,'fabric_service',pyswitch.fabric_service.FabricService(self._callback))
-        setattr(self,'asset',self._mgr)
+        ver = self.firmware_version
+        thismodule = sys.modules[__name__]
+        os_table = getattr(thismodule, '%s_VERSIONS' % str(self.os_type).upper())
+
+        for nos_attr in NOS_ATTRS:
+            setattr(self, nos_attr, os_table[ver][nos_attr](self._callback))
+
+        setattr(self, 'asset', self._mgr)
 
     def __enter__(self):
         if not self._mgr:
@@ -135,6 +167,10 @@ class Device(object):
                               type=mac_type))
 
         return table
+
+    @property
+    def os_type(self):
+        return self._mgr.get_os_type()
 
     @property
     def firmware_version(self):
@@ -189,7 +225,7 @@ class Device(object):
         if not status:
             op = self._mgr.get_dict_output()
             print op
-            if ''!=op and 'object already exists' not in op:
+            if '' != op and 'object already exists' not in op:
                 raise ValueError(op)
 
         if handler == 'get_config':
@@ -212,7 +248,7 @@ class Device(object):
 
         try:
             self._mgr = pyswitchlib.asset.Asset(ip_addr=self._conn[0],
-                                            auth=self._auth)
+                                                auth=self._auth)
 
             self.logger.info('successfully connected to %s' % self._conn[0])
         except AttributeError as e:
@@ -279,3 +315,4 @@ class Device(object):
             False
         """
         return self._mgr.close_session()
+0

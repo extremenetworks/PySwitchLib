@@ -7,6 +7,7 @@ class SystemTestCase(unittest.TestCase):
 
     def setUp(self):
         self.conn = ('10.37.18.131', '22')
+
         self.auth = ('admin', 'password')
         self.rbridge_id = '1'
         self.system_ip_mtu = '1610'
@@ -41,7 +42,11 @@ class SystemTestCase(unittest.TestCase):
         with Device(conn=self.conn, auth=self.auth) as dev:
             output = dev.system.rbridge_id(get=True)
             print output
+<<<<<<< HEAD
+            #dev.system.rbridge_id(rbridge_id='3')
+=======
             dev.system.rbridge_id(rbridge_id='3')
+>>>>>>> master
 
     def test_maintenance_mode(self):
         with Device(conn=self.conn, auth=self.auth) as dev:

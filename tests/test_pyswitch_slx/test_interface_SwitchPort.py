@@ -23,6 +23,8 @@ class InterfaceSwitchPort(unittest.TestCase):
             self.second_vlan = str(switch.second_vlan)
             self.gvlan = str(switch.gvlan)
 
+
+
             self.int_name = str(switch.int_name)
             self.int_type = str(switch.int_type)
 
@@ -182,21 +184,7 @@ class InterfaceSwitchPort(unittest.TestCase):
                                                    get=True)
             self.assertFalse(op)
 
-            dev.interface.spanning_tree_state(name=self.vlan,
-                                              int_type='vlan',
-                                              enabled=True)
-            op = dev.interface.spanning_tree_state(name=self.vlan,
-                                                   int_type='vlan',
-                                                   get=True)
-            self.assertTrue(op)
 
-            dev.interface.spanning_tree_state(name=self.vlan,
-                                              int_type='vlan',
-                                              enabled=False)
-            op = dev.interface.spanning_tree_state(name=self.vlan,
-                                                   int_type='vlan',
-                                                   get=True)
-            self.assertFalse(op)
 
     def test_tag_native_vlan(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
