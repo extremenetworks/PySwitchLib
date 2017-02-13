@@ -15,7 +15,9 @@ limitations under the License.
 """
 
 import xml.etree.ElementTree as ET
+
 import pyswitch.utilities as util
+
 
 class Services(object):
     """
@@ -201,4 +203,6 @@ class Services(object):
 
         config = (vrrpe_method, vrrpe_args)
         return callback(config)
+
+
 0
