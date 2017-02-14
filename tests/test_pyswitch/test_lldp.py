@@ -5,7 +5,9 @@ import pprint
 import yaml
 from attrdict import AttrDict
 
+
 class LLDPTestCase(unittest.TestCase):
+
     def __init__(self, *args, **kwargs):
         super(LLDPTestCase, self).__init__(*args, **kwargs)
         with open('config.yaml') as fileobj:
@@ -17,8 +19,6 @@ class LLDPTestCase(unittest.TestCase):
             self.switch_pasword = switch.password
             self.conn = (self.switch_ip, '22')
             self.auth = (self.switch_username, self.switch_pasword)
-
-
 
     def test_lldp(self):
         with Device(conn=self.conn, auth=self.auth) as dev:

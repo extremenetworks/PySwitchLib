@@ -45,36 +45,6 @@ class InterfaceTestCase(unittest.TestCase):
                 int_type='tengigabitethernet',
                 name='1/0/6',
                 ip_addr='10.32.45.1/24')
-            """
-            dev.interface.ip_address(int_type='tengigabitethernet', name='1/0/6', ip_addr='fc00:1:3:1ad3:0:0:23:a/64')
-            dev.interface.ip_address(int_type='loopback', name=self.rbridge_id, rbridge_id='1', ip_addr='10.32.35.2/32')
-            dev.interface.ip_address(int_type='loopback', name='1', rbridge_id='1',
-                                     ip_addr='fc01:1:3:1ad3:0:0:23:a/128')
-            dev.interface.ip_address(int_type='ve', name='1', rbridge_id='1', ip_addr='10.32.55.2/24')
-            dev.interface.ip_address(int_type='ve', name='1', rbridge_id='1', ip_addr='fc02:1:3:1ad3:0:0:23:a/64')
-
-            ## Delete
-            dev.interface.ip_address(int_type='tengigabitethernet', name='1/0/6', ip_addr='10.32.45.1/24', delete=True)
-            dev.interface.ip_address(int_type='tengigabitethernet', name='1/0/6', ip_addr='fc00:1:3:1ad3:0:0:23:a/64',
-                                     delete=True)
-
-            dev.interface.ip_address(int_type='loopback', name='1', rbridge_id='1', ip_addr='10.32.35.2/32',
-                                     delete=True)
-            dev.interface.ip_address(int_type='loopback', name='1', rbridge_id='1',
-                                     ip_addr='fc01:1:3:1ad3:0:0:23:a/128', delete=True)
-
-            dev.interface.ip_address(int_type='ve', name='1', rbridge_id='1', ip_addr='10.32.55.2/24', delete=True)
-            dev.interface.ip_address(int_type='ve', name='1', rbridge_id='1', ip_addr='fc02:1:3:1ad3:0:0:23:a/64',
-                                     delete=True)
-
-            print dev.interface.ip_address(int_type='ve', name='1', rbridge_id='1', ip_addr='10.32.55.2/24', get=True)
-            print dev.interface.ip_address(int_type='loopback', name='1', rbridge_id='1', ip_addr='10.32.35.2/32',
-                                           get=True)
-            print dev.interface.ip_address(int_type='tengigabitethernet', name='1/0/6', ip_addr='10.32.45.1/24',
-                                           get=True)
-
-            print dev.interface.get_ip_addresses(int_type='tengigabitethernet', name='1/0/16', version=4)
-            """
 
     """
      Overlay Gateway related - starts
@@ -90,14 +60,14 @@ class InterfaceTestCase(unittest.TestCase):
                 int_type='tengigabitethernet',
                 name='1/0/6',
                 enabled=True)
-            op=  dev.interface.admin_state(
+            op = dev.interface.admin_state(
                 int_type='tengigabitethernet', name='1/0/6', get=True)
             self.assertTrue(op)
             dev.interface.admin_state(
                 int_type='tengigabitethernet',
                 name='1/0/6',
                 enabled=False)
-            op =  dev.interface.admin_state(
+            op = dev.interface.admin_state(
                 int_type='tengigabitethernet', name='1/0/6', get=True)
             self.assertFalse(op)
 
@@ -156,24 +126,21 @@ class InterfaceTestCase(unittest.TestCase):
                 int_type='port_channel', name='1', get=True)
             self.assertFalse(op)
 
-
-
-
     def test_int_ipv4_arp_aging_timout(self):
         self.conn = ('10.37.18.135', '22')
         with Device(conn=self.conn, auth=self.auth) as dev:
-            output = dev.interface.int_ipv4_arp_aging_timout(
-                arp_aging_timeout='21', name='135/0/20', int_type='tengigabitethernet')
-            op = dev.interface.int_ipv4_arp_aging_timout(
-                 name='135/0/20', int_type='tengigabitethernet' ,get=True)
-            self.assertEqual(op,'21')
             dev.interface.int_ipv4_arp_aging_timout(
-               name='135/0/20', int_type='tengigabitethernet', enable=False)
+                arp_aging_timeout='21', name='135/0/20',
+                int_type='tengigabitethernet')
+            op = dev.interface.int_ipv4_arp_aging_timout(
+                name='135/0/20', int_type='tengigabitethernet', get=True)
+            self.assertEqual(op, '21')
+            dev.interface.int_ipv4_arp_aging_timout(
+                name='135/0/20', int_type='tengigabitethernet', enable=False)
 
             op = dev.interface.int_ipv4_arp_aging_timout(
                 name='135/0/20', int_type='tengigabitethernet', get=True)
             self.assertIsNone(op)
-
 
     def test_transport_service(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
@@ -187,20 +154,20 @@ class InterfaceTestCase(unittest.TestCase):
         with Device(conn=self.conn, auth=self.auth) as dev:
             int_type = 'tengigabitethernet'
             name = '1/0/10'
-            output = dev.interface.channel_group(
+            dev.interface.channel_group(
                 name=name,
                 int_type=int_type,
                 port_int='1',
                 channel_type='standard',
                 mode='active')
-            output = dev.interface.lacp_timeout(
+            dev.interface.lacp_timeout(
                 name=name, int_type=int_type, timeout='long')
 
     def test_port_channel_vlag_ignore_split(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-            output = dev.interface.port_channel_vlag_ignore_split(
+            dev.interface.port_channel_vlag_ignore_split(
                 name='2', enabled=True)
-            output = dev.interface.port_channel_vlag_ignore_split(
+            dev.interface.port_channel_vlag_ignore_split(
                 name='2', enabled=False)
 
     """
@@ -213,15 +180,13 @@ class InterfaceTestCase(unittest.TestCase):
             name = '1/0/6'
             donor_type = 'loopback'
             donor_name = '1'
-            output = dev.interface.disable_switchport(
+            dev.interface.disable_switchport(
                 inter_type=int_type, inter=name)
-            output = dev.interface.ip_unnumbered(
+            dev.interface.ip_unnumbered(
                 int_type=int_type,
                 name=name,
                 donor_type=donor_type,
                 donor_name=donor_name)
-
-
 
 
 class InterfaceGenericCase(unittest.TestCase):
@@ -246,7 +211,6 @@ class InterfaceGenericCase(unittest.TestCase):
         self.conn = (self.switch_ip, '22')
         self.auth = ('admin', self.admin_password)
 
-
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.create_portchannel(name=self.port_int)
             dev.interface.add_vlan_int(self.vlan)
@@ -256,7 +220,6 @@ class InterfaceGenericCase(unittest.TestCase):
             dev.interface.create_loopback(
                 lb_name=self.loopback_id,
                 rbridge_id=self.rbridge_id)
-
 
     def test_mac_move_detect_enable(self):
         self.conn = ('10.37.18.135', '22')
@@ -271,24 +234,24 @@ class InterfaceGenericCase(unittest.TestCase):
     def test_mac_move_limit(self):
         self.conn = ('10.37.18.135', '22')
         self.mac_move_limit = '32'
-        self.default_mac_move= '20'
+        self.default_mac_move = '20'
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.mac_move_limit(mac_move_limit=self.mac_move_limit)
             op = dev.interface.mac_move_limit(get=True)
-            self.assertEqual(op,self.mac_move_limit)
+            self.assertEqual(op, self.mac_move_limit)
             dev.interface.mac_move_limit(delete=True)
             op = dev.interface.mac_move_limit(get=True)
-            self.assertEqual(op,self.default_mac_move)
+            self.assertEqual(op, self.default_mac_move)
 
     def test_fabric_neighbor(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.fabric_neighbor(
-            int_type = self.int_type,
-            name = self.int_name)
+                int_type=self.int_type,
+                name=self.int_name)
             op = dev.interface.fabric_neighbor(
                 int_type=self.int_type,
                 name=self.int_name,
-                get= True)
+                get=True)
             self.assertTrue(op)
             dev.interface.fabric_neighbor(
                 int_type=self.int_type,
@@ -299,9 +262,6 @@ class InterfaceGenericCase(unittest.TestCase):
                 name=self.int_name,
                 get=True)
             self.assertIsNone(op)
-
-
-
 
     def test_v6_nd_suppress_ra(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
@@ -319,13 +279,16 @@ class InterfaceGenericCase(unittest.TestCase):
             output = dev.interface.v6_nd_suppress_ra(
                 int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id)
             output = dev.interface.v6_nd_suppress_ra(
-                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id, get=True)
+                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id,
+                get=True)
             self.assertTrue(output)
 
             output = dev.interface.v6_nd_suppress_ra(
-                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id, enabled=False)
+                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id,
+                enabled=False)
             output = dev.interface.v6_nd_suppress_ra(
-                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id, get=True)
+                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id,
+                get=True)
             self.assertIsNone(output)
 
     def test_set_ip(self):
@@ -418,14 +381,17 @@ class InterfaceGenericCase(unittest.TestCase):
             output = dev.interface.ipv6_link_local(
                 int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id)
             output = dev.interface.ipv6_link_local(
-                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id, get=True)
+                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id,
+                get=True)
             print 'VE ipv6_link_local : ', output
             self.assertEqual(True, output)
 
             output = dev.interface.ipv6_link_local(
-                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id, delete=True)
+                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id,
+                delete=True)
             output = dev.interface.ipv6_link_local(
-                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id, get=True)
+                int_type='ve', name=self.vlan, rbridge_id=self.rbridge_id,
+                get=True)
             print 'VE ipv6_link_local : ', output
             self.assertEqual(None, output)
 
@@ -497,7 +463,7 @@ class InterfaceGenericCase(unittest.TestCase):
 
     def test_mtu(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-            #self.assertTrue(False, 'Delete not implemented')
+            # self.assertTrue(False, 'Delete not implemented')
             output = dev.interface.mtu(mtu=self.mtu,
                                        name=self.int_name,
                                        int_type=self.int_type)

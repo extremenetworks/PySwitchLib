@@ -1,9 +1,11 @@
 from __future__ import absolute_import
+
 import unittest
-from pyswitch.device import Device
-import pprint
+
 import yaml
 from attrdict import AttrDict
+
+from pyswitch.device import Device
 
 
 class InterfaceEVPNTestCase(unittest.TestCase):
@@ -34,7 +36,6 @@ class InterfaceEVPNTestCase(unittest.TestCase):
             self.auth = (self.switch_username, self.switch_pasword)
 
     def setUp(self):
-
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.create_evpn_instance(rbridge_id=self.rbridge_id,
                                                evpn_instance_name=self.evpn)
@@ -47,7 +48,8 @@ class InterfaceEVPNTestCase(unittest.TestCase):
                 rbridge_id=self.rbridge_id, get=True)
             self.assertEqual(output['instance_name'], self.evpn)
             output = dev.interface.create_evpn_instance(
-                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn, enable=False)
+                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn,
+                enable=False)
             output = dev.interface.create_evpn_instance(
                 rbridge_id=self.rbridge_id, get=True)
             self.assertIsNone(output['instance_name'])
@@ -57,13 +59,15 @@ class InterfaceEVPNTestCase(unittest.TestCase):
             output = dev.interface.evpn_instance_rt_both_ignore_as(
                 rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn)
             output = dev.interface.create_evpn_instance(
-                rbridge_id=self.rbridge_id, get=True,evpn_instance_name=self.evpn)
+                rbridge_id=self.rbridge_id, get=True,
+                evpn_instance_name=self.evpn)
             print output
             output = dev.interface.evpn_instance_rt_both_ignore_as(
                 rbridge_id=self.rbridge_id, get=True)
             self.assertTrue(output)
             output = dev.interface.evpn_instance_rt_both_ignore_as(
-                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn, enable=False)
+                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn,
+                enable=False)
             output = dev.interface.evpn_instance_rt_both_ignore_as(
                 rbridge_id=self.rbridge_id, get=True)
             self.assertIsNone(output)
@@ -75,15 +79,18 @@ class InterfaceEVPNTestCase(unittest.TestCase):
                 evpn_instance_name=self.evpn,
                 duplicate_mac_timer_value=self.duplicate_mac_timer_value)
             output = dev.interface.evpn_instance_duplicate_mac_timer(
-                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn, get=True)
+                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn,
+                get=True)
             print output
             self.assertEqual(output, self.duplicate_mac_timer_value)
 
             dev.interface.evpn_instance_duplicate_mac_timer(
-                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn, enable=False)
+                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn,
+                enable=False)
 
             output = dev.interface.evpn_instance_duplicate_mac_timer(
-                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn, get=True)
+                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn,
+                get=True)
             print output
             self.assertIsNone(output)
 
@@ -94,23 +101,25 @@ class InterfaceEVPNTestCase(unittest.TestCase):
                 evpn_instance_name=self.evpn,
                 max_count=self.max_count)
             output = dev.interface.evpn_instance_mac_timer_max_count(
-                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn, get=True)
+                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn,
+                get=True)
             print output
             self.assertEqual(output, self.max_count)
 
             dev.interface.evpn_instance_mac_timer_max_count(
-                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn, enable=False)
+                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn,
+                enable=False)
             output = dev.interface.evpn_instance_mac_timer_max_count(
-                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn, get=True)
+                rbridge_id=self.rbridge_id, evpn_instance_name=self.evpn,
+                get=True)
             print output
             self.assertIsNone(output)
 
-    def test_evpn_instance_mac_timer_max_count(self):
+    def test_evpn_instance_mac_timer_max_count_1(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             output = dev.interface.evpn_instance_rd_auto(
                 rbridge_id=self.rbridge_id,
                 evpn_instance_name=self.evpn)
-
 
             self.assertIsNone(output)
 

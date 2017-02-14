@@ -5,7 +5,9 @@ import pprint
 import yaml
 from attrdict import AttrDict
 
+
 class FabricServiceTestCase(unittest.TestCase):
+
     def __init__(self, *args, **kwargs):
         super(FabricServiceTestCase, self).__init__(*args, **kwargs)
         with open('config.yaml') as fileobj:

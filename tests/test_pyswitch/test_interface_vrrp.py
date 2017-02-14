@@ -1,12 +1,15 @@
 from __future__ import absolute_import
+
 import unittest
-from pyswitch.device import Device
-import pprint
+
 import yaml
 from attrdict import AttrDict
 
+from pyswitch.device import Device
+
 
 class InterfaceVRRPTestCase(unittest.TestCase):
+
     def __init__(self, *args, **kwargs):
         super(InterfaceVRRPTestCase, self).__init__(*args, **kwargs)
         with open('config.yaml') as fileobj:
@@ -34,8 +37,6 @@ class InterfaceVRRPTestCase(unittest.TestCase):
             self.auth = (self.switch_username, self.switch_pasword)
 
     def setUp(self):
-
-
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.services.vrrpe(rbridge_id=self.rbridge_id, enable=False)
             dev.services.vrrpe(
@@ -77,7 +78,6 @@ class InterfaceVRRPTestCase(unittest.TestCase):
 
     def test_vrrp_ve_ipv6_vmac(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-
             dev.interface.vrrp_vrid(
                 int_type='ve',
                 name=self.vlan,
@@ -90,13 +90,11 @@ class InterfaceVRRPTestCase(unittest.TestCase):
                 name=self.vlan,
                 vrid=self.vrid,
                 virtual_mac='aaaa.bbbb.cccc',
-                version = 6,
+                version=6,
                 rbridge_id=self.rbridge_id)
-
 
     def test_vrrp_ve_vip(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-
             dev.interface.ip_address(name=self.vlan,
                                      int_type='ve',
                                      ip_addr='9.9.19.1/24')
@@ -173,7 +171,7 @@ class InterfaceVRRPTestCase(unittest.TestCase):
                 ip_version=4,
                 rbridge_id=self.rbridge_id,
                 get=True)
-            self.assertEqual(op,self.priority)
+            self.assertEqual(op, self.priority)
 
             dev.interface.vrrp_priority(
                 int_type='ve',

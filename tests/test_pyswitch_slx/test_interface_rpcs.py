@@ -42,15 +42,13 @@ class InterfaceRPCTestCase(unittest.TestCase):
                 channel_type='standard',
                 mode='active')
 
-
     def test_ve_interfaces(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             op = dev.interface.ve_interfaces()
             pprint.pprint(op)
             ve_names = [item['if-name'] for item in op]
             ve_name = 'Ve %s' % self.vlan
-            self.assertIn(ve_name,ve_names)
-
+            self.assertIn(ve_name, ve_names)
 
     def test_port_channels(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
@@ -58,7 +56,6 @@ class InterfaceRPCTestCase(unittest.TestCase):
 
             port_channel_list = [item['aggregator_id'] for item in op]
             self.assertIn(self.portchannel_id, port_channel_list)
-
 
     def test_port_vlans(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
@@ -80,8 +77,7 @@ class InterfaceRPCTestCase(unittest.TestCase):
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.del_vlan_int(vlan_id=self.vlan)
             dev.interface.create_ve(
-                ve_name=self.vlan, rbridge_id=self.rbridge_id,enable=False)
+                ve_name=self.vlan, rbridge_id=self.rbridge_id, enable=False)
             dev.interface.remove_port_channel(port_int=self.portchannel_id)
             dev.interface.channel_group(
                 name=self.int_name, int_type=self.int_type, delete=True)
-

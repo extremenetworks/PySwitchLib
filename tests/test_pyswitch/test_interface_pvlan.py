@@ -1,9 +1,11 @@
 from __future__ import absolute_import
+
 import unittest
-from pyswitch.device import Device
-import pprint
+
 import yaml
 from attrdict import AttrDict
+
+from pyswitch.device import Device
 
 
 class InterfacePrivateVlanTestCase(unittest.TestCase):
@@ -29,7 +31,6 @@ class InterfacePrivateVlanTestCase(unittest.TestCase):
             self.auth = (self.switch_username, self.switch_pasword)
 
     def setUp(self):
-
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.add_vlan_int(vlan_id=self.pvlan)
             dev.interface.add_vlan_int(vlan_id=self.svlan)
@@ -45,11 +46,11 @@ class InterfacePrivateVlanTestCase(unittest.TestCase):
 
     def test_vlan_pvlan_association_add(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-            output = dev.interface.private_vlan_type(name=self.pvlan,
-                                                     pvlan_type='primary')
-            output = dev.interface.private_vlan_type(name=self.svlan,
-                                                     pvlan_type='isolated')
-            output = dev.interface.vlan_pvlan_association_add(
+            dev.interface.private_vlan_type(name=self.pvlan,
+                                            pvlan_type='primary')
+            dev.interface.private_vlan_type(name=self.svlan,
+                                            pvlan_type='isolated')
+            dev.interface.vlan_pvlan_association_add(
                 name=self.pvlan, sec_vlan=self.svlan)
             op = dev.interface.vlan_pvlan_association_add(
                 get=True, name=self.pvlan)
@@ -61,9 +62,9 @@ class InterfacePrivateVlanTestCase(unittest.TestCase):
                                             int_type=self.int_type,
                                             mode='promiscuous')
             dev.interface.private_vlan_type(name=self.pvlan,
-                                                     pvlan_type='primary')
+                                            pvlan_type='primary')
             dev.interface.private_vlan_type(name=self.svlan,
-                                                     pvlan_type='isolated')
+                                            pvlan_type='isolated')
             dev.interface.vlan_pvlan_association_add(
                 name=self.pvlan, sec_vlan=self.svlan)
 
@@ -76,17 +77,19 @@ class InterfacePrivateVlanTestCase(unittest.TestCase):
                 int_type=self.int_type,
                 name=self.int_name,
                 get=True)
-            self.assertEqual({'pri_vlan':self.pvlan,'sec_vlan':self.svlan},op)
+            self.assertEqual(
+                {'pri_vlan': self.pvlan, 'sec_vlan': self.svlan}, op)
             dev.interface.switchport_pvlan_mapping(
                 int_type=self.int_type,
                 name=self.int_name,
                 pri_vlan=self.pvlan,
-                sec_vlan=self.svlan,delete=True)
+                sec_vlan=self.svlan, delete=True)
             op = dev.interface.switchport_pvlan_mapping(
                 int_type=self.int_type,
                 name=self.int_name,
                 get=True)
-            self.assertNotEqual({'pri_vlan': self.pvlan, 'sec_vlan': self.svlan}, op)
+            self.assertNotEqual(
+                {'pri_vlan': self.pvlan, 'sec_vlan': self.svlan}, op)
 
     def test_private_vlan_mode(self):
         with Device(conn=self.conn, auth=self.auth) as dev:

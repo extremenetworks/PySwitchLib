@@ -1,12 +1,15 @@
 from __future__ import absolute_import
+
 import unittest
-from pyswitch.device import Device
-import pprint
+
 import yaml
 from attrdict import AttrDict
 
+from pyswitch.device import Device
+
 
 class InterfaceVRRPETestCase(unittest.TestCase):
+
     def __init__(self, *args, **kwargs):
         super(InterfaceVRRPETestCase, self).__init__(*args, **kwargs)
         with open('config.yaml') as fileobj:
@@ -33,8 +36,6 @@ class InterfaceVRRPETestCase(unittest.TestCase):
             self.auth = (self.switch_username, self.switch_pasword)
 
     def setUp(self):
-
-
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.services.vrrp(rbridge_id=self.rbridge_id, enabled=False)
             dev.services.vrrp(
@@ -76,7 +77,6 @@ class InterfaceVRRPETestCase(unittest.TestCase):
 
     def test_vrrpe_vrid(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-
             dev.interface.vrrpe_vrid(
                 int_type='ve',
                 name=self.vlan,
@@ -145,7 +145,6 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 version=4,
                 rbridge_id=self.rbridge_id)
 
-
             dev.interface.vrrpe_spf_basic(
                 int_type='ve',
                 name=self.vlan,
@@ -163,14 +162,13 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 get=True)
             self.assertTrue(op)
 
-
             dev.interface.vrrpe_spf_basic(
                 int_type='ve',
                 name=self.vlan,
                 vrid=self.vrid,
                 vip=self.vip,
                 version=4,
-                rbridge_id=self.rbridge_id,enable=False)
+                rbridge_id=self.rbridge_id, enable=False)
 
             op = dev.interface.vrrpe_spf_basic(
                 int_type='ve',
@@ -181,10 +179,7 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 get=True)
             self.assertIsNone(op)
 
-
-
     def test_vrrpe_ve_vip(self):
-
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.vrrpe_vrid(
                 int_type='ve',
@@ -208,7 +203,7 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 vrid=self.vrid,
                 rbridge_id=self.rbridge_id,
                 get=True)
-            self.assertIn({'vrid':self.vrid,'vip':self.vip}, op)
+            self.assertIn({'vrid': self.vrid, 'vip': self.vip}, op)
 
             dev.interface.vrrpe_vip(
                 int_type='ve',
@@ -286,8 +281,8 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 delete=True)
 
     def test_vrrpe_vip_vmac(self):
-        from  pynos.device import Device as D
+        from pynos.device import Device as D
         with D(conn=self.conn, auth=self.auth) as dev:
             dev.interface.vrrpe_vmac(int_type='ve',
-            name = '78', vrid = '3', rbridge_id = '1',
-            virtual_mac = 'aaaa.bbbb.cccc')
+                                     name='78', vrid='3', rbridge_id='1',
+                                     virtual_mac='aaaa.bbbb.cccc')

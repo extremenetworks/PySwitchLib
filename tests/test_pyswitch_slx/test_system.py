@@ -27,13 +27,13 @@ class SystemTestCase(unittest.TestCase):
             with self.assertRaises(ValueError) as context:
                 dev.system.router_id(router_id='10.24.39.211',
                                      rbridge_id='1')
-
+                print context
 
     def test_host_name(self):
 
         with Device(conn=self.conn, auth=self.auth) as dev:
-            output = dev.system.host_name(rbridge_id='1',
-                                          host_name='sw0-test')
+            dev.system.host_name(rbridge_id='1',
+                                 host_name='sw0-test')
             output = dev.system.host_name(rbridge_id='1', get=True)
 
             print 'Host Name %s' % output
@@ -42,25 +42,24 @@ class SystemTestCase(unittest.TestCase):
     def test_rbridge_id(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             with self.assertRaises(ValueError) as context:
-                output = dev.system.rbridge_id(get=True)
-
+                dev.system.rbridge_id(get=True)
+                print context
 
     def test_maintenance_mode(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             with self.assertRaises(ValueError) as context:
                 dev.system.maintenance_mode(rbridge_id='1')
-
+                print context
 
     def test_system_ip_mtu(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             with self.assertRaises(ValueError) as context:
                 dev.system.system_ip_mtu(mtu=self.system_ip_mtu)
-
+                print context
 
     def test_system_l2_mtu(self):
 
         with Device(conn=self.conn, auth=self.auth) as dev:
             with self.assertRaises(ValueError) as context:
                 dev.system.system_l2_mtu(mtu=self.system_mtu)
-
-
+                print context

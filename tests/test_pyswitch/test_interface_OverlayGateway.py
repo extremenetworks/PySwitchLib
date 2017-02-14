@@ -1,9 +1,11 @@
 from __future__ import absolute_import
+
 import unittest
-from pyswitch.device import Device
-import pprint
+
 import yaml
 from attrdict import AttrDict
+
+from pyswitch.device import Device
 
 
 class InterfaceOverlayGatewayTestCase(unittest.TestCase):
@@ -29,7 +31,6 @@ class InterfaceOverlayGatewayTestCase(unittest.TestCase):
             self.auth = (self.switch_username, self.switch_pasword)
 
     def setUp(self):
-
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.create_loopback(
                 lb_name=self.loopback_id,

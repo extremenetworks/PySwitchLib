@@ -1,11 +1,15 @@
 from __future__ import absolute_import
+
 import unittest
-from pyswitch.device import Device
-import pprint
+
 import yaml
 from attrdict import AttrDict
 
+from pyswitch.device import Device
+
+
 class InterfacePortChannelCase(unittest.TestCase):
+
     def __init__(self, *args, **kwargs):
         super(InterfacePortChannelCase, self).__init__(*args, **kwargs)
         with open('config.yaml') as fileobj:
@@ -22,7 +26,6 @@ class InterfacePortChannelCase(unittest.TestCase):
             self.int_type = str(switch.int_type)
             self.conn = (self.switch_ip, '22')
             self.auth = (self.switch_username, self.switch_pasword)
-
 
     def setUp(self):
         pass
@@ -76,8 +79,8 @@ class InterfacePortChannelCase(unittest.TestCase):
             dev.interface.create_portchannel(name=self.portchannel_id)
 
             output = dev.interface.port_channel_minimum_links(
-                name =self.portchannel_id, minimum_links=self.minimum_links)
+                name=self.portchannel_id, minimum_links=self.minimum_links)
             output = dev.interface.port_channel_minimum_links(
-                name= self.portchannel_id, get=True)
-            self.assertEqual(self.minimum_links,output)
+                name=self.portchannel_id, get=True)
+            self.assertEqual(self.minimum_links, output)
             dev.interface.remove_port_channel(port_int=self.portchannel_id)
