@@ -220,8 +220,9 @@ class Device(object):
         """
 
         print 'asset.%s(%s)' % (call[0], ", ".join(
-            ["=".join([key, '\'%s\'' % str(val) if isinstance(val, str) else str(val)]) for key, val in
-             call[1].items()]))
+            ["=".join([key, '\'%s\'' % str(val) if isinstance(val, str)
+                       else str(val)]) for key, val in
+                call[1].items()]))
         (status, result) = getattr(self._mgr, call[0])(**call[1])
 
         if not status:
@@ -264,9 +265,11 @@ class Device(object):
             raise ValueError("Error while logging in to %s due to %s",
                              self.host, verr.message)
         except requests.exceptions.ConnectionError as cerr:
-            self.logger.error("Connection failed while logging in to %s due to %s",
+            self.logger.error("Connection failed while logging in to %s "
+                              "due to %s",
                               self.host, cerr.message.reason)
-            raise ValueError("Connection failed while logging in to %s due to %s",
+            raise ValueError("Connection failed while logging in to %s"
+                             " due to %s",
                              self.host, cerr.message.reason)
         except pyswitchlib.asset.RestInterfaceError as rierr:
             self.logger.error("Failed to get a REST response while logging in "
@@ -320,4 +323,3 @@ class Device(object):
             False
         """
         return self._mgr.close_session()
-0

@@ -113,7 +113,7 @@ class Services(object):
         enable = kwargs.pop('enable', True)
         callback = kwargs.pop('callback', self._callback)
         if get:
-            enabled = None
+            enable = None
 
         vrrp_args = dict()
         vrrp_method = 'protocol_vrrp_update'
@@ -125,13 +125,15 @@ class Services(object):
             x = callback(config, handler='get_config')
 
             ipv4_vrrp = util.find(x.json, '$..vrrp')
-            ipv4_vrrp = ipv4_vrrp if ipv4_vrrp and ipv4_vrrp == 'true' else False
+            ipv4_vrrp = ipv4_vrrp if ipv4_vrrp and ipv4_vrrp == 'true' \
+                else False
 
             config = ('ipv6_protocol_vrrp_get', vrrp_args)
             x = callback(config, handler='get_config')
 
             ipv6_vrrp = util.find(x.json, '$..vrrp')
-            ipv6_vrrp = ipv6_vrrp if ipv6_vrrp and ipv6_vrrp == 'true' else False
+            ipv6_vrrp = ipv6_vrrp if ipv6_vrrp and ipv6_vrrp == 'true' \
+                else False
             return {'ipv4_vrrp': ipv4_vrrp, 'ipv6_vrrp': ipv6_vrrp}
 
         if not enable:
@@ -193,13 +195,15 @@ class Services(object):
             x = callback(config, handler='get_config')
 
             ipv4_vrrpe = util.find(x.json, '$..vrrp-extended')
-            ipv4_vrrpe = ipv4_vrrpe if ipv4_vrrpe and ipv4_vrrpe == 'true' else False
+            ipv4_vrrpe = ipv4_vrrpe if ipv4_vrrpe and ipv4_vrrpe == 'true'\
+                else False
 
             config = ('ipv6_protocol_vrrp_get', vrrpe_args)
             x = callback(config, handler='get_config')
 
             ipv6_vrrpe = util.find(x.json, '$..vrrp-extended')
-            ipv6_vrrpe = ipv6_vrrpe if ipv6_vrrpe and ipv6_vrrpe == 'true' else False
+            ipv6_vrrpe = ipv6_vrrpe if ipv6_vrrpe and ipv6_vrrpe == 'true' \
+                else False
 
             return {'ipv4_vrrpe': ipv4_vrrpe, 'ipv6_vrrpe': ipv6_vrrpe}
 
@@ -210,4 +214,3 @@ class Services(object):
 
         config = (vrrpe_method, vrrpe_args)
         return callback(config)
-0

@@ -47,7 +47,7 @@ class BGP(object):
 
     def send(self, cmd):
         ret = self._cli.send_command(cmd, expect_string='sw0')
-        out = 'cmd {0} result {1}'.format(cmd, ret)
+        'cmd {0} result {1}'.format(cmd, ret)
         return ret
 
     def _set_rbr_mode(self, rbridge_id):
@@ -91,7 +91,7 @@ class BGP(object):
         Args:
             local_as (str): Local ASN of NOS deice.
             vrf (str): The VRF for this BGP process.
-            rbridge_id (str): The rbridge ID of the device on which BGP will be
+            rbridge_id (str): The rbridge ID of the device on which BGP will
                 configured in a VCS fabric.
             get (bool): Get config instead of editing config. (True, False)
             callback (function): A function executed upon completion of the
@@ -136,7 +136,7 @@ class BGP(object):
             local_as = util.findall(bgp_config.json, '$..local-as')[0]
             return local_as
         config = util.get_bgp_api(rbridge_id=rbridge_id, op='_create')
-        ret = callback(config)
+        callback(config)
         local_as = kwargs.pop('local_as')
         args = dict(local_as=str(local_as), rbridge_id=rbridge_id)
         config = util.get_bgp_api(
@@ -151,7 +151,7 @@ class BGP(object):
 
         Args:
             vrf (str): The VRF for this BGP process.
-            rbridge_id (str): The rbridge ID of the device on which BGP will be
+            rbridge_id (str): The rbridge ID of the device on which BGP will
                 configured in a VCS fabric.
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
@@ -190,7 +190,7 @@ class BGP(object):
             ip_addr (str): IP Address of BGP neighbor.
             remote_as (str): Remote ASN of BGP neighbor.
             vrf (str): The VRF for this BGP process.
-            rbridge_id (str): The rbridge ID of the device on which BGP will be
+            rbridge_id (str): The rbridge ID of the device on which BGP will
                 configured in a VCS fabric.
             delete (bool): Deletes the neighbor if `delete` is ``True``.
             get (bool): Get config instead of editing config. (True, False)
@@ -243,13 +243,15 @@ class BGP(object):
             raise NotImplementedError
         if not delete and remote_as is None:
             raise ValueError(
-                'When configuring a neighbor, you must specify its remote-as.')
+                'When configuring a neighbor, '
+                'you must specify its remote-as.')
         ret = self._neighbor_ip_address(
             afi, n_addr, rbridge_id, remote_as, vrf, callback, 'create')
         return ret
 
     def _neighbor_ip_address(self, afi='ipv4', n_addr=None, rbridge_id=1,
-                             remote_as='1', vrf='default', callback=None, op='create'):
+                             remote_as='1', vrf='default',
+                             callback=None, op='create'):
         if afi == 'ipv4':
             if vrf == 'default':
                 self._neighbor_ipv4_address(
@@ -266,22 +268,24 @@ class BGP(object):
                     afi, n_addr, rbridge_id, remote_as, vrf, callback, op)
 
     def _neighbor_ipv4_address(self, afi='ipv4', n_addr=None,
-                               rbridge_id=1, remote_as='1', callback=None, op='create'):
+                               rbridge_id=1, remote_as='1',
+                               callback=None, op='create'):
         args = dict(rbridge_id=rbridge_id, neighbor_addr=n_addr)
         api = 'rbridge_id_router_bgp_neighbor_neighbor_addr_create'
         config = (api, args)
-        ret = callback(config)
+        callback(config)
         args = dict(
             rbridge_id=rbridge_id,
             neighbor_addr=n_addr,
             remote_as=remote_as)
         api = 'rbridge_id_router_bgp_neighbor_neighbor_addr_update'
         config = (api, args)
-        ret = callback(config)
+        callback(config)
         args = dict(rbridge_id=rbridge_id, af_ipv4_neighbor_address=n_addr)
-        api = 'rbridge_id_router_bgp_address_family_ipv4_unicast_neighbor_af_ipv4_neighbor_address_create'
+        api = 'rbridge_id_router_bgp_address_family_ipv4_unicast_' \
+              'neighbor_af_ipv4_neighbor_address_create'
         config = (api, args)
-        ret = callback(config)
+        callback(config)
         args = dict(activate=True)
         config = util.get_bgp_api(
             n_addr=n_addr,
@@ -292,7 +296,8 @@ class BGP(object):
         return callback(config)
 
     def _neighbor_ipv6_address(self, afi='ipv6', n_addr=None,
-                               rbridge_id=1, remote_as='1', callback=None, op='create'):
+                               rbridge_id=1, remote_as='1',
+                               callback=None, op='create'):
         self._bgp_vrf_remote_as(rbridge_id, afi, 'default', n_addr, remote_as)
         args = dict(activate=True)
         config = util.get_bgp_api(
@@ -304,26 +309,29 @@ class BGP(object):
         return callback(config)
 
     def _neighbor_ipv4_vrf_address(
-            self, afi='ipv4', n_addr=None, rbridge_id=1, remote_as='1', vrf=None, callback=None, op='create'):
+            self, afi='ipv4', n_addr=None, rbridge_id=1, remote_as='1',
+            vrf=None, callback=None, op='create'):
         args = dict(rbridge_id=rbridge_id, af_vrf=vrf)
         api = 'rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_create'
         config = (api, args)
-        ret = callback(config)
+        callback(config)
         args = dict(
             rbridge_id=rbridge_id,
             af_vrf=vrf,
             af_ipv4_neighbor_addr=n_addr)
-        api = 'rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_neighbor_af_ipv4_neighbor_addr_create'
+        api = 'rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_' \
+              'neighbor_af_ipv4_neighbor_addr_create'
         config = (api, args)
-        ret = callback(config)
+        callback(config)
         args = dict(
             rbridge_id=rbridge_id,
             af_vrf=vrf,
             af_ipv4_neighbor_addr=n_addr,
             remote_as=remote_as)
-        api = 'rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_neighbor_af_ipv4_neighbor_addr_update'
+        api = 'rbridge_id_router_bgp_address_family_ipv4_unicast_vrf_' \
+              'neighbor_af_ipv4_neighbor_addr_update'
         config = (api, args)
-        ret = callback(config)
+        callback(config)
         args = dict(activate=True)
         config = util.get_bgp_api(
             n_addr=n_addr,
@@ -335,7 +343,8 @@ class BGP(object):
         return callback(config)
 
     def _neighbor_ipv6_vrf_address(
-            self, afi='ipv6', n_addr=None, rbridge_id=1, remote_as='1', vrf=None, callback=None, op='create'):
+            self, afi='ipv6', n_addr=None, rbridge_id=1, remote_as='1',
+            vrf=None, callback=None, op='create'):
         self._bgp_vrf_remote_as(rbridge_id, afi, vrf, n_addr, remote_as)
         args = dict(activate=True)
         config = util.get_bgp_api(
@@ -363,7 +372,7 @@ class BGP(object):
         """Get BGP neighbors configured on a device.
 
         Args:
-            rbridge_id (str): The rbridge ID of the device on which BGP will be
+            rbridge_id (str): The rbridge ID of the device on which BGP will
                 configured in a VCS fabric.
             vrf (str): The VRF for this BGP process.
             callback (function): A function executed upon completion of the

@@ -214,8 +214,9 @@ class System(BaseSystem):
 
                 mtu (str): Value between 1522 and 9216
                 version (int) : 4 or 6
-                callback (function): A function executed upon completion of the
-                    method.  The only parameter passed to `callback` will be the
+                callback (function): A function executed upon completion of
+                    the method.  The only parameter passed to `callback` will
+                    be the
                     ``ElementTree`` `config`.
 
             Returns:
@@ -230,8 +231,8 @@ class System(BaseSystem):
                 >>> switches = ['10.24.39.211', '10.24.39.203']
                 >>> auth = ('admin', 'password')
                 >>> for switch in switches:
-                ...     conn = (switch, '22')
-                ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+                ...  conn = (switch, '22')
+                ...  with pyswitch.device.Device(conn=conn, auth=auth) as dev:
                 ...         output = dev.interface.system_mtu(mtu='1666')
                 Traceback (most recent call last):
                 KeyError
@@ -282,8 +283,9 @@ class System(BaseSystem):
 
                 mtu (str): Value between 1522 and 9216
                 version (int) : 4 or 6
-                callback (function): A function executed upon completion of the
-                    method.  The only parameter passed to `callback` will be the
+                callback (function): A function executed upon completion of
+                the method.  The only parameter passed to `callback` will be
+                 the
                     ``ElementTree`` `config`.
 
             Returns:
@@ -298,8 +300,8 @@ class System(BaseSystem):
                 >>> switches = ['10.24.39.211', '10.24.39.203']
                 >>> auth = ('admin', 'password')
                 >>> for switch in switches:
-                ...     conn = (switch, '22')
-                ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+                ...  conn = (switch, '22')
+                ...  with pyswitch.device.Device(conn=conn, auth=auth) as dev:
                 ...         output = dev.interface.system_l2_mtu(mtu='1666')
                 Traceback (most recent call last):
                 KeyError

@@ -114,7 +114,7 @@ class Services(object):
         rbridge_id = kwargs.pop('rbridge_id', '1')
         callback = kwargs.pop('callback', self._callback)
         if get:
-            enabled = None
+            enable = None
 
         vrrp_args = dict(rbridge_id=rbridge_id)
         vrrp_method = 'rbridge_id_protocol_vrrp_update'
@@ -211,4 +211,3 @@ class Services(object):
 
         config = (vrrpe_method, vrrpe_args)
         return callback(config)
-0

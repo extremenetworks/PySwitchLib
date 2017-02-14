@@ -1,10 +1,9 @@
-import pyswitch.utilities as util
-from pyswitch.os.base.interface import Interface as BaseInterface
 from ipaddress import ip_interface
 
 import pyswitch.utilities
 import pyswitch.utilities as util
 from pyswitch.exceptions import InvalidVlanId
+from pyswitch.os.base.interface import Interface as BaseInterface
 
 
 class Interface(BaseInterface):
@@ -242,8 +241,8 @@ class Interface(BaseInterface):
             enable (bool): If ip anycast gateway should be enabled
                 or disabled.Default:``True``.
             get (bool) : Get config instead of editing config. (True, False)
-            rbridge_id (str): rbridge-id for device. Only required when type is
-                `ve`.
+            rbridge_id (str): rbridge-id for device. Only required when
+            type is `ve`.
             callback (function): A function executed upon completion of the
                method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -295,8 +294,10 @@ class Interface(BaseInterface):
                                  repr(valid_int_types))
             anycast_args = dict(ve=name)
 
-            method_name1 = 'rbridge_id_interface_%s_ip_anycast_address_get' % int_type
-            method_name2 = 'rbridge_id_interface_%s_ipv6_anycast_address_get' % int_type
+            method_name1 = 'rbridge_id_interface_%s_ip_anycast_address_get'\
+                           % int_type
+            method_name2 = 'rbridge_id_interface_%s_ipv6_anycast_address_get'\
+                           % int_type
             anycast_args['rbridge_id'] = rbridge_id
             if not pyswitch.utilities.valid_vlan_id(name):
                 raise InvalidVlanId("`name` must be between `1` and `8191`")
@@ -320,12 +321,14 @@ class Interface(BaseInterface):
             if ipaddress.version == 4:
                 anycast_args = dict(
                     ve=name, ip_anycast_address=(str(anycast_ip),))
-                method_name = 'rbridge_id_interface_%s_ip_anycast_address' % int_type
+                method_name = 'rbridge_id_interface_%s_ip_anycast_address'\
+                              % int_type
             elif ipaddress.version == 6:
                 anycast_args = dict(
                     ve=name, ipv6_anycast_address=(
                         str(anycast_ip),))
-                method_name = 'rbridge_id_interface_%s_ipv6_anycast_address' % int_type
+                method_name = 'rbridge_id_interface_%s_ipv6_anycast_address'\
+                              % int_type
 
         anycast_args['rbridge_id'] = rbridge_id
 

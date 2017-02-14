@@ -1,6 +1,7 @@
-import pyswitch.utilities as util
-from pyswitch.os.base.interface import Interface as BaseInterface
 import pyswitch.utilities
+import pyswitch.utilities as util
+from pyswitch.exceptions import InvalidVlanId
+from pyswitch.os.base.interface import Interface as BaseInterface
 
 
 class Interface(BaseInterface):
@@ -172,7 +173,8 @@ class Interface(BaseInterface):
 
         if int_type == 'vlan':
             if not pyswitch.utilities.valid_vlan_id(name):
-                raise InvalidVlanId('%s must be between 0 to 8191.' % int_type)
+                raise InvalidVlanId(
+                    '%s must be between 0 to 8191.' % int_type)
             shutdown_name = 'stp_shutdown'
             method_name = 'interface_%s_spanning_tree_update' % int_type
 

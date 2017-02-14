@@ -52,7 +52,6 @@ def parse_response(text):
     if tuple[0]:
         data = tuple[1]
         response = find(data, "$..response")
-        status = response['status_code']
         output = response['json']['output']
         return output
     return ""

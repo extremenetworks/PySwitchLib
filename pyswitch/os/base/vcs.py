@@ -120,7 +120,6 @@ class VCS(object):
         if not get_config:
             vip = str(kwargs.pop('vip'))
             ipaddress = ip_interface(unicode(vip))
-            vcs_vip = None
             vcs_args = dict(address=vip)
             if ipaddress.version == 4:
                 method_name = 'vcs_virtual_ip_address_'

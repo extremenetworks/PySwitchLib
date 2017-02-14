@@ -62,4 +62,3 @@ class PynosException(Exception):
     """Exception for unique PyNOS issues with no more specific exception.
     """
     pass
-0

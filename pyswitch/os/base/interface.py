@@ -406,7 +406,8 @@ class Interface(object):
                 ip_args['address'] = (ip_addr, False, False, False)
 
             elif ipaddress.version == 6:
-                method_name = 'interface_%s_ipv6_address_ipv6_address_' % int_type
+                method_name = 'interface_%s_ipv6_address_ipv6_address_' \
+                              % int_type
                 if not delete:
                     ip_args['ipv6_address'] = (ip_addr, False, False)
 
@@ -434,7 +435,8 @@ class Interface(object):
                 config = (method_name, ip_args)
                 x = callback(config, handler='get_config')
 
-                method_name = 'interface_%s_ipv6_address_ipv6_address_get' % int_type
+                method_name = 'interface_%s_ipv6_address_ipv6_address_get'\
+                              % int_type
                 config = (method_name, ip_args)
                 y = callback(config, handler='get_config')
 
@@ -741,7 +743,8 @@ class Interface(object):
         pvlan_args['vlan'] = name
         pvlan_args['sec_assoc_add'] = sec_vlan
 
-        config = ('interface_vlan_private_vlan_association_update', pvlan_args)
+        config = ('interface_vlan_private_vlan_association_update',
+                  pvlan_args)
         return callback(config)
 
     def pvlan_host_association(self, **kwargs):
@@ -817,10 +820,12 @@ class Interface(object):
 
             p = util.find(
                 x.json,
-                '$..switchport..private-vlan..host-association..host-pri-pvlan')
+                '$..switchport..private-vlan..'
+                'host-association..host-pri-pvlan')
             s = util.find(
                 x.json,
-                '$..switchport..private-vlan..host-association..host-sec-pvlan')
+                '$..switchport..private-vlan..'
+                'host-association..host-sec-pvlan')
             return (p, s)
 
         pri_vlan = kwargs.pop('pri_vlan')
@@ -837,7 +842,8 @@ class Interface(object):
         pvlan_args = dict(host_pri_pvlan=pri_vlan, host_sec_pvlan=sec_vlan)
         pvlan_args[int_type] = name
 
-        method_name = 'interface_%s_switchport_private_vlan_host_association_update' % int_type
+        method_name = 'interface_%s_switchport_private_vlan_' \
+                      'host_association_update' % int_type
         config = (method_name, pvlan_args)
 
         return callback(config)
@@ -1024,7 +1030,8 @@ class Interface(object):
             ...     name = '226/0/4'
             ...     for switch in switches:
             ...         conn = (switch, '22')
-            ...         with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         with pyswitch.device.Device(conn=conn, auth=auth)
+                            as dev:
             ...             output = dev.interface.enable_switchport(int_type,
             ...             name)
             ...             output = dev.interface.trunk_mode(name=name,
@@ -1054,7 +1061,8 @@ class Interface(object):
 
         if get:
 
-            method_name = 'interface_%s_switchport_trunk_allowed_vlan_get' % int_type
+            method_name = 'interface_%s_switchport_trunk_allowed_vlan_get' \
+                          % int_type
             config = (method_name, allowed_vlan_args)
             x = callback(config, handler='get_config')
             import pprint
@@ -1069,7 +1077,8 @@ class Interface(object):
         vlan = kwargs.pop('vlan', None)
 
         if action not in valid_actions:
-            raise ValueError('%s must be one of: %s' % (action, valid_actions))
+            raise ValueError('%s must be one of: %s' %
+                             (action, valid_actions))
 
         if not pyswitch.utilities.valid_interface(int_type, name):
             raise ValueError('`name` must be in the format of x/y/z for '
@@ -1088,13 +1097,15 @@ class Interface(object):
 
         if not ctag:
 
-            method_name = 'interface_%s_switchport_trunk_allowed_vlan_update' % int_type
+            method_name = 'interface_%s_switchport_trunk_allowed_vlan_update'\
+                          % int_type
             operation = '%s_' % action
             allowed_vlan_args[operation] = vlan
         else:
 
-            method_name = 'interface_%s_switchport_trunk_allowed_vlan_%s_update' % (
-                int_type, action)
+            method_name = 'interface_%s_switchport_trunk_' \
+                          'allowed_vlan_%s_update' % (
+                              int_type, action)
             allowed_vlan_args[action] = vlan
             allowed_vlan_args['trunk_ctag_range'] = ctag
 
@@ -1169,14 +1180,17 @@ class Interface(object):
                     x.json,
                     '$..switchport..mode..private-vlan..trunk..host'):
                 return 'trunk_host'
-            elif util.find(x.json, '$..switchport..mode..private-vlan..trunk..basic'):
+            elif util.find(x.json, '$..switchport..mode..'
+                                   'private-vlan..trunk..basic'):
                 return 'trunk_basic'
-            elif util.find(x.json, '$..switchport..mode..private-vlan..trunk..promiscuous'):
+            elif util.find(x.json, '$..switchport..mode..'
+                                   'private-vlan..trunk..promiscuous'):
                 return 'trunk_promiscuous'
 
             elif util.find(x.json, '$..switchport..mode..private-vlan..host'):
                 return 'host'
-            elif util.find(x.json, '$..switchport..mode..private-vlan..promiscuous'):
+            elif util.find(x.json, '$..switchport..mode..'
+                                   'private-vlan..promiscuous'):
                 return 'promiscuous'
             return None
 
@@ -1186,13 +1200,15 @@ class Interface(object):
 
         if 'trunk' in mode:
 
-            method_name = 'interface_%s_switchport_mode_private_vlan_trunk_update' % (
-                int_type)
+            method_name = 'interface_%s_switchport_mode_' \
+                          'private_vlan_trunk_update' % (
+                              int_type)
             pvlan_args[mode] = True
         else:
 
-            method_name = 'interface_%s_switchport_mode_private_vlan_update' % (
-                int_type)
+            method_name = 'interface_%s_switchport_mode_' \
+                          'private_vlan_update' % (
+                              int_type)
             pvlan_args[mode] = True
 
         config = (method_name, pvlan_args)
@@ -1258,7 +1274,8 @@ class Interface(object):
         tag_args[int_type] = name
 
         if get:
-            method_name = 'interface_%s_switchport_trunk_tag_native_vlan_get' % int_type
+            method_name = 'interface_%s_switchport_trunk_tag_native_vlan_get'\
+                          % int_type
 
             config = (method_name, tag_args)
             x = callback(config, handler='get_config')
@@ -1273,7 +1290,8 @@ class Interface(object):
         if not isinstance(enabled, bool):
             raise ValueError("Invalid state.")
 
-        method_name = 'interface_%s_switchport_trunk_tag_native_vlan_update' % int_type
+        method_name = 'interface_%s_switchport_trunk_tag_native_vlan_update'\
+                      % int_type
 
         if not enabled:
             tag_args['native_vlan'] = False
@@ -1345,7 +1363,8 @@ class Interface(object):
                      'port_channel']
 
         if int_type not in int_types:
-            raise ValueError("`int_type` must be one of: %s" % repr(int_types))
+            raise ValueError("`int_type` must be one of: %s"
+                             % repr(int_types))
 
         if not pyswitch.utilities.valid_interface(int_type, name):
             raise ValueError("`name` must be in the format of x/y/x for "
@@ -1353,7 +1372,8 @@ class Interface(object):
         pvlan_args = {int_type: name}
         if kwargs.pop('get', False):
             pvlan_args['resource_depth'] = 3
-            method_name = 'interface_%s_switchport_private_vlan_mapping_get' % int_type
+            method_name = 'interface_%s_switchport_private_vlan_mapping_get' \
+                          % int_type
             config = (method_name, pvlan_args)
             x = callback(config, handler='get_config')
 
@@ -1374,9 +1394,11 @@ class Interface(object):
 
         delete = kwargs.pop('delete', False)
         if delete:
-            method_name = 'interface_%s_switchport_private_vlan_mapping_delete' % int_type
+            method_name = 'interface_%s_switchport_' \
+                          'private_vlan_mapping_delete' % int_type
         else:
-            method_name = 'interface_%s_switchport_private_vlan_mapping_create' % int_type
+            method_name = 'interface_%s_switchport_' \
+                          'private_vlan_mapping_create' % int_type
 
         config = (method_name, pvlan_args)
         return callback(config)
@@ -1437,8 +1459,6 @@ class Interface(object):
             raise ValueError(
                 "Incorrect mtu value %s-%s" %
                 (minimum_mtu, maximum_mtu))
-
-        mtu_args = dict(name=name, mtu=mtu)
 
         if not pyswitch.utilities.valid_interface(int_type, name):
             raise ValueError('`name` must be in the format of x/y/z for '
@@ -1503,8 +1523,6 @@ class Interface(object):
             return {'ipv4': ipv4_mtu, 'ipv6': ipv6_mtu}
 
         mtu = kwargs.pop('mtu')
-
-        mtu_args = dict(name=name, mtu=mtu)
 
         if not pyswitch.utilities.valid_interface(int_type, name):
             raise ValueError('`name` must be in the format of x/y/z for '
@@ -1699,7 +1717,8 @@ class Interface(object):
             ...         rbridge_id='225')
             ...         output = dev.interface.set_ip('tengigabitethernet',
             ...         '225/0/18', '10.1.1.2/24')
-            ...         output = rre    dev.interface.vrrp_vip(int_type='tengigabitethernet',
+            ...         output = dev.interface.vrrp_vip(
+                        int_type='tengigabitethernet',
             ...         name='225/0/18', vrid='1',
             ...         vip='fe80::cafe:beef:1000:1/64')
             ...         dev.interface.vrrp_vip(int_type='tengigabitethernet',
@@ -1741,10 +1760,12 @@ class Interface(object):
         vrid = kwargs.pop('vrid')
         if get:
             if version == 4:
-                method_name = 'interface_%s_vrrp_group_virtual_ip_get' % int_type
+                method_name = 'interface_%s_vrrp_group_virtual_ip_get' \
+                              % int_type
                 vrid_name = 'vrrp'
             else:
-                method_name = 'interface_%s_ipv6_vrrp_group_virtual_ip_get' % int_type
+                method_name = 'interface_%s_ipv6_vrrp_group_virtual_ip_get'\
+                              % int_type
                 vrid_name = 'vrrpv3_group'
 
             if int_type == 've' and self.has_rbridge_id:
@@ -1770,7 +1791,8 @@ class Interface(object):
             method_name = 'interface_%s_vrrp_group_virtual_ip_' % int_type
             vrid_name = 'vrrp'
         else:
-            method_name = 'interface_%s_ipv6_vrrp_group_virtual_ip_' % int_type
+            method_name = 'interface_%s_ipv6_vrrp_group_virtual_ip_' \
+                          % int_type
             vrid_name = 'vrrpv3_group'
 
         if int_type == 've' and self.has_rbridge_id:
@@ -1826,7 +1848,8 @@ class Interface(object):
             priority (str): VRRP Priority.
             ip_version (str): Version of IP (4, 6).
             callback (function): A function executed upon completion of the
-                method.  The only parameter passevrrpe_spf_basicd to `callback` will be the
+                method.  The only parameter passevrrpe_spf_basicd to
+                `callback` will be the
                 ``ElementTree`` `config`.
 
         Returns:
@@ -1902,7 +1925,7 @@ class Interface(object):
         vrid = kwargs.pop('vrid')
 
         version = int(kwargs.pop('ip_version'))
-        rbridge_id = kwargs.pop('rbridge_id', '1')
+
         get = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
@@ -1981,7 +2004,7 @@ class Interface(object):
                 tengigabitethernet, etc).
             name (str): Name of interface. (1/0/5, 1/0/10, etc).
             enabled (bool): Is proxy-arp enabled? (True, False)
-            rbridge_id (str): rbridge-id for device. Only required when type is
+            rbridge_id (str): rbridge-id for device. Only required when type
                 `ve`.
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
@@ -2437,8 +2460,8 @@ class Interface(object):
             ...     vlan = '6666'
             ...     service_id = '1'
             ...     for switch in switches:
-            ...         conn = (switch, '22')
-            ...         with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...      conn = (switch, '22')
+            ...      with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...             output = dev.interface.add_vlan_int(vlan)
             ...             output = dev.interface.spanning_tree_state(
             ...             int_type='vlan', name=vlan, enabled=False)
@@ -2571,7 +2594,8 @@ class Interface(object):
         int_types = self.valid_int_types
 
         if int_type not in int_types:
-            raise ValueError("`int_type` must be one of: %s" % repr(int_types))
+            raise ValueError("`int_type` must be one of: %s"
+                             % repr(int_types))
         if not pyswitch.utilities.valid_interface(int_type, name):
             raise ValueError('`name` must be in the format of x/y/z for '
                              'physical interfaces or x for port channel.')
@@ -2641,7 +2665,8 @@ class Interface(object):
         int_types = self.valid_int_types
 
         if int_type not in int_types:
-            raise ValueError("`int_type` must be one of: %s" % repr(int_types))
+            raise ValueError("`int_type` must be one of: %s"
+                             % repr(int_types))
         if not pyswitch.utilities.valid_interface(int_type, name):
             raise ValueError('`name` must be in the format of x/y/z for '
                              'physical interfaces or x for port channel.')
@@ -2660,7 +2685,8 @@ class Interface(object):
             raise InvalidVlanId("`name` must be between `1` and `4096`")
 
         if kwargs.pop('delete', False):
-            method_name = 'interface_%s_switchport_access_vlan_delete' % int_type
+            method_name = 'interface_%s_switchport_access_vlan_delete'\
+                          % int_type
         else:
             vlan_args['accessvlan'] = vlan
             method_name = 'interface_%s_switchport_access_update' % int_type
@@ -2788,8 +2814,10 @@ class Interface(object):
                 last_interface_type = interface_type
                 last_interface_name = interface_name
                 if "gigabitethernet" '' in interface_type or \
-                        "port-channel" in interface_type or 'ethernet' in interface_type:
-                    if "gigabitethernet" in interface_type or 'ethernet' in interface_type:
+                        "port-channel" in interface_type or 'ethernet'\
+                        in interface_type:
+                    if "gigabitethernet" in interface_type or 'ethernet'\
+                            in interface_type:
                         interface_role = util.find(item, '$..port-role')
                     else:
                         interface_role = "None"
@@ -2821,7 +2849,8 @@ class Interface(object):
         request_interface = self.get_interface_switchport_request()
         interface_result = self._callback(request_interface, 'get')
 
-        for interface in util.findlist(interface_result.json, '$..switchport'):
+        for interface in util.findlist(interface_result.json,
+                                       '$..switchport'):
             vlans = []
             interface_type = util.findText(interface, 'interface-type')
             interface_name = util.findText(interface, 'interface-name')
@@ -3055,7 +3084,7 @@ class Interface(object):
                 or disabled.Default:``True``.
             get (bool) : Get config instead of editing config. (True, False)
             vrid (str): vrrpe router ID.
-            rbridge_id (str): rbridge-id for device. Only required when type is
+            rbridge_id (str): rbridge-id for device. Only required when type
                 `ve`.
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
@@ -3095,7 +3124,7 @@ class Interface(object):
         enable = kwargs.pop('enable', True)
         get = kwargs.pop('get', False)
         vrid = kwargs.pop('vrid')
-        rbridge_id = kwargs.pop('rbridge_id', '1')
+
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = ['gigabitethernet', 'tengigabitethernet',
                            'fortygigabitethernet', 'hundredgigabitethernet',
@@ -3107,10 +3136,12 @@ class Interface(object):
         arguments = {int_type: name}
         if get:
             if version == 4:
-                method_name = 'interface_%s_vrrp_extended_group_short_path_forwarding_get' % int_type
+                method_name = 'interface_%s_vrrp_extended_group_' \
+                              'short_path_forwarding_get' % int_type
                 vrid_name = 'vrrpe'
             else:
-                method_name = 'interface_%s_ipv6_vrrp_extended_group_short_path_forwarding_get' % int_type
+                method_name = 'interface_%s_ipv6_vrrp_extended_group_' \
+                              'short_path_forwarding_get' % int_type
                 vrid_name = 'vrrpv3e_group'
             if int_type == 've':
                 if self.has_rbridge_id:
@@ -3121,9 +3152,7 @@ class Interface(object):
             arguments[vrid_name] = vrid
             config = (method_name, arguments)
             x = callback(config)
-            result = []
-            import pprint
-            pprint.pprint(x.json)
+
             basic = util.find(x.json, '$..basic')
             if basic and basic == 'true':
                 return True
@@ -3131,10 +3160,12 @@ class Interface(object):
                 return None
 
         if version == 4:
-            method_name = 'interface_%s_vrrp_extended_group_short_path_forwarding_' % int_type
+            method_name = 'interface_%s_vrrp_extended_group_' \
+                          'short_path_forwarding_' % int_type
             vrid_name = 'vrrpe'
         else:
-            method_name = 'interface_%s_ipv6_vrrp_extended_group_short_path_forwarding_' % int_type
+            method_name = 'interface_%s_ipv6_vrrp_extended_' \
+                          'group_short_path_forwarding_' % int_type
             vrid_name = 'vrrpv3e_group'
 
         if int_type == 've':
@@ -3169,9 +3200,11 @@ class Interface(object):
 
         if get:
             if version == 4:
-                method_name = 'interface_%s_vrrp_extended_group_get' % int_type
+                method_name = 'interface_%s_vrrp_extended_group_get'\
+                              % int_type
             else:
-                method_name = 'interface_%s_ipv6_vrrp_extended_group_get' % int_type
+                method_name = 'interface_%s_ipv6_vrrp_extended_group_get'\
+                              % int_type
             if int_type == 've' and self.has_rbridge_id:
                 method_name = "rbridge_id_%s" % method_name
                 arguments['rbridge_id'] = kwargs.pop('rbridge_id', 1)
@@ -3261,10 +3294,12 @@ class Interface(object):
 
         if get:
             if version == 4:
-                method_name = 'interface_%s_vrrp_extended_group_get' % int_type
+                method_name = 'interface_%s_vrrp_extended_group_get' % \
+                              int_type
                 vrid_name = 'vrrpe'
             else:
-                method_name = 'interface_%s_ipv6_vrrp_extended_group_get' % int_type
+                method_name = 'interface_%s_ipv6_vrrp_extended_group_get' %\
+                              int_type
                 vrid_name = 'vrrpv3e_group'
 
             if int_type == 've':
@@ -3295,10 +3330,12 @@ class Interface(object):
             version = 4
 
         if version == 4:
-            method_name = 'interface_%s_vrrp_extended_group_virtual_ip_' % int_type
+            method_name = 'interface_%s_vrrp_extended_group_virtual_ip_' %\
+                          int_type
             vrid_name = 'vrrpe'
         else:
-            method_name = 'interface_%s_ipv6_vrrp_extended_group_virtual_ip_' % int_type
+            method_name = 'interface_%s_ipv6_vrrp_extended_group_virtual_ip_'\
+                          % int_type
             vrid_name = 'vrrpv3e_group'
 
         if int_type == 've':
@@ -3389,10 +3426,12 @@ class Interface(object):
 
         if get:
             if version == 4:
-                method_name = 'interface_%s_vrrp_extended_group_virtual_mac_get' % int_type
+                method_name = 'interface_%s_vrrp_extended_group_' \
+                              'virtual_mac_get' % int_type
                 vrid_name = 'vrrpe'
             else:
-                method_name = 'interface_%s_ipv6_vrrp_extended_group_virtual_mac_get' % int_type
+                method_name = 'interface_%s_ipv6_vrrp_extended_group_' \
+                              'virtual_mac_get' % int_type
                 vrid_name = 'vrrpv3e_group'
 
             if int_type == 've':
@@ -3456,8 +3495,6 @@ class Interface(object):
             ...     output = dev.interface.ve_interfaces()
             ...     output = dev.interface.ve_interfaces(rbridge_id='1')
         """
-
-        urn = "{urn:brocade.com:mgmt:brocade-interface-ext}"
 
         rbridge_id = kwargs.pop('rbridge_id', None)
         ip_result = []
@@ -3864,9 +3901,9 @@ class Interface(object):
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.interface.overlay_gateway_type(gw_name='Leaf',
+            ...    output = dev.interface.overlay_gateway_type(gw_name='Leaf',
             ...              gw_type='layer2-extension')
-            ...     output = dev.interface.overlay_gateway_name(get=True)
+            ...    output = dev.interface.overlay_gateway_name(get=True)
         """
 
         callback = kwargs.pop('callback', self._callback)
@@ -4083,11 +4120,11 @@ class Interface(object):
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.interface.ipv6_link_local(name='500',
+            ...    output = dev.interface.ipv6_link_local(name='500',
             ...     int_type='ve',rbridge_id='1')
-            ...     output = dev.interface.ipv6_link_local(get=True,name='500',
+            ...    output = dev.interface.ipv6_link_local(get=True,name='500',
             ...     int_type='ve',rbridge_id='1')
-            ...     output = dev.interface.ipv6_link_local(delete=True,
+            ...    output = dev.interface.ipv6_link_local(delete=True,
             ...     name='500', int_type='ve', rbridge_id='1')
         """
 
@@ -4102,7 +4139,8 @@ class Interface(object):
         link_args = dict(rbridge_id=rbridge_id)
 
         link_args[int_type] = ve_name
-        method_name = 'rbridge_id_interface_%s_ipv6_address_use_link_local_only_update' % int_type
+        method_name = 'rbridge_id_interface_%s_ipv6_address_' \
+                      'use_link_local_only_update' % int_type
         get_method_name = 'rbridge_id_interface_%s_get' % int_type
 
         if kwargs.pop('get', False):
@@ -4346,7 +4384,7 @@ class Interface(object):
         """
         Add loopback Interface .
         Args:
-            name: loopback name with which the portChannel interface needs to be
+            name: loopback name with which the portChannel interface needs to
              created.
             enable (bool): If vrf fowarding should be enabled
                 or disabled.Default:``True``.
@@ -4447,7 +4485,7 @@ class Interface(object):
             ...        output = dev.interface.disable_switchport(inter_type=
             ...        int_type, inter=name)
             ...        output = dev.interface.ip_unnumbered(int_type=int_type,
-            ...        name=name, donor_type=donor_type, donor_name=donor_name)
+            ...       name=name, donor_type=donor_type, donor_name=donor_name)
             ...        output = dev.interface.ip_unnumbered(int_type=int_type,
             ...        name=name, donor_type=donor_type, donor_name=donor_name,
             ...        get=True)
@@ -4458,7 +4496,7 @@ class Interface(object):
             ...        name='1', ip_addr='4.4.4.4/32', rbridge_id='230',
             ...        delete=True)
             ...        output = dev.interface.ip_unnumbered(int_type='hodor',
-            ...        donor_name=donor_name, donor_type=donor_type, name=name)
+            ...       donor_name=donor_name, donor_type=donor_type, name=name)
             ...        # doctest: +IGNORE_EXCEPTION_DETAIL
             Traceback (most recent call last):
             ValueError
@@ -4477,8 +4515,9 @@ class Interface(object):
                              repr(valid_int_types))
 
         if kwargs.pop('get', False):
-            method_name = 'interface_%s_ip_unnumbered_ip_donor_interface_name_get' % kwargs[
-                'int_type']
+            method_name = 'interface_%s_ip_unnumbered_ip_donor_' \
+                          'interface_name_get' % kwargs[
+                              'int_type']
             config = (method_name, arguments)
             op = callback(config, handler="get_config")
 
@@ -4487,14 +4526,16 @@ class Interface(object):
             return {'donor_type': donor_type, 'donor_name': donor_name}
 
         if kwargs.pop('delete', False):
-            method_name = 'interface_%s_ip_unnumbered_ip_donor_interface_name_delete' % kwargs[
-                'int_type']
+            method_name = 'interface_%s_ip_unnumbered_ip_donor_i' \
+                          'nterface_name_delete' % kwargs[
+                              'int_type']
             config = (method_name, arguments)
         else:
             arguments['ip_donor_interface_name'] = kwargs.pop('donor_name')
             arguments['ip_donor_interface_type'] = kwargs.pop('donor_type')
-            method_name = 'interface_%s_ip_unnumbered_ip_donor_interface_name_update' % kwargs[
-                'int_type']
+            method_name = 'interface_%s_ip_unnumbered_ip_' \
+                          'donor_interface_name_update' % kwargs[
+                              'int_type']
             config = (method_name, arguments)
         return callback(config)
 
@@ -4816,8 +4857,8 @@ class Interface(object):
                >>> switches = ['10.24.39.211', '10.24.39.203']
                >>> auth = ('admin', 'password')
                >>> for switch in switches:
-               ...     conn = (switch, '22')
-               ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+               ...    conn = (switch, '22')
+               ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
                ...         output = dev.interface.vrf_vni(rbridge_id="1",
                ...         afi="ip", rt='import', rt_value='101:101',
                ...         vrf_name="vrf1")
@@ -4856,7 +4897,7 @@ class Interface(object):
                     'vrf_address_family_%s_unicast_create' % afi)
                 config = (method_name, rt_args)
 
-            result = callback(config)
+            callback(config)
 
         elif get_config:
             vrf_name = kwargs.pop('vrf_name', '')
@@ -4944,17 +4985,21 @@ class Interface(object):
             rt_args = dict(rbridge_id=rbridge_id, vrf=vrf_name)
 
             if delete_afi is True:
-                method_name = 'rbridge_id_vrf_address_family_%s_unicast_delete' % afi
+                method_name = 'rbridge_id_vrf_' \
+                              'address_family_%s_unicast_delete' % afi
                 config = (method_name, rt_args)
             elif delete_rt is True:
-                method_name = 'rbridge_id_vrf_address_family_%s_unicast_route_target_delete' % afi
+                method_name = 'rbridge_id_vrf_address_family_%s_unicast_' \
+                              'route_target_delete' % afi
                 config = (method_name, rt_args)
             else:
-                method_name = 'rbridge_id_vrf_address_family_%s_unicast_create' % afi
+                method_name = 'rbridge_id_vrf_address_family_%s_unicast_' \
+                              'create' % afi
                 config = (method_name, rt_args)
                 callback(config)
 
-                method_name = 'rbridge_id_vrf_address_family_%s_unicast_route_target_create' % afi
+                method_name = 'rbridge_id_vrf_address_family_%s_unicast_' \
+                              'route_target_create' % afi
                 rt_args['route_target'] = (rt, rt_value)
                 config = (method_name, rt_args)
 
@@ -5041,10 +5086,12 @@ class Interface(object):
             else:
                 return None
         if kwargs.pop('delete', False):
-            method_name = 'rbridge_id_host_table_aging_mode_conversational_update'
+            method_name = 'rbridge_id_host_table_aging_mode_' \
+                          'conversational_update'
             arp_args['conversational'] = False
         else:
-            method_name = 'rbridge_id_host_table_aging_mode_conversational_update'
+            method_name = 'rbridge_id_host_table_aging_mode_' \
+                          'conversational_update'
             arp_args['conversational'] = True
         config = (method_name, arp_args)
         return callback(config)
@@ -5192,7 +5239,8 @@ class Interface(object):
                 output.json, '$..duplicate-mac-timer-value')
             max_count = util.find(output.json, '$..max-count')
             auto = util.find(output.json, '$..rd..auto')
-            return {'instance_name': instance_name, 'ignore_as': ignore_as, 'duplicate_mac_timer_value': duplicate_mac_timer_value,
+            return {'instance_name': instance_name, 'ignore_as': ignore_as,
+                    'duplicate_mac_timer_value': duplicate_mac_timer_value,
                     'max_count': max_count, 'rd_auto': auto}
         if not enable:
             method_name = 'rbridge_id_evpn_instance_delete'
@@ -5224,8 +5272,8 @@ class Interface(object):
             ...         rbridge_id='1')
          """
         evpn_instance_name = kwargs.pop('evpn_instance_name', '')
-        enable = kwargs.pop('enable', True)
-        get = kwargs.pop('get', False)
+        # enable = kwargs.pop('enable', True)
+        # get = kwargs.pop('get', False)
         rbridge_id = kwargs.pop('rbridge_id', '1')
         callback = kwargs.pop('callback', self._callback)
 
@@ -5345,21 +5393,21 @@ class Interface(object):
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output=dev.interface.evpn_instance_duplicate_mac_timer(
+            ...        output=dev.interface.evpn_instance_duplicate_mac_timer(
             ...         evpn_instance_name='100',
             ...         duplicate_mac_timer_value='10'
             ...         rbridge_id='1')
-            ...         output=dev.interface.evpn_instance_duplicate_mac_timer(
+            ...        output=dev.interface.evpn_instance_duplicate_mac_timer(
             ...         get=True,
             ...         evpn_instance_name='100',
             ...         duplicate_mac_timer_value='10'
             ...         rbridge_id='1')
-            ...         output=dev.interface.evpn_instance_duplicate_mac_timer(
+            ...        output=dev.interface.evpn_instance_duplicate_mac_timer(
             ...         enable=False,
             ...         evpn_instance_name='101',
             ...         duplicate_mac_timer_value='10'
             ...         rbridge_id='1')
-            ...         output=dev.interface.evpn_instance_duplicate_mac_timer(
+            ...        output=dev.interface.evpn_instance_duplicate_mac_timer(
             ...         get=True,
             ...         evpn_instance_name='101',
             ...         rbridge_id='1')
@@ -5392,12 +5440,14 @@ class Interface(object):
         evpn_args['evpn_instance'] = evpn_instance_name
 
         if not enable:
-            method_name = 'rbridge_id_evpn_instance_duplicate_mac_timer_delete'
+            method_name = 'rbridge_id_evpn_instance_' \
+                          'duplicate_mac_timer_delete'
             config = (method_name, evpn_args)
         else:
 
             evpn_args['duplicate_mac_timer_value'] = duplicate_mac_timer_value
-            method_name = 'rbridge_id_evpn_instance_duplicate_mac_timer_update'
+            method_name = 'rbridge_id_evpn_instance_' \
+                          'duplicate_mac_timer_update'
             config = (method_name, evpn_args)
 
         return callback(config)
@@ -5412,7 +5462,7 @@ class Interface(object):
             enable (bool): If target community needs to be enabled
                 or disabled.Default:``True``.
             get (bool) : Get config instead of editing config. (True, False)
-            rbridge_id (str): rbridge-id for device. Only required when type is
+            rbridge_id (str): rbridge-id for device. Only required when type
                 `ve`.
             callback (function): A function executed upon completion of the
                method.  The only parameter passed to `callback` will be the
@@ -5429,21 +5479,21 @@ class Interface(object):
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output=dev.interface.evpn_instance_mac_timer_max_count(
+            ...        output=dev.interface.evpn_instance_mac_timer_max_count(
             ...         evpn_instance_name='100',
             ...         max_count='10'
             ...         rbridge_id='1')
-            ...         output=dev.interface.evpn_instance_mac_timer_max_count(
+            ...        output=dev.interface.evpn_instance_mac_timer_max_count(
             ...         get=True,
             ...         evpn_instance_name='100',
             ...         max_count='10'
             ...         rbridge_id='1')
-            ...         output=dev.interface.evpn_instance_mac_timer_max_count(
+            ...        output=dev.interface.evpn_instance_mac_timer_max_count(
             ...         enable=False,
             ...         evpn_instance_name='101',
             ...         max_count='10'
             ...         rbridge_id='1')
-            ...         output=dev.interface.evpn_instance_mac_timer_max_count(
+            ...        output=dev.interface.evpn_instance_mac_timer_max_count(
             ...         get=True,
             ...         evpn_instance_name='101',
             ...         rbridge_id='1')
@@ -5474,11 +5524,13 @@ class Interface(object):
         evpn_args['evpn_instance'] = evpn_instance_name
 
         if not enable:
-            method_name = 'rbridge_id_evpn_instance_duplicate_mac_timer_delete'
+            method_name = 'rbridge_id_evpn_instance_' \
+                          'duplicate_mac_timer_delete'
             config = (method_name, evpn_args)
         else:
             evpn_args['max_count'] = max_count
-            method_name = 'rbridge_id_evpn_instance_duplicate_mac_timer_update'
+            method_name = 'rbridge_id_evpn_instance_' \
+                          'duplicate_mac_timer_update'
             config = (method_name, evpn_args)
 
         return callback(config)

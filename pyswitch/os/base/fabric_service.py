@@ -73,4 +73,3 @@ class FabricService(object):
                 result.append(item_results)
 
         return result
-0
