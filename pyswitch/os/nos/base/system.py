@@ -1,6 +1,7 @@
 import pyswitch.utilities as util
 from pyswitch.os.base.system import System as BaseSystem
 
+
 class System(BaseSystem):
     """
         System class containing all system level methods and attributes.
@@ -206,7 +207,6 @@ class System(BaseSystem):
         config = ('rbridge_id_system_mode_update', rid_args)
         return callback(config)
 
-
     def system_ip_mtu(self, **kwargs):
         """Set system mtu.
 
@@ -256,15 +256,19 @@ class System(BaseSystem):
             minimum_mtu = 1300
             maximum_mtu = 9100
             if int(mtu) < minimum_mtu or int(mtu) > maximum_mtu:
-                raise ValueError("Incorrect mtu value, Valid Range %s-%s" % (minimum_mtu, maximum_mtu))
+                raise ValueError(
+                    "Incorrect mtu value, Valid Range %s-%s" %
+                    (minimum_mtu, maximum_mtu))
         if version is 6:
             minimum_mtu = 1280
             maximum_mtu = 9100
             if int(mtu) < minimum_mtu or int(mtu) > maximum_mtu:
-                raise ValueError("Incorrect mtu value, Valid Range %s-%s" % (minimum_mtu, maximum_mtu))
+                raise ValueError(
+                    "Incorrect mtu value, Valid Range %s-%s" %
+                    (minimum_mtu, maximum_mtu))
 
         mtu_name = 'global_%s_mtu' % ip_prefix
-        mtu_args = {mtu_name:mtu}
+        mtu_args = {mtu_name: mtu}
 
         method_name = '%s_mtu_update' % ip_prefix
 
@@ -311,14 +315,15 @@ class System(BaseSystem):
 
         mtu = kwargs.pop('mtu')
 
-
         minimum_mtu = 1522
         maximum_mtu = 9216
         if int(mtu) < minimum_mtu or int(mtu) > maximum_mtu:
-            raise ValueError("Incorrect mtu value, Valid Range %s-%s" % (minimum_mtu, maximum_mtu))
+            raise ValueError(
+                "Incorrect mtu value, Valid Range %s-%s" %
+                (minimum_mtu, maximum_mtu))
 
         mtu_name = 'global_l2_mtu'
-        mtu_args = {mtu_name:mtu}
+        mtu_args = {mtu_name: mtu}
 
         method_name = 'mtu_update'
 

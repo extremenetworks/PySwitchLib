@@ -78,6 +78,7 @@ class DeviceCommError(Exception):
 
 
 class Reply:
+
     def __init__(self, json):
         self.json = json
 
@@ -114,7 +115,8 @@ class Device(object):
 
         ver = self.firmware_version
         thismodule = sys.modules[__name__]
-        os_table = getattr(thismodule, '%s_VERSIONS' % str(self.os_type).upper())
+        os_table = getattr(thismodule, '%s_VERSIONS' %
+                           str(self.os_type).upper())
 
         for nos_attr in NOS_ATTRS:
             setattr(self, nos_attr, os_table[ver][nos_attr](self._callback))
@@ -252,7 +254,10 @@ class Device(object):
 
             self.logger.info('successfully connected to %s' % self._conn[0])
         except AttributeError as e:
-            raise ValueError('Failed to connect to %s due to %s', self.host, e.message)
+            raise ValueError(
+                'Failed to connect to %s due to %s',
+                self.host,
+                e.message)
         except ValueError as verr:
             self.logger.error("Error while logging in to %s due to %s",
                               self.host, verr.message)

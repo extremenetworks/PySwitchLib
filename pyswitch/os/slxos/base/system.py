@@ -1,6 +1,7 @@
 import pyswitch.utilities as util
 from pyswitch.os.base.system import System as BaseSystem
 
+
 class System(BaseSystem):
     """
         System class containing all system level methods and attributes.
@@ -17,7 +18,6 @@ class System(BaseSystem):
         """
 
         super(System, self).__init__(callback)
-
 
     def chassis_name(self, **kwargs):
         """Get device's chassis name/Model.
@@ -54,7 +54,6 @@ class System(BaseSystem):
             KeyError
         """
         raise ValueError('Not available on this Platform')
-
 
     def host_name(self, **kwargs):
         """Configures device's host name.
@@ -154,7 +153,6 @@ class System(BaseSystem):
             ...     assert output == False
         """
         raise ValueError('Not available on this Platform')
-
 
     def system_ip_mtu(self, **kwargs):
         """Set system mtu.

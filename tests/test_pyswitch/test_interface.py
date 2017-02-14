@@ -233,6 +233,7 @@ class InterfaceGenericCase(unittest.TestCase):
         self.vlan = '34'
         self.second_vlan = 909
         self.ip_mtu = '8000'
+        self.ipv6_mtu ='8080'
         self.bfd_rx = '300'
         self.bfd_tx = '300'
         self.bfd_multiplier = '3'
@@ -522,7 +523,19 @@ class InterfaceGenericCase(unittest.TestCase):
             output = dev.interface.ip_mtu(get=True,
                                           name=self.int_name,
                                           int_type=self.int_type)
-            self.assertEqual(self.ip_mtu, output)
+
+            self.assertEqual(self.ip_mtu, output['ipv4'])
+
+    def test_ipv6_mtu(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            output = dev.interface.ip_mtu(mtu=self.ipv6_mtu,
+                                          name=self.int_name,version=6,
+                                          int_type=self.int_type)
+            output = dev.interface.ip_mtu(get=True,
+                                          name=self.int_name,version=6,
+                                          int_type=self.int_type)
+
+            self.assertEqual(self.ipv6_mtu, output['ipv6'])
 
     def test_bfd(self):
         with Device(conn=self.conn, auth=self.auth) as dev:

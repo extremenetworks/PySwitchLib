@@ -72,7 +72,6 @@ class VCS(object):
 
         return result
 
-
     def vcs_vip(self, **kwargs):
         """Set VCS Virtual IP.
 
@@ -118,7 +117,6 @@ class VCS(object):
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
 
-
         if not get_config:
             vip = str(kwargs.pop('vip'))
             ipaddress = ip_interface(unicode(vip))
@@ -129,10 +127,9 @@ class VCS(object):
             elif ipaddress.version == 6:
                 method_name = 'vcs_virtual_ipv6_address_'
 
-
             if not delete:
                 method_name = "%screate" % method_name
-                config = (method_name,vcs_args)
+                config = (method_name, vcs_args)
             else:
                 method_name = "%sdelete" % method_name
                 config = (method_name, vcs_args)
@@ -142,10 +139,10 @@ class VCS(object):
 
             method_name = 'vcs_virtual_ip_address_get'
 
-            config = (method_name,{})
+            config = (method_name, {})
             op = callback(config, handler='get_config')
 
-            vip_info['ipv4_vip'] = util.find(op.json,'$..address..address')
+            vip_info['ipv4_vip'] = util.find(op.json, '$..address..address')
 
             method_name = 'vcs_virtual_ipv6_address_get'
 
@@ -153,7 +150,7 @@ class VCS(object):
 
             op = callback(config, handler='get_config')
 
-            vip_info['ipv6_vip'] = util.find(op.json,'$..address..address')
+            vip_info['ipv6_vip'] = util.find(op.json, '$..address..address')
             return vip_info
 
         return callback(config)

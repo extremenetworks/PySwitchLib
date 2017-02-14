@@ -125,7 +125,6 @@ class Services(object):
             config = ('rbridge_id_protocol_vrrp_get', vrrp_args)
             x = callback(config, handler='get_config')
 
-
             ipv4_vrrp = util.find(x.json, '$..vrrp')
             ipv4_vrrp = ipv4_vrrp if ipv4_vrrp else False
 

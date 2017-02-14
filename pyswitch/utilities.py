@@ -90,6 +90,7 @@ def get_json_results(mgr):
 
 
 class RestInterfaceError(Exception):
+
     def __init__(self, value):
         self.value = value
 
@@ -98,6 +99,7 @@ class RestInterfaceError(Exception):
 
 
 class InvalidBgpArgs(Exception):
+
     def __init__(self, value):
         self.value = value
 

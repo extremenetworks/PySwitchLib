@@ -13,8 +13,9 @@ def test_arp_aging_timeout(asset):
 
 def test_ethernet_get(asset):
 
-    asset.interface_ethernet_get(ethernet='3/3', resource_depth=3)
+    #asset.interface_ethernet_get(ethernet='3/3', resource_depth=3)
     #asset.interface_tengigabitethernet_get(tengigabitethernet='3/3', resource_depth=3)
+    print asset.interface_tengigabitethernet_ipv6_mtu_update(tengigabitethernet='1/0/11', mtu=8000)
 
 def test_ip_unnumbered(asset):
 
@@ -41,8 +42,8 @@ def call(method, asset):
 if __name__ == '__main__':
     import pyswitchlib.asset
 
-    asset = pyswitchlib.asset.Asset('10.24.4.215', ('admin', 'password'))
-    #asset = pyswitchlib.asset.Asset('10.37.18.131', ('admin', 'password'))
+    #asset = pyswitchlib.asset.Asset('10.24.4.215', ('admin', 'password'))
+    asset = pyswitchlib.asset.Asset('10.37.18.131', ('admin', 'password'))
     """
     ## Access VLAN create fails because of the vlan tuple argument, access_group parameter does not accept None.
     ## On VDX platform access_group is not required

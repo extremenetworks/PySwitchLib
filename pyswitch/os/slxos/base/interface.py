@@ -2,6 +2,7 @@ import pyswitch.utilities as util
 from pyswitch.os.base.interface import Interface as BaseInterface
 import pyswitch.utilities
 
+
 class Interface(BaseInterface):
     """
       The Interface class holds all the actions assocaiated with the Interfaces
@@ -30,7 +31,7 @@ class Interface(BaseInterface):
     @property
     def valid_int_types(self):
 
-        return  [
+        return [
             'ethernet',
             'port_channel'
         ]
@@ -41,11 +42,24 @@ class Interface(BaseInterface):
             'ethernet'
 
         ]
+
     @property
     def l2_mtu_const(self):
         minimum_mtu = 1548
         maximum_mtu = 9216
-        return (minimum_mtu,maximum_mtu)
+        return (minimum_mtu, maximum_mtu)
+
+    @property
+    def l3_mtu_const(self):
+        minimum_mtu = 1300
+        maximum_mtu = 9194
+        return (minimum_mtu, maximum_mtu)
+
+    @property
+    def l3_ipv6_mtu_const(self):
+        minimum_mtu = 1300
+        maximum_mtu = 9194
+        return (minimum_mtu, maximum_mtu)
 
     @property
     def has_rbridge_id(self):
@@ -136,7 +150,6 @@ class Interface(BaseInterface):
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = self.valid_int_types
 
-
         if int_type not in valid_int_types:
             raise ValueError('int_type must be one of: %s' %
                              repr(valid_int_types))
@@ -148,8 +161,8 @@ class Interface(BaseInterface):
                 method_name = 'vlan_spanning_tree_get'
             config = (method_name, state_args)
             x = callback(config, handler='get_config')
-            shutdown_status =     util.find(x.json, '$..shutdown')
-            if shutdown_status and shutdown_status=='false':
+            shutdown_status = util.find(x.json, '$..shutdown')
+            if shutdown_status and shutdown_status == 'false':
                 return True
             return False
 

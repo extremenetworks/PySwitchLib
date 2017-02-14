@@ -32,4 +32,3 @@ class System(object):
                              minutes=util.find(results.json, '$..minutes'),
                              seconds=util.find(results.json, '$..seconds'))
         return system_uptime
-

@@ -124,11 +124,11 @@ InterfaceVRFTestCase:
         
 InterfaceVRRPETestCase:
      switch:
-        ip: 10.37.18.131
+        ip: 10.37.18.135
         username : admin
         password : password
-        rbridge_id : 1
-        switch_ip : 10.37.18.131
+        rbridge_id : 135
+
         admin_password : password
         int_type : tengigabitethernet
         int_name : 1/0/14

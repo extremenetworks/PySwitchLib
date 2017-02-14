@@ -6,6 +6,7 @@ import pyswitch.utilities
 import pyswitch.utilities as util
 from pyswitch.exceptions import InvalidVlanId
 
+
 class Interface(BaseInterface):
     """
       The Interface class holds all the actions assocaiated with the Interfaces
@@ -34,7 +35,7 @@ class Interface(BaseInterface):
     @property
     def valid_int_types(self):
 
-        return  [
+        return [
             'gigabitethernet',
             'tengigabitethernet',
             'fortygigabitethernet',
@@ -50,11 +51,24 @@ class Interface(BaseInterface):
             'fortygigabitethernet',
             'hundredgigabitethernet',
         ]
+
     @property
     def l2_mtu_const(self):
         minimum_mtu = 1522
         maximum_mtu = 9216
-        return (minimum_mtu,maximum_mtu)
+        return (minimum_mtu, maximum_mtu)
+
+    @property
+    def l3_mtu_const(self):
+        minimum_mtu = 1300
+        maximum_mtu = 9100
+        return (minimum_mtu, maximum_mtu)
+
+    @property
+    def l3_ipv6_mtu_const(self):
+        minimum_mtu = 1280
+        maximum_mtu = 9100
+        return (minimum_mtu, maximum_mtu)
 
     @property
     def has_rbridge_id(self):
@@ -137,7 +151,6 @@ class Interface(BaseInterface):
             fabric_isl_args['fabric_isl_enable'] = True
         config = (method_name, fabric_isl_args)
         return callback(config)
-
 
     def fabric_trunk(self, **kwargs):
         """Set fabric trunk state.
@@ -309,7 +322,9 @@ class Interface(BaseInterface):
                     ve=name, ip_anycast_address=(str(anycast_ip),))
                 method_name = 'rbridge_id_interface_%s_ip_anycast_address' % int_type
             elif ipaddress.version == 6:
-                anycast_args = dict(ve=name, ipv6_anycast_address=(str(anycast_ip),))
+                anycast_args = dict(
+                    ve=name, ipv6_anycast_address=(
+                        str(anycast_ip),))
                 method_name = 'rbridge_id_interface_%s_ipv6_anycast_address' % int_type
 
         anycast_args['rbridge_id'] = rbridge_id
@@ -324,7 +339,6 @@ class Interface(BaseInterface):
             delete_method = "%s_delete" % method_name
             config = (delete_method, anycast_args)
         return callback(config)
-
 
     def spanning_tree_state(self, **kwargs):
         """Set Spanning Tree state.
