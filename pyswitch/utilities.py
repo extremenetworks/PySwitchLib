@@ -14,10 +14,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-from jsonpath_rw import jsonpath, parse
-import xml.etree.ElementTree as ElementTree
-from lxml import etree
 import re
+
+from jsonpath_rw import parse
+from lxml import etree
 
 
 def find(data, expr):
@@ -59,7 +59,6 @@ def parse_response(text):
 
 
 def get_results(mgr, result_text):
-
     status, result = result_text
 
     if not status:
@@ -91,7 +90,6 @@ def get_json_results(mgr):
 
 
 class RestInterfaceError(Exception):
-
     def __init__(self, value):
         self.value = value
 
@@ -100,7 +98,6 @@ class RestInterfaceError(Exception):
 
 
 class InvalidBgpArgs(Exception):
-
     def __init__(self, value):
         self.value = value
 
@@ -111,7 +108,6 @@ class InvalidBgpArgs(Exception):
 def get_bgp_api(api=None, vrf='default', n_addr=None, rbridge_id=1,
                 os='nos', afi=None, feature='', op='_update',
                 resource_depth=1, evpn_n_addr=None, args=None):
-
     if not args:
         args = dict()
     if os is 'nos':
@@ -135,8 +131,8 @@ def get_bgp_api(api=None, vrf='default', n_addr=None, rbridge_id=1,
         else:
             if n_addr:
                 args['af_ipv4_neighbor_address'] = n_addr
-            bgp_api = bgp_api.format(afi = afi4, vrf="", feature=feature, op=op)
-    elif afi and afi == 'ipv6':     
+            bgp_api = bgp_api.format(afi=afi4, vrf="", feature=feature, op=op)
+    elif afi and afi == 'ipv6':
         if vrf != 'default':
             if n_addr:
                 args['af_ipv6_neighbor_addr'] = n_addr
@@ -146,7 +142,7 @@ def get_bgp_api(api=None, vrf='default', n_addr=None, rbridge_id=1,
         else:
             if n_addr:
                 args['af_ipv6_neighbor_address'] = n_addr
-            bgp_api = bgp_api.format(afi = afi6, vrf="", feature=feature, op=op)
+            bgp_api = bgp_api.format(afi=afi6, vrf="", feature=feature, op=op)
     elif afi and afi == 'l2vpn':
         if n_addr:
             args['neighbor_addr'] = n_addr
@@ -155,7 +151,7 @@ def get_bgp_api(api=None, vrf='default', n_addr=None, rbridge_id=1,
         bgp_api = bgp_api.format(afi=afil, vrf="", feature=feature, op=op)
     elif not afi:
         if n_addr:
-            #HACK please come up with a better way.
+            # HACK please come up with a better way.
             if afi4 in feature:
                 args['af_ipv4_neighbor_address'] = n_addr
             elif afi6 in feature:
@@ -171,6 +167,7 @@ def get_bgp_api(api=None, vrf='default', n_addr=None, rbridge_id=1,
     if api and vrf == 'default':
         return (api, args)
     return (bgp_api, args)
+
 
 def valid_vlan_id(vlan_id, extended=True):
     """Validates a VLAN ID.
@@ -244,7 +241,7 @@ def valid_interface(int_type, name):
     if int_type == 've':
         return valid_vlan_id(name)
     else:
-        return valid_physical_name(name,int_type)
+        return valid_physical_name(name, int_type)
 
 
 def valid_port_channel_name(name):
@@ -264,7 +261,7 @@ def valid_port_channel_name(name):
     return re.search(r'^[0-9]{1,4}$', name) is not None
 
 
-def valid_physical_name(name,type):
+def valid_physical_name(name, type):
     """Validates a physical interface.
 
     Do not use this method directly.  Use ``valid_interface`` instead.
@@ -278,7 +275,7 @@ def valid_physical_name(name,type):
     Raises:
         None
     """
-    if type =='ethernet':
+    if type == 'ethernet':
         pattern = r'^[0-9]{1,3}/[0-9]{1,3}(:[1-4])?$'
     else:
         pattern = r'^[0-9]{1,3}/[0-9]{1,3}/[0-9]{1,3}(:[1-4])?$'
