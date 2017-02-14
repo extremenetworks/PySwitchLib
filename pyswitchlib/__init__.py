@@ -32,7 +32,7 @@ class PySwitchLib(object):
         self._module_obj = module_obj
         self._rest_operation = rest_operation
 
-    def _get_pybind_object(self, compositions_list=None, bindings_list=None, composed_child_list=None, compositions_keyval_list=None, bindings_keyval=None, composed_child_leafval_list=None, **kwargs):
+    def _get_pybind_object(self, compositions_list=None, bindings_list=None, composed_child_list=None, compositions_keyval_list=None, bindings_keyval=None, composed_child_leafval_list=None, leafval_map=None, **kwargs):
         """
         This is an auto-generated method for the PySwitchLib.
         """
@@ -86,7 +86,12 @@ class PySwitchLib(object):
 
                                 for key in parent_kwargs_map:
                                     if parent_kwargs_map[key] is not None:
-                                        pybind_parent_extra_key_assignment = getattr(pybind_parent_obj, '_set_' + key)
+                                        mapped_key = key
+
+                                        if leafval_map and pybind_class_module_name in leafval_map and key in leafval_map[pybind_class_module_name]:
+                                            mapped_key = leafval_map[pybind_class_module_name][key]
+
+                                        pybind_parent_extra_key_assignment = getattr(pybind_parent_obj, '_set_' + mapped_key)
                                         pybind_parent_extra_key_assignment(parent_kwargs_map[key])
                             else:
                                 if isinstance(kwargs[composition_tuple[1]], tuple):
@@ -118,7 +123,12 @@ class PySwitchLib(object):
 
                             for key in kwargs_map:
                                 if kwargs_map[key] is not None:
-                                    pybind_extra_key_assignment = getattr(pybind_obj, '_set_' + key)
+                                    mapped_key = key
+
+                                    if leafval_map and pybind_class_module_name in leafval_map and key in leafval_map[pybind_class_module_name]:
+                                        mapped_key = leafval_map[pybind_class_module_name][key]
+
+                                    pybind_extra_key_assignment = getattr(pybind_obj, '_set_' + mapped_key)
                                     pybind_extra_key_assignment(kwargs_map[key])
                         else:
                             if isinstance(kwargs[kwarg], tuple):
@@ -152,14 +162,19 @@ class PySwitchLib(object):
                     if kwarg not in kwargs_exclusion_list and kwargs[kwarg] != None:
                         if kwarg not in bindings_keyval['kwargs_key_name']:
                             if kwargs[kwarg] is not None:
-                                pybind_update_key_assignment = getattr(pybind_obj, '_set_' + kwarg)
+                                mapped_kwarg = kwarg
+
+                                if leafval_map and pybind_class_module_name in leafval_map and kwarg in leafval_map[pybind_class_module_name]:
+                                    mapped_kwarg = leafval_map[pybind_class_module_name][kwarg]
+
+                                pybind_update_key_assignment = getattr(pybind_obj, '_set_' + mapped_kwarg)
                                 pybind_update_key_assignment(kwargs[kwarg])
 
                 break
 
         return pybind_obj
 
-    def _config_worker(self, operation_type=None, pybind_object=None, resource_depth=None, timeout=''):
+    def _config_worker(self, operation_type=None, pybind_object=None, rest_leaf_name=None, resource_depth=None, timeout=''):
         """
         This is an auto-generated method for the PySwitchLib.
         """
@@ -269,7 +284,12 @@ class PySwitchLib(object):
                     uri = uri.split('/')[-1]
                     rest_data = '<' + uri + '> </' + uri + '>'
             
-            rest_commands.append([rest_operation, rest_uri, rest_data, 'config', resource_depth])
+            if operation_type == 'delete' and rest_leaf_name:
+                rest_uri += '/' + rest_leaf_name
+
+                rest_commands.append([rest_operation, rest_uri, '', 'config', resource_depth])
+            else:
+                rest_commands.append([rest_operation, rest_uri, rest_data, 'config', resource_depth])
 
         return self._rest_operation(rest_commands=rest_commands, timeout=timeout)
 

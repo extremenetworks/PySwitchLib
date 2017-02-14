@@ -5,6 +5,7 @@ import unittest2 as unittest
 import pyswitchlib.asset
 
 
+
 class TestVlan(unittest.TestCase):
     def setUp(self):
         self.nos = pyswitchlib.asset.Asset(ip_addr='10.24.81.125',
@@ -16,6 +17,7 @@ class TestVlan(unittest.TestCase):
         # assert(false)
 
     def test_vlan_update(self):
+
         pprint(self.nos.vlan_update(vlan=10,
                                     description='this_is_a_test_for_vlan_10'))
 
