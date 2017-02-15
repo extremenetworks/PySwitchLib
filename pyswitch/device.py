@@ -55,17 +55,20 @@ NOS_VERSIONS = {
         'vcs': pyswitch.os.base.vcs.VCS
     },
 }
-
 SLXOS_VERSIONS = {
+    '16.1.0': {
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.slxos.base.interface.Interface,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.slxos.base.system.System,
+        'services': pyswitch.os.slxos.base.services.Services,
+    },
     '17.1.0': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.slxos.base.interface.Interface,
         'lldp': pyswitch.os.base.lldp.LLDP,
         'system': pyswitch.os.slxos.base.system.System,
         'services': pyswitch.os.slxos.base.services.Services,
-        'fabric_service': pyswitch.os.base.fabric_service.FabricService,
-        'vcs': pyswitch.os.base.vcs.VCS
-
     },
 }
 
@@ -127,14 +130,6 @@ class Device(object):
         if not self._mgr:
             self.reconnect()
 
-        """
-        if not self._cli:
-            self._cli = ConnectHandler(device_type='brocade_nos',
-                                       ip=self._conn[0],
-                                       username=self._auth[0],
-                                       password=self._auth[1])
-            self.bgp._cli = self._cli
-        """
         return self
 
     def __exit__(self, exctype, excisnt, exctb):
