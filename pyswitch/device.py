@@ -122,7 +122,8 @@ class Device(object):
                            str(self.os_type).upper())
 
         for nos_attr in NOS_ATTRS:
-            setattr(self, nos_attr, os_table[ver][nos_attr](self._callback))
+            if nos_attr in os_table[ver]:
+                setattr(self, nos_attr, os_table[ver][nos_attr](self._callback))
 
         setattr(self, 'asset', self._mgr)
 
