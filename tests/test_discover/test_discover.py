@@ -33,5 +33,5 @@ def load_tests(loader, tests, pattern):
             suite.addTests(loader.discover(test_dir, top_level_dir=base_path))
         else:
             suite.addTests(loader.discover(test_dir, pattern=pattern,
-                           top_level_dir=base_path))
+                                           top_level_dir=base_path))
     return suite

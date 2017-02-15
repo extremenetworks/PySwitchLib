@@ -12,8 +12,9 @@ def test_arp_aging_timeout(asset):
 def test_ethernet_get(asset):
     # asset.interface_ethernet_get(ethernet='3/3', resource_depth=3)
 
-    print asset.interface_tengigabitethernet_ipv6_mtu_update(
-        tengigabitethernet='1/0/11', mtu=8000)
+    print asset.interface_tengigabitethernet_update(
+        tengigabitethernet='1/0/6',
+        shutdown=False)
 
 
 def call(method, asset):

@@ -14,10 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import logging
 import sys
-
-import requests.exceptions
 
 import pyswitch.os.base.fabric_service
 import pyswitch.os.base.lldp
@@ -25,9 +22,9 @@ import pyswitch.os.base.snmp
 import pyswitch.os.base.vcs
 import pyswitch.os.nos.base.interface
 import pyswitch.os.nos.base.services
-import pyswitch.os.slxos.base.services
 import pyswitch.os.nos.base.system
 import pyswitch.os.slxos.base.interface
+import pyswitch.os.slxos.base.services
 import pyswitch.os.slxos.base.system
 import pyswitch.utilities as util
 import pyswitchlib.asset
@@ -104,9 +101,9 @@ class Device(object):
         """
         self._conn = kwargs.pop('conn')
         self.host = self._conn[0]
-        self.logger = logging.getLogger(__name__)
         self._auth = kwargs.pop('auth', (None, None))
         self._callback = kwargs.pop('callback', None)
+        self.os_type_val = None
 
         if self._callback is None:
             self._callback = self._callback_main
@@ -123,7 +120,11 @@ class Device(object):
 
         for nos_attr in NOS_ATTRS:
             if nos_attr in os_table[ver]:
-                setattr(self, nos_attr, os_table[ver][nos_attr](self._callback))
+                setattr(
+                    self,
+                    nos_attr,
+                    os_table[ver][nos_attr](
+                        self._callback))
 
         setattr(self, 'asset', self._mgr)
 
@@ -168,7 +169,13 @@ class Device(object):
 
     @property
     def os_type(self):
-        return self._mgr.get_os_type()
+        if self.os_type_val is None:
+            self.os_type_val = self._mgr.get_os_type()
+        return self.os_type_val
+
+    @property
+    def suports_rbridge(self):
+        return self.os_type == 'nos'
 
     @property
     def firmware_version(self):
@@ -245,34 +252,8 @@ class Device(object):
             None
         """
 
-        try:
-            self._mgr = pyswitchlib.asset.Asset(ip_addr=self._conn[0],
-                                                auth=self._auth)
-
-            self.logger.info('successfully connected to %s' % self._conn[0])
-        except AttributeError as e:
-            raise ValueError(
-                'Failed to connect to %s due to %s',
-                self.host,
-                e.message)
-        except ValueError as verr:
-            self.logger.error("Error while logging in to %s due to %s",
-                              self.host, verr.message)
-            raise ValueError("Error while logging in to %s due to %s",
-                             self.host, verr.message)
-        except requests.exceptions.ConnectionError as cerr:
-            self.logger.error("Connection failed while logging in to %s "
-                              "due to %s",
-                              self.host, cerr.message.reason)
-            raise ValueError("Connection failed while logging in to %s"
-                             " due to %s",
-                             self.host, cerr.message.reason)
-        except pyswitchlib.asset.RestInterfaceError as rierr:
-            self.logger.error("Failed to get a REST response while logging in "
-                              "to %s due to %s", self.host, rierr.message)
-            raise ValueError("Failed to get a REST response while logging in "
-                             "to %s due to %s", self.host, rierr.message)
-
+        self._mgr = pyswitchlib.asset.Asset(ip_addr=self._conn[0],
+                                            auth=self._auth)
         return True
 
     def find_interface_by_mac(self, **kwargs):

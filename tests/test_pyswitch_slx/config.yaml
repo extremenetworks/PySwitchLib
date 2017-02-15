@@ -1,6 +1,7 @@
 DeviceTestCase:
     switch:
-        ip: 10.37.18.131
+        ip: 10.24.4.215
+        wrong_ip : 10.37.18.201
         username : admin
         password : password
         rbridge_id : 1

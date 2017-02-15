@@ -953,9 +953,11 @@ class Interface(object):
                 state_args['resource_depth'] = 1
                 config = (get_method_name, state_args)
                 x = callback(config, handler='get_config')
+                if self.has_rbridge_id:
+                    shut = util.find(x.json, '*.shutdown')
+                else:
+                    shut = util.find(x.json, '*.[0].shutdown')
 
-                shut = util.find(x.json, '*[0].shutdown')
-                print shut
                 if shut and shut == 'true':
                     enabled = False
                 else:

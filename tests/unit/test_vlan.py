@@ -6,6 +6,7 @@ import pyswitchlib.asset
 
 
 class TestVlan(unittest.TestCase):
+
     def setUp(self):
         self.nos = pyswitchlib.asset.Asset(ip_addr='10.24.81.125',
                                            auth=('admin', 'password'),

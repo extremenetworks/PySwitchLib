@@ -30,6 +30,7 @@ class InterfaceRPCTestCase(unittest.TestCase):
 
     def setUp(self):
         pass
+        """
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.add_vlan_int(vlan_id=self.vlan)
             dev.interface.create_ve(
@@ -41,6 +42,7 @@ class InterfaceRPCTestCase(unittest.TestCase):
                 port_int=self.portchannel_id,
                 channel_type='standard',
                 mode='active')
+        """
 
     def test_ve_interfaces(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
