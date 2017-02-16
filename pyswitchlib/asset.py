@@ -8,7 +8,6 @@ import threading
 import xml.etree.ElementTree as ElementTree
 import xmltodict
 import json
-import logging
 
 class RestInterfaceError(Exception):                                                                                                                                                
     def __init__(self, value):                                                                                                                                                      
@@ -55,7 +54,6 @@ class Asset(object):
         self._rest_rpc_path = '/rest/operational-state'
         self._rest_discover_path = '/rest'
         self._module_obj = None
-        self._logger = logging.getLogger(__name__)
 
         self._create_timer_handle()
         self._update_uri_prefix_paths()
@@ -100,8 +98,6 @@ class Asset(object):
             else:
                 if 'Authentication-Token' in self._session.headers:
                     self._session.headers.pop('Authentication-Token')
-
-            self._logger.info('Request: ' + rest_cmd[0] + ' ' + url + rest_cmd[1] + ' ' + rest_cmd[2])
 
             if rest_cmd[0] == "GET":
                 if self._rest_session_auth_token == self._rest_session_auth_token_expired:
@@ -149,8 +145,6 @@ class Asset(object):
                 self._format_dict_output(container=json_output, keys=yang_list)
 
             self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text, 'json': json_output}}})
-
-            self._logger.info('Response: ' + str(self._response.status_code) + ' ' + str(json_output))
 
         if not self._rest_session_timer_handle.is_alive():                                                                                                                          
             self._rest_session_timer_handle.start()                                                                                                                                 
