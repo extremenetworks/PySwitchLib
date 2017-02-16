@@ -15,6 +15,9 @@ Inside a python program do this:
     import pybind
 ```
 
+## 0.1.25:
+* Removed logging and logger from asset object.
+
 ## 0.1.24:
 * Added leaf level delete APIs for containers and lists.
 * Fixed leaf level update APIs where all other leaves under same container/list were incorrectly listed as kwargs to be updated.
