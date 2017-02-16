@@ -336,7 +336,6 @@ class Interface(BaseInterface):
             raise InvalidVlanId("`name` must be between `1` and `8191`")
         create_method = "%s_create" % method_name
         config = (create_method, anycast_args)
-        print config
 
         if not enable:
             delete_method = "%s_delete" % method_name

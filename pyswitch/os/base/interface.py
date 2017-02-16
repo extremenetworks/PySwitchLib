@@ -1067,8 +1067,6 @@ class Interface(object):
                           % int_type
             config = (method_name, allowed_vlan_args)
             x = callback(config, handler='get_config')
-            import pprint
-            pprint.pprint(x.json)
 
             add = util.find(x.json, '$..add')
 
@@ -1660,8 +1658,7 @@ class Interface(object):
                 arguments['rbridge_id'] = kwargs.pop('rbridge_id', 1)
             config = (method_name, arguments)
             x = callback(config)
-            import pprint
-            pprint.pprint(x.json)
+
             return util.find(x.json, '$..vrid')
 
         vrid = kwargs.pop('vrid')
@@ -1778,8 +1775,7 @@ class Interface(object):
             arguments[vrid_name] = (vrid, '3')
             config = (method_name, arguments)
             x = callback(config)
-            import pprint
-            pprint.pprint(x.json)
+
             return util.find(x.json, '$..virtual-ipaddr')
 
         vip = kwargs.pop('vip', '')
@@ -3212,8 +3208,7 @@ class Interface(object):
                 arguments['rbridge_id'] = kwargs.pop('rbridge_id', 1)
             config = (method_name, arguments)
             x = callback(config)
-            import pprint
-            pprint.pprint(x.json)
+
             return util.find(x.json, '$..vrid')
 
         vrid = kwargs.pop('vrid')
@@ -3445,8 +3440,7 @@ class Interface(object):
             arguments[vrid_name] = vrid
             config = (method_name, arguments)
             x = callback(config)
-            import pprint
-            pprint.pprint(x.json)
+
             return util.find(x.json, '$..virtual-mac')
 
         if version == 4:
@@ -3509,8 +3503,7 @@ class Interface(object):
                 'get_ip_interface_rpc', {})
 
         interface_result = self._callback(request_interface, 'get')
-        import pprint
-        pprint.pprint(interface_result.json)
+
         for interface in util.findlist(interface_result.json, '$..interface'):
             int_type = util.find(interface, '$..interface-type')
             int_name = util.find(interface, '$..interface-name')
@@ -3750,8 +3743,7 @@ class Interface(object):
             method_name = '%sget' % method_name
             config = (method_name, ageout_args)
             output = callback(config, handler='get_config')
-            import pprint
-            pprint.pprint(output.json)
+
             return util.find(output.json, '$..arp-aging-timeout')
 
         if not enable:
@@ -3810,8 +3802,7 @@ class Interface(object):
             config = ('overlay_gateway_get', {})
 
             output = callback(config, handler='get_config')
-            import pprint
-            pprint.pprint(output.json)
+
             return util.find(output.json, '$..name')
 
         if kwargs.pop('delete', False):
@@ -4151,7 +4142,7 @@ class Interface(object):
 
             item = util.find(output.json,
                              '$..ipv6..address..use-link-local-only')
-            print item
+
             if item:
                 return True
             else:
@@ -4819,8 +4810,7 @@ class Interface(object):
 
             config = (self.method_prefix('vrf_get'), rd_args)
             output = callback(config, handler='get_config')
-            import pprint
-            pprint.pprint(output.json)
+
             vrfname = util.find(output.json, '$..vrf-name')
             rd = util.findText(output.json, '$..rd')
             if self.has_rbridge_id:
@@ -5233,8 +5223,7 @@ class Interface(object):
             method_name = 'rbridge_id_evpn_instance_get'
             config = (method_name, evpn_args)
             output = callback(config, handler='get_config')
-            import pprint
-            pprint.pprint(output.json)
+
             instance_name = util.find(output.json, '$..instance-name')
             ignore_as = util.find(output.json, '$..ignore-as')
             duplicate_mac_timer_value = util.find(

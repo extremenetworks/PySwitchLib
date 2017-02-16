@@ -17,7 +17,6 @@ limitations under the License.
 import re
 
 from jsonpath_rw import parse
-from lxml import etree
 
 
 def find(data, expr):
@@ -45,47 +44,6 @@ def findlist(data, expr):
 
 def findall(data, expr):
     return [match.value for match in parse(expr).find(data)]
-
-
-def parse_response(text):
-    tuple = text
-    if tuple[0]:
-        data = tuple[1]
-        response = find(data, "$..response")
-        output = response['json']['output']
-        return output
-    return ""
-
-
-def get_results(mgr, result_text):
-    status, result = result_text
-
-    if not status:
-        if result[0][mgr._ip_addr]['response']['status_code'] == 404:
-            return None
-
-    text = str(result[0][mgr._ip_addr]['response']['text'])
-
-    try:
-        rest_root = etree.fromstring(text)
-    except:
-        text = "<root>%s</root>" % text
-        try:
-            rest_root = etree.fromstring(text)
-        except:
-            rest_root = None
-
-    return rest_root
-
-
-def get_json_results(mgr):
-    status, result = mgr._get_results()
-    json_output = mgr.get_dict_output()
-    if status:
-
-        print 'JSON_Ouptu', json_output
-    else:
-        print 'Error', json_output
 
 
 class RestInterfaceError(Exception):

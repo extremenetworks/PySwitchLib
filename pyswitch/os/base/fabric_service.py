@@ -46,8 +46,6 @@ class FabricService(object):
 
         result = []
 
-        import pprint
-        pprint.pprint(results.json)
         for item in util.findlist(results, '$..show-link-info'):
             src_rbridge_id = util.find(item, '$..linkinfo-rbridgeid')
             src_switch_wwn = util.find(item, '$..linkinfo-wwn')

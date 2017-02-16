@@ -221,16 +221,17 @@ class Device(object):
         Raises:
             None
         """
-
+        """
         print 'asset.%s(%s)' % (call[0], ", ".join(
             ["=".join([key, '\'%s\'' % str(val) if isinstance(val, str)
                        else str(val)]) for key, val in
                 call[1].items()]))
+        """
+
         (status, result) = getattr(self._mgr, call[0])(**call[1])
 
         if not status:
             op = self._mgr.get_dict_output()
-            print op
             if '' != op and 'object already exists' not in op:
                 raise ValueError(op)
 

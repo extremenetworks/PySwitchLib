@@ -53,7 +53,6 @@ class LLDP(object):
             lldp_result = self._callback(request_lldp, handler='get')
 
             has_more = util.find(lldp_result.json, '$..has-more')
-            print lldp_result.json
 
             for item in util.find(lldp_result.json, '$..lldp-neighbor-detail'):
 
