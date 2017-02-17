@@ -98,7 +98,8 @@ class Interface(object):
         try:
             config = ('vlan_get', {'vlan': vlan_id})
             op = self._callback(config, handler='get_config')
-            if util.find(op.json, '$..Vlan'):
+
+            if util.find(op.json, '$..Vlan') or util.find(op.json, '$..vlan'):
                 return True
             else:
                 return False
@@ -3424,11 +3425,11 @@ class Interface(object):
         if get:
             if version == 4:
                 method_name = 'interface_%s_vrrp_extended_group_' \
-                              'virtual_mac_get' % int_type
+                              'get' % int_type
                 vrid_name = 'vrrpe'
             else:
                 method_name = 'interface_%s_ipv6_vrrp_extended_group_' \
-                              'virtual_mac_get' % int_type
+                              'get' % int_type
                 vrid_name = 'vrrpv3e_group'
 
             if int_type == 've':

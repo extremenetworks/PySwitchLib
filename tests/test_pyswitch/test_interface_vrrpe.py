@@ -56,16 +56,16 @@ class InterfaceVRRPETestCase(unittest.TestCase):
 
     def tearDown(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
-            dev.services.vrrp(rbridge_id=self.rbridge_id, enabled=False)
+            dev.services.vrrp(rbridge_id=self.rbridge_id, enable=False)
             dev.services.vrrp(
                 rbridge_id=self.rbridge_id,
                 ip_version='6',
-                enabled=False)
+                enable=False)
 
-            dev.services.vrrpe(rbridge_id=self.rbridge_id, enabled=False)
+            dev.services.vrrpe(rbridge_id=self.rbridge_id, enable=False)
             dev.services.vrrpe(
                 rbridge_id=self.rbridge_id,
-                enabled=False,
+                enable=False,
                 ip_version='6')
 
             dev.interface.del_vlan_int(self.vlan)
@@ -281,9 +281,72 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 delete=True)
 
     def test_vrrpe_vip_vmac(self):
+
         with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.vrrpe_vrid(
+                int_type='ve',
+                name=self.vlan,
+                vrid=self.vrid,
+                version=4,
+                rbridge_id=self.rbridge_id)
             dev.interface.vrrpe_vmac(int_type='ve',
                                      name=self.vlan,
                                      vrid=self.vrid,
                                      rbridge_id=self.rbridge_id,
                                      virtual_mac='02e0.5200.00xx')
+            op = dev.interface.vrrpe_vmac(int_type='ve',
+                                     name=self.vlan,
+                                     vrid=self.vrid,
+                                     rbridge_id=self.rbridge_id,get=True)
+
+            self.assertEqual('02e0.5200.00xx',op)
+            dev.interface.vrrpe_vmac(int_type='ve',
+                                     name=self.vlan,
+                                     vrid=self.vrid,
+                                     rbridge_id=self.rbridge_id,
+                                     virtual_mac='02e0.5200.00xx',delete=True)
+            op = dev.interface.vrrpe_vmac(int_type='ve',
+                                          name=self.vlan,
+                                          vrid=self.vrid,
+                                          rbridge_id=self.rbridge_id,
+                                          get=True)
+
+            self.assertIsNone(op)
+
+
+    def test_vrrpe_vip_ipv6_vmac(self):
+
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.vrrpe_vrid(
+                int_type='ve',
+                name=self.vlan,
+                vrid=self.vrid,
+                version=6,
+                rbridge_id=self.rbridge_id)
+            dev.interface.vrrpe_vmac(int_type='ve',
+                                     name=self.vlan,
+                                     vrid=self.vrid,
+                                     rbridge_id=self.rbridge_id,
+                                     version=6,
+                                     virtual_mac='02e0.5200.00xx')
+            op = dev.interface.vrrpe_vmac(int_type='ve',
+                                     name=self.vlan,
+                                     vrid=self.vrid,
+                                          version=6,
+                                     rbridge_id=self.rbridge_id,get=True)
+
+            self.assertEqual('02e0.5200.00xx',op)
+            dev.interface.vrrpe_vmac(int_type='ve',
+                                     name=self.vlan,
+                                     vrid=self.vrid,
+                                     rbridge_id=self.rbridge_id,
+                                     version=6,
+                                     virtual_mac='02e0.5200.00xx',delete=True)
+            op = dev.interface.vrrpe_vmac(int_type='ve',
+                                          name=self.vlan,
+                                          vrid=self.vrid,
+                                          version=6,
+                                          rbridge_id=self.rbridge_id,
+                                          get=True)
+
+            self.assertisNone(op)

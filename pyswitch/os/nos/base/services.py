@@ -185,18 +185,18 @@ class Services(object):
             enable = None
 
         vrrpe_args = dict(rbridge_id=rbridge_id)
-        vrrpe_method = 'rbridge_id_protocol_vrrp_update'
+        vrrpe_method = 'rbridge_id_protocol_vrrp_extended_update'
         if ip_version == '6':
-            vrrpe_method = 'rbridge_id_ipv6_protocol_vrrp_update'
+            vrrpe_method = 'rbridge_id_ipv6_protocol_vrrp_extended_update'
 
         if get:
-            config = ('rbridge_id_protocol_vrrp_get', vrrpe_args)
+            config = ('rbridge_id_protocol_vrrp_extended_get', vrrpe_args)
             x = callback(config, handler='get_config')
 
             ipv4_vrrpe = util.find(x.json, '$..vrrp-extended')
             ipv4_vrrpe = ipv4_vrrpe if ipv4_vrrpe else False
 
-            config = ('rbridge_id_ipv6_protocol_vrrp_get', vrrpe_args)
+            config = ('rbridge_id_ipv6_protocol_extended_vrrp_get', vrrpe_args)
             x = callback(config, handler='get_config')
 
             ipv6_vrrpe = util.find(x.json, '$..vrrp-extended')

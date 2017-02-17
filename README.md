@@ -15,6 +15,11 @@ Inside a python program do this:
     import pybind
 ```
 
+
+## 0.1.26:
+* Fixed VLAN issues in pyswitch_wrapper
+* Fixed VRRPE issues in NOS
+
 ## 0.1.25:
 * Removed logging and logger from asset object.
 
