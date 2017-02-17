@@ -137,7 +137,6 @@ class Device(object):
     def __exit__(self, exctype, excisnt, exctb):
 
         if self._mgr:
-            self._mgr._cleanup_timer_handle()
             self._mgr._session.close()
 
     @property
