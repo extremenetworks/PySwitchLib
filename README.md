@@ -19,6 +19,10 @@ Inside a python program do this:
 ## 0.1.26:
 * Fixed VLAN issues in pyswitch_wrapper
 * Fixed VRRPE issues in NOS
+* Fixed key combination delimiter for REST URI formation of object instances.  Now uses '%2C' (comma) as the delimeter.
+* Reverted REST session auth token code. REST requests will always authenticate.
+* Updated dependency to a minimum version of pyangbind-brcd 0.6.12.
+* Updated dependency to a minimum version of pybind 0.1.23.
 
 ## 0.1.25:
 * Removed logging and logger from asset object.
