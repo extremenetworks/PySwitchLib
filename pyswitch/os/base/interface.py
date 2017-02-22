@@ -2240,7 +2240,7 @@ class Interface(object):
             'port_int': port_int,
             'type': channel_type}
 
-        method_name = 'interface_%s_channel_group_mode_update' % int_type
+        method_name = 'interface_%s_channel_group_update' % int_type
         config = (method_name, arguments)
 
         return callback(config)
