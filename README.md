@@ -14,6 +14,9 @@ Inside a python program do this:
     import pySwitchLib
     import pybind
 ```
+## 0.1.28:
+* Optimized firmware version fetch
+* Fixed changes in Port Channel
 
 
 ## 0.1.26:

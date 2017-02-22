@@ -192,11 +192,7 @@ class Device(object):
 
         """
 
-        config = ('show_firmware_version_rpc', {})
-
-        rest_root = self._callback(config, handler='get')
-
-        return util.find(rest_root.json, '$..os-version')
+        return self._mgr.get_os_version()
 
     def _callback_main(self, call, handler='edit_config', target='running',
                        source='startup'):
