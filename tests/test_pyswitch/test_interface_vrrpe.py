@@ -295,16 +295,16 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                                      rbridge_id=self.rbridge_id,
                                      virtual_mac='02e0.5200.00xx')
             op = dev.interface.vrrpe_vmac(int_type='ve',
-                                     name=self.vlan,
-                                     vrid=self.vrid,
-                                     rbridge_id=self.rbridge_id,get=True)
+                                          name=self.vlan,
+                                          vrid=self.vrid,
+                                          rbridge_id=self.rbridge_id, get=True)
 
-            self.assertEqual('02e0.5200.00xx',op)
+            self.assertEqual('02e0.5200.00xx', op)
             dev.interface.vrrpe_vmac(int_type='ve',
                                      name=self.vlan,
                                      vrid=self.vrid,
                                      rbridge_id=self.rbridge_id,
-                                     virtual_mac='02e0.5200.00xx',delete=True)
+                                     virtual_mac='02e0.5200.00xx', delete=True)
             op = dev.interface.vrrpe_vmac(int_type='ve',
                                           name=self.vlan,
                                           vrid=self.vrid,
@@ -312,7 +312,6 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                                           get=True)
 
             self.assertIsNone(op)
-
 
     def test_vrrpe_vip_ipv6_vmac(self):
 
@@ -330,18 +329,18 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                                      version=6,
                                      virtual_mac='02e0.5200.00xx')
             op = dev.interface.vrrpe_vmac(int_type='ve',
-                                     name=self.vlan,
-                                     vrid=self.vrid,
+                                          name=self.vlan,
+                                          vrid=self.vrid,
                                           version=6,
-                                     rbridge_id=self.rbridge_id,get=True)
+                                          rbridge_id=self.rbridge_id, get=True)
 
-            self.assertEqual('02e0.5200.00xx',op)
+            self.assertEqual('02e0.5200.00xx', op)
             dev.interface.vrrpe_vmac(int_type='ve',
                                      name=self.vlan,
                                      vrid=self.vrid,
                                      rbridge_id=self.rbridge_id,
                                      version=6,
-                                     virtual_mac='02e0.5200.00xx',delete=True)
+                                     virtual_mac='02e0.5200.00xx', delete=True)
             op = dev.interface.vrrpe_vmac(int_type='ve',
                                           name=self.vlan,
                                           vrid=self.vrid,

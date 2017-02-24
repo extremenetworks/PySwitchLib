@@ -17,9 +17,9 @@ limitations under the License.
 import xml.etree.ElementTree as ET
 
 import pyswitch.utilities as util
+from pyswitch.os.base.services import Services as BaseServices
 
-
-class Services(object):
+class Services(BaseServices):
     """
     The Services class holds all relevent methods and attributes for enabling
     and disabling NOS services, such as VRRP.
@@ -41,34 +41,8 @@ class Services(object):
         Raises:
             None
         """
-        self._callback = callback
+        super(Services, self).__init__(callback)
 
-    @property
-    def arp(self):
-        """dict: trill link details
-                """
-        xmlns = 'urn:brocade.com:mgmt:brocade-arp'
-        get_arp_info = ET.Element('get-arp', xmlns=xmlns)
-        results = self._callback(get_arp_info, handler='get')
-        result = []
-        for item in results.findall('{%s}arp-entry' % xmlns):
-            ip_address = item.find('{%s}ip-address' % xmlns).text
-            mac_address = item.find('{%s}mac-address' % xmlns).text
-            interface_type = item.find('{%s}interface-type' % xmlns).text
-            interface_name = item.find('{%s}interface-name' % xmlns).text
-            is_resolved = item.find('{%s}is-resolved' % xmlns).text
-            age = item.find('{%s}age' % xmlns).text
-            entry_type = item.find('{%s}entry-type' % xmlns).text
-            item_results = {'ip-address': ip_address,
-                            'mac-address': mac_address,
-                            'interface-type': interface_type,
-                            'interface-name': interface_name,
-                            'is-resolved': is_resolved,
-                            'age': age,
-                            'entry-type': entry_type
-                            }
-            result.append(item_results)
-        return result
 
     def vrrp(self, **kwargs):
         """Enable or Disable VRRP.

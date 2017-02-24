@@ -14,10 +14,12 @@ def test_ethernet_get(asset):
 
     print asset.vlan_create(vlan='78')
     print asset.rbridge_id_interface_ve_create(rbridge_id='135', ve='78')
-    print asset.rbridge_id_interface_ve_ip_address_create(rbridge_id='1', ve='78',
-                                                    address=(
-                                                    '9.9.19.1/24', False,
-                                                    False, False))
+    print asset.rbridge_id_interface_ve_ip_address_create(rbridge_id='1',
+                                                          ve='78',
+                                                          address=(
+                                                              '9.9.19.1/24',
+                                                              False,
+                                                              False, False))
 
 
 def test_vmac(asset):
@@ -31,13 +33,15 @@ def test_vmac(asset):
     asset.vlan_create(vlan='78')
     asset.rbridge_id_interface_ve_create(rbridge_id='1', ve='78')
     asset.show_firmware_version_rpc()
-    asset.rbridge_id_interface_ve_ipv6_vrrp_extended_group_create(vrrpv3e='3',
-                                                                  ve='78',
-                                                                  rbridge_id='1')
-    print asset.rbridge_id_interface_ve_vrrp_extended_group_update(vrrpe='3',
-                                                             ve='78',
-                                                             virtual_mac='02e0.5200.00xx',
-                                                             rbridge_id='1')
+    asset.rbridge_id_interface_ve_ipv6_vrrp_extended_group_create(
+        vrrpv3e='3',
+        ve='78',
+        rbridge_id='1')
+    print asset.rbridge_id_interface_ve_vrrp_extended_group_update(
+        vrrpe='3',
+        ve='78',
+        virtual_mac='02e0.5200.00xx',
+        rbridge_id='1')
 
 
 def call(method, asset):

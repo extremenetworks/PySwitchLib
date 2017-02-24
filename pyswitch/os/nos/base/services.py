@@ -17,9 +17,9 @@ limitations under the License.
 import xml.etree.ElementTree as ET
 
 import pyswitch.utilities as util
+from pyswitch.os.base.services import Services as BaseServices
 
-
-class Services(object):
+class Services(BaseServices):
     """
     The Services class holds all relevent methods and attributes for enabling
     and disabling NOS services, such as VRRP.
@@ -41,24 +41,25 @@ class Services(object):
         Raises:
             None
         """
-        self._callback = callback
+        super(Services, self).__init__(callback)
 
     @property
     def arp(self):
         """dict: trill link details
                 """
-        xmlns = 'urn:brocade.com:mgmt:brocade-arp'
-        get_arp_info = ET.Element('get-arp', xmlns=xmlns)
-        results = self._callback(get_arp_info, handler='get')
+
+        config = ('get_arp_rpc',{})
+        results = self._callback(config, handler='get')
         result = []
-        for item in results.findall('{%s}arp-entry' % xmlns):
-            ip_address = item.find('{%s}ip-address' % xmlns).text
-            mac_address = item.find('{%s}mac-address' % xmlns).text
-            interface_type = item.find('{%s}interface-type' % xmlns).text
-            interface_name = item.find('{%s}interface-name' % xmlns).text
-            is_resolved = item.find('{%s}is-resolved' % xmlns).text
-            age = item.find('{%s}age' % xmlns).text
-            entry_type = item.find('{%s}entry-type' % xmlns).text
+
+        for item in util.findlist(results.json,'$..arp-entry' ):
+            ip_address = util.find(item,'$..ip-address' )
+            mac_address = util.find(item,'$..mac-address' )
+            interface_type = util.find(item,'$..interface-type' )
+            interface_name = util.find(item,'$..interface-name' )
+            is_resolved = util.find(item,'$..is-resolved' )
+            age = util.find(item,'$..age' )
+            entry_type = util.find(item,'$..entry-type' )
             item_results = {'ip-address': ip_address,
                             'mac-address': mac_address,
                             'interface-type': interface_type,

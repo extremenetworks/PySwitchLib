@@ -40,10 +40,9 @@ class VCS(object):
         show_vcs = ('show_vcs_rpc', {})
 
         results = self._callback(show_vcs, handler='get')
-
         result = []
-        for nodes in util.findall(results.json, '$..vcs-nodes'):
-            for item in util.findall(nodes, '$..vcs-node-info'):
+        for nodes in util.findlist(results.json, '$..vcs-nodes'):
+            for item in util.findlist(nodes, '$..vcs-node-info'):
                 serial_number = util.find(item, '$..node-serial-num')
                 node_status = util.find(item, '$..node-status')
                 vcs_id = util.find(item, '$..node-vcs-id')
@@ -53,7 +52,7 @@ class VCS(object):
                 switch_name = util.find(item, '$..node-switchname')
                 node_is_principal = util.find(item, '$..node-is-principal')
                 switch_ip = ''
-                for switch_ip_addr in util.findall(
+                for switch_ip_addr in util.findlist(
                         item, '$..node-public-ip-addresses'):
                     switch_ip = util.find(switch_ip_addr,
                                           '$..node-public-ip-address')

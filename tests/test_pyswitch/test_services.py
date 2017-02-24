@@ -65,3 +65,11 @@ class ServicesTestCase(unittest.TestCase):
             op = dev.services.vrrpe(rbridge_id=self.rbridge_id, get=True)
             self.assertTrue(op['ipv4_vrrpe'])
             self.assertTrue(op['ipv6_vrrpe'])
+
+    def test_arp(self):
+        self.conn = ('10.20.61.21', '22')
+        with Device(conn=self.conn, auth=self.auth) as dev:
+
+            x = dev.services.arp
+            import pprint
+            pprint.pprint(x)
