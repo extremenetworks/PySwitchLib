@@ -2737,7 +2737,7 @@ class Interface(object):
                                     'if-name': if_name,
                                     'interface-state': interface_state,
                                     'interface-proto-state':
-                                        interface_proto_state,
+                                    interface_proto_state,
                                     'interface-mac': interface_mac}
                     result.append(item_results)
         # Loopback interfaces. Probably for other non-physical interfaces, too.
@@ -2833,7 +2833,7 @@ class Interface(object):
                                     'if-name': if_name,
                                     'interface-state': interface_state,
                                     'interface-proto-state':
-                                        interface_proto_state,
+                                    interface_proto_state,
                                     'interface-mac': interface_mac}
                     result.append(item_results)
 
@@ -5614,3 +5614,61 @@ class Interface(object):
             args['mac_move_limit'] = mac_move_limit
 
         return callback((method_name, args))
+
+    def port_channel_speed(self, **kwargs):
+        """Set/get/delete speed in a port channel.
+
+        Args:
+            name (str): Port-channel number. (1, 5, etc)
+            po_speed (str): speed
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            KeyError: if `name` or `po_speed` is not specified.
+            ValueError: if `name` is not a valid value.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.port_channel_speed(
+            ...         name='1', po_speed='40000')
+            ...         output = dev.interface.port_channel_speed(
+            ...         name='1', get=True)
+            ...         output = dev.interface.port_channel_speed(
+            ...         name='1', delete=True)
+            Traceback (most recent call last):
+            KeyError
+        """
+        name = str(kwargs.pop('name'))
+
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if kwargs.pop('get', False):
+            args = dict()
+            args['port_channel'] = name
+            config = ('interface_port_channel_speed_get', args)
+
+            output = callback(config, handler='get_config')
+            return util.find(output.json, '$..speed')
+
+        if not pyswitch.utilities.valid_interface('port_channel', name):
+            raise ValueError("`name` must match `^[0-9]{1,3}${1,3}$`")
+
+        if delete:
+            config = ('interface_port_channel_speed_delete',
+                      {'port_channel': name})
+        else:
+            po_speed = str(kwargs.pop('po_speed'))
+            config = ('interface_port_channel_speed_update',
+                      {'port_channel': name, 'po_speed': po_speed})
+        return callback(config)
