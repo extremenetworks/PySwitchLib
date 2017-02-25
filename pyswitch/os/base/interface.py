@@ -3209,8 +3209,13 @@ class Interface(object):
                 arguments['rbridge_id'] = kwargs.pop('rbridge_id', 1)
             config = (method_name, arguments)
             x = callback(config)
+            vr_list = util.findlist(x.json, '$..vrrp-extended-group')
+            result = []
+            for vr in vr_list:
+                vrid = util.find(vr, '$..vrid')
+                result.append(vrid)
 
-            return util.find(x.json, '$..vrid')
+            return result
 
         vrid = kwargs.pop('vrid')
         if version == 4:
@@ -3445,11 +3450,13 @@ class Interface(object):
             return util.find(x.json, '$..virtual-mac')
 
         if version == 4:
-            method_name = 'interface_%s_vrrp_extended_group_' % int_type
+            method_name = 'interface_%s_vrrp_extended_group_virtual_mac_' % int_type
             vrid_name = 'vrrpe'
+            vmac_name = 'virtual_mac'
         else:
-            method_name = 'interface_%s_ipv6_vrrp_extended_group_' % int_type
+            method_name = 'interface_%s_ipv6_vrrp_extended_group_virtual_mac_02e0_5200_00xx_' % int_type
             vrid_name = 'vrrpv3e_group'
+            vmac_name = 'vmac'
 
         if int_type == 've':
             if self.has_rbridge_id:
@@ -3463,7 +3470,9 @@ class Interface(object):
         if not enable:
             method_name = "%sdelete" % method_name
         else:
-            arguments['virtual_mac'] = virtual_mac
+            if version ==6:
+                virtual_mac = True
+            arguments[vmac_name] = virtual_mac
             method_name = "%supdate" % method_name
         config = (method_name, arguments)
         return callback(config)

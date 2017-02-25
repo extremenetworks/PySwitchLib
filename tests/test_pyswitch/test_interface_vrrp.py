@@ -85,7 +85,7 @@ class InterfaceVRRPTestCase(unittest.TestCase):
                 version=4,
                 rbridge_id=self.rbridge_id)
 
-            dev.interface.vrrpe_vmac(
+            dev.interface.vrrp_vmac(
                 int_type='ve',
                 name=self.vlan,
                 vrid=self.vrid,

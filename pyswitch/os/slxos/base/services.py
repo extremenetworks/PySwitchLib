@@ -160,19 +160,19 @@ class Services(BaseServices):
             enable = None
 
         vrrpe_args = dict()
-        vrrpe_method = 'protocol_vrrp_update'
+        vrrpe_method = 'protocol_vrrp_extended_update'
         if ip_version == '6':
-            vrrpe_method = 'ipv6_protocol_vrrp_update'
+            vrrpe_method = 'ipv6_protocol_vrrp_extended_update'
 
         if get:
-            config = ('protocol_vrrp_get', vrrpe_args)
+            config = ('protocol_vrrp_extended_get', vrrpe_args)
             x = callback(config, handler='get_config')
 
             ipv4_vrrpe = util.find(x.json, '$..vrrp-extended')
             ipv4_vrrpe = ipv4_vrrpe if ipv4_vrrpe and ipv4_vrrpe == 'true'\
                 else False
 
-            config = ('ipv6_protocol_vrrp_get', vrrpe_args)
+            config = ('ipv6_protocol_vrrp_extended_get', vrrpe_args)
             x = callback(config, handler='get_config')
 
             ipv6_vrrpe = util.find(x.json, '$..vrrp-extended')

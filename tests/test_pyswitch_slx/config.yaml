@@ -132,6 +132,7 @@ InterfaceVRRPETestCase:
         int_type : ethernet
         int_name : 3/9
         vrid : 2
+        second_vrid : 4
         vip : 9.9.19.2
         ipv6_vip : 2002:4818:f000:1ab:cafe:beef:1000:1
         ipv6_add : 2002:4818:f000:1ab:cafe:beef:1000:2/64

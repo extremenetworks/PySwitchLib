@@ -29,6 +29,26 @@ class InterfaceTestCase(unittest.TestCase):
                 lb_name=self.loopback_id,
                 rbridge_id=self.rbridge_id)
 
+    def test_create_ve(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.create_ve(
+                ve_name=self.vlan,
+                rbridge_id=self.rbridge_id)
+
+            op = dev.interface.create_ve(
+
+                rbridge_id=self.rbridge_id, get=True)
+            self.assertIn(self.vlan, op)
+
+            dev.interface.create_ve(
+                ve_name=self.vlan,
+                rbridge_id=self.rbridge_id, enable=False)
+
+            op = dev.interface.create_ve(
+                rbridge_id=self.rbridge_id, get=True)
+
+            self.assertNotIn(self.vlan, op)
+
     def test_ipv6_address(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.ip_address(

@@ -137,6 +137,7 @@ InterfaceVRRPETestCase:
         ipv6_vip : 2002:4818:f000:1ab:cafe:beef:1000:1
         ipv6_add : 2002:4818:f000:1ab:cafe:beef:1000:2/64
         vrid : 3
+        second_vrid : 4
         ipv6_vrid : 31
         vlan : 78
 InterfaceVRRPTestCase:

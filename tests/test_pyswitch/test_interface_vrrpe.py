@@ -26,6 +26,7 @@ class InterfaceVRRPETestCase(unittest.TestCase):
             self.ipv6_vip = str(switch.ipv6_vip)
             self.ipv6_add = str(switch.ipv6_add)
             self.vrid = str(switch.vrid)
+            self.second_vrid = str(switch.second_vrid)
             self.ipv6_vrid = str(switch.ipv6_vrid)
             self.vlan = str(switch.vlan)
 
@@ -83,13 +84,21 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 vrid=self.vrid,
                 version=4,
                 rbridge_id=self.rbridge_id)
+            dev.interface.vrrpe_vrid(
+                int_type='ve',
+                name=self.vlan,
+                vrid=self.second_vrid,
+                version=4,
+                rbridge_id=self.rbridge_id)
             op = dev.interface.vrrpe_vrid(
                 int_type='ve',
                 name=self.vlan,
                 version=4,
                 rbridge_id=self.rbridge_id,
                 get=True)
-            self.assertEqual(op, self.vrid)
+
+            self.assertIn(self.vrid, op)
+            self.assertIn(self.second_vrid, op)
 
             dev.interface.vrrpe_vrid(
                 int_type='ve',
@@ -103,7 +112,7 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 version=6,
                 rbridge_id=self.rbridge_id,
                 get=True)
-            self.assertEqual(op, self.ipv6_vrid)
+            self.assertIn(self.ipv6_vrid, op)
 
             # Delete
             dev.interface.vrrpe_vrid(
@@ -119,7 +128,7 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 version=4,
                 rbridge_id=self.rbridge_id,
                 get=True)
-            self.assertIsNone(op)
+            self.assertNotIn(self.vrid, op)
 
             dev.interface.vrrpe_vrid(
                 int_type='ve',
@@ -134,7 +143,7 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 version=6,
                 rbridge_id=self.rbridge_id,
                 get=True)
-            self.assertIsNone(op)
+            self.assertNotIn(self.ipv6_vrid, op)
 
     def test_vrrpe_ve_spf(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
@@ -175,6 +184,49 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 name=self.vlan,
                 vrid=self.vrid,
                 version=4,
+                rbridge_id=self.rbridge_id,
+                get=True)
+            self.assertIsNone(op)
+
+    def test_vrrpe_ve_spf_ipv6(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.vrrpe_vrid(
+                int_type='ve',
+                name=self.vlan,
+                vrid=self.vrid,
+                version=6,
+                rbridge_id=self.rbridge_id)
+
+            dev.interface.vrrpe_spf_basic(
+                int_type='ve',
+                name=self.vlan,
+                vrid=self.vrid,
+                vip=self.vip,
+                version=6,
+                rbridge_id=self.rbridge_id)
+
+            op = dev.interface.vrrpe_spf_basic(
+                int_type='ve',
+                name=self.vlan,
+                vrid=self.vrid,
+                version=6,
+                rbridge_id=self.rbridge_id,
+                get=True)
+            self.assertTrue(op)
+
+            dev.interface.vrrpe_spf_basic(
+                int_type='ve',
+                name=self.vlan,
+                vrid=self.vrid,
+                vip=self.vip,
+                version=6,
+                rbridge_id=self.rbridge_id, enable=False)
+
+            op = dev.interface.vrrpe_spf_basic(
+                int_type='ve',
+                name=self.vlan,
+                vrid=self.vrid,
+                version=6,
                 rbridge_id=self.rbridge_id,
                 get=True)
             self.assertIsNone(op)
@@ -254,7 +306,7 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 version=6,
                 rbridge_id=self.rbridge_id,
                 get=True)
-            self.assertEqual(op, self.ipv6_vip)
+            self.assertIn({'vrid': self.vrid, 'vip': self.ipv6_vip}, op)
 
             dev.interface.vrrpe_vip(
                 int_type='ve',
@@ -270,7 +322,8 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                 vrid=self.vrid,
                 rbridge_id=self.rbridge_id,
                 get=True)
-            self.assertIsNone(op, self.ipv6_vip)
+
+            self.assertNotIn({'vrid': self.vrid, 'vip': self.ipv6_vip}, op)
 
             dev.interface.vrrpe_vrid(
                 int_type='ve',
@@ -326,8 +379,8 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                                      name=self.vlan,
                                      vrid=self.vrid,
                                      rbridge_id=self.rbridge_id,
-                                     version=6,
-                                     virtual_mac='02e0.5200.00xx')
+                                     version=6)
+
             op = dev.interface.vrrpe_vmac(int_type='ve',
                                           name=self.vlan,
                                           vrid=self.vrid,
