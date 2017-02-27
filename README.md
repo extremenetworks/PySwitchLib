@@ -14,6 +14,9 @@ Inside a python program do this:
     import pySwitchLib
     import pybind
 ```
+## 0.1.31
+* interface_exists : checks for the presence of an interface
+
 ## 0.1.30
 * Vrrpe Changes for ipv6
 
