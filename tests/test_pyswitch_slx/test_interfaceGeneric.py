@@ -19,8 +19,8 @@ class InterfaceGenericCase(unittest.TestCase):
         self.bfd_tx = '300'
         self.bfd_multiplier = '3'
         self.description = 'desc123'
-        self.int_name = '1/0/11'
-        self.int_type = 'tengigabitethernet'
+        self.int_name = '1/11'
+        self.int_type = 'ethernet'
         self.int_ip = '10.32.95.12/24'
         self.port_int = '21'
         self.switch_ip = '10.24.39.241'
@@ -37,6 +37,39 @@ class InterfaceGenericCase(unittest.TestCase):
             dev.interface.create_loopback(
                 lb_name=self.loopback_id,
                 rbridge_id=self.rbridge_id)
+
+    def test_interface_exists(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            op = dev.interface.interface_exists(int_type=self.int_type,
+                                                name='1/97')
+            self.assertFalse(op)
+            op = dev.interface.interface_exists(int_type=self.int_type,
+                                                name=self.int_name)
+            self.assertTrue(op)
+            op = dev.interface.interface_exists(int_type='ve',
+                                                name=self.vlan)
+            self.assertTrue(op)
+            op = dev.interface.interface_exists(int_type='ve',
+                                                rbridge_id=self.rbridge_id,
+                                                name='1023')
+            self.assertFalse(op)
+            op = dev.interface.interface_exists(int_type='loopback',
+                                                rbridge_id=self.rbridge_id,
+                                                name=self.loopback_id)
+            self.assertTrue(op)
+            op = dev.interface.interface_exists(int_type='loopback',
+                                                rbridge_id=self.rbridge_id,
+                                                name='254')
+            self.assertFalse(op)
+
+            op = dev.interface.interface_exists(int_type='port_channel',
+                                                rbridge_id=self.port_int,
+                                                name=self.port_int)
+            self.assertTrue(op)
+            op = dev.interface.interface_exists(int_type='port_channel',
+                                                rbridge_id=self.port_int,
+                                                name='254')
+            self.assertFalse(op)
 
     def test_mac_move_detect_enable(self):
         self.conn = ('10.37.18.135', '22')

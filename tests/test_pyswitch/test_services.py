@@ -67,7 +67,6 @@ class ServicesTestCase(unittest.TestCase):
             self.assertFalse(op['ipv4_vrrpe'])
             self.assertFalse(op['ipv6_vrrpe'])
 
-
     def test_arp(self):
         self.conn = ('10.20.61.21', '22')
         with Device(conn=self.conn, auth=self.auth) as dev:

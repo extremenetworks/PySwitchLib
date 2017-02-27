@@ -10,10 +10,7 @@ def test_arp_aging_timeout(asset):
 
 
 def test_ethernet_get(asset):
-    # asset.interface_ethernet_get(ethernet='3/3', resource_depth=3)
-
-    print asset.vlan_create(vlan='78')
-    print asset.rbridge_id_interface_ve_create(rbridge_id='135', ve='78')
+    print asset.interface_port_channel_get(port_channel='12', resource_depth=3)
 
 
 def call(method, asset):
@@ -29,7 +26,7 @@ def call(method, asset):
 if __name__ == '__main__':
     import pyswitchlib.asset
 
-    # asset = pyswitchlib.asset.Asset('10.24.4.215', ('admin', 'password'))
-    asset = pyswitchlib.asset.Asset('10.37.18.131', ('admin', 'password'))
+    asset = pyswitchlib.asset.Asset('10.24.4.215', ('admin', 'password'))
+    #asset = pyswitchlib.asset.Asset('10.37.18.131', ('admin', 'password'))
 
-    call(test_arp_aging_timeout, asset)
+    call(test_ethernet_get, asset)

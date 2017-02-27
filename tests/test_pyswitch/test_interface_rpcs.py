@@ -30,6 +30,7 @@ class InterfaceRPCTestCase(unittest.TestCase):
 
     def setUp(self):
         pass
+
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.add_vlan_int(vlan_id=self.vlan)
             dev.interface.create_ve(
@@ -64,6 +65,13 @@ class InterfaceRPCTestCase(unittest.TestCase):
     def test_switch_port_list(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             pprint.pprint(dev.interface.switchport_list)
+
+    def test_single_interface_detail(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            pprint.pprint(dev.interface.single_interface_detail(
+                int_type='tengigabitethernet', name='1/0/31'))
+            pprint.pprint(dev.interface.single_interface_detail(
+                int_type='port-channel', name=self.portchannel_id))
 
     def test_interface_detail(self):
         with Device(conn=self.conn, auth=self.auth) as dev:

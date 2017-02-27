@@ -108,6 +108,35 @@ class Interface(object):
             logging.error(error)
             return False
 
+    def interface_exists(self, **kwargs):
+        int_type = str(kwargs.pop('int_type').lower())
+        name = str(kwargs.pop('name'))
+
+        callback = kwargs.pop('callback', self._callback)
+        valid_int_types = self.valid_int_types
+        valid_rbridge_int_types = ['ve', 'loopback']
+        valid_int_types = valid_int_types + valid_rbridge_int_types
+
+        if int_type not in valid_int_types:
+            raise ValueError('int_type must be one of: %s' %
+                             repr(valid_int_types))
+
+        method_name = 'interface_%s_get' % (int_type)
+        args = dict()
+        args[int_type] = name
+
+        if self.has_rbridge_id and int_type in valid_rbridge_int_types:
+            rbridge_id = kwargs.pop('rbridge_id', '1')
+            method_name = 'rbridge_id_interface_%s_get' % (int_type)
+            args['rbridge_id'] = rbridge_id
+
+        config = (method_name, args)
+        op = callback(config, handler='get_config')
+
+        if op.json != '':
+            return True
+        return False
+
     def del_vlan_int(self, vlan_id):
         """
         Delete VLAN Interface.
@@ -2785,6 +2814,62 @@ class Interface(object):
 
         return ('get_interface_detail_rpc', arguments)
 
+    def single_interface_detail(self, **kwargs):
+        """list[dict]: A list of dictionary items describing the
+        interface type, name, role, mac, admin and operational
+        state of interfaces of all rbridges.
+        This method currently only lists the Physical Interfaces (
+        Gigabitethernet, tengigabitethernet, fortygigabitethernet,
+        hundredgigabitethernet) and port-channel
+        """
+
+        result = []
+        int_type = kwargs.pop('int_type')
+        name = kwargs.pop('name')
+
+        int_types = self.valid_intp_types
+        int_types.append('port-channel')
+
+        if int_type not in int_types:
+            raise ValueError("`int_type` must be one of: %s"
+                             % repr(int_types))
+
+        arguments = {'interface_type': int_type, 'interface_name': name}
+
+        request_interface = ('get_interface_detail_rpc', arguments)
+        interface_result = self._callback(request_interface, 'get')
+
+        for item in util.findlist(interface_result.json, 'interface'):
+            interface_type = util.find(item, '$..interface-type')
+            interface_name = util.find(item, '$..interface-name')
+
+            if "gigabitethernet" '' in interface_type or \
+                    "port-channel" in interface_type or 'ethernet'\
+                    in interface_type:
+                if "gigabitethernet" in interface_type or 'ethernet'\
+                        in interface_type:
+                    interface_role = util.find(item, '$..port-role')
+                else:
+                    interface_role = "None"
+                if_name = util.find(item, '$..if-name')
+                interface_state = util.find(item, '$..if-state')
+                interface_proto_state = util.find(
+                    item, '$..line-protocol-state')
+
+                interface_mac = util.find(item,
+                                          '$..current-hardware-address')
+                item_results = {'interface-type': interface_type,
+                                'interface-name': interface_name,
+                                'interface-role': interface_role,
+                                'if-name': if_name,
+                                'interface-state': interface_state,
+                                'interface-proto-state':
+                                interface_proto_state,
+                                'interface-mac': interface_mac}
+                result.append(item_results)
+
+        return result
+
     @property
     def interface_detail(self):
         """list[dict]: A list of dictionary items describing the
@@ -3450,11 +3535,13 @@ class Interface(object):
             return util.find(x.json, '$..virtual-mac')
 
         if version == 4:
-            method_name = 'interface_%s_vrrp_extended_group_virtual_mac_' % int_type
+            method_name = 'interface_%s_vrrp_extended_group_virtual_mac_' \
+                          % int_type
             vrid_name = 'vrrpe'
             vmac_name = 'virtual_mac'
         else:
-            method_name = 'interface_%s_ipv6_vrrp_extended_group_virtual_mac_02e0_5200_00xx_' % int_type
+            method_name = 'interface_%s_ipv6_vrrp_extended_group_virtual' \
+                          '_mac_02e0_5200_00xx_' % int_type
             vrid_name = 'vrrpv3e_group'
             vmac_name = 'vmac'
 
@@ -3470,7 +3557,7 @@ class Interface(object):
         if not enable:
             method_name = "%sdelete" % method_name
         else:
-            if version ==6:
+            if version == 6:
                 virtual_mac = True
             arguments[vmac_name] = virtual_mac
             method_name = "%supdate" % method_name
