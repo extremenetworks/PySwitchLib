@@ -983,7 +983,8 @@ class Interface(object):
                 state_args['resource_depth'] = 1
                 config = (get_method_name, state_args)
                 x = callback(config, handler='get_config')
-                if self.has_rbridge_id:
+                if self.has_rbridge_id and \
+                   (int_type == 've' or int_type == 'loopback'):
                     shut = util.find(x.json, '*.shutdown')
                 else:
                     shut = util.find(x.json, '*.[0].shutdown')
