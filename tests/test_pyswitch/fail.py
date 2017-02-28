@@ -27,6 +27,5 @@ if __name__ == '__main__':
     import pyswitchlib.asset
 
     asset = pyswitchlib.asset.Asset('10.24.4.215', ('admin', 'password'))
-    #asset = pyswitchlib.asset.Asset('10.37.18.131', ('admin', 'password'))
 
     call(test_ethernet_get, asset)

@@ -3,17 +3,17 @@
 
 Install required packages:
 ```
-    sudo pip install pySwitchLib
-    sudo pip install pybind
-    sudo pip install pyangbind
+    sudo pip install pyswitchlib
 ```
 
 
 Inside a python program do this:
 ```
-    import pySwitchLib
-    import pybind
+    import pyswitchlib.asset
 ```
+## 0.1.33
+* Fixed updating with default values.
+
 ## 0.1.32
 * switchport_list corrected vlan entry for access
 
@@ -30,7 +30,6 @@ Inside a python program do this:
 ## 0.1.28:
 * Optimized firmware version fetch
 * Fixed changes in Port Channel
-
 
 ## 0.1.26:
 * Fixed VLAN issues in pyswitch_wrapper
