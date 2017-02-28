@@ -2935,13 +2935,15 @@ class Interface(object):
 
         for interface in util.findlist(interface_result.json,
                                        '$..switchport'):
+
+
             vlans = []
             interface_type = util.findText(interface, 'interface-type')
             interface_name = util.findText(interface, 'interface-name')
 
             mode = util.findText(interface, 'mode')
             intf = util.findText(interface, 'active-vlans')
-            for vlan_node in util.find(intf, 'vlanid'):
+            for vlan_node in util.findlist(intf, 'vlanid'):
                 vlans.append(vlan_node)
             results = {'vlan-id': vlans,
                        'mode': mode,

@@ -159,7 +159,7 @@ InterfaceVRRPTestCase:
         priority : 66
 InterfaceRPCTestCase:
      switch:
-        ip: 10.24.4.215
+        ip: 10.20.61.21
         username : admin
         password : password
         rbridge_id : 1
