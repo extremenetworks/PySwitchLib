@@ -201,16 +201,7 @@ class PySwitchLib(object):
 
         if 'update' in operation_type:
             update_object_rest_data = ''
-            update_key_count = 0
-            delete_key_count = 0
             rest_data =  dicttoxml(json.loads(pybindJSON.dumps(pybind_object, mode='rest'), object_pairs_hook=OrderedDict), root=False, attr_type=False, item_func=label_list_items)
-
-            for key in pybind_object.elements():
-                update_object_name = getattr(pybind_object, '_get_' + key)
-                update_object = update_object_name()
-
-                if update_object._is_keyval == False and update_object._changed() == True:
-                    update_key_count += 1
 
             for key in pybind_object.elements():
                 update_object_name = getattr(pybind_object, '_get_' + key)
@@ -218,7 +209,7 @@ class PySwitchLib(object):
                 rest_uri = update_object._rest_uri()
                 rest_uri_end_element = rest_uri.split('/')[-1]
 
-                if update_object._is_keyval == False and update_object._changed() == True:
+                if update_object._is_keyval == False and (update_object._changed() == True or (update_object.default() and update_object == update_object.default())):
                     rest_name = update_object.rest_name()
                     yang_leaf_name = update_object.yang_name()
                     temp_pybind_obj = update_object
@@ -245,7 +236,6 @@ class PySwitchLib(object):
                             rest_operation = 'PUT' 
 
                     if rest_operation == 'DELETE':
-                        delete_key_count += 1
                         rest_commands.append([rest_operation, rest_uri, '', 'config', resource_depth])
                     elif 'bulk' not in operation_type:
                         rest_commands.append([rest_operation, rest_uri, update_object_rest_data, 'config', resource_depth])
