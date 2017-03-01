@@ -11,6 +11,9 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.35
+* Removed delete APIs where YANG elements contain "cli-incomplete-no" extension.
+
 ## 0.1.34
 * Fixed missing payload for default values.
 
