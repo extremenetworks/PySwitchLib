@@ -21,20 +21,23 @@ import pyswitch.os.base.lldp
 import pyswitch.os.base.snmp
 import pyswitch.os.base.vcs
 import pyswitch.os.nos.base.interface
+import pyswitch.os.nos.base.bgp
 import pyswitch.os.nos.base.services
 import pyswitch.os.nos.base.system
 import pyswitch.os.slxos.base.interface
+import pyswitch.os.slxos.base.bgp
 import pyswitch.os.slxos.base.services
 import pyswitch.os.slxos.base.system
 import pyswitch.utilities as util
 import pyswitchlib.asset
 
-NOS_ATTRS = ['snmp', 'interface', 'lldp', 'system', 'services',
+NOS_ATTRS = ['snmp', 'interface', 'bgp',  'lldp', 'system', 'services',
              'fabric_service', 'vcs']
 NOS_VERSIONS = {
     '7.0.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.nos.base.interface.Interface,
+        'bgp': pyswitch.os.nos.base.bgp.Bgp,
         'lldp': pyswitch.os.base.lldp.LLDP,
         'system': pyswitch.os.nos.base.system.System,
         'services': pyswitch.os.nos.base.services.Services,
@@ -45,6 +48,7 @@ NOS_VERSIONS = {
     '7.1.0': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.nos.base.interface.Interface,
+        'bgp': pyswitch.os.nos.base.bgp.Bgp,
         'lldp': pyswitch.os.base.lldp.LLDP,
         'system': pyswitch.os.nos.base.system.System,
         'services': pyswitch.os.nos.base.services.Services,
@@ -56,6 +60,7 @@ SLXOS_VERSIONS = {
     '16.1.0': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.slxos.base.interface.Interface,
+        'bgp': pyswitch.os.slxos.base.bgp.Bgp,
         'lldp': pyswitch.os.base.lldp.LLDP,
         'system': pyswitch.os.slxos.base.system.System,
         'services': pyswitch.os.slxos.base.services.Services,
@@ -63,6 +68,7 @@ SLXOS_VERSIONS = {
     '17.1.0': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.slxos.base.interface.Interface,
+        'bgp': pyswitch.os.slxos.base.bgp.Bgp,
         'lldp': pyswitch.os.base.lldp.LLDP,
         'system': pyswitch.os.slxos.base.system.System,
         'services': pyswitch.os.slxos.base.services.Services,
