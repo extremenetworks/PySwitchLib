@@ -11,6 +11,9 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.34
+* Fixed missing payload for default values.
+
 ## 0.1.33
 * Fixed updating with default values.
 

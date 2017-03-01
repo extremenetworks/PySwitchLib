@@ -221,6 +221,8 @@ class PySwitchLib(object):
 
                     if hasattr(temp_pybind_obj, '_pyangbind_elements'):
                         rest_data = dicttoxml(json.loads(pybindJSON.dumps(temp_pybind_obj, mode='rest'), object_pairs_hook=OrderedDict), root=False, attr_type=False, item_func=label_list_items)
+                    elif update_object.default() and update_object == update_object.default():
+                        rest_data += '<{0}>{1}</{0}>'.format(rest_name, update_object)
 
                     match = re.match(r'.*(<{0}>.*</{0}>).*'.format(rest_name), rest_data)
 
