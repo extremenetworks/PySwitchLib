@@ -39,7 +39,7 @@ def activate_status_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {"pybind.nos.v7_1_0.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_firmware_rpc.activate_status": {}}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -83,7 +83,7 @@ def bna_config_cmd_rpc(self, src=None, dest=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, src=src, dest=dest)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, src=src, dest=dest)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -128,7 +128,7 @@ def bna_config_cmd_status_rpc(self, session_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, session_id=session_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, session_id=session_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -163,7 +163,7 @@ def clear_mpls_auto_bandwidth_sample_history_all_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -207,7 +207,7 @@ def clear_mpls_auto_bandwidth_sample_history_lsp_rpc(self, lsp_name=None, api_ti
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, lsp_name=lsp_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, lsp_name=lsp_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -242,7 +242,7 @@ def clear_mpls_auto_bandwidth_statistics_all_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -286,7 +286,7 @@ def clear_mpls_auto_bandwidth_statistics_lsp_rpc(self, lsp_name=None, api_timeou
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, lsp_name=lsp_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, lsp_name=lsp_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -330,7 +330,7 @@ def clear_mpls_bypass_lsp_rpc(self, mpls_clear_bypass_lsp_name_in=None, api_time
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_clear_bypass_lsp_name_in=mpls_clear_bypass_lsp_name_in)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_clear_bypass_lsp_name_in=mpls_clear_bypass_lsp_name_in)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -379,7 +379,7 @@ def clear_mpls_ldp_neighbor_rpc(self, mpls_clear_all_ldp_sessions=None, mpls_cle
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_clear_all_ldp_sessions=mpls_clear_all_ldp_sessions, mpls_clear_one_ldp_sessions=mpls_clear_one_ldp_sessions)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_clear_all_ldp_sessions=mpls_clear_all_ldp_sessions, mpls_clear_one_ldp_sessions=mpls_clear_one_ldp_sessions)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -414,7 +414,7 @@ def clear_mpls_ldp_statistics_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -467,7 +467,7 @@ def clear_mpls_lsp_rpc(self, clear_mpls_lsp_option=None, api_timeout=''):
     composed_child_leafval_list = [{'leafval': 'mpls_clear_lsp_name_in, primary, secondary'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, clear_mpls_lsp_option=clear_mpls_lsp_option)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, clear_mpls_lsp_option=clear_mpls_lsp_option)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -502,7 +502,7 @@ def clear_mpls_rsvp_statistics_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -551,7 +551,7 @@ def clear_mpls_rsvp_statistics_neighbor_rpc(self, clear_mpls_rsvp_statistics_nei
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, clear_mpls_rsvp_statistics_neighbor_address=clear_mpls_rsvp_statistics_neighbor_address, clear_mpls_rsvp_statistics_neighbor_all=clear_mpls_rsvp_statistics_neighbor_all)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, clear_mpls_rsvp_statistics_neighbor_address=clear_mpls_rsvp_statistics_neighbor_address, clear_mpls_rsvp_statistics_neighbor_all=clear_mpls_rsvp_statistics_neighbor_all)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -655,7 +655,7 @@ def clear_mpls_statistics_rpc(self, mpls_clear_statistics_type=None, mpls_clear_
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_clear_statistics_type=mpls_clear_statistics_type, mpls_clear_statistics_transit_ldp_fec_prefix=mpls_clear_statistics_transit_ldp_fec_prefix, mpls_clear_statistics_transit_ldp_prefix_address=mpls_clear_statistics_transit_ldp_prefix_address, mpls_clear_statistics_transit_ldp_prefix_mask=mpls_clear_statistics_transit_ldp_prefix_mask, mpls_clear_statistics_transit_label_id=mpls_clear_statistics_transit_label_id, mpls_clear_statistics_tunnel_ldp_id=mpls_clear_statistics_tunnel_ldp_id, mpls_clear_statistics_tunnel_rsvp_bypass=mpls_clear_statistics_tunnel_rsvp_bypass, mpls_clear_statistics_tunnel_name=mpls_clear_statistics_tunnel_name, mpls_clear_statistics_tunnel_dest=mpls_clear_statistics_tunnel_dest)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_clear_statistics_type=mpls_clear_statistics_type, mpls_clear_statistics_transit_ldp_fec_prefix=mpls_clear_statistics_transit_ldp_fec_prefix, mpls_clear_statistics_transit_ldp_prefix_address=mpls_clear_statistics_transit_ldp_prefix_address, mpls_clear_statistics_transit_ldp_prefix_mask=mpls_clear_statistics_transit_ldp_prefix_mask, mpls_clear_statistics_transit_label_id=mpls_clear_statistics_transit_label_id, mpls_clear_statistics_tunnel_ldp_id=mpls_clear_statistics_tunnel_ldp_id, mpls_clear_statistics_tunnel_rsvp_bypass=mpls_clear_statistics_tunnel_rsvp_bypass, mpls_clear_statistics_tunnel_name=mpls_clear_statistics_tunnel_name, mpls_clear_statistics_tunnel_dest=mpls_clear_statistics_tunnel_dest)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -719,7 +719,7 @@ def clear_mpls_statistics_ldp_transit_rpc(self, clear_statistics_ldp_transit_fec
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, clear_statistics_ldp_transit_fec_prefix=clear_statistics_ldp_transit_fec_prefix, clear_statistics_ldp_transit_fec_prefix_address=clear_statistics_ldp_transit_fec_prefix_address, clear_statistics_ldp_transit_fec_prefix_mask=clear_statistics_ldp_transit_fec_prefix_mask)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, clear_statistics_ldp_transit_fec_prefix=clear_statistics_ldp_transit_fec_prefix, clear_statistics_ldp_transit_fec_prefix_address=clear_statistics_ldp_transit_fec_prefix_address, clear_statistics_ldp_transit_fec_prefix_mask=clear_statistics_ldp_transit_fec_prefix_mask)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -763,7 +763,7 @@ def clear_mpls_statistics_ldp_tunnel_rpc(self, clear_statistics_ldp_tunnel_id=No
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, clear_statistics_ldp_tunnel_id=clear_statistics_ldp_tunnel_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, clear_statistics_ldp_tunnel_id=clear_statistics_ldp_tunnel_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -799,7 +799,7 @@ def dad_status_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -854,7 +854,7 @@ def fcoe_get_interface_rpc(self, fcoe_intf_name=None, fcoe_intf_rbridge_id=None,
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, fcoe_intf_name=fcoe_intf_name, fcoe_intf_rbridge_id=fcoe_intf_rbridge_id, fcoe_intf_include_stats=fcoe_intf_include_stats)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, fcoe_intf_name=fcoe_intf_name, fcoe_intf_rbridge_id=fcoe_intf_rbridge_id, fcoe_intf_include_stats=fcoe_intf_include_stats)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -920,7 +920,7 @@ def fcoe_get_login_rpc(self, fcoe_login_interface=None, fcoe_login_vfid=None, fc
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, fcoe_login_interface=fcoe_login_interface, fcoe_login_vfid=fcoe_login_vfid, fcoe_login_vlan=fcoe_login_vlan, fcoe_login_rbridge_id=fcoe_login_rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, fcoe_login_interface=fcoe_login_interface, fcoe_login_vfid=fcoe_login_vfid, fcoe_login_vlan=fcoe_login_vlan, fcoe_login_rbridge_id=fcoe_login_rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -965,7 +965,7 @@ def fwdl_status_rpc(self, fwdl_tid=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, fwdl_tid=fwdl_tid)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, fwdl_tid=fwdl_tid)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1046,7 +1046,7 @@ def get_arp_rpc(self, interface_type=None, interface_name=None, dynamic=None, st
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, dynamic=dynamic, static=static, ip_address=ip_address)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, dynamic=dynamic, static=static, ip_address=ip_address)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1082,7 +1082,7 @@ def get_contained_in_id_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1117,7 +1117,7 @@ def get_flexports_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1216,7 +1216,7 @@ def get_interface_detail_rpc(self, interface_type=None, interface_name=None, las
     composed_child_leafval_list = [{'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, last_rcvd_interface=last_rcvd_interface)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, last_rcvd_interface=last_rcvd_interface)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1252,7 +1252,7 @@ def get_interface_switchport_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1325,7 +1325,7 @@ def get_ip_interface_rpc(self, interface_type=None, interface_name=None, rbridge
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1361,7 +1361,7 @@ def get_last_config_update_time_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1405,7 +1405,7 @@ def get_last_config_update_time_for_xpaths_rpc(self, xpath_strings=None, api_tim
     composed_child_leafval_list = [{'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, xpath_strings=xpath_strings)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, xpath_strings=xpath_strings)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1485,7 +1485,7 @@ def get_lldp_neighbor_detail_rpc(self, interface_type=None, interface_name=None,
     composed_child_leafval_list = []
     leafval_map = {"pybind.slxos.v16r_1_00b.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {}, "pybind.nos.v7_1_0.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}, "pybind.nos.v7_0_1b.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}, "pybind.nos.v6_0_2c.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, last_rcvd_ifindex=last_rcvd_ifindex, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, last_rcvd_ifindex=last_rcvd_ifindex, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1558,7 +1558,7 @@ def get_mac_acl_for_intf_rpc(self, interface_type=None, interface_name=None, dir
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, direction=direction)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, direction=direction)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1629,7 +1629,7 @@ def get_mac_address_table_rpc(self, mac_address=None, last_mac_address_details=N
     composed_child_leafval_list = [{'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}]
     leafval_map = {"pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}, "pybind.nos.v7_1_0.brocade_mac_address_table_rpc.get_mac_address_table.input": {}, "pybind.nos.v6_0_2c.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}, "pybind.nos.v7_0_1b.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mac_address=mac_address, last_mac_address_details=last_mac_address_details)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mac_address=mac_address, last_mac_address_details=last_mac_address_details)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1702,7 +1702,7 @@ def get_media_detail_rpc(self, interface_type=None, interface_name=None, rbridge
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1737,7 +1737,7 @@ def get_mpls_autobw_template_brief_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1772,7 +1772,7 @@ def get_mpls_autobw_template_detail_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1815,7 +1815,7 @@ def get_mpls_autobw_template_one_rpc(self, mpls_autobw_template_one=None, api_ti
     composed_child_leafval_list = [{'leafval': 'autobwTemplateName'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_autobw_template_one=mpls_autobw_template_one)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_autobw_template_one=mpls_autobw_template_one)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1850,7 +1850,7 @@ def get_mpls_ldp_neighbor_brief_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1885,7 +1885,7 @@ def get_mpls_ldp_neighbor_detail_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1941,7 +1941,7 @@ def get_mpls_ldp_neighbor_one_rpc(self, mpls_ldp_neighbor_one_input=None, api_ti
     composed_child_leafval_list = [{'leafval': 'ldpid, labelspaceId'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_ldp_neighbor_one_input=mpls_ldp_neighbor_one_input)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_ldp_neighbor_one_input=mpls_ldp_neighbor_one_input)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -1976,7 +1976,7 @@ def get_mpls_ldp_session_brief_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2011,7 +2011,7 @@ def get_mpls_ldp_session_detail_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2076,7 +2076,7 @@ def get_mpls_ldp_session_one_rpc(self, mpls_ldp_session_one=None, api_timeout=''
     composed_child_leafval_list = [{'leafval': 'ldpid, labelspaceId, debug, out, in_'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_ldp_session_one=mpls_ldp_session_one)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_ldp_session_one=mpls_ldp_session_one)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2121,7 +2121,7 @@ def get_nameserver_detail_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2166,7 +2166,7 @@ def get_netconf_client_capabilities_rpc(self, session_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, session_id=session_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, session_id=session_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2218,7 +2218,7 @@ def get_port_channel_detail_rpc(self, aggregator_id=None, last_aggregator_id=Non
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, aggregator_id=aggregator_id, last_aggregator_id=last_aggregator_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, aggregator_id=aggregator_id, last_aggregator_id=last_aggregator_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2324,7 +2324,7 @@ def get_port_profile_for_intf_rpc(self, rbridge_id=None, interface_type=None, in
     composed_child_leafval_list = [{'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id, interface_type=interface_type, interface_name=interface_name, last_received_interface_info=last_received_interface_info)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id, interface_type=interface_type, interface_name=interface_name, last_received_interface_info=last_received_interface_info)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2404,7 +2404,7 @@ def get_port_profile_status_rpc(self, rbridge_id=None, port_profile_name=None, p
     composed_child_leafval_list = [{'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id, port_profile_name=port_profile_name, port_profile_status=port_profile_status, last_received_port_profile_info=last_received_port_profile_info)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id, port_profile_name=port_profile_name, port_profile_status=port_profile_status, last_received_port_profile_info=last_received_port_profile_info)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2470,7 +2470,7 @@ def get_portchannel_info_by_intf_rpc(self, interface_type=None, interface_name=N
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2505,7 +2505,7 @@ def get_show_cfm_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2553,7 +2553,7 @@ def get_stp_brief_info_rpc(self, last_rcvd_instance=None, api_timeout=''):
     composed_child_leafval_list = [{'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, last_rcvd_instance=last_rcvd_instance)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, last_rcvd_instance=last_rcvd_instance)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2601,7 +2601,7 @@ def get_stp_mst_detail_rpc(self, last_rcvd_instance=None, api_timeout=''):
     composed_child_leafval_list = [{'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, last_rcvd_instance=last_rcvd_instance)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, last_rcvd_instance=last_rcvd_instance)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2646,7 +2646,7 @@ def get_system_uptime_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2760,7 +2760,7 @@ def get_tunnel_info_rpc(self, page_cursor=None, id=None, mode=None, gw_name=None
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, page_cursor=page_cursor, id=id, mode=mode, gw_name=gw_name, src_ip=src_ip, dest_ip=dest_ip, config_src=config_src, site_name=site_name, admin_state=admin_state, oper_state=oper_state, bfd_state=bfd_state)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, page_cursor=page_cursor, id=id, mode=mode, gw_name=gw_name, src_ip=src_ip, dest_ip=dest_ip, config_src=config_src, site_name=site_name, admin_state=admin_state, oper_state=oper_state, bfd_state=bfd_state)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2821,7 +2821,7 @@ def get_tunnel_statistics_rpc(self, page_cursor=None, id=None, mode=None, gw_nam
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, page_cursor=page_cursor, id=id, mode=mode, gw_name=gw_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, page_cursor=page_cursor, id=id, mode=mode, gw_name=gw_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2857,7 +2857,7 @@ def get_vcs_details_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2909,7 +2909,7 @@ def get_vlan_brief_rpc(self, vlan_id=None, last_rcvd_vlan_id=None, api_timeout='
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, vlan_id=vlan_id, last_rcvd_vlan_id=last_rcvd_vlan_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, vlan_id=vlan_id, last_rcvd_vlan_id=last_rcvd_vlan_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -2975,7 +2975,7 @@ def get_vmpolicy_macaddr_rpc(self, mac=None, vcenter=None, datacenter=None, last
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mac=mac, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mac=mac, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3041,7 +3041,7 @@ def get_vnetwork_dvpgs_rpc(self, name=None, vcenter=None, datacenter=None, last_
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, name=name, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, name=name, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3107,7 +3107,7 @@ def get_vnetwork_dvs_rpc(self, name=None, vcenter=None, datacenter=None, last_rc
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, name=name, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, name=name, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3173,7 +3173,7 @@ def get_vnetwork_hosts_rpc(self, vcenter=None, datacenter=None, name=None, last_
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, vcenter=vcenter, datacenter=datacenter, name=name, last_rcvd_instance=last_rcvd_instance)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, vcenter=vcenter, datacenter=datacenter, name=name, last_rcvd_instance=last_rcvd_instance)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3239,7 +3239,7 @@ def get_vnetwork_portgroups_rpc(self, name=None, vcenter=None, datacenter=None, 
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, name=name, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, name=name, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3305,7 +3305,7 @@ def get_vnetwork_vms_rpc(self, name=None, vcenter=None, datacenter=None, last_rc
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, name=name, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, name=name, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3371,7 +3371,7 @@ def get_vnetwork_vswitches_rpc(self, name=None, vcenter=None, datacenter=None, l
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, name=name, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, name=name, vcenter=vcenter, datacenter=datacenter, last_rcvd_instance=last_rcvd_instance)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3406,7 +3406,7 @@ def isns_get_device_brief_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3454,7 +3454,7 @@ def isns_get_discovery_domain_rpc(self, isns_dd_name=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, isns_dd_name=isns_dd_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, isns_dd_name=isns_dd_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3502,7 +3502,7 @@ def isns_get_discovery_domain_set_rpc(self, isns_dds_name=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, isns_dds_name=isns_dds_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, isns_dds_name=isns_dds_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3537,7 +3537,7 @@ def isns_get_last_device_timestamp_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3572,7 +3572,7 @@ def isns_get_server_role_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3616,7 +3616,7 @@ def isns_get_vrf_forwarding_rpc(self, isns_vrf_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, isns_vrf_id=isns_vrf_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, isns_vrf_id=isns_vrf_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3712,7 +3712,7 @@ def l2traceroute_rpc(self, src_mac=None, dest_mac=None, vlan_id=None, rbridge_id
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, src_mac=src_mac, dest_mac=dest_mac, vlan_id=vlan_id, rbridge_id=rbridge_id, src_ip=src_ip, dest_ip=dest_ip, l4protocol=l4protocol, l4_src_port=l4_src_port, l4_dest_port=l4_dest_port)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, src_mac=src_mac, dest_mac=dest_mac, vlan_id=vlan_id, rbridge_id=rbridge_id, src_ip=src_ip, dest_ip=dest_ip, l4protocol=l4protocol, l4_src_port=l4_src_port, l4_dest_port=l4_dest_port)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3756,7 +3756,7 @@ def l2traceroute_result_rpc(self, session_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, session_id=session_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, session_id=session_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3828,7 +3828,7 @@ def logical_chassis_fwdl_sanity_rpc(self, user=None, password=None, host=None, d
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, user=user, password=password, host=host, directory=directory, file=file, rbridge_id=rbridge_id, auto_activate=auto_activate, coldboot=coldboot, protocol=protocol)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, user=user, password=password, host=host, directory=directory, file=file, rbridge_id=rbridge_id, auto_activate=auto_activate, coldboot=coldboot, protocol=protocol)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3872,7 +3872,7 @@ def logical_chassis_fwdl_status_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3917,7 +3917,7 @@ def maps_get_all_policy_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -3961,7 +3961,7 @@ def maps_get_default_rules_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4006,7 +4006,7 @@ def maps_get_rules_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4050,7 +4050,7 @@ def maps_re_apply_policy_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4094,7 +4094,7 @@ def mpls_adjust_bandwidth_lsp_rpc(self, lsp_name=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, lsp_name=lsp_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, lsp_name=lsp_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4129,7 +4129,7 @@ def mpls_adjust_bandwidth_lsp_all_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4173,7 +4173,7 @@ def mpls_reopt_lsp_rpc(self, mpls_reoptimize_lsp_name_in=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_reoptimize_lsp_name_in=mpls_reoptimize_lsp_name_in)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_reoptimize_lsp_name_in=mpls_reoptimize_lsp_name_in)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4209,7 +4209,7 @@ def no_vcs_rbridge_context_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4393,7 +4393,7 @@ def ping_mpls_rpc(self, oam_params=None, ping_mpls_input=None, traceroute_params
     composed_child_leafval_list = [{'leafval': 'destination, reply_mode, reply_tos, size, source, timeout'}, {'leafval': 'ping_mpls_rsvp_lsp, ping_mpls_rsvp_session_src, ping_mpls_rsvp_session_dst, ping_mpls_rsvp_session_id, ping_mpls_ldp_prefix, ping_mpls_ldp_prefix_address'}, {'leafval': 'dsmap, min_ttl, max_ttl, nexthop'}, {'leafval': 'count, detail, detour, standby'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, oam_params=oam_params, ping_mpls_input=ping_mpls_input, traceroute_params=traceroute_params, ping_params=ping_params)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, oam_params=oam_params, ping_mpls_input=ping_mpls_input, traceroute_params=traceroute_params, ping_params=ping_params)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4437,7 +4437,7 @@ def redundancy_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4488,7 +4488,7 @@ def reload_rpc(self, rbridge_id=None, system=None, standby=None, api_timeout='')
     composed_child_leafval_list = []
     leafval_map = {"pybind.slxos.v16r_1_00b.brocade_ha_rpc.reload.input": {}, "pybind.nos.v7_1_0.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}, "pybind.nos.v7_0_1b.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}, "pybind.nos.v6_0_2c.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id, system=system, standby=standby)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id, system=system, standby=standby)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4543,7 +4543,7 @@ def set_http_application_url_rpc(self, config_http_app_url=None, api_timeout='')
     composed_child_leafval_list = [{'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, config_http_app_url=config_http_app_url)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, config_http_app_url=config_http_app_url)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4579,7 +4579,7 @@ def show_bare_metal_state_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4624,7 +4624,7 @@ def show_clock_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {"pybind.nos.v7_1_0.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_clock_rpc.show_clock": {}, "pybind.nos.v7_0_1b.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4672,7 +4672,7 @@ def show_fabric_trunk_info_rpc(self, rbridge_id=None, all=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {"pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {}, "pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {}, "pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id, all=all)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id, all=all)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4713,7 +4713,7 @@ def show_fibrechannel_interface_info_rpc(self, all=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, all=all)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, all=all)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4758,7 +4758,7 @@ def show_firmware_version_rpc(self, switchid=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {"pybind.slxos.v16r_1_00b.brocade_firmware_ext_rpc.show_firmware_version": {}, "pybind.nos.v6_0_2c.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}, "pybind.nos.v7_0_1b.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}, "pybind.nos.v7_1_0.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, switchid=switchid)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, switchid=switchid)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4799,7 +4799,7 @@ def show_linkinfo_rpc(self, all=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, all=all)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, all=all)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4834,7 +4834,7 @@ def show_mpls_bfd_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4869,7 +4869,7 @@ def show_mpls_bypass_bypass_lsp_extensive_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4904,7 +4904,7 @@ def show_mpls_bypass_lsp_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4939,7 +4939,7 @@ def show_mpls_bypass_lsp_debug_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -4974,7 +4974,7 @@ def show_mpls_bypass_lsp_detail_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5143,7 +5143,7 @@ def show_mpls_bypass_lsp_name_debug_rpc(self, show_lsp_input_info=None, api_time
     composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5312,7 +5312,7 @@ def show_mpls_bypass_lsp_name_detail_rpc(self, show_lsp_input_info=None, api_tim
     composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5481,7 +5481,7 @@ def show_mpls_bypass_lsp_name_extensive_rpc(self, show_lsp_input_info=None, api_
     composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5516,7 +5516,7 @@ def show_mpls_dynamic_bypass_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5551,7 +5551,7 @@ def show_mpls_dynamic_bypass_interface_brief_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5586,7 +5586,7 @@ def show_mpls_interface_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5621,7 +5621,7 @@ def show_mpls_interface_detail_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5677,7 +5677,7 @@ def show_mpls_interface_one_interface_rpc(self, interface_type=None, interface_n
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5712,7 +5712,7 @@ def show_mpls_ldp_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5747,7 +5747,7 @@ def show_mpls_ldp_fec_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5782,7 +5782,7 @@ def show_mpls_ldp_fec_prefix_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5828,7 +5828,7 @@ def show_mpls_ldp_fec_prefix_filtered_rpc(self, ldp_fec_prefix_filtered=None, ld
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_fec_prefix_filtered=ldp_fec_prefix_filtered, ldp_fec_prefix_filtered_in=ldp_fec_prefix_filtered_in, ldp_fec_prefix_filtered_out=ldp_fec_prefix_filtered_out)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_fec_prefix_filtered=ldp_fec_prefix_filtered, ldp_fec_prefix_filtered_in=ldp_fec_prefix_filtered_in, ldp_fec_prefix_filtered_out=ldp_fec_prefix_filtered_out)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5874,7 +5874,7 @@ def show_mpls_ldp_fec_prefix_prefix_rpc(self, ldp_fec_prefix=None, api_timeout='
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_fec_prefix=ldp_fec_prefix)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_fec_prefix=ldp_fec_prefix)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5917,7 +5917,7 @@ def show_mpls_ldp_fec_prefix_prefix_filter_rpc(self, ldp_fec_prefix_filter=None,
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_fec_prefix_filter=ldp_fec_prefix_filter, ldp_fec_prefix_filter_string=ldp_fec_prefix_filter_string)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_fec_prefix_filter=ldp_fec_prefix_filter, ldp_fec_prefix_filter_string=ldp_fec_prefix_filter_string)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -5966,7 +5966,7 @@ def show_mpls_ldp_fec_prefix_prefix_longer_rpc(self, ldp_fec_prefix=None, ldp_fe
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_fec_prefix=ldp_fec_prefix, ldp_fec_prefix_longer=ldp_fec_prefix_longer)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_fec_prefix=ldp_fec_prefix, ldp_fec_prefix_longer=ldp_fec_prefix_longer)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6001,7 +6001,7 @@ def show_mpls_ldp_fec_summary_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6036,7 +6036,7 @@ def show_mpls_ldp_fec_vc_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6080,7 +6080,7 @@ def show_mpls_ldp_fec_vc_id_rpc(self, ldp_fec_vc_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_fec_vc_id=ldp_fec_vc_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_fec_vc_id=ldp_fec_vc_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6115,7 +6115,7 @@ def show_mpls_ldp_path_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6161,7 +6161,7 @@ def show_mpls_ldp_path_one_rpc(self, ldp_path_ip=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_path_ip=ldp_path_ip)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_path_ip=ldp_path_ip)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6220,7 +6220,7 @@ def show_mpls_ldp_peer_br_rpc(self, ldp_peer_brief=None, ldp_peer_detail=None, l
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_peer_brief=ldp_peer_brief, ldp_peer_detail=ldp_peer_detail, ldp_peer_ip=ldp_peer_ip, ldp_peer_ip_lblspid=ldp_peer_ip_lblspid)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_peer_brief=ldp_peer_brief, ldp_peer_detail=ldp_peer_detail, ldp_peer_ip=ldp_peer_ip, ldp_peer_ip_lblspid=ldp_peer_ip_lblspid)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6279,7 +6279,7 @@ def show_mpls_ldp_peer_det_rpc(self, ldp_peer_brief=None, ldp_peer_detail=None, 
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_peer_brief=ldp_peer_brief, ldp_peer_detail=ldp_peer_detail, ldp_peer_ip=ldp_peer_ip, ldp_peer_ip_lblspid=ldp_peer_ip_lblspid)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_peer_brief=ldp_peer_brief, ldp_peer_detail=ldp_peer_detail, ldp_peer_ip=ldp_peer_ip, ldp_peer_ip_lblspid=ldp_peer_ip_lblspid)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6338,7 +6338,7 @@ def show_mpls_ldp_peer_det_rec_rpc(self, ldp_peer_brief=None, ldp_peer_detail=No
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_peer_brief=ldp_peer_brief, ldp_peer_detail=ldp_peer_detail, ldp_peer_ip=ldp_peer_ip, ldp_peer_ip_lblspid=ldp_peer_ip_lblspid)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_peer_brief=ldp_peer_brief, ldp_peer_detail=ldp_peer_detail, ldp_peer_ip=ldp_peer_ip, ldp_peer_ip_lblspid=ldp_peer_ip_lblspid)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6373,7 +6373,7 @@ def show_mpls_ldp_statistics_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6408,7 +6408,7 @@ def show_mpls_ldp_targeted_peer_all_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6454,7 +6454,7 @@ def show_mpls_ldp_targeted_peer_one_rpc(self, ldp_targeted_peer_ip=None, api_tim
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_targeted_peer_ip=ldp_targeted_peer_ip)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_targeted_peer_ip=ldp_targeted_peer_ip)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6489,7 +6489,7 @@ def show_mpls_lsp_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6524,7 +6524,7 @@ def show_mpls_lsp_debug_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6559,7 +6559,7 @@ def show_mpls_lsp_detail_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6594,7 +6594,7 @@ def show_mpls_lsp_extensive_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6763,7 +6763,7 @@ def show_mpls_lsp_name_debug_rpc(self, show_lsp_input_info=None, api_timeout='')
     composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -6932,7 +6932,7 @@ def show_mpls_lsp_name_detail_rpc(self, show_lsp_input_info=None, api_timeout=''
     composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7101,7 +7101,7 @@ def show_mpls_lsp_name_extensive_rpc(self, show_lsp_input_info=None, api_timeout
     composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, show_lsp_input_info=show_lsp_input_info)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7136,7 +7136,7 @@ def show_mpls_policy_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7203,7 +7203,7 @@ def show_mpls_route_rpc(self, prefix_address_and_len=None, prefix_address=None, 
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, prefix_address_and_len=prefix_address_and_len, prefix_address=prefix_address, subnet_mask=subnet_mask, longer=longer)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, prefix_address_and_len=prefix_address_and_len, prefix_address=prefix_address, subnet_mask=subnet_mask, longer=longer)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7238,7 +7238,7 @@ def show_mpls_rsvp_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7273,7 +7273,7 @@ def show_mpls_rsvp_interface_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7308,7 +7308,7 @@ def show_mpls_rsvp_interface_detail_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7364,7 +7364,7 @@ def show_mpls_rsvp_interface_one_interface_rpc(self, interface_type=None, interf
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, interface_type=interface_type, interface_name=interface_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7399,7 +7399,7 @@ def show_mpls_rsvp_neighbor_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7434,7 +7434,7 @@ def show_mpls_rsvp_neighbor_detail_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7480,7 +7480,7 @@ def show_mpls_rsvp_neighbor_one_neighbor_rpc(self, mpls_rsvp_neighbor_peer_ip_ad
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_rsvp_neighbor_peer_ip_addr=mpls_rsvp_neighbor_peer_ip_addr)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, mpls_rsvp_neighbor_peer_ip_addr=mpls_rsvp_neighbor_peer_ip_addr)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7515,7 +7515,7 @@ def show_mpls_rsvp_session_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7550,7 +7550,7 @@ def show_mpls_rsvp_session_detail_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7585,7 +7585,7 @@ def show_mpls_rsvp_session_extensive_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7625,7 +7625,7 @@ def show_mpls_rsvp_session_name_rpc(self, session_name=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, session_name=session_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, session_name=session_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7660,7 +7660,7 @@ def show_mpls_rsvp_session_wide_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7695,7 +7695,7 @@ def show_mpls_rsvp_statistics_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7747,7 +7747,7 @@ def show_mpls_statistics_ldp_transit_rpc(self, ldp_transit_stats=None, ldp_trans
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_transit_stats=ldp_transit_stats, ldp_transit_stats_fec_prefix=ldp_transit_stats_fec_prefix, ldp_transit_stats_fec_prefix_longer=ldp_transit_stats_fec_prefix_longer)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_transit_stats=ldp_transit_stats, ldp_transit_stats_fec_prefix=ldp_transit_stats_fec_prefix, ldp_transit_stats_fec_prefix_longer=ldp_transit_stats_fec_prefix_longer)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7794,7 +7794,7 @@ def show_mpls_statistics_ldp_tunnel_rpc(self, ldp_tunnel_stats=None, ldp_tunnel_
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_tunnel_stats=ldp_tunnel_stats, ldp_tunnel_stats_vif=ldp_tunnel_stats_vif)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ldp_tunnel_stats=ldp_tunnel_stats, ldp_tunnel_stats_vif=ldp_tunnel_stats_vif)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7829,7 +7829,7 @@ def show_mpls_statistics_oam_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7864,7 +7864,7 @@ def show_mpls_summary_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -7957,7 +7957,7 @@ def show_mpls_te_path_rpc(self, ipAddr=None, bandwidth=None, cspfCompMode=None, 
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ipAddr=ipAddr, bandwidth=bandwidth, cspfCompMode=cspfCompMode, excludeAny=excludeAny, hopLimit=hopLimit, includeAny=includeAny, includeAll=includeAll, tePathName=tePathName, priority=priority, tieBreaking=tieBreaking)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, ipAddr=ipAddr, bandwidth=bandwidth, cspfCompMode=cspfCompMode, excludeAny=excludeAny, hopLimit=hopLimit, includeAny=includeAny, includeAll=includeAll, tePathName=tePathName, priority=priority, tieBreaking=tieBreaking)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8002,7 +8002,7 @@ def show_ntp_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {"pybind.nos.v7_0_1b.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_ntp_rpc.show_ntp": {}}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8043,7 +8043,7 @@ def show_portindex_interface_info_rpc(self, all=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, all=all)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, all=all)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8095,7 +8095,7 @@ def show_raslog_rpc(self, rbridge_id=None, number_of_latest_events=None, api_tim
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id, number_of_latest_events=number_of_latest_events)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id, number_of_latest_events=number_of_latest_events)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8140,7 +8140,7 @@ def show_support_save_status_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8185,7 +8185,7 @@ def show_system_info_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8230,7 +8230,7 @@ def show_system_monitor_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {"pybind.slxos.v16r_1_00b.brocade_system_monitor_ext_rpc.show_system_monitor": {}, "pybind.nos.v6_0_2c.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8266,7 +8266,7 @@ def show_vcs_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8310,7 +8310,7 @@ def show_zoning_enabled_configuration_rpc(self, zone_name_pattern=None, last_rcv
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, zone_name_pattern=zone_name_pattern, last_rcvd_zone_name=last_rcvd_zone_name)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, zone_name_pattern=zone_name_pattern, last_rcvd_zone_name=last_rcvd_zone_name)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8346,7 +8346,7 @@ def user_session_info_rpc(self, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8398,7 +8398,7 @@ def vcs_rbridge_config_rpc(self, vcs_id=None, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, vcs_id=vcs_id, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, vcs_id=vcs_id, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
@@ -8443,7 +8443,7 @@ def vcs_rbridge_context_rpc(self, rbridge_id=None, api_timeout=''):
     composed_child_leafval_list = []
     leafval_map = {}
     rest_leaf_name = ''
-    pybind_object = self._get_pybind_object(compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map, rbridge_id=rbridge_id)
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 

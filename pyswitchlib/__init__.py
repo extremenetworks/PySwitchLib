@@ -32,7 +32,7 @@ class PySwitchLib(object):
         self._module_obj = module_obj
         self._rest_operation = rest_operation
 
-    def _get_pybind_object(self, compositions_list=None, bindings_list=None, composed_child_list=None, compositions_keyval_list=None, bindings_keyval=None, composed_child_leafval_list=None, leafval_map=None, **kwargs):
+    def _get_pybind_object(self, operation_type=None, compositions_list=None, bindings_list=None, composed_child_list=None, compositions_keyval_list=None, bindings_keyval=None, composed_child_leafval_list=None, leafval_map=None, **kwargs):
         """
         This is an auto-generated method for the PySwitchLib.
         """
@@ -138,25 +138,26 @@ class PySwitchLib(object):
                             else:
                                 pybind_obj = pybind_module
 
-                for child_index, child_tuple in enumerate(composed_child_list):
-                    if pybind_class_module_name in child_tuple[0]:
-                        if child_tuple[1] in kwargs and kwargs[child_tuple[1]] != None:
-                            kwargs_exclusion_list.append(child_tuple[1])
-                            pybind_update_child_obj = pybind_obj
+                if operation_type != 'get':
+                    for child_index, child_tuple in enumerate(composed_child_list):
+                        if pybind_class_module_name in child_tuple[0]:
+                            if child_tuple[1] in kwargs and kwargs[child_tuple[1]] != None:
+                                kwargs_exclusion_list.append(child_tuple[1])
+                                pybind_update_child_obj = pybind_obj
 
-                            if pybind_class_module_name != child_tuple[0]:
-                                pybind_update_child_path = child_tuple[0].replace(pybind_class_module_name + '.', '', 1)
-                                pybind_update_child_paths = pybind_update_child_path.split('.')
+                                if pybind_class_module_name != child_tuple[0]:
+                                    pybind_update_child_path = child_tuple[0].replace(pybind_class_module_name + '.', '', 1)
+                                    pybind_update_child_paths = pybind_update_child_path.split('.')
 
-                                for module in pybind_update_child_paths:
-                                    pybind_update_child_obj = getattr(pybind_update_child_obj, module)
+                                    for module in pybind_update_child_paths:
+                                        pybind_update_child_obj = getattr(pybind_update_child_obj, module)
 
-                            pybind_update_child_obj = getattr(pybind_update_child_obj, child_tuple[1])
+                                pybind_update_child_obj = getattr(pybind_update_child_obj, child_tuple[1])
 
-                            for leaf_index, leaf_name in enumerate(composed_child_leafval_list[child_index]['leafval'].split(', ')):
-                                if kwargs[child_tuple[1]][leaf_index] is not None:
-                                    pybind_update_child_assignment = getattr(pybind_update_child_obj, '_set_' + leaf_name) 
-                                    pybind_update_child_assignment(kwargs[child_tuple[1]][leaf_index])
+                                for leaf_index, leaf_name in enumerate(composed_child_leafval_list[child_index]['leafval'].split(', ')):
+                                    if kwargs[child_tuple[1]][leaf_index] is not None:
+                                        pybind_update_child_assignment = getattr(pybind_update_child_obj, '_set_' + leaf_name) 
+                                        pybind_update_child_assignment(kwargs[child_tuple[1]][leaf_index])
 
                 for kwarg in kwargs:
                     if kwarg not in kwargs_exclusion_list and kwargs[kwarg] != None:

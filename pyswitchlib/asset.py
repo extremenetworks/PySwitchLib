@@ -8,12 +8,11 @@ import xml.etree.ElementTree as ElementTree
 import xmltodict
 import json
 
-class RestInterfaceError(Exception):                                                                                                                                                
-    def __init__(self, value):                                                                                                                                                      
-        self.value = value                                                                                                                                                          
-                                                                                                                                                                                    
-    def __str__(self):                                                                                                                                                              
-        return repr(self.value)  
+class RestInterfaceError(Exception):
+    pass
+
+class UnsupportedOSError(Exception):
+    pass
 
 class Asset(object):
     """
@@ -47,11 +46,13 @@ class Asset(object):
         self._rest_operational_path = '/rest/operational-state'
         self._rest_rpc_path = '/rest/operational-state'
         self._rest_discover_path = '/rest'
+        self._yang_list = None
         self._module_obj = None
 
         self._update_uri_prefix_paths()
         self._update_fw_version()
         self._supported_module_name = self._get_supported_module()
+        #self._load_module(supported_module_name=self._supported_module_name)
 
         self._proxied = pyswitchlib.PySwitchLib(module_name=self._supported_module_name, module_obj=self._module_obj, rest_operation=self._rest_operation)
 
@@ -93,22 +94,12 @@ class Asset(object):
             elif rest_cmd[0] == "DELETE":
                 self._response = self._session.delete(url + rest_cmd[1], auth=auth, timeout=timeout)
 
-            json_output = json.loads('{"output": ""}')
-            text_response = self._response.text
-
-            if self._response.status_code >= 200 and self._response.status_code <= 299:
-                if re.match('^<', self._response.text):
-                    if rest_cmd[3] != "rpc":
-                        text_response = '<output>\r\n' + self._response.text + '</output>\r\n'
-
-                    json_output = json.loads(self._xml_to_json(text_response))
-            else:
-                json_output = json.loads('{"output": ' + json.dumps(str(self._response.text)) + '}')
-
             if yang_list:
-                self._format_dict_output(container=json_output, keys=yang_list)
+                self._yang_list = yang_list
+            else:
+                self._yang_list = None
 
-            self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text, 'json': json_output}}})
+            self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text}}})
 
         return self._get_results()
 
@@ -239,6 +230,9 @@ class Asset(object):
                     supported_os_version.append(major)
                     break;
 
+        if len(supported_os_version) < 1:
+            raise UnsupportedOSError("OS Version: " + self._os_type + " " + self._os_ver + " is unsupported.")
+
         if supported_os_version[0] == os_version_tuple[0] and os_version_tuple[1] in pybind_ver_tree[supported_os_version[0]]:
             supported_os_version.append(os_version_tuple[1])
         else:
@@ -250,6 +244,9 @@ class Asset(object):
                 else:
                     supported_os_version.append(minor)
                     break;
+
+        if len(supported_os_version) < 2:
+            raise UnsupportedOSError("OS Version: " + self._os_type + " " + self._os_ver + " is unsupported.")
 
         if supported_os_version[0] == os_version_tuple[0] and supported_os_version[1] == os_version_tuple[1] and os_version_tuple[2] in pybind_ver_tree[supported_os_version[0]][supported_os_version[1]]:
             supported_os_version.append(os_version_tuple[2])
@@ -317,6 +314,15 @@ class Asset(object):
         """
         return self._os_full_ver
 
+    def get_xml_output(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+
+        :rtype: *string*
+        :returns: Returns the xml output response from the last api call.
+        """
+        return self._overall_status[0][self._ip_addr]['response']['text']
+
     def get_dict_output(self):
         """
         This is an auto-generated method for the PySwitchLib.
@@ -324,6 +330,16 @@ class Asset(object):
         :rtype: *dict*
         :returns: Returns the json output response from the last api call.
         """
-        return self._overall_status[0][self._ip_addr]['response']['json']['output']
+        xml_output = self.get_xml_output()
+
+        if not re.match('^<output', xml_output):
+            xml_output = '<output>\r\n' + xml_output + '</output>\r\n' 
+
+        dict_output = json.loads(self._xml_to_json(xml_output))
+         
+        if dict_output and self._yang_list:
+            self._format_dict_output(container=dict_output, keys=self._yang_list)
+
+        return dict_output
 
 
