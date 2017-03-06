@@ -6,7 +6,7 @@ DeviceTestCase:
         rbridge_id : 1
 LLDPTestCase:
     switch:
-        ip: 10.37.18.131
+        ip: 10.24.39.225
         username : admin
         password : password
         rbridge_id : 1

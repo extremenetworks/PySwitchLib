@@ -54,7 +54,7 @@ class LLDP(object):
 
             has_more = util.find(lldp_result.json, '$..has-more')
 
-            for item in util.find(lldp_result.json, '$..lldp-neighbor-detail'):
+            for item in util.findlist(lldp_result.json, '$..lldp-neighbor-detail'):
 
                 local_int_name = util.findText(item, '$..local-interface-name')
                 local_int_mac = util.findText(item, '$..local-interface-mac')

@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.38
+* Single entries for lldp 
 ## 0.1.37
 * device was not closing the REST session 
 ## 0.1.35
