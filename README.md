@@ -11,6 +11,10 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.39
+* Removed json output from main response object. get_dict_output() now converts xml response to json/dictionary.
+* Added get_xml_output() method.
+
 ## 0.1.38
 * Single entries for lldp 
 ## 0.1.37
