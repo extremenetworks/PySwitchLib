@@ -301,4 +301,5 @@ class Device(object):
             >>> dev.connection
             False
         """
-        return self._mgr.close_session()
+        if self._mgr:
+            self._mgr._session.close()

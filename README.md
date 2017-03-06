@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.37
+* device was not closing the REST session 
 ## 0.1.35
 * Removed delete APIs where YANG elements contain "cli-incomplete-no" extension.
 
@@ -19,7 +21,6 @@ Inside a python program do this:
 
 ## 0.1.33
 * Fixed updating with default values.
-
 ## 0.1.32
 * switchport_list corrected vlan entry for access
 
