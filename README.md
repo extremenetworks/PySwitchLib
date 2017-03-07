@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.40
+* Added 16.1.1 and 17.1.1 to SLX
 ## 0.1.39
 * Removed json output from main response object. get_dict_output() now converts xml response to json/dictionary.
 * Added get_xml_output() method.

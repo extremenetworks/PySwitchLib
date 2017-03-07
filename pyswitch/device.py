@@ -65,7 +65,23 @@ SLXOS_VERSIONS = {
         'system': pyswitch.os.slxos.base.system.System,
         'services': pyswitch.os.slxos.base.services.Services,
     },
+    '16.1.1': {
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.slxos.base.interface.Interface,
+        'bgp': pyswitch.os.slxos.base.bgp.Bgp,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.slxos.base.system.System,
+        'services': pyswitch.os.slxos.base.services.Services,
+    },
     '17.1.0': {
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.slxos.base.interface.Interface,
+        'bgp': pyswitch.os.slxos.base.bgp.Bgp,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.slxos.base.system.System,
+        'services': pyswitch.os.slxos.base.services.Services,
+    },
+    '17.1.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.slxos.base.interface.Interface,
         'bgp': pyswitch.os.slxos.base.bgp.Bgp,
