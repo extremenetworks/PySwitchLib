@@ -11,6 +11,9 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.41
+* Reverted json output removal change done in 0.1.39.
+
 ## 0.1.40
 * Added 16.1.1 and 17.1.1 to SLX
 ## 0.1.39

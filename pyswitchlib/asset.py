@@ -94,12 +94,22 @@ class Asset(object):
             elif rest_cmd[0] == "DELETE":
                 self._response = self._session.delete(url + rest_cmd[1], auth=auth, timeout=timeout)
 
-            if yang_list:
-                self._yang_list = yang_list
-            else:
-                self._yang_list = None
+            json_output = json.loads('{"output": ""}')
+            text_response = self._response.text
 
-            self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text}}})
+            if self._response.status_code >= 200 and self._response.status_code <= 299:
+                if re.match('^<', self._response.text):
+                    if rest_cmd[3] != "rpc":
+                        text_response = '<output>\r\n' + self._response.text + '</output>\r\n'
+
+                    json_output = json.loads(self._xml_to_json(text_response))
+            else:
+                json_output = json.loads('{"output": ' + json.dumps(str(self._response.text)) + '}')
+
+            if yang_list:
+                self._format_dict_output(container=json_output, keys=yang_list)
+
+            self._overall_status.append({self._ip_addr : {'request': {'op_code': rest_cmd[0], 'uri': rest_cmd[1], 'data': rest_cmd[2]}, 'response': {'status_code': self._response.status_code, 'url': self._response.url, 'text': self._response.text, 'json': json_output}}})
 
         return self._get_results()
 
@@ -330,16 +340,5 @@ class Asset(object):
         :rtype: *dict*
         :returns: Returns the json output response from the last api call.
         """
-        xml_output = self.get_xml_output()
-
-        if not re.match('^<output', xml_output):
-            xml_output = '<output>\r\n' + xml_output + '</output>\r\n' 
-
-        dict_output = json.loads(self._xml_to_json(xml_output))
-         
-        if dict_output and self._yang_list:
-            self._format_dict_output(container=dict_output, keys=self._yang_list)
-
-        return dict_output
-
+        return self._overall_status[0][self._ip_addr]['response']['json']['output']
 
