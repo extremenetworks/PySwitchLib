@@ -1,6 +1,0 @@
-pybind>=0.1.23
-pyangbind-brcd>=0.6.12
-xmltodict
-dicttoxml
-requests
-jsonpath-rw
