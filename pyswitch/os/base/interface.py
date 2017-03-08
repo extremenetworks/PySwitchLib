@@ -2937,7 +2937,6 @@ class Interface(object):
         for interface in util.findlist(interface_result.json,
                                        '$..switchport'):
 
-
             vlans = []
             interface_type = util.findText(interface, 'interface-type')
             interface_name = util.findText(interface, 'interface-name')
@@ -3779,7 +3778,7 @@ class Interface(object):
                 or disabled.Default:``True``.
             get (bool) : Get config instead of editing config. (True, False)
             rbridge_id (str): rbridge-id for device.
-             Only required when type is 've'.
+             Only required when type is 've' and os type is nos.
             callback (function): A function executed upon completion of the
                method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -3801,6 +3800,10 @@ class Interface(object):
             ...         arp_aging_timeout='20',
             ...         rbridge_id='1')
             ...         output = dev.interface.int_ipv4_arp_aging_timout(
+            ...         int_type='ve',
+            ...         name='40',
+            ...         arp_aging_timeout='20')
+            ...         output = dev.interface.int_ipv4_arp_aging_timout(
             ...         get=True,int_type='tengigabitethernet',
             ...         name='225/0/39',
             ...         arp_aging_timeout='40',
@@ -3820,7 +3823,7 @@ class Interface(object):
         arp_aging_timeout = kwargs.pop('arp_aging_timeout', '')
         enable = kwargs.pop('enable', True)
         get = kwargs.pop('get', False)
-        rbridge_id = kwargs.pop('rbridge_id', '1')
+        rbridge_id = kwargs.pop('rbridge_id')
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = ['gigabitethernet', 'tengigabitethernet',
                            'fortygigabitethernet', 'hundredgigabitethernet',
@@ -3831,8 +3834,9 @@ class Interface(object):
 
         method_name = 'interface_%s_ip_arp_aging_timeout_' % int_type
         if int_type == 've':
-            method_name = 'rbridge_id_%s' % method_name
-            ageout_args['rbridge_id'] = rbridge_id
+            if rbridge_id is not None:
+                method_name = 'rbridge_id_%s' % method_name
+                ageout_args['rbridge_id'] = rbridge_id
             if not pyswitch.utilities.valid_vlan_id(name):
                 raise InvalidVlanId("`name` must be between `1` and `8191`")
         elif not pyswitch.utilities.valid_interface(int_type, name):
@@ -3843,7 +3847,6 @@ class Interface(object):
             method_name = '%sget' % method_name
             config = (method_name, ageout_args)
             output = callback(config, handler='get_config')
-
             return util.find(output.json, '$..arp-aging-timeout')
 
         if not enable:
