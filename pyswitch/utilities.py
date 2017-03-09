@@ -15,8 +15,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import re
-
 from jsonpath_rw import parse
+from ipaddress import ip_interface
 
 
 def find(data, expr):
@@ -121,7 +121,11 @@ def get_bgp_api(api=None, vrf='default', n_addr=None, rbridge_id=1,
                 else:
                     args['neighbor_addr'] = n_addr
         if evpn_n_addr:
-            args['evpn_neighbor_ipv4'] = evpn_n_addr
+            ip_addr = ip_interface(unicode(evpn_n_addr))
+            if ip_addr.version == 4:
+                args['evpn_neighbor_ipv4'] = evpn_n_addr
+            else:
+                args['evpn_neighbor_ipv6'] = evpn_n_addr
         bgp_api = bgp_api.format(afi='', vrf='', feature=feature, op=op)
     if api and vrf == 'default':
         return (api, args)

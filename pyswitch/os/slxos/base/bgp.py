@@ -27,9 +27,19 @@ class Bgp(BaseBgp):
 
         super(Bgp, self).__init__(callback)
 
+
+    def retain_rt_all(self, **kwargs):
+        return
+
     def evpn_next_hop_unchanged(self, **kwargs):
         return
 
+    def evpn_graceful_restart(self, **kwargs):
+        return
+
+    def evpn_allowas_in(self, **kwargs):
+        return
+      
     def evpn_afi(self, **kwargs):
         """EVPN AFI. This method just enables/disables or gets the EVPN AFI.
 

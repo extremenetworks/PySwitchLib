@@ -16,7 +16,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 from ipaddress import ip_interface
-
 import pyswitch.utilities as util
 
 
@@ -126,7 +125,7 @@ class Bgp(object):
         feature = '_local_as'
         op = '_update'
         if is_get_config:
-            if afi == 'ipv6':
+            if afi and afi == 'ipv6':
                 afi = 'ipv4'
             args = dict(resource_depth=2)
             config = util.get_bgp_api(
@@ -253,17 +252,21 @@ class Bgp(object):
             NotImplementedError
             KeyError
         """
-        ip_addr = kwargs.pop('ip_addr')
-        remote_as = kwargs.pop('remote_as', None)
-        vrf = kwargs.pop('vrf', 'default')
-        rbridge_id = kwargs.pop('rbridge_id', '1')
-        delete = kwargs.pop('delete', False)
-        callback = kwargs.pop('callback', self._callback)
+        ip_addr = kwargs.get('ip_addr')
+        remote_as = kwargs.get('remote_as', None)
+        vrf = kwargs.get('vrf', 'default')
+        rbridge_id = kwargs.get('rbridge_id', '1')
+        delete = kwargs.get('delete', False)
+        get = kwargs.get('get', False)
+        callback = kwargs.get('callback', self._callback)
         ip_addr = ip_interface(unicode(ip_addr))
-        afi = 'ipv4' if ip_addr.version is 4 else 'ipv6'
+        afi = 'ipv4' if ip_addr.version == 4 else 'ipv6'
         n_addr = str(ip_addr.ip)
         if delete:
             raise NotImplementedError
+        if get:
+            return self.get_bgp_neighbors(**kwargs)
+
         if not delete and remote_as is None:
             raise ValueError(
                 'When configuring a neighbor, '
@@ -293,16 +296,9 @@ class Bgp(object):
     def _neighbor_ipv4_address(self, afi='ipv4', n_addr=None,
                                rbridge_id=1, remote_as='1',
                                callback=None, op='create'):
-        args = dict(rbridge_id=rbridge_id, neighbor_addr=n_addr)
+        args = dict(rbridge_id=rbridge_id, neighbor_addr=n_addr,
+                    remote_as=remote_as)
         api = self.method_prefix('router_bgp_neighbor_neighbor_addr_create',
-                                 args)
-        config = (api, args)
-        callback(config)
-        args = dict(
-            rbridge_id=rbridge_id,
-            neighbor_addr=n_addr,
-            remote_as=remote_as)
-        api = self.method_prefix('router_bgp_neighbor_neighbor_addr_update',
                                  args)
         config = (api, args)
         callback(config)
@@ -326,7 +322,8 @@ class Bgp(object):
                                rbridge_id=1, remote_as='1',
                                callback=None, op='create'):
         args = dict(rbridge_id=rbridge_id, neighbor_ipv6_addr=n_addr,
-                    remote_as='22')
+                    remote_as=remote_as)
+
         api = self.method_prefix('router_bgp_neighbor_neighbor_ipv6_'
                                  'addr_create', args)
         config = (api, args)
@@ -359,20 +356,10 @@ class Bgp(object):
         args = dict(
             rbridge_id=rbridge_id,
             af_vrf=vrf,
+            remote_as=remote_as,
             af_ipv4_neighbor_addr=n_addr)
         api = self.method_prefix('router_bgp_address_family_ipv4_unicast_'
                                  'vrf_neighbor_af_ipv4_neighbor_addr_create',
-                                 args)
-        config = (api, args)
-        callback(config)
-        args = dict(
-            rbridge_id=rbridge_id,
-            af_vrf=vrf,
-            af_ipv4_neighbor_addr=n_addr,
-            remote_as=remote_as)
-        api = self.method_prefix('router_bgp_address_family_ipv4_'
-                                 'unicast_vrf_neighbor_af_ipv4_neighbor_'
-                                 'addr_update',
                                  args)
         config = (api, args)
         callback(config)
@@ -393,15 +380,6 @@ class Bgp(object):
         args = dict(rbridge_id=rbridge_id, af_ipv6_vrf=vrf)
         api = self.method_prefix('router_bgp_address_family_ipv6_unicast'
                                  '_vrf_create', args)
-        config = (api, args)
-        callback(config)
-        args = dict(
-            rbridge_id=rbridge_id,
-            af_ipv6_vrf=vrf,
-            af_ipv6_neighbor_addr=n_addr)
-        api = self.method_prefix('router_bgp_address_family_ipv6_unicast_'
-                                 'vrf_neighbor_af_ipv6_neighbor_addr_create',
-                                 args)
         config = (api, args)
         callback(config)
         args = dict(
@@ -478,9 +456,11 @@ class Bgp(object):
         """
         callback = kwargs.pop('callback', self._callback)
         vrf = kwargs.pop('vrf', 'default')
+        remote_as = kwargs.pop('remote_as', None)
         rbridge_id = kwargs.pop('rbridge_id', '1')
+        ip_addr = kwargs.pop('ip_addr', None)
         result = []
-        if vrf is 'default':
+        if vrf == 'default':
             config = util.get_bgp_api(
                 rbridge_id=rbridge_id,
                 op='_get',
@@ -496,8 +476,13 @@ class Bgp(object):
             else:
                 ret = ns
             for n in ret:
-                item_results = {'neighbor-address': util.find(n, '$..address'),
-                                'remote-as': util.find(n, '$..remote-as')}
+                peer_ip = util.find(n, '$..address')
+                peer_remote_as = util.find(n, '$..remote-as')
+                item_results = {'neighbor-address': peer_ip,
+                                'remote-as': peer_remote_as}
+                if ip_addr and remote_as and ip_addr == peer_ip and \
+                        peer_remote_as == remote_as:
+                    return item_results
                 result.append(item_results)
 
             ns = util.find(output.json, '$..neighbor-ipv6-addr')
@@ -508,10 +493,16 @@ class Bgp(object):
             else:
                 ret = ns
             for n in ret:
+                peer_ip = util.find(n, '$..address')
+                peer_remote_as = util.find(n, '$..remote-as')
                 item_results = {'neighbor-address': util.find(n, '$..address'),
                                 'remote-as': util.find(n, '$..remote-as')}
+                if ip_addr and remote_as and ip_addr == peer_ip and \
+                        peer_remote_as == remote_as:
+                    return item_results
                 result.append(item_results)
-
+            if ip_addr and remote_as:
+                return None
             return result
         feature = '_neighbor_af_ipv4_neighbor_addr'
         config = util.get_bgp_api(
@@ -532,8 +523,13 @@ class Bgp(object):
         else:
             ret = ns
         for n in ret:
+            peer_ip = util.find(n, '$..address')
+            peer_remote_as = util.find(n, '$..remote-as')
             item_results = {'neighbor-address': util.find(n, '$..address'),
                             'remote-as': util.find(n, '$..remote-as')}
+            if ip_addr and remote_as and ip_addr == peer_ip and \
+                    peer_remote_as == remote_as:
+                return item_results
             result.append(item_results)
 
         feature = '_neighbor_af_ipv6_neighbor_addr'
@@ -555,8 +551,13 @@ class Bgp(object):
         else:
             ret = ns
         for n in ret:
+            peer_ip = util.find(n, '$..address')
+            peer_remote_as = util.find(n, '$..remote-as')
             item_results = {'neighbor-address': util.find(n, '$..address'),
                             'remote-as': util.find(n, '$..remote-as')}
+            if ip_addr and remote_as and ip_addr == peer_ip and \
+                    peer_remote_as == remote_as:
+                return item_results
             result.append(item_results)
 
         return result
@@ -639,7 +640,7 @@ class Bgp(object):
                 args=dict(),
                 os=self.os)
             return callback(config)
-        if source is not 'connected':
+        if source != 'connected':
             raise AttributeError('Invalid source.')
         args = dict(redistribute_connected=True)
         config = util.get_bgp_api(
@@ -866,7 +867,7 @@ class Bgp(object):
         vrf = kwargs.pop('vrf', 'default')
         feature = '_graceful_restart' if vrf == 'default' else ''
         args = dict(graceful_restart_status=True)
-        if afi not in ('ipv4', 'ipv6'):
+        if afi not in ('ipv4', 'ipv6', 'evpn'):
             raise AttributeError('Invalid AFI.')
         if kwargs.pop('get', False):
             config = util.get_bgp_api(
@@ -960,7 +961,7 @@ class Bgp(object):
         callback = kwargs.pop('callback', self._callback)
         ip_addr = ip_interface(unicode(kwargs.pop('neighbor')))
         rbridge_id = kwargs.pop('rbridge_id', '1')
-        afi = 'ipv4' if ip_addr.version is 4 else 'ipv6'
+        afi = 'ipv4' if ip_addr.version == 4 else 'ipv6'
         vrf = kwargs.pop('vrf', 'default')
         count = kwargs.pop('count')
         feature_tmp = '_neighbor{0}_ebgp_multihop'
@@ -974,9 +975,7 @@ class Bgp(object):
             feature = feature_tmp.format('_af_ipv4_neighbor_addr')
         elif 'ipv6' == afi:
             feature = feature_tmp.format('_af_ipv6_neighbor_addr')
-        args = dict(
-            ebgp_multihop_count=count,
-            rbridge_id=rbridge_id)
+        args = dict(ebgp_multihop_count=count)
         if kwargs.pop('get', False):
             config = util.get_bgp_api(
                 rbridge_id=rbridge_id,
@@ -989,6 +988,7 @@ class Bgp(object):
                 os=self.os)
             output = callback(config, handler='get_config')
             output = util.findall(output.json, '$..ebgp-multihop-count')
+            output = output[0] if output else None
             return output
         if kwargs.pop('delete', False):
             config = util.get_bgp_api(
@@ -1089,7 +1089,7 @@ class Bgp(object):
         callback = kwargs.pop('callback', self._callback)
         ip_addr = ip_interface(unicode(kwargs.pop('neighbor')))
         rbridge_id = kwargs.pop('rbridge_id', '1')
-        afi = 'ipv4' if ip_addr.version is 4 else 'ipv6'
+        afi = 'ipv4' if ip_addr.version == 4 else 'ipv6'
         vrf = kwargs.pop('vrf', 'default')
         int_type = kwargs.pop('int_type')
         int_name = kwargs.pop('int_name')
@@ -1103,7 +1103,7 @@ class Bgp(object):
             feature = feature_tmp.format('_af_ipv4_neighbor_addr')
         elif 'ipv6' == afi:
             feature = feature_tmp.format('_af_ipv6_neighbor_addr')
-        if int_type is 'loopback':
+        if int_type == 'loopback':
             args = dict(loopback=int_name)
             feature += '_loopback'
         else:
@@ -1248,7 +1248,11 @@ class Bgp(object):
         peer_ip = kwargs.pop('peer_ip')
         rbridge_id = kwargs.pop('rbridge_id', '1')
         callback = kwargs.pop('callback', self._callback)
-        feature = '_address_family_l2vpn_evpn_neighbor_evpn_neighbor_ipv4'
+        ip_addr = ip_interface(unicode(peer_ip))
+        afi = 'ipv4' if ip_addr.version == 4 else 'ipv6'
+        feature = '_address_family_l2vpn_evpn_neighbor_evpn_neighbor' \
+                  '_{afi}'.format(afi=afi)
+
         if kwargs.pop('delete', False):
             args = dict(activate=False)
             config = util.get_bgp_api(
@@ -1628,7 +1632,7 @@ class Bgp(object):
         afi = kwargs.pop('afi', 'ipv4')
         callback = kwargs.pop('callback', self._callback)
         rbridge_id = kwargs.pop('rbridge_id', '1')
-        allowas_in = kwargs.pop('allowas_in', '5')
+        allowas_in = int(kwargs.pop('allowas_in', 5))
         vrf = kwargs.pop('vrf', 'default')
         ip_addr = kwargs.pop('ip_addr')
         feature_tmp = '{0}_neighbor{1}'
@@ -1644,10 +1648,12 @@ class Bgp(object):
                     '_address_family_ipv6_unicast',
                     '_af_ipv6_neighbor_address')
             afi = None
-        elif 'ipv4' == afi:
-            feature = feature_tmp.format('', '_af_ipv4_neighbor_addr')
-        elif 'ipv6' == afi:
-            feature = feature_tmp.format('', '_af_ipv6_neighbor_addr')
+        else:
+            if 'ipv4' == afi:
+                feature = feature_tmp.format('', '_af_ipv4_neighbor_addr')
+            elif 'ipv6' == afi:
+                feature = feature_tmp.format('', '_af_ipv6_neighbor_addr')
+
         if kwargs.pop('get', False):
             config = util.get_bgp_api(
                 vrf=vrf,
@@ -1672,6 +1678,7 @@ class Bgp(object):
                 os=self.os)
             return callback(config)
         args = dict(allowas_in=allowas_in)
+        feature = feature + '_allowas_in'
         config = util.get_bgp_api(
             vrf=vrf,
             n_addr=str(ip_addr),
@@ -1735,7 +1742,7 @@ class Bgp(object):
         get = kwargs.pop('get', False)
         feature_tmp = '_neighbor{0}_bfd_interval'
         ip_addr = ip_interface(unicode(peer_ip))
-        afi = 'ipv4' if ip_addr.version is 4 else 'ipv6'
+        afi = 'ipv4' if ip_addr.version == 4 else 'ipv6'
         callback = kwargs.pop('callback', self._callback)
         if vrf == 'default':
             if 'ipv4' == afi:
@@ -1828,7 +1835,7 @@ class Bgp(object):
         callback = kwargs.pop('callback', self._callback)
         vrf = kwargs.pop('vrf', 'default')
         ip_addr = ip_interface(unicode(peer_ip))
-        afi = 'ipv4' if ip_addr.version is 4 else 'ipv6'
+        afi = 'ipv4' if ip_addr.version == 4 else 'ipv6'
         if vrf == 'default':
             if 'ipv4' == afi:
                 feature = feature_tmp.format('_neighbor_addr')
@@ -2036,7 +2043,7 @@ class Bgp(object):
                 rbridge_id=rbridge_id, afi=afi, vrf=vrf,
                 op='_get', os=self.os)
             result = callback(config, handler='get_config')
-            if vrf is not 'default':
+            if vrf != 'default':
                 result = util.findall(result.json, '$..vrf-name')[0]
                 result = True if result == vrf else False
             else:
@@ -2247,3 +2254,14 @@ class Bgp(object):
             return callback(method_name, args)
         else:
             return
+
+    def evpn_graceful_restart(self, **kwargs):
+        """Set BGP evpn graceful restart property.
+        """
+
+        api = 'rbridge_id_router_bgp_address_family_l2vpn_evpn_' \
+              'graceful_restart_update'
+        rbridge_id = kwargs.pop('rbridge_id', '1')
+        callback = kwargs.pop('callback', self._callback)
+        args = dict(rbridge_id=rbridge_id, graceful_restart_status=True)
+        return callback((api, args))
