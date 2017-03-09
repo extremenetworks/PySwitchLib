@@ -5013,6 +5013,85 @@ class Interface(object):
             ipv6_unicast_enabled = True if ipv6_unicast else False
             return {'ipv4': ipv4_unicast_enabled, 'ipv6': ipv6_unicast_enabled}
 
+    def vrf_l3vni(self, **kwargs):
+        """Configure Layer3 vni under vrf.
+        Args:
+            rbridge_id (str): rbridge-id.VDX only
+            vrf_name (str): Name of the vrf (vrf101, vrf-1 etc).
+            l3vni (str): <NUMBER:1-16777215>   Layer 3 VNI.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): False the L3 vni is configured and True if its to
+                be deleted (True, False). Default value will be False if not
+                specified.
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `vrf_name`, 'l3vni' is not passed.
+            ValueError: if `vrf_name`, 'l3vni'  is invalid.
+        Examples:
+            >>> import pynos.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.vrf_vni(
+            ...         vrf_name=vrf1, rbridge_id='2', l3vni ='7201')
+            ...         output = dev.interface.vrf_vni(rbridge_id='2',
+            ...         get=True)
+            ...         output = dev.interface.vrf_vni(rbridge_id='2',
+            ...         , vrf_name='vrf2' get=True)
+            ...         output = dev.interface.vrf_vni(vrf_name=vrf1,
+            ...         rbridge_id='2', l3vni ='7201', delete=True)
+
+        """
+
+        if self.has_rbridge_id:
+            rbridge_id = kwargs['rbridge_id']
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        result = []
+
+        if not get_config:
+            vrf_name = kwargs['vrf_name']
+            vni = kwargs['l3vni']
+            vni_args = dict(vrf=vrf_name,
+                            vni=vni)
+            if self.has_rbridge_id:
+                vni_args['rbridge_id'] = rbridge_id
+
+            config = (self.method_prefix('vrf_vni_update'), vni_args)
+
+            if delete:
+                config = (self.method_prefix('vrf_vni_delete'), vni_args)
+
+            result = callback(config)
+
+        elif get_config:
+            vrf_name = kwargs.pop('vrf_name', '')
+            vni_args = dict(vrf=vrf_name)
+            if self.has_rbridge_id:
+                vni_args['rbridge_id'] = rbridge_id
+
+            config = (self.method_prefix('vrf_vni_get'), vni_args)
+            output = callback(config, handler='get_config')
+
+            vrfname = util.find(output.json, '$..vrf-name')
+            vni = util.findText(output.json, '$..vni')
+            if self.has_rbridge_id:
+                tmp = {'rbridge_id': rbridge_id, 'vrf_name': vrfname,
+                       'l3vni': vni}
+            else:
+                tmp = {'vrf_name': vrfname,
+                       'l3vni': vni}
+            result.append(tmp)
+        return result
+
+
     def vrf_afi_rt_evpn(self, **kwargs):
         """Configure Target VPN Extended Communities
         Args:
