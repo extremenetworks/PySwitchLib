@@ -8,11 +8,8 @@ import xml.etree.ElementTree as ElementTree
 import xmltodict
 import json
 
-class RestInterfaceError(Exception):
-    pass
-
-class UnsupportedOSError(Exception):
-    pass
+import pyswitchlib.exceptions                                                                                                                                                       
+locals().update(pyswitchlib.exceptions.__dict__)
 
 class Asset(object):
     """

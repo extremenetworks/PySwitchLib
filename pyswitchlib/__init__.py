@@ -1,4 +1,6 @@
 import pyangbind.lib.pybindJSON as pybindJSON
+from pyswitchlib.exceptions import (MultipleChoicesSetError)
+import pyswitchlib.exceptions
 from collections import OrderedDict
 from dicttoxml import dicttoxml
 import json
@@ -31,6 +33,29 @@ class PySwitchLib(object):
         self._module_name = module_name
         self._module_obj = module_obj
         self._rest_operation = rest_operation
+
+    def _api_validation(self, choices_kwargs_map=None, leaf_os_support_map=None, **kwargs):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        if choices_kwargs_map:
+            for choice_ver_key in choices_kwargs_map:
+                if self._module_name in choice_ver_key:
+                    choice_kwargs_set_list = []
+
+                    for kwarg in kwargs:
+                        if kwarg.rstrip('_') in choices_kwargs_map[choice_ver_key]:
+                            if kwargs[kwarg] != None:
+                                choice_kwargs_set_list.append(kwarg)
+
+                    if len(choice_kwargs_set_list) >= 2:
+                        raise MultipleChoicesSetError("Only one choice type kwarg is allowed per API invocation.  Multiple choice kwargs set: " + ', '.join(choice_kwargs_set_list))
+
+                    break
+
+        if leaf_os_support_map:
+            pass
 
     def _get_pybind_object(self, operation_type=None, compositions_list=None, bindings_list=None, composed_child_list=None, compositions_keyval_list=None, bindings_keyval=None, composed_child_leafval_list=None, leafval_map=None, **kwargs):
         """
