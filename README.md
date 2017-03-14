@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.43
+* Added 6.0.2 in Pyswitch
 ## 0.1.41
 * Reverted json output removal change done in 0.1.39.
 
