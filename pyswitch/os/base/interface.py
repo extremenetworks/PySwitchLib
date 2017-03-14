@@ -4627,10 +4627,9 @@ class Interface(object):
                               'int_type']
             config = (method_name, arguments)
         else:
-            arguments['ip_donor_interface_name'] = kwargs.pop('donor_name')
             arguments['ip_donor_interface_type'] = kwargs.pop('donor_type')
-            method_name = 'interface_%s_ip_unnumbered_ip_' \
-                          'donor_interface_name_update' % kwargs[
+            arguments['ip_donor_interface_name'] = kwargs.pop('donor_name')
+            method_name = 'interface_%s_ip_unnumbered_update' % kwargs[
                               'int_type']
             config = (method_name, arguments)
         return callback(config)
@@ -5090,7 +5089,6 @@ class Interface(object):
                        'l3vni': vni}
             result.append(tmp)
         return result
-
 
     def vrf_afi_rt_evpn(self, **kwargs):
         """Configure Target VPN Extended Communities
