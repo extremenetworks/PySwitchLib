@@ -4744,12 +4744,11 @@ class Interface(object):
         int_type = str(kwargs.pop('int_type').lower())
 
         callback = kwargs.pop('callback', self._callback)
-        valid_int_types = ['gigabitethernet', 'tengigabitethernet',
-                           'fortygigabitethernet', 'hundredgigabitethernet']
+        int_types = self.valid_int_types
 
-        if int_type not in valid_int_types:
+        if int_type not in int_types:
             raise ValueError('int_type must be one of: %s' %
-                             repr(valid_int_types))
+                             repr(int_types))
 
         if kwargs.pop('get', False):
             method_name = 'interface_%s_bfd_interval_get' % int_type
