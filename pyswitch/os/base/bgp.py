@@ -2044,7 +2044,8 @@ class Bgp(object):
                 op='_get', os=self.os)
             result = callback(config, handler='get_config')
             if vrf != 'default':
-                result = util.findall(result.json, '$..vrf-name')[0]
+                result = util.findall(result.json, '$..vrf-name')
+                result = result[0] if result else None
                 result = True if result == vrf else False
             else:
                 result = True if result else False
