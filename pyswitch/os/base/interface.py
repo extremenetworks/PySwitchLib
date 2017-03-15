@@ -327,7 +327,7 @@ class Interface(object):
         port_int = kwargs.pop('port_int')
         callback = kwargs.pop('callback', self._callback)
 
-        if re.search('^[0-9]{1,3}$', port_int) is None:
+        if re.search('^[0-9]{1,4}$', port_int) is None:
             raise ValueError('%s must be in the format of x for port channel '
                              'interfaces.' % repr(port_int))
 
@@ -4630,7 +4630,7 @@ class Interface(object):
             arguments['ip_donor_interface_type'] = kwargs.pop('donor_type')
             arguments['ip_donor_interface_name'] = kwargs.pop('donor_name')
             method_name = 'interface_%s_ip_unnumbered_update' % kwargs[
-                              'int_type']
+                          'int_type']
             config = (method_name, arguments)
         return callback(config)
 
