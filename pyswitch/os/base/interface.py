@@ -5400,6 +5400,7 @@ class Interface(object):
 
         if get:
             method_name = 'rbridge_id_evpn_instance_get'
+            evpn_args['resource_depth'] = 2
             config = (method_name, evpn_args)
             output = callback(config, handler='get_config')
 
