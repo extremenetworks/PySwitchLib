@@ -11,6 +11,9 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.44
+* Add missing firmware_download_rpc.
+* Added XML to JSON to Python Dictionary logic for error status REST requests.
 ## 0.1.43
 * Added 6.0.2 in Pyswitch
 ## 0.1.41

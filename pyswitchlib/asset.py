@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ElementTree
 import xmltodict
 import json
 
-import pyswitchlib.exceptions                                                                                                                                                       
+import pyswitchlib.exceptions
 locals().update(pyswitchlib.exceptions.__dict__)
 
 class Asset(object):
@@ -101,7 +101,13 @@ class Asset(object):
 
                     json_output = json.loads(self._xml_to_json(text_response))
             else:
-                json_output = json.loads('{"output": ' + json.dumps(str(self._response.text)) + '}')
+                if re.match('^<', self._response.text):
+                    if re.match('^<output', self._response.text):
+                        json_output = json.loads(self._xml_to_json(text_response))
+                    else:
+                        json_output = json.loads('{"output": ' + self._xml_to_json(text_response) + '}')
+                else:
+                    json_output = json.loads('{"output": ' + json.dumps(str(self._response.text)) + '}')
 
             if yang_list:
                 self._format_dict_output(container=json_output, keys=yang_list)
