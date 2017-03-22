@@ -2751,7 +2751,9 @@ class Interface(object):
                 interface_name = util.find(item, '$..interface-name')
                 last_interface_type = interface_type
                 last_interface_name = interface_name
-                if "gigabitethernet" in interface_type:
+                if interface_type in ['tengigabitethernet', 'ethernet',
+                                      'fortygigabitethernet',
+                                      'hundredgigabitethernet']:
                     interface_role = util.find(item, '$..port-role')
                     if_name = util.find(item, '$..if-name')
                     interface_state = util.find(item, '$..if-state')
