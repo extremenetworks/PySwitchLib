@@ -440,20 +440,19 @@ class Interface(object):
                               % int_type
                 if not delete:
                     ip_args['ipv6_address'] = (ip_addr, False, False)
+        if not get:
+            if int_type == 've' and self.has_rbridge_id:
+                method_name = "rbridge_id_%s" % method_name
+                ip_args['rbridge_id'] = rbridge_id
+                if not pyswitch.utilities.valid_vlan_id(name):
+                    raise InvalidVlanId("`name` must be between `1` and `8191`")
+            elif int_type == 'loopback' and self.has_rbridge_id:
+                method_name = "rbridge_id_%s" % method_name
+                ip_args['rbridge_id'] = rbridge_id
 
-        if int_type == 've' and self.has_rbridge_id:
-            method_name = "rbridge_id_%s" % method_name
-            ip_args['rbridge_id'] = rbridge_id
-            if not pyswitch.utilities.valid_vlan_id(name):
-                raise InvalidVlanId("`name` must be between `1` and `8191`")
-        elif int_type == 'loopback' and self.has_rbridge_id:
-            method_name = "rbridge_id_%s" % method_name
-            ip_args['rbridge_id'] = rbridge_id
-
-        elif not pyswitch.utilities.valid_interface(int_type, name):
-            raise ValueError('`name` must be in the format of x/y/z for '
-                             'physical interfaces.')
-
+            elif not pyswitch.utilities.valid_interface(int_type, name):
+                raise ValueError('`name` must be in the format of x/y/z for '
+                                 'physical interfaces.')
         operation = 'create'
 
         if delete:
