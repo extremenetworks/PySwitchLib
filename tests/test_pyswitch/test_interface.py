@@ -56,6 +56,13 @@ class InterfaceTestCase(unittest.TestCase):
                 name='1',
                 rbridge_id=self.rbridge_id,
                 ip_addr='fc01:1:3:1ad3:0:0:23:a/128')
+            import pprint
+            op = dev.interface.ip_address(
+                int_type='loopback',
+                name='1',
+                rbridge_id=self.rbridge_id,
+                get=True)
+            pprint.pprint(op)
             dev.interface.ip_address(
                 int_type='loopback',
                 name='1',
