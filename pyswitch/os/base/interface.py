@@ -20,7 +20,7 @@ from ipaddress import ip_interface
 
 import pyswitch.utilities
 import pyswitch.utilities as util
-from pyswitch.exceptions import InvalidVlanId
+from pyswitch.exceptions import InvalidVlanId, InvalidLoopbackName
 
 
 class Interface(object):
@@ -440,19 +440,16 @@ class Interface(object):
                               % int_type
                 if not delete:
                     ip_args['ipv6_address'] = (ip_addr, False, False)
-
-        if int_type == 've' and self.has_rbridge_id:
-            method_name = "rbridge_id_%s" % method_name
-            ip_args['rbridge_id'] = rbridge_id
-            if not pyswitch.utilities.valid_vlan_id(name):
-                raise InvalidVlanId("`name` must be between `1` and `8191`")
-        elif int_type == 'loopback' and self.has_rbridge_id:
-            method_name = "rbridge_id_%s" % method_name
-            ip_args['rbridge_id'] = rbridge_id
-
-        elif not pyswitch.utilities.valid_interface(int_type, name):
-            raise ValueError('`name` must be in the format of x/y/z for '
-                             'physical interfaces.')
+            if int_type == 've' and self.has_rbridge_id:
+                method_name = "rbridge_id_%s" % method_name
+                ip_args['rbridge_id'] = rbridge_id
+                if not pyswitch.utilities.valid_vlan_id(name):
+                    raise InvalidVlanId("`name` must be between `1` and `8191`")
+            elif int_type == 'loopback' and self.has_rbridge_id:
+                method_name = "rbridge_id_%s" % method_name
+                ip_args['rbridge_id'] = rbridge_id
+                if not pyswitch.utilities.valid_interface(int_type, name):
+                    raise InvalidLoopbackName("`name` must be between `1` and `255`")
 
         operation = 'create'
 
@@ -462,11 +459,19 @@ class Interface(object):
             if get:
 
                 method_name = 'interface_%s_ip_address_get' % int_type
+                if (int_type == 've' or int_type == 'loopback') and self.has_rbridge_id:
+                    method_name = "rbridge_id_%s" % method_name
+                    ip_args['rbridge_id'] = rbridge_id
+
                 config = (method_name, ip_args)
                 x = callback(config, handler='get_config')
 
                 method_name = 'interface_%s_ipv6_address_ipv6_address_get'\
                               % int_type
+                if (int_type == 've' or int_type == 'loopback') and self.has_rbridge_id:
+                    method_name = "rbridge_id_%s" % method_name
+                    ip_args['rbridge_id'] = rbridge_id
+
                 config = (method_name, ip_args)
                 y = callback(config, handler='get_config')
 

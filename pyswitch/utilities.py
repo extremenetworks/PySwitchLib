@@ -203,6 +203,8 @@ def valid_interface(int_type, name):
         return valid_port_channel_name(name)
     if int_type == 've':
         return valid_vlan_id(name)
+    if int_type == 'loopback':
+        return valid_lopback_number(name)
     else:
         return valid_physical_name(name, int_type)
 
@@ -222,6 +224,32 @@ def valid_port_channel_name(name):
         None
     """
     return re.search(r'^[0-9]{1,4}$', name) is not None
+
+
+def valid_lopback_number(loopback_number):
+    """Validates a VLAN ID.
+
+    Args:
+        loopback_number (integer): Loopback port number to validate.  If passed as ``str``, it will
+            be cast to ``int``.
+    Returns:
+        bool: ``True`` if it is a valid loopback_number.  ``False`` if not.
+
+    Raises:
+        None
+
+    Examples:
+        >>> import pyswitch.utilities
+        >>> loopback_number = '2'
+        >>> pyswitch.utilities.valid_lopback_number(loopback_number)
+        True
+        >>> extended = False
+        >>> vlan = '256'
+        >>> pyswitch.os.base.utilities.valid_lopback_number(loopback_number)
+    """
+    minimum_loopback_id = 1
+    maximum_loopback_id = 255
+    return minimum_loopback_id <= int(loopback_number) <= maximum_loopback_id
 
 
 def valid_physical_name(name, type):
