@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.47
+* Added authentication token code back to minimize login sessions.
 ## 0.1.44
 * Add missing firmware_download_rpc.
 * Added XML to JSON to Python Dictionary logic for error status REST requests.
