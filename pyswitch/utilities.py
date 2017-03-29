@@ -230,8 +230,8 @@ def valid_lopback_number(loopback_number):
     """Validates a VLAN ID.
 
     Args:
-        loopback_number (integer): Loopback port number to validate.  If passed as ``str``, it will
-            be cast to ``int``.
+        loopback_number (integer): Loopback port number to validate.
+            If passed as ``str``, it will be cast to ``int``.
     Returns:
         bool: ``True`` if it is a valid loopback_number.  ``False`` if not.
 

@@ -39,6 +39,7 @@ class InvalidPortChannelName(Exception):
     """
     pass
 
+
 class InvalidLoopbackName(Exception):
     """Exception for invalid loopback interface names.
     """
