@@ -46,7 +46,7 @@ class FabricService(object):
 
         result = []
 
-        for item in util.findlist(results, '$..show-link-info'):
+        for item in util.findlist(results.json, '$..show-link-info'):
             src_rbridge_id = util.find(item, '$..linkinfo-rbridgeid')
             src_switch_wwn = util.find(item, '$..linkinfo-wwn')
             for link in util.findlist(item, '$..linkinfo-isl'):
@@ -56,7 +56,7 @@ class FabricService(object):
                     link, '$..linkinfo-isllink-srcport-interface')
                 dest_interface = util.find(
                     link, '$..linkinfo-isllink-destport-interface')
-                link_cost = util.find('$..linkinfo-isl-linkcost')
+                link_cost = util.find(link,'$..linkinfo-isl-linkcost')
                 link_cost_count = util.find(link,
                                             '$..linkinfo-isllink-costcount')
 

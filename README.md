@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.48
+* Fixed fabric_service.trill_links
 ## 0.1.47
 * Added authentication token code back to minimize login sessions.
 ## 0.1.44
