@@ -242,6 +242,9 @@ class Asset(object):
         except:
             pass
 
+    def _update_max_keep_alive_requests(self, max_requests=0):
+        return self.run_command(command="unhide foscmd;fibranne;foscmd sed \\'s/MaxKeepAliveRequests [0-9]*/MaxKeepAliveRequests " + str(max_requests) + "/\\' /fabos/webtools/bin/httpd.conf > /fabos/webtools/bin/httpd.conf.temp&&mv /fabos/webtools/bin/httpd.conf.temp /fabos/webtools/bin/httpd.conf&&/usr/apache/bin/apachectl -k restart &")
+
     def _xml_to_json(self, xml=''):
         return json.dumps(xmltodict.parse(xml))
 
@@ -411,5 +414,24 @@ class Asset(object):
         :returns: Returns the json output response from the last api call.
         """
         return self._overall_status[0][self._ip_addr]['response']['json']['output']
+
+    def run_command(self, command=''):
+        """
+        This is an auto-generated method for the PySwitchLib.
+
+        :rtype: (*bool, list*)
+        :returns: Returns a tuple.
+
+            #. **api_success** (*bool*) - The success or failure of the API.
+            #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+        """
+
+        rest_command = (
+            ["POST", "/runcmd", command, "discover", 1],
+        )
+
+        self._rest_operation(rest_command)
+
+        return self._get_results()
 
 

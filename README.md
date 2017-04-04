@@ -11,6 +11,9 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.49
+* Added run_command() to asset class to allow CLI execution through REST API.
+* Added _update_max_keep_alive_requests() to dynamically update apache setting to control number of persistent connection rest requests per login.
 ## 0.1.48
 * Fixed fabric_service.trill_links
 ## 0.1.47
