@@ -267,7 +267,7 @@ class Bgp(object):
         if get:
             return self.get_bgp_neighbors(**kwargs)
 
-        if not delete and remote_as is None:
+        if remote_as is None:
             raise ValueError(
                 'When configuring a neighbor, '
                 'you must specify its remote-as.')
@@ -1665,7 +1665,8 @@ class Bgp(object):
                 resource_depth=2,
                 os=self.os)
             out = callback(config, handler='get_config')
-            ret = util.findall(out.json, '$..allowas-in')[0]
+            ret = util.findall(out.json, '$..allowas-in')
+            ret = ret[0] if ret else None
             return ret
         if kwargs.pop('delete', False):
             feature = feature + '_allowas_in'
@@ -2245,14 +2246,13 @@ class Bgp(object):
         callback = kwargs.pop('callback', self._callback)
         vrf = kwargs.pop('vrf', 'default')
         rbridge_id = kwargs.pop('rbridge_id', '1')
-
         if not isinstance(enabled, bool):
             raise ValueError('%s must be `True` or `False`.' % repr(enabled))
         if vrf == 'default':
             args = dict(rbridge_id=rbridge_id, as4_enable=enabled)
             api = 'router_bgp_capability_update'
             method_name = self.method_prefix(api, args)
-            return callback(method_name, args)
+            return callback((method_name, args))
         else:
             return
 
