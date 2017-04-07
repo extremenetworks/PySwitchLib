@@ -13,8 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import pyswitch.utilities as util
-
+from pyswitch.utilities import Util
 
 class LLDP(object):
     """LLDP class containing LLDP methods and attributes.
@@ -51,27 +50,28 @@ class LLDP(object):
                                                            rbridge_id)
 
             lldp_result = self._callback(request_lldp, handler='get')
+            util = Util(lldp_result.data)
 
-            has_more = util.find(lldp_result.json, '$..has-more')
+            has_more = util.find(util.root, './/has-more')
 
-            for item in util.findlist(lldp_result.json, '$..lldp-neighbor-detail'):
+            for item in util.findlist(util.root, './/lldp-neighbor-detail'):
 
-                local_int_name = util.findText(item, '$..local-interface-name')
-                local_int_mac = util.findText(item, '$..local-interface-mac')
+                local_int_name = util.findText(item, './/local-interface-name')
+                local_int_mac = util.findText(item, './/local-interface-mac')
                 last_ifindex = util.findText(
-                    item, '$..local-interface-ifindex')
+                    item, './/local-interface-ifindex')
                 remote_int_name = util.findText(
-                    item, '$..remote-interface-name')
-                remote_int_mac = util.findText(item, '$..remote-interface-mac')
-                remote_chas_id = util.findText(item, '$..remote-chassis-id')
+                    item, './/remote-interface-name')
+                remote_int_mac = util.findText(item, './/remote-interface-mac')
+                remote_chas_id = util.findText(item, './/remote-chassis-id')
 
-                remote_sys_name = util.findText(item, '$..remote-system-name')
+                remote_sys_name = util.findText(item, './/remote-system-name')
 
                 remote_sys_desc = util.findText(
-                    item, '$..remote-system-description')
+                    item, './/remote-system-description')
 
                 remote_mgmt_addr = util.findText(
-                    item, '$..remote-management-address')
+                    item, './/remote-management-address')
 
                 if 'Fo ' in local_int_name:
                     local_int_name = local_int_name.replace(

@@ -12,7 +12,7 @@ LLDPTestCase:
         rbridge_id : 1
 FabricServiceTestCase:
     switch:
-        ip: 10.37.18.131
+        ip: 10.20.34.46
         username : admin
         password : password
         rbridge_id : 1
@@ -58,7 +58,7 @@ InterfacePortChannelCase:
         switch_ip : 10.37.18.131
         admin_password : password
         int_type : tengigabitethernet
-        int_name : 1/0/11
+        int_name : 1/0/22
         minimum_links : 3
 InterfacePrivateVlanTestCase:
      switch:
@@ -81,7 +81,7 @@ InterfaceSwitchPort:
         switch_ip : 10.37.18.131
         admin_password : password
         int_type : tengigabitethernet
-        int_name : 1/0/14
+        int_name : 1/0/19
         vlan : 22
         second_vlan : 34
         gvlan : 8090

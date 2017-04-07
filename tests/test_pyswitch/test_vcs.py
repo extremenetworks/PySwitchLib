@@ -7,7 +7,7 @@ from pyswitch.device import Device
 class VCSTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.conn = ('10.20.34.46', '22')
+        self.conn = ('10.37.18.131', '22')
         self.auth = ('admin', 'password')
         self.vcs_ipv4_address = '10.37.18.190/20'
         self.vcs_ipv6_address = '2620:100:0:fe07:227:f8ff:fec9:b04c/64'

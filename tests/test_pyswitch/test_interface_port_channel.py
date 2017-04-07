@@ -12,7 +12,7 @@ class InterfacePortChannelCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(InterfacePortChannelCase, self).__init__(*args, **kwargs)
-        with open('config.yaml') as fileobj:
+        with open('tests/test_pyswitch/config.yaml') as fileobj:
             cfg = AttrDict(yaml.safe_load(fileobj))
             switch = cfg.InterfacePortChannelCase.switch
 
@@ -84,3 +84,15 @@ class InterfacePortChannelCase(unittest.TestCase):
                 name=self.portchannel_id, get=True)
             self.assertEqual(self.minimum_links, output)
             dev.interface.remove_port_channel(port_int=self.portchannel_id)
+
+    def test_port_channel_speed(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.create_portchannel(name=self.portchannel_id)
+
+            output = dev.interface.port_channel_speed(
+                name=self.portchannel_id, po_speed='100000')
+            output = dev.interface.port_channel_speed(
+                name=self.portchannel_id, get=True)
+            self.assertEqual('100000', output)
+            dev.interface.remove_port_channel(port_int=self.portchannel_id)
+

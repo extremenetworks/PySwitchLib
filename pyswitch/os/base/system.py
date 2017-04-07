@@ -1,4 +1,4 @@
-import pyswitch.utilities as util
+from pyswitch.utilities import Util
 
 
 class System(object):
@@ -27,8 +27,10 @@ class System(object):
 
         results = self._callback(get_system_uptime, handler='get')
 
-        system_uptime = dict(days=util.find(results.json, '$..days'),
-                             hours=util.find(results.json, '$..hours'),
-                             minutes=util.find(results.json, '$..minutes'),
-                             seconds=util.find(results.json, '$..seconds'))
+        util = Util(results.data)
+
+        system_uptime = dict(days=util.find(util.root, './/days'),
+                             hours=util.find(util.root, './/hours'),
+                             minutes=util.find(util.root, './/minutes'),
+                             seconds=util.find(util.root, './/seconds'))
         return system_uptime

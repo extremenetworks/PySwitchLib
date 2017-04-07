@@ -17,6 +17,42 @@ limitations under the License.
 import re
 from jsonpath_rw import parse
 from ipaddress import ip_interface
+from lxml import etree
+import xml.etree.ElementTree as ElementTree
+from xml.etree.ElementTree import Element
+
+
+class Util(object):
+    def __init__(self,data):
+        if data!='':
+            self.root = ElementTree.fromstring(data)
+        else:
+            self.root = Element('empty')
+
+    def find(self,node,expr):
+        x = node.find(expr)
+        if x is not None:
+            return x.text
+        return None
+
+    def find_with_ns(self,node,expr_with_name_space):
+        x = node.find(expr_with_name_space)
+        if x is not None:
+            return x.text
+        return None
+
+    def findNode(self,node,expr):
+        return  node.find(expr)
+
+    def findlist(self,node,expr):
+        return node.findall(expr)
+
+    def findText(self,data, expr):
+        x = self.find(data, expr)
+        return x if x else ''
+
+    def findall(self,data, expr):
+        return [match.text for match in data.findall(expr)]
 
 
 def find(data, expr):
@@ -24,6 +60,7 @@ def find(data, expr):
     if len(x) > 0:
         return x[0].value
     return None
+
 
 
 def findText(data, expr):

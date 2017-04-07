@@ -12,7 +12,7 @@ class InterfaceVRFTestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(InterfaceVRFTestCase, self).__init__(*args, **kwargs)
-        with open('config.yaml') as fileobj:
+        with open('tests/test_pyswitch/config.yaml') as fileobj:
             cfg = AttrDict(yaml.safe_load(fileobj))
             switch = cfg.InterfaceVRFTestCase.switch
 

@@ -74,12 +74,12 @@ class InterfaceTestCase(unittest.TestCase):
                 int_type='loopback',
                 name='1',
                 rbridge_id=self.rbridge_id,
-                ip_addr='10.32.35.2/32')
+                ip_addr='10.32.34.2/32')
             dev.interface.ip_address(
                 int_type='loopback',
                 name='1',
                 rbridge_id=self.rbridge_id,
-                ip_addr='10.32.35.2/32',
+                ip_addr='10.32.34.2/32',
                 delete=True)
 
     def test_set_address(self):
@@ -267,13 +267,32 @@ class InterfaceTestCase(unittest.TestCase):
     def test_ip_unumbered(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             int_type = 'tengigabitethernet'
-            name = '1/0/6'
+            name = '1/0/3'
             donor_type = 'loopback'
             donor_name = '1'
             dev.interface.disable_switchport(
                 inter_type=int_type, inter=name)
+
             dev.interface.ip_unnumbered(
                 int_type=int_type,
                 name=name,
                 donor_type=donor_type,
                 donor_name=donor_name)
+            op = dev.interface.ip_unnumbered(
+                int_type=int_type,
+                name=name,
+                get=True)
+            self.assertEqual(op,{'donor_type': 'loopback', 'donor_name': '1'})
+
+            dev.interface.ip_unnumbered(
+                int_type=int_type,
+                name=name,
+                donor_type=donor_type,
+                donor_name=donor_name,
+                delete=True)
+            op = dev.interface.ip_unnumbered(
+                int_type=int_type,
+                name=name,
+                get=True)
+            self.assertEqual(op, {'donor_type': None, 'donor_name': None})
+

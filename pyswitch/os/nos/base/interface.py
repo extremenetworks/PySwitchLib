@@ -1,7 +1,7 @@
 from ipaddress import ip_interface
 
 import pyswitch.utilities
-import pyswitch.utilities as util
+from pyswitch.utilities import Util
 from pyswitch.exceptions import InvalidVlanId
 from pyswitch.os.base.interface import Interface as BaseInterface
 
@@ -137,8 +137,9 @@ class Interface(BaseInterface):
             method_name = 'interface_%s_get' % int_type
             config = (method_name, fabric_isl_args)
             op = callback(config, handler='get_config')
+            util = Util(op.data)
 
-            if util.find(op.json, '$..fabric..isl..enable'):
+            if util.find(util.root, './/fabric//isl//enable'):
                 return True
             return None
 
@@ -213,8 +214,9 @@ class Interface(BaseInterface):
             method_name = 'interface_%s_get' % int_type
             config = (method_name, fabric_trunk_args)
             op = callback(config, handler='get_config')
+            util = Util(op.data)
 
-            if util.find(op.json, '$..fabric..trunk..enable'):
+            if util.find(util.root, './/fabric//trunk//enable'):
                 return True
             return None
 
@@ -306,9 +308,11 @@ class Interface(BaseInterface):
             config2 = (method_name2, anycast_args)
             result = []
             op = callback(config1, handler='get_config')
-            result.append(util.find(op.json, '$..ip-address'))
+            util = Util(op.data)
+            result.append(util.find(util.root, './/ip-address'))
             op = callback(config2, handler='get_config')
-            result.append(util.find(op.json, '$..ipv6-address'))
+            util = Util(op.data)
+            result.append(util.find(util.root, './/ipv6-address'))
 
             return result
 
@@ -430,8 +434,9 @@ class Interface(BaseInterface):
                 method_name = 'vlan_get'
             config = (method_name, state_args)
             x = callback(config, handler='get_config')
+            util = Util(x.data)
 
-            if util.find(x.json, '$..spanning-tree..shutdown'):
+            if util.find(util.root, './/spanning-tree//shutdown'):
                 return False
             return True
 

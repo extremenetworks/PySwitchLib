@@ -1,5 +1,4 @@
 from pyswitch.os.base.bgp import Bgp as BaseBgp
-import pyswitch.utilities as util
 
 
 class Bgp(BaseBgp):
@@ -27,7 +26,6 @@ class Bgp(BaseBgp):
 
         super(Bgp, self).__init__(callback)
 
-
     def retain_rt_all(self, **kwargs):
         return
 
@@ -39,7 +37,7 @@ class Bgp(BaseBgp):
 
     def evpn_allowas_in(self, **kwargs):
         return
-      
+
     def evpn_afi(self, **kwargs):
         """EVPN AFI. This method just enables/disables or gets the EVPN AFI.
 
@@ -71,29 +69,6 @@ class Bgp(BaseBgp):
             ...     delete=True)
         """
         return
-        callback = kwargs.pop('callback', self._callback)
-        rbridge_id = kwargs.pop('rbridge_id', '1')
-        feature = '_address_family_evpn'
-        if kwargs.pop('delete', False):
-            config = util.get_bgp_api(
-                rbridge_id=rbridge_id,
-                feature=feature,
-                op='_delete',
-                os=self.os)
-            return callback(config)
-        if kwargs.pop('get', False):
-            config = util.get_bgp_api(
-                rbridge_id=rbridge_id, feature=feature,
-                op='_get', os=self.os)
-            ret = callback(config, handler='get_config')
-            ret = True if ret and ret.json else False
-            return ret
-        config = util.get_bgp_api(
-            rbridge_id=rbridge_id,
-            feature=feature,
-            op='_create',
-            os=self.os)
-        return callback(config)
 
     def evpn_afi_peer_activate(self, **kwargs):
         """
@@ -138,47 +113,6 @@ class Bgp(BaseBgp):
 
         """
         return
-        peer_ip = kwargs.pop('peer_ip')
-        rbridge_id = kwargs.pop('rbridge_id', '1')
-        callback = kwargs.pop('callback', self._callback)
-        feature = '_address_family_evpn_neighbor'
-        if kwargs.pop('delete', False):
-            args = dict(evpn_nbr_activate=False, af_evpn_neighbor=peer_ip)
-            config = util.get_bgp_api(
-                rbridge_id=rbridge_id,
-                feature=feature,
-                op='_update',
-                args=args,
-                os=self.os)
-            return callback(config)
-        if kwargs.pop('get', False):
-            args = dict(af_evpn_neighbor=peer_ip)
-            config = util.get_bgp_api(
-                rbridge_id=rbridge_id,
-                feature=feature,
-                args=args,
-                resource_depth=2,
-                op='_get',
-                os=self.os)
-            ret = callback(config, handler='get_config')
-            ret = util.find(ret.json, '$..activate')
-            return ret
-        args = dict(af_evpn_neighbor=peer_ip)
-        config = util.get_bgp_api(
-            rbridge_id=rbridge_id,
-            feature=feature,
-            args=args,
-            op='_create',
-            os=self.os)
-        ret = callback(config)
-        args = dict(evpn_nbr_activate=True, af_evpn_neighbor=peer_ip)
-        config = util.get_bgp_api(
-            rbridge_id=rbridge_id,
-            feature=feature,
-            op='_update',
-            args=args,
-            os=self.os)
-        return callback(config)
 
     def vni_add(self, **kwargs):
         return

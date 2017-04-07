@@ -17,6 +17,7 @@ limitations under the License.
 """
 from ipaddress import ip_interface
 import pyswitch.utilities as util
+from pyswitch.utilities import Util
 
 
 class Bgp(object):
@@ -81,7 +82,9 @@ class Bgp(object):
         rbridge_id = kwargs.pop('rbridge_id', 1)
         config = util.get_bgp_api(rbridge_id=rbridge_id, op='_get', os=self.os)
         bgp_config = self._callback(config, handler='get_config')
-        if bgp_config and bgp_config.json:
+        if bgp_config.data == '<output></output>':
+            bgp_config = None
+        if bgp_config and bgp_config.data:
             return True
         return False
 
@@ -137,7 +140,8 @@ class Bgp(object):
                 args=args,
                 os=self.os)
             bgp_config = callback(config, handler='get_config')
-            local_as = util.findall(bgp_config.json, '$..local-as')
+            bgp = Util(bgp_config.data)
+            local_as = bgp.findall(bgp.root, './/local-as')
             local_as = local_as[0] if local_as else None
             return local_as
         config = util.get_bgp_api(rbridge_id=rbridge_id, op='_create',
@@ -468,7 +472,8 @@ class Bgp(object):
                 feature='_neighbor_neighbor_addr',
                 os=self.os)
             output = callback(config, handler='get_config')
-            ns = util.find(output.json, '$..neighbor-addr')
+            bgp = Util(output.data)
+            ns = bgp.findlist(bgp.root, './/neighbor-addr')
             ns = ns if ns else []
             if isinstance(ns, dict):
                 ret = []
@@ -476,8 +481,8 @@ class Bgp(object):
             else:
                 ret = ns
             for n in ret:
-                peer_ip = util.find(n, '$..address')
-                peer_remote_as = util.find(n, '$..remote-as')
+                peer_ip = bgp.find(n, './/address')
+                peer_remote_as = bgp.find(n, './/remote-as')
                 item_results = {'neighbor-address': peer_ip,
                                 'remote-as': peer_remote_as}
                 if ip_addr and remote_as and ip_addr == peer_ip and \
@@ -485,7 +490,7 @@ class Bgp(object):
                     return item_results
                 result.append(item_results)
 
-            ns = util.find(output.json, '$..neighbor-ipv6-addr')
+            ns = bgp.findlist(bgp.root, './/neighbor-ipv6-addr')
             ns = ns if ns else []
             if isinstance(ns, dict):
                 ret = []
@@ -493,10 +498,10 @@ class Bgp(object):
             else:
                 ret = ns
             for n in ret:
-                peer_ip = util.find(n, '$..address')
-                peer_remote_as = util.find(n, '$..remote-as')
-                item_results = {'neighbor-address': util.find(n, '$..address'),
-                                'remote-as': util.find(n, '$..remote-as')}
+                peer_ip = bgp.find(n, './/address')
+                peer_remote_as = bgp.find(n, './/remote-as')
+                item_results = {'neighbor-address': peer_ip,
+                                'remote-as': peer_remote_as}
                 if ip_addr and remote_as and ip_addr == peer_ip and \
                         peer_remote_as == remote_as:
                     return item_results
@@ -515,7 +520,8 @@ class Bgp(object):
             args=dict(),
             os=self.os)
         output = callback(config, handler='get_config')
-        ns = util.find(output.json, '$..af-ipv4-neighbor-addr')
+        bgp = Util(output.data)
+        ns = bgp.findlist(bgp.root, './/af-ipv4-neighbor-addr')
         ns = ns if ns else []
         if isinstance(ns, dict):
             ret = []
@@ -523,10 +529,10 @@ class Bgp(object):
         else:
             ret = ns
         for n in ret:
-            peer_ip = util.find(n, '$..address')
-            peer_remote_as = util.find(n, '$..remote-as')
-            item_results = {'neighbor-address': util.find(n, '$..address'),
-                            'remote-as': util.find(n, '$..remote-as')}
+            peer_ip = bgp.find(n, './/address')
+            peer_remote_as = bgp.find(n, './/remote-as')
+            item_results = {'neighbor-address': peer_ip,
+                            'remote-as': peer_remote_as}
             if ip_addr and remote_as and ip_addr == peer_ip and \
                     peer_remote_as == remote_as:
                 return item_results
@@ -543,7 +549,8 @@ class Bgp(object):
             args=dict(),
             os=self.os)
         output = callback(config, handler='get_config')
-        ns = util.find(output.json, '$..af-ipv6-neighbor-addr')
+        bgp = Util(output.data)
+        ns = bgp.findlist(bgp.root, './/af-ipv6-neighbor-addr')
         ns = ns if ns else []
         if isinstance(ns, dict):
             ret = []
@@ -551,10 +558,10 @@ class Bgp(object):
         else:
             ret = ns
         for n in ret:
-            peer_ip = util.find(n, '$..address')
-            peer_remote_as = util.find(n, '$..remote-as')
-            item_results = {'neighbor-address': util.find(n, '$..address'),
-                            'remote-as': util.find(n, '$..remote-as')}
+            peer_ip = bgp.find(n, './/address')
+            peer_remote_as = bgp.find(n, './/remote-as')
+            item_results = {'neighbor-address': peer_ip,
+                            'remote-as': peer_remote_as}
             if ip_addr and remote_as and ip_addr == peer_ip and \
                     peer_remote_as == remote_as:
                 return item_results
@@ -627,7 +634,8 @@ class Bgp(object):
                 args=dict(),
                 os=self.os)
             output = callback(config, handler='get_config')
-            output = util.findall(output.json, '$..redistribute-connected')
+            bgp = Util(output.data)
+            output = bgp.findall(bgp.root, './/redistribute-connected')
             output = True if output and output[0] == 'true' else False
             return output
         if kwargs.pop('delete', False):
@@ -714,7 +722,8 @@ class Bgp(object):
                 args=dict(),
                 os=self.os)
             output = callback(config, handler='get_config')
-            output = util.findall(output.json, '$..load-sharing-value')
+            bgp = Util(output.data)
+            output = bgp.findall(bgp.root, './/load-sharing-value')
             output = output[0] if output else None
             return output
         if kwargs.pop('delete', False):
@@ -793,7 +802,8 @@ class Bgp(object):
                 rbridge_id=rbridge_id, afi=afi, vrf=vrf,
                 op='_get', os=self.os)
             output = callback(config, handler='get_config')
-            output = util.findall(output.json, '$..next-hop-recursion')
+            bgp = Util(output.data)
+            output = bgp.findall(bgp.root, './/next-hop-recursion')
             output = True if output and output[0] == 'true' else False
             return output
         if afi == 'ipv4' or vrf != 'default':
@@ -878,7 +888,8 @@ class Bgp(object):
                 op='_get',
                 os=self.os)
             output = callback(config, handler='get_config')
-            output = util.findall(output.json, '$..graceful-restart-status')
+            bgp = Util(output.data)
+            output = bgp.findall(bgp.root, './/graceful-restart-status')
             output = True if output and output[0] == 'true' else False
             return output
         if kwargs.pop('delete', False):
@@ -987,7 +998,8 @@ class Bgp(object):
                 op='_get',
                 os=self.os)
             output = callback(config, handler='get_config')
-            output = util.findall(output.json, '$..ebgp-multihop-count')
+            bgp = Util(output.data)
+            output = bgp.findall(bgp.root, './/ebgp-multihop-count')
             output = output[0] if output else None
             return output
         if kwargs.pop('delete', False):
@@ -1122,10 +1134,11 @@ class Bgp(object):
                     ip_addr.ip),
                 op='_get',
                 os=self.os)
-            ret = callback(config)
-            search = '$..{0}'.format(int_type)
-            ret = util.findall(ret.json, search)
-            ret = ret[0] if ret else None
+            ret = callback(config,  handler='get_config')
+            search = './/' + int_type
+            bgp = Util(ret.data)
+            ret = bgp.findText(bgp.root, search)
+            ret = ret if ret else None
             return ret
         if kwargs.pop('delete', False):
             config = util.get_bgp_api(
@@ -1194,7 +1207,9 @@ class Bgp(object):
                 rbridge_id=rbridge_id, feature=feature,
                 op='_get', os=self.os)
             ret = callback(config, handler='get_config')
-            ret = True if ret and ret.json else False
+            if ret.data == '<output></output>':
+                ret = None
+            ret = True if ret and ret.data else False
             return ret
         config = util.get_bgp_api(
             rbridge_id=rbridge_id,
@@ -1272,7 +1287,8 @@ class Bgp(object):
                 op='_get',
                 os=self.os)
             ret = callback(config, handler='get_config')
-            ret = util.find(ret.json, '$..activate')
+            bgp = Util(ret.data)
+            ret = bgp.find(bgp.root, './/activate')
             return ret
         config = util.get_bgp_api(
             rbridge_id=rbridge_id,
@@ -1346,9 +1362,10 @@ class Bgp(object):
                 op='_get',
                 os=self.os)
             ret = callback(config, handler='get_config')
-            min_tx = util.find(ret.json, '$..min-tx')
-            min_rx = util.find(ret.json, '$..min-rx')
-            multiplier = util.find(ret.json, '$..multiplier')
+            bgp = Util(ret.data)
+            min_tx = bgp.find(bgp.root, './/min-tx')
+            min_rx = bgp.find(bgp.root, './/min-rx')
+            multiplier = bgp.find(bgp.root, './/multiplier')
             item = dict(min_tx=min_tx, min_rx=min_rx, multiplier=multiplier)
             return item
         min_tx = kwargs.pop('tx')
@@ -1414,7 +1431,8 @@ class Bgp(object):
                 op='_get',
                 os=self.os)
             ret = callback(config, handler='get_config')
-            ret = util.find(ret.json, '$..all')
+            bgp = Util(ret.data)
+            ret = bgp.findall(bgp.root, './/all')
             ret = True if ret and ret[0] == 'true' else False
             return ret
         args = dict(all=True)
@@ -1491,7 +1509,9 @@ class Bgp(object):
                 op='_get',
                 os=self.os)
             out = callback(config, handler='get_config')
-            out = util.find(out.json, '$..next-hop-unchanged')
+            bgp = Util(out.data)
+            out = bgp.find(bgp.root, './/next-hop-unchanged')
+            out = True if out == 'true' else False
             return out
         args = dict(next_hop_unchanged=True)
         config = util.get_bgp_api(
@@ -1568,7 +1588,9 @@ class Bgp(object):
                 resource_depth=2,
                 os=self.os)
             out = callback(config, handler='get_config')
-            out = util.findall(out.json, '$..allowas-in')
+            bgp = Util(out.data)
+            out = bgp.findall(bgp.root, './/allowas-in')
+            out = out[0] if out else None
             return out
         allowas_in = kwargs.pop('allowas_in', '5')
         args = dict(allowas_in=allowas_in)
@@ -1665,7 +1687,8 @@ class Bgp(object):
                 resource_depth=2,
                 os=self.os)
             out = callback(config, handler='get_config')
-            ret = util.findall(out.json, '$..allowas-in')
+            bgp = Util(out.data)
+            ret = bgp.findall(bgp.root, './/allowas-in')
             ret = ret[0] if ret else None
             return ret
         if kwargs.pop('delete', False):
@@ -1735,10 +1758,7 @@ class Bgp(object):
         """
         rbridge_id = kwargs.pop('rbridge_id', '1')
         peer_ip = kwargs.pop('peer_ip')
-        min_tx = kwargs.pop('tx')
-        min_rx = kwargs.pop('rx')
         vrf = kwargs.pop('vrf', 'default')
-        multiplier = kwargs.pop('multiplier')
         delete = kwargs.pop('delete', False)
         get = kwargs.pop('get', False)
         feature_tmp = '_neighbor{0}_bfd_interval'
@@ -1776,10 +1796,14 @@ class Bgp(object):
                 op='_get',
                 os=self.os)
             ret = callback(config, handler='get_config')
-            item = {'min_tx': util.findall(ret.json, '$..min-tx'),
-                    'min_rx': util.findall(ret.json, '$..min-rx'),
-                    'multiplier': util.findall(ret.json, '$..multiplier')}
+            bgp = Util(ret.data)
+            item = {'min_tx': bgp.findall(bgp.root, './/min-tx'),
+                    'min_rx': bgp.findall(bgp.root, './/min-rx'),
+                    'multiplier': bgp.findall(bgp.root, './/multiplier')}
             return item
+        min_tx = kwargs.pop('tx')
+        min_rx = kwargs.pop('rx')
+        multiplier = kwargs.pop('multiplier')
         args = dict(min_tx=min_tx, min_rx=min_rx, multiplier=multiplier)
         config = util.get_bgp_api(
             rbridge_id=rbridge_id,
@@ -1868,7 +1892,8 @@ class Bgp(object):
                 op='_get',
                 os=self.os)
             ret = callback(config, handler='get_config')
-            ret = util.findall(ret.json, '$..bfd-enable')
+            bgp = Util(ret.data)
+            ret = bgp.findall(bgp.root, './/bfd-enable')
             ret = True if ret and ret[0] == 'true' else False
             return ret
         args = dict(bfd_enable=True)
@@ -1956,9 +1981,10 @@ class Bgp(object):
                 vni_args.pop('rbridge_id', None)
             config = (method_name, vni_args)
             out = callback(config, handler='get_config')
+            bgp = Util(out.data)
             tmp = {'rbridge_id': rbridge_id,
                    'evpn_instance': evpn_instance,
-                   'vni': util.findall(out.json, '$..vni-number')}
+                   'vni': bgp.find(bgp.root, './/vni-number')}
             if self.os != 'nos':
                 tmp.pop('rbridge_id', None)
             result.append(tmp)
@@ -2045,7 +2071,8 @@ class Bgp(object):
                 op='_get', os=self.os)
             result = callback(config, handler='get_config')
             if vrf != 'default':
-                result = util.findall(result.json, '$..vrf-name')
+                bgp = Util(result.data)
+                result = bgp.findall(bgp.root, './/vrf-name')
                 result = result[0] if result else None
                 result = True if result == vrf else False
             else:

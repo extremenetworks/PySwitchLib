@@ -1,4 +1,4 @@
-import pyswitch.utilities as util
+from pyswitch.utilities import Util
 from pyswitch.os.base.system import System as BaseSystem
 
 
@@ -22,12 +22,16 @@ class System(BaseSystem):
     def chassis_name(self, **kwargs):
         """Get device's chassis name/Model.
         """
+        urn = "{urn:brocade.com:mgmt:brocade-rbridge}"
 
         config = ('rbridge_id_get', {'resource_depth': 2})
 
         output = self._callback(config, handler='get_config')
 
-        chassis_name = util.find(output.json, '$..chassis-name')
+        util = Util(output.data)
+
+        chassis_name = util.find(util.root,'.//chassis-name')
+
         return chassis_name
 
     def router_id(self, **kwargs):
@@ -91,6 +95,8 @@ class System(BaseSystem):
             ...         conf = None
             ...     assert conf == 'sw0'
         """
+        urn = "{urn:brocade.com:mgmt:brocade-rbridge}"
+
         is_get_config = kwargs.pop('get', False)
         rbridge_id = kwargs.pop('rbridge_id')
         if not is_get_config:
@@ -107,7 +113,11 @@ class System(BaseSystem):
                 'rbridge_id_get', {
                     'resource_depth': 2, 'rbridge_id': rbridge_id})
             output = callback(config, handler='get_config')
-            return util.find(output.json, '$..host-name')
+
+            util = Util(output.data)
+
+            return util.find(util.root,'.//host-name')
+
 
         return callback(config)
 
@@ -147,9 +157,8 @@ class System(BaseSystem):
             config = ('rbridge_id_get', {})
             op = callback(config, handler='get_config')
 
-            rbridge_id = util.find(op.json, '$..rbridge-id')
-
-            return util.find(rbridge_id, '$..rbridge-id')
+            util = Util(op.data)
+            return util.find(util.root,'rbridge-id')
 
         rid_args = dict(rbridge_id=rbridge_id)
         config = ('vcs_rbridge_config_rpc', rid_args)
@@ -193,8 +202,11 @@ class System(BaseSystem):
         if is_get_config:
             config = ('rbridge_id_get', rid_args)
             maint_mode = callback(config, handler='get_config')
-            system_mode = util.find(maint_mode.json, '$..system-mode')
-            maintenance = util.find(system_mode, '$..maintenance')
+
+            util = Util(maint_mode.data)
+
+            system_mode = util.findNode(util.root, './/system-mode')
+            maintenance = util.find(system_mode, './/maintenance')
             if maintenance:
                 return True
             else:
@@ -242,14 +254,18 @@ class System(BaseSystem):
         version = kwargs.pop('version', 4)
         if version is 4:
             ip_prefix = 'ip'
+            ns = '{urn:brocade.com:mgmt:brocade-ip-access-list}'
         if version is 6:
             ip_prefix = 'ipv6'
+            ns = '{urn:brocade.com:mgmt:brocade-mld-snooping}'
 
         if kwargs.pop('get', False):
             method_name = '%s_mtu_get' % ip_prefix
             config = (method_name, {})
             op = callback(config, handler='get_config')
-            return util.find(op.json, '$..mtu')
+
+            util = Util(op.data)
+            return util.find(util.root, './/mtu')
 
         mtu = kwargs.pop('mtu')
 
@@ -313,7 +329,9 @@ class System(BaseSystem):
             method_name = 'mtu_get'
             config = (method_name, {})
             op = callback(config, handler='get_config')
-            return util.find(op.json, '$..mtu')
+
+            util = Util(op.data)
+            return util.find(util.root, './/mtu')
 
         mtu = kwargs.pop('mtu')
 

@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import pyswitch.utilities as util
+
+from pyswitch.utilities import Util
 
 
 class FabricService(object):
@@ -43,22 +44,23 @@ class FabricService(object):
         get_links_info = ('show_linkinfo_rpc', {})
 
         results = self._callback(get_links_info, handler='get')
+        util = Util(results.data)
 
         result = []
 
-        for item in util.findlist(results.json, '$..show-link-info'):
-            src_rbridge_id = util.find(item, '$..linkinfo-rbridgeid')
-            src_switch_wwn = util.find(item, '$..linkinfo-wwn')
-            for link in util.findlist(item, '$..linkinfo-isl'):
+        for item in util.findlist(util.root, './/show-link-info'):
+            src_rbridge_id = util.find(item, './/linkinfo-rbridgeid')
+            src_switch_wwn = util.find(item, './/linkinfo-wwn')
+            for link in util.findlist(item, './/linkinfo-isl'):
                 dest_rbridge_id = util.find(link,
-                                            '$..linkinfo-isllink-destdomain')
+                                            './/linkinfo-isllink-destdomain')
                 src_interface = util.find(
-                    link, '$..linkinfo-isllink-srcport-interface')
+                    link, './/linkinfo-isllink-srcport-interface')
                 dest_interface = util.find(
-                    link, '$..linkinfo-isllink-destport-interface')
-                link_cost = util.find(link,'$..linkinfo-isl-linkcost')
+                    link, './/linkinfo-isllink-destport-interface')
+                link_cost = util.find(link,'.//linkinfo-isl-linkcost')
                 link_cost_count = util.find(link,
-                                            '$..linkinfo-isllink-costcount')
+                                            './/linkinfo-isllink-costcount')
 
                 item_results = {'source-rbridgeid': src_rbridge_id,
                                 'source-switch-wwn': src_switch_wwn,

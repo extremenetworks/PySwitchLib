@@ -15,8 +15,7 @@ limitations under the License.
 """
 
 import xml.etree.ElementTree as ET
-
-import pyswitch.utilities as util
+from pyswitch.utilities import Util
 from pyswitch.os.base.services import Services as BaseServices
 
 class Services(BaseServices):
@@ -50,16 +49,17 @@ class Services(BaseServices):
 
         config = ('get_arp_rpc',{})
         results = self._callback(config, handler='get')
+        util = Util(results.data)
         result = []
 
-        for item in util.findlist(results.json,'$..arp-entry' ):
-            ip_address = util.find(item,'$..ip-address' )
-            mac_address = util.find(item,'$..mac-address' )
-            interface_type = util.find(item,'$..interface-type' )
-            interface_name = util.find(item,'$..interface-name' )
-            is_resolved = util.find(item,'$..is-resolved' )
-            age = util.find(item,'$..age' )
-            entry_type = util.find(item,'$..entry-type' )
+        for item in util.findlist(util.root,'.//arp-entry' ):
+            ip_address = util.find(item,'.//ip-address' )
+            mac_address = util.find(item,'.//mac-address' )
+            interface_type = util.find(item,'.//interface-type' )
+            interface_name = util.find(item,'.//interface-name' )
+            is_resolved = util.find(item,'.//is-resolved' )
+            age = util.find(item,'.//age' )
+            entry_type = util.find(item,'.//entry-type' )
             item_results = {'ip-address': ip_address,
                             'mac-address': mac_address,
                             'interface-type': interface_type,
@@ -125,14 +125,16 @@ class Services(BaseServices):
         if get:
             config = ('rbridge_id_protocol_vrrp_get', vrrp_args)
             x = callback(config, handler='get_config')
+            util = Util(x.data)
 
-            ipv4_vrrp = util.find(x.json, '$..vrrp')
+            ipv4_vrrp = util.find(util.root, './/vrrp')
             ipv4_vrrp = ipv4_vrrp if ipv4_vrrp else False
 
             config = ('rbridge_id_ipv6_protocol_vrrp_get', vrrp_args)
             x = callback(config, handler='get_config')
+            util = Util(x.data)
 
-            ipv6_vrrp = util.find(x.json, '$..vrrp')
+            ipv6_vrrp = util.find(util.root, './/vrrp')
             ipv6_vrrp = ipv6_vrrp if ipv6_vrrp else False
             return {'ipv4_vrrp': ipv4_vrrp, 'ipv6_vrrp': ipv6_vrrp}
 
@@ -193,14 +195,16 @@ class Services(BaseServices):
         if get:
             config = ('rbridge_id_protocol_vrrp_extended_get', vrrpe_args)
             x = callback(config, handler='get_config')
+            util = Util(x.data)
 
-            ipv4_vrrpe = util.find(x.json, '$..vrrp-extended')
+            ipv4_vrrpe = util.find(util.root, './/vrrp-extended')
             ipv4_vrrpe = ipv4_vrrpe if ipv4_vrrpe else False
 
             config = ('rbridge_id_ipv6_protocol_vrrp_extended_get', vrrpe_args)
             x = callback(config, handler='get_config')
+            util = Util(x.data)
 
-            ipv6_vrrpe = util.find(x.json, '$..vrrp-extended')
+            ipv6_vrrpe = util.find(util.root, './/vrrp-extended')
             ipv6_vrrpe = ipv6_vrrpe if ipv6_vrrpe else False
 
             return {'ipv4_vrrpe': ipv4_vrrpe, 'ipv6_vrrpe': ipv6_vrrpe}

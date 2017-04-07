@@ -1,5 +1,5 @@
 import pyswitch.utilities
-import pyswitch.utilities as util
+from pyswitch.utilities import Util
 from pyswitch.exceptions import InvalidVlanId
 from pyswitch.os.base.interface import Interface as BaseInterface
 
@@ -162,7 +162,8 @@ class Interface(BaseInterface):
                 method_name = 'vlan_spanning_tree_get'
             config = (method_name, state_args)
             x = callback(config, handler='get_config')
-            shutdown_status = util.find(x.json, '$..shutdown')
+            util = Util(x.data)
+            shutdown_status = util.find(util.root, './/shutdown')
             if shutdown_status and shutdown_status == 'false':
                 return True
             return False
@@ -199,3 +200,67 @@ class Interface(BaseInterface):
         # TODO: add logic to shutdown STP at protocol level too.
         except AttributeError:
             return None
+
+    def vlan_router_ve(self, **kwargs):
+        """Configure/get/delete router interface ve on a vlan.
+
+        Args:
+            vlan_id (str): Vlan number.
+            ve_config (str) : router ve interface
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the router ve on the vlan.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            KeyError: if `vlan_id`  is not specified.
+            ValueError: if `vlan_id` is not a valid value.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.vlan_router_ve(
+            ...         get=True, vlan_id='100')
+            ...         output = dev.interface.vlan_router_ve(
+            ...         delete=True, vlan_id='100')
+            ...         output = dev.interface.vlan_router_ve(
+            ...         vlan_id='100', ve_config='200')
+            Traceback (most recent call last):
+            KeyError
+        """
+        vlan = kwargs.pop('vlan_id')
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if not pyswitch.utilities.valid_vlan_id(vlan):
+            raise InvalidVlanId(
+                '%s must be between 0 to 8191.' % vlan)
+        if delete:
+            ve_args = dict(vlan=vlan)
+            config = (self.method_prefix('vlan_router_interface_ve_delete'),
+                                         ve_args)
+            return callback(config)
+
+        if not get_config:
+            ve_config = kwargs.pop('ve_config')
+            ve_args = dict(vlan=vlan, ve_config=ve_config)
+            config = (self.method_prefix('vlan_router_interface_ve_update'),
+                                         ve_args)
+            result = callback(config)
+        elif get_config:
+            ve_args = dict(vlan=vlan)
+            config = (self.method_prefix('vlan_router_interface_ve_get'),
+                                         ve_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = util.find(util.root, './/Ve')
+        return result

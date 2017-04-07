@@ -12,7 +12,7 @@ class InterfaceVRRPETestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(InterfaceVRRPETestCase, self).__init__(*args, **kwargs)
-        with open('config.yaml') as fileobj:
+        with open('tests/test_pyswitch/config.yaml') as fileobj:
             cfg = AttrDict(yaml.safe_load(fileobj))
             switch = cfg.InterfaceVRRPETestCase.switch
 
@@ -393,7 +393,7 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                                      vrid=self.vrid,
                                      rbridge_id=self.rbridge_id,
                                      version=6,
-                                     virtual_mac='02e0.5200.00xx', delete=True)
+                                     virtual_mac='02e0.5200.00xx', enable=False)
             op = dev.interface.vrrpe_vmac(int_type='ve',
                                           name=self.vlan,
                                           vrid=self.vrid,
@@ -401,4 +401,4 @@ class InterfaceVRRPETestCase(unittest.TestCase):
                                           rbridge_id=self.rbridge_id,
                                           get=True)
 
-            self.assertisNone(op)
+            self.assertIsNone(op)

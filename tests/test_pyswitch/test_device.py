@@ -16,7 +16,7 @@ class DeviceTestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(DeviceTestCase, self).__init__(*args, **kwargs)
-        with open('config.yaml') as fileobj:
+        with open('tests/test_pyswitch/config.yaml') as fileobj:
             cfg = AttrDict(yaml.safe_load(fileobj))
             switch = cfg.DeviceTestCase.switch
 
@@ -34,6 +34,7 @@ class DeviceTestCase(unittest.TestCase):
                 print context
 
     def test_get_os_type(self):
+
         with Device(conn=self.conn, auth=self.auth) as dev:
             print dev.os_type
             pprint.pprint(dev.firmware_version)
@@ -55,4 +56,4 @@ class DeviceTestCase(unittest.TestCase):
         with Device(conn=self.conn, auth=self.auth) as dev:
             pprint.pprint(
                 dev.find_interface_by_mac(
-                    mac_address='11:12:12:32:23:23'))
+                    mac_address='11:23:11:23:12:31'))

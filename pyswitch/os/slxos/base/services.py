@@ -16,7 +16,7 @@ limitations under the License.
 
 import xml.etree.ElementTree as ET
 
-import pyswitch.utilities as util
+from pyswitch.utilities import Util
 from pyswitch.os.base.services import Services as BaseServices
 
 class Services(BaseServices):
@@ -97,15 +97,17 @@ class Services(BaseServices):
         if get:
             config = ('protocol_vrrp_get', vrrp_args)
             x = callback(config, handler='get_config')
+            util = Util(x.data)
 
-            ipv4_vrrp = util.find(x.json, '$..vrrp')
+            ipv4_vrrp = util.find(util.root, './/vrrp')
             ipv4_vrrp = ipv4_vrrp if ipv4_vrrp and ipv4_vrrp == 'true' \
                 else False
 
             config = ('ipv6_protocol_vrrp_get', vrrp_args)
             x = callback(config, handler='get_config')
+            util = Util(x.data)
 
-            ipv6_vrrp = util.find(x.json, '$..vrrp')
+            ipv6_vrrp = util.find(util.root, './/vrrp')
             ipv6_vrrp = ipv6_vrrp if ipv6_vrrp and ipv6_vrrp == 'true' \
                 else False
             return {'ipv4_vrrp': ipv4_vrrp, 'ipv6_vrrp': ipv6_vrrp}
@@ -167,15 +169,17 @@ class Services(BaseServices):
         if get:
             config = ('protocol_vrrp_extended_get', vrrpe_args)
             x = callback(config, handler='get_config')
+            util = Util(x.data)
 
-            ipv4_vrrpe = util.find(x.json, '$..vrrp-extended')
+            ipv4_vrrpe = util.find(util.root, './/vrrp-extended')
             ipv4_vrrpe = ipv4_vrrpe if ipv4_vrrpe and ipv4_vrrpe == 'true'\
                 else False
 
             config = ('ipv6_protocol_vrrp_extended_get', vrrpe_args)
             x = callback(config, handler='get_config')
+            util = Util(x.data)
 
-            ipv6_vrrpe = util.find(x.json, '$..vrrp-extended')
+            ipv6_vrrpe = util.find(util.root, './/vrrp-extended')
             ipv6_vrrpe = ipv6_vrrpe if ipv6_vrrpe and ipv6_vrrpe == 'true' \
                 else False
 

@@ -32,7 +32,7 @@ class Asset(object):
         self._os_type = 'nos'
         self._os_ver = fw_ver
         self._os_full_ver = fw_ver
-        self._default_connection_timeout = 60                                                                                                                                       
+        self._default_connection_timeout = 60
         self._default_response_timeout = 1800                                                                                                                                       
         self._session_timeout = (self._default_connection_timeout, self._default_response_timeout) 
         self._session = requests.Session()

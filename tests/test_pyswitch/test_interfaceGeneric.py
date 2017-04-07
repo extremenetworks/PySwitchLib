@@ -103,7 +103,7 @@ class InterfaceGenericCase(unittest.TestCase):
                 int_type=self.int_type,
                 name=self.int_name,
                 get=True)
-            self.assertTrue(op)
+            self.assertIsNone(op)
             dev.interface.fabric_neighbor(
                 int_type=self.int_type,
                 name=self.int_name,
@@ -112,7 +112,7 @@ class InterfaceGenericCase(unittest.TestCase):
                 int_type=self.int_type,
                 name=self.int_name,
                 get=True)
-            self.assertIsNone(op)
+            self.assertTrue(op)
 
     def test_v6_nd_suppress_ra(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
@@ -197,10 +197,12 @@ class InterfaceGenericCase(unittest.TestCase):
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.add_vlan_int(vlan_id=self.second_vlan)
             op = dev.interface.get_vlan_int(vlan_id=self.second_vlan)
-            print op
+            self.assertTrue(op)
 
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.del_vlan_int(vlan_id=self.second_vlan)
+            op = dev.interface.get_vlan_int(vlan_id=self.second_vlan)
+            self.assertFalse(op)
 
     def test_anycast(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
@@ -214,8 +216,19 @@ class InterfaceGenericCase(unittest.TestCase):
             dev.services.vrrp(rbridge_id=self.rbridge_id, enabled=False)
             dev.services.vrrp(
                 rbridge_id=self.rbridge_id,
-                enabled=False,
+                enable=False,
                 ip_version='6')
+
+            dev.services.vrrpe(
+                rbridge_id=self.rbridge_id,
+                enable=False,
+                ip_version='4')
+
+            dev.services.vrrp(rbridge_id=self.rbridge_id, enabled=False)
+            dev.services.vrrp(
+                rbridge_id=self.rbridge_id,
+                enable=False,
+                ip_version='4')
 
             output = dev.interface.anycast_mac(rbridge_id=self.rbridge_id,
                                                mac=mac)
@@ -248,7 +261,7 @@ class InterfaceGenericCase(unittest.TestCase):
             print 'VE ipv6_link_local : ', output
             self.assertEqual(None, output)
 
-            #
+            """
             output = dev.interface.ipv6_link_local(
                 int_type='loopback',
                 name=self.loopback_id,
@@ -260,6 +273,7 @@ class InterfaceGenericCase(unittest.TestCase):
                 get=True)
             print 'loopback ipv6_link_local : ', output
             self.assertEqual(None, output)
+            """
 
     def test_proxy_arp(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
@@ -281,7 +295,7 @@ class InterfaceGenericCase(unittest.TestCase):
             self.assertEqual(output, None)
 
             output = dev.interface.channel_group(
-                name=self.int_name,
+                name='1/0/17',
                 int_type=self.int_type,
                 port_int=self.port_int,
                 channel_type='standard',

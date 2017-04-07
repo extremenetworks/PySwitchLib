@@ -10,7 +10,7 @@ class FabricServiceTestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(FabricServiceTestCase, self).__init__(*args, **kwargs)
-        with open('config.yaml') as fileobj:
+        with open('tests/test_pyswitch/config.yaml') as fileobj:
             cfg = AttrDict(yaml.safe_load(fileobj))
             switch = cfg.FabricServiceTestCase.switch
 

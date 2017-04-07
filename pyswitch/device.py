@@ -29,7 +29,9 @@ import pyswitch.os.slxos.base.bgp
 import pyswitch.os.slxos.base.services
 import pyswitch.os.slxos.base.system
 import pyswitch.utilities as util
-import pyswitchlib.asset
+from pyswitch.utilities import Util
+from pyswitch.XMLAsset import XMLAsset
+import re
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp',  'lldp', 'system', 'services',
              'fabric_service', 'vcs']
@@ -122,8 +124,8 @@ class DeviceCommError(Exception):
 
 class Reply:
 
-    def __init__(self, json):
-        self.json = json
+    def __init__(self, xml):
+        self.data = xml
 
 
 class Device(object):
@@ -192,15 +194,15 @@ class Device(object):
         config = ('get_mac_address_table_rpc', {})
 
         rest_root = self._callback(config, handler='get')
-
-        for entry in util.find(rest_root.json, '$..mac-address-table'):
-            address = util.find(entry, '$..mac-address')
-            vlan = util.find(entry, '$..vlanid')
-            mac_type = util.find(entry, '$..mac-type')
-            state = util.find(entry, '$..mac-state')
-            interface = util.find(entry, '$..forwarding-interface')
-            interface_type = util.find(interface, '$..interface-type')
-            interface_name = util.find(interface, '$..interface-name')
+        util = Util(rest_root.data)
+        for entry in util.findlist(util.root, './/mac-address-table'):
+            address = util.find(entry, './/mac-address')
+            vlan = util.find(entry, './/vlanid')
+            mac_type = util.find(entry, './/mac-type')
+            state = util.find(entry, './/mac-state')
+            interface = util.findNode(entry, './/forwarding-interface')
+            interface_type = util.find(interface, './/interface-type')
+            interface_name = util.find(interface, './/interface-name')
             interface = '%s%s' % (interface_type, interface_name)
 
             table.append(dict(mac_address=address, interface=interface,
@@ -267,15 +269,23 @@ class Device(object):
         """
 
         (status, result) = getattr(self._mgr, call[0])(**call[1])
+       
 
         if not status:
-            op = self._mgr.get_dict_output()
+            op = self._mgr.get_xml_output()
             if '' != op and 'object already exists' not in op:
                 raise ValueError(op)
 
         if handler == 'get_config':
-            return Reply(self._mgr.get_dict_output())
-        return Reply(self._mgr.get_dict_output())
+            xml = self._mgr.get_xml_output()
+            xml_ns = '<output>%s</output>' %(re.sub(' xmlns[^ \t\n\r\f\v>]+|y:', '',xml))
+            return Reply(xml_ns)
+
+        if handler == 'get':
+            xml = self._mgr.get_xml_output()
+            xml_ns = re.sub(' xmlns[^ \t\n\r\f\v>]+','',xml)
+            return Reply(xml_ns)
+        return Reply(self._mgr.get_xml_output())
 
     def reconnect(self):
         """
@@ -291,8 +301,7 @@ class Device(object):
             None
         """
 
-        self._mgr = pyswitchlib.asset.Asset(ip_addr=self._conn[0],
-                                            auth=self._auth)
+        self._mgr = XMLAsset(ip_addr=self._conn[0],auth=self._auth)
         return True
 
     def find_interface_by_mac(self, **kwargs):

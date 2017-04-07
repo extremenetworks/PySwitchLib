@@ -12,7 +12,7 @@ class InterfaceVRRPTestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(InterfaceVRRPTestCase, self).__init__(*args, **kwargs)
-        with open('config.yaml') as fileobj:
+        with open('tests/test_pyswitch/config.yaml') as fileobj:
             cfg = AttrDict(yaml.safe_load(fileobj))
             switch = cfg.InterfaceVRRPTestCase.switch
 
@@ -75,6 +75,23 @@ class InterfaceVRRPTestCase(unittest.TestCase):
                 ve_name=self.vlan,
                 rbridge_id=self.rbridge_id,
                 enable=False)
+
+    def test_vrrp_vrid(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.vrrp_vrid(
+                int_type='ve',
+                name=self.vlan,
+                vrid=self.vrid,
+                version=4,
+                rbridge_id=self.rbridge_id)
+            op = dev.interface.vrrp_vrid(
+                int_type='ve',
+                name=self.vlan,
+                vrid=self.vrid,
+                version=4,
+                rbridge_id=self.rbridge_id,
+                get=True)
+            print op
 
     def test_vrrp_ve_ipv6_vmac(self):
         with Device(conn=self.conn, auth=self.auth) as dev:

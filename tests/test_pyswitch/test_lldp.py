@@ -10,7 +10,7 @@ class LLDPTestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(LLDPTestCase, self).__init__(*args, **kwargs)
-        with open('config.yaml') as fileobj:
+        with open('tests/test_pyswitch/config.yaml') as fileobj:
             cfg = AttrDict(yaml.safe_load(fileobj))
             switch = cfg.LLDPTestCase.switch
 
@@ -23,3 +23,6 @@ class LLDPTestCase(unittest.TestCase):
     def test_lldp(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             pprint.pprint(dev.lldp.neighbors())
+
+
+

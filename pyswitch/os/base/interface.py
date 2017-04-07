@@ -15,11 +15,12 @@ limitations under the License.
 """
 import logging
 import re
+from lxml import etree
 
 from ipaddress import ip_interface
 
 import pyswitch.utilities
-import pyswitch.utilities as util
+from pyswitch.utilities import Util
 from pyswitch.exceptions import InvalidVlanId, InvalidLoopbackName
 
 
@@ -99,7 +100,9 @@ class Interface(object):
             config = ('vlan_get', {'vlan': vlan_id})
             op = self._callback(config, handler='get_config')
 
-            if util.find(op.json, '$..Vlan') or util.find(op.json, '$..vlan'):
+            util = Util(op.data)
+
+            if util.find(util.root, './/Vlan') or util.find(util.root, './/vlan'):
                 return True
             else:
                 return False
@@ -133,7 +136,7 @@ class Interface(object):
         config = (method_name, args)
         op = callback(config, handler='get_config')
 
-        if op.json != '':
+        if op.data != '<output></output>':
             return True
         return False
 
@@ -474,14 +477,16 @@ class Interface(object):
 
                 config = (method_name, ip_args)
                 y = callback(config, handler='get_config')
+                ipv4_util = Util(x.data)
 
+                ipv6_util = Util(y.data)
                 return {
-                    'ipv4_address': util.findall(
-                        x.json,
-                        '$..address'),
-                    'ipv6_address': util.findall(
-                        y.json,
-                        '$..address')}
+                    'ipv4_address': ipv4_util.findall(
+                        ipv4_util.root,
+                        './/address'),
+                    'ipv6_address': ipv6_util.findall(
+                        ipv6_util.root,
+                        './/address')}
             else:
                 method_name = "%s%s" % (method_name, operation)
                 config = (method_name, ip_args)
@@ -639,7 +644,9 @@ class Interface(object):
             config = (method_name, desc_args)
             x = callback(config, handler='get_config')
 
-            return util.find(x.json, '$..description')
+            util = Util(x.data)
+
+            return util.find(util.root, './/description')
 
         desc = str(kwargs.pop('desc'))
         desc_args['description'] = desc
@@ -705,7 +712,8 @@ class Interface(object):
             config = ('vlan_get', {'vlan': name})
             x = callback(config, handler='get_config')
 
-            return util.find(x.json, '$..pvlan-type-leaf')
+            util = Util(x.data)
+            return util.find(util.root, './/pvlan-type-leaf')
 
         pvlan_type = kwargs.pop('pvlan_type')
 
@@ -768,7 +776,9 @@ class Interface(object):
             config = ('vlan_get', {'vlan': name})
             x = callback(config, handler='get_config')
 
-            return util.find(x.json, '$..private-vlan..association..add')
+            util = Util(x.data)
+            return util.find(util.root, './/private-vlan//association//add')
+
 
         sec_vlan = kwargs.pop('sec_vlan')
 
@@ -853,14 +863,17 @@ class Interface(object):
             config = (method_name, pvlan_args)
             x = callback(config, handler='get_config')
 
+            util = Util(x.data)
             p = util.find(
-                x.json,
-                '$..switchport..private-vlan..'
-                'host-association..host-pri-pvlan')
+                util.root,
+                './/switchport//private-vlan//'
+                'host-association//host-pri-pvlan')
+
             s = util.find(
-                x.json,
-                '$..switchport..private-vlan..'
-                'host-association..host-sec-pvlan')
+                util.root,
+                './/switchport//private-vlan//'
+                'host-association//host-sec-pvlan')
+
             return (p, s)
 
         pri_vlan = kwargs.pop('pri_vlan')
@@ -988,11 +1001,13 @@ class Interface(object):
                 state_args['resource_depth'] = 1
                 config = (get_method_name, state_args)
                 x = callback(config, handler='get_config')
+                util = Util(x.data)
+
                 if self.has_rbridge_id and \
                    (int_type == 've' or int_type == 'loopback'):
-                    shut = util.find(x.json, '*.shutdown')
+                    shut = util.find(util.root, '*shutdown')
                 else:
-                    shut = util.find(x.json, '*.[0].shutdown')
+                    shut = util.find(util.root, '*shutdown')
 
                 if shut and shut == 'true':
                     enabled = False
@@ -1104,7 +1119,8 @@ class Interface(object):
             config = (method_name, allowed_vlan_args)
             x = callback(config, handler='get_config')
 
-            add = util.find(x.json, '$..add')
+            util = Util(x.data)
+            add = util.find(util.root, './/add')
 
             return add
 
@@ -1212,21 +1228,26 @@ class Interface(object):
             config = (method_name, pvlan_args)
             x = callback(config, handler='get_config')
 
+            util = Util(x.data)
+
             if util.find(
-                    x.json,
-                    '$..switchport..mode..private-vlan..trunk..host'):
+                    util.root,
+                    './/switchport//mode//private-vlan//trunk//host'):
+
                 return 'trunk_host'
-            elif util.find(x.json, '$..switchport..mode..'
-                                   'private-vlan..trunk..basic'):
+            elif util.find(util.root, './/switchport//mode//'
+                                   'private-vlan//trunk//basic'):
                 return 'trunk_basic'
-            elif util.find(x.json, '$..switchport..mode..'
-                                   'private-vlan..trunk..promiscuous'):
+            elif util.find(util.root, './/switchport//mode//'
+                                   'private-vlan//trunk//promiscuous'):
+
                 return 'trunk_promiscuous'
 
-            elif util.find(x.json, '$..switchport..mode..private-vlan..host'):
+            elif util.find(util.root, './/switchport//mode//private-vlan//host'):
                 return 'host'
-            elif util.find(x.json, '$..switchport..mode..'
-                                   'private-vlan..promiscuous'):
+            elif util.find(util.root, './/switchport//mode//'
+                                   'private-vlan//promiscuous'):
+
                 return 'promiscuous'
             return None
 
@@ -1316,7 +1337,8 @@ class Interface(object):
             config = (method_name, tag_args)
             x = callback(config, handler='get_config')
 
-            native_vlan_status = util.find(x.json, '$..native-vlan')
+            util = Util(x.data)
+            native_vlan_status = util.find(util.root, './/native-vlan')
             if native_vlan_status == 'true':
                 return True
             return None
@@ -1413,8 +1435,9 @@ class Interface(object):
             config = (method_name, pvlan_args)
             x = callback(config, handler='get_config')
 
-            pri_vlan = util.find(x.json, '$..promis-pri-pvlan')
-            sec_vlan = util.find(x.json, '$..promis-sec-pvlan-range')
+            util = Util(x.data)
+            pri_vlan = util.find(util.root, './/promis-pri-pvlan')
+            sec_vlan = util.find(util.root, './/promis-sec-pvlan-range')
             return {'pri_vlan': pri_vlan, 'sec_vlan': sec_vlan}
 
         pri_vlan = kwargs.pop('pri_vlan')
@@ -1486,7 +1509,8 @@ class Interface(object):
             config = (method_name, {int_type: name, 'resource_depth': 3})
             op = callback(config, handler='get_config')
 
-            return util.find(op.json, '$..mtu')
+            util = Util(op.data)
+            return util.find(util.root, './/mtu')
 
         mtu = kwargs.pop('mtu')
         minimum_mtu, maximum_mtu = self.l2_mtu_const
@@ -1554,8 +1578,12 @@ class Interface(object):
             config = (method_name, {int_type: name})
             op = callback(config, handler='get_config')
 
-            ipv4_mtu = util.find(op.json, '$..ip..mtu')
-            ipv6_mtu = util.find(op.json, '$..ipv6..mtu')
+            util = Util(op.data)
+
+            ipv4_mtu = util.find(util.root, './/ip//mtu')
+
+            ipv6_mtu = util.find(util.root, './/ipv6//mtu')
+
             return {'ipv4': ipv4_mtu, 'ipv6': ipv6_mtu}
 
         mtu = kwargs.pop('mtu')
@@ -1643,8 +1671,9 @@ class Interface(object):
 
             config = (method_name, nd_suppress_args)
             op = callback(config, handler='get_config')
+            util = Util(op.data)
 
-            if util.find(op.json, '$..nd..suppress-ra.all'):
+            if util.find(util.root, './/nd//suppress-ra//all'):
                 return True
             return None
 
@@ -1694,8 +1723,8 @@ class Interface(object):
                 arguments['rbridge_id'] = kwargs.pop('rbridge_id', 1)
             config = (method_name, arguments)
             x = callback(config)
-
-            return util.find(x.json, '$..vrid')
+            util = Util(x.data)
+            return util.find(util.root, './/vrid')
 
         vrid = kwargs.pop('vrid')
         if version == 4:
@@ -1810,9 +1839,9 @@ class Interface(object):
                     vrid_name = 'vrrpv3'
             arguments[vrid_name] = (vrid, '3')
             config = (method_name, arguments)
-            x = callback(config)
-
-            return util.find(x.json, '$..virtual-ipaddr')
+            x = callback(config,handler='get_config')
+            util = Util(x.data)
+            return util.find(util.root, './/virtual-ipaddr')
 
         vip = kwargs.pop('vip', '')
         if vip != '':
@@ -1987,9 +2016,9 @@ class Interface(object):
                     vrid_name = 'vrrpv3'
             arguments[vrid_name] = (vrid, '3')
             config = (method_name, arguments)
-            x = callback(config)
-
-            return util.find(x.json, '$..priority')
+            x = callback(config,handler='get_config')
+            util = Util(x.data)
+            return util.find(util.root, './/priority')
 
         priority = kwargs.pop('priority')
 
@@ -2085,7 +2114,7 @@ class Interface(object):
         if not isinstance(enabled, bool):
             raise ValueError('`enabled` must be `True` or `False`.')
 
-        method_name = 'interface_%s_ip_arp_aging_timeout_update' % int_type
+        method_name = 'interface_%s_ip_proxy_arp_update' % int_type
         get_method_name = 'interface_%s_get' % int_type
         proxy_arp_args = dict()
         proxy_arp_args[int_type] = name
@@ -2103,8 +2132,8 @@ class Interface(object):
         if kwargs.pop('get', False):
             config = (get_method_name, proxy_arp_args)
             output = callback(config, handler='get_config')
-
-            item = util.find(output.json, '$..ip..proxy-arp')
+            util = Util(output.data)
+            item = util.find(util.root, './/ip//proxy-arp')
 
             if item:
                 return True
@@ -2166,7 +2195,8 @@ class Interface(object):
             config = ('interface_port_channel_get', ve_args)
 
             output = callback(config, handler='get_config')
-            return util.find(output.json, '$..minimum-links')
+            util = Util(output.data)
+            return util.find(util.root, './/minimum-links')
 
         minimum_links = str(kwargs.pop('minimum_links'))
 
@@ -2232,10 +2262,10 @@ class Interface(object):
             arguments = {int_type: name}
             config = (method_name, arguments)
             op = callback(config, handler='get_config')
-
-            port_int = util.find(op.json, '$..port-int')
-            channel_type = util.find(op.json, '$..type')
-            mode = util.find(op.json, '$..mode')
+            util = Util(op.data)
+            port_int = util.find(util.root, './/port-int')
+            channel_type = util.find(util.root, './/type')
+            mode = util.find(util.root, './/mode')
             return {
                 'port_int': port_int,
                 'channel_type': channel_type,
@@ -2389,7 +2419,8 @@ class Interface(object):
         if get:
             config = (get_method_name, mode_args)
             op = callback(config, handler='get_config')
-            return util.find(op.json, '$..vlan-mode')
+            util = Util(op.data)
+            return util.find(util.root, './/vlan-mode')
 
         mode = kwargs.pop('mode').lower()
         if mode not in valid_modes:
@@ -2457,7 +2488,8 @@ class Interface(object):
         if get:
             config = (get_method_name, mode_args)
             op = callback(config, handler='get_config')
-            return util.find(op.json, '$..vlan-mode')
+            util = Util(op.data)
+            return util.find(util.root, './/vlan-mode')
 
         mode = kwargs.pop('mode').lower()
         if mode not in valid_modes:
@@ -2641,11 +2673,10 @@ class Interface(object):
         if kwargs.pop('get', False):
             config = (get_method_name, switchport_args)
             op = callback(config, handler='get_config')
-
-            x = util.find(op.json, '$..switchport')
-            if isinstance(x, list):
-                if x[0] == 'true':
-                    return True
+            util = Util(op.data)
+            x = util.find(util.root, './/switchport')
+            if x == 'true':
+                return True
             return None
 
         if not enabled:
@@ -2711,8 +2742,8 @@ class Interface(object):
             method_name = 'interface_%s_switchport_access_get' % int_type
             config = (method_name, vlan_args)
             op = callback(config, handler='get_config')
-
-            return util.find(op.json, '$..vlan')
+            util = Util(op.data)
+            return util.find(util.root, './/vlan')
 
         vlan = kwargs.pop('vlan')
         if not pyswitch.utilities.valid_vlan_id(vlan):
@@ -2748,25 +2779,25 @@ class Interface(object):
             request_interface = self.get_interface_detail_request(
                 last_interface_name, last_interface_type)
             interface_result = self._callback(request_interface, 'get')
+            util = Util(interface_result.data)
+            has_more = util.find(util.root, './/has-more')
 
-            has_more = util.find(interface_result.json, '$..has-more')
-
-            for item in util.findlist(interface_result.json, '$..interface'):
-                interface_type = util.find(item, '$..interface-type')
-                interface_name = util.find(item, '$..interface-name')
+            for item in util.findlist(util.root, './/interface'):
+                interface_type = util.find(item, './/interface-type')
+                interface_name = util.find(item, './/interface-name')
                 last_interface_type = interface_type
                 last_interface_name = interface_name
                 if interface_type in ['tengigabitethernet', 'ethernet',
                                       'fortygigabitethernet',
                                       'hundredgigabitethernet']:
-                    interface_role = util.find(item, '$..port-role')
-                    if_name = util.find(item, '$..if-name')
-                    interface_state = util.find(item, '$..if-state')
+                    interface_role = util.find(item, './/port-role')
+                    if_name = util.find(item, './/if-name')
+                    interface_state = util.find(item, './/if-state')
                     interface_proto_state = util.find(
-                        item, '$..line-protocol-state')
+                        item, './/line-protocol-state')
 
                     interface_mac = util.find(item,
-                                              '$..current-hardware-address')
+                                              './/current-hardware-address')
 
                     item_results = {'interface-type': interface_type,
                                     'interface-name': interface_name,
@@ -2782,17 +2813,17 @@ class Interface(object):
 
         request_interface = ('get_ip_interface_rpc', {})
         interface_result = self._callback(request_interface, 'get')
-
-        for interface in util.find(interface_result.json, '$..interface'):
-            int_type = util.find(interface, '$..interface-type')
-            int_name = util.find(interface, '$..interface-name')
+        util = Util(interface_result.data)
+        for interface in util.findlist(util.root, './/interface'):
+            int_type = util.find(interface, './/interface-type')
+            int_name = util.find(interface, './/interface-name')
             if int_type == 'unknown':
                 continue
 
-            int_state = util.find(interface, '$..if-state')
-            int_proto_state = util.find(interface, '$..line-protocol-state')
+            int_state = util.find(interface, './/if-state')
+            int_proto_state = util.find(interface, './/line-protocol-state')
 
-            ip_address = util.find(interface, '$..ipv4')
+            ip_address = util.find(interface, './/ipv4')
             results = {'interface-type': int_type,
                        'interface-name': int_name,
                        'interface-role': None,
@@ -2846,26 +2877,27 @@ class Interface(object):
 
         request_interface = ('get_interface_detail_rpc', arguments)
         interface_result = self._callback(request_interface, 'get')
+        util = Util(interface_result.data)
 
-        for item in util.findlist(interface_result.json, 'interface'):
-            interface_type = util.find(item, '$..interface-type')
-            interface_name = util.find(item, '$..interface-name')
+        for item in util.findlist(util.root, 'interface'):
+            interface_type = util.find(item, './/interface-type')
+            interface_name = util.find(item, './/interface-name')
 
             if "gigabitethernet" '' in interface_type or \
                     "port-channel" in interface_type or 'ethernet'\
                     in interface_type:
                 if "gigabitethernet" in interface_type or 'ethernet'\
                         in interface_type:
-                    interface_role = util.find(item, '$..port-role')
+                    interface_role = util.find(item, './/port-role')
                 else:
                     interface_role = "None"
-                if_name = util.find(item, '$..if-name')
-                interface_state = util.find(item, '$..if-state')
+                if_name = util.find(item, './/if-name')
+                interface_state = util.find(item, './/if-state')
                 interface_proto_state = util.find(
-                    item, '$..line-protocol-state')
+                    item, './/line-protocol-state')
 
                 interface_mac = util.find(item,
-                                          '$..current-hardware-address')
+                                          './/current-hardware-address')
                 item_results = {'interface-type': interface_type,
                                 'interface-name': interface_name,
                                 'interface-role': interface_role,
@@ -2897,12 +2929,12 @@ class Interface(object):
             request_interface = self.get_interface_detail_request(
                 last_interface_name, last_interface_type)
             interface_result = self._callback(request_interface, 'get')
+            util = Util(interface_result.data)
+            has_more = util.find(util.root, './/has-more')
 
-            has_more = util.find(interface_result.json, '$..has-more')
-
-            for item in util.findlist(interface_result.json, 'interface'):
-                interface_type = util.find(item, '$..interface-type')
-                interface_name = util.find(item, '$..interface-name')
+            for item in util.findlist(util.root, 'interface'):
+                interface_type = util.find(item, './/interface-type')
+                interface_name = util.find(item, './/interface-name')
                 last_interface_type = interface_type
                 last_interface_name = interface_name
                 if "gigabitethernet" '' in interface_type or \
@@ -2910,16 +2942,16 @@ class Interface(object):
                         in interface_type:
                     if "gigabitethernet" in interface_type or 'ethernet'\
                             in interface_type:
-                        interface_role = util.find(item, '$..port-role')
+                        interface_role = util.find(item, './/port-role')
                     else:
                         interface_role = "None"
-                    if_name = util.find(item, '$..if-name')
-                    interface_state = util.find(item, '$..if-state')
+                    if_name = util.find(item, './/if-name')
+                    interface_state = util.find(item, './/if-state')
                     interface_proto_state = util.find(
-                        item, '$..line-protocol-state')
+                        item, './/line-protocol-state')
 
                     interface_mac = util.find(item,
-                                              '$..current-hardware-address')
+                                              './/current-hardware-address')
                     item_results = {'interface-type': interface_type,
                                     'interface-name': interface_name,
                                     'interface-role': interface_role,
@@ -2940,18 +2972,18 @@ class Interface(object):
         result = []
         request_interface = self.get_interface_switchport_request()
         interface_result = self._callback(request_interface, 'get')
-
-        for interface in util.findlist(interface_result.json,
-                                       '$..switchport'):
+        util = Util(interface_result.data)
+        for interface in util.findlist(util.root,
+                                       './/switchport'):
 
             vlans = []
             interface_type = util.findText(interface, 'interface-type')
             interface_name = util.findText(interface, 'interface-name')
 
             mode = util.findText(interface, 'mode')
-            intf = util.findText(interface, 'active-vlans')
+            intf = util.findNode(interface, 'active-vlans')
             for vlan_node in util.findlist(intf, 'vlanid'):
-                vlans.append(vlan_node)
+                vlans.append(vlan_node.text)
             results = {'vlan-id': vlans,
                        'mode': mode,
                        'interface-name': interface_name,
@@ -2959,6 +2991,13 @@ class Interface(object):
             result.append(results)
         return result
 
+    @staticmethod
+    def get_node_value(node, node_name, urn):
+        value = node.find(node_name % urn)
+        if value is not None:
+            return value.text
+        else:
+            return ''
     @property
     def vlans(self):
         """list[dict]: A list of dictionary items describing the details of
@@ -2981,6 +3020,7 @@ class Interface(object):
             ...     assert is_vlan_interface_present
             True
         """
+        urn = "{urn:brocade.com:mgmt:brocade-interface-ext}"
 
         result = []
         has_more = ''
@@ -2989,10 +3029,12 @@ class Interface(object):
             request_interface = self.get_vlan_brief_request(last_vlan_id)
             interface_result = self._callback(request_interface, 'get')
 
-            has_more = util.find(interface_result.json, 'has-more')
-            last_vlan_id = util.find(interface_result.json, 'last-vlan-id')
+            util = Util(interface_result.data)
 
-            for interface in util.findlist(interface_result.json, 'vlan'):
+            has_more = util.find(util.root, 'has-more')
+            last_vlan_id = util.find(util.root, 'last-vlan-id')
+
+            for interface in util.findlist(util.root, 'vlan'):
                 vlan_id = util.find(interface, 'vlan-id')
                 vlan_type = util.find(interface, 'vlan-type')
                 vlan_name = util.find(interface, 'vlan-name')
@@ -3005,7 +3047,7 @@ class Interface(object):
                         intf, 'interface-type')
                     interface_name = util.find(
                         intf, 'interface-name')
-                    tag = util.find(intf, 'tag')
+                    tag = util.find(intf, '%stag')
                     port_results = {'interface-type': interface_type,
                                     'interface-name': interface_name,
                                     'tag': tag}
@@ -3072,13 +3114,14 @@ class Interface(object):
             request_port_channel = self.get_port_chann_detail_request(
                 last_aggregator_id)
             port_channel_result = self._callback(request_port_channel, 'get')
+            util = Util(port_channel_result.data)
 
-            has_more = util.find(port_channel_result.json, 'has-more')
+            has_more = util.find(util.root, 'has-more')
             if has_more == 'true':
-                for x in util.findlist(port_channel_result.json, 'lacp'):
+                for x in util.findlist(util.root, 'lacp'):
                     last_aggregator_id = util.find(x, 'aggregator-id')
 
-            for item in util.findlist(port_channel_result.json, 'lacp'):
+            for item in util.findlist(util.root, 'lacp'):
                 interface_list = []
                 aggregator_id = util.findText(
                     item, 'aggregator-id')
@@ -3145,13 +3188,6 @@ class Interface(object):
                 result.append(results)
         return result
 
-    @staticmethod
-    def get_node_value(node, node_name, urn):
-        value = node.find(node_name % urn)
-        if value is not None:
-            return value.text
-        else:
-            return ''
 
     @staticmethod
     def get_port_chann_detail_request(last_aggregator_id):
@@ -3244,9 +3280,11 @@ class Interface(object):
                     vrid_name = 'vrrpv3e'
             arguments[vrid_name] = vrid
             config = (method_name, arguments)
-            x = callback(config)
+            x = callback(config,handler='get_config')
 
-            basic = util.find(x.json, '$..basic')
+            util = Util(x.data)
+            basic = util.find(util.root, './/basic')
+
             if basic and basic == 'true':
                 return True
             else:
@@ -3302,11 +3340,12 @@ class Interface(object):
                 method_name = "rbridge_id_%s" % method_name
                 arguments['rbridge_id'] = kwargs.pop('rbridge_id', 1)
             config = (method_name, arguments)
-            x = callback(config)
-            vr_list = util.findlist(x.json, '$..vrrp-extended-group')
+            x = callback(config,handler='get_config')
+            util = Util(x.data)
+            vr_list = util.findlist(util.root, './/vrrp-extended-group')
             result = []
             for vr in vr_list:
-                vrid = util.find(vr, '$..vrid')
+                vrid = util.find(vr, './/vrid')
                 result.append(vrid)
 
             return result
@@ -3408,11 +3447,12 @@ class Interface(object):
             result = []
             arguments['resource_depth'] = 3
             config = (method_name, arguments)
-            x = callback(config)
-            vr_list = util.findlist(x.json, '$..vrrp-extended-group')
+            x = callback(config,handler='get_config')
+            util = Util(x.data)
+            vr_list = util.findlist(util.root,'.//vrrp-extended-group')
             for vr in vr_list:
-                vip = util.find(vr, '$..virtual-ipaddr')
-                vrid = util.find(vr, '$..vrid')
+                vip = util.find(vr, './/virtual-ipaddr')
+                vrid = util.find(vr, './/vrid')
                 if vip:
                     result.append({'vrid': vrid, 'vip': vip})
 
@@ -3539,9 +3579,13 @@ class Interface(object):
                     vrid_name = 'vrrpv3e'
             arguments[vrid_name] = vrid
             config = (method_name, arguments)
-            x = callback(config)
+            x = callback(config,handler='get_config')
+            if '<02e0.5200.00xx>true</02e0.5200.00xx>' in x.data:
+                return '02e0.5200.00xx'
+            else:
+                return None
 
-            return util.find(x.json, '$..virtual-mac')
+
 
         if version == 4:
             method_name = 'interface_%s_vrrp_extended_group_virtual_mac_' \
@@ -3609,14 +3653,14 @@ class Interface(object):
                 'get_ip_interface_rpc', {})
 
         interface_result = self._callback(request_interface, 'get')
-
-        for interface in util.findlist(interface_result.json, '$..interface'):
-            int_type = util.find(interface, '$..interface-type')
-            int_name = util.find(interface, '$..interface-name')
-            int_state = util.find(interface, '$..if-state')
-            int_proto_state = util.find(interface, '$..line-protocol-state')
-            ip_address = util.find(interface, '$..ipv4')
-            if_name = util.find(interface, '$..if-name')
+        util = Util(interface_result.data)
+        for interface in util.findlist(util.root, './/interface'):
+            int_type = util.find(interface, './/interface-type')
+            int_name = util.find(interface, './/interface-name')
+            int_state = util.find(interface, './/if-state')
+            int_proto_state = util.findNode(interface, './/line-protocol-state')
+            ip_address = util.find(interface, './/ipv4')
+            if_name = util.find(interface, './/if-name')
             results = {'interface-type': int_type,
                        'interface-name': int_name,
                        'if-name': if_name,
@@ -3660,7 +3704,8 @@ class Interface(object):
             method_name = "%sget" % method_name
             config = (method_name, arguments)
             output = callback(config, handler='get_config')
-            item = util.find(output.json, '$..learning-mode')
+            util = Util(output.data)
+            item = util.find(util.root, './/learning-mode')
 
             if item is not None:
                 return True
@@ -3757,8 +3802,9 @@ class Interface(object):
             method_name = '%sget' % method_name
             config = (method_name, vrf_args)
             x = callback(config, handler='get_config')
+            util = Util(x.data)
 
-            return util.find(x.json, '$..forwarding')
+            return util.find(util.root, './/forwarding')
         if not enable:
             method_name = '%sdelete' % method_name
             config = (method_name, vrf_args)
@@ -3830,7 +3876,7 @@ class Interface(object):
         arp_aging_timeout = kwargs.pop('arp_aging_timeout', '')
         enable = kwargs.pop('enable', True)
         get = kwargs.pop('get', False)
-        rbridge_id = kwargs.pop('rbridge_id')
+        rbridge_id = kwargs.pop('rbridge_id','1')
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = ['gigabitethernet', 'tengigabitethernet',
                            'fortygigabitethernet', 'hundredgigabitethernet',
@@ -3854,7 +3900,8 @@ class Interface(object):
             method_name = '%sget' % method_name
             config = (method_name, ageout_args)
             output = callback(config, handler='get_config')
-            return util.find(output.json, '$..arp-aging-timeout')
+            util = Util(output.data)
+            return util.find(util.root, './/arp-aging-timeout')
 
         if not enable:
             method_name = '%sdelete' % method_name
@@ -3912,8 +3959,8 @@ class Interface(object):
             config = ('overlay_gateway_get', {})
 
             output = callback(config, handler='get_config')
-
-            return util.find(output.json, '$..name')
+            util = Util(output.data)
+            return util.find(util.root, './/name')
 
         if kwargs.pop('delete', False):
             config = ('overlay_gateway_delete', {'overlay_gateway': gw_name})
@@ -3964,8 +4011,8 @@ class Interface(object):
 
             config = config = ('overlay_gateway_get', {'resource_depth': 2})
             output = callback(config, handler='get_config')
-
-            activate = util.find(output.json, '$..activate')
+            util = Util(output.data)
+            activate = util.find(util.root, './/activate')
             if activate:
                 return True
             else:
@@ -4023,8 +4070,8 @@ class Interface(object):
         if get_config:
             config = config = ('overlay_gateway_get', {'resource_depth': 2})
             output = callback(config, handler='get_config')
-
-            return util.find(output.json, '$..type')
+            util = Util(output.data)
+            return util.find(util.root, './/type')
 
         return callback(config)
 
@@ -4070,8 +4117,8 @@ class Interface(object):
                 'overlay_gateway_ip_interface_loopback_get', {
                     'overlay_gateway': gw_name, 'resource_depth': 2})
             output = callback(config, handler='get_config')
-
-            return util.find(output.json, '$..loopback-id')
+            util = Util(output.data)
+            return util.find(util.root, './/loopback-id')
 
         if kwargs.pop('delete', False):
             config = (
@@ -4132,7 +4179,8 @@ class Interface(object):
                 'overlay_gateway_map_vlan_vni_get', {
                     'overlay_gateway': gw_name})
             output = callback(config, handler='get_config')
-            if util.find(output.json, '$..auto') is not None:
+            util = Util(output.data)
+            if util.find(util.root, './/auto') is not None:
                 return True
             else:
                 return None
@@ -4193,8 +4241,8 @@ class Interface(object):
         if get_config:
             config = config = ('overlay_gateway_get', {'resource_depth': 4})
             output = callback(config, handler='get_config')
-
-            return util.find(output.json, '$..attach..rbridge-id..add')
+            util = Util(output.data)
+            return util.find(util.root, './/attach//rbridge-id//add')
 
         return callback(config)
 
@@ -4249,9 +4297,9 @@ class Interface(object):
         if kwargs.pop('get', False):
             config = (get_method_name, link_args)
             output = callback(config, handler='get_config')
-
-            item = util.find(output.json,
-                             '$..ipv6..address..use-link-local-only')
+            util = Util(output.data)
+            item = util.find(util.root,
+                             './/ipv6//address//use-link-local-only')
 
             if item:
                 return True
@@ -4334,8 +4382,8 @@ class Interface(object):
             method_name = '%sget' % method_name
             config = (method_name, fabric_isl_args)
             x = callback(config, handler='get_config')
-
-            if util.find(x.json, "$..disable"):
+            util = Util(x.data)
+            if util.find(util.root, ".//disable"):
                 return None
             return True
         else:
@@ -4405,7 +4453,8 @@ class Interface(object):
             config = (self.method_prefix('interface_ve_get'), ve_args)
 
             output = callback(config, handler='get_config')
-            return util.findall(output.json, '$..name')
+            util = Util(output.data)
+            return util.findall(util.root, './/name')
 
         ve_args['ve'] = ve_name
         if not enable:
@@ -4472,8 +4521,8 @@ class Interface(object):
             config = (self.method_prefix('interface_loopback_get'), ve_args)
 
             output = callback(config, handler='get_config')
-
-            return util.findall(output.json, '$..id')
+            util = Util(output.data)
+            return util.findall(util.root, './/id')
 
         ve_args['loopback'] = lb_name
         if not enable:
@@ -4533,7 +4582,8 @@ class Interface(object):
             config = ('interface_port_channel_get', ve_args)
 
             output = callback(config, handler='get_config')
-            return util.find(output.json, '$..Port-channel')
+            util = Util(output.data)
+            return util.find(util.root, './/Port-channel')
 
         if not enable:
             method_name = "%sdelete" % method_name
@@ -4623,9 +4673,9 @@ class Interface(object):
                               'int_type']
             config = (method_name, arguments)
             op = callback(config, handler="get_config")
-
-            donor_type = util.find(op.json, '$..ip-donor-interface-type')
-            donor_name = util.find(op.json, '$..ip-donor-interface-name')
+            util = Util(op.data)
+            donor_type = util.find(util.root, './/ip-donor-interface-type')
+            donor_name = util.find(util.root, './/ip-donor-interface-name')
             return {'donor_type': donor_type, 'donor_name': donor_name}
 
         if kwargs.pop('delete', False):
@@ -4697,7 +4747,8 @@ class Interface(object):
             method_name = 'rbridge_id_ip_anycast_gateway_mac_get'
             config = (method_name, arguments)
             op = callback(config, handler="get_config")
-            return util.find(op.json, '$..ip-anycast-gateway-mac')
+            util = Util(op.data)
+            return util.find(util.root, './/ip-anycast-gateway-mac')
 
         if kwargs.pop('delete', False):
             method_name = 'rbridge_id_ip_anycast_gateway_mac_delete'
@@ -4761,9 +4812,10 @@ class Interface(object):
             method_name = 'interface_%s_bfd_interval_get' % int_type
             config = (method_name, {int_type: kwargs.pop('name')})
             x = callback(config, handler="get_config")
-            tx = util.find(x.json, '$..min-tx')
-            rx = util.find(x.json, '$..min-rx')
-            multiplier = util.find(x.json, '$..multiplier')
+            util = Util(x.data)
+            tx = util.find(util.root, './/min-tx')
+            rx = util.find(util.root, './/min-rx')
+            multiplier = util.find(util.root, './/multiplier')
 
             return {'tx': tx, 'rx': rx, 'multiplier': multiplier}
 
@@ -4842,7 +4894,9 @@ class Interface(object):
                 vrf_args = dict()
             config = (self.method_prefix('vrf_get'), vrf_args)
             output = callback(config, handler='get_config')
-            for vrf_name in util.findall(output.json, '$..vrf-name'):
+            util = Util(output.data)
+
+            for vrf_name in util.findall(util.root, './/vrf-name'):
                 if self.has_rbridge_id:
                     tmp = {'rbridge_id': rbridge_id, 'vrf_name': vrf_name}
                 else:
@@ -4918,9 +4972,10 @@ class Interface(object):
 
             config = (self.method_prefix('vrf_get'), rd_args)
             output = callback(config, handler='get_config')
+            util = Util(output.data)
 
-            vrfname = util.find(output.json, '$..vrf-name')
-            rd = util.findText(output.json, '$..rd')
+            vrfname = util.find(util.root, './/vrf-name')
+            rd = util.findText(util.root, './/rd')
             if self.has_rbridge_id:
                 tmp = {'rbridge_id': rbridge_id, 'vrf_name': vrfname,
                        'rd': rd}
@@ -5009,12 +5064,13 @@ class Interface(object):
             method_name = self.method_prefix('vrf_get')
             config = (method_name, rt_args)
             output = callback(config, handler='get_config')
+            util = Util(output.data)
 
             ipv4_unicast = util.find(
-                output.json, '$..address-family..ipv4..unicast')
+                util.root, './/address-family//ipv4//unicast')
             ipv4_unicast_enabled = True if ipv4_unicast else False
             ipv6_unicast = util.find(
-                output.json, '$..address-family..ipv6..unicast')
+                util.root, './/address-family//ipv6//unicast')
             ipv6_unicast_enabled = True if ipv6_unicast else False
             return {'ipv4': ipv4_unicast_enabled, 'ipv6': ipv6_unicast_enabled}
 
@@ -5084,9 +5140,10 @@ class Interface(object):
 
             config = (self.method_prefix('vrf_vni_get'), vni_args)
             output = callback(config, handler='get_config')
+            util = Util(output.data)
 
-            vrfname = util.find(output.json, '$..vrf-name')
-            vni = util.findText(output.json, '$..vni')
+            vrfname = util.find(util.root, './/vrf-name')
+            vni = util.findText(util.root, './/vni')
             if self.has_rbridge_id:
                 tmp = {'rbridge_id': rbridge_id, 'vrf_name': vrfname,
                        'l3vni': vni}
@@ -5191,21 +5248,22 @@ class Interface(object):
             method_name = 'rbridge_id_vrf_get'
             config = (method_name, rt_args)
             output = callback(config, handler='get_config')
-
-            for vrf_node in util.findall(output.json, '$..vrf'):
-                vrf_name = util.find(vrf_node, '$..vrf-name')
-                ipv4 = util.find(vrf_node, '$..ipv4')
-                ipv4_action = util.findall(ipv4, '$..action')
-                ipv4_rt = util.findall(ipv4, '$..target-community')
+            util = Util(output.data)
+            
+            for vrf_node in util.findlist(util.root, './/vrf'):
+                vrf_name = util.find(vrf_node, './/vrf-name')
+                ipv4 = util.findNode(vrf_node, './/ipv4')
+                ipv4_action = util.findall(ipv4, './/action')
+                ipv4_rt = util.findall(ipv4, './/target-community')
 
                 if len(ipv4_action):
                     tmp = {'rbridge_id': rbridge_id, 'vrf_name': vrf_name,
                            'afi': 'ip', 'rt': ipv4_action, 'rtvalue': ipv4_rt}
                     result.append(tmp)
 
-                ipv6 = util.find(vrf_node, '$..ipv6')
-                ipv6_action = util.findall(ipv6, '$..action')
-                ipv6_rt = util.findall(ipv6, '$..target-community')
+                ipv6 = util.findNode(vrf_node, './/ipv6')
+                ipv6_action = util.findall(ipv6, './/action')
+                ipv6_rt = util.findall(ipv6, './/target-community')
 
                 if len(ipv6_action):
                     tmp = {
@@ -5256,9 +5314,9 @@ class Interface(object):
             method_name = 'rbridge_id_get'
             config = (method_name, arp_args)
             output = callback(config, handler='get_config')
-
-            item = util.find(output.json, '$..aging-mode')
-            conversational = util.find(item, '$..conversational')
+            util = Util(output.data)
+            item = util.findNode(util.root, './/aging-mode')
+            conversational = util.find(item, './/conversational')
             if conversational is not None:
                 return True
             else:
@@ -5325,9 +5383,9 @@ class Interface(object):
             config = (method_name, arp_args)
 
             output = callback(config, handler='get_config')
-
-            item = util.find(output.json, '$..suppress-arp')
-            enable_item = util.find(item, '$..enable')
+            util = Util(output.data)
+            item = util.find(util.root, './/suppress-arp')
+            enable_item = util.find(util.root, './/enable')
 
             if enable_item is not None:
                 return True
@@ -5410,13 +5468,13 @@ class Interface(object):
             evpn_args['resource_depth'] = 2
             config = (method_name, evpn_args)
             output = callback(config, handler='get_config')
-
-            instance_name = util.find(output.json, '$..instance-name')
-            ignore_as = util.find(output.json, '$..ignore-as')
+            util = Util(output.data)
+            instance_name = util.find(util.root, './/instance-name')
+            ignore_as = util.find(util.root, './/ignore-as')
             duplicate_mac_timer_value = util.find(
-                output.json, '$..duplicate-mac-timer-value')
-            max_count = util.find(output.json, '$..max-count')
-            auto = util.find(output.json, '$..rd..auto')
+                util.root, './/duplicate-mac-timer-value')
+            max_count = util.find(util.root, './/max-count')
+            auto = util.find(util.root, './/rd..auto')
             return {'instance_name': instance_name, 'ignore_as': ignore_as,
                     'duplicate_mac_timer_value': duplicate_mac_timer_value,
                     'max_count': max_count, 'rd_auto': auto}
@@ -5524,7 +5582,8 @@ class Interface(object):
             method_name = 'rbridge_id_evpn_instance_get'
             config = (method_name, evpn_args)
             output = callback(config, handler='get_config')
-            evpn_instance_item = util.find(output.json, '$..ignore-as')
+            util = Util(output.data)
+            evpn_instance_item = util.find(util.root, './/ignore-as')
             return evpn_instance_item
 
         evpn_args['import_'] = 'auto'
@@ -5611,8 +5670,9 @@ class Interface(object):
             method_name = 'rbridge_id_evpn_instance_get'
             config = (method_name, evpn_args)
             output = callback(config, handler='get_config')
+            util = Util(output.data)
             evpn_instance_item = util.find(
-                output.json, '$..duplicate-mac-timer-value')
+                util.root, './/duplicate-mac-timer-value')
             return evpn_instance_item
 
         evpn_args['evpn_instance'] = evpn_instance_name
@@ -5696,7 +5756,8 @@ class Interface(object):
             method_name = 'rbridge_id_evpn_instance_get'
             config = (method_name, evpn_args)
             output = callback(config, handler='get_config')
-            evpn_instance_item = util.find(output.json, '$..max-count')
+            util = Util(output.data)
+            evpn_instance_item = util.find(util.root, './/max-count')
             return evpn_instance_item
 
         evpn_args['evpn_instance'] = evpn_instance_name
@@ -5737,12 +5798,13 @@ class Interface(object):
         """
 
         callback = kwargs.pop('callback', self._callback)
-        method_name = 'mac_address_table_mac_move_action_'
+        method_name = 'mac_address_table_mac_move_detect_'
 
         if kwargs.pop('get', False):
             method_name = '%sget' % method_name
             output = callback((method_name, {}), handler='get_config')
-            item = util.find(output.json, '$..detect')
+            util = Util(output.data)
+            item = util.find(util.root, './/detect')
             if item is not None:
                 return True
             else:
@@ -5781,11 +5843,12 @@ class Interface(object):
         """
 
         callback = kwargs.pop('callback', self._callback)
-        method_name = 'mac_address_table_mac_move_action_'
+        method_name = 'mac_address_table_mac_move_limit_'
         if kwargs.pop('get', False):
             method_name = '%sget' % method_name
             output = callback((method_name, {}), handler='get_config')
-            item = util.find(output.json, '$..limit')
+            util = Util(output.data)
+            item = util.find(util.root, './/limit')
             if item is not None:
                 return item
             else:
@@ -5845,7 +5908,8 @@ class Interface(object):
             config = ('interface_port_channel_speed_get', args)
 
             output = callback(config, handler='get_config')
-            return util.find(output.json, '$..speed')
+            util = Util(output.data)
+            return util.find(util.root, './/speed')
 
         if not pyswitch.utilities.valid_interface('port_channel', name):
             raise ValueError("`name` must match `^[0-9]{1,3}${1,3}$`")

@@ -9,7 +9,7 @@ class ServicesTestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(ServicesTestCase, self).__init__(*args, **kwargs)
-        with open('config.yaml') as fileobj:
+        with open('tests/test_pyswitch_slx/config.yaml') as fileobj:
             cfg = AttrDict(yaml.safe_load(fileobj))
             switch = cfg.ServicesTestCase.switch
 

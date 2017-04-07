@@ -13,7 +13,8 @@ limitations under the License.
 
 from ipaddress import ip_interface
 
-import pyswitch.utilities as util
+from pyswitch.utilities import Util
+
 
 
 class VCS(object):
@@ -40,22 +41,23 @@ class VCS(object):
         show_vcs = ('show_vcs_rpc', {})
 
         results = self._callback(show_vcs, handler='get')
+        util = Util(results.data)
         result = []
-        for nodes in util.findlist(results.json, '$..vcs-nodes'):
-            for item in util.findlist(nodes, '$..vcs-node-info'):
-                serial_number = util.find(item, '$..node-serial-num')
-                node_status = util.find(item, '$..node-status')
-                vcs_id = util.find(item, '$..node-vcs-id')
-                rbridge_id = util.find(item, '$..node-rbridge-id')
-                switch_mac = util.find(item, '$..node-switch-mac')
-                switch_wwn = util.find(item, '$..node-switch-wwn')
-                switch_name = util.find(item, '$..node-switchname')
-                node_is_principal = util.find(item, '$..node-is-principal')
+        for nodes in util.findlist(util.root, './/vcs-nodes'):
+            for item in util.findlist(nodes, './/vcs-node-info'):
+                serial_number = util.find(item, './/node-serial-num')
+                node_status = util.find(item, './/node-status')
+                vcs_id = util.find(item, './/node-vcs-id')
+                rbridge_id = util.find(item, './/node-rbridge-id')
+                switch_mac = util.find(item, './/node-switch-mac')
+                switch_wwn = util.find(item, './/node-switch-wwn')
+                switch_name = util.find(item, './/node-switchname')
+                node_is_principal = util.find(item, './/node-is-principal')
                 switch_ip = ''
                 for switch_ip_addr in util.findlist(
-                        item, '$..node-public-ip-addresses'):
+                        item, './/node-public-ip-addresses'):
                     switch_ip = util.find(switch_ip_addr,
-                                          '$..node-public-ip-address')
+                                          './/node-public-ip-address')
                     break
                 item_results = {'node-serial-num': serial_number,
                                 'node-status': node_status,
@@ -128,6 +130,7 @@ class VCS(object):
             if not delete:
                 method_name = "%screate" % method_name
                 config = (method_name, vcs_args)
+
             else:
                 method_name = "%sdelete" % method_name
                 config = (method_name, vcs_args)
@@ -139,16 +142,19 @@ class VCS(object):
 
             config = (method_name, {})
             op = callback(config, handler='get_config')
+            util = Util(op.data)
 
-            vip_info['ipv4_vip'] = util.find(op.json, '$..address..address')
+            vip_info['ipv4_vip'] = util.find(util.root, './/address/address')
+		
 
             method_name = 'vcs_virtual_ipv6_address_get'
 
             config = (method_name, {})
 
             op = callback(config, handler='get_config')
+            util = Util(op.data)
 
-            vip_info['ipv6_vip'] = util.find(op.json, '$..address..address')
+            vip_info['ipv6_vip'] = util.find(util.root, './/address/address')
             return vip_info
 
         return callback(config)

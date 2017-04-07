@@ -13,7 +13,7 @@ class InterfaceRPCTestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(InterfaceRPCTestCase, self).__init__(*args, **kwargs)
-        with open('config.yaml') as fileobj:
+        with open('tests/test_pyswitch/config.yaml') as fileobj:
             cfg = AttrDict(yaml.safe_load(fileobj))
             switch = cfg.InterfaceRPCTestCase.switch
 
@@ -54,6 +54,7 @@ class InterfaceRPCTestCase(unittest.TestCase):
     def test_port_channels(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             op = dev.interface.port_channels
+            print op
 
             port_channel_list = [item['aggregator_id'] for item in op]
             self.assertIn(self.portchannel_id, port_channel_list)

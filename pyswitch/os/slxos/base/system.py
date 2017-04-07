@@ -1,4 +1,4 @@
-import pyswitch.utilities as util
+from pyswitch.utilities import Util
 from pyswitch.os.base.system import System as BaseSystem
 
 
@@ -26,7 +26,8 @@ class System(BaseSystem):
         config = ('switch_attributes_get', {'resource_depth': 3})
 
         output = self._callback(config, handler='get_config')
-        chassis_name = util.find(output.json, '$..chassis-name')
+        util = Util(output.data)
+        chassis_name = util.find(util.root, './/chassis-name')
         return chassis_name
 
     def router_id(self, **kwargs):
@@ -85,14 +86,15 @@ class System(BaseSystem):
         callback = kwargs.pop('callback', self._callback)
         rid_args = dict(host_name=host_name)
 
-        config = ('switch_attributes_chassis_name_update', rid_args)
+        config = ('switch_attributes_update', rid_args)
 
         if is_get_config:
             config = (
                 'switch_attributes_get', {
                     'resource_depth': 2})
             output = callback(config, handler='get_config')
-            return util.find(output.json, '$..host-name')
+            util = Util(output.data)
+            return util.find(util.root, './/host-name')
 
         return callback(config)
 
