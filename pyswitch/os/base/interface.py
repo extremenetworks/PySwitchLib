@@ -1003,6 +1003,9 @@ class Interface(object):
                 x = callback(config, handler='get_config')
                 util = Util(x.data)
 
+                if x.data == '<output></output>':
+                   raise ValueError('Interface %s %s not found on device' %(int_type,name))
+
                 if self.has_rbridge_id and \
                    (int_type == 've' or int_type == 'loopback'):
                     shut = util.find(util.root, '*shutdown')
