@@ -264,3 +264,153 @@ class Interface(BaseInterface):
             util = Util(output.data)
             result = util.find(util.root, './/Ve')
         return result
+
+    def bridge_domain(self, **kwargs):
+        """Configure/get/delete bridge-domain.
+
+        Args:
+            bridge_domain (str): bridge domain number.
+            bridge_domain_service_type (str): service type. ('p2mp', 'p2p')
+            vc_id_num (str): VC Id under the VPLS Instance
+            statistics (bool): Configure Statistics. (True, False)
+            pw_profile_name (str): Pw-profile name (Max Size - 64).
+            bpdu_drop_enable (bool): Drop BPDU packets. (True, False)
+            local_switching (bool): Configure local switching. (True, False)
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the router ve on the vlan.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            KeyError: if `bridge_domain`  is not specified.
+            KeyError: if `vc_id_num` is not speciied.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.bridge_domain(
+            ...         get=True, bridge_domain='100')
+            ...         output = dev.interface.bridge_domain(
+            ...         delete=True, bridge_domain='100')
+            ...         output = dev.interface.bridge_domain(
+            ...         bridge_domain='100', vc_id_num='200')
+            Traceback (most recent call last):
+            KeyError
+        """
+
+        bridge_domain = kwargs.pop('bridge_domain')
+        bridge_domain_service = kwargs.pop('bridge_domain_service_type', 'p2mp')
+        statistics = kwargs.pop('statistics', None)
+        pw_profile_name = kwargs.pop('pw_profile_name', None)
+        bpdu_drop_enable = kwargs.pop('bpdu_drop_enable', None)
+        local_switching = kwargs.pop('local_switching', None)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        bd_args = dict(bridge_domain=(bridge_domain, bridge_domain_service))
+        if delete:
+            config = (self.method_prefix('bridge_domain_delete'),
+                                         bd_args)
+            return callback(config)
+
+        if not get_config:
+            vc_id_num = kwargs.pop('vc_id_num')
+            bd_args = dict(bridge_domain=(bridge_domain,bridge_domain_service),
+                           vc_id_num=vc_id_num, statistics=statistics,
+                           pw_profile_name=pw_profile_name,
+                           bpdu_drop_enable=bpdu_drop_enable,
+                           local_switching=local_switching)
+            config = (self.method_prefix('bridge_domain_create'),
+                                         bd_args)
+            result = callback(config)
+        elif get_config:
+            config = (self.method_prefix('bridge_domain_get'),
+                                         bd_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = util.find(util.root, './/bridge-domain-id')
+        return result
+
+    def bridge_domain_peer(self, **kwargs):
+        """Configure/get/delete PW Peer related configuration.
+
+        Args:
+            bridge_domain (str): bridge domain number.
+            bridge_domain_service_type (str): service type. ('p2mp', 'p2p')
+            peer_ip (str): PW Peer Ip for remote peer
+            load_balance (bool): load-balance. (True, False)
+            cos (str): cos value. <cos value: 0..7>
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the router ve on the vlan.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            KeyError: if `bridge_domain`  is not specified.
+            KeyError: if `peer_ip` is not speciied.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.bridge_domain_peer(
+            ...         get=True, bridge_domain='100', peer_ip='1.1.1.1')
+            ...         output = dev.interface.bridge_domain(
+            ...         delete=True, bridge_domain='100', peer_ip='1.1.1.1')
+            ...         output = dev.interface.bridge_domain(
+            ...         bridge_domain='100', peer_ip='1.1.1.1', cos='1',
+            ...         load_balance=True)
+            Traceback (most recent call last):
+            KeyError
+        """
+
+        bridge_domain = kwargs.pop('bridge_domain')
+        bridge_domain_service = kwargs.pop('bridge_domain_service_type', 'p2mp')
+        load_balance = kwargs.pop('load_balance', None)
+        cos = kwargs.pop('cos', None)
+        peer_ip = str(kwargs.pop('peer_ip'))
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        bd_args = dict(bridge_domain=(bridge_domain,bridge_domain_service),
+                       peer=(peer_ip, load_balance, cos))
+        if delete:
+            config = (self.method_prefix('bridge_domain_peer_delete'),
+                                         bd_args)
+            return callback(config)
+
+        if not get_config:
+            config = (self.method_prefix('bridge_domain_peer_create'),
+                                         bd_args)
+            result = callback(config)
+        elif get_config:
+            config = (self.method_prefix('bridge_domain_peer_get'),
+                                         bd_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            peer_ip = util.find(util.root, './/peer-ip')
+            load_balance = util.find(util.root, './/load_balance')
+            cos = util.find(util.root, './/cos')
+            lsp = util.find(util.root, './/lsp')
+            result = {'peer_ip': peer_ip, 'load_balance': load_balance,
+                      'cos': cos, 'lsp': lsp}
+        return result
