@@ -5589,18 +5589,18 @@ class Interface(object):
             evpn_instance_item = util.find(util.root, './/ignore-as')
             return evpn_instance_item
 
-        evpn_args['import_'] = 'auto'
+        evpn_args['both'] = 'auto'
         evpn_args['evpn_instance'] = evpn_instance_name
 
         if not enable:
-            method_name = 'rbridge_id_evpn_instance_route_target_import_delete'
+            method_name = 'rbridge_id_evpn_instance_route_target_both_delete'
 
         else:
-            method_name = 'rbridge_id_evpn_instance_route_target_import_create'
+            method_name = 'rbridge_id_evpn_instance_route_target_both_create'
             config = (method_name, evpn_args)
             callback(config)
 
-            method_name = 'rbridge_id_evpn_instance_route_target_import_update'
+            method_name = 'rbridge_id_evpn_instance_route_target_both_update'
             evpn_args['ignore_as'] = True
 
         config = (method_name, evpn_args)

@@ -12,6 +12,8 @@ Inside a python program do this:
     import pyswitchlib.asset
 ```
 
+## 0.1.52
+* Fix for evpn_instance ignore as both 
 ## 0.1.51
 * Raise Error when Interface is not present on device for admin_state
 ## 0.1.50
