@@ -317,6 +317,10 @@ class Interface(BaseInterface):
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
 
+        if bridge_domain_service not in ['p2mp', 'p2p']:
+            raise ValueError("`bridge_domain_service_type` must match one of them "
+                             "`p2mp, p2p`")
+
         bd_args = dict(bridge_domain=(bridge_domain, bridge_domain_service))
         if delete:
             config = (self.method_prefix('bridge_domain_delete'),
@@ -405,6 +409,12 @@ class Interface(BaseInterface):
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
+
+        if bridge_domain_service not in ['p2mp', 'p2p']:
+            raise ValueError("`bridge_domain_service_type` must match one of them "
+                             "`p2mp, p2p`")
+        if cos is not None and cos not in range(0,8):
+            raise ValueError("`cos' value should be in-between `0-7`")
 
         bd_args = dict(bridge_domain=(bridge_domain,bridge_domain_service),
                        peer=(peer_ip, load_balance, cos))
