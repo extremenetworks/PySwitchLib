@@ -338,7 +338,22 @@ class Interface(BaseInterface):
                                          bd_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
-            result = util.find(util.root, './/bridge-domain-id')
+            bridge_domain_id = util.find(util.root, './/bridge-domain-id')
+            if bridge_domain_id is not None:
+                bridge_domain_type = util.find(util.root, './/bridge-domain-type')
+                vc_id = util.find(util.root, './/vc-id')
+                pw_profile =  util.find(util.root, './/pw-profile')
+                statistics = util.find(util.root, './/statistics')
+                bpdu_drop_enable = util.find(util.root, './/bpdu-drop-enable')
+                local_switching = util.find(util.root, './/local-switching')
+                result = {'bridge_domain_id': bridge_domain_id,
+                          'bridge_domain_type' : bridge_domain_type,
+                          'vc_id': vc_id, 'pw_profile': pw_profile,
+                          'statistics': statistics,
+                          'bpdu_drop_enable': bpdu_drop_enable,
+                          'local_switching': local_switching}
+            else:
+                result = None
         return result
 
     def bridge_domain_peer(self, **kwargs):
@@ -372,9 +387,9 @@ class Interface(BaseInterface):
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         output = dev.interface.bridge_domain_peer(
             ...         get=True, bridge_domain='100', peer_ip='1.1.1.1')
-            ...         output = dev.interface.bridge_domain(
+            ...         output = dev.interface.bridge_domain_peer(
             ...         delete=True, bridge_domain='100', peer_ip='1.1.1.1')
-            ...         output = dev.interface.bridge_domain(
+            ...         output = dev.interface.bridge_domain_peer(
             ...         bridge_domain='100', peer_ip='1.1.1.1', cos='1',
             ...         load_balance=True)
             Traceback (most recent call last):
@@ -408,9 +423,12 @@ class Interface(BaseInterface):
             output = callback(config, handler='get_config')
             util = Util(output.data)
             peer_ip = util.find(util.root, './/peer-ip')
-            load_balance = util.find(util.root, './/load_balance')
-            cos = util.find(util.root, './/cos')
-            lsp = util.find(util.root, './/lsp')
-            result = {'peer_ip': peer_ip, 'load_balance': load_balance,
-                      'cos': cos, 'lsp': lsp}
+            if peer_ip is not None:
+                load_balance = util.find(util.root, './/load_balance')
+                cos = util.find(util.root, './/cos')
+                lsp = util.find(util.root, './/lsp')
+                result = {'peer_ip': peer_ip, 'load_balance': load_balance,
+                          'cos': cos, 'lsp': lsp}
+            else:
+                result = None
         return result
