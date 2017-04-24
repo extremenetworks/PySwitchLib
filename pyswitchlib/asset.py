@@ -67,9 +67,8 @@ class Asset(object):
             try:
                 pyro_proxy._pyroBind()
             except (Pyro4.errors.NamingError, Pyro4.errors.CommunicationError) as e:
-                pyswitchlib_daemon = os.path.join(get_python_lib(), 'pyswitchlib', 'pyapi.py')
-                print pyswitchlib_daemon 
-                os.system('python ' + pyswitchlib_daemon + '&')
+                pyswitchlib_api_daemon = os.path.join(get_python_lib(), 'pyswitchlib', 'pyswitchlib_api_daemon.py')
+                os.system('python ' + pyswitchlib_api_daemon + ' start')
 
             self._proxied = pyro_proxy
 
