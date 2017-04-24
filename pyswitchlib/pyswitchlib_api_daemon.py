@@ -8,14 +8,15 @@ import re
 import threading
 import Pyro4
 import Pyro4.naming
-from pybind.nos import *
-from pybind.slxos import *
+import pybind.nos
+import pybind.slxos
 import pyswitchlib.api.create
 import pyswitchlib.api.update
 import pyswitchlib.api.delete
 import pyswitchlib.api.get
 import pyswitchlib.api.rpc
 import time
+from daemon import runner
 
 @Pyro4.expose
 class PySwitchLibApi(object):
@@ -36,6 +37,11 @@ class PySwitchLibApi(object):
 
         self._module_name = module_name
         self._module_obj = module_obj
+        self.stdin_path = '/dev/null'
+        self.stdout_path = '/dev/tty'
+        self.stderr_path = '/dev/tty'
+        self.pidfile_path =  '/tmp/pyswitchlib_api.pid'
+        self.pidfile_timeout = 5
 
     def module_name(self, module_name=''):
         self._module_name = module_name
@@ -384,33 +390,33 @@ class PySwitchLibApi(object):
 
         return yang_name_list
 
-def nameserver_loop():
-    Pyro4.naming.startNSloop(host='localhost', enableBroadcast=False)
+    def _nameserver_loop(self):
+        Pyro4.naming.startNSloop(host='localhost', enableBroadcast=False)
 
-def daemon_loop():
-    with Pyro4.Daemon() as daemon:
-        uri = daemon.register(PySwitchLibApi)
+    def _daemon_loop(self):
+        with Pyro4.Daemon() as daemon:
+            uri = daemon.register(PySwitchLibApi)
 
-        with Pyro4.locateNS(host='localhost') as ns:
-            ns.register("PySwitchLib.Api", uri)
+            with Pyro4.locateNS(host='localhost') as ns:
+                ns.register("PySwitchLib.Api", uri)
 
-        print("PySwitchLib API Broker Ready.")
-        daemon.requestLoop()
+            daemon.requestLoop()
 
-def main():
-    while True:
-        time.sleep(5)
-        pass
-    
+    def run(self):
+        nameserver_thread = threading.Thread(target=self._nameserver_loop)
+        daemon_thread = threading.Thread(target=self._daemon_loop)
+
+        nameserver_thread.setDaemon(True)
+        daemon_thread.setDaemon(True)
+
+        nameserver_thread.start()
+        daemon_thread.start()
+
+        while True:
+            time.sleep(5)
+
 if __name__ == "__main__":
-    nameserver_thread = threading.Thread(target=nameserver_loop)
-    daemon_thread = threading.Thread(target=daemon_loop)
+    pyswitchlib_broker = PySwitchLibApi()
+    daemon_runner = runner.DaemonRunner(pyswitchlib_broker)
+    daemon_runner.do_action()
     
-    nameserver_thread.setDaemon(True)
-    daemon_thread.setDaemon(True)
-
-    nameserver_thread.start()
-    daemon_thread.start()
-
-    main()
-
