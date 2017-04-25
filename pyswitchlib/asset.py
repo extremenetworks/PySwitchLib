@@ -64,17 +64,17 @@ class Asset(object):
         self._update_fw_version()
         self._supported_module_name = self._get_supported_module()
         #self._load_module(supported_module_name=self._supported_module_name)
-        self._pyro_ns_port = api_port
+        self._pyro_ns_port = None
         self._pyro_proxy_name = 'PYRONAME:PySwitchLib.Api'
         self._ns_port_filename = '/tmp/pyswitchlib_api.ns_port'
 
-        if self._pyro_ns_port:
-            self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
+        if api_port:
+            self._pyro_ns_port = api_port
         elif os.path.exists(self._ns_port_filename):
             self._pyro_ns_port = self._get_api_port_from_filename(self._ns_port_filename)
 
-            if self._pyro_ns_port:
-                self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
+        if self._pyro_ns_port:
+            self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
 
         with Pyro4.Proxy(self._pyro_proxy_name) as pyro_proxy:
             try:
@@ -83,7 +83,7 @@ class Asset(object):
                 if os.path.exists(self._ns_port_filename):
                     bound_api_port = self._get_api_port_from_filename(self._ns_port_filename)
 
-                    if bound_api_port and bound_api_port != self._pyro_ns_port:
+                    if bound_api_port and self._pyro_ns_port and bound_api_port != self._pyro_ns_port:
                         raise ExistingApiPortBound("API port: " + str(bound_api_port) + " is already bound.")
 
                 pyswitchlib_api_daemon = os.path.join(get_python_lib(), 'pyswitchlib', 'pyswitchlib_api_daemon.py')
