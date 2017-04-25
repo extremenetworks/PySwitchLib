@@ -11,6 +11,7 @@ import atexit
 import Pyro4
 import Pyro4.errors
 from distutils.sysconfig import get_python_lib
+import time
 
 import pyswitchlib.exceptions
 locals().update(pyswitchlib.exceptions.__dict__)
@@ -21,7 +22,7 @@ class Asset(object):
     Asset provides connection information for PySwitchLib APIs.
     """
 
-    def __init__(self, ip_addr='', auth=('admin', 'password'), fw_ver='', timeout=''):
+    def __init__(self, ip_addr='', auth=('admin', 'password'), fw_ver='', timeout='', api_port=None):
         def on_deletion (killed_ref):
             self._cleanup_timer_handle()
             self._session.close()
@@ -62,13 +63,38 @@ class Asset(object):
         self._update_fw_version()
         self._supported_module_name = self._get_supported_module()
         #self._load_module(supported_module_name=self._supported_module_name)
+        self._pyro_ns_port = api_port
+        self._pyro_proxy_name = 'PYRONAME:PySwitchLib.Api'
+        self._ns_port_filename = '/tmp/pyswitchlib_api.ns_port'
 
-        with Pyro4.Proxy("PYRONAME:PySwitchLib.Api") as pyro_proxy:
+        if self._pyro_ns_port:
+            self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
+        elif os.path.exists(self._ns_port_filename):
+            self._pyro_ns_port = self._get_api_port_from_filename(self._ns_port_filename)
+
+            if self._pyro_ns_port:
+                self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
+
+        with Pyro4.Proxy(self._pyro_proxy_name) as pyro_proxy:
             try:
                 pyro_proxy._pyroBind()
             except (Pyro4.errors.NamingError, Pyro4.errors.CommunicationError) as e:
+                if os.path.exists(self._ns_port_filename):
+                    bound_api_port = self._get_api_port_from_filename(self._ns_port_filename)
+
+                    if bound_api_port and bound_api_port != self._pyro_ns_port:
+                        raise ExistingApiPortBound("API port: " + str(bound_api_port) + " is already bound.")
+
                 pyswitchlib_api_daemon = os.path.join(get_python_lib(), 'pyswitchlib', 'pyswitchlib_api_daemon.py')
-                os.system('python ' + pyswitchlib_api_daemon + ' start')
+                pyswitchlib_api_start_string = 'python ' + pyswitchlib_api_daemon + ' start'
+
+                if self._pyro_ns_port:
+                    pyswitchlib_api_start_string += ' ' + str(self._pyro_ns_port)
+
+                os.system(pyswitchlib_api_start_string)
+
+                if self._pyro_ns_port:
+                    time.sleep(1)
 
             self._proxied = pyro_proxy
 
@@ -82,6 +108,15 @@ class Asset(object):
             return getattr_wrapper
         else:
             raise AttributeError(name)
+
+    def _get_api_port_from_filename(self, filename):
+        api_port = None
+
+        if filename:
+             with open(filename) as ns_port_file:
+                api_port = int(ns_port_file.read().rstrip('\n\r'))
+
+        return api_port
 
     def _rest_operation(self, rest_commands=None, yang_list=None, timeout=None):
         auth = self._auth
