@@ -2476,7 +2476,6 @@ class Bgp(object):
         args = dict(rbridge_id=rbridge_id, neighbor_peer_grp=peer_group)
         if not delete:
             args['ebgp_multihop_flag'] = True
-            count = kwargs.pop('ebgp_multihop_count', None)
             method_name = [
                 self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_ebgp_multihop_update')
             ]
@@ -2488,7 +2487,14 @@ class Bgp(object):
         method = method_name[0]
         config = (method, args)
         result = callback(config)
-
+        # We need to issue the request 2nd time around, due to the way switch handles requests
+        # for enabling ebgp_multihop and the count.
+        count = kwargs.pop('ebgp_multihop_count', None)
+        if count is not None:
+            args.pop('ebgp_multihop_flag')
+            args['ebgp_multihop_count'] = count
+            config = (method, args)
+            result = callback(config)
         return result
 
     def peer_group_update_source_loopback(self, **kwargs):
@@ -2581,5 +2587,4 @@ class Bgp(object):
             bgp = Util(out.data)
             for peer in bgp.findall(bgp.root, './/peer-group'):
                 result.append(peer)
-
         return result
