@@ -2192,10 +2192,10 @@ class Bgp(object):
             AttributeError: if 'afi' is not in ipv4,ipv6. Default = ipv4
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     device.bgp.default.vrf_redistribute_connected(
             ...     rbridge_id='4')
             ...     device.bgp.default.vrf_redistribute_connected(
@@ -2300,68 +2300,26 @@ class Bgp(object):
 
     def neighbor_peer_group(self, **kwargs):
         """Create BGP neighbor peer-group.
-        """
-        rbridge_id = kwargs.pop('rbridge_id', '1')
-        get_config = kwargs.pop('get', False)
-        delete = kwargs.pop('delete', False)
-        callback = kwargs.pop('callback', self._callback)
-        result = []
-        if not get_config:
-            peer_group = kwargs.pop('peer_group')
-            args = dict(rbridge_id=rbridge_id, neighbor_peer_grp=peer_group)
-            if not delete:
-                method_name = [
-                    self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_create')
-                ]
-                args['peer_group_name']=True
-            else:
-                method_name = [
-                    self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_peer_group_delete'),
-                    ]
-
-            method = method_name[0]
-            config = (method, args)
-            result = callback(config)
-
-        elif get_config:
-            peer_group = kwargs.pop('peer_group', None)
-            method_name = self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_get')
-            args = dict(
-                rbridge_id=rbridge_id,
-                resource_depth=2)
-            if self.os != 'nos':
-                args.pop('rbridge_id', None)
-            if peer_group is not None:
-                # This will only fetch the specified peer-group. Else all peer-groups will be
-                # fetched
-                args['neighbor_peer_grp'] = peer_group
-            config = (method_name, args)
-            out = callback(config, handler='get_config')
-            bgp = Util(out.data)
-            for peer in bgp.findall(bgp.root, './/address'):
-                result.append(peer)
-
-        return result
-
-    def neighbor_peer_group(self, **kwargs):
-        """Create BGP neighbor peer-group.
         Args:
             peer_group (bool): Name of the peer group
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
+            delete (bool): Deletes the peer group specified
+                if `delete` is ``True``.
+            get (bool): Get config instead of editing config. (True, False)    
         Returns:
             Return value of `callback`.
         Raises:
             ValueError: if `enabled` are invalid.
         Examples:
-            >>> import pynos.device
-            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.225']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
-            ...         output = dev.bgp.local_asn(local_as='65535',
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.bgp.local_asn(local_as='65000',
             ...         rbridge_id='225')
             ...         output = dev.bgp.neighbor_peer_group(
             ...         rbridge_id='225', peer_group='test')
@@ -2414,6 +2372,34 @@ class Bgp(object):
 
     def peer_group_password(self, **kwargs):
         """Create BGP neighbor peer-group password.
+        Args:
+            peer_group (bool): Name of the peer group
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+            delete (bool): Deletes the peer group password specified
+                if `delete` is ``True``.    
+        Returns:
+            Return value of `callback`.
+        Raises:
+            ValueError: if `enabled` are invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.225']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.bgp.local_asn(local_as='65000',
+            ...         rbridge_id='225')
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test')
+            ...         output = dev.bgp.peer_group_password(
+            ...         rbridge_id='225', peer_group='test', peer_password='test')
+            ...         output = dev.bgp.peer_group_password(
+            ...         rbridge_id='225', peer_group='test', delete=True)
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test', delete=True)
         """
         rbridge_id = kwargs.pop('rbridge_id', '1')
         delete = kwargs.pop('delete', False)
@@ -2440,6 +2426,34 @@ class Bgp(object):
 
     def peer_group_bfd(self, **kwargs):
         """Create BGP neighbor peer-group bfd.
+        Args:
+            peer_group (bool): Name of the peer group
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+            delete (bool): Deletes the peer group password specified
+                if `delete` is ``True``.    
+        Returns:
+            Return value of `callback`.
+        Raises:
+            ValueError: if `enabled` are invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.225']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.bgp.local_asn(local_as='65000',
+            ...         rbridge_id='225')
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test')
+            ...         output = dev.bgp.peer_group_bfd(
+            ...         rbridge_id='225', peer_group='test')
+            ...         output = dev.bgp.peer_group_bfd(
+            ...         rbridge_id='225', peer_group='test', delete=True)
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test', delete=True)
         """
         rbridge_id = kwargs.pop('rbridge_id', '1')
         delete = kwargs.pop('delete', False)
@@ -2465,9 +2479,38 @@ class Bgp(object):
 
     def peer_group_ebgp_multihop(self, **kwargs):
         """Create BGP neighbor peer-group ebgp-multihop.
+        Args:
+            peer_group (bool): Name of the peer group
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+            ebgp_multihop_count: Integer value of ebgp-multihop count    
+            delete (bool): Deletes the peer group ebgp-multihop
+                if `delete` is ``True``.    
+        Returns:
+            Return value of `callback`.
+        Raises:
+            ValueError: if `enabled` are invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.225']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.bgp.local_asn(local_as='65000',
+            ...         rbridge_id='225')
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test')
+            ...         output = dev.bgp.peer_group_ebgp_multihop(
+            ...         rbridge_id='225', peer_group='test')
+            ...         output = dev.bgp.peer_group_ebgp_multihop(
+            ...         rbridge_id='225', peer_group='test', ebgp_multihop_count=5)
+            ...         output = dev.bgp.peer_group_ebgp_multihop(
+            ...         rbridge_id='225', peer_group='test', delete=True)
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test', delete=True)
         """
-        #TODO add the enhancement to set the multihop count
-
         rbridge_id = kwargs.pop('rbridge_id', '1')
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
@@ -2499,6 +2542,38 @@ class Bgp(object):
 
     def peer_group_update_source_loopback(self, **kwargs):
         """Create BGP neighbor peer-group update source.
+        Args:
+            peer_group (bool): Name of the peer group
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+            loopback: loopback port number    
+            delete (bool): Deletes the peer group ebgp-multihop
+                if `delete` is ``True``.
+            get (bool): Get config instead of editing config. (True, False)        
+        Returns:
+            Return value of `callback`.
+        Raises:
+            ValueError: if `enabled` are invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.225']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.bgp.local_asn(local_as='65000',
+            ...         rbridge_id='225')
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test')
+            ...         output = dev.bgp.peer_group_update_source_loopback(
+            ...         rbridge_id='225', peer_group='test', loopback='2')
+            ...         output = dev.bgp.peer_group_update_source_loopback(
+            ...         rbridge_id='225', peer_group='test', get=True)
+            ...         output = dev.bgp.peer_group_update_source_loopback(
+            ...         rbridge_id='225', peer_group='test', delete=True)
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test', delete=True)
         """
         rbridge_id = kwargs.pop('rbridge_id', '1')
         delete = kwargs.pop('delete', False)
@@ -2543,7 +2618,39 @@ class Bgp(object):
         return result
 
     def neighbor_addr_peer_group(self, **kwargs):
-        """Create BGP neighbor peer-group.
+        """Create BGP neighbor address peer-group.
+        Args:
+            peer_group (bool): Name of the peer group
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+            ip_addr: neighbor address    
+            delete (bool): Deletes the peer group ebgp-multihop
+                if `delete` is ``True``.
+            get (bool): Get config instead of editing config. (True, False)        
+        Returns:
+            Return value of `callback`.
+        Raises:
+            ValueError: if `enabled` are invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.225']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.bgp.local_asn(local_as='65000',
+            ...         rbridge_id='225')
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test')
+            ...         output = dev.bgp.neighbor_addr_peer_group(
+            ...         rbridge_id='225', peer_group='test', ip_addr='1.1.1.1')
+            ...         output = dev.bgp.neighbor_addr_peer_group(
+            ...         rbridge_id='225', peer_group='test', ip_addr='1.1.1.1', get=True)
+            ...         output = dev.bgp.neighbor_addr_peer_group(
+            ...         rbridge_id='225', peer_group='test', ip_addr='1.1.1.1',delete=True)
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test', delete=True)
         """
         rbridge_id = kwargs.pop('rbridge_id', '1')
         get_config = kwargs.pop('get', False)
