@@ -130,7 +130,7 @@ class PySwitchLib(object):
                     pybind_obj = pybind_module
 
                 for kwarg in kwargs:
-                    if kwarg in bindings_keyval['kwargs_key_name']:
+                    if kwarg == bindings_keyval['kwargs_key_name']:
                         if bindings_keyval['extra_keyval'] and kwargs[kwarg] is not None:
                             kwargs_map = {}
                             key_instance = []
