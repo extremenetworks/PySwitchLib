@@ -63,8 +63,7 @@ class System(BaseSystem):
         callback = kwargs.pop('callback', self._callback)
 
         rid_args = dict(rbridge_id=rbridge_id, router_id=router_id)
-        # NOTWORKING
-        config = ('rbridge_id_ip_update', rid_args)
+        config = ('rbridge_id_ip_router_id_update', rid_args)
         return callback(config)
 
     def host_name(self, **kwargs):
