@@ -274,7 +274,7 @@ class Bgp(object):
         if get:
             return self.get_bgp_neighbors(**kwargs)
 
-        if remote_as is None:
+        if remote_as is None or remote_as == 'None':
             raise ValueError(
                 'When configuring a neighbor, '
                 'you must specify its remote-as.')
