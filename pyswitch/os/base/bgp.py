@@ -484,7 +484,6 @@ class Bgp(object):
             else:
                 ret = ns
             for n in ret:
-                print(ET.tostring(n))
                 peer_ip = bgp.find(n, './/address')
                 peer_remote_as = bgp.find(n, './/remote-as')
                 item_results = {'neighbor-address': peer_ip,
@@ -1882,7 +1881,7 @@ class Bgp(object):
                 vrf=vrf,
                 afi=afi,
                 n_addr=peer_ip,
-                op='_delete',
+                op='_bfd_enable_delete',
                 os=self.os)
             return callback(config)
         if get:
