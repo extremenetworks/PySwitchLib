@@ -12,6 +12,8 @@ Inside a python program do this:
     import pyswitchlib.asset
 ```
 
+## 0.1.56
+* Add support for NOS 7.0.0
 ## 0.1.52
 * Fix for evpn_instance ignore as both 
 ## 0.1.51
