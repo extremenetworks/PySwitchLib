@@ -2696,7 +2696,7 @@ class Bgp(object):
         return result
 
     def evpn_afi_peergroup_activate(self, **kwargs):
-        """Create BGP neighbor address peer-group.
+        """Create BGP evpn afi peer-group activate.
         Args:
             peer_group (bool): Name of the peer group
             callback (function): A function executed upon completion of the
@@ -2768,5 +2768,81 @@ class Bgp(object):
             out = callback(config, handler='get_config')
             bgp = Util(out.data)
             for peer in bgp.findall(bgp.root, './/activate'):
+                result.append(peer)
+        return result
+
+    def evpn_afi_peergroup_nexthop(self, **kwargs):
+        """BGP evpn afi peer-group nexthop unchanged.
+        Args:
+            peer_group (bool): Name of the peer group
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.    
+            delete (bool): Deletes the peer group ebgp-multihop
+                if `delete` is ``True``.
+            get (bool): Get config instead of editing config. (True, False)        
+        Returns:
+            Return value of `callback`.
+        Raises:
+            ValueError: if `enabled` are invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.225']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.bgp.local_asn(local_as='65000',
+            ...         rbridge_id='225')
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test')
+            ...         output = dev.bgp.evpn_afi(rbridge_id='225')
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test', get=True)
+            ...         output = dev.bgp.evpn_afi_peergroup_nexthop(
+            ...         rbridge_id='225', peer_group='test')
+            ...         output = dev.bgp.evpn_afi_peergroup_nexthop(
+            ...         rbridge_id='225', peer_group='test', get=True)
+            ...         output = dev.bgp.evpn_afi_peergroup_nexthop(
+            ...         rbridge_id='225', peer_group='test',delete=True)
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test', delete=True)
+        """
+        rbridge_id = kwargs.pop('rbridge_id', '1')
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        peer_group = kwargs.pop('peer_group')
+        callback = kwargs.pop('callback', self._callback)
+        result = []
+        if not get_config:
+            args = dict(rbridge_id=rbridge_id, evpn_peer_group=peer_group)
+            method_name = [
+                self.method_prefix(
+                    'router_bgp_address_family_l2vpn_evpn_neighbor_'
+                    'evpn_peer_group_next_hop_unchanged_update')
+            ]
+            if not delete:
+                args['next_hop_unchanged'] = True
+
+            else:
+                args['next_hop_unchanged'] = False
+
+            method = method_name[0]
+            config = (method, args)
+            result = callback(config)
+
+        elif get_config:
+            method_name = self.method_prefix('router_bgp_address_family_l2vpn_evpn_neighbor_'
+                                             'evpn_peer_group_next_hop_unchanged_get')
+            args = dict(
+                rbridge_id=rbridge_id,
+                resource_depth=2,
+                evpn_peer_group=peer_group)
+            if self.os != 'nos':
+                args.pop('rbridge_id', None)
+            config = (method_name, args)
+            out = callback(config, handler='get_config')
+            bgp = Util(out.data)
+            for peer in bgp.findall(bgp.root, './/next-hop-unchanged'):
                 result.append(peer)
         return result
