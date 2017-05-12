@@ -12,6 +12,8 @@ Inside a python program do this:
     import pyswitchlib.asset
 ```
 
+## 0.1.57
+* Add support for trunk allowed vlan all
 ## 0.1.56
 * Add support for NOS 7.0.0
 ## 0.1.52

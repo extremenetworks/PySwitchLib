@@ -74,18 +74,16 @@ InterfacePrivateVlanTestCase:
         svlan : 22
 InterfaceSwitchPort:
      switch:
-        ip: 10.37.18.131
+        ip: 10.24.39.236
         username : admin
         password : password
-        rbridge_id : 1
-        switch_ip : 10.37.18.131
+        rbridge_id : 236
         admin_password : password
-        int_type : tengigabitethernet
-        int_name : 1/0/19
+        int_type : fortygigabitethernet
+        int_name : 236/0/19
         vlan : 22
         second_vlan : 34
         gvlan : 8090
-        switch_ip : 10.37.18.131
         bfd_rx : 300
         bfd_tx : 300
         bfd_multiplier : 3

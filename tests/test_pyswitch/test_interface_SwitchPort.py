@@ -134,7 +134,22 @@ class InterfaceSwitchPort(unittest.TestCase):
             op = dev.interface.trunk_allowed_vlan(name=self.int_name,
                                                   int_type=self.int_type,
                                                   get=True)
-            self.assertEqual('%s,%s' % (self.vlan, self.second_vlan), op)
+            self.assertEqual('%s,%s' % (self.vlan, self.second_vlan), op['add'])
+
+    def test_trunk_allowed_vlan_all(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.trunk_mode(name=self.int_name,
+                                     int_type=self.int_type,
+                                     mode='trunk')
+            dev.interface.trunk_allowed_vlan(name=self.int_name,
+                                             int_type=self.int_type,
+                                             action='all')
+
+            op = dev.interface.trunk_allowed_vlan(name=self.int_name,
+                                                  int_type=self.int_type,
+                                                  get=True)
+
+            self.assertEqual({'add':None,'all':'true'}, op)
 
     def test_trunk_allowed_ctag_vlan(self):
         with Device(conn=self.conn, auth=self.auth) as dev:

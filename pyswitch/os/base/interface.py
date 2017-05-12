@@ -1125,7 +1125,9 @@ class Interface(object):
             util = Util(x.data)
             add = util.find(util.root, './/add')
 
-            return add
+            all = util.find(util.root,'.//all')
+
+            return {'add':add,'all':all}
 
         action = kwargs.pop('action')
         ctag = kwargs.pop('ctag', None)
@@ -1154,8 +1156,11 @@ class Interface(object):
 
             method_name = 'interface_%s_switchport_trunk_allowed_vlan_update'\
                           % int_type
-            operation = '%s_' % action
-            allowed_vlan_args[operation] = vlan
+            if action == 'all':
+                allowed_vlan_args[action] = True
+            else:
+                operation = '%s_' % action
+                allowed_vlan_args[operation] = vlan
         else:
 
             method_name = 'interface_%s_switchport_trunk_' \
