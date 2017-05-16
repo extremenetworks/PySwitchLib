@@ -442,3 +442,83 @@ class Interface(BaseInterface):
             else:
                 result = None
         return result
+
+    def bridge_domain_logical_interface(self, **kwargs):
+        """Configure/get/delete logical-interface on a bridge-domain.
+        Args:
+            bridge_domain (str): bridge domain number.
+            bridge_domain_service_type (str): service type. ('p2mp', 'p2p')
+            intf_type (str): Type of interface. ['ethernet', 'port_channel']
+            lif_name  (str): Logical Interface name.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the router ve on the vlan.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `bridge_domain` or `lif_name` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.bridge_domain_logical_interface(
+            ...         get=True, bridge_domain='100', lif_name='1/34.1')
+            ...         output = dev.interface.bridge_domain_logical_interface(
+            ...         delete=True, bridge_domain='100', lif_name='1/34.1')
+            ...         output = dev.interface.bridge_domain_logical_interface(
+            ...         bridge_domain='100', lif_name='1/34.1')
+            Traceback (most recent call last):
+            KeyError
+        """
+
+        bridge_domain = kwargs.pop('bridge_domain')
+        bridge_domain_service = kwargs.pop('bridge_domain_service_type', 'p2mp')
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        lif_name = kwargs.pop('lif_name')
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if bridge_domain_service not in ['p2mp', 'p2p']:
+            raise ValueError("`bridge_domain_service_type` must "
+                             "match one of them "
+                             "`p2mp, p2p`")
+        if intf_type not in ['ethernet', 'port_channel']:
+            raise ValueError("`intf_ype` must match one of them "
+                             "`ethernet, port_channel`")
+        if intf_type == 'port_channel':
+            bd_args = dict(bridge_domain=\
+                          (bridge_domain,bridge_domain_service),
+                          port_channel=lif_name)
+        else:
+            bd_args = dict(bridge_domain=\
+                          (bridge_domain,bridge_domain_service),
+                          ethernet=lif_name)
+
+        if delete:
+            method_name = 'bridge_domain_logical_interface_%s_delete' %\
+                          intf_type
+            config = (method_name, bd_args)
+            return callback(config)
+        if not get_config:
+            method_name = 'bridge_domain_logical_interface_%s_create' %\
+                           intf_type
+            config = (method_name, bd_args)
+            result = callback(config)
+        elif get_config:
+            method_name = 'bridge_domain_logical_interface_%s_get' %\
+                           intf_type
+            config = (method_name, bd_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if intf_type == 'port_channel':
+                result = util.find(util.root, './/pc-lif-bind-id')
+            else:
+                result = util.find(util.root, './/lif-bind-id')
+        return result
