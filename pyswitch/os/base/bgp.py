@@ -2740,15 +2740,19 @@ class Bgp(object):
         result = []
         if not get_config:
             args = dict(rbridge_id=rbridge_id, evpn_peer_group=peer_group)
-            method_name = [
-                self.method_prefix(
-                    'router_bgp_address_family_l2vpn_evpn_neighbor_'
-                    'evpn_peer_group_activate_update')
-            ]
             if not delete:
+                method_name = [
+                    self.method_prefix(
+                        'router_bgp_address_family_l2vpn_evpn_neighbor_evpn_peer_group_create')
+                ]
                 args['activate'] = True
 
             else:
+                method_name = [
+                    self.method_prefix(
+                        'router_bgp_address_family_l2vpn_evpn_neighbor_'
+                        'evpn_peer_group_activate_update')
+                ]
                 args['activate'] = False
 
             method = method_name[0]
