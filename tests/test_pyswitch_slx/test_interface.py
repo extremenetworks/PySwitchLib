@@ -233,6 +233,126 @@ class InterfaceTestCase(unittest.TestCase):
             dev.interface.port_channel_vlag_ignore_split(
                 name='2', enabled=False)
 
+    def test_logical_interface_create(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.logical_interface_create(
+                intf_name='3/34', lif_name='3/34.1')
+            op = dev.interface.logical_interface_create(
+                get=True, intf_name='3/34')
+            self.assertIsNone(op)
+            dev.interface.logical_interface_create(
+                delete=True, intf_name='3/34')
+
+    def test_logical_interface_tag_vlan(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.logical_interface_tag_vlan(
+                intf_name='3/34', lif_name='3/34.1',
+                outer_tag_vlan_id='100',
+                inner_vlan=True, inner_tag_vlan_id='200')
+            op = dev.interface.logical_interface_tag_vlan(
+                get=True, intf_name='3/34', lif_name='3/34.1')
+            self.assertIsNone(op)
+            dev.interface.logical_interface_tag_vlan(
+                delete=True, intf_name='3/34', lif_name='3/34.1')
+
+    def test_logical_interface_untag_vlan(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.logical_interface_untag_vlan(
+                intf_name='3/34', lif_name='3/34.1',
+                untag_vlan_id='100')
+            op = dev.interface.logical_interface_untag_vlan(
+                get=True, intf_name='3/34', lif_name='3/34.1')
+            self.assertIsNone(op)
+            dev.interface.logical_interface_untag_vlan(
+                delete=True, intf_name='3/34', lif_name='3/34.1')
+
+    def test_logical_interface_create_port_channel(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.logical_interface_create(
+                intf_name='10', lif_name='10.1',
+                intf_type='port_channel')
+            op = dev.interface.logical_interface_create(
+                get=True, intf_name='10',
+                intf_type='port_channel')
+            self.assertIsNone(op)
+            dev.interface.logical_interface_create(
+                delete=True, intf_name='10',
+                intf_type='port_channel')
+
+    def test_logical_interface_tag_vlan_port_channel(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.logical_interface_tag_vlan(
+                intf_name='10', lif_name='10.1',
+                outer_tag_vlan_id='100',
+                intf_type='port_channel'
+                inner_vlan=True, inner_tag_vlan_id='200')
+            op = dev.interface.logical_interface_tag_vlan(
+                get=True, intf_name='10', lif_name='10.1',
+                intf_type='port_channel')
+            self.assertIsNone(op)
+            dev.interface.logical_interface_tag_vlan(
+                delete=True, intf_name='10', lif_name='10.1',
+                intf_type='port_channel')
+
+    def test_logical_interface_untag_vlan_port_channel(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.logical_interface_untag_vlan(
+                intf_name='10', lif_name='10.1',
+                untag_vlan_id='100', intf_type='port_channel')
+            op = dev.interface.logical_interface_untag_vlan(
+                get=True, intf_name='10', lif_name='10.1',
+                intf_type='port_channel')
+            self.assertIsNone(op)
+            dev.interface.logical_interface_untag_vlan(
+                delete=True, intf_name='10', lif_name='10.1',
+                intf_type='port_channel')
+
+
+    def test_bridge_domain(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.bridge_domain(
+                bridge_domain='333', vc_id_num='334')
+            op = dev.interface.bridge_domain(get=True,
+                bridge_domain='333')
+            self.assertIsNone(op)
+            dev.interface.bridge_domain(delete=True,
+                bridge_domain='333')
+
+    def test_bridge_domain_peer(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.bridge_domain_peer(peer_ip='1.1.1.1',
+                bridge_domain='333', vc_id_num='334')
+            op = dev.interface.bridge_domain(get=True,
+                bridge_domain='333', peer_ip='1.1.1.1')
+            self.assertIsNone(op)
+            dev.interface.bridge_domain(delete=True,
+                bridge_domain='333', peer_ip='1.1.1.1')
+
+    def test_bridge_domain_logical_interface_port_channel(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.bridge_domain_logical_interface(
+                bridge_domain='100', lif_name='111.1',
+                intf_type='port_channel')
+            op = dev.interface.bridge_domain_logical_interface(
+                get=True, bridge_domain='100',
+                lif_name='111.1', intf_type='port_channel')
+            self.assertIsNone(op)
+            op = dev.interface.bridge_domain_logical_interface(
+                delete=True, bridge_domain='100',
+                lif_name='111.1', intf_type='port_channel')
+
+    def test_bridge_domain_logical_interface(self):
+        with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.interface.bridge_domain_logical_interface(
+                bridge_domain='100', lif_name='1/34.1')
+            op = dev.interface.bridge_domain_logical_interface(
+                get=True, bridge_domain='100',
+                lif_name='1/34.1')
+            self.assertIsNone(op)
+            op = dev.interface.bridge_domain_logical_interface(
+                delete=True, bridge_domain='100',
+                lif_name='1/34.1')
+
     """
      7.0.1
     """
