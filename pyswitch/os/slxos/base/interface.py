@@ -522,3 +522,251 @@ class Interface(BaseInterface):
             else:
                 result = util.find(util.root, './/lif-bind-id')
         return result
+
+    def logical_interface_create(self, **kwargs):
+        """Configure/get/delete logical interface on an ethernet/port-channel.
+        Args:
+            intf_type (str): Type of interface. ['ethernet', 'port_channel']
+            intf_name (str): Intername name.
+            lif_name  (str): Logical Interface name.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the router ve on the vlan.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `intf_name`  is not specified.
+            KeyError: if `lif_name` is not speciied.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.logical_interface_create(
+            ...         get=True, intf_name='0/34')
+            ...         output = dev.interface.logical_interface_create(
+            ...         delete=True, intf_name='0/34')
+            ...         output = dev.interface.logical_interface_create(
+            ...         intf_name='0/34', lif_name='0/34.1')
+            ...         output = dev.interface.logical_interface_create(
+            ...         intf_name='111', lif_name='111.1',
+            ...         intf_type='port_channel')
+            Traceback (most recent call last):
+            KeyError
+        """
+
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name', None)
+        lif_name = kwargs.pop('lif_name', None)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if intf_type not in ['ethernet', 'port_channel']:
+            raise ValueError("`intf_ype` must match one of them "
+                             "`ethernet, port_channel`")
+
+        if intf_type == 'port_channel':
+            lg_args = dict(port_channel=intf_name)
+        else:
+            lg_args = dict(ethernet=intf_name)
+
+        if delete:
+            method_name = 'interface_%s_logical_interface_%s_delete' %\
+                          (intf_type, intf_type)
+            config = (method_name, lg_args)
+            return callback(config)
+        if not get_config:
+            if intf_type == 'port_channel':
+                lg_args = dict(port_channel=intf_name, port_channel_=lif_name)
+            else:
+                lg_args = dict(ethernet=intf_name, ethernet_=lif_name)
+            method_name = 'interface_%s_logical_interface_%s_create' %\
+                          (intf_type, intf_type)
+            config = (method_name, lg_args)
+            result = callback(config)
+        elif get_config:
+            method_name = 'interface_%s_logical_interface_%s_get' %\
+                          (intf_type, intf_type)
+            config = (method_name, lg_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if intf_type == 'port_channel':
+                result = util.findall(util.root, './/pc-instance-id')
+            else:
+                result = util.findall(util.root, './/instance-id')
+        return result
+
+    def logical_interface_tag_vlan(self, **kwargs):
+        """Configure/get/delete outer-vlan,inner-vlan on a LIF
+        Args:
+            intf_type (str): Type of interface. ['ethernet', 'port_channel']
+            intf_name (str): Intername name.
+            lif_name  (str): Logical Interface name.
+            outer_tag_vlan_id (str): Outer vlan ID
+            inner_vlan (bool): Enable inner vlan.(True, False)
+            inner_tag_vlan_id (str): Inner vlan ID
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the router ve on the vlan.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `lif_name`, `intf_name` `outer_tag_vlan_id` 
+                      is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.logical_interface_tag_vlan(
+            ...         get=True, intf_name='1/34', lif_name='1/34.1')
+            ...         output = dev.interface.logical_interface_tag_vlan(
+            ...         delete=True, intf_name='1/34', lif_name='1/34.1')
+            ...         output = dev.interface.logical_interface_tag_vlan(
+            ...         intf_name='111', lif_name='111.1', inner_vlan=True,
+            ...         outer_tag_vlan_id='100', inner_tag_vlan_id='200')
+            Traceback (most recent call last):
+            KeyError
+        """
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name', None)
+        lif_name = kwargs.pop('lif_name', None)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if intf_type not in ['ethernet', 'port_channel']:
+            raise ValueError("`intf_ype` must match one of them "
+                             "`ethernet, port_channel`")
+
+        if intf_type == 'port_channel':
+            lg_args = dict(port_channel=intf_name, port_channel_=lif_name)
+        else:
+            lg_args = dict(ethernet=intf_name, ethernet_=lif_name)
+
+        if delete:
+            method_name = 'interface_%s_logical_interface_%s_vlan_delete' %\
+                          (intf_type, intf_type)
+            config = (method_name, lg_args)
+            return callback(config)
+        if not get_config:
+            outer_tagged_vlan_id = kwargs.pop('outer_tag_vlan_id')
+            if not pyswitch.utilities.valid_vlan_id(outer_tagged_vlan_id):
+                raise InvalidVlanId("Invalid outer Vlan value.")
+            inner_vlan = kwargs.pop('inner_vlan', None)
+            if intf_type == 'port_channel':
+                lg_args = dict(port_channel=intf_name, port_channel_=lif_name,
+                               outer_tagged_vlan_id=outer_tagged_vlan_id)
+            else:
+                lg_args = dict(ethernet=intf_name, ethernet_=lif_name,
+                               outer_tagged_vlan_id=outer_tagged_vlan_id)
+            if inner_vlan:
+                inner_tagged_vlan_id = kwargs.pop('inner_tag_vlan_id')
+                if not pyswitch.utilities.valid_vlan_id(inner_tagged_vlan_id):
+                    raise InvalidVlanId("Invalid inner Vlan value.")
+                lg_args['inner_vlan'] = inner_vlan
+                lg_args['inner_tagged_vlan_id'] = inner_tagged_vlan_id
+            method_name = 'interface_%s_logical_interface_%s_vlan_update' %\
+                          (intf_type, intf_type)
+            config = (method_name, lg_args)
+            result = callback(config)
+        elif get_config:
+            method_name = 'interface_%s_logical_interface_%s_vlan_get' %\
+                          (intf_type, intf_type)
+            config = (method_name, lg_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            outer_vlan = util.find(util.root, './/outer-tagged-vlan-id')
+            inner_vlan = util.find(util.root, './/inner-tagged-vlan-id')
+            result  = dict(outer_vlan=outer_vlan,inner_vlan=inner_vlan)
+        return result
+
+    def logical_interface_untag_vlan(self, **kwargs):
+        """Configure/get/delete untag-vlan on a LIF
+        Args:
+            intf_type (str): Type of interface. ['ethernet', 'port_channel']
+            intf_name (str): Intername name.
+            lif_name  (str): Logical Interface name.
+            untag_vlan_id (str): Outer vlan ID
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the router ve on the vlan.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `intf_name` is not specified.
+            KeyError: if `lif_name` or `untag_vlan_id` is not speciied.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.logical_interface_untag_vlan(
+            ...         get=True, intf_name='1/34', lif_name='1/34.1')
+            ...         output = dev.interface.logical_interface_untag_vlan(
+            ...         delete=True, intf_name='1/34', lif_name='1/34.1')
+            ...         output = dev.interface.logical_interface_untag_vlan(
+            ...         intf_name='111', lif_name='111.1',
+            ...         untag_vlan_id='100')
+            Traceback (most recent call last):
+            KeyError
+        """
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name', None)
+        lif_name = kwargs.pop('lif_name', None)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if intf_type not in ['ethernet', 'port_channel']:
+            raise ValueError("`intf_ype` must match one of them "
+                             "`ethernet, port_channel`")
+
+        if intf_type == 'port_channel':
+            lg_args = dict(port_channel=intf_name, port_channel_=lif_name)
+        else:
+            lg_args = dict(ethernet=intf_name, ethernet_=lif_name)
+
+        if delete:
+            method_name = 'interface_%s_logical_interface_%s_'\
+                          'untagged_vlan_delete' % (intf_type, intf_type)
+            config = (method_name, lg_args)
+            return callback(config)
+        if not get_config:
+            untagged_vlan_id = kwargs.pop('untag_vlan_id')
+            if not pyswitch.utilities.valid_vlan_id(untagged_vlan_id):
+                raise InvalidVlanId("Invalid untagged Vlan value.")
+            if intf_type == 'port_channel':
+                lg_args = dict(port_channel=intf_name, port_channel_=lif_name,
+                               untagged_vlan_id=untagged_vlan_id)
+            else:
+                lg_args = dict(ethernet=intf_name, ethernet_=lif_name,
+                               untagged_vlan_id=untagged_vlan_id)
+            method_name = 'interface_%s_logical_interface_%s_untagged_'\
+                          'vlan_update' % (intf_type, intf_type)
+            config = (method_name, lg_args)
+            result = callback(config)
+        elif get_config:
+            method_name = 'interface_%s_logical_interface_%s_untagged_'\
+                           'vlan_get' % (intf_type, intf_type)
+            config = (method_name, lg_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = util.find(util.root, './/untagged-vlan-id')
+        return result
