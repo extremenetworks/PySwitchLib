@@ -12,6 +12,9 @@ Inside a python program do this:
     import pyswitchlib.asset
 ```
 
+## 0.1.58
+* Add support for neighbor peer-group configuration
+* Add support for peer groups under l2vpn evpn afi
 ## 0.1.57
 * Add support for trunk allowed vlan all
 ## 0.1.56
