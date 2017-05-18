@@ -11,7 +11,9 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
-
+## 0.1.59
+* Allow deletion of neighbor
+* fix issue with creating neighbor associated to a peer-group
 ## 0.1.58
 * Add support for neighbor peer-group configuration
 * Add support for peer groups under l2vpn evpn afi

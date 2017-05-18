@@ -270,7 +270,16 @@ class Bgp(object):
         afi = 'ipv4' if ip_addr.version == 4 else 'ipv6'
         n_addr = str(ip_addr.ip)
         if delete:
-            raise NotImplementedError
+            if ip_addr.version == 4:
+                args = dict(rbridge_id=rbridge_id, neighbor_addr=n_addr)
+                api = self.method_prefix('router_bgp_neighbor_neighbor_addr_remote_as_delete',
+                                         args)
+            elif ip_addr.version == 6:
+                args = dict(rbridge_id=rbridge_id, neighbor_ipv6_addr=n_addr)
+                api = self.method_prefix('router_bgp_neighbor_neighbor_ipv6_addr_remote_as_delete',
+                                         args)
+            config = (api, args)
+            return callback(config)
         if get:
             return self.get_bgp_neighbors(**kwargs)
 
@@ -2666,7 +2675,7 @@ class Bgp(object):
                 if peer_group is not None:
                     args['associate_peer_group'] = peer_group
                 method_name = [
-                    self.method_prefix('router_bgp_neighbor_neighbor_addr_peer_group_update')
+                    self.method_prefix('router_bgp_neighbor_neighbor_addr_create')
                 ]
             else:
                 method_name = [
