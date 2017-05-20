@@ -223,22 +223,19 @@ class Services(BaseServices):
             KeyError
         """
         enable = kwargs.pop('enable', True)
-
         get = kwargs.pop('get', False)
-
         callback = kwargs.pop('callback', self._callback)
 
         if get:
             enable = None
-
         isis_args = {}
         if get:
             config = ('router_isis_get', isis_args)
             x = callback(config, handler='get_config')
-            util = Util(x.data)
-            result = util.find(util.root, './/isis//auth-check')
-            print('dddddddd', result)
-            return result
+            if x.data == '<output></output>':
+                return False
+            else:
+                return True
         if not enable:
             config = ('router_isis_delete', isis_args)
         else:
