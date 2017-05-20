@@ -49,6 +49,16 @@ NOS_VERSIONS = {
         'vcs': pyswitch.os.base.vcs.VCS
 
     },
+    '7.0.0': {
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.nos.base.interface.Interface,
+        'bgp': pyswitch.os.nos.base.bgp.Bgp,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.nos.base.system.System,
+        'services': pyswitch.os.nos.base.services.Services,
+        'fabric_service': pyswitch.os.base.fabric_service.FabricService,
+        'vcs': pyswitch.os.base.vcs.VCS
+    },
     '7.0.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.nos.base.interface.Interface,
@@ -272,11 +282,13 @@ class Device(object):
         Raises:
             None
         """
-        print 'heere'
+
+        """
         print 'asset.%s(%s)' % (call[0], ", ".join(
             ["=".join([key, '\'%s\'' % str(val) if isinstance(val, str)
                        else str(val)]) for key, val in
                 call[1].items()]))
+         """
 
         (status, result) = getattr(self._mgr, call[0])(**call[1])
        
