@@ -28,9 +28,28 @@ class InterfaceISISTestCase(unittest.TestCase):
 
     def setUp(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.services.isis()
+            op = dev.services.isis(get=True)
+            self.assertEqual(op)
+
+            dev.isis.address_family_ipv4_unicast()
+            op = dev.isis.address_family_ipv4_unicast(get=True)
+            self.assertEqual(op)
+
+            dev.isis.log_adjacency()
+            op = dev.isis.log_adjacency(get=True)
+            self.assertEqual(op)
+
+            dev.isis.net_address(net='49.0001.0100.1001.0006.00')
+            op = dev.isis.net_address(get=True)
+            self.assertEqual(op)
 
     def tearDown(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.services.isis(enable=False)
+            dev.isis.address_family_ipv4_unicast(delete=True)
+            dev.isis.log_adjacency(delete=True)
+            dev.isis.net_address(delete=True)
 
     def test_enable_isis_on_intf(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
@@ -42,7 +61,7 @@ class InterfaceISISTestCase(unittest.TestCase):
                 intf_name='11',
                 get=True)
             self.assertEqual(op)
-            op = dev.interface.ip_ospf(
+            dev.interface.ip_ospf(
                 intf_type='loopback',
                 intf_name='11',
                 delete=True)

@@ -29,16 +29,34 @@ class InterfaceOSPFTestCase(unittest.TestCase):
 
     def setUp(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.services.ospf()
+            op = dev.services.ospf(get=True)
+            self.assertEqual(op)
+            dev.ospf.ospf_area(area='10')
+            op = dev.ospf.ospf_area(get=True)
+            self.assertEqual(op)
+
+            dev.services.ospf(vrf='111')
+            op = dev.services.ospf(get=True, vrf='111')
+            self.assertEqual(op)
+            dev.ospf.ospf_area(vrf='111', area='10')
+            op = dev.ospf.ospf_area(get=True, vrf='111')
+            self.assertEqual(op)
 
     def tearDown(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
+            dev.ospf.ospf_area(delete=True)
+            dev.services.ospf(enable=False)
+
+            dev.ospf.ospf_area(vrf='111', delete=True)
+            dev.services.ospf(enable=False, vrf='111')
 
     def test_enable_ospf_on_intf(self):
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.ip_ospf(
                 intf_type='loopback',
                 intf_name='11'
-                area='0')
+                area='10')
             op = dev.interface.ip_ospf(
                 intf_type='loopback',
                 intf_name='11',

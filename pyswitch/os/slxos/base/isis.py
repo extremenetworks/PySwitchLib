@@ -25,7 +25,7 @@ from pyswitch.utilities import Util
 
 class Isis(object):
     """
-    The ISIS class holds all relevent methods and attributes for the BGP
+    The ISIS class holds all relevent methods and attributes for the ISIS 
     capabilities of the SLXOS device.
 
     Attributes:

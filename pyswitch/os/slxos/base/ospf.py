@@ -25,7 +25,7 @@ from pyswitch.utilities import Util
 
 class Ospf(object):
     """
-    The ISIS class holds all relevent methods and attributes for the BGP
+    The OSPF class holds all relevent methods and attributes for the OSPF
     capabilities of the SLXOS device.
 
     Attributes:
