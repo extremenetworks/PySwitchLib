@@ -63,7 +63,7 @@ class Isis(object):
         self._callback = callback
         self._cli = None
 
-    def address_family_ipv4_unicast(self, **kwargs):
+    def address_family(self, **kwargs):
         """ Configure address Family 
 
         Args:

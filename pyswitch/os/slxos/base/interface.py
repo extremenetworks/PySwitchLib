@@ -35,6 +35,8 @@ class Interface(BaseInterface):
         return [
             'ethernet',
             'port_channel'
+            'loopback',
+            've'
         ]
 
     @property
