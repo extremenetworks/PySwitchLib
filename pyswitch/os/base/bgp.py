@@ -2860,6 +2860,35 @@ class Bgp(object):
                 result.append(peer)
         return result
 
+    def afi_network(self, **kwargs):
+        """Configurs networks for bgp address family
+
+        Args:
+            afi(str): Address family
+            rbridge_id (str): The rbridge ID of the device on which BGP will be
+                configured in a VCS fabric.
+            ip_addr: vtep loop back ip
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+        """
+        rbridge_id = kwargs.pop('rbridge_id', '1')
+        network = kwargs.pop('network')
+        callback = kwargs.pop('callback', self._callback)
+        args = dict(rbridge_id=rbridge_id, network=network)
+        method_name = self.method_prefix('router_bgp_address_family_ipv4_unicast_network_create')
+        config = (method_name, args)
+        out = callback(config)
+        return out
+
     def evpn_afi_peergroup_allowas_in(self, **kwargs):
         """Configure allowas_in for an EVPN peergroup.
 
@@ -2945,6 +2974,7 @@ class Bgp(object):
             for peer in bgp.findall(bgp.root, './/allowas-in'):
                 result.append(peer)
         return result
+
 
     def neighbor_peergroup_remote_as(self, **kwargs):
         """Configure remote-as for an peer-group neighbor.
