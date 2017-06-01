@@ -2675,7 +2675,7 @@ class Bgp(object):
                 if peer_group is not None:
                     args['associate_peer_group'] = peer_group
                 method_name = [
-                    self.method_prefix('router_bgp_neighbor_neighbor_addr_create')
+                    self.method_prefix('router_bgp_neighbor_neighbor_addr_peer_group_update')
                 ]
             else:
                 method_name = [
