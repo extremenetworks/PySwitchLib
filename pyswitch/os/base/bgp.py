@@ -2344,6 +2344,8 @@ class Bgp(object):
         if not get_config:
             peer_group = kwargs.pop('peer_group')
             args = dict(rbridge_id=rbridge_id, neighbor_peer_grp=peer_group)
+            if self.os != 'nos':
+                args.pop('rbridge_id', None)
             if not delete:
                 method_name = [
                     self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_create')
