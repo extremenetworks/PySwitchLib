@@ -289,6 +289,8 @@ class Device(object):
                        else str(val)]) for key, val in
                 call[1].items()]))
          """
+        if self._mgr.get_os_type() != 'nos':
+            call[1].pop('rbridge_id', None)
 
         (status, result) = getattr(self._mgr, call[0])(**call[1])
        
