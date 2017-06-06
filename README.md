@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.63
+* Added support for SLXOS 17r.1.00a
 ## 0.1.59
 * Allow deletion of neighbor
 * fix issue with creating neighbor associated to a peer-group
