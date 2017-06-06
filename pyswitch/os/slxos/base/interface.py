@@ -279,7 +279,7 @@ class Interface(BaseInterface):
             bpdu_drop_enable (bool): Drop BPDU packets. (True, False)
             local_switching (bool): Configure local switching. (True, False)
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete the bd.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -372,7 +372,7 @@ class Interface(BaseInterface):
             load_balance (bool): load-balance. (True, False)
             cos (str): cos value. <cos value: 0..7>
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete peer_ips on bd.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -453,7 +453,7 @@ class Interface(BaseInterface):
             intf_type (str): Type of interface. ['ethernet', 'port_channel']
             lif_name  (str): Logical Interface name.
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete single/all LIFs on a bd.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -474,6 +474,8 @@ class Interface(BaseInterface):
             ...         delete=True, bridge_domain='100', lif_name='1/34.1')
             ...         output = dev.interface.bridge_domain_logical_interface(
             ...         bridge_domain='100', lif_name='1/34.1')
+            ...         output = dev.interface.bridge_domain_logical_interface(
+            ...         delete=True, bridge_domain='100')
             Traceback (most recent call last):
             KeyError
         """
@@ -481,7 +483,7 @@ class Interface(BaseInterface):
         bridge_domain = kwargs.pop('bridge_domain')
         bridge_domain_service = kwargs.pop('bridge_domain_service_type', 'p2mp')
         intf_type = kwargs.pop('intf_type', 'ethernet')
-        lif_name = kwargs.pop('lif_name')
+        lif_name = kwargs.pop('lif_name', None)
 
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
@@ -496,16 +498,22 @@ class Interface(BaseInterface):
                              "`ethernet, port_channel`")
         if intf_type == 'port_channel':
             bd_args = dict(bridge_domain=\
-                          (bridge_domain,bridge_domain_service),
-                          port_channel=lif_name)
+                          (bridge_domain,bridge_domain_service))
         else:
             bd_args = dict(bridge_domain=\
-                          (bridge_domain,bridge_domain_service),
-                          ethernet=lif_name)
+                          (bridge_domain,bridge_domain_service))
+
+        if lif_name is not None and intf_type == 'port_channel':
+            bd_args.update(port_channel=lif_name)
+        elif lif_name is not None and intf_type == 'ethernet':
+            bd_args.update(ethernet=lif_name)
 
         if delete:
-            method_name = 'bridge_domain_logical_interface_%s_delete' %\
-                          intf_type
+            if lif_name is None:
+                method_name = 'bridge_domain_logical_interface_delete'
+            else:
+                method_name = 'bridge_domain_logical_interface_%s_delete' %\
+                              intf_type
             config = (method_name, bd_args)
             return callback(config)
         if not get_config:
@@ -532,7 +540,7 @@ class Interface(BaseInterface):
             intf_name (str): Intername name.
             lif_name  (str): Logical Interface name.
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete single/all lifs on intf.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -557,6 +565,8 @@ class Interface(BaseInterface):
             ...         output = dev.interface.logical_interface_create(
             ...         intf_name='111', lif_name='111.1',
             ...         intf_type='port_channel')
+            ...         output = dev.interface.logical_interface_create(
+            ...         delete=True, intf_name='0/34', lif_name='0/34.1')
             Traceback (most recent call last):
             KeyError
         """
@@ -579,6 +589,10 @@ class Interface(BaseInterface):
             lg_args = dict(ethernet=intf_name)
 
         if delete:
+            if lif_name is not None and intf_type == 'port_channel':
+                lg_args.update(port_channel_=lif_name)
+            elif lif_name is not None and intf_type == 'ethernet':
+                lg_args.update(ethernet_=lif_name)
             method_name = 'interface_%s_logical_interface_%s_delete' %\
                           (intf_type, intf_type)
             config = (method_name, lg_args)
@@ -614,7 +628,7 @@ class Interface(BaseInterface):
             inner_vlan (bool): Enable inner vlan.(True, False)
             inner_tag_vlan_id (str): Inner vlan ID
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete the tag vlan.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -702,7 +716,7 @@ class Interface(BaseInterface):
             lif_name  (str): Logical Interface name.
             untag_vlan_id (str): Outer vlan ID
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete the untag vlan on lif.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -879,7 +893,7 @@ class Interface(BaseInterface):
             intf_type (str): Type of interface.
             intf_name (str): Intername name.
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete the router isis on intf.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
