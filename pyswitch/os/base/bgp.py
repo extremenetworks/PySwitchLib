@@ -2676,8 +2676,90 @@ class Bgp(object):
                 peer_group = kwargs.pop('peer_group')
                 if peer_group is not None:
                     args['associate_peer_group'] = peer_group
+                # method_name = [
+                #     self.method_prefix('router_bgp_neighbor_neighbor_addr_create')
+                # ]
                 method_name = [
                     self.method_prefix('router_bgp_neighbor_neighbor_addr_peer_group_update')
+                ]
+            else:
+                method_name = [
+                    self.method_prefix('router_bgp_neighbor_neighbor_addr_peer_group_delete'),
+                    ]
+
+            method = method_name[0]
+            config = (method, args)
+            result = callback(config)
+
+        elif get_config:
+            ip_addr = kwargs.pop('ip_addr')
+            ip_addr = ip_interface(unicode(ip_addr))
+            n_addr = str(ip_addr.ip)
+            method_name = self.method_prefix('router_bgp_neighbor_neighbor_addr_peer_group_get')
+            args = dict(
+                rbridge_id=rbridge_id,
+                resource_depth=2,
+                neighbor_addr=n_addr)
+            if self.os != 'nos':
+                args.pop('rbridge_id', None)
+            config = (method_name, args)
+            out = callback(config, handler='get_config')
+            bgp = Util(out.data)
+            for peer in bgp.findall(bgp.root, './/peer-group'):
+                result.append(peer)
+        return result
+
+    def neighbor_addr_peer_group_no_remote(self, **kwargs):
+        """Create BGP neighbor address peer-group.
+        Args:
+            peer_group (bool): Name of the peer group
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+            ip_addr: neighbor address    
+            delete (bool): Deletes the peer group ebgp-multihop
+                if `delete` is ``True``.
+            get (bool): Get config instead of editing config. (True, False)        
+        Returns:
+            Return value of `callback`.
+        Raises:
+            ValueError: if `enabled` are invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.225']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.bgp.local_asn(local_as='65000',
+            ...         rbridge_id='225')
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test')
+            ...         output = dev.bgp.neighbor_addr_peer_group_no_remote(
+            ...         rbridge_id='225', peer_group='test', ip_addr='1.1.1.1')
+            ...         output = dev.bgp.neighbor_addr_peer_group_no_remote(
+            ...         rbridge_id='225', peer_group='test', ip_addr='1.1.1.1', get=True)
+            ...         output = dev.bgp.neighbor_addr_peer_group_no_remote(
+            ...         rbridge_id='225', peer_group='test', ip_addr='1.1.1.1',delete=True)
+            ...         output = dev.bgp.neighbor_peer_group(
+            ...         rbridge_id='225', peer_group='test', delete=True)
+        """
+        rbridge_id = kwargs.pop('rbridge_id', '1')
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        result = []
+        if not get_config:
+            ip_addr = kwargs.pop('ip_addr')
+            ip_addr = ip_interface(unicode(ip_addr))
+            n_addr = str(ip_addr.ip)
+            args = dict(rbridge_id=rbridge_id, neighbor_addr=n_addr)
+            if not delete:
+                peer_group = kwargs.pop('peer_group')
+                if peer_group is not None:
+                    args['associate_peer_group'] = peer_group
+                method_name = [
+                    self.method_prefix('router_bgp_neighbor_neighbor_addr_create')
                 ]
             else:
                 method_name = [
@@ -2977,7 +3059,6 @@ class Bgp(object):
                 result.append(peer)
         return result
 
-
     def neighbor_peergroup_remote_as(self, **kwargs):
         """Configure remote-as for an peer-group neighbor.
 
@@ -3010,7 +3091,7 @@ class Bgp(object):
             ...         output = dev.bgp.neighbor_peer_group(
             ...         rbridge_id='225', peer_group='test')
             ...         output = dev.bgp.neighbor_peergroup_remote_as(
-            ...         rbridge_id='225', peer_group='test', remote_as='65536       ')
+            ...         rbridge_id='225', peer_group='test', remote_as='65536')
             ...         output = dev.bgp.neighbor_peergroup_remote_as(
             ...         rbridge_id='225', peer_group='test', get=True)
             ...         output = dev.bgp.neighbor_peergroup_remote_as(
