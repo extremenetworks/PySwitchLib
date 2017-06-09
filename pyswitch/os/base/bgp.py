@@ -2677,7 +2677,7 @@ class Bgp(object):
                 if peer_group is not None:
                     args['associate_peer_group'] = peer_group
                 method_name = [
-                    self.method_prefix('router_bgp_neighbor_neighbor_addr_peer_group_update')
+                    self.method_prefix('router_bgp_neighbor_neighbor_addr_create')
                 ]
             else:
                 method_name = [
@@ -2977,7 +2977,6 @@ class Bgp(object):
                 result.append(peer)
         return result
 
-
     def neighbor_peergroup_remote_as(self, **kwargs):
         """Configure remote-as for an peer-group neighbor.
 
@@ -3010,7 +3009,7 @@ class Bgp(object):
             ...         output = dev.bgp.neighbor_peer_group(
             ...         rbridge_id='225', peer_group='test')
             ...         output = dev.bgp.neighbor_peergroup_remote_as(
-            ...         rbridge_id='225', peer_group='test', remote_as='65536       ')
+            ...         rbridge_id='225', peer_group='test', remote_as='65536')
             ...         output = dev.bgp.neighbor_peergroup_remote_as(
             ...         rbridge_id='225', peer_group='test', get=True)
             ...         output = dev.bgp.neighbor_peergroup_remote_as(
