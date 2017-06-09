@@ -309,3 +309,54 @@ class Services(BaseServices):
                 else 'ipv6_router_ospf_create'
         config = (method_name, ospf_args)
         return callback(config)
+
+    def mpls(self, **kwargs):
+        """Enable or Disable mpls.
+        Args:
+            enable (bool): If MPLS should be enabled or disabled.
+                           Default: ``True``.
+            get (bool): Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pynos.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...         dev.services.mpls(get=True)
+            ...         dev.services.mpls(enable=False)
+            ...         dev.services.mpls()
+            Traceback (most recent call last):
+            KeyError
+        """
+        enable = kwargs.pop('enable', True)
+        get = kwargs.pop('get', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if get:
+            enable = None
+
+        mpls_args = {}
+        if get:
+            config = ('router_mpls_get', mpls_args)
+            x = callback(config, handler='get_config')
+            if x.data == '<output></output>':
+                return False
+            else:
+                return True
+        if not enable:
+            config = ('router_mpls_delete', mpls_args)
+        else:
+            config = ('router_mpls_create', mpls_args)
+
+        return callback(config)
