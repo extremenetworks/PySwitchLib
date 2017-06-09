@@ -35,6 +35,8 @@ class Interface(BaseInterface):
         return [
             'ethernet',
             'port_channel'
+            'loopback',
+            've'
         ]
 
     @property
@@ -277,7 +279,7 @@ class Interface(BaseInterface):
             bpdu_drop_enable (bool): Drop BPDU packets. (True, False)
             local_switching (bool): Configure local switching. (True, False)
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete the bd.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -370,7 +372,7 @@ class Interface(BaseInterface):
             load_balance (bool): load-balance. (True, False)
             cos (str): cos value. <cos value: 0..7>
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete peer_ips on bd.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -451,7 +453,7 @@ class Interface(BaseInterface):
             intf_type (str): Type of interface. ['ethernet', 'port_channel']
             lif_name  (str): Logical Interface name.
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete single/all LIFs on a bd.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -472,6 +474,8 @@ class Interface(BaseInterface):
             ...         delete=True, bridge_domain='100', lif_name='1/34.1')
             ...         output = dev.interface.bridge_domain_logical_interface(
             ...         bridge_domain='100', lif_name='1/34.1')
+            ...         output = dev.interface.bridge_domain_logical_interface(
+            ...         delete=True, bridge_domain='100')
             Traceback (most recent call last):
             KeyError
         """
@@ -479,7 +483,7 @@ class Interface(BaseInterface):
         bridge_domain = kwargs.pop('bridge_domain')
         bridge_domain_service = kwargs.pop('bridge_domain_service_type', 'p2mp')
         intf_type = kwargs.pop('intf_type', 'ethernet')
-        lif_name = kwargs.pop('lif_name')
+        lif_name = kwargs.pop('lif_name', None)
 
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
@@ -494,16 +498,22 @@ class Interface(BaseInterface):
                              "`ethernet, port_channel`")
         if intf_type == 'port_channel':
             bd_args = dict(bridge_domain=\
-                          (bridge_domain,bridge_domain_service),
-                          port_channel=lif_name)
+                          (bridge_domain,bridge_domain_service))
         else:
             bd_args = dict(bridge_domain=\
-                          (bridge_domain,bridge_domain_service),
-                          ethernet=lif_name)
+                          (bridge_domain,bridge_domain_service))
+
+        if lif_name is not None and intf_type == 'port_channel':
+            bd_args.update(port_channel=lif_name)
+        elif lif_name is not None and intf_type == 'ethernet':
+            bd_args.update(ethernet=lif_name)
 
         if delete:
-            method_name = 'bridge_domain_logical_interface_%s_delete' %\
-                          intf_type
+            if lif_name is None:
+                method_name = 'bridge_domain_logical_interface_delete'
+            else:
+                method_name = 'bridge_domain_logical_interface_%s_delete' %\
+                              intf_type
             config = (method_name, bd_args)
             return callback(config)
         if not get_config:
@@ -530,7 +540,7 @@ class Interface(BaseInterface):
             intf_name (str): Intername name.
             lif_name  (str): Logical Interface name.
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete single/all lifs on intf.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -555,6 +565,8 @@ class Interface(BaseInterface):
             ...         output = dev.interface.logical_interface_create(
             ...         intf_name='111', lif_name='111.1',
             ...         intf_type='port_channel')
+            ...         output = dev.interface.logical_interface_create(
+            ...         delete=True, intf_name='0/34', lif_name='0/34.1')
             Traceback (most recent call last):
             KeyError
         """
@@ -577,6 +589,10 @@ class Interface(BaseInterface):
             lg_args = dict(ethernet=intf_name)
 
         if delete:
+            if lif_name is not None and intf_type == 'port_channel':
+                lg_args.update(port_channel_=lif_name)
+            elif lif_name is not None and intf_type == 'ethernet':
+                lg_args.update(ethernet_=lif_name)
             method_name = 'interface_%s_logical_interface_%s_delete' %\
                           (intf_type, intf_type)
             config = (method_name, lg_args)
@@ -612,7 +628,7 @@ class Interface(BaseInterface):
             inner_vlan (bool): Enable inner vlan.(True, False)
             inner_tag_vlan_id (str): Inner vlan ID
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete the tag vlan.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -700,7 +716,7 @@ class Interface(BaseInterface):
             lif_name  (str): Logical Interface name.
             untag_vlan_id (str): Outer vlan ID
             get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the router ve on the vlan.(True, False)
+            delete (bool): True, delete the untag vlan on lif.(True, False)
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
@@ -769,4 +785,163 @@ class Interface(BaseInterface):
             output = callback(config, handler='get_config')
             util = Util(output.data)
             result = util.find(util.root, './/untagged-vlan-id')
+        return result
+
+    def ip_ospf(self, **kwargs):
+        """Configure/get ospf on an interface
+        Args:
+            intf_type (str): Type of interface.
+            intf_name (str): Intername name.
+            area (str): OSPF areas.
+            auth_change_wait_time (str): Authentication Change Wait time
+                                         (MD5 and non MD5).
+            hello_interval (str): Time between HELLO packets.
+            dead_interval (str): Interval after which a neighbor
+                                 is declared dead.
+            retransmit_interval (str): Time between retransmitting lost
+                                       link state advertisements.
+            transmit_delay (str): Link state transmit delay.
+            cost (str): Interface cost.
+            network (str): Interface type.
+                           ['broadcast', 'non-broadcast', 'point-to-point']
+            intf_ldp_sync (str): Set LDP-SYNC operation mode on this interface.
+                                 [enable, disable]
+            mtu_ignore (bool): To disable OSPF MTU mismatch detection.
+            active (bool):  Active information.
+            passive (bool): Passive information.
+            priority (str): Router priority.
+            get (bool): Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `intf_name`, `area` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.ip_ospf(intf_type='loopback',
+            ...         get=True, intf_name='11')
+            ...         output = dev.interface.ip_ospf(intf_type='loopback',
+            ...         area='0', intf_name='11')
+            Traceback (most recent call last):
+            KeyError
+        """
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name')
+        auth_change_wait_time = kwargs.pop('auth_change_wait_time', None)
+        hello_interval = kwargs.pop('hello_interval', None)
+        dead_interval = kwargs.pop('dead_interval', None)
+        retransmit_interval = kwargs.pop('retransmit_interval', None)
+        transmit_delay = kwargs.pop('transmit_delay', None)
+        cost = kwargs.pop('cost', None)
+        network = kwargs.pop('network', None)
+        intf_ldp_sync = kwargs.pop('intf_ldp_sync', None)
+        mtu_ignore = kwargs.pop('mtu_ignore', None)
+        active= kwargs.pop('active', None)
+        passive = kwargs.pop('passive', None)
+        priority = kwargs.pop('priority', None)
+        valid_int_types = self.valid_int_types
+
+        if intf_type not in self.valid_int_types:
+            raise ValueError('intf_type must be one of: %s' %
+                             repr(valid_int_types))
+        ospf_args = {}
+        get_config = kwargs.pop('get', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        ospf_args[intf_type] = intf_name
+        if not get_config:
+            area = kwargs.pop('area')
+            ospf_args.update(area=area,
+                         auth_change_wait_time=auth_change_wait_time,
+                         hello_interval=hello_interval,
+                         dead_interval=dead_interval,
+                         retransmit_interval=retransmit_interval,
+                         transmit_delay=transmit_delay, cost=cost,
+                         network=network, intf_ldp_sync=intf_ldp_sync,
+                         mtu_ignore=mtu_ignore, active=active,
+                         passive=passive, priority=priority)
+            method_name = 'interface_%s_ip_ospf_update' % intf_type
+            config = (method_name, ospf_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'interface_%s_ip_ospf_get' % intf_type
+            config = (method_name, ospf_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            ospf = util.find(util.root, './/area')
+            if ospf is not None:
+                 active = util.find(util.root, './/active')
+                 passive = util.find(util.root, './/passive')
+                 mtu_ignore = util.find(util.root, './/mtu-ignore')
+                 result = { 'area' : ospf, 'active' : active,
+                            'passive' : passive, 'mtu_ignore' : mtu_ignore}
+            else:
+                 result = None
+        return result
+
+    def ip_router_isis(self, **kwargs):
+        """Configure/get/delete ISIS on an interface
+
+        Args:
+            intf_type (str): Type of interface.
+            intf_name (str): Intername name.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the router isis on intf.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `intf_name` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.ip_router_isis(
+            ...         intf_type='loopback', get=True, intf_name='11')
+            ...         output = dev.interface.ip_router_isis(
+            ...         intf_type='loopback', delete=True, intf_name='11')
+            ...         output = dev.interface.ip_router_isis(
+            ...         intf_type='loopback', intf_name='11')
+            Traceback (most recent call last):
+            KeyError
+        """
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name')
+
+        if intf_type not in self.valid_int_types:
+            raise ValueError('intf_type must be one of: %s' %
+                             repr(valid_int_types))
+        isis_args = {}
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        isis_args[intf_type] = intf_name
+        if delete:
+            method_name = 'interface_%s_ip_router_isis_delete' % intf_type
+            config = (method_name, isis_args)
+            return callback(config)
+        if not get_config:
+            isis_args['interface_ip_router_isis'] = True
+            method_name = 'interface_%s_ip_router_isis_update' % intf_type
+            config = (method_name, isis_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'interface_%s_ip_router_isis_get' % intf_type
+            config = (method_name, isis_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = util.find(util.root, './/isis')
         return result
