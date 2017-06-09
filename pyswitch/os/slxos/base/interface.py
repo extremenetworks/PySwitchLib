@@ -474,8 +474,6 @@ class Interface(BaseInterface):
             ...         delete=True, bridge_domain='100', lif_name='1/34.1')
             ...         output = dev.interface.bridge_domain_logical_interface(
             ...         bridge_domain='100', lif_name='1/34.1')
-            ...         output = dev.interface.bridge_domain_logical_interface(
-            ...         delete=True, bridge_domain='100')
             Traceback (most recent call last):
             KeyError
         """
@@ -509,11 +507,8 @@ class Interface(BaseInterface):
             bd_args.update(ethernet=lif_name)
 
         if delete:
-            if lif_name is None:
-                method_name = 'bridge_domain_logical_interface_delete'
-            else:
-                method_name = 'bridge_domain_logical_interface_%s_delete' %\
-                              intf_type
+            method_name = 'bridge_domain_logical_interface_%s_delete' %\
+                          intf_type
             config = (method_name, bd_args)
             return callback(config)
         if not get_config:
