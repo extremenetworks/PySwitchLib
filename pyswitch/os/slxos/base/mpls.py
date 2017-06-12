@@ -727,9 +727,11 @@ class Mpls(object):
             if output.data != '<output></output>':
                 ospf_area_decimal = util.find(util.root, './/ospf-area-as-decimal')
                 ospf_area_ip = util.find(util.root, './/ospf-area-as-ip-address')
+                ospf_area_all = util.find(util.root, './/all')
                 isis = util.find(util.root, './/isis')
                 result = dict(ospf_area_decimal=ospf_area_decimal,
                               ospf_area_ip=ospf_area_ip,
+                              ospf_area_all=ospf_area_all,
                               isis=isis)
             else:
                 result = None
