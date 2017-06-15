@@ -89,6 +89,7 @@ class Mpls(object):
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
             >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.mpls.mpls_interface(get=True)
             ...     output = dev.mpls.mpls_interface(get=True, intf_name='111',
             ...                                      intf_type='ve')
             ...     output = dev.mpls.mpls_interface(intf_name='111',
@@ -99,7 +100,7 @@ class Mpls(object):
         """
 
         intf_type = kwargs.pop('intf_type', 'ethernet')
-        intf_name = kwargs.pop('intf_name')
+        intf_name = kwargs.pop('intf_name', None)
 
         if intf_type not in self.valid_int_types:
             raise ValueError('intf_type must be one of: %s' %
@@ -121,6 +122,8 @@ class Mpls(object):
             config = (method_name, mpls_args)
             return callback(config)
         elif get_config:
+            if intf_name is None:
+                mpls_args= {}
             method_name = 'router_mpls_mpls_interface_get'
             config = (method_name, mpls_args)
             output = callback(config, handler='get_config')
@@ -128,7 +131,10 @@ class Mpls(object):
             if output.data == '<output></output>':
                 result = None
             else:
-                result = util.find(util.root, './/interface-name')
+                if intf_name is None:
+                    result = util.findall(util.root, './/interface-name')
+                else:
+                    result = util.find(util.root, './/interface-name')
         return result
 
     def mpls_interface_ldp_enable(self, **kwargs):
