@@ -351,7 +351,7 @@ class Mpls(object):
             ...              lsp_name='test')
         """
 
-        lsp_name = kwargs.pop('lsp_name')
+        lsp_name = kwargs.pop('lsp_name', None)
 
         mpls_args = {}
 
@@ -359,22 +359,28 @@ class Mpls(object):
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
 
-        mpls_args = dict(lsp=lsp_name)
         if delete:
+            mpls_args = dict(lsp=lsp_name)
             method_name = 'router_mpls_lsp_delete'
             config = (method_name, mpls_args)
             return callback(config)
         if not get_config:
+            mpls_args = dict(lsp=lsp_name)
             method_name = 'router_mpls_lsp_create'
             config = (method_name, mpls_args)
             return callback(config)
         elif get_config:
+            if lsp_name is not None:
+                mpls_args = dict(lsp=lsp_name)
             method_name = 'router_mpls_lsp_get'
             config = (method_name, mpls_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
             if output.data != '<output></output>':
-                result = util.find(util.root, './/lsp-name')
+                if lsp_name is not None:
+                    result = util.find(util.root, './/lsp-name')
+                else:
+                    result = util.findall(util.root, './/lsp-name')
             else:
                 result = None
         return result
@@ -882,4 +888,54 @@ class Mpls(object):
             else:
                 result = None
 
+        return result
+   
+    def mpls_lsp_get_details(self, **kwargs):
+        """ get all router mpls lsp details
+
+        Args:
+            lsp_name (str). Define lsp name
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            KeyError: if `lsp_name` is not specified.
+
+        Examples:
+            >>> import pynos.device
+            >>> conn = ('10.24.39.211', '22')
+            >>> auth = ('admin', 'password')
+            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.mpls.mpls_lsp_get_details(
+            ...              lsp_name='test')
+        """
+
+        lsp_name = kwargs.pop('lsp_name')
+
+        mpls_args = {}
+
+        get_config = kwargs.pop('get', True)
+        callback = kwargs.pop('callback', self._callback)
+        mpls_args = dict(lsp=lsp_name)
+        method_name = 'router_mpls_lsp_get'
+        config = (method_name, mpls_args)
+        output = callback(config, handler='get_config')
+        util = Util(output.data)
+        if output.data != '<output></output>':
+            lsp_name = util.find(util.root, './/lsp-name')
+            lsp_destn_addr = util.find(util.root, './/to')
+            lsp_primary_path = util.find(util.root, './/primary-path')
+            lsp_secondary_path = util.find(util.root, './/secpath-name')
+            lsp_cos = util.find(util.root, './/cos')
+            lsp_enable = util.find(util.root, './/enable')
+            result = {'lsp_name':lsp_name,
+                      'lsp_destn_addr':lsp_destn_addr,
+                      'lsp_primary_path':lsp_primary_path,
+                      'lsp_secondary_path':lsp_secondary_path,
+                      'lsp_cos':lsp_cos, 'lsp_enable':lsp_enable}
+        else:
+            result = None
         return result
