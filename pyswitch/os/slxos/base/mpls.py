@@ -224,7 +224,7 @@ class Mpls(object):
             ...     output = dev.mpls.mpls_path_create(path_name='test')
         """
 
-        path_name = kwargs.pop('path_name')
+        path_name = kwargs.pop('path_name', None)
 
         mpls_args = {}
 
@@ -232,21 +232,27 @@ class Mpls(object):
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
 
-        mpls_args = dict(path=path_name)
         if delete:
+            mpls_args = dict(path=path_name)
             method_name = 'router_mpls_path_delete'
             config = (method_name, mpls_args)
             return callback(config)
         if not get_config:
+            mpls_args = dict(path=path_name)
             method_name = 'router_mpls_path_create'
             config = (method_name, mpls_args)
             return callback(config)
         elif get_config:
+            if path_name is not None:
+                mpls_args = dict(path=path_name)
             method_name = 'router_mpls_path_get'
             config = (method_name, mpls_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
-            result = util.find(util.root, './/path-name')
+            if path_name is not None:
+                result = util.find(util.root, './/path-name')
+            else:
+                result = util.findall(util.root, './/path-name')
         return result
 
     def mpls_path_hop_create(self, **kwargs):
