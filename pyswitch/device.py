@@ -30,13 +30,14 @@ import pyswitch.os.slxos.base.services
 import pyswitch.os.slxos.base.system
 import pyswitch.os.slxos.base.isis
 import pyswitch.os.slxos.base.ospf
+import pyswitch.os.slxos.base.mpls
 import pyswitch.utilities as util
 from pyswitch.utilities import Util
 from pyswitch.XMLAsset import XMLAsset
 import re
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp',  'lldp', 'system', 'services',
-             'fabric_service', 'vcs', 'isis', 'ospf']
+             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls']
 NOS_VERSIONS = {
     '6.0.2': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -100,7 +101,8 @@ SLXOS_VERSIONS = {
         'system': pyswitch.os.slxos.base.system.System,
         'services': pyswitch.os.slxos.base.services.Services,
         'isis': pyswitch.os.slxos.base.isis.Isis,
-        'ospf': pyswitch.os.slxos.base.ospf.Ospf
+        'ospf': pyswitch.os.slxos.base.ospf.Ospf,
+        'mpls': pyswitch.os.slxos.base.mpls.Mpls
 
     },
     '16.1.1': {
@@ -111,7 +113,8 @@ SLXOS_VERSIONS = {
         'system': pyswitch.os.slxos.base.system.System,
         'services': pyswitch.os.slxos.base.services.Services,
         'isis': pyswitch.os.slxos.base.isis.Isis,
-        'ospf': pyswitch.os.slxos.base.ospf.Ospf
+        'ospf': pyswitch.os.slxos.base.ospf.Ospf,
+        'mpls': pyswitch.os.slxos.base.mpls.Mpls
     },
     '17.1.0': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -121,7 +124,8 @@ SLXOS_VERSIONS = {
         'system': pyswitch.os.slxos.base.system.System,
         'services': pyswitch.os.slxos.base.services.Services,
         'isis': pyswitch.os.slxos.base.isis.Isis,
-        'ospf': pyswitch.os.slxos.base.ospf.Ospf
+        'ospf': pyswitch.os.slxos.base.ospf.Ospf,
+        'mpls': pyswitch.os.slxos.base.mpls.Mpls
     },
     '17.1.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -131,7 +135,8 @@ SLXOS_VERSIONS = {
         'system': pyswitch.os.slxos.base.system.System,
         'services': pyswitch.os.slxos.base.services.Services,
         'isis': pyswitch.os.slxos.base.isis.Isis,
-        'ospf': pyswitch.os.slxos.base.ospf.Ospf
+        'ospf': pyswitch.os.slxos.base.ospf.Ospf,
+        'mpls': pyswitch.os.slxos.base.mpls.Mpls
     },
 }
 
