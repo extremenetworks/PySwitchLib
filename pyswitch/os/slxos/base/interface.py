@@ -34,7 +34,7 @@ class Interface(BaseInterface):
 
         return [
             'ethernet',
-            'port_channel'
+            'port_channel',
             'loopback',
             've'
         ]
