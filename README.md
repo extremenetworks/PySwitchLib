@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.54
+* Fixed issue with update APIs where a value of 0 was not properly being updated.
 ## 0.1.63
 * Added support for SLXOS 17r.1.00a
 ## 0.1.59

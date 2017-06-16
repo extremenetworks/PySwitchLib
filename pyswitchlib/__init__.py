@@ -255,7 +255,7 @@ class PySwitchLib(object):
                     if match:
                         update_object_rest_data = match.group(1)
 
-                    if temp_pybind_obj == False:
+                    if repr(temp_pybind_obj) is 'False':
                         rest_operation = 'DELETE'
                     else:
                         if 'update_patch' in operation_type:
