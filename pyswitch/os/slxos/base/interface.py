@@ -1039,7 +1039,8 @@ class Interface(BaseInterface):
                 raise KeyError('Pass either `rate_bps` or `rate_percent`')
             map_args.update(ingress=(protocol_type, rate_format, rate_bps,
                             rate_percent, bum_action), rate_format=rate_format,
-                            rate_bps=rate_bps, bum_action=bum_action)
+                            rate_bps=rate_bps, bum_action=bum_action,
+                            rate_percent=rate_percent)
             method_name = 'interface_%s_storm_control_ingress_create'\
                           % intf_type
             config = (method_name, map_args)
