@@ -6541,3 +6541,57 @@ class Interface(object):
             else:
                 result = None
         return result
+
+    def mac_group_create(self, **kwargs):
+        """Config/get/delete mac-group
+
+        Args:
+            mac_group_id(int): Mac Group Id. Valid Range [1,500]
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the service policy on the interface.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `mac_group_id` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.mac_group_create(
+            ...         get=True, mac_group_id=10)
+            ...         output_all = dev.interface.mac_group_create(
+            ...         delete=True, mac_group_id=10)
+            ...         output_all = dev.interface.mac_group_create(
+            ...         mac_group_id=10)
+        """
+
+        mac_group_id = kwargs.pop('mac_group_id')
+        if mac_group_id not in range(1,501):
+            raise ValueError('`mac_group_id` not in range[1,500]')
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        map_args = dict(mac_group=mac_group_id)
+        if delete:
+            method_name = 'mac_group_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            method_name = 'mac_group_create'
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'mac_group_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if output.data != '<output></output>':
+                result = util.findall(util.root, './/entry-address')
+            else:
+                result = None
+        return result
