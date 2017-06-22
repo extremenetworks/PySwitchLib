@@ -2832,6 +2832,8 @@ class Interface(object):
             int_proto_state = util.find(interface, './/line-protocol-state')
 
             ip_address = util.find(interface, './/ipv4')
+            if ip_address is not None and ip_address.endswith('/32') and 'loopback' not in int_type:
+                ip_address = 'unnumbered'
             results = {'interface-type': int_type,
                        'interface-name': int_name,
                        'interface-role': None,
