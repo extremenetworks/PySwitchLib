@@ -5932,3 +5932,611 @@ class Interface(object):
             config = ('interface_port_channel_speed_update',
                       {'port_channel': name, 'po_speed': po_speed})
         return callback(config)
+
+    def class_map_create(self, **kwargs):
+        """Configure/get/delete class-map configuration
+
+        Args:
+            class_map_name (str): Class-Map name.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the class-map.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `class_map_name` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.class_map_name(get=True)
+            ...         output = dev.interface.class_map_name(
+            ...         get=True, class_map_name='policy1')
+            ...         output = dev.interface.class_map_name(
+            ...         delete=True, class_map_name='policy1')
+            ...         output = dev.interface.class_map_name(
+            ...         class_map_name='policy1')
+            Traceback (most recent call last):
+            KeyError
+        """
+        class_map = kwargs.pop('class_map_name', None)
+
+        map_args = {}
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if delete:
+            map_args = dict(class_map=class_map)
+            method_name = 'class_map_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            map_args = dict(class_map=class_map)
+            method_name = 'class_map_create'
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            if class_map is not None:
+                map_args = dict(class_map=class_map)
+            method_name = 'class_map_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if class_map is not None:
+                result = util.find(util.root, './/name')
+            else:
+                result = util.findall(util.root, './/name')
+        return result
+
+    def class_map_get_details(self, **kwargs):
+        """Get all the details of a class-map configuration
+
+        Args:
+            class_map_name (str): Class-Map name.
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            None.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.class_map_get_details
+            ...         (class_map_name='test1')
+            Traceback (most recent call last):
+            KeyError
+        """
+        class_map = kwargs.pop('class_map_name')
+
+        get_config = kwargs.pop('get', True)
+        callback = kwargs.pop('callback', self._callback)
+
+        map_args = dict(class_map=class_map)
+        method_name = 'class_map_get'
+        config = (method_name, map_args)
+        output = callback(config, handler='get_config')
+        util = Util(output.data)
+        if output.data != '<output></output>':
+            class_map_name = util.find(util.root, './/name')
+            access_group = util.find(util.root, './/access-group-name')
+            bridge_domain = util.find(util.root, './/bridge-domain-range')
+            vlan = util.find(util.root, './/vlan-range')
+            result = dict(class_map_name=class_map_name,
+                          access_group=access_group,
+                          bridge_domain=bridge_domain,
+                          vlan=vlan)
+        else:
+            result = None
+        return result
+
+    def class_map_match_access_group(self, **kwargs):
+        """Configure/get/delete class-map access-group configuration
+
+        Args:
+            class_map_name (str): Class Map name.
+            access_group_name (str): Access Group name.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the class-map.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `class_map_name`, `access_group_name` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.class_map_match_access_group(
+            ...         get=True, class_map_name='policy1')
+            ...         output = dev.interface.class_map_match_access_group(
+            ...         delete=True, class_map_name='policy1')
+            ...         output = dev.interface.class_map_match_access_group(
+            ...         class_map_name='policy1', access_group_name='test1')
+            Traceback (most recent call last):
+            KeyError
+        """
+        class_map = kwargs.pop('class_map_name')
+        access_group_name = kwargs.pop('access_group_name', None)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        map_args = dict(class_map=class_map)
+        if delete:
+            method_name = 'class_map_match_access_group_access_'\
+                          'group_name_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            if access_group_name is None:
+                raise KeyError("`access_group_name` cannot be None")
+            method_name = 'class_map_match_access_group_access_'\
+                          'group_name_update'
+            map_args.update(access_group_name=access_group_name)
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'class_map_match_access_group_access_'\
+                          'group_name_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = util.find(util.root, './/access-group-name')
+        return result
+
+    def class_map_match_vlan(self, **kwargs):
+        """Configure/get/delete class-map vlan configuration
+
+        Args:
+            class_map_name (str): Class Map name.
+            vlan_range (str): Vlan ID/Vlan Range; Example: 1,2,4-7,8,9-22,55-66.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the class-map.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `class_map_name`, `access_group_name` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.class_map_match_vlan(
+            ...         get=True, class_map_name='policy1')
+            ...         output = dev.interface.class_map_match_vlan(
+            ...         delete=True, class_map_name='policy1')
+            ...         output = dev.interface.class_map_match_vlan(
+            ...         class_map_name='policy1', vlan_range=100)
+            ...         output = dev.interface.class_map_match_vlan(
+            ...         class_map_name='policy1', vlan_range=100-120)
+            Traceback (most recent call last):
+            KeyError
+        """
+        class_map = kwargs.pop('class_map_name')
+        vlan_range = kwargs.pop('vlan_range', None)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        map_args = dict(class_map=class_map)
+        if delete:
+            method_name = 'class_map_match_vlan_vlan_range_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            if vlan_range is None:
+                raise KeyError("`vlan_range` cannot be None")
+            method_name = 'class_map_match_vlan_vlan_range_update'
+            map_args.update(vlan_range=vlan_range)
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'class_map_match_vlan_vlan_range_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = util.find(util.root, './/vlan-range')
+        return result
+
+    def class_map_match_bridge_domain(self, **kwargs):
+        """Configure/get/delete class-map bridge domain configuration
+
+        Args:
+            class_map_name (str): Class Map name.
+            bridge_domain_range (str): Bridge Domain ID/Range; Example: 1,2,4-7,8,9-22,55-66.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the class-map.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `class_map_name`, `bridge_domain_name` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.class_map_match_bridge_domain(
+            ...         get=True, class_map_name='policy1')
+            ...         output = dev.interface.class_map_match_bridge_domain(
+            ...         delete=True, class_map_name='policy1')
+            ...         output = dev.interface.class_map_match_bridge_domain(
+            ...         class_map_name='policy1', bridge_domain_range=100)
+            ...         output = dev.interface.class_map_match_bridge_domain(
+            ...         class_map_name='policy1', bridge_domain_range=100-120)
+            Traceback (most recent call last):
+            KeyError
+        """
+        class_map = kwargs.pop('class_map_name')
+        bridge_domain_range = kwargs.pop('bridge_domain_range', None)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        map_args = dict(class_map=class_map)
+        if delete:
+            method_name = 'class_map_match_bridge_domain_'\
+                           'bridge_domain_range_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            if bridge_domain_range is None:
+                raise KeyError("`bridge_domain_range` cannot be None")
+            method_name = 'class_map_match_bridge_domain_'\
+                           'bridge_domain_range_update'
+            map_args.update(bridge_domain_range=bridge_domain_range)
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'class_map_match_bridge_domain_'\
+                           'bridge_domain_range_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = util.find(util.root, './/bridge-domain-range')
+        return result
+
+    def policy_map_create(self, **kwargs):
+        """Configure/get/delete policy-map configuration
+
+        Args:
+            policy_map_name (str): Policy-Map name.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the class-map.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `class_map_name` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.policy_map_create(get=True)
+            ...         output = dev.interface.policy_map_create(
+            ...         get=True, policy_map_name='policy1')
+            ...         output = dev.interface.policy_map_create(
+            ...         delete=True, policy_map_name='policy1')
+            ...         output = dev.interface.policy_map_create(
+            ...         policy_map_name='policy1')
+            Traceback (most recent call last):
+            KeyError
+        """
+        policy_map = kwargs.pop('policy_map_name', None)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if delete:
+            map_args = dict(policy_map=policy_map)
+            method_name = 'policy_map_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            map_args = dict(policy_map=policy_map)
+            method_name = 'policy_map_create'
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            if policy_map is not None:
+                map_args = dict(policy_map=policy_map)
+            else:
+                map_args = {}
+            method_name = 'policy_map_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if policy_map is not None:
+                result = util.find(util.root, './/name')
+            else:
+                result = util.findall(util.root, './/name')
+        return result
+
+    def policy_map_class_map_create(self, **kwargs):
+        """Config/get/delete class-maps of a policy-map configuration
+
+        Args:
+            policy_map_name (str): Policy-Map name.
+            class_map_name (str): Class-Map name.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the policy-map class-map.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `policy_map_name` or `class_map_name` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.policy_map_class_map_create(
+            ...         policy_map_name='test1', get=True)
+            ...         output_all = dev.interface.policy_map_class_map_create(
+            ...         policy_map_name='test1', class_map_name='test10',
+            ...         get=True)
+            ...         output_all = dev.interface.policy_map_class_map_create(
+            ...         policy_map_name='test1', delete=True,
+            ...         class_map_name='test10')
+            ...         output_all = dev.interface.policy_map_class_map_create(
+            ...         policy_map_name='test1', class_map_name='test10')
+            Traceback (most recent call last):
+            Traceback (most recent call last):
+            KeyError
+        """
+        policy_map = kwargs.pop('policy_map_name')
+        class_map = kwargs.pop('class_map_name', None)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        map_args = dict(policy_map=policy_map)
+        if class_map is not None:
+            map_args.update(class_=class_map)
+
+        if delete:
+            method_name = 'policy_map_class_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            method_name = 'policy_map_class_create'
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'policy_map_class_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if class_map is not None:
+                result = util.find(util.root, './/cl-name')
+            else:
+                result = util.findall(util.root, './/cl-name')
+        return result
+
+    def policy_map_class_police(self, **kwargs):
+        """Config/get/delete Policy Map Class Police Instance
+
+        Args:
+            policy_map_name (str): Policy-Map name.
+            class_map_name (str): Class-Map name.
+            cir (str) : Committed Information Rate. 
+                        Valid Range <0-300000000000> bits Per Second
+            cbs (str) : Committed Burst Rate. 
+                        Valid Range <1250-37500000000> Bytes
+            eir (str) : Exceeded Information Rate. 
+                        Valid Range <0-300000000000> bits Per Second
+            ebs (str) : Exceeded Burst Rate. 
+                        Valid Range <1250-37500000000> Bytes
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the class-map police on Policy-map.
+                           (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `policy_map_name` or `class_map_name` is not specified.
+                      if either `cir or eir` is not specified
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.policy_map_class_police(
+            ...         policy_map_name='test1', class_map_name='test2',
+            ...         get=True)
+            ...         output_all = dev.interface.policy_map_class_map_create(
+            ...         policy_map_name='test1', delete=True,
+            ...         class_map_name='test10')
+            ...         output_all = dev.interface.policy_map_class_map_create(
+            ...         policy_map_name='test1', class_map_name='test10',
+            ...         cir=10000000, cbs=100000, eir=1000000, ebs=1000000)
+        """
+        policy_map = kwargs.pop('policy_map_name')
+        class_map = kwargs.pop('class_map_name')
+
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        map_args = dict(policy_map=policy_map, class_=class_map)
+        if delete:
+            method_name = 'policy_map_class_police_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            cir = kwargs.pop('cir')
+            cbs = kwargs.pop('cbs', None)
+            eir = kwargs.pop('eir', None)
+            ebs = kwargs.pop('ebs', None)
+            if eir is None and ebs is not None:
+                raise KeyError("Missing args `EIR`")
+            if not 1 < cir < 300000000001:
+                raise ValueError("`cir` must be in range <0-300000000000>",
+                                 cir)
+            if eir is not None and not 1 < eir < 300000000001:
+                raise ValueError("`eir` must be in range <0-300000000000>",
+                                 eir)
+            if cbs is not None and not 1251 < cbs < 37500000001:
+                raise ValueError("`cbs` must be in range <1250-37500000000>",
+                                 cbs)
+            if ebs is not None and not 1251 < ebs < 37500000001:
+                raise ValueError("`ebs` must be in range <1250-37500000000>",
+                                 ebs)
+            
+            map_args.update(cir=cir, cbs=cbs, eir=eir, ebs=ebs)
+            method_name = 'policy_map_class_police_update'
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'policy_map_class_police_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if output.data != '<output></output>':
+                result = dict(cir=util.find(util.root, './/cir'),
+                              cbs=util.find(util.root, './/cbs'),
+                              eir=util.find(util.root, './/eir'),
+                              ebs=util.find(util.root, './/ebs'))
+            else:
+                result = None 
+        return result
+
+    def interface_service_policy(self, **kwargs):
+        """Config/get/delete Policy Map Class Police Instance
+
+        Args:
+            intf_type (str): Interface Type.('ethernet',
+                             'port_channel', gigabitethernet,
+                              tengigabitethernet etc).
+            intf_name (str): Interface Name
+            in_policy_name(str): Input Policy Map
+            out_policy_name(str): Output Policy Map
+            policy_map_name (str): Policy-Map name.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the service policy on the interface.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `intf_name` or `in_policy` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.interface_service_policy(
+            ...         get=True)
+            ...         output_all = dev.interface.interface_service_policy(
+            ...         delete=True, intf_name='1/45')
+            ...         output_all = dev.interface.interface_service_policy(
+            ...         delete=True, intf_name='1/45', in_policy='test1')
+            ...         output_all = dev.interface.interface_service_policy(
+            ...         intf_name='1/45', in_policy='test1', out_policy='test1')
+        """
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name')
+        in_policy = kwargs.pop('in_policy', None)
+        out_policy = kwargs.pop('out_policy', None)
+
+        valid_int_types = self.valid_int_types
+        if intf_type not in valid_int_types:
+            raise ValueError('intf_type must be one of: %s' %
+                             repr(valid_int_types))
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if intf_type == 'ethernet':
+            map_args = dict(ethernet=intf_name)
+        elif intf_type == 'gigabitethernet':
+            map_args = dict(gigabitethernet=intf_name)
+        elif intf_type == 'tengigabitethernet':
+            map_args = dict(tengigabitethernet=intf_name)
+        elif intf_type == 'fortygigabitethernet':
+            map_args = dict(fortygigabitethernet=intf_name)
+        else:
+            map_args = dict(port_channel=intf_name)
+
+        if delete:
+            if in_policy is None and out_policy is None or\
+                    in_policy is not None and out_policy is not None:
+                method_name_in = 'interface_%s_service_policy_in_delete'\
+                                 % intf_type
+                method_name_out = 'interface_%s_service_policy_out_delete'\
+                                  % intf_type
+                config_in = (method_name_in, map_args)
+                config_out = (method_name_out, map_args)
+                return callback(config_in), callback(config_out)
+            elif in_policy is not None:
+                method_name_in = 'interface_%s_service_policy_in_delete'\
+                                 % intf_type
+                config_in = (method_name_in, map_args)
+                return callback(config_in)
+            elif out_policy is not None:
+                method_name_out = 'interface_%s_service_policy_out_delete'\
+                                 % intf_type
+                config_out = (method_name_out, map_args)
+                return callback(config_out)
+        if not get_config:
+            map_args.update(in_=in_policy, out=out_policy)
+            method_name = 'interface_%s_service_policy_update' % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'interface_%s_service_policy_get' % intf_type
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if output.data != '<output></output>':
+                result = dict(in_policy=util.find(util.root, './/in'),
+                              out_policy=util.find(util.root, './/out'))
+            else:
+                result = None
+        return result

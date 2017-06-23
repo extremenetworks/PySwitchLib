@@ -940,3 +940,119 @@ class Interface(BaseInterface):
             util = Util(output.data)
             result = util.find(util.root, './/isis')
         return result
+
+    def interface_storm_control_ingress_create(self, **kwargs):
+        """Config/get/delete BUM Control
+
+        Args:
+            intf_type (str): Interface Type.('ethernet',
+                             gigabitethernet, tengigabitethernet etc).
+            intf_name (str): Interface Name
+            traffic_type (str): traffic_type.
+                             ['broadcast', 'unknown-unicast', 'multicast']
+            rate_format (str): rate format type.
+                             ['limit-bps', 'limit-percent']
+            rate_bps (int): Rate limit value in bps.
+                            Valid Range <0-100000000000 bps>.
+            rate_percent (int): Rate limit value in percent for line rate.
+                               Valid Range <0-100>.
+            bum_action (str): Bum Action. Valid Values ['monitor', 'shutdown']
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the service policy on the interface.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `intf_name`, `traffic_type_policy`, `rate_format`,
+                      is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.interface_storm_control_
+            ...         ingress_create(get=True, intf_name='1/45')
+            ...         output_all = dev.interface.interface_storm_control_
+            ...         ingress_create(delete=True, intf_name='1/45',
+            ...         traffic_type='broadcast')
+            ...         output_all = dev.interface.interface_storm_control_
+            ...         ingress_create(delete=True, intf_name='1/45',
+            ...         traffic_type='broadcast', rate_format='limit-bps',
+            ...         rate_bps=10000000, bum_action='shutdown')
+        """
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name')
+        protocol_type = kwargs.pop('traffic_type', None)
+        rate_format = kwargs.pop('rate_format', None)
+        rate_bps = kwargs.pop('rate_bps', None)
+        rate_percent = kwargs.pop('rate_percent', None)
+        bum_action = kwargs.pop('bum_action', 'shutdown')
+
+        valid_int_types = self.valid_int_types
+        if intf_type not in valid_int_types:
+            raise ValueError('intf_type must be one of: %s' %
+                             repr(valid_int_types))
+
+        if intf_type == 'ethernet':
+            map_args = dict(ethernet=intf_name)
+        elif intf_type == 'gigabitethernet':
+            map_args = dict(gigabitethernet=intf_name)
+        elif intf_type == 'tengigabitethernet':
+            map_args = dict(tengigabitethernet=intf_name)
+        else:
+            map_args = dict(fortygigabitethernet=intf_name)
+
+        if protocol_type is not None and protocol_type not in\
+                ['broadcast','unknown-unicast','multicast']:
+            raise KeyError('`traffic_type` must be one of them '
+                           '[broadcast, unknown-unicast, multicast]')
+        if bum_action not in ['monitor', 'shutdown']:
+            raise KeyError('`bum_action` must be one of them '
+                           '[monitor, shutdown]')
+        if rate_format is not None and rate_format not in\
+                ['limit-bps', 'limit-percent']:
+            raise KeyError('`rate_format` must be one of them '
+                           '[limit-bps, limit-percent]')
+        if rate_bps is not None and not 0 <= rate_bps < 100000000001:
+            raise ValueError("`rate_bps` must be in range <0-100000000000>",
+                             rate_bps)
+        if rate_percent is not None and not 0 <= rate_percent < 101:
+            raise ValueError("`rate_percent` must be in range <0-100>",
+                             rate_percent)
+
+        if delete:
+            map_args.update(ingress=(protocol_type, rate_format, rate_bps,
+                            rate_percent, bum_action))
+            method_name = 'interface_%s_storm_control_ingress_delete'\
+                          % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+
+        if not get_config:
+            if rate_bps is None and rate_percent is None:
+                raise KeyError('Pass either `rate_bps` or `rate_percent`')
+            map_args.update(ingress=(protocol_type, rate_format, rate_bps,
+                            rate_percent, bum_action), rate_format=rate_format,
+                            rate_bps=rate_bps, bum_action=bum_action,
+                            rate_percent=rate_percent)
+            method_name = 'interface_%s_storm_control_ingress_create'\
+                          % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'interface_%s_storm_control_ingress_get'\
+                          % intf_type
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if output.data != '<output></output>':
+                result = util.findall(util.root, './/protocol-type')
+            else:
+                result = None
+        return result
