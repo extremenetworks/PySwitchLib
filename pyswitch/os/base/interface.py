@@ -6567,31 +6567,38 @@ class Interface(object):
             ...         output_all = dev.interface.mac_group_create(
             ...         mac_group_id=10)
         """
-
-        mac_group_id = kwargs.pop('mac_group_id')
-        if mac_group_id not in range(1,501):
-            raise ValueError('`mac_group_id` not in range[1,500]')
+        mac_group_id = kwargs.pop('mac_group_id', None)
+        if mac_group_id is not None and mac_group_id not in range(1,501):
+            raise ValueError('`mac_group_id` not in range[1,500]', mac_group_id)
 
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
 
-        map_args = dict(mac_group=mac_group_id)
         if delete:
+            map_args = dict(mac_group=mac_group_id)
             method_name = 'mac_group_delete'
             config = (method_name, map_args)
             return callback(config)
         if not get_config:
+            map_args = dict(mac_group=mac_group_id)
             method_name = 'mac_group_create'
             config = (method_name, map_args)
             return callback(config)
         elif get_config:
+            if mac_group_id is not None:
+                map_args = dict(mac_group=mac_group_id)
+            else:
+                map_args = {}
             method_name = 'mac_group_get'
             config = (method_name, map_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
             if output.data != '<output></output>':
-                result = util.findall(util.root, './/entry-address')
+                if mac_group_id is not None:
+                    result = util.find(util.root, './/mac-group-id')
+                else:
+                    result = util.findall(util.root, './/mac-group-id')
             else:
                 result = None
         return result
