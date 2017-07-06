@@ -471,3 +471,54 @@ class Interface(BaseInterface):
         # TODO: add logic to shutdown STP at protocol level too.
         except AttributeError:
             return None
+
+    def vfab_enable(self, **kwargs):
+        """Config/get/delete vfab enable
+
+        Args:
+            vfab_enable (bool): Enable/Disable virtual fabric. (True, False)
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the service policy on the interface.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            None.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.vfab_enable(get=True)
+            ...         output_all = dev.interface.vfab_enable(delete=True)
+            ...         output_all = dev.interface.vfab_enable(vfab_enable=True)
+        """
+
+        vfab_enable = kwargs.pop('vfab_enable', False)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        map_args = {}
+
+        if delete:
+            method_name = 'vcs_virtual_fabric_enable_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            map_args = dict(vfab_enable=vfab_enable)
+            method_name = 'vcs_virtual_fabric_enable_update'
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            method_name = 'vcs_virtual_fabric_enable_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if util.find(util.root, './/enable'):
+                result = True
+            else:
+                result = False
+
+        return result
