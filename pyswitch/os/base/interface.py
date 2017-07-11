@@ -6783,7 +6783,7 @@ class Interface(object):
         Returns:
             Return value of `callback`.
         Raises:
-            KeyError: if `mac_group_id`, `access_vlan_id` and intf_name
+            KeyError: if `mac_address`, `access_vlan_id` and intf_name
                       are not specified.
         Examples:
             >>> import pyswitch.device
@@ -6865,4 +6865,104 @@ class Interface(object):
                         result.append((each_vlan, each_mac))
                 else:
                     result = util.find(util.root, './/mac')
+        return result
+
+    def switchport_trunk_allowed_ctag(self, **kwargs):
+        """Config/get/delete switchport trunk add/remove ctag
+
+        Args:
+            intf_type (str): Interface Type.('ethernet',
+                             'port_channel', gigabitethernet,
+                              tengigabitethernet etc).
+            intf_name (str): Interface Name
+            trunk_vlan_id (int): trunk vlan id.
+                                 <1-4090/8191 when VFAB disabled/enabled>
+            trunk_ctag_id (int): c_tag vlan id.
+                               <1-4090>
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the service policy on the interface.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `trunk_vlan_id`, `trunk_ctag_id` and intf_name
+                      are not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.
+            ...             switchport_trunk_allowed_ctag(
+            ...             get=True, intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35', trunk_vlan_id='100')
+            ...         dev.interface.switchport_trunk_add_ctag(
+            ...             delete=True, intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35',  trunk_vlan_id='8191',
+            ...             trunk_ctag_id='100')
+            ...         dev.interface.switchport_trunk_add_ctag(
+            ...             intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35',  trunk_vlan_id='8191',
+            ...             trunk_ctag_id='100')
+        """
+
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name')
+        trunk_vlan_id = kwargs.pop('trunk_vlan_id', None)
+        trunk_ctag_id = kwargs.pop('trunk_ctag_id', None)
+
+        valid_int_types = self.valid_int_types + ['ethernet']
+        if intf_type not in valid_int_types:
+            raise ValueError('intf_type must be one of: %s' %
+                             repr(valid_int_types))
+        if trunk_ctag_id is not None and\
+                int(trunk_ctag_id) not in range(1,4091):
+            raise ValueError('trunk_ctag_id %s must be '
+                             'in range(1,4090)' % (trunk_ctag_id))
+        if trunk_vlan_id is not None and\
+                int(trunk_vlan_id) not in range(4096,8192):
+            raise ValueError('trunk_vlan_id %s must be in '
+                             'range(4096,8191)' % (trunk_vlan_id))
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if intf_type == 'ethernet':
+            map_args = dict(ethernet=intf_name)
+        elif intf_type == 'gigabitethernet':
+            map_args = dict(gigabitethernet=intf_name)
+        elif intf_type == 'tengigabitethernet':
+            map_args = dict(tengigabitethernet=intf_name)
+        elif intf_type == 'fortygigabitethernet':
+            map_args = dict(fortygigabitethernet=intf_name)
+        else:
+            map_args = dict(port_channel=intf_name)
+
+        if delete:
+            map_args.update(remove=trunk_vlan_id,
+                            trunk_ctag_range=trunk_ctag_id)
+            method_name = 'interface_%s_switchport_trunk_'\
+                          'allowed_vlan_remove_create' % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            map_args.update(add=trunk_vlan_id,
+                            trunk_ctag_range=trunk_ctag_id)
+            method_name = 'interface_%s_switchport_trunk_'\
+                          'allowed_vlan_add_create' % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            map_args.update(add=trunk_vlan_id)
+            method_name = 'interface_%s_switchport_trunk_'\
+                          'allowed_vlan_add_ctag_get' % intf_type
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if output.data != '<output></output>':
+                result = util.find(util.root, './/ctag')
+            else:
+                result = None
         return result
