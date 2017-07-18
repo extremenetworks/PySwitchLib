@@ -185,8 +185,8 @@ class PySwitchLib(object):
                                         pybind_update_child_assignment(kwargs[child_tuple[1]][leaf_index])
 
                 for kwarg in kwargs:
-                    if kwarg not in kwargs_exclusion_list and kwargs[kwarg] != None:
-                        if kwarg not in bindings_keyval['kwargs_key_name']:
+                    if kwarg not in kwargs_exclusion_list:
+                        if kwarg != bindings_keyval['kwargs_key_name']:
                             if kwargs[kwarg] is not None:
                                 mapped_kwarg = kwarg
 
@@ -295,8 +295,11 @@ class PySwitchLib(object):
                 rest_data = rest_data.rsplit('<', 1)[0]
                 rest_data = rest_data.split(end_marker, 1)[-1]
 
-                if operation_type == 'create' and end_marker[:-1] in rest_uri:
-                    rest_uri = rest_uri.split(end_marker[:-1], 1)[0]
+                if operation_type == 'create' and end_marker[:-1] in uri:
+                    rest_uri = uri.rsplit(end_marker[:-1], 1)[0]                                                                                                                   
+                                                                                                                                                                                   
+                    if len(rest_uri) > 1:                                                                                                                                          
+                        rest_uri = rest_uri.rstrip('/')
             else:
                 if operation_type == 'create':
                     uri = uri.split('/')[-1]
