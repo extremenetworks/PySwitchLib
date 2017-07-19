@@ -6643,18 +6643,18 @@ class Interface(object):
         map_args = dict(mac_group=mac_group_id)
         if delete:
             if mac_group_entry is None:
-                map_args.update(mac_group_entry=mac_group_entry)
+                map_args.update(mac_group_entry=(mac_group_entry,))
             method_name = 'mac_group_mac_delete'
             config = (method_name, map_args)
             return callback(config)
         if not get_config:
-            map_args.update(mac_group_entry=mac_group_entry)
+                map_args.update(mac_group_entry=(mac_group_entry,))            
             method_name = 'mac_group_mac_create'
             config = (method_name, map_args)
             return callback(config)
         elif get_config:
             if mac_group_entry is not None:
-                map_args.update(mac_group_entry=mac_group_entry)
+                map_args.update(mac_group_entry=(mac_group_entry,))
             method_name = 'mac_group_mac_get'
             config = (method_name, map_args)
             output = callback(config, handler='get_config')
