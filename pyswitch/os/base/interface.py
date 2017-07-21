@@ -6541,3 +6541,520 @@ class Interface(object):
             else:
                 result = None
         return result
+
+    def mac_group_create(self, **kwargs):
+        """Config/get/delete mac-group
+
+        Args:
+            mac_group_id(int): Mac Group Id. Valid Range [1,500]
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the service policy on the interface.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `mac_group_id` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.mac_group_create(
+            ...         get=True, mac_group_id=10)
+            ...         output_all = dev.interface.mac_group_create(
+            ...         delete=True, mac_group_id=10)
+            ...         output_all = dev.interface.mac_group_create(
+            ...         mac_group_id=10)
+        """
+        mac_group_id = kwargs.pop('mac_group_id', None)
+        if mac_group_id is not None and mac_group_id not in range(1,501):
+            raise ValueError('`mac_group_id` not in range[1,500]', mac_group_id)
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if delete:
+            map_args = dict(mac_group=mac_group_id)
+            method_name = 'mac_group_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            map_args = dict(mac_group=mac_group_id)
+            method_name = 'mac_group_create'
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            if mac_group_id is not None:
+                map_args = dict(mac_group=mac_group_id)
+            else:
+                map_args = {}
+            method_name = 'mac_group_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if output.data != '<output></output>':
+                if mac_group_id is not None:
+                    result = util.find(util.root, './/mac-group-id')
+                else:
+                    result = util.findall(util.root, './/mac-group-id')
+            else:
+                result = None
+        return result
+
+    def mac_group_mac_create(self, **kwargs):
+        """Config/get/delete mac-group entry mac-addresses
+
+        Args:
+            mac_group_id(int): Mac Group Id. Valid Range [1,500]
+            mac_address (str): Entry Mac Address. HHHH.HHHH.HHHH format
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the service policy on the interface.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `mac_group_id` and mac_address are not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.mac_group_mac_create(
+            ...         get=True, mac_group_id=10)
+            ...         output_all = dev.interface.mac_group_mac_create(
+            ...         delete=True, mac_group_id=10)
+            ...         output_all = dev.interface.mac_group_mac_create(
+            ...         mac_group_id=10, mac_address='0011.1111.0a23')
+        """
+
+        mac_group_id = kwargs.pop('mac_group_id')
+        mac_group_entry = kwargs.pop('mac_address', None)
+
+        if int(mac_group_id) not in range(1, 501):
+            raise ValueError('`mac_group_id` not in range[1,500]')
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        map_args = dict(mac_group=mac_group_id)
+        if delete:
+            if mac_group_entry is None:
+                map_args.update(mac_group_entry=(mac_group_entry,))
+            method_name = 'mac_group_mac_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+                map_args.update(mac_group_entry=(mac_group_entry,))            
+            method_name = 'mac_group_mac_create'
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            if mac_group_entry is not None:
+                map_args.update(mac_group_entry=(mac_group_entry,))
+            method_name = 'mac_group_mac_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if output.data != '<output></output>':
+                if mac_group_entry is None:
+                    result = util.findall(util.root, './/entry-address')
+                else:
+                    result = util.find(util.root, './/entry-address')
+            else:
+                result = None
+        return result
+
+    def switchport_access_mac_group_create(self, **kwargs):
+        """Config/get/delete switchport access with the mac-group
+
+        Args:
+            intf_type (str): Interface Type.('ethernet',
+                             'port_channel', gigabitethernet,
+                              tengigabitethernet etc).
+            intf_name (str): Interface Name
+            access_vlan_id (int): Access vlan id.
+                                 <1-4090/8191 when VFAB disabled/enabled>
+            mac_group_id(int): Mac Group Id. Valid Range [1,500]
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the service policy on the interface.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `mac_group_id`, `access_vlan_id` and intf_name
+                      are not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.
+            ...             switchport_access_mac_group_create
+            ...             get=True, intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35')
+            ...         dev.interface.switchport_access_mac_group_create
+            ...             delete=True, intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35',  access_vlan_id='100',
+            ...             mac_group_id='11')
+            ...         dev.interface.switchport_access_mac_group_create
+            ...             intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35',
+            ...             access_vlan_id='100', mac_group_id='11')
+        """
+
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name')
+        mac_group_id = kwargs.pop('mac_group_id', None)
+        access_vlan_id = kwargs.pop('access_vlan_id', None)
+
+        valid_int_types = self.valid_int_types + ['ethernet']
+        if intf_type not in valid_int_types:
+            raise ValueError('intf_type must be one of: %s' %
+                             repr(valid_int_types))
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if intf_type == 'ethernet':
+            map_args = dict(ethernet=intf_name)
+        elif intf_type == 'gigabitethernet':
+            map_args = dict(gigabitethernet=intf_name)
+        elif intf_type == 'tengigabitethernet':
+            map_args = dict(tengigabitethernet=intf_name)
+        elif intf_type == 'fortygigabitethernet':
+            map_args = dict(fortygigabitethernet=intf_name)
+        else:
+            map_args = dict(port_channel=intf_name)
+
+        if delete:
+            if access_vlan_id is not None and mac_group_id is not None:
+                map_args.update(vlan=(access_vlan_id, mac_group_id))
+            method_name = 'interface_%s_switchport_access_vlan_delete' % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            map_args.update(vlan=(access_vlan_id, mac_group_id))
+            if int(mac_group_id) not in range(1, 501):
+                raise ValueError('`mac_group_id` not in range[1,500]')
+            if not pyswitch.utilities.valid_vlan_id(access_vlan_id):
+                raise InvalidVlanId("`name` must be between `1` and `8191`")
+
+            method_name = 'interface_%s_switchport_access_vlan_create' % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            if access_vlan_id is not None and mac_group_id is not None:
+                map_args.update(vlan=(access_vlan_id, mac_group_id))
+
+            method_name = 'interface_%s_switchport_access_vlan_get' % intf_type
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = []
+            if output.data != '<output></output>':
+                if mac_group_id is None and access_vlan_id is None:
+                    vlans = util.findall(util.root, './/access-vlan-id')
+                    macs = util.findall(util.root, './/mac-group')
+                    for each_vlan, each_mac in zip(vlans, macs):
+                        result.append((each_vlan, each_mac))
+                else:
+                    result = util.find(util.root, './/mac-group')
+        return result
+
+    def switchport_access_mac_create(self, **kwargs):
+        """Config/get/delete switchport access with the mac
+
+        Args:
+            intf_type (str): Interface Type.('ethernet',
+                             'port_channel', gigabitethernet,
+                              tengigabitethernet etc).
+            intf_name (str): Interface Name
+            access_vlan_id (int): Access vlan id.
+                                 <1-4090/8191 when VFAB disabled/enabled>
+            mac_address (str): Mac address. HHHH.HHHH.HHHH format
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the service policy on the interface.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `mac_address`, `access_vlan_id` and intf_name
+                      are not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.
+            ...             switchport_access_mac_create
+            ...             get=True, intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35')
+            ...         dev.interface.switchport_access_mac_create
+            ...             delete=True, intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35',  access_vlan_id='100',
+            ...             mac_address='0011.2233.4455')
+            ...         dev.interface.switchport_access_mac_create
+            ...             intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35',
+            ...             access_vlan_id='100', mac_address='0011.2233.4455')
+        """
+
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name')
+        mac_address = kwargs.pop('mac_address', None)
+        access_vlan_id = kwargs.pop('access_vlan_id', None)
+
+        valid_int_types = self.valid_int_types + ['ethernet']
+        if intf_type not in valid_int_types:
+            raise ValueError('intf_type must be one of: %s' %
+                             repr(valid_int_types))
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if intf_type == 'ethernet':
+            map_args = dict(ethernet=intf_name)
+        elif intf_type == 'gigabitethernet':
+            map_args = dict(gigabitethernet=intf_name)
+        elif intf_type == 'tengigabitethernet':
+            map_args = dict(tengigabitethernet=intf_name)
+        elif intf_type == 'fortygigabitethernet':
+            map_args = dict(fortygigabitethernet=intf_name)
+        else:
+            map_args = dict(port_channel=intf_name)
+
+        if delete:
+            if access_vlan_id is not None and mac_address is not None:
+                map_args.update(vlan=(access_vlan_id, mac_address))
+            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_'\
+                          'classification_delete' % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            map_args.update(vlan=(access_vlan_id, mac_address))
+            if not pyswitch.utilities.valid_vlan_id(access_vlan_id):
+                raise InvalidVlanId("`name` must be between `1` and `8191`")
+
+            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_'\
+                          'classification_create' % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            if access_vlan_id is not None and mac_address is not None:
+                map_args.update(vlan=(access_vlan_id, mac_address))
+
+            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_'\
+                          'classification_get' % intf_type
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = []
+            if output.data != '<output></output>':
+                if mac_address is None and access_vlan_id is None:
+                    vlans = util.findall(util.root, './/access-vlan-id')
+                    macs = util.findall(util.root, './/mac')
+                    for each_vlan, each_mac in zip(vlans, macs):
+                        result.append((each_vlan, each_mac))
+                else:
+                    result = util.find(util.root, './/mac')
+        return result
+
+    def switchport_trunk_allowed_ctag(self, **kwargs):
+        """Config/get/delete switchport trunk add/remove ctag
+
+        Args:
+            intf_type (str): Interface Type.('ethernet',
+                             'port_channel', gigabitethernet,
+                              tengigabitethernet etc).
+            intf_name (str): Interface Name
+            trunk_vlan_id (int): trunk vlan id.
+                                 <1-4090/8191 when VFAB disabled/enabled>
+            trunk_ctag_id (int): c_tag vlan id.
+                               <1-4090>
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the service policy on the interface.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `trunk_vlan_id`, `trunk_ctag_id` and intf_name
+                      are not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.
+            ...             switchport_trunk_allowed_ctag(
+            ...             get=True, intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35', trunk_vlan_id='100')
+            ...         dev.interface.switchport_trunk_add_ctag(
+            ...             delete=True, intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35',  trunk_vlan_id='8191',
+            ...             trunk_ctag_id='100')
+            ...         dev.interface.switchport_trunk_add_ctag(
+            ...             intf_type='tengigabitethernet',
+            ...             intf_name='235/0/35',  trunk_vlan_id='8191',
+            ...             trunk_ctag_id='100')
+        """
+
+        intf_type = kwargs.pop('intf_type', 'ethernet')
+        intf_name = kwargs.pop('intf_name')
+        trunk_vlan_id = kwargs.pop('trunk_vlan_id', None)
+        trunk_ctag_id = kwargs.pop('trunk_ctag_id', None)
+
+        valid_int_types = self.valid_int_types + ['ethernet']
+        if intf_type not in valid_int_types:
+            raise ValueError('intf_type must be one of: %s' %
+                             repr(valid_int_types))
+        if trunk_ctag_id is not None and\
+                int(trunk_ctag_id) not in range(1,4091):
+            raise ValueError('trunk_ctag_id %s must be '
+                             'in range(1,4090)' % (trunk_ctag_id))
+        if trunk_vlan_id is not None and\
+                int(trunk_vlan_id) not in range(4096,8192):
+            raise ValueError('trunk_vlan_id %s must be in '
+                             'range(4096,8191)' % (trunk_vlan_id))
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if intf_type == 'ethernet':
+            map_args = dict(ethernet=intf_name)
+        elif intf_type == 'gigabitethernet':
+            map_args = dict(gigabitethernet=intf_name)
+        elif intf_type == 'tengigabitethernet':
+            map_args = dict(tengigabitethernet=intf_name)
+        elif intf_type == 'fortygigabitethernet':
+            map_args = dict(fortygigabitethernet=intf_name)
+        else:
+            map_args = dict(port_channel=intf_name)
+
+        if delete:
+            map_args.update(remove=trunk_vlan_id,
+                            trunk_ctag_range=trunk_ctag_id)
+            method_name = 'interface_%s_switchport_trunk_'\
+                          'allowed_vlan_remove_create' % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            map_args.update(add=trunk_vlan_id,
+                            trunk_ctag_range=trunk_ctag_id)
+            method_name = 'interface_%s_switchport_trunk_'\
+                          'allowed_vlan_add_create' % intf_type
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            map_args.update(add=trunk_vlan_id)
+            method_name = 'interface_%s_switchport_trunk_'\
+                          'allowed_vlan_add_ctag_get' % intf_type
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if output.data != '<output></output>':
+                result = util.find(util.root, './/ctag')
+            else:
+                result = None
+        return result
+
+    def overlay_gateway_map_vlan_vni(self, **kwargs):
+        """configure overlay gateway vlan vni mapping auto on vdx switches
+
+        args:
+            gw_name (str): name of overlay gateway
+            vlan_vni_mapping (int): Specify VLAN to VNI mappings for the
+                                    overlay gateway.
+                                    <1-8191> vlan id/vlan range
+            vni (int): Specify VNI mapping for the VLAN.
+                       <1-16777215> VNI/VNI range.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the mapping.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `gw_name`, `vlan_vni_mapping'
+                      are not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.
+            ...             overlay_gateway_map_vlan_vni(
+            ...             get=True, gw_name='leaf1')
+            ...             overlay_gateway_map_vlan_vni(
+            ...             delete=True, gw_name='leaf1')
+            ...             overlay_gateway_map_vlan_vni(
+            ...             delete=True, gw_name='leaf1',
+            ...             vlan_vni_mapping=10)
+            ...             overlay_gateway_map_vlan_vni(
+            ...             gw_name='leaf1', vlan_vni_mapping=10,
+            ...             vni=100)
+        """
+
+        gw_name = kwargs.pop('gw_name')
+        vlan_vni_mapping = kwargs.pop('vlan_vni_mapping', None)
+        vni = kwargs.pop('vni', None)
+
+        if vlan_vni_mapping is not None and not\
+                pyswitch.utilities.valid_vlan_id(vlan_vni_mapping):
+            raise InvalidVlanId("`vlan_vni_mapping`"\
+                                " must be between `1` and `8191`")
+        if vni is not None and\
+                int(vni) not in xrange(1,16777217):
+            raise ValueError('`vni` %s must be in '
+                             'range(1,16777215)' % (vni))
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        map_args = dict(overlay_gateway=gw_name)
+        if delete:
+            if vlan_vni_mapping is not None:
+                map_args.update(vlan_vni_mapping=(vlan_vni_mapping,))
+            method_name = 'overlay_gateway_map_vlan_vni_mapping_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            map_args.update(vlan_vni_mapping=(vlan_vni_mapping,),
+                            vni=vni)
+            method_name = 'overlay_gateway_map_vlan_vni_mapping_create'
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            if vlan_vni_mapping is not None:
+                map_args.update(vlan_vni_mapping=(vlan_vni_mapping,))
+            method_name = 'overlay_gateway_map_vlan_vni_mapping_vni_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = {}
+            if output.data != '<output></output>':
+                if vlan_vni_mapping is not None:
+                    result = util.find(util.root, './/vni')
+                else:
+                    vls = util.findall(util.root, './/vlan')
+                    tvnis =[]
+                    for each_vl in vls:
+                        method_name = 'overlay_gateway_map_vlan_vni_'\
+                                      'mapping_vni_get'
+                        map_args.update(vlan_vni_mapping=str(each_vl))
+                        output = callback(config, handler='get_config')
+                        util = Util(output.data)
+                        vni_value = util.find(util.root, './/vni')
+                        tvnis.append(vni_value)
+                    result = dict(vlans=vls, vnis=tvnis)
+        return result
