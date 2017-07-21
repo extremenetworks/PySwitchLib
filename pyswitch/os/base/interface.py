@@ -6966,3 +6966,95 @@ class Interface(object):
             else:
                 result = None
         return result
+
+    def overlay_gateway_map_vlan_vni(self, **kwargs):
+        """configure overlay gateway vlan vni mapping auto on vdx switches
+
+        args:
+            gw_name (str): name of overlay gateway
+            vlan_vni_mapping (int): Specify VLAN to VNI mappings for the
+                                    overlay gateway.
+                                    <1-8191> vlan id/vlan range
+            vni (int): Specify VNI mapping for the VLAN.
+                       <1-16777215> VNI/VNI range.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the mapping.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `gw_name`, `vlan_vni_mapping'
+                      are not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output_all = dev.interface.
+            ...             overlay_gateway_map_vlan_vni(
+            ...             get=True, gw_name='leaf1')
+            ...             overlay_gateway_map_vlan_vni(
+            ...             delete=True, gw_name='leaf1')
+            ...             overlay_gateway_map_vlan_vni(
+            ...             delete=True, gw_name='leaf1',
+            ...             vlan_vni_mapping=10)
+            ...             overlay_gateway_map_vlan_vni(
+            ...             gw_name='leaf1', vlan_vni_mapping=10,
+            ...             vni=100)
+        """
+
+        gw_name = kwargs.pop('gw_name')
+        vlan_vni_mapping = kwargs.pop('vlan_vni_mapping', None)
+        vni = kwargs.pop('vni', None)
+
+        if vlan_vni_mapping is not None and not\
+                pyswitch.utilities.valid_vlan_id(vlan_vni_mapping):
+            raise InvalidVlanId("`vlan_vni_mapping`"\
+                                " must be between `1` and `8191`")
+        if vni is not None and\
+                int(vni) not in xrange(1,16777217):
+            raise ValueError('`vni` %s must be in '
+                             'range(1,16777215)' % (vni))
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        map_args = dict(overlay_gateway=gw_name)
+        if delete:
+            if vlan_vni_mapping is not None:
+                map_args.update(vlan_vni_mapping=(vlan_vni_mapping,))
+            method_name = 'overlay_gateway_map_vlan_vni_mapping_delete'
+            config = (method_name, map_args)
+            return callback(config)
+        if not get_config:
+            map_args.update(vlan_vni_mapping=(vlan_vni_mapping,),
+                            vni=vni)
+            method_name = 'overlay_gateway_map_vlan_vni_mapping_create'
+            config = (method_name, map_args)
+            return callback(config)
+        elif get_config:
+            if vlan_vni_mapping is not None:
+                map_args.update(vlan_vni_mapping=(vlan_vni_mapping,))
+            method_name = 'overlay_gateway_map_vlan_vni_mapping_vni_get'
+            config = (method_name, map_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = {}
+            if output.data != '<output></output>':
+                if vlan_vni_mapping is not None:
+                    result = util.find(util.root, './/vni')
+                else:
+                    vls = util.findall(util.root, './/vlan')
+                    tvnis =[]
+                    for each_vl in vls:
+                        method_name = 'overlay_gateway_map_vlan_vni_'\
+                                      'mapping_vni_get'
+                        map_args.update(vlan_vni_mapping=str(each_vl))
+                        output = callback(config, handler='get_config')
+                        util = Util(output.data)
+                        vni_value = util.find(util.root, './/vni')
+                        tvnis.append(vni_value)
+                    result = dict(vlans=vls, vnis=tvnis)
+        return result
