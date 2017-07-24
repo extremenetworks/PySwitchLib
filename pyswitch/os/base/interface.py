@@ -6648,7 +6648,7 @@ class Interface(object):
             config = (method_name, map_args)
             return callback(config)
         if not get_config:
-                map_args.update(mac_group_entry=(mac_group_entry,))            
+            map_args.update(mac_group_entry=(mac_group_entry,))
             method_name = 'mac_group_mac_create'
             config = (method_name, map_args)
             return callback(config)
@@ -6694,14 +6694,14 @@ class Interface(object):
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         output_all = dev.interface.
-            ...             switchport_access_mac_group_create
+            ...             switchport_access_mac_group_create(
             ...             get=True, intf_type='tengigabitethernet',
             ...             intf_name='235/0/35')
-            ...         dev.interface.switchport_access_mac_group_create
+            ...         dev.interface.switchport_access_mac_group_create(
             ...             delete=True, intf_type='tengigabitethernet',
             ...             intf_name='235/0/35',  access_vlan_id='100',
             ...             mac_group_id='11')
-            ...         dev.interface.switchport_access_mac_group_create
+            ...         dev.interface.switchport_access_mac_group_create(
             ...             intf_type='tengigabitethernet',
             ...             intf_name='235/0/35',
             ...             access_vlan_id='100', mac_group_id='11')
