@@ -7,7 +7,7 @@ Submodules
 pyswitch.os.nos.base.bgp module
 -----------------------------------------
 
-.. automodule:: pynos.versions.ver_5.ver_5_0_1.bgp
+.. automodule:: pyswitch.os.nos.base.bgp
     :members:
     :undoc-members:
     :show-inheritance:

@@ -11,7 +11,7 @@ Subpackages
 Submodules
 ----------
 
-pynos.device module
+pyswitch.device module
 -------------------
 
 .. automodule:: pyswitch.device
@@ -19,7 +19,7 @@ pynos.device module
     :undoc-members:
     :show-inheritance:
 
-pynos.utilities module
+pyswitch.utilities module
 ----------------------
 
 .. automodule:: pyswitch.utilities
