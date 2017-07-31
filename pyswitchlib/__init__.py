@@ -295,7 +295,7 @@ class PySwitchLib(object):
                 rest_data = rest_data.rsplit('<', 1)[0]
                 rest_data = rest_data.split(end_marker, 1)[-1]
 
-                if operation_type == 'create' and end_marker[:-1] in uri:
+                if operation_type == 'create' and end_marker[:-1] + '/' in uri:
                     rest_uri = uri.rsplit(end_marker[:-1] + '/', 1)[0]
 
                     if len(rest_uri) > 1:                                                                                                                                          
