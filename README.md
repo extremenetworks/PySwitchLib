@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.70
+* Fixed rbridge_id_create_vrf() API when 'vrf' is part of the parameter name.
 ## 0.1.67
 * Fixed URI formation for mac_group_mac_create() API.
 * Fixed pybind object set for vni parameter in overlay_gateway_map_vlan_vni_mapping_vni_update() API.
