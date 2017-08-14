@@ -63,6 +63,9 @@ class Device(object):
     def __exit__(self, exctype, excisnt, exctb):
         return self.device_type.__exit__( exctype, excisnt, exctb)
 
+    @property 
+    def asset(self):
+        return self.device_type._mgr 
 
     @property
     def mac_table(self):
