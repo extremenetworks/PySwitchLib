@@ -24,7 +24,11 @@ from xml.etree.ElementTree import Element
 
 class Util(object):
     def __init__(self,data):
-        if data!='':
+        if isinstance(data,Element):
+            for child in data.getiterator():
+                child.tag = child.tag.split('}', 1)[1]
+            self.root = data
+        elif data!='':
             self.root = ElementTree.fromstring(data)
         else:
             self.root = Element('empty')

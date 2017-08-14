@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.72
+* Added support for add_vlan_int() bulk support using Raw XML over Netconf
 ## 0.1.70
 * Fixed rbridge_id_create_vrf() API when 'vrf' is part of the parameter name.
 ## 0.1.67
