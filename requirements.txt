@@ -1,5 +1,5 @@
 dicttoxml
-ipaddress==1.0.18
+ipaddress==1.0.14
 jsonpath-rw
 ncclient==0.5.3
 pybind>=0.1.25
