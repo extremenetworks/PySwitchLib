@@ -1,6 +1,8 @@
+dicttoxml
+ipaddress=1.0.18
+jsonpath-rw
+ncclient=0.5.3
 pybind>=0.1.25
 pyangbind-brcd>=0.6.12
-xmltodict
-dicttoxml
 requests
-jsonpath-rw
+xmltodict
