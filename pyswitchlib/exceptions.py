@@ -15,3 +15,6 @@ class UnsupportedOSError(PyswitchlibException):
 class MultipleChoicesSetError(PyswitchlibException):
     """If more than one choice kwarg is set."""
 
+class ExistingApiPortBound(PyswitchlibException):
+    """If defined API port is different that existing bound port. The existing bound port should be used."""
+
