@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.78
+* Added pybindings support for nos7.2.0 and slxos17r1.01.
 ## 0.1.72
 * Added support for add_vlan_int() bulk support using Raw XML over Netconf
 ## 0.1.70
