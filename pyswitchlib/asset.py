@@ -29,12 +29,12 @@ class Asset(object):
 
         self._ip_addr = ip_addr
         self._auth = auth
-        self._os_type = 'nos'
+        self._os_type = 'unknown'
         self._os_ver = fw_ver
         self._os_full_ver = fw_ver
         self._default_connection_timeout = 60
         self._default_response_timeout = 1800
-        self._session_timeout = (self._default_connection_timeout, self._default_response_timeout) 
+        self._session_timeout = (self._default_connection_timeout, self._default_response_timeout)
         self._session = requests.Session()
         self._response = requests.Response()
         self._overall_success = True
@@ -206,11 +206,30 @@ class Asset(object):
                 elif 'SLX' in self._response.headers['Server']:
                     self._os_type = 'slxos'
 
+            if rest_root.find('show-firmware-version').find('firmware-full-version') is not None:
+                self._os_full_ver = rest_root.find('show-firmware-version').find('firmware-full-version').text
+
             if rest_root.find('show-firmware-version').find('os-version') is not None:
                 self._os_ver = rest_root.find('show-firmware-version').find('os-version').text
 
-            if rest_root.find('show-firmware-version').find('firmware-full-version') is not None:
-                self._os_full_ver = rest_root.find('show-firmware-version').find('firmware-full-version').text
+                if self._os_type == 'slxos':
+                    slxos_ver = self._os_ver.split('.')
+
+                    if len(slxos_ver) >= 2:
+                        slxos_pattern_string = '^({0}[rs]{{1}})\.{1}\.'.format(slxos_ver[0], slxos_ver[1])
+                    elif len(slxos_ver) == 1:
+                        slxos_pattern_string = '^({0}[rs]{{1}})\.'.format(slxos_ver[0])
+                    else:
+                        slxos_pattern_string = '^(\d+[rs]{1})\.'
+
+                    slxos_pattern = re.compile(slxos_pattern_string)
+
+                    match = slxos_pattern.match(self._os_full_ver)
+
+                    if match:
+                        slxos_ver[0] = match.group(1)
+                        self._os_ver = '.'.join(slxos_ver)
+
         except:
             pass
 
@@ -313,20 +332,26 @@ class Asset(object):
                     supported_os_version.append(minor)
                     break;
 
-        if len(supported_os_version) < 2:
-            raise UnsupportedOSError("OS Version: " + self._os_type + " " + self._os_ver + " is unsupported.")
-
-        if supported_os_version[0] == os_version_tuple[0] and supported_os_version[1] == os_version_tuple[1] and os_version_tuple[2] in pybind_ver_tree[supported_os_version[0]][supported_os_version[1]]:
-            supported_os_version.append(os_version_tuple[2])
-        else:
-            for patch in sorted(pybind_ver_tree[supported_os_version[0]][supported_os_version[1]], reverse=True):
-                if supported_os_version[0] == os_version_tuple[0] and supported_os_version[1] == os_version_tuple[1]:
-                    if os_version_tuple[2] >= patch:
+        if len(supported_os_version) >= 2:
+            if supported_os_version[0] == os_version_tuple[0] and supported_os_version[1] == os_version_tuple[1] and os_version_tuple[2] in pybind_ver_tree[supported_os_version[0]][supported_os_version[1]]:
+                supported_os_version.append(os_version_tuple[2])
+            else:
+                for patch in sorted(pybind_ver_tree[supported_os_version[0]][supported_os_version[1]], reverse=True):
+                    if supported_os_version[0] == os_version_tuple[0] and supported_os_version[1] == os_version_tuple[1]:
+                        if os_version_tuple[2] >= patch or len(pybind_ver_tree[supported_os_version[0]][supported_os_version[1]]) == 1:
+                            supported_os_version.append(patch)
+                            break;
+                    else:
                         supported_os_version.append(patch)
                         break;
-                else:
-                    supported_os_version.append(patch)
-                    break;
+        else:
+            for minor in sorted(pybind_ver_tree[supported_os_version[0]], reverse=True):
+                supported_os_version.append(minor)
+                break;
+
+            for patch in sorted(pybind_ver_tree[supported_os_version[0]][supported_os_version[1]], reverse=True):
+                supported_os_version.append(patch)
+                break;
 
         safe_os_version = 'v'+'_'.join(supported_os_version)
         package_name = '.'.join(['pybind', self._os_type, safe_os_version])
@@ -414,6 +439,15 @@ class Asset(object):
         :returns: Returns the json output response from the last api call.
         """
         return self._overall_status[0][self._ip_addr]['response']['json']['output']
+
+    def get_supported_module_name(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+
+        :rtype: *string*
+        :returns: Returns the path name of the selected pybind module.
+        """
+        return self._supported_module_name
 
     def run_command(self, command=''):
         """

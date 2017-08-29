@@ -12,6 +12,7 @@ class PySwitchLib(object):
     This is an auto-generated class for the PySwitchLib.
     Providing python bindings to configure a switch through the REST interface.
     """
+
     import api.create
     import api.update
     import api.delete
@@ -23,7 +24,6 @@ class PySwitchLib(object):
     locals().update(api.delete.__dict__)
     locals().update(api.get.__dict__)
     locals().update(api.rpc.__dict__)
-
 
     def __init__(self, module_name='', module_obj=None, rest_operation=None):
         """

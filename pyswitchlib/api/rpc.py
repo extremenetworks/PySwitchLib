@@ -5,7 +5,7 @@ def activate_status_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -33,12 +33,12 @@ def activate_status_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_firmware_rpc.activate_status.input', 'pybind.nos.v6_0_2c.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v6_0_2c.brocade_firmware_rpc'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.activate_status.input', 'pybind.nos.v7_0_1b.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_0_1b.brocade_firmware_rpc'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.activate_status.input', 'pybind.nos.v7_1_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_1_0.brocade_firmware_rpc'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.activate_status.input', 'pybind.nos.v7_2_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_2_0.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.activate_status', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_01a.brocade_firmware_rpc.activate_status', 'pybind.slxos.v16r_1_01a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_01a.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_01.brocade_firmware_rpc.activate_status', 'pybind.slxos.v17r_1_01.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_01.brocade_firmware_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_firmware_rpc.activate_status.input', 'pybind.nos.v6_0_2c.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v6_0_2c.brocade_firmware_rpc'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.activate_status.input', 'pybind.nos.v7_0_1b.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_0_1b.brocade_firmware_rpc'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.activate_status.input', 'pybind.nos.v7_1_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_1_0.brocade_firmware_rpc'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.activate_status.input', 'pybind.nos.v7_2_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_2_0.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.activate_status', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_00a.brocade_firmware_rpc.activate_status', 'pybind.slxos.v17r_1_00a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_00a.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_01a.brocade_firmware_rpc.activate_status', 'pybind.slxos.v17r_1_01a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_01a.brocade_firmware_rpc'), ('pybind.slxos.v17s_1_02.brocade_firmware_rpc.activate_status', 'pybind.slxos.v17s_1_02.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17s_1_02.brocade_firmware_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.slxos.v17r_1_01.brocade_firmware_rpc.activate_status": {}, "pybind.slxos.v16r_1_01a.brocade_firmware_rpc.activate_status": {}, "pybind.nos.v7_2_0.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_firmware_rpc.activate_status": {}}
+    leafval_map = {"pybind.slxos.v17r_1_01a.brocade_firmware_rpc.activate_status": {}, "pybind.slxos.v17s_1_02.brocade_firmware_rpc.activate_status": {}, "pybind.nos.v7_2_0.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_firmware_rpc.activate_status.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_firmware_rpc.activate_status": {}, "pybind.slxos.v17r_1_00a.brocade_firmware_rpc.activate_status": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -54,7 +54,7 @@ def bna_config_cmd_rpc(self, src=None, dest=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -81,7 +81,7 @@ def bna_config_cmd_rpc(self, src=None, dest=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_ras_rpc.bna_config_cmd.input', 'pybind.nos.v6_0_2c.brocade_ras_rpc.brocade_ras', 'pybind.nos.v6_0_2c.brocade_ras_rpc'), ('pybind.nos.v7_0_1b.brocade_ras_rpc.bna_config_cmd.input', 'pybind.nos.v7_0_1b.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_0_1b.brocade_ras_rpc'), ('pybind.nos.v7_1_0.brocade_ras_rpc.bna_config_cmd.input', 'pybind.nos.v7_1_0.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_1_0.brocade_ras_rpc'), ('pybind.nos.v7_2_0.brocade_ras_rpc.bna_config_cmd.input', 'pybind.nos.v7_2_0.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_2_0.brocade_ras_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ras_rpc.bna_config_cmd.input', 'pybind.slxos.v16r_1_00b.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v16r_1_00b.brocade_ras_rpc'), ('pybind.slxos.v16r_1_01a.brocade_ras_rpc.bna_config_cmd.input', 'pybind.slxos.v16r_1_01a.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v16r_1_01a.brocade_ras_rpc'), ('pybind.slxos.v17r_1_01.brocade_ras_rpc.bna_config_cmd.input', 'pybind.slxos.v17r_1_01.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v17r_1_01.brocade_ras_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_ras_rpc.bna_config_cmd.input', 'pybind.nos.v6_0_2c.brocade_ras_rpc.brocade_ras', 'pybind.nos.v6_0_2c.brocade_ras_rpc'), ('pybind.nos.v7_0_1b.brocade_ras_rpc.bna_config_cmd.input', 'pybind.nos.v7_0_1b.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_0_1b.brocade_ras_rpc'), ('pybind.nos.v7_1_0.brocade_ras_rpc.bna_config_cmd.input', 'pybind.nos.v7_1_0.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_1_0.brocade_ras_rpc'), ('pybind.nos.v7_2_0.brocade_ras_rpc.bna_config_cmd.input', 'pybind.nos.v7_2_0.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_2_0.brocade_ras_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ras_rpc.bna_config_cmd.input', 'pybind.slxos.v16r_1_00b.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v16r_1_00b.brocade_ras_rpc'), ('pybind.slxos.v17r_1_00a.brocade_ras_rpc.bna_config_cmd.input', 'pybind.slxos.v17r_1_00a.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v17r_1_00a.brocade_ras_rpc'), ('pybind.slxos.v17r_1_01a.brocade_ras_rpc.bna_config_cmd.input', 'pybind.slxos.v17r_1_01a.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v17r_1_01a.brocade_ras_rpc'), ('pybind.slxos.v17s_1_02.brocade_ras_rpc.bna_config_cmd.input', 'pybind.slxos.v17s_1_02.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v17s_1_02.brocade_ras_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -102,7 +102,7 @@ def bna_config_cmd_status_rpc(self, session_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -130,7 +130,7 @@ def bna_config_cmd_status_rpc(self, session_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.nos.v6_0_2c.brocade_ras_rpc.brocade_ras', 'pybind.nos.v6_0_2c.brocade_ras_rpc'), ('pybind.nos.v7_0_1b.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.nos.v7_0_1b.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_0_1b.brocade_ras_rpc'), ('pybind.nos.v7_1_0.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.nos.v7_1_0.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_1_0.brocade_ras_rpc'), ('pybind.nos.v7_2_0.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.nos.v7_2_0.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_2_0.brocade_ras_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.slxos.v16r_1_00b.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v16r_1_00b.brocade_ras_rpc'), ('pybind.slxos.v16r_1_01a.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.slxos.v16r_1_01a.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v16r_1_01a.brocade_ras_rpc'), ('pybind.slxos.v17r_1_01.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.slxos.v17r_1_01.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v17r_1_01.brocade_ras_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.nos.v6_0_2c.brocade_ras_rpc.brocade_ras', 'pybind.nos.v6_0_2c.brocade_ras_rpc'), ('pybind.nos.v7_0_1b.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.nos.v7_0_1b.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_0_1b.brocade_ras_rpc'), ('pybind.nos.v7_1_0.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.nos.v7_1_0.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_1_0.brocade_ras_rpc'), ('pybind.nos.v7_2_0.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.nos.v7_2_0.brocade_ras_rpc.brocade_ras', 'pybind.nos.v7_2_0.brocade_ras_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.slxos.v16r_1_00b.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v16r_1_00b.brocade_ras_rpc'), ('pybind.slxos.v17r_1_00a.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.slxos.v17r_1_00a.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v17r_1_00a.brocade_ras_rpc'), ('pybind.slxos.v17r_1_01a.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.slxos.v17r_1_01a.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v17r_1_01a.brocade_ras_rpc'), ('pybind.slxos.v17s_1_02.brocade_ras_rpc.bna_config_cmd_status.input', 'pybind.slxos.v17s_1_02.brocade_ras_rpc.brocade_ras', 'pybind.slxos.v17s_1_02.brocade_ras_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -150,7 +150,7 @@ def clear_mpls_auto_bandwidth_sample_history_all_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b    
+        * SLXOS: 16r.1.00b, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -169,7 +169,7 @@ def clear_mpls_auto_bandwidth_sample_history_all_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_auto_bandwidth_sample_history_all', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_auto_bandwidth_sample_history_all', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_auto_bandwidth_sample_history_all', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -189,7 +189,7 @@ def clear_mpls_auto_bandwidth_sample_history_lsp_rpc(self, lsp_name=None, api_ti
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -217,7 +217,7 @@ def clear_mpls_auto_bandwidth_sample_history_lsp_rpc(self, lsp_name=None, api_ti
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_auto_bandwidth_sample_history_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_auto_bandwidth_sample_history_lsp.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_auto_bandwidth_sample_history_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_auto_bandwidth_sample_history_lsp.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_auto_bandwidth_sample_history_lsp.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_auto_bandwidth_sample_history_lsp.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -237,7 +237,7 @@ def clear_mpls_auto_bandwidth_statistics_all_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b    
+        * SLXOS: 16r.1.00b, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -256,7 +256,7 @@ def clear_mpls_auto_bandwidth_statistics_all_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_auto_bandwidth_statistics_all', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_auto_bandwidth_statistics_all', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_auto_bandwidth_statistics_all', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -276,7 +276,7 @@ def clear_mpls_auto_bandwidth_statistics_lsp_rpc(self, lsp_name=None, api_timeou
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -304,7 +304,7 @@ def clear_mpls_auto_bandwidth_statistics_lsp_rpc(self, lsp_name=None, api_timeou
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_auto_bandwidth_statistics_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_auto_bandwidth_statistics_lsp.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_auto_bandwidth_statistics_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_auto_bandwidth_statistics_lsp.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_auto_bandwidth_statistics_lsp.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_auto_bandwidth_statistics_lsp.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -324,7 +324,7 @@ def clear_mpls_bypass_lsp_rpc(self, mpls_clear_bypass_lsp_name_in=None, api_time
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -352,7 +352,7 @@ def clear_mpls_bypass_lsp_rpc(self, mpls_clear_bypass_lsp_name_in=None, api_time
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_bypass_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_bypass_lsp.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_bypass_lsp.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_bypass_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_bypass_lsp.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_bypass_lsp.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_bypass_lsp.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -372,7 +372,7 @@ def clear_mpls_ldp_neighbor_rpc(self, mpls_clear_all_ldp_sessions=None, mpls_cle
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -405,7 +405,7 @@ def clear_mpls_ldp_neighbor_rpc(self, mpls_clear_all_ldp_sessions=None, mpls_cle
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_ldp_neighbor.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_ldp_neighbor.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_ldp_neighbor.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_ldp_neighbor.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_ldp_neighbor.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_ldp_neighbor.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_ldp_neighbor.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -425,7 +425,7 @@ def clear_mpls_ldp_statistics_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -444,7 +444,7 @@ def clear_mpls_ldp_statistics_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_ldp_statistics', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_ldp_statistics', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_ldp_statistics', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_ldp_statistics', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_ldp_statistics', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_ldp_statistics', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_ldp_statistics', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -464,7 +464,7 @@ def clear_mpls_lsp_rpc(self, clear_mpls_lsp_option=None, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -501,12 +501,12 @@ def clear_mpls_lsp_rpc(self, clear_mpls_lsp_option=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_lsp.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_lsp.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_lsp.input', u'clear_mpls_lsp_option')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_lsp.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_lsp.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_lsp.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_lsp.input', u'clear_mpls_lsp_option'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_lsp.input', u'clear_mpls_lsp_option')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'mpls_clear_lsp_name_in, primary, secondary'}]
-    leafval_map = {"pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_lsp.input": {"mpls_clear_lsp_name_in": "mpls_clear_lsp_name_in"}, "pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_lsp.input": {"mpls_clear_lsp_name_in": "mpls_clear_lsp_name_in"}, "pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_lsp.input": {}}
+    composed_child_leafval_list = [{'leafval': 'mpls_clear_lsp_name_in, primary, secondary'}, {'leafval': 'mpls_clear_lsp_name_in, primary, secondary'}]
+    leafval_map = {"pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_lsp.input": {}, "pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_lsp.input": {"mpls_clear_lsp_name_in": "mpls_clear_lsp_name_in"}, "pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_lsp.input": {"mpls_clear_lsp_name_in": "mpls_clear_lsp_name_in"}, "pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_lsp.input": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -521,7 +521,7 @@ def clear_mpls_rsvp_statistics_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -540,7 +540,7 @@ def clear_mpls_rsvp_statistics_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_rsvp_statistics', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_rsvp_statistics', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_rsvp_statistics', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_rsvp_statistics', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_rsvp_statistics', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_rsvp_statistics', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_rsvp_statistics', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -560,7 +560,7 @@ def clear_mpls_rsvp_statistics_neighbor_rpc(self, clear_mpls_rsvp_statistics_nei
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -593,7 +593,7 @@ def clear_mpls_rsvp_statistics_neighbor_rpc(self, clear_mpls_rsvp_statistics_nei
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_rsvp_statistics_neighbor.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_rsvp_statistics_neighbor.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_rsvp_statistics_neighbor.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_rsvp_statistics_neighbor.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_rsvp_statistics_neighbor.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_rsvp_statistics_neighbor.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_rsvp_statistics_neighbor.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -613,7 +613,7 @@ def clear_mpls_statistics_rpc(self, mpls_clear_statistics_type=None, mpls_clear_
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -701,12 +701,12 @@ def clear_mpls_statistics_rpc(self, mpls_clear_statistics_type=None, mpls_clear_
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_statistics.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_statistics.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_statistics.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_statistics.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_statistics.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_statistics.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_statistics.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_statistics.input": {"mpls_clear_statistics_tunnel_name": "mpls_clear_statistics_tunnel_name", "mpls_clear_statistics_tunnel_ldp_id": "mpls_clear_statistics_tunnel_ldp_id", "mpls_clear_statistics_type": "mpls_clear_statistics_type", "mpls_clear_statistics_transit_ldp_prefix_mask": "mpls_clear_statistics_transit_ldp_prefix_mask", "mpls_clear_statistics_tunnel_rsvp_bypass": "mpls_clear_statistics_tunnel_rsvp_bypass", "mpls_clear_statistics_tunnel_dest": "mpls_clear_statistics_tunnel_dest", "mpls_clear_statistics_transit_ldp_fec_prefix": "mpls_clear_statistics_transit_ldp_fec_prefix", "mpls_clear_statistics_transit_label_id": "mpls_clear_statistics_transit_label_id", "mpls_clear_statistics_transit_ldp_prefix_address": "mpls_clear_statistics_transit_ldp_prefix_address"}, "pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_statistics.input": {}, "pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_statistics.input": {}}
+    leafval_map = {"pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_statistics.input": {"mpls_clear_statistics_tunnel_name": "mpls_clear_statistics_tunnel_name", "mpls_clear_statistics_tunnel_ldp_id": "mpls_clear_statistics_tunnel_ldp_id", "mpls_clear_statistics_type": "mpls_clear_statistics_type", "mpls_clear_statistics_transit_ldp_prefix_mask": "mpls_clear_statistics_transit_ldp_prefix_mask", "mpls_clear_statistics_tunnel_rsvp_bypass": "mpls_clear_statistics_tunnel_rsvp_bypass", "mpls_clear_statistics_tunnel_dest": "mpls_clear_statistics_tunnel_dest", "mpls_clear_statistics_transit_ldp_fec_prefix": "mpls_clear_statistics_transit_ldp_fec_prefix", "mpls_clear_statistics_transit_label_id": "mpls_clear_statistics_transit_label_id", "mpls_clear_statistics_transit_ldp_prefix_address": "mpls_clear_statistics_transit_ldp_prefix_address"}, "pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_statistics.input": {"mpls_clear_statistics_tunnel_name": "mpls_clear_statistics_tunnel_name", "mpls_clear_statistics_tunnel_ldp_id": "mpls_clear_statistics_tunnel_ldp_id", "mpls_clear_statistics_type": "mpls_clear_statistics_type", "mpls_clear_statistics_transit_ldp_prefix_mask": "mpls_clear_statistics_transit_ldp_prefix_mask", "mpls_clear_statistics_tunnel_rsvp_bypass": "mpls_clear_statistics_tunnel_rsvp_bypass", "mpls_clear_statistics_tunnel_dest": "mpls_clear_statistics_tunnel_dest", "mpls_clear_statistics_transit_ldp_fec_prefix": "mpls_clear_statistics_transit_ldp_fec_prefix", "mpls_clear_statistics_transit_label_id": "mpls_clear_statistics_transit_label_id", "mpls_clear_statistics_transit_ldp_prefix_address": "mpls_clear_statistics_transit_ldp_prefix_address"}, "pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_statistics.input": {}, "pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_statistics.input": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -721,7 +721,7 @@ def clear_mpls_statistics_ldp_transit_rpc(self, clear_statistics_ldp_transit_fec
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -769,7 +769,7 @@ def clear_mpls_statistics_ldp_transit_rpc(self, clear_statistics_ldp_transit_fec
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_statistics_ldp_transit.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_statistics_ldp_transit.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_statistics_ldp_transit.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_statistics_ldp_transit.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_statistics_ldp_transit.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_statistics_ldp_transit.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_statistics_ldp_transit.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -789,7 +789,7 @@ def clear_mpls_statistics_ldp_tunnel_rpc(self, clear_statistics_ldp_tunnel_id=No
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -817,7 +817,7 @@ def clear_mpls_statistics_ldp_tunnel_rpc(self, clear_statistics_ldp_tunnel_id=No
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.clear_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.clear_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.clear_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.clear_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.clear_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.clear_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -837,7 +837,7 @@ def clear_tm_voq_slot_id_egress_port_name_rpc(self, slot_id=None, clear_tm_voq_s
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.01a, 17r.1.01    
+        * SLXOS: 17r.1.00a, 17r.1.01a    
 
     **Instance Argument(s)**:
 
@@ -868,7 +868,7 @@ def clear_tm_voq_slot_id_egress_port_name_rpc(self, slot_id=None, clear_tm_voq_s
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc.clear_tm_voq_slot_id_egress_port_name.input', 'pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc'), ('pybind.slxos.v17r_1_01.brocade_tm_stats_rpc.clear_tm_voq_slot_id_egress_port_name.input', 'pybind.slxos.v17r_1_01.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_01.brocade_tm_stats_rpc')]
+    bindings_list = [('pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc.clear_tm_voq_slot_id_egress_port_name.input', 'pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc'), ('pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc.clear_tm_voq_slot_id_egress_port_name.input', 'pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -888,7 +888,7 @@ def clear_tm_voq_stat_ing_all_egr_all_rpc(self, clear_tm_voq_ing_all_egress_port
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.01a, 17r.1.01    
+        * SLXOS: 17r.1.00a, 17r.1.01a    
 
     **Instance Argument(s)**:
 
@@ -912,7 +912,7 @@ def clear_tm_voq_stat_ing_all_egr_all_rpc(self, clear_tm_voq_ing_all_egress_port
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc.clear_tm_voq_stat_ing_all_egr_all.input', 'pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc'), ('pybind.slxos.v17r_1_01.brocade_tm_stats_rpc.clear_tm_voq_stat_ing_all_egr_all.input', 'pybind.slxos.v17r_1_01.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_01.brocade_tm_stats_rpc')]
+    bindings_list = [('pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc.clear_tm_voq_stat_ing_all_egr_all.input', 'pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc'), ('pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc.clear_tm_voq_stat_ing_all_egr_all.input', 'pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -932,7 +932,7 @@ def clear_tm_voq_stat_ing_all_egr_ifname_rpc(self, clear_tm_voq_ing_all_egress_p
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.01a, 17r.1.01    
+        * SLXOS: 17r.1.00a, 17r.1.01a    
 
     **Instance Argument(s)**:
 
@@ -956,7 +956,7 @@ def clear_tm_voq_stat_ing_all_egr_ifname_rpc(self, clear_tm_voq_ing_all_egress_p
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc.clear_tm_voq_stat_ing_all_egr_ifname.input', 'pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc'), ('pybind.slxos.v17r_1_01.brocade_tm_stats_rpc.clear_tm_voq_stat_ing_all_egr_ifname.input', 'pybind.slxos.v17r_1_01.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_01.brocade_tm_stats_rpc')]
+    bindings_list = [('pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc.clear_tm_voq_stat_ing_all_egr_ifname.input', 'pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc'), ('pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc.clear_tm_voq_stat_ing_all_egr_ifname.input', 'pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -976,7 +976,7 @@ def clear_tm_voq_stat_slot_id_egr_all_rpc(self, slot_id=None, clear_tm_voq_slot_
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.01a, 17r.1.01    
+        * SLXOS: 17r.1.00a, 17r.1.01a    
 
     **Instance Argument(s)**:
 
@@ -1007,7 +1007,7 @@ def clear_tm_voq_stat_slot_id_egr_all_rpc(self, slot_id=None, clear_tm_voq_slot_
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc.clear_tm_voq_stat_slot_id_egr_all.input', 'pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v16r_1_01a.brocade_tm_stats_rpc'), ('pybind.slxos.v17r_1_01.brocade_tm_stats_rpc.clear_tm_voq_stat_slot_id_egr_all.input', 'pybind.slxos.v17r_1_01.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_01.brocade_tm_stats_rpc')]
+    bindings_list = [('pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc.clear_tm_voq_stat_slot_id_egr_all.input', 'pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_00a.brocade_tm_stats_rpc'), ('pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc.clear_tm_voq_stat_slot_id_egr_all.input', 'pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc.brocade_tm_stats', 'pybind.slxos.v17r_1_01a.brocade_tm_stats_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -1028,7 +1028,7 @@ def dad_status_rpc(self, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -1047,7 +1047,7 @@ def dad_status_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_firmware_rpc.dad_status', 'pybind.nos.v6_0_2c.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v6_0_2c.brocade_firmware_rpc'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.dad_status', 'pybind.nos.v7_0_1b.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_0_1b.brocade_firmware_rpc'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.dad_status', 'pybind.nos.v7_1_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_1_0.brocade_firmware_rpc'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.dad_status', 'pybind.nos.v7_2_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_2_0.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.dad_status', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_01a.brocade_firmware_rpc.dad_status', 'pybind.slxos.v16r_1_01a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_01a.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_01.brocade_firmware_rpc.dad_status', 'pybind.slxos.v17r_1_01.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_01.brocade_firmware_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_firmware_rpc.dad_status', 'pybind.nos.v6_0_2c.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v6_0_2c.brocade_firmware_rpc'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.dad_status', 'pybind.nos.v7_0_1b.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_0_1b.brocade_firmware_rpc'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.dad_status', 'pybind.nos.v7_1_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_1_0.brocade_firmware_rpc'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.dad_status', 'pybind.nos.v7_2_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_2_0.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.dad_status', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_00a.brocade_firmware_rpc.dad_status', 'pybind.slxos.v17r_1_00a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_00a.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_01a.brocade_firmware_rpc.dad_status', 'pybind.slxos.v17r_1_01a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_01a.brocade_firmware_rpc'), ('pybind.slxos.v17s_1_02.brocade_firmware_rpc.dad_status', 'pybind.slxos.v17s_1_02.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17s_1_02.brocade_firmware_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -1068,7 +1068,7 @@ def fcoe_get_interface_rpc(self, fcoe_intf_name=None, fcoe_intf_rbridge_id=None,
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -1106,7 +1106,7 @@ def fcoe_get_interface_rpc(self, fcoe_intf_name=None, fcoe_intf_rbridge_id=None,
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_1_0.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.nos.v7_1_0.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_1_0.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_2_0.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.nos.v7_2_0.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_2_0.brocade_fcoe_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.slxos.v16r_1_01a.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v16r_1_01a.brocade_fcoe_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.slxos.v17r_1_01.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v17r_1_01.brocade_fcoe_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_1_0.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.nos.v7_1_0.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_1_0.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_2_0.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.nos.v7_2_0.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_2_0.brocade_fcoe_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.slxos.v17r_1_00a.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v17r_1_00a.brocade_fcoe_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.slxos.v17r_1_01a.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v17r_1_01a.brocade_fcoe_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_fcoe_ext_rpc.fcoe_get_interface.input', 'pybind.slxos.v17s_1_02.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v17s_1_02.brocade_fcoe_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -1127,7 +1127,7 @@ def fcoe_get_login_rpc(self, fcoe_login_interface=None, fcoe_login_vfid=None, fc
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -1176,7 +1176,7 @@ def fcoe_get_login_rpc(self, fcoe_login_interface=None, fcoe_login_vfid=None, fc
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_1_0.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.nos.v7_1_0.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_1_0.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_2_0.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.nos.v7_2_0.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_2_0.brocade_fcoe_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.slxos.v16r_1_01a.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v16r_1_01a.brocade_fcoe_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.slxos.v17r_1_01.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v17r_1_01.brocade_fcoe_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v6_0_2c.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_0_1b.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_1_0.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.nos.v7_1_0.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_1_0.brocade_fcoe_ext_rpc'), ('pybind.nos.v7_2_0.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.nos.v7_2_0.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.nos.v7_2_0.brocade_fcoe_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v16r_1_00b.brocade_fcoe_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.slxos.v17r_1_00a.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v17r_1_00a.brocade_fcoe_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.slxos.v17r_1_01a.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v17r_1_01a.brocade_fcoe_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_fcoe_ext_rpc.fcoe_get_login.input', 'pybind.slxos.v17s_1_02.brocade_fcoe_ext_rpc.brocade_fcoe_ext', 'pybind.slxos.v17s_1_02.brocade_fcoe_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -1197,7 +1197,7 @@ def firmware_download_rpc(self, rbridge_id=None, auto_activate=None, coldboot=No
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -1300,12 +1300,12 @@ def firmware_download_rpc(self, rbridge_id=None, auto_activate=None, coldboot=No
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input', 'pybind.nos.v6_0_2c.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v6_0_2c.brocade_firmware_rpc'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input', 'pybind.nos.v7_0_1b.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_0_1b.brocade_firmware_rpc'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input', 'pybind.nos.v7_1_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_1_0.brocade_firmware_rpc'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input', 'pybind.nos.v7_2_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_2_0.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_01a.brocade_firmware_rpc.firmware_download.input', 'pybind.slxos.v16r_1_01a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_01a.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_01.brocade_firmware_rpc.firmware_download.input', 'pybind.slxos.v17r_1_01.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_01.brocade_firmware_rpc')]
-    composed_child_list = [('pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.slxos.v17r_1_01.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.slxos.v17r_1_01.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.slxos.v17r_1_01.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.slxos.v17r_1_01.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.slxos.v16r_1_01a.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.slxos.v16r_1_01a.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.slxos.v16r_1_01a.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.slxos.v16r_1_01a.brocade_firmware_rpc.firmware_download.input', u'usb')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input', 'pybind.nos.v6_0_2c.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v6_0_2c.brocade_firmware_rpc'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input', 'pybind.nos.v7_0_1b.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_0_1b.brocade_firmware_rpc'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input', 'pybind.nos.v7_1_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_1_0.brocade_firmware_rpc'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input', 'pybind.nos.v7_2_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_2_0.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_00a.brocade_firmware_rpc.firmware_download.input', 'pybind.slxos.v17r_1_00a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_00a.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_01a.brocade_firmware_rpc.firmware_download.input', 'pybind.slxos.v17r_1_01a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_01a.brocade_firmware_rpc'), ('pybind.slxos.v17s_1_02.brocade_firmware_rpc.firmware_download.input', 'pybind.slxos.v17s_1_02.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17s_1_02.brocade_firmware_rpc')]
+    composed_child_list = [('pybind.slxos.v17s_1_02.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.slxos.v17s_1_02.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.slxos.v17s_1_02.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.slxos.v17s_1_02.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.slxos.v17r_1_01a.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.slxos.v17r_1_01a.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.slxos.v17r_1_01a.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.slxos.v17r_1_01a.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.slxos.v17r_1_00a.brocade_firmware_rpc.firmware_download.input', u'sftp'), ('pybind.slxos.v17r_1_00a.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.slxos.v17r_1_00a.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.slxos.v17r_1_00a.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input', u'scp'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input', u'ftp'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input', u'usb'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input', u'sftp')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}]
-    leafval_map = {"pybind.slxos.v17r_1_01.brocade_firmware_rpc.firmware_download.input": {}, "pybind.slxos.v16r_1_00b.firmware.download": {}, "pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input": {"coldboot": "coldboot", "rbridge_id": "rbridge_id", "auto_activate": "auto_activate"}, "pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input": {"coldboot": "coldboot", "rbridge_id": "rbridge_id", "auto_activate": "auto_activate"}, "pybind.slxos.v16r_1_01a.firmware.download": {}, "pybind.nos.v7_2_0.firmware.download": {}, "pybind.nos.v6_0_2c.firmware.download": {}, "pybind.nos.v7_1_0.firmware.download": {}, "pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input": {}, "pybind.slxos.v17r_1_01.firmware.download": {}, "pybind.slxos.v16r_1_01a.brocade_firmware_rpc.firmware_download.input": {}, "pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input": {"coldboot": "coldboot", "rbridge_id": "rbridge_id", "auto_activate": "auto_activate"}, "pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input": {"coldboot": "coldboot", "rbridge_id": "rbridge_id", "auto_activate": "auto_activate"}, "pybind.nos.v7_0_1b.firmware.download": {}}
+    composed_child_leafval_list = [{'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'user, password, host, directory, file'}, {'leafval': 'directory'}, {'leafval': 'user, password, host, directory, file, port, host_key_check'}]
+    leafval_map = {"pybind.slxos.v17s_1_02.firmware.download": {}, "pybind.slxos.v17r_1_00a.firmware.download": {}, "pybind.slxos.v16r_1_00b.firmware.download": {}, "pybind.slxos.v17s_1_02.brocade_firmware_rpc.firmware_download.input": {}, "pybind.nos.v7_2_0.brocade_firmware_rpc.firmware_download.input": {"coldboot": "coldboot", "rbridge_id": "rbridge_id", "auto_activate": "auto_activate"}, "pybind.nos.v6_0_2c.brocade_firmware_rpc.firmware_download.input": {"coldboot": "coldboot", "rbridge_id": "rbridge_id", "auto_activate": "auto_activate"}, "pybind.slxos.v17r_1_00a.brocade_firmware_rpc.firmware_download.input": {}, "pybind.nos.v7_2_0.firmware.download": {}, "pybind.nos.v6_0_2c.firmware.download": {}, "pybind.nos.v7_1_0.firmware.download": {}, "pybind.slxos.v16r_1_00b.brocade_firmware_rpc.firmware_download.input": {}, "pybind.slxos.v17r_1_01a.firmware.download": {}, "pybind.nos.v7_1_0.brocade_firmware_rpc.firmware_download.input": {"coldboot": "coldboot", "rbridge_id": "rbridge_id", "auto_activate": "auto_activate"}, "pybind.nos.v7_0_1b.brocade_firmware_rpc.firmware_download.input": {"coldboot": "coldboot", "rbridge_id": "rbridge_id", "auto_activate": "auto_activate"}, "pybind.slxos.v17r_1_01a.brocade_firmware_rpc.firmware_download.input": {}, "pybind.nos.v7_0_1b.firmware.download": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -1321,7 +1321,7 @@ def fwdl_status_rpc(self, fwdl_tid=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -1349,12 +1349,12 @@ def fwdl_status_rpc(self, fwdl_tid=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_firmware_rpc.fwdl_status.input', 'pybind.nos.v6_0_2c.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v6_0_2c.brocade_firmware_rpc'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.fwdl_status.input', 'pybind.nos.v7_0_1b.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_0_1b.brocade_firmware_rpc'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.fwdl_status.input', 'pybind.nos.v7_1_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_1_0.brocade_firmware_rpc'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.fwdl_status', 'pybind.nos.v7_2_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_2_0.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.fwdl_status.input', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_01a.brocade_firmware_rpc.fwdl_status.input', 'pybind.slxos.v16r_1_01a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_01a.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_01.brocade_firmware_rpc.fwdl_status.input', 'pybind.slxos.v17r_1_01.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_01.brocade_firmware_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_firmware_rpc.fwdl_status.input', 'pybind.nos.v6_0_2c.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v6_0_2c.brocade_firmware_rpc'), ('pybind.nos.v7_0_1b.brocade_firmware_rpc.fwdl_status.input', 'pybind.nos.v7_0_1b.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_0_1b.brocade_firmware_rpc'), ('pybind.nos.v7_1_0.brocade_firmware_rpc.fwdl_status.input', 'pybind.nos.v7_1_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_1_0.brocade_firmware_rpc'), ('pybind.nos.v7_2_0.brocade_firmware_rpc.fwdl_status', 'pybind.nos.v7_2_0.brocade_firmware_rpc.brocade_firmware', 'pybind.nos.v7_2_0.brocade_firmware_rpc'), ('pybind.slxos.v16r_1_00b.brocade_firmware_rpc.fwdl_status.input', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v16r_1_00b.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_00a.brocade_firmware_rpc.fwdl_status.input', 'pybind.slxos.v17r_1_00a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_00a.brocade_firmware_rpc'), ('pybind.slxos.v17r_1_01a.brocade_firmware_rpc.fwdl_status.input', 'pybind.slxos.v17r_1_01a.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17r_1_01a.brocade_firmware_rpc'), ('pybind.slxos.v17s_1_02.brocade_firmware_rpc.fwdl_status.input', 'pybind.slxos.v17s_1_02.brocade_firmware_rpc.brocade_firmware', 'pybind.slxos.v17s_1_02.brocade_firmware_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.nos.v7_0_1b.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.slxos.v16r_1_00b.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.nos.v7_2_0.brocade_firmware_rpc.fwdl_status": {}, "pybind.slxos.v16r_1_01a.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.nos.v6_0_2c.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.slxos.v17r_1_01.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.nos.v7_1_0.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}}
+    leafval_map = {"pybind.nos.v7_0_1b.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.slxos.v17s_1_02.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.slxos.v16r_1_00b.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.nos.v7_2_0.brocade_firmware_rpc.fwdl_status": {}, "pybind.nos.v6_0_2c.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.slxos.v17r_1_01a.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.slxos.v17r_1_00a.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}, "pybind.nos.v7_1_0.brocade_firmware_rpc.fwdl_status.input": {"fwdl_tid": "fwdl_tid"}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -1370,7 +1370,7 @@ def get_arp_rpc(self, interface_type=None, interface_name=None, dynamic=None, st
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -1434,7 +1434,7 @@ def get_arp_rpc(self, interface_type=None, interface_name=None, dynamic=None, st
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_arp_rpc.get_arp.input', 'pybind.nos.v6_0_2c.brocade_arp_rpc.brocade_arp', 'pybind.nos.v6_0_2c.brocade_arp_rpc'), ('pybind.nos.v7_0_1b.brocade_arp_rpc.get_arp.input', 'pybind.nos.v7_0_1b.brocade_arp_rpc.brocade_arp', 'pybind.nos.v7_0_1b.brocade_arp_rpc'), ('pybind.nos.v7_1_0.brocade_arp_rpc.get_arp.input', 'pybind.nos.v7_1_0.brocade_arp_rpc.brocade_arp', 'pybind.nos.v7_1_0.brocade_arp_rpc'), ('pybind.nos.v7_2_0.brocade_arp_rpc.get_arp.input', 'pybind.nos.v7_2_0.brocade_arp_rpc.brocade_arp', 'pybind.nos.v7_2_0.brocade_arp_rpc'), ('pybind.slxos.v16r_1_00b.brocade_arp_rpc.get_arp.input', 'pybind.slxos.v16r_1_00b.brocade_arp_rpc.brocade_arp', 'pybind.slxos.v16r_1_00b.brocade_arp_rpc'), ('pybind.slxos.v16r_1_01a.brocade_arp_rpc.get_arp.input', 'pybind.slxos.v16r_1_01a.brocade_arp_rpc.brocade_arp', 'pybind.slxos.v16r_1_01a.brocade_arp_rpc'), ('pybind.slxos.v17r_1_01.brocade_arp_rpc.get_arp.input', 'pybind.slxos.v17r_1_01.brocade_arp_rpc.brocade_arp', 'pybind.slxos.v17r_1_01.brocade_arp_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_arp_rpc.get_arp.input', 'pybind.nos.v6_0_2c.brocade_arp_rpc.brocade_arp', 'pybind.nos.v6_0_2c.brocade_arp_rpc'), ('pybind.nos.v7_0_1b.brocade_arp_rpc.get_arp.input', 'pybind.nos.v7_0_1b.brocade_arp_rpc.brocade_arp', 'pybind.nos.v7_0_1b.brocade_arp_rpc'), ('pybind.nos.v7_1_0.brocade_arp_rpc.get_arp.input', 'pybind.nos.v7_1_0.brocade_arp_rpc.brocade_arp', 'pybind.nos.v7_1_0.brocade_arp_rpc'), ('pybind.nos.v7_2_0.brocade_arp_rpc.get_arp.input', 'pybind.nos.v7_2_0.brocade_arp_rpc.brocade_arp', 'pybind.nos.v7_2_0.brocade_arp_rpc'), ('pybind.slxos.v16r_1_00b.brocade_arp_rpc.get_arp.input', 'pybind.slxos.v16r_1_00b.brocade_arp_rpc.brocade_arp', 'pybind.slxos.v16r_1_00b.brocade_arp_rpc'), ('pybind.slxos.v17r_1_00a.brocade_arp_rpc.get_arp.input', 'pybind.slxos.v17r_1_00a.brocade_arp_rpc.brocade_arp', 'pybind.slxos.v17r_1_00a.brocade_arp_rpc'), ('pybind.slxos.v17r_1_01a.brocade_arp_rpc.get_arp.input', 'pybind.slxos.v17r_1_01a.brocade_arp_rpc.brocade_arp', 'pybind.slxos.v17r_1_01a.brocade_arp_rpc'), ('pybind.slxos.v17s_1_02.brocade_arp_rpc.get_arp.input', 'pybind.slxos.v17s_1_02.brocade_arp_rpc.brocade_arp', 'pybind.slxos.v17s_1_02.brocade_arp_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -1455,7 +1455,7 @@ def get_contained_in_id_rpc(self, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -1474,7 +1474,7 @@ def get_contained_in_id_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_entity_rpc.get_contained_in_ID', 'pybind.nos.v6_0_2c.brocade_entity_rpc.brocade_entity', 'pybind.nos.v6_0_2c.brocade_entity_rpc'), ('pybind.nos.v7_0_1b.brocade_entity_rpc.get_contained_in_ID', 'pybind.nos.v7_0_1b.brocade_entity_rpc.brocade_entity', 'pybind.nos.v7_0_1b.brocade_entity_rpc'), ('pybind.nos.v7_1_0.brocade_entity_rpc.get_contained_in_ID', 'pybind.nos.v7_1_0.brocade_entity_rpc.brocade_entity', 'pybind.nos.v7_1_0.brocade_entity_rpc'), ('pybind.nos.v7_2_0.brocade_entity_rpc.get_contained_in_ID', 'pybind.nos.v7_2_0.brocade_entity_rpc.brocade_entity', 'pybind.nos.v7_2_0.brocade_entity_rpc'), ('pybind.slxos.v16r_1_00b.brocade_entity_rpc.get_contained_in_ID', 'pybind.slxos.v16r_1_00b.brocade_entity_rpc.brocade_entity', 'pybind.slxos.v16r_1_00b.brocade_entity_rpc'), ('pybind.slxos.v16r_1_01a.brocade_entity_rpc.get_contained_in_ID', 'pybind.slxos.v16r_1_01a.brocade_entity_rpc.brocade_entity', 'pybind.slxos.v16r_1_01a.brocade_entity_rpc'), ('pybind.slxos.v17r_1_01.brocade_entity_rpc.get_contained_in_ID', 'pybind.slxos.v17r_1_01.brocade_entity_rpc.brocade_entity', 'pybind.slxos.v17r_1_01.brocade_entity_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_entity_rpc.get_contained_in_ID', 'pybind.nos.v6_0_2c.brocade_entity_rpc.brocade_entity', 'pybind.nos.v6_0_2c.brocade_entity_rpc'), ('pybind.nos.v7_0_1b.brocade_entity_rpc.get_contained_in_ID', 'pybind.nos.v7_0_1b.brocade_entity_rpc.brocade_entity', 'pybind.nos.v7_0_1b.brocade_entity_rpc'), ('pybind.nos.v7_1_0.brocade_entity_rpc.get_contained_in_ID', 'pybind.nos.v7_1_0.brocade_entity_rpc.brocade_entity', 'pybind.nos.v7_1_0.brocade_entity_rpc'), ('pybind.nos.v7_2_0.brocade_entity_rpc.get_contained_in_ID', 'pybind.nos.v7_2_0.brocade_entity_rpc.brocade_entity', 'pybind.nos.v7_2_0.brocade_entity_rpc'), ('pybind.slxos.v16r_1_00b.brocade_entity_rpc.get_contained_in_ID', 'pybind.slxos.v16r_1_00b.brocade_entity_rpc.brocade_entity', 'pybind.slxos.v16r_1_00b.brocade_entity_rpc'), ('pybind.slxos.v17r_1_00a.brocade_entity_rpc.get_contained_in_ID', 'pybind.slxos.v17r_1_00a.brocade_entity_rpc.brocade_entity', 'pybind.slxos.v17r_1_00a.brocade_entity_rpc'), ('pybind.slxos.v17r_1_01a.brocade_entity_rpc.get_contained_in_ID', 'pybind.slxos.v17r_1_01a.brocade_entity_rpc.brocade_entity', 'pybind.slxos.v17r_1_01a.brocade_entity_rpc'), ('pybind.slxos.v17s_1_02.brocade_entity_rpc.get_contained_in_ID', 'pybind.slxos.v17s_1_02.brocade_entity_rpc.brocade_entity', 'pybind.slxos.v17s_1_02.brocade_entity_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -1534,7 +1534,7 @@ def get_interface_detail_rpc(self, interface_type=None, interface_name=None, las
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -1616,11 +1616,11 @@ def get_interface_detail_rpc(self, interface_type=None, interface_name=None, las
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_01.brocade_interface_ext_rpc')]
-    composed_child_list = [('pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.get_interface_detail.input', 'pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17s_1_02.brocade_interface_ext_rpc')]
+    composed_child_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface'), ('pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.get_interface_detail.input', u'last_rcvd_interface')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}]
+    composed_child_leafval_list = [{'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -1637,7 +1637,7 @@ def get_interface_switchport_rpc(self, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -1656,11 +1656,11 @@ def get_interface_switchport_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_01.brocade_interface_ext_rpc')]
-    composed_child_list = []
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.get_interface_switchport', 'pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.get_interface_switchport.input', 'pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17s_1_02.brocade_interface_ext_rpc')]
+    composed_child_list = [('pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.get_interface_switchport.input', u'last_rcvd_interface')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = []
+    composed_child_leafval_list = [{'leafval': 'interface_type, interface_name'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -1677,7 +1677,7 @@ def get_ip_interface_rpc(self, interface_type=None, interface_name=None, rbridge
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -1733,12 +1733,12 @@ def get_ip_interface_rpc(self, interface_type=None, interface_name=None, rbridge
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_01.brocade_interface_ext_rpc')]
-    composed_child_list = []
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.get_ip_interface.input', 'pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17s_1_02.brocade_interface_ext_rpc')]
+    composed_child_list = [('pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.get_ip_interface.input', u'last_rcvd_interface')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = []
-    leafval_map = {"pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_ip_interface.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_ip_interface.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_ip_interface.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.get_ip_interface.input": {}, "pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_ip_interface.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_ip_interface.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.get_ip_interface.input": {}}
+    composed_child_leafval_list = [{'leafval': 'interface_type, interface_name'}]
+    leafval_map = {"pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.get_ip_interface.input": {}, "pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_ip_interface.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_ip_interface.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_ip_interface.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_ip_interface.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_ip_interface.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.get_ip_interface.input": {}, "pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.get_ip_interface.input": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -1754,7 +1754,7 @@ def get_last_config_update_time_rpc(self, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -1773,7 +1773,7 @@ def get_last_config_update_time_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.get_last_config_update_time', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.get_last_config_update_time', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.get_last_config_update_time', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.get_last_config_update_time', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.get_last_config_update_time', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vcs_rpc.get_last_config_update_time', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01.brocade_vcs_rpc.get_last_config_update_time', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.get_last_config_update_time', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.get_last_config_update_time', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.get_last_config_update_time', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.get_last_config_update_time', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.get_last_config_update_time', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vcs_rpc.get_last_config_update_time', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vcs_rpc.get_last_config_update_time', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17s_1_02.brocade_vcs_rpc.get_last_config_update_time', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -1794,7 +1794,7 @@ def get_last_config_update_time_for_xpaths_rpc(self, xpath_strings=None, api_tim
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -1821,11 +1821,11 @@ def get_last_config_update_time_for_xpaths_rpc(self, xpath_strings=None, api_tim
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.nos.v6_0_2c.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.slxos.v16r_1_01a.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.slxos.v17r_1_01.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17s_1_02.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc')]
+    composed_child_list = [('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.slxos.v17s_1_02.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.nos.v6_0_2c.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.slxos.v17r_1_01a.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings'), ('pybind.slxos.v17r_1_00a.brocade_vcs_rpc.get_last_config_update_time_for_xpaths.input', u'xpath_strings')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}]
+    composed_child_leafval_list = [{'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}, {'leafval': 'xpath_string'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -1842,7 +1842,7 @@ def get_lldp_neighbor_detail_rpc(self, interface_type=None, interface_name=None,
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -1905,12 +1905,12 @@ def get_lldp_neighbor_detail_rpc(self, interface_type=None, interface_name=None,
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.nos.v6_0_2c.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.nos.v6_0_2c.brocade_lldp_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.nos.v7_0_1b.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.nos.v7_0_1b.brocade_lldp_ext_rpc'), ('pybind.nos.v7_1_0.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.nos.v7_1_0.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.nos.v7_1_0.brocade_lldp_ext_rpc'), ('pybind.nos.v7_2_0.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.nos.v7_2_0.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.nos.v7_2_0.brocade_lldp_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.slxos.v16r_1_00b.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.slxos.v16r_1_00b.brocade_lldp_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.slxos.v16r_1_01a.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.slxos.v16r_1_01a.brocade_lldp_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.slxos.v17r_1_01.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.slxos.v17r_1_01.brocade_lldp_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.nos.v6_0_2c.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.nos.v6_0_2c.brocade_lldp_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.nos.v7_0_1b.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.nos.v7_0_1b.brocade_lldp_ext_rpc'), ('pybind.nos.v7_1_0.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.nos.v7_1_0.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.nos.v7_1_0.brocade_lldp_ext_rpc'), ('pybind.nos.v7_2_0.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.nos.v7_2_0.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.nos.v7_2_0.brocade_lldp_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.slxos.v16r_1_00b.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.slxos.v16r_1_00b.brocade_lldp_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.slxos.v17r_1_00a.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.slxos.v17r_1_00a.brocade_lldp_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.slxos.v17r_1_01a.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.slxos.v17r_1_01a.brocade_lldp_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input', 'pybind.slxos.v17s_1_02.brocade_lldp_ext_rpc.brocade_lldp_ext', 'pybind.slxos.v17s_1_02.brocade_lldp_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.slxos.v16r_1_01a.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {}, "pybind.slxos.v17r_1_01.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {}, "pybind.nos.v7_1_0.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}, "pybind.nos.v7_0_1b.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}, "pybind.nos.v6_0_2c.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}, "pybind.nos.v7_2_0.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}, "pybind.slxos.v16r_1_00b.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {}}
+    leafval_map = {"pybind.slxos.v17r_1_01a.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {}, "pybind.nos.v7_1_0.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}, "pybind.nos.v7_0_1b.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}, "pybind.nos.v6_0_2c.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}, "pybind.slxos.v17r_1_00a.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {}, "pybind.nos.v7_2_0.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id", "last_rcvd_ifindex": "last_rcvd_ifindex"}, "pybind.slxos.v16r_1_00b.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {}, "pybind.slxos.v17s_1_02.brocade_lldp_ext_rpc.get_lldp_neighbor_detail.input": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -1926,7 +1926,7 @@ def get_mac_acl_for_intf_rpc(self, interface_type=None, interface_name=None, dir
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -1982,7 +1982,7 @@ def get_mac_acl_for_intf_rpc(self, interface_type=None, interface_name=None, dir
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.nos.v6_0_2c.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.nos.v6_0_2c.brocade_mac_access_list_rpc'), ('pybind.nos.v7_0_1b.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.nos.v7_0_1b.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.nos.v7_0_1b.brocade_mac_access_list_rpc'), ('pybind.nos.v7_1_0.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.nos.v7_1_0.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.nos.v7_1_0.brocade_mac_access_list_rpc'), ('pybind.nos.v7_2_0.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.nos.v7_2_0.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.nos.v7_2_0.brocade_mac_access_list_rpc'), ('pybind.slxos.v16r_1_00b.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.slxos.v16r_1_00b.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.slxos.v16r_1_00b.brocade_mac_access_list_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.slxos.v16r_1_01a.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.slxos.v16r_1_01a.brocade_mac_access_list_rpc'), ('pybind.slxos.v17r_1_01.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.slxos.v17r_1_01.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.slxos.v17r_1_01.brocade_mac_access_list_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.nos.v6_0_2c.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.nos.v6_0_2c.brocade_mac_access_list_rpc'), ('pybind.nos.v7_0_1b.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.nos.v7_0_1b.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.nos.v7_0_1b.brocade_mac_access_list_rpc'), ('pybind.nos.v7_1_0.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.nos.v7_1_0.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.nos.v7_1_0.brocade_mac_access_list_rpc'), ('pybind.nos.v7_2_0.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.nos.v7_2_0.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.nos.v7_2_0.brocade_mac_access_list_rpc'), ('pybind.slxos.v16r_1_00b.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.slxos.v16r_1_00b.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.slxos.v16r_1_00b.brocade_mac_access_list_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.slxos.v17r_1_00a.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.slxos.v17r_1_00a.brocade_mac_access_list_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.slxos.v17r_1_01a.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.slxos.v17r_1_01a.brocade_mac_access_list_rpc'), ('pybind.slxos.v17s_1_02.brocade_mac_access_list_rpc.get_mac_acl_for_intf.input', 'pybind.slxos.v17s_1_02.brocade_mac_access_list_rpc.brocade_mac_access_list', 'pybind.slxos.v17s_1_02.brocade_mac_access_list_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -2003,7 +2003,7 @@ def get_mac_address_table_rpc(self, mac_address=None, last_mac_address_details=N
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -2057,12 +2057,12 @@ def get_mac_address_table_rpc(self, mac_address=None, last_mac_address_details=N
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.nos.v6_0_2c.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.nos.v6_0_2c.brocade_mac_address_table_rpc'), ('pybind.nos.v7_0_1b.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.nos.v7_0_1b.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.nos.v7_0_1b.brocade_mac_address_table_rpc'), ('pybind.nos.v7_1_0.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.nos.v7_1_0.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.nos.v7_1_0.brocade_mac_address_table_rpc'), ('pybind.nos.v7_2_0.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.nos.v7_2_0.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.nos.v7_2_0.brocade_mac_address_table_rpc'), ('pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.slxos.v16r_1_01a.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.slxos.v16r_1_01a.brocade_mac_address_table_rpc'), ('pybind.slxos.v17r_1_01.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.slxos.v17r_1_01.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.slxos.v17r_1_01.brocade_mac_address_table_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.nos.v6_0_2c.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.nos.v7_2_0.brocade_mac_address_table_rpc.get_mac_address_table.input', u'forwarding_interface'), ('pybind.nos.v7_2_0.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.nos.v7_1_0.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.nos.v7_1_0.brocade_mac_address_table_rpc.get_mac_address_table.input', u'forwarding_interface'), ('pybind.nos.v7_0_1b.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.slxos.v17r_1_01.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.slxos.v16r_1_01a.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.nos.v6_0_2c.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.nos.v6_0_2c.brocade_mac_address_table_rpc'), ('pybind.nos.v7_0_1b.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.nos.v7_0_1b.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.nos.v7_0_1b.brocade_mac_address_table_rpc'), ('pybind.nos.v7_1_0.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.nos.v7_1_0.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.nos.v7_1_0.brocade_mac_address_table_rpc'), ('pybind.nos.v7_2_0.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.nos.v7_2_0.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.nos.v7_2_0.brocade_mac_address_table_rpc'), ('pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.slxos.v17r_1_00a.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.slxos.v17r_1_00a.brocade_mac_address_table_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.slxos.v17r_1_01a.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.slxos.v17r_1_01a.brocade_mac_address_table_rpc'), ('pybind.slxos.v17s_1_02.brocade_mac_address_table_rpc.get_mac_address_table.input', 'pybind.slxos.v17s_1_02.brocade_mac_address_table_rpc.brocade_mac_address_table', 'pybind.slxos.v17s_1_02.brocade_mac_address_table_rpc')]
+    composed_child_list = [('pybind.slxos.v17s_1_02.brocade_mac_address_table_rpc.get_mac_address_table.input', u'forwarding_interface'), ('pybind.slxos.v17s_1_02.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.nos.v6_0_2c.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.nos.v7_2_0.brocade_mac_address_table_rpc.get_mac_address_table.input', u'forwarding_interface'), ('pybind.nos.v7_2_0.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.slxos.v17r_1_00a.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.slxos.v17r_1_01a.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.nos.v7_1_0.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details'), ('pybind.nos.v7_1_0.brocade_mac_address_table_rpc.get_mac_address_table.input', u'forwarding_interface'), ('pybind.nos.v7_0_1b.brocade_mac_address_table_rpc.get_mac_address_table.input', u'last_mac_address_details')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}]
-    leafval_map = {"pybind.nos.v7_2_0.brocade_mac_address_table_rpc.get_mac_address_table.input": {}, "pybind.nos.v7_1_0.brocade_mac_address_table_rpc.get_mac_address_table.input": {}, "pybind.slxos.v17r_1_01.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}, "pybind.nos.v6_0_2c.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}, "pybind.slxos.v16r_1_01a.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}, "pybind.nos.v7_0_1b.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}, "pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}}
+    composed_child_leafval_list = [{'leafval': 'interface_type, interface_name'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'last_mac_address, last_vlan_id, last_mac_type'}]
+    leafval_map = {"pybind.nos.v7_2_0.brocade_mac_address_table_rpc.get_mac_address_table.input": {}, "pybind.nos.v7_1_0.brocade_mac_address_table_rpc.get_mac_address_table.input": {}, "pybind.slxos.v17r_1_01a.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}, "pybind.nos.v6_0_2c.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}, "pybind.nos.v7_0_1b.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}, "pybind.slxos.v17s_1_02.brocade_mac_address_table_rpc.get_mac_address_table.input": {}, "pybind.slxos.v16r_1_00b.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}, "pybind.slxos.v17r_1_00a.brocade_mac_address_table_rpc.get_mac_address_table.input": {"mac_address": "mac_address"}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -2078,7 +2078,7 @@ def get_media_detail_rpc(self, interface_type=None, interface_name=None, rbridge
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -2134,12 +2134,12 @@ def get_media_detail_rpc(self, interface_type=None, interface_name=None, rbridge
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_01.brocade_interface_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.get_media_detail.input', 'pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17s_1_02.brocade_interface_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_media_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_media_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.get_media_detail.input": {}, "pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_media_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.get_media_detail.input": {}, "pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_media_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_media_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}}
+    leafval_map = {"pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_media_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_media_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.get_media_detail.input": {}, "pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.get_media_detail.input": {}, "pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.get_media_detail.input": {}, "pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_media_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_media_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_media_detail.input": {"interface_type": "interface_type", "interface_name": "interface_name", "rbridge_id": "rbridge_id"}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -2154,7 +2154,7 @@ def get_mpls_autobw_template_brief_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -2173,7 +2173,7 @@ def get_mpls_autobw_template_brief_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_autobw_template_brief', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_autobw_template_brief', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_autobw_template_brief', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_autobw_template_brief', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_autobw_template_brief', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_autobw_template_brief', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_autobw_template_brief', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -2193,7 +2193,7 @@ def get_mpls_autobw_template_detail_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -2212,7 +2212,7 @@ def get_mpls_autobw_template_detail_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_autobw_template_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_autobw_template_detail', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_autobw_template_detail', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_autobw_template_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_autobw_template_detail', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_autobw_template_detail', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_autobw_template_detail', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -2232,7 +2232,7 @@ def get_mpls_autobw_template_one_rpc(self, mpls_autobw_template_one=None, api_ti
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -2259,11 +2259,11 @@ def get_mpls_autobw_template_one_rpc(self, mpls_autobw_template_one=None, api_ti
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_autobw_template_one.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_autobw_template_one.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_autobw_template_one.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_autobw_template_one.input', u'mpls_autobw_template_one'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_autobw_template_one.input', u'mpls_autobw_template_one'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_autobw_template_one.input', u'mpls_autobw_template_one')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_autobw_template_one.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_autobw_template_one.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_autobw_template_one.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_autobw_template_one.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_autobw_template_one.input', u'mpls_autobw_template_one'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_autobw_template_one.input', u'mpls_autobw_template_one'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_autobw_template_one.input', u'mpls_autobw_template_one'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_autobw_template_one.input', u'mpls_autobw_template_one')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'autobwTemplateName'}, {'leafval': 'autobwTemplateName'}, {'leafval': 'autobwTemplateName'}]
+    composed_child_leafval_list = [{'leafval': 'autobwTemplateName'}, {'leafval': 'autobwTemplateName'}, {'leafval': 'autobwTemplateName'}, {'leafval': 'autobwTemplateName'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -2279,7 +2279,7 @@ def get_mpls_ldp_neighbor_brief_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -2298,7 +2298,7 @@ def get_mpls_ldp_neighbor_brief_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_neighbor_brief', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_ldp_neighbor_brief', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_ldp_neighbor_brief', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_neighbor_brief', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_ldp_neighbor_brief', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_ldp_neighbor_brief', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_ldp_neighbor_brief', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -2318,7 +2318,7 @@ def get_mpls_ldp_neighbor_detail_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -2337,7 +2337,7 @@ def get_mpls_ldp_neighbor_detail_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_neighbor_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_ldp_neighbor_detail', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_ldp_neighbor_detail', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_neighbor_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_ldp_neighbor_detail', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_ldp_neighbor_detail', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_ldp_neighbor_detail', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -2357,7 +2357,7 @@ def get_mpls_ldp_neighbor_one_rpc(self, mpls_ldp_neighbor_one_input=None, api_ti
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -2397,11 +2397,11 @@ def get_mpls_ldp_neighbor_one_rpc(self, mpls_ldp_neighbor_one_input=None, api_ti
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', u'mpls_ldp_neighbor_one_input'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', u'mpls_ldp_neighbor_one_input'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', u'mpls_ldp_neighbor_one_input')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', u'mpls_ldp_neighbor_one_input'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', u'mpls_ldp_neighbor_one_input'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', u'mpls_ldp_neighbor_one_input'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_neighbor_one.input', u'mpls_ldp_neighbor_one_input')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'ldpid, labelspaceId'}, {'leafval': 'ldpid, labelspaceId'}, {'leafval': 'ldpid, labelspaceId'}]
+    composed_child_leafval_list = [{'leafval': 'ldpid, labelspaceId'}, {'leafval': 'ldpid, labelspaceId'}, {'leafval': 'ldpid, labelspaceId'}, {'leafval': 'ldpid, labelspaceId'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -2417,7 +2417,7 @@ def get_mpls_ldp_session_brief_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -2436,7 +2436,7 @@ def get_mpls_ldp_session_brief_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_session_brief', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_ldp_session_brief', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_ldp_session_brief', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_session_brief', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_ldp_session_brief', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_ldp_session_brief', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_ldp_session_brief', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -2456,7 +2456,7 @@ def get_mpls_ldp_session_detail_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -2475,7 +2475,7 @@ def get_mpls_ldp_session_detail_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_session_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_ldp_session_detail', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_ldp_session_detail', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_session_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_ldp_session_detail', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_ldp_session_detail', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_ldp_session_detail', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -2495,7 +2495,7 @@ def get_mpls_ldp_session_one_rpc(self, mpls_ldp_session_one=None, api_timeout=''
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -2544,11 +2544,11 @@ def get_mpls_ldp_session_one_rpc(self, mpls_ldp_session_one=None, api_timeout=''
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_session_one.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_ldp_session_one.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_ldp_session_one.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.get_mpls_ldp_session_one.input', u'mpls_ldp_session_one'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.get_mpls_ldp_session_one.input', u'mpls_ldp_session_one'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_session_one.input', u'mpls_ldp_session_one')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_session_one.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_ldp_session_one.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_ldp_session_one.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_ldp_session_one.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.get_mpls_ldp_session_one.input', u'mpls_ldp_session_one'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.get_mpls_ldp_session_one.input', u'mpls_ldp_session_one'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.get_mpls_ldp_session_one.input', u'mpls_ldp_session_one'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.get_mpls_ldp_session_one.input', u'mpls_ldp_session_one')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'ldpid, labelspaceId, debug, out, in_'}, {'leafval': 'ldpid, labelspaceId, debug, out, in_'}, {'leafval': 'ldpid, labelspaceId, debug, out, in_'}]
+    composed_child_leafval_list = [{'leafval': 'ldpid, labelspaceId, debug, out, in_'}, {'leafval': 'ldpid, labelspaceId, debug, out, in_'}, {'leafval': 'ldpid, labelspaceId, debug, out, in_'}, {'leafval': 'ldpid, labelspaceId, debug, out, in_'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -2565,7 +2565,7 @@ def get_nameserver_detail_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a    
 
     **Instance Argument(s)**:
 
@@ -2593,12 +2593,12 @@ def get_nameserver_detail_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_nameserver_rpc.get_nameserver_detail.input', 'pybind.nos.v6_0_2c.brocade_nameserver_rpc.brocade_nameserver', 'pybind.nos.v6_0_2c.brocade_nameserver_rpc'), ('pybind.nos.v7_0_1b.brocade_nameserver_rpc.get_nameserver_detail.input', 'pybind.nos.v7_0_1b.brocade_nameserver_rpc.brocade_nameserver', 'pybind.nos.v7_0_1b.brocade_nameserver_rpc'), ('pybind.nos.v7_1_0.brocade_nameserver_rpc.get_nameserver_detail.input', 'pybind.nos.v7_1_0.brocade_nameserver_rpc.brocade_nameserver', 'pybind.nos.v7_1_0.brocade_nameserver_rpc'), ('pybind.nos.v7_2_0.brocade_nameserver_rpc.get_nameserver_detail.input', 'pybind.nos.v7_2_0.brocade_nameserver_rpc.brocade_nameserver', 'pybind.nos.v7_2_0.brocade_nameserver_rpc'), ('pybind.slxos.v16r_1_00b.brocade_nameserver_rpc.get_nameserver_detail.input', 'pybind.slxos.v16r_1_00b.brocade_nameserver_rpc.brocade_nameserver', 'pybind.slxos.v16r_1_00b.brocade_nameserver_rpc'), ('pybind.slxos.v16r_1_01a.brocade_nameserver_rpc.get_nameserver_detail', 'pybind.slxos.v16r_1_01a.brocade_nameserver_rpc.brocade_nameserver', 'pybind.slxos.v16r_1_01a.brocade_nameserver_rpc'), ('pybind.slxos.v17r_1_01.brocade_nameserver_rpc.get_nameserver_detail', 'pybind.slxos.v17r_1_01.brocade_nameserver_rpc.brocade_nameserver', 'pybind.slxos.v17r_1_01.brocade_nameserver_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_nameserver_rpc.get_nameserver_detail.input', 'pybind.nos.v6_0_2c.brocade_nameserver_rpc.brocade_nameserver', 'pybind.nos.v6_0_2c.brocade_nameserver_rpc'), ('pybind.nos.v7_0_1b.brocade_nameserver_rpc.get_nameserver_detail.input', 'pybind.nos.v7_0_1b.brocade_nameserver_rpc.brocade_nameserver', 'pybind.nos.v7_0_1b.brocade_nameserver_rpc'), ('pybind.nos.v7_1_0.brocade_nameserver_rpc.get_nameserver_detail.input', 'pybind.nos.v7_1_0.brocade_nameserver_rpc.brocade_nameserver', 'pybind.nos.v7_1_0.brocade_nameserver_rpc'), ('pybind.nos.v7_2_0.brocade_nameserver_rpc.get_nameserver_detail.input', 'pybind.nos.v7_2_0.brocade_nameserver_rpc.brocade_nameserver', 'pybind.nos.v7_2_0.brocade_nameserver_rpc'), ('pybind.slxos.v16r_1_00b.brocade_nameserver_rpc.get_nameserver_detail.input', 'pybind.slxos.v16r_1_00b.brocade_nameserver_rpc.brocade_nameserver', 'pybind.slxos.v16r_1_00b.brocade_nameserver_rpc'), ('pybind.slxos.v17r_1_00a.brocade_nameserver_rpc.get_nameserver_detail', 'pybind.slxos.v17r_1_00a.brocade_nameserver_rpc.brocade_nameserver', 'pybind.slxos.v17r_1_00a.brocade_nameserver_rpc'), ('pybind.slxos.v17r_1_01a.brocade_nameserver_rpc.get_nameserver_detail', 'pybind.slxos.v17r_1_01a.brocade_nameserver_rpc.brocade_nameserver', 'pybind.slxos.v17r_1_01a.brocade_nameserver_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.nos.v6_0_2c.brocade_nameserver_rpc.get_nameserver_detail.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01.brocade_nameserver_rpc.get_nameserver_detail": {}, "pybind.slxos.v16r_1_01a.brocade_nameserver_rpc.get_nameserver_detail": {}, "pybind.slxos.v16r_1_00b.brocade_nameserver_rpc.get_nameserver_detail.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_nameserver_rpc.get_nameserver_detail.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_nameserver_rpc.get_nameserver_detail.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_2_0.brocade_nameserver_rpc.get_nameserver_detail.input": {"rbridge_id": "rbridge_id"}}
+    leafval_map = {"pybind.nos.v6_0_2c.brocade_nameserver_rpc.get_nameserver_detail.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_nameserver_rpc.get_nameserver_detail.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_nameserver_rpc.get_nameserver_detail.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01a.brocade_nameserver_rpc.get_nameserver_detail": {}, "pybind.nos.v7_1_0.brocade_nameserver_rpc.get_nameserver_detail.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_00a.brocade_nameserver_rpc.get_nameserver_detail": {}, "pybind.nos.v7_2_0.brocade_nameserver_rpc.get_nameserver_detail.input": {"rbridge_id": "rbridge_id"}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -2614,7 +2614,7 @@ def get_netconf_client_capabilities_rpc(self, session_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -2642,7 +2642,7 @@ def get_netconf_client_capabilities_rpc(self, session_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.nos.v6_0_2c.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.nos.v6_0_2c.brocade_netconf_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.nos.v7_0_1b.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.nos.v7_0_1b.brocade_netconf_ext_rpc'), ('pybind.nos.v7_1_0.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.nos.v7_1_0.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.nos.v7_1_0.brocade_netconf_ext_rpc'), ('pybind.nos.v7_2_0.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.nos.v7_2_0.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.nos.v7_2_0.brocade_netconf_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.slxos.v16r_1_00b.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.slxos.v16r_1_00b.brocade_netconf_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.slxos.v16r_1_01a.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.slxos.v16r_1_01a.brocade_netconf_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.slxos.v17r_1_01.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.slxos.v17r_1_01.brocade_netconf_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.nos.v6_0_2c.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.nos.v6_0_2c.brocade_netconf_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.nos.v7_0_1b.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.nos.v7_0_1b.brocade_netconf_ext_rpc'), ('pybind.nos.v7_1_0.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.nos.v7_1_0.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.nos.v7_1_0.brocade_netconf_ext_rpc'), ('pybind.nos.v7_2_0.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.nos.v7_2_0.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.nos.v7_2_0.brocade_netconf_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.slxos.v16r_1_00b.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.slxos.v16r_1_00b.brocade_netconf_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.slxos.v17r_1_00a.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.slxos.v17r_1_00a.brocade_netconf_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.slxos.v17r_1_01a.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.slxos.v17r_1_01a.brocade_netconf_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_netconf_ext_rpc.get_netconf_client_capabilities.input', 'pybind.slxos.v17s_1_02.brocade_netconf_ext_rpc.brocade_netconf_ext', 'pybind.slxos.v17s_1_02.brocade_netconf_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -2663,7 +2663,7 @@ def get_port_channel_detail_rpc(self, aggregator_id=None, last_aggregator_id=Non
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -2698,7 +2698,7 @@ def get_port_channel_detail_rpc(self, aggregator_id=None, last_aggregator_id=Non
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.nos.v6_0_2c.brocade_lag_rpc.brocade_lag', 'pybind.nos.v6_0_2c.brocade_lag_rpc'), ('pybind.nos.v7_0_1b.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.nos.v7_0_1b.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_0_1b.brocade_lag_rpc'), ('pybind.nos.v7_1_0.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.nos.v7_1_0.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_1_0.brocade_lag_rpc'), ('pybind.nos.v7_2_0.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.nos.v7_2_0.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_2_0.brocade_lag_rpc'), ('pybind.slxos.v16r_1_00b.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.slxos.v16r_1_00b.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v16r_1_00b.brocade_lag_rpc'), ('pybind.slxos.v16r_1_01a.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.slxos.v16r_1_01a.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v16r_1_01a.brocade_lag_rpc'), ('pybind.slxos.v17r_1_01.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.slxos.v17r_1_01.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v17r_1_01.brocade_lag_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.nos.v6_0_2c.brocade_lag_rpc.brocade_lag', 'pybind.nos.v6_0_2c.brocade_lag_rpc'), ('pybind.nos.v7_0_1b.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.nos.v7_0_1b.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_0_1b.brocade_lag_rpc'), ('pybind.nos.v7_1_0.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.nos.v7_1_0.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_1_0.brocade_lag_rpc'), ('pybind.nos.v7_2_0.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.nos.v7_2_0.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_2_0.brocade_lag_rpc'), ('pybind.slxos.v16r_1_00b.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.slxos.v16r_1_00b.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v16r_1_00b.brocade_lag_rpc'), ('pybind.slxos.v17r_1_00a.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.slxos.v17r_1_00a.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v17r_1_00a.brocade_lag_rpc'), ('pybind.slxos.v17r_1_01a.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.slxos.v17r_1_01a.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v17r_1_01a.brocade_lag_rpc'), ('pybind.slxos.v17s_1_02.brocade_lag_rpc.get_port_channel_detail.input', 'pybind.slxos.v17s_1_02.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v17s_1_02.brocade_lag_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -2719,7 +2719,7 @@ def get_port_profile_for_intf_rpc(self, rbridge_id=None, interface_type=None, in
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -2808,11 +2808,11 @@ def get_port_profile_for_intf_rpc(self, rbridge_id=None, interface_type=None, in
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_1_0.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_2_0.brocade_port_profile_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.slxos.v16r_1_01a.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v16r_1_01a.brocade_port_profile_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.slxos.v17r_1_01.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v17r_1_01.brocade_port_profile_ext_rpc')]
-    composed_child_list = [('pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.slxos.v16r_1_01a.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.slxos.v17r_1_01.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_1_0.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_2_0.brocade_port_profile_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.slxos.v17r_1_00a.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v17r_1_00a.brocade_port_profile_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.slxos.v17r_1_01a.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v17r_1_01a.brocade_port_profile_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', 'pybind.slxos.v17s_1_02.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v17s_1_02.brocade_port_profile_ext_rpc')]
+    composed_child_list = [('pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.slxos.v17r_1_00a.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.slxos.v17s_1_02.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info'), ('pybind.slxos.v17r_1_01a.brocade_port_profile_ext_rpc.get_port_profile_for_intf.input', u'last_received_interface_info')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}]
+    composed_child_leafval_list = [{'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}, {'leafval': 'interface_type, interface_name'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -2829,7 +2829,7 @@ def get_port_profile_status_rpc(self, rbridge_id=None, port_profile_name=None, p
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -2892,11 +2892,11 @@ def get_port_profile_status_rpc(self, rbridge_id=None, port_profile_name=None, p
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_1_0.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_2_0.brocade_port_profile_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.slxos.v16r_1_01a.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v16r_1_01a.brocade_port_profile_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.slxos.v17r_1_01.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v17r_1_01.brocade_port_profile_ext_rpc')]
-    composed_child_list = [('pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.slxos.v16r_1_01a.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.slxos.v17r_1_01.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_1_0.brocade_port_profile_ext_rpc'), ('pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.nos.v7_2_0.brocade_port_profile_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.slxos.v17r_1_00a.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v17r_1_00a.brocade_port_profile_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.slxos.v17r_1_01a.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v17r_1_01a.brocade_port_profile_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_port_profile_ext_rpc.get_port_profile_status.input', 'pybind.slxos.v17s_1_02.brocade_port_profile_ext_rpc.brocade_port_profile_ext', 'pybind.slxos.v17s_1_02.brocade_port_profile_ext_rpc')]
+    composed_child_list = [('pybind.nos.v7_2_0.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.slxos.v17r_1_01a.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.slxos.v16r_1_00b.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.nos.v7_1_0.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.nos.v7_0_1b.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.slxos.v17r_1_00a.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.slxos.v17s_1_02.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info'), ('pybind.nos.v6_0_2c.brocade_port_profile_ext_rpc.get_port_profile_status.input', u'last_received_port_profile_info')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}]
+    composed_child_leafval_list = [{'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}, {'leafval': 'profile_name, profile_mac'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -2913,7 +2913,7 @@ def get_portchannel_info_by_intf_rpc(self, interface_type=None, interface_name=N
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -2962,7 +2962,7 @@ def get_portchannel_info_by_intf_rpc(self, interface_type=None, interface_name=N
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.nos.v6_0_2c.brocade_lag_rpc.brocade_lag', 'pybind.nos.v6_0_2c.brocade_lag_rpc'), ('pybind.nos.v7_0_1b.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.nos.v7_0_1b.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_0_1b.brocade_lag_rpc'), ('pybind.nos.v7_1_0.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.nos.v7_1_0.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_1_0.brocade_lag_rpc'), ('pybind.nos.v7_2_0.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.nos.v7_2_0.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_2_0.brocade_lag_rpc'), ('pybind.slxos.v16r_1_00b.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.slxos.v16r_1_00b.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v16r_1_00b.brocade_lag_rpc'), ('pybind.slxos.v16r_1_01a.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.slxos.v16r_1_01a.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v16r_1_01a.brocade_lag_rpc'), ('pybind.slxos.v17r_1_01.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.slxos.v17r_1_01.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v17r_1_01.brocade_lag_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.nos.v6_0_2c.brocade_lag_rpc.brocade_lag', 'pybind.nos.v6_0_2c.brocade_lag_rpc'), ('pybind.nos.v7_0_1b.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.nos.v7_0_1b.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_0_1b.brocade_lag_rpc'), ('pybind.nos.v7_1_0.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.nos.v7_1_0.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_1_0.brocade_lag_rpc'), ('pybind.nos.v7_2_0.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.nos.v7_2_0.brocade_lag_rpc.brocade_lag', 'pybind.nos.v7_2_0.brocade_lag_rpc'), ('pybind.slxos.v16r_1_00b.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.slxos.v16r_1_00b.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v16r_1_00b.brocade_lag_rpc'), ('pybind.slxos.v17r_1_00a.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.slxos.v17r_1_00a.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v17r_1_00a.brocade_lag_rpc'), ('pybind.slxos.v17r_1_01a.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.slxos.v17r_1_01a.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v17r_1_01a.brocade_lag_rpc'), ('pybind.slxos.v17s_1_02.brocade_lag_rpc.get_portchannel_info_by_intf.input', 'pybind.slxos.v17s_1_02.brocade_lag_rpc.brocade_lag', 'pybind.slxos.v17s_1_02.brocade_lag_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -2982,7 +2982,7 @@ def get_show_cfm_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b    
+        * SLXOS: 16r.1.00b, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -3001,7 +3001,7 @@ def get_show_cfm_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_dot1ag_rpc.get_show_cfm', 'pybind.slxos.v16r_1_00b.brocade_dot1ag_rpc.brocade_dot1ag', 'pybind.slxos.v16r_1_00b.brocade_dot1ag_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_dot1ag_rpc.get_show_cfm', 'pybind.slxos.v16r_1_00b.brocade_dot1ag_rpc.brocade_dot1ag', 'pybind.slxos.v16r_1_00b.brocade_dot1ag_rpc'), ('pybind.slxos.v17s_1_02.brocade_dot1ag_rpc.get_show_cfm', 'pybind.slxos.v17s_1_02.brocade_dot1ag_rpc.brocade_dot1ag', 'pybind.slxos.v17s_1_02.brocade_dot1ag_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3022,7 +3022,7 @@ def get_stp_brief_info_rpc(self, last_rcvd_instance=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -3053,11 +3053,11 @@ def get_stp_brief_info_rpc(self, last_rcvd_instance=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v6_0_2c.brocade_xstp_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_0_1b.brocade_xstp_ext_rpc'), ('pybind.nos.v7_1_0.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.nos.v7_1_0.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_1_0.brocade_xstp_ext_rpc'), ('pybind.nos.v7_2_0.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.nos.v7_2_0.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_2_0.brocade_xstp_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.slxos.v16r_1_01a.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v16r_1_01a.brocade_xstp_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.slxos.v17r_1_01.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v17r_1_01.brocade_xstp_ext_rpc')]
-    composed_child_list = [('pybind.slxos.v17r_1_01.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.slxos.v16r_1_01a.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.nos.v7_2_0.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.nos.v7_1_0.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v6_0_2c.brocade_xstp_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_0_1b.brocade_xstp_ext_rpc'), ('pybind.nos.v7_1_0.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.nos.v7_1_0.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_1_0.brocade_xstp_ext_rpc'), ('pybind.nos.v7_2_0.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.nos.v7_2_0.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_2_0.brocade_xstp_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.slxos.v17r_1_00a.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v17r_1_00a.brocade_xstp_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.slxos.v17r_1_01a.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v17r_1_01a.brocade_xstp_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_xstp_ext_rpc.get_stp_brief_info.input', 'pybind.slxos.v17s_1_02.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v17s_1_02.brocade_xstp_ext_rpc')]
+    composed_child_list = [('pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.slxos.v17s_1_02.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.slxos.v17r_1_00a.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.slxos.v17r_1_01a.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.nos.v7_2_0.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance'), ('pybind.nos.v7_1_0.brocade_xstp_ext_rpc.get_stp_brief_info.input', u'last_rcvd_instance')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}]
+    composed_child_leafval_list = [{'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -3074,7 +3074,7 @@ def get_stp_mst_detail_rpc(self, last_rcvd_instance=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -3105,11 +3105,11 @@ def get_stp_mst_detail_rpc(self, last_rcvd_instance=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v6_0_2c.brocade_xstp_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_0_1b.brocade_xstp_ext_rpc'), ('pybind.nos.v7_1_0.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.nos.v7_1_0.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_1_0.brocade_xstp_ext_rpc'), ('pybind.nos.v7_2_0.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.nos.v7_2_0.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_2_0.brocade_xstp_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.slxos.v16r_1_01a.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v16r_1_01a.brocade_xstp_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.slxos.v17r_1_01.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v17r_1_01.brocade_xstp_ext_rpc')]
-    composed_child_list = [('pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.nos.v7_1_0.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.slxos.v17r_1_01.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.nos.v7_2_0.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.slxos.v16r_1_01a.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v6_0_2c.brocade_xstp_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_0_1b.brocade_xstp_ext_rpc'), ('pybind.nos.v7_1_0.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.nos.v7_1_0.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_1_0.brocade_xstp_ext_rpc'), ('pybind.nos.v7_2_0.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.nos.v7_2_0.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.nos.v7_2_0.brocade_xstp_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.slxos.v17r_1_00a.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v17r_1_00a.brocade_xstp_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.slxos.v17r_1_01a.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v17r_1_01a.brocade_xstp_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_xstp_ext_rpc.get_stp_mst_detail.input', 'pybind.slxos.v17s_1_02.brocade_xstp_ext_rpc.brocade_xstp_ext', 'pybind.slxos.v17s_1_02.brocade_xstp_ext_rpc')]
+    composed_child_list = [('pybind.nos.v6_0_2c.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.slxos.v17r_1_00a.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.nos.v7_0_1b.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.nos.v7_1_0.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.slxos.v17r_1_01a.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.slxos.v16r_1_00b.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.nos.v7_2_0.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance'), ('pybind.slxos.v17s_1_02.brocade_xstp_ext_rpc.get_stp_mst_detail.input', u'last_rcvd_instance')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}]
+    composed_child_leafval_list = [{'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}, {'leafval': 'instance_id'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -3126,7 +3126,7 @@ def get_system_uptime_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3154,12 +3154,12 @@ def get_system_uptime_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_system_rpc.get_system_uptime.input', 'pybind.nos.v6_0_2c.brocade_system_rpc.brocade_system', 'pybind.nos.v6_0_2c.brocade_system_rpc'), ('pybind.nos.v7_0_1b.brocade_system_rpc.get_system_uptime.input', 'pybind.nos.v7_0_1b.brocade_system_rpc.brocade_system', 'pybind.nos.v7_0_1b.brocade_system_rpc'), ('pybind.nos.v7_1_0.brocade_system_rpc.get_system_uptime.input', 'pybind.nos.v7_1_0.brocade_system_rpc.brocade_system', 'pybind.nos.v7_1_0.brocade_system_rpc'), ('pybind.nos.v7_2_0.brocade_system_rpc.get_system_uptime.input', 'pybind.nos.v7_2_0.brocade_system_rpc.brocade_system', 'pybind.nos.v7_2_0.brocade_system_rpc'), ('pybind.slxos.v16r_1_00b.brocade_system_rpc.get_system_uptime.input', 'pybind.slxos.v16r_1_00b.brocade_system_rpc.brocade_system', 'pybind.slxos.v16r_1_00b.brocade_system_rpc'), ('pybind.slxos.v16r_1_01a.brocade_system_rpc.get_system_uptime', 'pybind.slxos.v16r_1_01a.brocade_system_rpc.brocade_system', 'pybind.slxos.v16r_1_01a.brocade_system_rpc'), ('pybind.slxos.v17r_1_01.brocade_system_rpc.get_system_uptime', 'pybind.slxos.v17r_1_01.brocade_system_rpc.brocade_system', 'pybind.slxos.v17r_1_01.brocade_system_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_system_rpc.get_system_uptime.input', 'pybind.nos.v6_0_2c.brocade_system_rpc.brocade_system', 'pybind.nos.v6_0_2c.brocade_system_rpc'), ('pybind.nos.v7_0_1b.brocade_system_rpc.get_system_uptime.input', 'pybind.nos.v7_0_1b.brocade_system_rpc.brocade_system', 'pybind.nos.v7_0_1b.brocade_system_rpc'), ('pybind.nos.v7_1_0.brocade_system_rpc.get_system_uptime.input', 'pybind.nos.v7_1_0.brocade_system_rpc.brocade_system', 'pybind.nos.v7_1_0.brocade_system_rpc'), ('pybind.nos.v7_2_0.brocade_system_rpc.get_system_uptime.input', 'pybind.nos.v7_2_0.brocade_system_rpc.brocade_system', 'pybind.nos.v7_2_0.brocade_system_rpc'), ('pybind.slxos.v16r_1_00b.brocade_system_rpc.get_system_uptime.input', 'pybind.slxos.v16r_1_00b.brocade_system_rpc.brocade_system', 'pybind.slxos.v16r_1_00b.brocade_system_rpc'), ('pybind.slxos.v17r_1_00a.brocade_system_rpc.get_system_uptime', 'pybind.slxos.v17r_1_00a.brocade_system_rpc.brocade_system', 'pybind.slxos.v17r_1_00a.brocade_system_rpc'), ('pybind.slxos.v17r_1_01a.brocade_system_rpc.get_system_uptime', 'pybind.slxos.v17r_1_01a.brocade_system_rpc.brocade_system', 'pybind.slxos.v17r_1_01a.brocade_system_rpc'), ('pybind.slxos.v17s_1_02.brocade_system_rpc.get_system_uptime', 'pybind.slxos.v17s_1_02.brocade_system_rpc.brocade_system', 'pybind.slxos.v17s_1_02.brocade_system_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.nos.v7_2_0.brocade_system_rpc.get_system_uptime.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_01a.brocade_system_rpc.get_system_uptime": {}, "pybind.nos.v7_0_1b.brocade_system_rpc.get_system_uptime.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_system_rpc.get_system_uptime.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_system_rpc.get_system_uptime.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_system_rpc.get_system_uptime.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01.brocade_system_rpc.get_system_uptime": {}}
+    leafval_map = {"pybind.nos.v7_2_0.brocade_system_rpc.get_system_uptime.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01a.brocade_system_rpc.get_system_uptime": {}, "pybind.nos.v7_0_1b.brocade_system_rpc.get_system_uptime.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17s_1_02.brocade_system_rpc.get_system_uptime": {}, "pybind.nos.v6_0_2c.brocade_system_rpc.get_system_uptime.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_00a.brocade_system_rpc.get_system_uptime": {}, "pybind.nos.v7_1_0.brocade_system_rpc.get_system_uptime.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_system_rpc.get_system_uptime.input": {"rbridge_id": "rbridge_id"}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -3175,7 +3175,7 @@ def get_tunnel_info_rpc(self, page_cursor=None, id=None, mode=None, gw_name=None
     **Supported Versions**:
 
         * NOS: 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 17r.1.01    
+        * SLXOS: 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3273,7 +3273,7 @@ def get_tunnel_info_rpc(self, page_cursor=None, id=None, mode=None, gw_name=None
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc.get_tunnel_info.input', 'pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc'), ('pybind.nos.v7_1_0.brocade_tunnels_ext_rpc.get_tunnel_info.input', 'pybind.nos.v7_1_0.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_1_0.brocade_tunnels_ext_rpc'), ('pybind.nos.v7_2_0.brocade_tunnels_ext_rpc.get_tunnel_info.input', 'pybind.nos.v7_2_0.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_2_0.brocade_tunnels_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_tunnels_ext_rpc.get_tunnel_info.input', 'pybind.slxos.v17r_1_01.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.slxos.v17r_1_01.brocade_tunnels_ext_rpc')]
+    bindings_list = [('pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc.get_tunnel_info.input', 'pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc'), ('pybind.nos.v7_1_0.brocade_tunnels_ext_rpc.get_tunnel_info.input', 'pybind.nos.v7_1_0.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_1_0.brocade_tunnels_ext_rpc'), ('pybind.nos.v7_2_0.brocade_tunnels_ext_rpc.get_tunnel_info.input', 'pybind.nos.v7_2_0.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_2_0.brocade_tunnels_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_tunnels_ext_rpc.get_tunnel_info.input', 'pybind.slxos.v17r_1_01a.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.slxos.v17r_1_01a.brocade_tunnels_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_tunnels_ext_rpc.get_tunnel_info.input', 'pybind.slxos.v17s_1_02.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.slxos.v17s_1_02.brocade_tunnels_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3294,7 +3294,7 @@ def get_tunnel_statistics_rpc(self, page_cursor=None, id=None, mode=None, gw_nam
     **Supported Versions**:
 
         * NOS: 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 17r.1.01    
+        * SLXOS: 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3339,7 +3339,7 @@ def get_tunnel_statistics_rpc(self, page_cursor=None, id=None, mode=None, gw_nam
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc.get_tunnel_statistics.input', 'pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc'), ('pybind.nos.v7_1_0.brocade_tunnels_ext_rpc.get_tunnel_statistics.input', 'pybind.nos.v7_1_0.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_1_0.brocade_tunnels_ext_rpc'), ('pybind.nos.v7_2_0.brocade_tunnels_ext_rpc.get_tunnel_statistics.input', 'pybind.nos.v7_2_0.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_2_0.brocade_tunnels_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_tunnels_ext_rpc.get_tunnel_statistics.input', 'pybind.slxos.v17r_1_01.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.slxos.v17r_1_01.brocade_tunnels_ext_rpc')]
+    bindings_list = [('pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc.get_tunnel_statistics.input', 'pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_0_1b.brocade_tunnels_ext_rpc'), ('pybind.nos.v7_1_0.brocade_tunnels_ext_rpc.get_tunnel_statistics.input', 'pybind.nos.v7_1_0.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_1_0.brocade_tunnels_ext_rpc'), ('pybind.nos.v7_2_0.brocade_tunnels_ext_rpc.get_tunnel_statistics.input', 'pybind.nos.v7_2_0.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.nos.v7_2_0.brocade_tunnels_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_tunnels_ext_rpc.get_tunnel_statistics.input', 'pybind.slxos.v17r_1_01a.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.slxos.v17r_1_01a.brocade_tunnels_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_tunnels_ext_rpc.get_tunnel_statistics.input', 'pybind.slxos.v17s_1_02.brocade_tunnels_ext_rpc.brocade_tunnels_ext', 'pybind.slxos.v17s_1_02.brocade_tunnels_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3360,7 +3360,7 @@ def get_vcs_details_rpc(self, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -3379,7 +3379,7 @@ def get_vcs_details_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.get_vcs_details', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.get_vcs_details', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.get_vcs_details', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.get_vcs_details', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.get_vcs_details', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vcs_rpc.get_vcs_details', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01.brocade_vcs_rpc.get_vcs_details', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.get_vcs_details', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.get_vcs_details', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.get_vcs_details', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.get_vcs_details', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.get_vcs_details', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vcs_rpc.get_vcs_details', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vcs_rpc.get_vcs_details', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17s_1_02.brocade_vcs_rpc.get_vcs_details', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3400,7 +3400,7 @@ def get_vlan_brief_rpc(self, vlan_id=None, last_rcvd_vlan_id=None, api_timeout='
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3435,7 +3435,7 @@ def get_vlan_brief_rpc(self, vlan_id=None, last_rcvd_vlan_id=None, api_timeout='
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_01a.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.slxos.v17r_1_01.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_01.brocade_interface_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v6_0_2c.brocade_interface_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_0_1b.brocade_interface_ext_rpc'), ('pybind.nos.v7_1_0.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_1_0.brocade_interface_ext_rpc'), ('pybind.nos.v7_2_0.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.nos.v7_2_0.brocade_interface_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v16r_1_00b.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_00a.brocade_interface_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17r_1_01a.brocade_interface_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.get_vlan_brief.input', 'pybind.slxos.v17s_1_02.brocade_interface_ext_rpc.brocade_interface_ext', 'pybind.slxos.v17s_1_02.brocade_interface_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3456,7 +3456,7 @@ def get_vmpolicy_macaddr_rpc(self, mac=None, vcenter=None, datacenter=None, last
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3505,7 +3505,7 @@ def get_vmpolicy_macaddr_rpc(self, mac=None, vcenter=None, datacenter=None, last
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17s_1_02.brocade_vswitch_rpc.get_vmpolicy_macaddr.input', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3526,7 +3526,7 @@ def get_vnetwork_dvpgs_rpc(self, name=None, vcenter=None, datacenter=None, last_
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3575,7 +3575,7 @@ def get_vnetwork_dvpgs_rpc(self, name=None, vcenter=None, datacenter=None, last_
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17s_1_02.brocade_vswitch_rpc.get_vnetwork_dvpgs.input', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3596,7 +3596,7 @@ def get_vnetwork_dvs_rpc(self, name=None, vcenter=None, datacenter=None, last_rc
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3645,7 +3645,7 @@ def get_vnetwork_dvs_rpc(self, name=None, vcenter=None, datacenter=None, last_rc
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17s_1_02.brocade_vswitch_rpc.get_vnetwork_dvs.input', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3666,7 +3666,7 @@ def get_vnetwork_hosts_rpc(self, vcenter=None, datacenter=None, name=None, last_
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3715,7 +3715,7 @@ def get_vnetwork_hosts_rpc(self, vcenter=None, datacenter=None, name=None, last_
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17s_1_02.brocade_vswitch_rpc.get_vnetwork_hosts.input', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3736,7 +3736,7 @@ def get_vnetwork_portgroups_rpc(self, name=None, vcenter=None, datacenter=None, 
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3785,7 +3785,7 @@ def get_vnetwork_portgroups_rpc(self, name=None, vcenter=None, datacenter=None, 
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17s_1_02.brocade_vswitch_rpc.get_vnetwork_portgroups.input', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3806,7 +3806,7 @@ def get_vnetwork_vms_rpc(self, name=None, vcenter=None, datacenter=None, last_rc
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3855,7 +3855,7 @@ def get_vnetwork_vms_rpc(self, name=None, vcenter=None, datacenter=None, last_rc
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17s_1_02.brocade_vswitch_rpc.get_vnetwork_vms.input', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -3876,7 +3876,7 @@ def get_vnetwork_vswitches_rpc(self, name=None, vcenter=None, datacenter=None, l
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -3925,7 +3925,7 @@ def get_vnetwork_vswitches_rpc(self, name=None, vcenter=None, datacenter=None, l
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01.brocade_vswitch_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v6_0_2c.brocade_vswitch_rpc'), ('pybind.nos.v7_0_1b.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_0_1b.brocade_vswitch_rpc'), ('pybind.nos.v7_1_0.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.nos.v7_1_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_1_0.brocade_vswitch_rpc'), ('pybind.nos.v7_2_0.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.nos.v7_2_0.brocade_vswitch_rpc.brocade_vswitch', 'pybind.nos.v7_2_0.brocade_vswitch_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v16r_1_00b.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_00a.brocade_vswitch_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17r_1_01a.brocade_vswitch_rpc'), ('pybind.slxos.v17s_1_02.brocade_vswitch_rpc.get_vnetwork_vswitches.input', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc.brocade_vswitch', 'pybind.slxos.v17s_1_02.brocade_vswitch_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -4487,7 +4487,7 @@ def maps_get_all_policy_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -4515,7 +4515,7 @@ def maps_get_all_policy_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.nos.v6_0_2c.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.nos.v6_0_2c.brocade_maps_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.nos.v7_0_1b.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.nos.v7_0_1b.brocade_maps_ext_rpc'), ('pybind.nos.v7_1_0.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.nos.v7_1_0.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.nos.v7_1_0.brocade_maps_ext_rpc'), ('pybind.nos.v7_2_0.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.nos.v7_2_0.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.nos.v7_2_0.brocade_maps_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.slxos.v16r_1_01a.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v16r_1_01a.brocade_maps_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.slxos.v17r_1_01.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v17r_1_01.brocade_maps_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.nos.v6_0_2c.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.nos.v6_0_2c.brocade_maps_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.nos.v7_0_1b.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.nos.v7_0_1b.brocade_maps_ext_rpc'), ('pybind.nos.v7_1_0.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.nos.v7_1_0.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.nos.v7_1_0.brocade_maps_ext_rpc'), ('pybind.nos.v7_2_0.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.nos.v7_2_0.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.nos.v7_2_0.brocade_maps_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.slxos.v17r_1_00a.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v17r_1_00a.brocade_maps_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.slxos.v17r_1_01a.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v17r_1_01a.brocade_maps_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_maps_ext_rpc.maps_get_all_policy.input', 'pybind.slxos.v17s_1_02.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v17s_1_02.brocade_maps_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -4584,7 +4584,7 @@ def maps_get_rules_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -4612,7 +4612,7 @@ def maps_get_rules_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_maps_ext_rpc.maps_get_rules.input', 'pybind.nos.v6_0_2c.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.nos.v6_0_2c.brocade_maps_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc.maps_get_rules.input', 'pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_maps_ext_rpc.maps_get_rules.input', 'pybind.slxos.v16r_1_01a.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v16r_1_01a.brocade_maps_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_maps_ext_rpc.maps_get_rules.input', 'pybind.slxos.v17r_1_01.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v17r_1_01.brocade_maps_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_maps_ext_rpc.maps_get_rules.input', 'pybind.nos.v6_0_2c.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.nos.v6_0_2c.brocade_maps_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc.maps_get_rules.input', 'pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v16r_1_00b.brocade_maps_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_maps_ext_rpc.maps_get_rules.input', 'pybind.slxos.v17r_1_00a.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v17r_1_00a.brocade_maps_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_maps_ext_rpc.maps_get_rules.input', 'pybind.slxos.v17r_1_01a.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v17r_1_01a.brocade_maps_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_maps_ext_rpc.maps_get_rules.input', 'pybind.slxos.v17s_1_02.brocade_maps_ext_rpc.brocade_maps_ext', 'pybind.slxos.v17s_1_02.brocade_maps_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -4680,7 +4680,7 @@ def mpls_adjust_bandwidth_lsp_rpc(self, lsp_name=None, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -4708,7 +4708,7 @@ def mpls_adjust_bandwidth_lsp_rpc(self, lsp_name=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.mpls_adjust_bandwidth_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.mpls_adjust_bandwidth_lsp.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.mpls_adjust_bandwidth_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.mpls_adjust_bandwidth_lsp.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.mpls_adjust_bandwidth_lsp.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.mpls_adjust_bandwidth_lsp.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -4728,7 +4728,7 @@ def mpls_adjust_bandwidth_lsp_all_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b    
+        * SLXOS: 16r.1.00b, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -4747,7 +4747,7 @@ def mpls_adjust_bandwidth_lsp_all_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.mpls_adjust_bandwidth_lsp_all', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.mpls_adjust_bandwidth_lsp_all', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.mpls_adjust_bandwidth_lsp_all', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -4767,7 +4767,7 @@ def mpls_reopt_lsp_rpc(self, mpls_reoptimize_lsp_name_in=None, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -4795,7 +4795,7 @@ def mpls_reopt_lsp_rpc(self, mpls_reoptimize_lsp_name_in=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.mpls_reopt_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.mpls_reopt_lsp.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.mpls_reopt_lsp.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.mpls_reopt_lsp.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.mpls_reopt_lsp.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.mpls_reopt_lsp.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.mpls_reopt_lsp.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -4816,7 +4816,7 @@ def no_vcs_rbridge_context_rpc(self, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -4835,7 +4835,7 @@ def no_vcs_rbridge_context_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17s_1_02.brocade_vcs_rpc.no_vcs_rbridge_context', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -4855,7 +4855,7 @@ def ping_mpls_rpc(self, oam_params=None, ping_mpls_input=None, traceroute_params
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -5023,11 +5023,11 @@ def ping_mpls_rpc(self, oam_params=None, ping_mpls_input=None, traceroute_params
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.ping_mpls.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.ping_mpls.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.ping_mpls.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'oam_params'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.ping_mpls.input', u'ping_mpls_input'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'traceroute_params'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'ping_params'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'ping_params'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'traceroute_params'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.ping_mpls.input', u'ping_mpls_input'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'oam_params'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'ping_params'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.ping_mpls.input', u'ping_mpls_input'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'traceroute_params'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'oam_params')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.ping_mpls.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.ping_mpls.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.ping_mpls.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.ping_mpls.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v17s_1_02.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'oam_params'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'traceroute_params'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'ping_params'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.ping_mpls.input', u'ping_mpls_input'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'oam_params'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.ping_mpls.input', u'ping_mpls_input'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'traceroute_params'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'ping_params'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'ping_params'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'traceroute_params'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'oam_params'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.ping_mpls.input', u'ping_mpls_input'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'traceroute_params'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'ping_params'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.ping_mpls.input', u'ping_mpls_input'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.ping_mpls.input.ping_mpls_input', u'oam_params')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'destination, reply_mode, reply_tos, size, source, timeout'}, {'leafval': 'ping_mpls_rsvp_lsp, ping_mpls_rsvp_session_src, ping_mpls_rsvp_session_dst, ping_mpls_rsvp_session_id, ping_mpls_ldp_prefix, ping_mpls_ldp_prefix_address'}, {'leafval': 'dsmap, min_ttl, max_ttl, nexthop'}, {'leafval': 'count, detail, detour, standby'}, {'leafval': 'count, detail, detour, standby'}, {'leafval': 'dsmap, min_ttl, max_ttl, nexthop'}, {'leafval': 'ping_mpls_rsvp_lsp, ping_mpls_rsvp_session_src, ping_mpls_rsvp_session_dst, ping_mpls_rsvp_session_id, ping_mpls_ldp_prefix, ping_mpls_ldp_prefix_address'}, {'leafval': 'destination, reply_mode, reply_tos, size, source, timeout'}, {'leafval': 'count, detail, detour, standby'}, {'leafval': 'ping_mpls_rsvp_lsp, ping_mpls_rsvp_session_src, ping_mpls_rsvp_session_dst, ping_mpls_rsvp_session_id, ping_mpls_ldp_prefix, ping_mpls_ldp_prefix_address'}, {'leafval': 'dsmap, min_ttl, max_ttl, nexthop'}, {'leafval': 'destination, reply_mode, reply_tos, size, source, timeout'}]
+    composed_child_leafval_list = [{'leafval': 'destination, reply_mode, reply_tos, size, source, timeout'}, {'leafval': 'dsmap, min_ttl, max_ttl, nexthop'}, {'leafval': 'count, detail, detour, standby'}, {'leafval': 'ping_mpls_rsvp_lsp, ping_mpls_rsvp_session_src, ping_mpls_rsvp_session_dst, ping_mpls_rsvp_session_id, ping_mpls_ldp_prefix, ping_mpls_ldp_prefix_address'}, {'leafval': 'destination, reply_mode, reply_tos, size, source, timeout'}, {'leafval': 'ping_mpls_rsvp_lsp, ping_mpls_rsvp_session_src, ping_mpls_rsvp_session_dst, ping_mpls_rsvp_session_id, ping_mpls_ldp_prefix, ping_mpls_ldp_prefix_address'}, {'leafval': 'dsmap, min_ttl, max_ttl, nexthop'}, {'leafval': 'count, detail, detour, standby'}, {'leafval': 'count, detail, detour, standby'}, {'leafval': 'dsmap, min_ttl, max_ttl, nexthop'}, {'leafval': 'destination, reply_mode, reply_tos, size, source, timeout'}, {'leafval': 'ping_mpls_rsvp_lsp, ping_mpls_rsvp_session_src, ping_mpls_rsvp_session_dst, ping_mpls_rsvp_session_id, ping_mpls_ldp_prefix, ping_mpls_ldp_prefix_address'}, {'leafval': 'dsmap, min_ttl, max_ttl, nexthop'}, {'leafval': 'count, detail, detour, standby'}, {'leafval': 'ping_mpls_rsvp_lsp, ping_mpls_rsvp_session_src, ping_mpls_rsvp_session_dst, ping_mpls_rsvp_session_id, ping_mpls_ldp_prefix, ping_mpls_ldp_prefix_address'}, {'leafval': 'destination, reply_mode, reply_tos, size, source, timeout'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -5092,7 +5092,7 @@ def reload_rpc(self, rbridge_id=None, system=None, standby=None, api_timeout='')
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -5126,12 +5126,12 @@ def reload_rpc(self, rbridge_id=None, system=None, standby=None, api_timeout='')
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_ha_rpc.reload.input', 'pybind.nos.v6_0_2c.brocade_ha_rpc.brocade_ha', 'pybind.nos.v6_0_2c.brocade_ha_rpc'), ('pybind.nos.v7_0_1b.brocade_ha_rpc.reload.input', 'pybind.nos.v7_0_1b.brocade_ha_rpc.brocade_ha', 'pybind.nos.v7_0_1b.brocade_ha_rpc'), ('pybind.nos.v7_1_0.brocade_ha_rpc.reload.input', 'pybind.nos.v7_1_0.brocade_ha_rpc.brocade_ha', 'pybind.nos.v7_1_0.brocade_ha_rpc'), ('pybind.nos.v7_2_0.brocade_ha_rpc.reload.input', 'pybind.nos.v7_2_0.brocade_ha_rpc.brocade_ha', 'pybind.nos.v7_2_0.brocade_ha_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ha_rpc.reload.input', 'pybind.slxos.v16r_1_00b.brocade_ha_rpc.brocade_ha', 'pybind.slxos.v16r_1_00b.brocade_ha_rpc'), ('pybind.slxos.v16r_1_01a.brocade_ha_rpc.reload.input', 'pybind.slxos.v16r_1_01a.brocade_ha_rpc.brocade_ha', 'pybind.slxos.v16r_1_01a.brocade_ha_rpc'), ('pybind.slxos.v17r_1_01.brocade_ha_rpc.reload.input', 'pybind.slxos.v17r_1_01.brocade_ha_rpc.brocade_ha', 'pybind.slxos.v17r_1_01.brocade_ha_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_ha_rpc.reload.input', 'pybind.nos.v6_0_2c.brocade_ha_rpc.brocade_ha', 'pybind.nos.v6_0_2c.brocade_ha_rpc'), ('pybind.nos.v7_0_1b.brocade_ha_rpc.reload.input', 'pybind.nos.v7_0_1b.brocade_ha_rpc.brocade_ha', 'pybind.nos.v7_0_1b.brocade_ha_rpc'), ('pybind.nos.v7_1_0.brocade_ha_rpc.reload.input', 'pybind.nos.v7_1_0.brocade_ha_rpc.brocade_ha', 'pybind.nos.v7_1_0.brocade_ha_rpc'), ('pybind.nos.v7_2_0.brocade_ha_rpc.reload.input', 'pybind.nos.v7_2_0.brocade_ha_rpc.brocade_ha', 'pybind.nos.v7_2_0.brocade_ha_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ha_rpc.reload.input', 'pybind.slxos.v16r_1_00b.brocade_ha_rpc.brocade_ha', 'pybind.slxos.v16r_1_00b.brocade_ha_rpc'), ('pybind.slxos.v17r_1_00a.brocade_ha_rpc.reload.input', 'pybind.slxos.v17r_1_00a.brocade_ha_rpc.brocade_ha', 'pybind.slxos.v17r_1_00a.brocade_ha_rpc'), ('pybind.slxos.v17r_1_01a.brocade_ha_rpc.reload.input', 'pybind.slxos.v17r_1_01a.brocade_ha_rpc.brocade_ha', 'pybind.slxos.v17r_1_01a.brocade_ha_rpc'), ('pybind.slxos.v17s_1_02.brocade_ha_rpc.reload.input', 'pybind.slxos.v17s_1_02.brocade_ha_rpc.brocade_ha', 'pybind.slxos.v17s_1_02.brocade_ha_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.slxos.v17r_1_01.brocade_ha_rpc.reload.input": {}, "pybind.slxos.v16r_1_01a.brocade_ha_rpc.reload.input": {}, "pybind.nos.v6_0_2c.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}, "pybind.nos.v7_2_0.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}, "pybind.slxos.v16r_1_00b.brocade_ha_rpc.reload.input": {}, "pybind.nos.v7_1_0.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}, "pybind.nos.v7_0_1b.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}}
+    leafval_map = {"pybind.slxos.v17r_1_01a.brocade_ha_rpc.reload.input": {}, "pybind.slxos.v17s_1_02.brocade_ha_rpc.reload.input": {"standby": "standby", "system": "system"}, "pybind.nos.v6_0_2c.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}, "pybind.nos.v7_2_0.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}, "pybind.slxos.v16r_1_00b.brocade_ha_rpc.reload.input": {}, "pybind.slxos.v17r_1_00a.brocade_ha_rpc.reload.input": {}, "pybind.nos.v7_1_0.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}, "pybind.nos.v7_0_1b.brocade_ha_rpc.reload.input": {"standby": "standby", "rbridge_id": "rbridge_id", "system": "system"}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -5147,7 +5147,7 @@ def set_http_application_url_rpc(self, config_http_app_url=None, api_timeout='')
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -5185,11 +5185,11 @@ def set_http_application_url_rpc(self, config_http_app_url=None, api_timeout='')
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.nos.v6_0_2c.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.nos.v6_0_2c.brocade_http_redirect_rpc'), ('pybind.nos.v7_0_1b.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.nos.v7_0_1b.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.nos.v7_0_1b.brocade_http_redirect_rpc'), ('pybind.nos.v7_1_0.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.nos.v7_1_0.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.nos.v7_1_0.brocade_http_redirect_rpc'), ('pybind.nos.v7_2_0.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.nos.v7_2_0.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.nos.v7_2_0.brocade_http_redirect_rpc'), ('pybind.slxos.v16r_1_00b.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.slxos.v16r_1_00b.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.slxos.v16r_1_00b.brocade_http_redirect_rpc'), ('pybind.slxos.v16r_1_01a.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.slxos.v16r_1_01a.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.slxos.v16r_1_01a.brocade_http_redirect_rpc'), ('pybind.slxos.v17r_1_01.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.slxos.v17r_1_01.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.slxos.v17r_1_01.brocade_http_redirect_rpc')]
-    composed_child_list = [('pybind.nos.v6_0_2c.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.nos.v7_1_0.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.nos.v7_2_0.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.slxos.v16r_1_00b.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.slxos.v16r_1_01a.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.slxos.v17r_1_01.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.nos.v7_0_1b.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.nos.v6_0_2c.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.nos.v6_0_2c.brocade_http_redirect_rpc'), ('pybind.nos.v7_0_1b.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.nos.v7_0_1b.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.nos.v7_0_1b.brocade_http_redirect_rpc'), ('pybind.nos.v7_1_0.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.nos.v7_1_0.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.nos.v7_1_0.brocade_http_redirect_rpc'), ('pybind.nos.v7_2_0.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.nos.v7_2_0.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.nos.v7_2_0.brocade_http_redirect_rpc'), ('pybind.slxos.v16r_1_00b.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.slxos.v16r_1_00b.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.slxos.v16r_1_00b.brocade_http_redirect_rpc'), ('pybind.slxos.v17r_1_00a.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.slxos.v17r_1_00a.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.slxos.v17r_1_00a.brocade_http_redirect_rpc'), ('pybind.slxos.v17r_1_01a.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.slxos.v17r_1_01a.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.slxos.v17r_1_01a.brocade_http_redirect_rpc'), ('pybind.slxos.v17s_1_02.brocade_http_redirect_rpc.set_http_application_url.input', 'pybind.slxos.v17s_1_02.brocade_http_redirect_rpc.brocade_http_redirect', 'pybind.slxos.v17s_1_02.brocade_http_redirect_rpc')]
+    composed_child_list = [('pybind.slxos.v17r_1_00a.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.nos.v6_0_2c.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.nos.v7_1_0.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.nos.v7_2_0.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.slxos.v16r_1_00b.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.slxos.v17s_1_02.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.nos.v7_0_1b.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url'), ('pybind.slxos.v17r_1_01a.brocade_http_redirect_rpc.set_http_application_url.input', u'config_http_app_url')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}]
+    composed_child_leafval_list = [{'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}, {'leafval': 'url, op_type'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -5206,7 +5206,7 @@ def show_bare_metal_state_rpc(self, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -5225,7 +5225,7 @@ def show_bare_metal_state_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.nos.v6_0_2c.brocade_preprovision_rpc.brocade_preprovision', 'pybind.nos.v6_0_2c.brocade_preprovision_rpc'), ('pybind.nos.v7_0_1b.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.nos.v7_0_1b.brocade_preprovision_rpc.brocade_preprovision', 'pybind.nos.v7_0_1b.brocade_preprovision_rpc'), ('pybind.nos.v7_1_0.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.nos.v7_1_0.brocade_preprovision_rpc.brocade_preprovision', 'pybind.nos.v7_1_0.brocade_preprovision_rpc'), ('pybind.nos.v7_2_0.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.nos.v7_2_0.brocade_preprovision_rpc.brocade_preprovision', 'pybind.nos.v7_2_0.brocade_preprovision_rpc'), ('pybind.slxos.v16r_1_00b.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.slxos.v16r_1_00b.brocade_preprovision_rpc.brocade_preprovision', 'pybind.slxos.v16r_1_00b.brocade_preprovision_rpc'), ('pybind.slxos.v16r_1_01a.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.slxos.v16r_1_01a.brocade_preprovision_rpc.brocade_preprovision', 'pybind.slxos.v16r_1_01a.brocade_preprovision_rpc'), ('pybind.slxos.v17r_1_01.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.slxos.v17r_1_01.brocade_preprovision_rpc.brocade_preprovision', 'pybind.slxos.v17r_1_01.brocade_preprovision_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.nos.v6_0_2c.brocade_preprovision_rpc.brocade_preprovision', 'pybind.nos.v6_0_2c.brocade_preprovision_rpc'), ('pybind.nos.v7_0_1b.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.nos.v7_0_1b.brocade_preprovision_rpc.brocade_preprovision', 'pybind.nos.v7_0_1b.brocade_preprovision_rpc'), ('pybind.nos.v7_1_0.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.nos.v7_1_0.brocade_preprovision_rpc.brocade_preprovision', 'pybind.nos.v7_1_0.brocade_preprovision_rpc'), ('pybind.nos.v7_2_0.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.nos.v7_2_0.brocade_preprovision_rpc.brocade_preprovision', 'pybind.nos.v7_2_0.brocade_preprovision_rpc'), ('pybind.slxos.v16r_1_00b.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.slxos.v16r_1_00b.brocade_preprovision_rpc.brocade_preprovision', 'pybind.slxos.v16r_1_00b.brocade_preprovision_rpc'), ('pybind.slxos.v17r_1_00a.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.slxos.v17r_1_00a.brocade_preprovision_rpc.brocade_preprovision', 'pybind.slxos.v17r_1_00a.brocade_preprovision_rpc'), ('pybind.slxos.v17r_1_01a.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.slxos.v17r_1_01a.brocade_preprovision_rpc.brocade_preprovision', 'pybind.slxos.v17r_1_01a.brocade_preprovision_rpc'), ('pybind.slxos.v17s_1_02.brocade_preprovision_rpc.show_bare_metal_state', 'pybind.slxos.v17s_1_02.brocade_preprovision_rpc.brocade_preprovision', 'pybind.slxos.v17s_1_02.brocade_preprovision_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -5246,7 +5246,7 @@ def show_clock_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -5274,12 +5274,12 @@ def show_clock_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_clock_rpc.show_clock.input', 'pybind.nos.v6_0_2c.brocade_clock_rpc.brocade_clock', 'pybind.nos.v6_0_2c.brocade_clock_rpc'), ('pybind.nos.v7_0_1b.brocade_clock_rpc.show_clock.input', 'pybind.nos.v7_0_1b.brocade_clock_rpc.brocade_clock', 'pybind.nos.v7_0_1b.brocade_clock_rpc'), ('pybind.nos.v7_1_0.brocade_clock_rpc.show_clock.input', 'pybind.nos.v7_1_0.brocade_clock_rpc.brocade_clock', 'pybind.nos.v7_1_0.brocade_clock_rpc'), ('pybind.nos.v7_2_0.brocade_clock_rpc.show_clock.input', 'pybind.nos.v7_2_0.brocade_clock_rpc.brocade_clock', 'pybind.nos.v7_2_0.brocade_clock_rpc'), ('pybind.slxos.v16r_1_00b.brocade_clock_rpc.show_clock', 'pybind.slxos.v16r_1_00b.brocade_clock_rpc.brocade_clock', 'pybind.slxos.v16r_1_00b.brocade_clock_rpc'), ('pybind.slxos.v16r_1_01a.brocade_clock_rpc.show_clock', 'pybind.slxos.v16r_1_01a.brocade_clock_rpc.brocade_clock', 'pybind.slxos.v16r_1_01a.brocade_clock_rpc'), ('pybind.slxos.v17r_1_01.brocade_clock_rpc.show_clock', 'pybind.slxos.v17r_1_01.brocade_clock_rpc.brocade_clock', 'pybind.slxos.v17r_1_01.brocade_clock_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_clock_rpc.show_clock.input', 'pybind.nos.v6_0_2c.brocade_clock_rpc.brocade_clock', 'pybind.nos.v6_0_2c.brocade_clock_rpc'), ('pybind.nos.v7_0_1b.brocade_clock_rpc.show_clock.input', 'pybind.nos.v7_0_1b.brocade_clock_rpc.brocade_clock', 'pybind.nos.v7_0_1b.brocade_clock_rpc'), ('pybind.nos.v7_1_0.brocade_clock_rpc.show_clock.input', 'pybind.nos.v7_1_0.brocade_clock_rpc.brocade_clock', 'pybind.nos.v7_1_0.brocade_clock_rpc'), ('pybind.nos.v7_2_0.brocade_clock_rpc.show_clock.input', 'pybind.nos.v7_2_0.brocade_clock_rpc.brocade_clock', 'pybind.nos.v7_2_0.brocade_clock_rpc'), ('pybind.slxos.v16r_1_00b.brocade_clock_rpc.show_clock', 'pybind.slxos.v16r_1_00b.brocade_clock_rpc.brocade_clock', 'pybind.slxos.v16r_1_00b.brocade_clock_rpc'), ('pybind.slxos.v17r_1_00a.brocade_clock_rpc.show_clock', 'pybind.slxos.v17r_1_00a.brocade_clock_rpc.brocade_clock', 'pybind.slxos.v17r_1_00a.brocade_clock_rpc'), ('pybind.slxos.v17r_1_01a.brocade_clock_rpc.show_clock', 'pybind.slxos.v17r_1_01a.brocade_clock_rpc.brocade_clock', 'pybind.slxos.v17r_1_01a.brocade_clock_rpc'), ('pybind.slxos.v17s_1_02.brocade_clock_rpc.show_clock', 'pybind.slxos.v17s_1_02.brocade_clock_rpc.brocade_clock', 'pybind.slxos.v17s_1_02.brocade_clock_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.slxos.v16r_1_00b.brocade_clock_rpc.show_clock": {}, "pybind.slxos.v17r_1_01.brocade_clock_rpc.show_clock": {}, "pybind.nos.v6_0_2c.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_2_0.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_01a.brocade_clock_rpc.show_clock": {}}
+    leafval_map = {"pybind.slxos.v17r_1_00a.brocade_clock_rpc.show_clock": {}, "pybind.slxos.v16r_1_00b.brocade_clock_rpc.show_clock": {}, "pybind.nos.v6_0_2c.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01a.brocade_clock_rpc.show_clock": {}, "pybind.nos.v7_2_0.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_clock_rpc.show_clock.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17s_1_02.brocade_clock_rpc.show_clock": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -5295,7 +5295,7 @@ def show_fabric_trunk_info_rpc(self, rbridge_id=None, all=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -5326,12 +5326,12 @@ def show_fabric_trunk_info_rpc(self, rbridge_id=None, all=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc'), ('pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc'), ('pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc'), ('pybind.nos.v7_2_0.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_01.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.slxos.v17r_1_01.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_01.brocade_fabric_service_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc'), ('pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc'), ('pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc'), ('pybind.nos.v7_2_0.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc'), ('pybind.slxos.v17s_1_02.brocade_fabric_service_rpc.show_fabric_trunk_info.input', 'pybind.slxos.v17s_1_02.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17s_1_02.brocade_fabric_service_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {}, "pybind.slxos.v17r_1_01.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_2_0.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {}, "pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {}, "pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}}
+    leafval_map = {"pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {}, "pybind.slxos.v17s_1_02.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_2_0.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {}, "pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {}, "pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_fabric_trunk_info.input": {"all": "all", "rbridge_id": "rbridge_id"}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -5347,7 +5347,7 @@ def show_fibrechannel_interface_info_rpc(self, all=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -5371,7 +5371,7 @@ def show_fibrechannel_interface_info_rpc(self, all=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc'), ('pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc'), ('pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc'), ('pybind.nos.v7_2_0.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_01.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.slxos.v17r_1_01.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_01.brocade_fabric_service_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc'), ('pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc'), ('pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc'), ('pybind.nos.v7_2_0.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc'), ('pybind.slxos.v17s_1_02.brocade_fabric_service_rpc.show_fibrechannel_interface_info.input', 'pybind.slxos.v17s_1_02.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17s_1_02.brocade_fabric_service_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -5392,7 +5392,7 @@ def show_firmware_version_rpc(self, switchid=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -5420,12 +5420,12 @@ def show_firmware_version_rpc(self, switchid=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_firmware_ext_rpc.show_firmware_version.input', 'pybind.nos.v6_0_2c.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.nos.v6_0_2c.brocade_firmware_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_firmware_ext_rpc.show_firmware_version.input', 'pybind.nos.v7_0_1b.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.nos.v7_0_1b.brocade_firmware_ext_rpc'), ('pybind.nos.v7_1_0.brocade_firmware_ext_rpc.show_firmware_version.input', 'pybind.nos.v7_1_0.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.nos.v7_1_0.brocade_firmware_ext_rpc'), ('pybind.nos.v7_2_0.brocade_firmware_ext_rpc.show_firmware_version.input', 'pybind.nos.v7_2_0.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.nos.v7_2_0.brocade_firmware_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_firmware_ext_rpc.show_firmware_version', 'pybind.slxos.v16r_1_00b.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.slxos.v16r_1_00b.brocade_firmware_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_firmware_ext_rpc.show_firmware_version', 'pybind.slxos.v16r_1_01a.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.slxos.v16r_1_01a.brocade_firmware_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_firmware_ext_rpc.show_firmware_version', 'pybind.slxos.v17r_1_01.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.slxos.v17r_1_01.brocade_firmware_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_firmware_ext_rpc.show_firmware_version.input', 'pybind.nos.v6_0_2c.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.nos.v6_0_2c.brocade_firmware_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_firmware_ext_rpc.show_firmware_version.input', 'pybind.nos.v7_0_1b.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.nos.v7_0_1b.brocade_firmware_ext_rpc'), ('pybind.nos.v7_1_0.brocade_firmware_ext_rpc.show_firmware_version.input', 'pybind.nos.v7_1_0.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.nos.v7_1_0.brocade_firmware_ext_rpc'), ('pybind.nos.v7_2_0.brocade_firmware_ext_rpc.show_firmware_version.input', 'pybind.nos.v7_2_0.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.nos.v7_2_0.brocade_firmware_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_firmware_ext_rpc.show_firmware_version', 'pybind.slxos.v16r_1_00b.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.slxos.v16r_1_00b.brocade_firmware_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_firmware_ext_rpc.show_firmware_version', 'pybind.slxos.v17r_1_00a.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.slxos.v17r_1_00a.brocade_firmware_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_firmware_ext_rpc.show_firmware_version', 'pybind.slxos.v17r_1_01a.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.slxos.v17r_1_01a.brocade_firmware_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_firmware_ext_rpc.show_firmware_version', 'pybind.slxos.v17s_1_02.brocade_firmware_ext_rpc.brocade_firmware_ext', 'pybind.slxos.v17s_1_02.brocade_firmware_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.nos.v7_2_0.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}, "pybind.nos.v6_0_2c.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}, "pybind.slxos.v16r_1_00b.brocade_firmware_ext_rpc.show_firmware_version": {}, "pybind.nos.v7_1_0.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}, "pybind.slxos.v16r_1_01a.brocade_firmware_ext_rpc.show_firmware_version": {}, "pybind.slxos.v17r_1_01.brocade_firmware_ext_rpc.show_firmware_version": {}, "pybind.nos.v7_0_1b.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}}
+    leafval_map = {"pybind.nos.v7_2_0.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}, "pybind.nos.v6_0_2c.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}, "pybind.slxos.v17r_1_00a.brocade_firmware_ext_rpc.show_firmware_version": {}, "pybind.slxos.v16r_1_00b.brocade_firmware_ext_rpc.show_firmware_version": {}, "pybind.nos.v7_1_0.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}, "pybind.slxos.v17r_1_01a.brocade_firmware_ext_rpc.show_firmware_version": {}, "pybind.nos.v7_0_1b.brocade_firmware_ext_rpc.show_firmware_version.input": {"switchid": "switchid"}, "pybind.slxos.v17s_1_02.brocade_firmware_ext_rpc.show_firmware_version": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -5441,7 +5441,7 @@ def show_linkinfo_rpc(self, all=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -5465,7 +5465,7 @@ def show_linkinfo_rpc(self, all=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc'), ('pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc'), ('pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc'), ('pybind.nos.v7_2_0.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_01.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.slxos.v17r_1_01.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_01.brocade_fabric_service_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc'), ('pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc'), ('pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc'), ('pybind.nos.v7_2_0.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc'), ('pybind.slxos.v17s_1_02.brocade_fabric_service_rpc.show_linkinfo.input', 'pybind.slxos.v17s_1_02.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17s_1_02.brocade_fabric_service_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -5485,7 +5485,7 @@ def show_mpls_bfd_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -5504,7 +5504,7 @@ def show_mpls_bfd_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bfd', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bfd', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bfd', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bfd', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bfd', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bfd', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bfd', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -5524,7 +5524,7 @@ def show_mpls_bypass_bypass_lsp_extensive_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -5543,7 +5543,7 @@ def show_mpls_bypass_bypass_lsp_extensive_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_bypass_lsp_extensive', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bypass_bypass_lsp_extensive', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bypass_bypass_lsp_extensive', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_bypass_lsp_extensive', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bypass_bypass_lsp_extensive', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bypass_bypass_lsp_extensive', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bypass_bypass_lsp_extensive', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -5563,7 +5563,7 @@ def show_mpls_bypass_lsp_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -5582,7 +5582,7 @@ def show_mpls_bypass_lsp_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bypass_lsp', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bypass_lsp', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bypass_lsp', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -5602,7 +5602,7 @@ def show_mpls_bypass_lsp_debug_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -5621,7 +5621,7 @@ def show_mpls_bypass_lsp_debug_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_debug', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_debug', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bypass_lsp_debug', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_debug', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bypass_lsp_debug', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_debug', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bypass_lsp_debug', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -5641,7 +5641,7 @@ def show_mpls_bypass_lsp_detail_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -5660,7 +5660,7 @@ def show_mpls_bypass_lsp_detail_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_detail', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bypass_lsp_detail', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bypass_lsp_detail', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_detail', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bypass_lsp_detail', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -5680,7 +5680,7 @@ def show_mpls_bypass_lsp_name_debug_rpc(self, show_lsp_input_info=None, api_time
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -5833,11 +5833,11 @@ def show_mpls_bypass_lsp_name_debug_rpc(self, show_lsp_input_info=None, api_time
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', u'show_lsp_input_info')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', u'show_lsp_input_info'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_debug.input', u'show_lsp_input_info')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
+    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -5853,7 +5853,7 @@ def show_mpls_bypass_lsp_name_detail_rpc(self, show_lsp_input_info=None, api_tim
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -6006,11 +6006,11 @@ def show_mpls_bypass_lsp_name_detail_rpc(self, show_lsp_input_info=None, api_tim
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', u'show_lsp_input_info')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', u'show_lsp_input_info'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_detail.input', u'show_lsp_input_info')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
+    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -6026,7 +6026,7 @@ def show_mpls_bypass_lsp_name_extensive_rpc(self, show_lsp_input_info=None, api_
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -6179,11 +6179,11 @@ def show_mpls_bypass_lsp_name_extensive_rpc(self, show_lsp_input_info=None, api_
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', u'show_lsp_input_info')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', u'show_lsp_input_info'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_bypass_lsp_name_extensive.input', u'show_lsp_input_info')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
+    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -6199,7 +6199,7 @@ def show_mpls_dynamic_bypass_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -6218,7 +6218,7 @@ def show_mpls_dynamic_bypass_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_dynamic_bypass', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_dynamic_bypass', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_dynamic_bypass', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_dynamic_bypass', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_dynamic_bypass', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_dynamic_bypass', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_dynamic_bypass', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6238,7 +6238,7 @@ def show_mpls_dynamic_bypass_interface_brief_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -6257,7 +6257,7 @@ def show_mpls_dynamic_bypass_interface_brief_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_dynamic_bypass_interface_brief', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_dynamic_bypass_interface_brief', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_dynamic_bypass_interface_brief', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_dynamic_bypass_interface_brief', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_dynamic_bypass_interface_brief', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_dynamic_bypass_interface_brief', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_dynamic_bypass_interface_brief', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6277,7 +6277,7 @@ def show_mpls_interface_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -6296,7 +6296,7 @@ def show_mpls_interface_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_interface', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_interface', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_interface', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_interface', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_interface', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_interface', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_interface', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6316,7 +6316,7 @@ def show_mpls_interface_detail_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -6335,7 +6335,7 @@ def show_mpls_interface_detail_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_interface_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_interface_detail', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_interface_detail', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_interface_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_interface_detail', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_interface_detail', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_interface_detail', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6355,7 +6355,7 @@ def show_mpls_interface_one_interface_rpc(self, interface_type=None, interface_n
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -6395,7 +6395,7 @@ def show_mpls_interface_one_interface_rpc(self, interface_type=None, interface_n
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_interface_one_interface.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_interface_one_interface.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_interface_one_interface.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_interface_one_interface.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_interface_one_interface.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_interface_one_interface.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_interface_one_interface.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6415,7 +6415,7 @@ def show_mpls_ldp_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -6434,7 +6434,7 @@ def show_mpls_ldp_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6454,7 +6454,7 @@ def show_mpls_ldp_fec_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -6473,7 +6473,7 @@ def show_mpls_ldp_fec_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_fec', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_fec', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_fec', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6493,7 +6493,7 @@ def show_mpls_ldp_fec_prefix_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -6512,7 +6512,7 @@ def show_mpls_ldp_fec_prefix_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_prefix', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_fec_prefix', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_prefix', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_fec_prefix', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6532,7 +6532,7 @@ def show_mpls_ldp_fec_prefix_filtered_rpc(self, ldp_fec_prefix_filtered=None, ld
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -6562,7 +6562,7 @@ def show_mpls_ldp_fec_prefix_filtered_rpc(self, ldp_fec_prefix_filtered=None, ld
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_filtered.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_filtered.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_filtered.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_filtered.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_filtered.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_filtered.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_filtered.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6582,7 +6582,7 @@ def show_mpls_ldp_fec_prefix_prefix_rpc(self, ldp_fec_prefix=None, api_timeout='
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -6612,7 +6612,7 @@ def show_mpls_ldp_fec_prefix_prefix_rpc(self, ldp_fec_prefix=None, api_timeout='
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6632,7 +6632,7 @@ def show_mpls_ldp_fec_prefix_prefix_filter_rpc(self, ldp_fec_prefix_filter=None,
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -6659,7 +6659,7 @@ def show_mpls_ldp_fec_prefix_prefix_filter_rpc(self, ldp_fec_prefix_filter=None,
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_filter.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_filter.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_filter.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_filter.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_filter.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_filter.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_filter.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6679,7 +6679,7 @@ def show_mpls_ldp_fec_prefix_prefix_longer_rpc(self, ldp_fec_prefix=None, ldp_fe
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -6712,7 +6712,7 @@ def show_mpls_ldp_fec_prefix_prefix_longer_rpc(self, ldp_fec_prefix=None, ldp_fe
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_longer.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_longer.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_longer.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_longer.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_longer.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_longer.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_fec_prefix_prefix_longer.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6732,7 +6732,7 @@ def show_mpls_ldp_fec_summary_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -6751,7 +6751,7 @@ def show_mpls_ldp_fec_summary_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_summary', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_summary', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_fec_summary', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_summary', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_fec_summary', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_summary', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_fec_summary', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6771,7 +6771,7 @@ def show_mpls_ldp_fec_vc_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -6790,7 +6790,7 @@ def show_mpls_ldp_fec_vc_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_vc', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_vc', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_fec_vc', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_vc', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_fec_vc', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_vc', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_fec_vc', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6810,7 +6810,7 @@ def show_mpls_ldp_fec_vc_id_rpc(self, ldp_fec_vc_id=None, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -6838,7 +6838,7 @@ def show_mpls_ldp_fec_vc_id_rpc(self, ldp_fec_vc_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_vc_id.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_vc_id.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_fec_vc_id.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_fec_vc_id.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_fec_vc_id.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_fec_vc_id.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_fec_vc_id.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6858,7 +6858,7 @@ def show_mpls_ldp_path_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -6877,7 +6877,7 @@ def show_mpls_ldp_path_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_path', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_path', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_path', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_path', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_path', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_path', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_path', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6897,7 +6897,7 @@ def show_mpls_ldp_path_one_rpc(self, ldp_path_ip=None, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -6927,7 +6927,7 @@ def show_mpls_ldp_path_one_rpc(self, ldp_path_ip=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_path_one.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_path_one.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_path_one.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_path_one.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_path_one.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_path_one.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_path_one.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -6947,7 +6947,7 @@ def show_mpls_ldp_peer_br_rpc(self, ldp_peer_brief=None, ldp_peer_detail=None, l
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -6990,7 +6990,7 @@ def show_mpls_ldp_peer_br_rpc(self, ldp_peer_brief=None, ldp_peer_detail=None, l
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_peer_br.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_peer_br.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_peer_br.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_peer_br.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_peer_br.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_peer_br.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_peer_br.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7010,7 +7010,7 @@ def show_mpls_ldp_peer_det_rpc(self, ldp_peer_brief=None, ldp_peer_detail=None, 
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -7053,7 +7053,7 @@ def show_mpls_ldp_peer_det_rpc(self, ldp_peer_brief=None, ldp_peer_detail=None, 
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_peer_det.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_peer_det.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_peer_det.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_peer_det.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_peer_det.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_peer_det.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_peer_det.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7073,7 +7073,7 @@ def show_mpls_ldp_peer_det_rec_rpc(self, ldp_peer_brief=None, ldp_peer_detail=No
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -7116,7 +7116,7 @@ def show_mpls_ldp_peer_det_rec_rpc(self, ldp_peer_brief=None, ldp_peer_detail=No
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_peer_det_rec.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_peer_det_rec.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_peer_det_rec.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_peer_det_rec.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_peer_det_rec.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_peer_det_rec.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_peer_det_rec.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7136,7 +7136,7 @@ def show_mpls_ldp_statistics_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -7155,7 +7155,7 @@ def show_mpls_ldp_statistics_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_statistics', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_statistics', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_statistics', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_statistics', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_statistics', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_statistics', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_statistics', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7175,7 +7175,7 @@ def show_mpls_ldp_targeted_peer_all_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -7194,7 +7194,7 @@ def show_mpls_ldp_targeted_peer_all_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_all', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_all', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_all', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_all', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_all', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_all', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_all', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7214,7 +7214,7 @@ def show_mpls_ldp_targeted_peer_one_rpc(self, ldp_targeted_peer_ip=None, api_tim
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -7244,7 +7244,7 @@ def show_mpls_ldp_targeted_peer_one_rpc(self, ldp_targeted_peer_ip=None, api_tim
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_one.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_one.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_one.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_one.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_one.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_one.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_ldp_targeted_peer_one.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7264,7 +7264,7 @@ def show_mpls_lsp_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -7283,7 +7283,7 @@ def show_mpls_lsp_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_lsp', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_lsp', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_lsp', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_lsp', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_lsp', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7303,7 +7303,7 @@ def show_mpls_lsp_debug_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -7322,7 +7322,7 @@ def show_mpls_lsp_debug_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_debug', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_lsp_debug', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_lsp_debug', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_debug', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_lsp_debug', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_lsp_debug', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_lsp_debug', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7342,7 +7342,7 @@ def show_mpls_lsp_detail_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -7361,7 +7361,7 @@ def show_mpls_lsp_detail_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_lsp_detail', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_lsp_detail', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_lsp_detail', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_lsp_detail', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_lsp_detail', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7381,7 +7381,7 @@ def show_mpls_lsp_extensive_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -7400,7 +7400,7 @@ def show_mpls_lsp_extensive_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_extensive', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_lsp_extensive', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_lsp_extensive', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_extensive', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_lsp_extensive', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_lsp_extensive', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_lsp_extensive', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7420,7 +7420,7 @@ def show_mpls_lsp_name_debug_rpc(self, show_lsp_input_info=None, api_timeout='')
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -7573,11 +7573,11 @@ def show_mpls_lsp_name_debug_rpc(self, show_lsp_input_info=None, api_timeout='')
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', u'show_lsp_input_info')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', u'show_lsp_input_info'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_debug.input', u'show_lsp_input_info')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
+    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -7593,7 +7593,7 @@ def show_mpls_lsp_name_detail_rpc(self, show_lsp_input_info=None, api_timeout=''
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -7746,11 +7746,11 @@ def show_mpls_lsp_name_detail_rpc(self, show_lsp_input_info=None, api_timeout=''
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', u'show_lsp_input_info')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', u'show_lsp_input_info'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_lsp_name_detail.input', u'show_lsp_input_info')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
+    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -7766,7 +7766,7 @@ def show_mpls_lsp_name_extensive_rpc(self, show_lsp_input_info=None, api_timeout
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Child Instance Keyword Argument Tuple(s)**:
 
@@ -7919,11 +7919,11 @@ def show_mpls_lsp_name_extensive_rpc(self, show_lsp_input_info=None, api_timeout
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
-    composed_child_list = [('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', u'show_lsp_input_info')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
+    composed_child_list = [('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', u'show_lsp_input_info'), ('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', u'show_lsp_input_info'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', u'show_lsp_input_info'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_lsp_name_extensive.input', u'show_lsp_input_info')]
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
-    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
+    composed_child_leafval_list = [{'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}, {'leafval': 'lsp, lsp_wide, lsp_detail, lsp_extensive, lsp_debug, lsp_name, lsp_name_extensive, lsp_name_debug, bypass_lsp, bypass_lsp_wide, bypass_lsp_detail, bypass_lsp_extensive, bypass_lsp_debug, bypass_lsp_name, bypass_lsp_name_extensive, bypass_lsp_name_debug, bypass_lsp_static, bypass_lsp_static_wide, bypass_lsp_static_detail, bypass_lsp_static_extensive, bypass_lsp_static_debug, bypass_lsp_static_name, bypass_lsp_static_name_extensive, bypass_lsp_static_name_debug, bypass_lsp_dynamic, bypass_lsp_dynamic_wide, bypass_lsp_dynamic_detail, bypass_lsp_dynamic_extensive, bypass_lsp_dynamic_debug, bypass_lsp_dynamic_name, bypass_lsp_dynamic_name_extensive, bypass_lsp_dynamic_name_debug, lsp_input_lsp_name, lsp_input_bypass, lsp_input_dynamic, lsp_input_brief, lsp_input_wide, lsp_input_detail, lsp_input_extensive, lsp_input_debug, lsp_input_one, lsp_input_all, lsp_input_more'}]
     leafval_map = {}
     rest_leaf_name = ''
     choices_kwargs_map = {}
@@ -7939,7 +7939,7 @@ def show_mpls_policy_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -7958,7 +7958,7 @@ def show_mpls_policy_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_policy', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_policy', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_policy', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_policy', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_policy', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_policy', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_policy', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -7978,7 +7978,7 @@ def show_mpls_route_rpc(self, prefix_address_and_len=None, prefix_address=None, 
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -8029,7 +8029,7 @@ def show_mpls_route_rpc(self, prefix_address_and_len=None, prefix_address=None, 
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_route.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_route.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_route.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_route.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_route.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_route.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_route.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8049,7 +8049,7 @@ def show_mpls_rsvp_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8068,7 +8068,7 @@ def show_mpls_rsvp_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8088,7 +8088,7 @@ def show_mpls_rsvp_interface_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8107,7 +8107,7 @@ def show_mpls_rsvp_interface_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_interface', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_interface', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_interface', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_interface', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_interface', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_interface', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_interface', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8127,7 +8127,7 @@ def show_mpls_rsvp_interface_detail_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8146,7 +8146,7 @@ def show_mpls_rsvp_interface_detail_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_interface_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_interface_detail', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_interface_detail', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_interface_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_interface_detail', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_interface_detail', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_interface_detail', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8166,7 +8166,7 @@ def show_mpls_rsvp_interface_one_interface_rpc(self, interface_type=None, interf
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -8206,7 +8206,7 @@ def show_mpls_rsvp_interface_one_interface_rpc(self, interface_type=None, interf
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_interface_one_interface.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_interface_one_interface.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_interface_one_interface.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_interface_one_interface.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_interface_one_interface.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_interface_one_interface.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_interface_one_interface.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8226,7 +8226,7 @@ def show_mpls_rsvp_neighbor_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8245,7 +8245,7 @@ def show_mpls_rsvp_neighbor_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_neighbor', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_neighbor', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_neighbor', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_neighbor', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_neighbor', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_neighbor', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_neighbor', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8265,7 +8265,7 @@ def show_mpls_rsvp_neighbor_detail_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8284,7 +8284,7 @@ def show_mpls_rsvp_neighbor_detail_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_neighbor_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_neighbor_detail', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_neighbor_detail', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_neighbor_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_neighbor_detail', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_neighbor_detail', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_neighbor_detail', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8304,7 +8304,7 @@ def show_mpls_rsvp_neighbor_one_neighbor_rpc(self, mpls_rsvp_neighbor_peer_ip_ad
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -8334,7 +8334,7 @@ def show_mpls_rsvp_neighbor_one_neighbor_rpc(self, mpls_rsvp_neighbor_peer_ip_ad
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_neighbor_one_neighbor.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_neighbor_one_neighbor.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_neighbor_one_neighbor.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_neighbor_one_neighbor.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_neighbor_one_neighbor.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_neighbor_one_neighbor.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_neighbor_one_neighbor.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8354,7 +8354,7 @@ def show_mpls_rsvp_session_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8373,7 +8373,7 @@ def show_mpls_rsvp_session_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_session', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_session', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_session', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_session', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_session', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_session', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_session', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8393,7 +8393,7 @@ def show_mpls_rsvp_session_detail_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8412,7 +8412,7 @@ def show_mpls_rsvp_session_detail_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_session_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_session_detail', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_session_detail', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_session_detail', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_session_detail', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_session_detail', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_session_detail', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8432,7 +8432,7 @@ def show_mpls_rsvp_session_extensive_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8451,7 +8451,7 @@ def show_mpls_rsvp_session_extensive_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_session_extensive', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_session_extensive', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_session_extensive', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_session_extensive', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_session_extensive', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_session_extensive', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_session_extensive', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8471,7 +8471,7 @@ def show_mpls_rsvp_session_name_rpc(self, session_name=None, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -8495,7 +8495,7 @@ def show_mpls_rsvp_session_name_rpc(self, session_name=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_session_name.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_session_name.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_session_name.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_session_name.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_session_name.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_session_name.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_session_name.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8515,7 +8515,7 @@ def show_mpls_rsvp_session_wide_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8534,7 +8534,7 @@ def show_mpls_rsvp_session_wide_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_session_wide', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_session_wide', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_session_wide', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_session_wide', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_session_wide', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_session_wide', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_session_wide', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8554,7 +8554,7 @@ def show_mpls_rsvp_statistics_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8573,7 +8573,7 @@ def show_mpls_rsvp_statistics_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_statistics', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_statistics', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_rsvp_statistics', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_rsvp_statistics', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_rsvp_statistics', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_rsvp_statistics', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_rsvp_statistics', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8593,7 +8593,7 @@ def show_mpls_statistics_ldp_transit_rpc(self, ldp_transit_stats=None, ldp_trans
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -8629,7 +8629,7 @@ def show_mpls_statistics_ldp_transit_rpc(self, ldp_transit_stats=None, ldp_trans
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_statistics_ldp_transit.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_statistics_ldp_transit.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_statistics_ldp_transit.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_statistics_ldp_transit.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_statistics_ldp_transit.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_statistics_ldp_transit.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_statistics_ldp_transit.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8649,7 +8649,7 @@ def show_mpls_statistics_ldp_tunnel_rpc(self, ldp_tunnel_stats=None, ldp_tunnel_
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -8680,7 +8680,7 @@ def show_mpls_statistics_ldp_tunnel_rpc(self, ldp_tunnel_stats=None, ldp_tunnel_
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_statistics_ldp_tunnel.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8700,7 +8700,7 @@ def show_mpls_statistics_oam_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8719,7 +8719,7 @@ def show_mpls_statistics_oam_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_statistics_oam', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_statistics_oam', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_statistics_oam', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_statistics_oam', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_statistics_oam', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_statistics_oam', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_statistics_oam', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8739,7 +8739,7 @@ def show_mpls_summary_rpc(self, api_timeout=''):
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -8758,7 +8758,7 @@ def show_mpls_summary_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_summary', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_summary', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_summary', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_summary', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_summary', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_summary', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_summary', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8778,7 +8778,7 @@ def show_mpls_te_path_rpc(self, ipAddr=None, bandwidth=None, cspfCompMode=None, 
 
     **Supported Versions**:
 
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -8855,7 +8855,7 @@ def show_mpls_te_path_rpc(self, ipAddr=None, bandwidth=None, cspfCompMode=None, 
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_te_path.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v16r_1_01a.brocade_mpls_rpc.show_mpls_te_path.input', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01.brocade_mpls_rpc.show_mpls_te_path.input', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01.brocade_mpls_rpc')]
+    bindings_list = [('pybind.slxos.v16r_1_00b.brocade_mpls_rpc.show_mpls_te_path.input', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v16r_1_00b.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_00a.brocade_mpls_rpc.show_mpls_te_path.input', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_00a.brocade_mpls_rpc'), ('pybind.slxos.v17r_1_01a.brocade_mpls_rpc.show_mpls_te_path.input', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17r_1_01a.brocade_mpls_rpc'), ('pybind.slxos.v17s_1_02.brocade_mpls_rpc.show_mpls_te_path.input', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc.brocade_mpls', 'pybind.slxos.v17s_1_02.brocade_mpls_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8876,7 +8876,7 @@ def show_ntp_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -8904,12 +8904,12 @@ def show_ntp_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_ntp_rpc.show_ntp.input', 'pybind.nos.v6_0_2c.brocade_ntp_rpc.brocade_ntp', 'pybind.nos.v6_0_2c.brocade_ntp_rpc'), ('pybind.nos.v7_0_1b.brocade_ntp_rpc.show_ntp.input', 'pybind.nos.v7_0_1b.brocade_ntp_rpc.brocade_ntp', 'pybind.nos.v7_0_1b.brocade_ntp_rpc'), ('pybind.nos.v7_1_0.brocade_ntp_rpc.show_ntp.input', 'pybind.nos.v7_1_0.brocade_ntp_rpc.brocade_ntp', 'pybind.nos.v7_1_0.brocade_ntp_rpc'), ('pybind.nos.v7_2_0.brocade_ntp_rpc.show_ntp.input', 'pybind.nos.v7_2_0.brocade_ntp_rpc.brocade_ntp', 'pybind.nos.v7_2_0.brocade_ntp_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ntp_rpc.show_ntp', 'pybind.slxos.v16r_1_00b.brocade_ntp_rpc.brocade_ntp', 'pybind.slxos.v16r_1_00b.brocade_ntp_rpc'), ('pybind.slxos.v16r_1_01a.brocade_ntp_rpc.show_ntp', 'pybind.slxos.v16r_1_01a.brocade_ntp_rpc.brocade_ntp', 'pybind.slxos.v16r_1_01a.brocade_ntp_rpc'), ('pybind.slxos.v17r_1_01.brocade_ntp_rpc.show_ntp', 'pybind.slxos.v17r_1_01.brocade_ntp_rpc.brocade_ntp', 'pybind.slxos.v17r_1_01.brocade_ntp_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_ntp_rpc.show_ntp.input', 'pybind.nos.v6_0_2c.brocade_ntp_rpc.brocade_ntp', 'pybind.nos.v6_0_2c.brocade_ntp_rpc'), ('pybind.nos.v7_0_1b.brocade_ntp_rpc.show_ntp.input', 'pybind.nos.v7_0_1b.brocade_ntp_rpc.brocade_ntp', 'pybind.nos.v7_0_1b.brocade_ntp_rpc'), ('pybind.nos.v7_1_0.brocade_ntp_rpc.show_ntp.input', 'pybind.nos.v7_1_0.brocade_ntp_rpc.brocade_ntp', 'pybind.nos.v7_1_0.brocade_ntp_rpc'), ('pybind.nos.v7_2_0.brocade_ntp_rpc.show_ntp.input', 'pybind.nos.v7_2_0.brocade_ntp_rpc.brocade_ntp', 'pybind.nos.v7_2_0.brocade_ntp_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ntp_rpc.show_ntp', 'pybind.slxos.v16r_1_00b.brocade_ntp_rpc.brocade_ntp', 'pybind.slxos.v16r_1_00b.brocade_ntp_rpc'), ('pybind.slxos.v17r_1_00a.brocade_ntp_rpc.show_ntp', 'pybind.slxos.v17r_1_00a.brocade_ntp_rpc.brocade_ntp', 'pybind.slxos.v17r_1_00a.brocade_ntp_rpc'), ('pybind.slxos.v17r_1_01a.brocade_ntp_rpc.show_ntp', 'pybind.slxos.v17r_1_01a.brocade_ntp_rpc.brocade_ntp', 'pybind.slxos.v17r_1_01a.brocade_ntp_rpc'), ('pybind.slxos.v17s_1_02.brocade_ntp_rpc.show_ntp', 'pybind.slxos.v17s_1_02.brocade_ntp_rpc.brocade_ntp', 'pybind.slxos.v17s_1_02.brocade_ntp_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.nos.v7_0_1b.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_2_0.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_ntp_rpc.show_ntp": {}, "pybind.slxos.v17r_1_01.brocade_ntp_rpc.show_ntp": {}, "pybind.slxos.v16r_1_01a.brocade_ntp_rpc.show_ntp": {}}
+    leafval_map = {"pybind.nos.v7_0_1b.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_2_0.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_00a.brocade_ntp_rpc.show_ntp": {}, "pybind.slxos.v17r_1_01a.brocade_ntp_rpc.show_ntp": {}, "pybind.nos.v7_1_0.brocade_ntp_rpc.show_ntp.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_ntp_rpc.show_ntp": {}, "pybind.slxos.v17s_1_02.brocade_ntp_rpc.show_ntp": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -8925,7 +8925,7 @@ def show_portindex_interface_info_rpc(self, all=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -8949,7 +8949,7 @@ def show_portindex_interface_info_rpc(self, all=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc'), ('pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc'), ('pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc'), ('pybind.nos.v7_2_0.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_01a.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_01.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.slxos.v17r_1_01.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_01.brocade_fabric_service_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v6_0_2c.brocade_fabric_service_rpc'), ('pybind.nos.v7_0_1b.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_0_1b.brocade_fabric_service_rpc'), ('pybind.nos.v7_1_0.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_1_0.brocade_fabric_service_rpc'), ('pybind.nos.v7_2_0.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.nos.v7_2_0.brocade_fabric_service_rpc'), ('pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v16r_1_00b.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_00a.brocade_fabric_service_rpc'), ('pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17r_1_01a.brocade_fabric_service_rpc'), ('pybind.slxos.v17s_1_02.brocade_fabric_service_rpc.show_portindex_interface_info.input', 'pybind.slxos.v17s_1_02.brocade_fabric_service_rpc.brocade_fabric_service', 'pybind.slxos.v17s_1_02.brocade_fabric_service_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -8970,7 +8970,7 @@ def show_raslog_rpc(self, rbridge_id=None, number_of_latest_events=None, api_tim
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -9005,12 +9005,12 @@ def show_raslog_rpc(self, rbridge_id=None, number_of_latest_events=None, api_tim
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_raslog.input', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_raslog.input', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc'), ('pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_raslog.input', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc'), ('pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_raslog.input', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_raslog.input', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc.show_raslog.input', 'pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_ras_ext_rpc.show_raslog.input', 'pybind.slxos.v17r_1_01.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17r_1_01.brocade_ras_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_raslog.input', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_raslog.input', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc'), ('pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_raslog.input', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc'), ('pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_raslog.input', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_raslog.input', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc.show_raslog.input', 'pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc.show_raslog.input', 'pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_ras_ext_rpc.show_raslog.input', 'pybind.slxos.v17s_1_02.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17s_1_02.brocade_ras_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {}
+    leafval_map = {"pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc.show_raslog.input": {"number_of_latest_events": "number_of_latest_events", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_raslog.input": {"number_of_latest_events": "number_of_latest_events", "rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc.show_raslog.input": {"number_of_latest_events": "number_of_latest_events", "rbridge_id": "rbridge_id"}, "pybind.slxos.v17s_1_02.brocade_ras_ext_rpc.show_raslog.input": {}, "pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_raslog.input": {"number_of_latest_events": "number_of_latest_events", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_raslog.input": {"number_of_latest_events": "number_of_latest_events", "rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_raslog.input": {"number_of_latest_events": "number_of_latest_events", "rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_raslog.input": {"number_of_latest_events": "number_of_latest_events", "rbridge_id": "rbridge_id"}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -9026,7 +9026,7 @@ def show_support_save_status_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -9054,12 +9054,12 @@ def show_support_save_status_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_support_save_status.input', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_support_save_status.input', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc'), ('pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_support_save_status.input', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc'), ('pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_support_save_status.input', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_support_save_status.input', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc.show_support_save_status', 'pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_ras_ext_rpc.show_support_save_status', 'pybind.slxos.v17r_1_01.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17r_1_01.brocade_ras_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_support_save_status.input', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_support_save_status.input', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc'), ('pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_support_save_status.input', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc'), ('pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_support_save_status.input', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_support_save_status.input', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc.show_support_save_status', 'pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc.show_support_save_status', 'pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_ras_ext_rpc.show_support_save_status', 'pybind.slxos.v17s_1_02.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17s_1_02.brocade_ras_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_support_save_status.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01.brocade_ras_ext_rpc.show_support_save_status": {}, "pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_support_save_status.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc.show_support_save_status": {}, "pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_support_save_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_support_save_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_support_save_status.input": {"rbridge_id": "rbridge_id"}}
+    leafval_map = {"pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_support_save_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_support_save_status.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17s_1_02.brocade_ras_ext_rpc.show_support_save_status": {}, "pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_support_save_status.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_support_save_status.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc.show_support_save_status": {}, "pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc.show_support_save_status": {}, "pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_support_save_status.input": {"rbridge_id": "rbridge_id"}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -9075,7 +9075,7 @@ def show_system_info_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -9103,12 +9103,12 @@ def show_system_info_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_system_info.input', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_system_info.input', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc'), ('pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_system_info.input', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc'), ('pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_system_info.input', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_system_info.input', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc.show_system_info', 'pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_ras_ext_rpc.show_system_info', 'pybind.slxos.v17r_1_01.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17r_1_01.brocade_ras_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_system_info.input', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v6_0_2c.brocade_ras_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_system_info.input', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_0_1b.brocade_ras_ext_rpc'), ('pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_system_info.input', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_1_0.brocade_ras_ext_rpc'), ('pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_system_info.input', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.nos.v7_2_0.brocade_ras_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_system_info.input', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc.show_system_info', 'pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc.show_system_info', 'pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_ras_ext_rpc.show_system_info.input', 'pybind.slxos.v17s_1_02.brocade_ras_ext_rpc.brocade_ras_ext', 'pybind.slxos.v17s_1_02.brocade_ras_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_01a.brocade_ras_ext_rpc.show_system_info": {}, "pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01.brocade_ras_ext_rpc.show_system_info": {}}
+    leafval_map = {"pybind.nos.v6_0_2c.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_0_1b.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_00b.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_01a.brocade_ras_ext_rpc.show_system_info": {}, "pybind.nos.v7_2_0.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17s_1_02.brocade_ras_ext_rpc.show_system_info.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_00a.brocade_ras_ext_rpc.show_system_info": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -9124,7 +9124,7 @@ def show_system_monitor_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -9152,12 +9152,12 @@ def show_system_monitor_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_system_monitor_ext_rpc.show_system_monitor.input', 'pybind.nos.v6_0_2c.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.nos.v6_0_2c.brocade_system_monitor_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_system_monitor_ext_rpc.show_system_monitor.input', 'pybind.nos.v7_0_1b.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.nos.v7_0_1b.brocade_system_monitor_ext_rpc'), ('pybind.nos.v7_1_0.brocade_system_monitor_ext_rpc.show_system_monitor.input', 'pybind.nos.v7_1_0.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.nos.v7_1_0.brocade_system_monitor_ext_rpc'), ('pybind.nos.v7_2_0.brocade_system_monitor_ext_rpc.show_system_monitor.input', 'pybind.nos.v7_2_0.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.nos.v7_2_0.brocade_system_monitor_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_system_monitor_ext_rpc.show_system_monitor', 'pybind.slxos.v16r_1_00b.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.slxos.v16r_1_00b.brocade_system_monitor_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_system_monitor_ext_rpc.show_system_monitor', 'pybind.slxos.v16r_1_01a.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.slxos.v16r_1_01a.brocade_system_monitor_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_system_monitor_ext_rpc.show_system_monitor', 'pybind.slxos.v17r_1_01.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.slxos.v17r_1_01.brocade_system_monitor_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_system_monitor_ext_rpc.show_system_monitor.input', 'pybind.nos.v6_0_2c.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.nos.v6_0_2c.brocade_system_monitor_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_system_monitor_ext_rpc.show_system_monitor.input', 'pybind.nos.v7_0_1b.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.nos.v7_0_1b.brocade_system_monitor_ext_rpc'), ('pybind.nos.v7_1_0.brocade_system_monitor_ext_rpc.show_system_monitor.input', 'pybind.nos.v7_1_0.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.nos.v7_1_0.brocade_system_monitor_ext_rpc'), ('pybind.nos.v7_2_0.brocade_system_monitor_ext_rpc.show_system_monitor.input', 'pybind.nos.v7_2_0.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.nos.v7_2_0.brocade_system_monitor_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_system_monitor_ext_rpc.show_system_monitor', 'pybind.slxos.v16r_1_00b.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.slxos.v16r_1_00b.brocade_system_monitor_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_system_monitor_ext_rpc.show_system_monitor', 'pybind.slxos.v17r_1_00a.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.slxos.v17r_1_00a.brocade_system_monitor_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_system_monitor_ext_rpc.show_system_monitor', 'pybind.slxos.v17r_1_01a.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.slxos.v17r_1_01a.brocade_system_monitor_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_system_monitor_ext_rpc.show_system_monitor', 'pybind.slxos.v17s_1_02.brocade_system_monitor_ext_rpc.brocade_system_monitor_ext', 'pybind.slxos.v17s_1_02.brocade_system_monitor_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
     composed_child_leafval_list = []
-    leafval_map = {"pybind.slxos.v17r_1_01.brocade_system_monitor_ext_rpc.show_system_monitor": {}, "pybind.nos.v7_0_1b.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v16r_1_01a.brocade_system_monitor_ext_rpc.show_system_monitor": {}, "pybind.slxos.v16r_1_00b.brocade_system_monitor_ext_rpc.show_system_monitor": {}, "pybind.nos.v7_2_0.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}}
+    leafval_map = {"pybind.slxos.v17r_1_01a.brocade_system_monitor_ext_rpc.show_system_monitor": {}, "pybind.nos.v7_0_1b.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v7_1_0.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}, "pybind.nos.v6_0_2c.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17s_1_02.brocade_system_monitor_ext_rpc.show_system_monitor": {}, "pybind.slxos.v16r_1_00b.brocade_system_monitor_ext_rpc.show_system_monitor": {}, "pybind.nos.v7_2_0.brocade_system_monitor_ext_rpc.show_system_monitor.input": {"rbridge_id": "rbridge_id"}, "pybind.slxos.v17r_1_00a.brocade_system_monitor_ext_rpc.show_system_monitor": {}}
     rest_leaf_name = ''
     choices_kwargs_map = {}
     leaf_os_support_map = {}
@@ -9173,7 +9173,7 @@ def show_vcs_rpc(self, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -9192,7 +9192,7 @@ def show_vcs_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.show_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.show_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.show_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.show_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.show_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vcs_rpc.show_vcs', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01.brocade_vcs_rpc.show_vcs', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.show_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.show_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.show_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.show_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.show_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vcs_rpc.show_vcs', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vcs_rpc.show_vcs', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17s_1_02.brocade_vcs_rpc.show_vcs', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -9213,7 +9213,7 @@ def show_zoning_enabled_configuration_rpc(self, zone_name_pattern=None, last_rcv
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -9240,7 +9240,7 @@ def show_zoning_enabled_configuration_rpc(self, zone_name_pattern=None, last_rcv
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v6_0_2c.brocade_zone_rpc.brocade_zone', 'pybind.nos.v6_0_2c.brocade_zone_rpc'), ('pybind.nos.v7_0_1b.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_0_1b.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_0_1b.brocade_zone_rpc'), ('pybind.nos.v7_1_0.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_1_0.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_1_0.brocade_zone_rpc'), ('pybind.nos.v7_2_0.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_2_0.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_2_0.brocade_zone_rpc'), ('pybind.slxos.v16r_1_00b.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v16r_1_00b.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v16r_1_00b.brocade_zone_rpc'), ('pybind.slxos.v16r_1_01a.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v16r_1_01a.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v16r_1_01a.brocade_zone_rpc'), ('pybind.slxos.v17r_1_01.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v17r_1_01.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v17r_1_01.brocade_zone_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v6_0_2c.brocade_zone_rpc.brocade_zone', 'pybind.nos.v6_0_2c.brocade_zone_rpc'), ('pybind.nos.v7_0_1b.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_0_1b.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_0_1b.brocade_zone_rpc'), ('pybind.nos.v7_1_0.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_1_0.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_1_0.brocade_zone_rpc'), ('pybind.nos.v7_2_0.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_2_0.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_2_0.brocade_zone_rpc'), ('pybind.slxos.v16r_1_00b.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v16r_1_00b.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v16r_1_00b.brocade_zone_rpc'), ('pybind.slxos.v17r_1_00a.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v17r_1_00a.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v17r_1_00a.brocade_zone_rpc'), ('pybind.slxos.v17r_1_01a.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v17r_1_01a.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v17r_1_01a.brocade_zone_rpc'), ('pybind.slxos.v17s_1_02.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v17s_1_02.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v17s_1_02.brocade_zone_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -9261,7 +9261,7 @@ def user_session_info_rpc(self, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     :type api_timeout: long or tuple(long, long)
     :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
@@ -9280,7 +9280,7 @@ def user_session_info_rpc(self, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_aaa_ext_rpc.user_session_info', 'pybind.nos.v6_0_2c.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.nos.v6_0_2c.brocade_aaa_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_aaa_ext_rpc.user_session_info', 'pybind.nos.v7_0_1b.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.nos.v7_0_1b.brocade_aaa_ext_rpc'), ('pybind.nos.v7_1_0.brocade_aaa_ext_rpc.user_session_info', 'pybind.nos.v7_1_0.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.nos.v7_1_0.brocade_aaa_ext_rpc'), ('pybind.nos.v7_2_0.brocade_aaa_ext_rpc.user_session_info', 'pybind.nos.v7_2_0.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.nos.v7_2_0.brocade_aaa_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_aaa_ext_rpc.user_session_info', 'pybind.slxos.v16r_1_00b.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.slxos.v16r_1_00b.brocade_aaa_ext_rpc'), ('pybind.slxos.v16r_1_01a.brocade_aaa_ext_rpc.user_session_info', 'pybind.slxos.v16r_1_01a.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.slxos.v16r_1_01a.brocade_aaa_ext_rpc'), ('pybind.slxos.v17r_1_01.brocade_aaa_ext_rpc.user_session_info', 'pybind.slxos.v17r_1_01.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.slxos.v17r_1_01.brocade_aaa_ext_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_aaa_ext_rpc.user_session_info', 'pybind.nos.v6_0_2c.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.nos.v6_0_2c.brocade_aaa_ext_rpc'), ('pybind.nos.v7_0_1b.brocade_aaa_ext_rpc.user_session_info', 'pybind.nos.v7_0_1b.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.nos.v7_0_1b.brocade_aaa_ext_rpc'), ('pybind.nos.v7_1_0.brocade_aaa_ext_rpc.user_session_info', 'pybind.nos.v7_1_0.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.nos.v7_1_0.brocade_aaa_ext_rpc'), ('pybind.nos.v7_2_0.brocade_aaa_ext_rpc.user_session_info', 'pybind.nos.v7_2_0.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.nos.v7_2_0.brocade_aaa_ext_rpc'), ('pybind.slxos.v16r_1_00b.brocade_aaa_ext_rpc.user_session_info', 'pybind.slxos.v16r_1_00b.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.slxos.v16r_1_00b.brocade_aaa_ext_rpc'), ('pybind.slxos.v17r_1_00a.brocade_aaa_ext_rpc.user_session_info', 'pybind.slxos.v17r_1_00a.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.slxos.v17r_1_00a.brocade_aaa_ext_rpc'), ('pybind.slxos.v17r_1_01a.brocade_aaa_ext_rpc.user_session_info', 'pybind.slxos.v17r_1_01a.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.slxos.v17r_1_01a.brocade_aaa_ext_rpc'), ('pybind.slxos.v17s_1_02.brocade_aaa_ext_rpc.user_session_info', 'pybind.slxos.v17s_1_02.brocade_aaa_ext_rpc.brocade_aaa_ext', 'pybind.slxos.v17s_1_02.brocade_aaa_ext_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -9301,7 +9301,7 @@ def vcs_rbridge_config_rpc(self, vcs_id=None, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -9336,7 +9336,7 @@ def vcs_rbridge_config_rpc(self, vcs_id=None, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17s_1_02.brocade_vcs_rpc.vcs_rbridge_config.input', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
@@ -9357,7 +9357,7 @@ def vcs_rbridge_context_rpc(self, rbridge_id=None, api_timeout=''):
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 16r.1.01a, 17r.1.01    
+        * SLXOS: 16r.1.00b, 17r.1.00a, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -9385,7 +9385,7 @@ def vcs_rbridge_context_rpc(self, rbridge_id=None, api_timeout=''):
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_01a.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01.brocade_vcs_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.nos.v6_0_2c.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v6_0_2c.brocade_vcs_rpc'), ('pybind.nos.v7_0_1b.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.nos.v7_0_1b.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_0_1b.brocade_vcs_rpc'), ('pybind.nos.v7_1_0.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.nos.v7_1_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_1_0.brocade_vcs_rpc'), ('pybind.nos.v7_2_0.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.nos.v7_2_0.brocade_vcs_rpc.brocade_vcs', 'pybind.nos.v7_2_0.brocade_vcs_rpc'), ('pybind.slxos.v16r_1_00b.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v16r_1_00b.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_00a.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_00a.brocade_vcs_rpc'), ('pybind.slxos.v17r_1_01a.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17r_1_01a.brocade_vcs_rpc'), ('pybind.slxos.v17s_1_02.brocade_vcs_rpc.vcs_rbridge_context.input', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc.brocade_vcs', 'pybind.slxos.v17s_1_02.brocade_vcs_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}

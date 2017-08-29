@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.79
+* Added pybindings support for slxos17s1.02.
 ## 0.1.78
 * Added pybindings support for nos7.2.0 and slxos17r1.01.
 ## 0.1.72
