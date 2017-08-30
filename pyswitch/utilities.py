@@ -59,6 +59,10 @@ class Util(object):
         return [match.text for match in data.findall(expr)]
 
 
+def get_two_tuple_version(fullver):
+    ver_tuple = fullver.split('.')
+    return '%s.%s' % (ver_tuple[0], ver_tuple[1])
+
 def find(data, expr):
     x = parse(expr).find(data)
     if len(x) > 0:

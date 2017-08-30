@@ -10,7 +10,7 @@ import ncclient
 import re
 from pyswitch.utilities import Util
 from pyswitch.AbstractDevice import AbstractDevice
-
+import pyswitch.utilities as util
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp',  'lldp', 'system', 'services',
              'fabric_service', 'vcs']
@@ -24,36 +24,24 @@ class DeviceCommError(Exception):
 
 
 NOS_VERSIONS = {
-    '6.0.2': {
+    '6.0': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
     },
-    '7.0.1': {
+    '7.0': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
     },
-    '7.0.2': {
+    '7.1': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
     },
-    '7.1.0': {
+    '7.2': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
     },
-    '7.2.0': {
-        'interface': pyswitch.raw.nos.base.interface.Interface,
-        },
 }
 SLXOS_VERSIONS = {
-    '16.1.0': {
+    '16.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
     },
-    '16.1.1': {
-        'interface': pyswitch.raw.slxos.base.interface.Interface,
-    },
-    '17.1.0': {
-        'interface': pyswitch.raw.slxos.base.interface.Interface,
-    },
-    '17.1.1': {
-        'interface': pyswitch.raw.slxos.base.interface.Interface,
-    },
-    '17.1.2': {
+    '17.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
     },
 
@@ -116,12 +104,18 @@ class NetConfDevice(AbstractDevice):
         self.reconnect()
         self._fetch_firmware_version()
 
-        self.ver = self.firmware_version
+        self.fullver = self.firmware_version
 
         thismodule = sys.modules[__name__]
 
         self.os_table = getattr(thismodule, '%s_VERSIONS' %
                            str(self.os_type).upper())
+
+        if self.fullver  in self.os_table:
+           self.ver = self.fullver
+        else:
+           self.ver = util.get_two_tuple_version(self.fullver )
+
 
         for nos_attr in NOS_ATTRS:
             if nos_attr in self.os_table[self.ver]:
