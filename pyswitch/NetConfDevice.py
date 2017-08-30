@@ -38,10 +38,13 @@ NOS_VERSIONS = {
     },
 }
 SLXOS_VERSIONS = {
-    '16.1': {
+    '16r.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
     },
-    '17.1': {
+    '17r.1': {
+        'interface': pyswitch.raw.slxos.base.interface.Interface,
+    },
+    '17s.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
     },
 
