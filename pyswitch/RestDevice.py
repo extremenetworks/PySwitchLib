@@ -377,7 +377,7 @@ if __name__  == '__main__':
     start = time.time()
 
 
-    conn = ('10.24.39.236', '22')
+    conn = ('10.26.8.156', '22')
     #conn = ('10.24.84.173', '22')
     auth = ('admin', 'password')
 
@@ -386,8 +386,9 @@ if __name__  == '__main__':
 
     dev.interface.add_vlan_int(vlan_id='234')
     print dev.firmware_version
-    print dev.os_type
-    print dev.suports_rbridge
+    #print dev.os_type
+    #print dev.suports_rbridge
+    print dev.interface.port_channels
     #print dev.mac_table
 
     """

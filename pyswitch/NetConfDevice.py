@@ -325,7 +325,7 @@ class NetConfDevice(AbstractDevice):
             None
         """
 
-        return self.os_version
+        return self._os_ver
 
     def _fetch_firmware_version(self):
         namespace = "urn:brocade.com:mgmt:brocade-firmware-ext"
@@ -342,7 +342,26 @@ class NetConfDevice(AbstractDevice):
             elif 'SLX' in self.os_name:
                 self._os_type = 'slxos'
 
-        self.os_version = ver.find('.//*{%s}os-version' % namespace).text
+        self._os_full_ver = ver.find('.//*{%s}firmware-full-version' % namespace).text
+        self._os_ver = ver.find('.//*{%s}os-version' % namespace).text
+
+        if self._os_type == 'slxos':
+            slxos_ver = self._os_ver.split('.')
+
+            if len(slxos_ver) >= 2:
+                slxos_pattern_string = '^({0}[rs]{{1}})\.{1}\.'.format(slxos_ver[0], slxos_ver[1])
+            elif len(slxos_ver) == 1:
+                slxos_pattern_string = '^({0}[rs]{{1}})\.'.format(slxos_ver[0])
+            else:
+                slxos_pattern_string = '^(\d+[rs]{1})\.'
+
+            slxos_pattern = re.compile(slxos_pattern_string)
+
+            match = slxos_pattern.match(self._os_full_ver)
+
+            if match:
+                slxos_ver[0] = match.group(1)
+                self._os_ver = '.'.join(slxos_ver)
 
 
 
@@ -352,7 +371,7 @@ if __name__  == '__main__':
     start = time.time()
 
 
-    conn = ('10.24.39.236', '22')
+    conn = ('10.26.8.212', '22')
     #conn = ('10.24.84.173', '22')
     auth = ('admin', 'password')
 

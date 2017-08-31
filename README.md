@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.81
+* Pyswitch Wrapper to use the same logic firmware version computation
 ## 0.1.80
 * Pyswitch Wrapper uses two tuple version of firmware by default. 
 ## 0.1.79
