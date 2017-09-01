@@ -13,13 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import pprint
+
 import xml.etree.ElementTree as ET
-import time, threading
-import thread
 from pyswitch.utilities import Util
-from threading import Timer
-import time
 
 class Firmware(object):
     """
@@ -27,9 +23,6 @@ class Firmware(object):
         status query.
     """
     valid_protocol_type = None
-    #last_proc_fwdl_entry = 0
-    #fwdl_monitor_timer = None
-
 
     def __init__(self, callback):
         """System init method.
@@ -50,7 +43,7 @@ class Firmware(object):
         """
         Method to download firmware on a switch
 
-        Args:
+        args:
             fdparam
                 protocol(str): 'scp'
                 host(str): IPv4 or IPv6 Address
@@ -61,7 +54,20 @@ class Firmware(object):
                 auto_activate(bool): To activate new firmware on all nodes
                 coldboot(bool): Perform non ISSU firmware download
 
-        Return:
+        Returns:
+            Returns dictionary for firmwaredownload command.
+        Example:
+                >>> import pyswitch.device
+                >>> switches = ['10.24.86.60']
+                >>> auth = ('admin', 'password')
+                >>> for switch in switches:
+                ...     conn = (switch, '22')
+                ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+                ...     dictstatus = dev.firmware.download_firmware(protocol='scp', host='10.31.2.25',
+                ...                          user_name='fvt', password='pray4green',
+                ...                          directory='/proj/sredev/slxos17s.1.02_pit_a_davinci_bds_sre/slxos17s.1.02_pit_a_davinci_170823_1900/dist/',
+                ...                         )
+                ...     print(dictstatus)
         """
         protocol = fdparam.pop('protocol')
         host = fdparam.pop('host')
@@ -76,10 +82,6 @@ class Firmware(object):
             raise ValueError('protocol must be one of:%s' %
                              repr(self.valid_protocol_type))
 
-
-        #argument = {'rbridge_id': rbridge, 'auto_activate': auto_activate, 'coldboot': coldboot,
-        #            'scp':(user_name, password, host, directory, 'release.plist')}
-
         argument = {'rbridge_id': rbridge, 'coldboot': coldboot,
                     'scp': (user_name, password, host, directory, 'release.plist')}
         config = ('firmware_download_rpc', argument)
@@ -93,25 +95,35 @@ class Firmware(object):
             if download_status_code != 0:
                 dictstatus['status_code'] = download_status_code
                 dictstatus['status_message'] = download_status_msg
-                #print("Firmwaredownload Failed[Code: ", download_status_code, "String: ",
-                #      download_status_msg)
             else:
                 dictstatus['status_code'] = download_status_code
                 dictstatus['status_message'] = 'Firmwaredownload Started'
-                #print("Firmwaredownload Started")
-                #self.last_proc_fwdl_entry = 0
-                #print("Starting firmware download monitor event")
-                #self.fwdl_monitor_timer = Timer(5, lambda: self.firmware_download_monitor())
-                #self.fwdl_monitor_timer.start()
         else:
             dictstatus['status_code'] = -1
             dictstatus['status_message'] = 'Got empty response for firmwaredownload'
-            #print("Got empty response for firmwaredownload")
 
         return dictstatus
 
-
     def firmware_download_monitor(self):
+        """
+        Method to check firmware download status
+
+        args:
+            None
+
+        Returns:
+            Returns dictionary list for firmwaredownload status. Each dictionary contains
+            current progress message, index, time-stamp and blade information.
+        Example:
+                >>> import pyswitch.device
+                >>> switches = ['10.24.86.60']
+                >>> auth = ('admin', 'password')
+                >>> for switch in switches:
+                ...     conn = (switch, '22')
+                ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+                ...     dictlist = dev.firmware.firmware_download_monitor()
+                ...     print(dictlist)
+        """
         argument = {}
         config = ('fwdl_status_rpc', argument)
         keys = ['index', 'blade-name', 'timestamp', 'message']
