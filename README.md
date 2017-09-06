@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.82
+* Pyswitch Wrapper for v7.x.x in NOS 
 ## 0.1.81
 * Pyswitch Wrapper to use the same logic firmware version computation
 ## 0.1.80
