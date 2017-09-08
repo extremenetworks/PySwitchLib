@@ -1936,12 +1936,12 @@ class Bgp(object):
             KeyError: if `rbridge_id`,`evpn_instance`, 'vni' is not passed.
             ValueError: if `rbridge_id`, `evpn_instance`, 'vni' is invalid.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.203']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         output = dev.bgp.vni_add(rbridge_id='2',
             ...         evpn_instance="leaf1", vni='10')
             ...         output = dev.bgp.vni_add(rbridge_id='2',
@@ -1963,23 +1963,20 @@ class Bgp(object):
             if not delete:
                 method_name = [
                     self.method_prefix('evpn_instance_create'),
-                    self.method_prefix('evpn_instance_vni_evpn_vni_create')]
+                    self.method_prefix('evpn_instance_vni_add_update')]
             else:
                 method_name = [
                     self.method_prefix('evpn_instance_vni_evpn_vni_delete'),
-                    self.method_prefix('evpn_instance_delete')]
+                    self.method_prefix('evpn_instance_vni_remove_update')]
             for i in range(0, 2):
                 method = method_name[i]
                 vni_args = dict(
                     rbridge_id=rbridge_id,
                     evpn_instance=evpn_instance)
-                if self.os != 'nos':
-                    vni_args.pop('rbridge_id', None)
-                if 'vni' in method:
-                    vni_args['evpn_vni'] = vni
+                if 'vni' in method and not delete:
+                    vni_args['add_'] = vni
                 config = (method, vni_args)
                 result = callback(config)
-
         elif get_config:
             evpn_instance = kwargs.pop('evpn_instance', '')
             method_name = self.method_prefix('evpn_instance_vni_get')
