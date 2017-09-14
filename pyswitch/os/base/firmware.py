@@ -75,34 +75,64 @@ class Firmware(object):
         password = fdparam.pop('password')
         directory = fdparam.pop('directory')
         rbridge = fdparam.pop('rbridge', 'all')
-        auto_activate = fdparam.pop('auto_activate', False)
-        coldboot = fdparam.pop('coldboot', True)
+        auto_activate = fdparam.pop('auto_activate', True)
+        coldboot = fdparam.pop('coldboot', False)
+        os_type = fdparam.pop('os_type')
 
         if protocol not in self.valid_protocol_type:
             raise ValueError('protocol must be one of:%s' %
                              repr(self.valid_protocol_type))
 
-        argument = {'rbridge_id': rbridge, 'coldboot': coldboot,
-                    'scp': (user_name, password, host, directory, 'release.plist')}
+        if os_type is 'nos':
+            if coldboot is True:
+                #coldboot does not work when auto_activate is specified
+                argument = {'rbridge_id': rbridge, 'coldboot': coldboot,
+                            'scp': (user_name, password, host, directory, 'release.plist')}
+            else:
+                argument = {'rbridge_id': rbridge, 'auto_activate': auto_activate,
+                            'coldboot': coldboot,
+                            'scp': (user_name, password, host, directory, 'release.plist')}
+        else:
+            argument = {'rbridge_id': rbridge, 'coldboot': coldboot,
+                        'scp': (user_name, password, host, directory, 'release.plist')}
+
         config = ('firmware_download_rpc', argument)
         response = self._callback(config, 'get')
-        util = Util(response.data)
-        dictstatus = dict()
-        if response.data != '<output></output>':
-            download_status_code = int(util.find(util.root, 'fwdl-status'))
-            download_status_code = download_status_code
-            download_status_msg = util.find(util.root, 'fwdl-msg')
-            if download_status_code != 0:
-                dictstatus['status_code'] = download_status_code
-                dictstatus['status_message'] = download_status_msg
-            else:
-                dictstatus['status_code'] = download_status_code
-                dictstatus['status_message'] = 'Firmwaredownload Started'
-        else:
-            dictstatus['status_code'] = -1
-            dictstatus['status_message'] = 'Got empty response for firmwaredownload'
+        return self.parse_firmware_download_response(os_type, response)
 
-        return dictstatus
+    def parse_firmware_download_response(self, os_type, response):
+        keys = ['rbridge-id', 'status_code', 'status_msg']
+        dictlist = []
+        if os_type is 'nos':
+            root = ET.fromstring(response.data)
+            fwdl_cmd_status = int(root.find('fwdl-cmd-status').text)
+            for cluster_output in root.findall('cluster-output'):
+                rb_id = int(cluster_output.find('rbridge-id').text)
+                #fwdl_status = int(cluster_output.find('fwdl-status').text)
+                fwdl_status = fwdl_cmd_status
+                fwdl_msg = cluster_output.find('fwdl-msg').text
+                values = [rb_id, fwdl_status, fwdl_msg]
+                dictlist.append(dict(zip(keys, values)))
+            if not dictlist:
+                fwdl_msg =  root.find('fwdl-cmd-msg').text
+                values = [0, fwdl_cmd_status, fwdl_msg]
+                dictlist.append(dict(zip(keys, values)))
+        else:
+            if response.data != '<output></output>':
+                root = ET.fromstring(response.data)
+                fwdl_status = int(root.find('fwdl-status').text)
+                if fwdl_status != 0:
+                    fwdl_msg = root.find('fwdl-msg').text
+                else:
+                    fwdl_msg = 'Firmwaredownload Started'
+            else:
+                fwdl_status = -1
+                fwdl_msg = 'Got empty response for firmwaredownload'
+
+            values = [0, fwdl_status, fwdl_msg]
+            dictlist.append(dict(zip(keys, values)))
+
+        return dictlist
 
     def firmware_download_monitor(self):
         """
@@ -124,7 +154,7 @@ class Firmware(object):
                 ...     dictlist = dev.firmware.firmware_download_monitor()
                 ...     print(dictlist)
         """
-        argument = {}
+        argument = {'api_timeout': (30, 30)}
         config = ('fwdl_status_rpc', argument)
         keys = ['index', 'blade-name', 'timestamp', 'message']
         dictlist = []
@@ -134,7 +164,6 @@ class Firmware(object):
         if response.data != '<output></output>':
             root = ET.fromstring(response.data)
             num_xml_fwdl_entries = int(root.find('number-of-entries').text)
-            print(num_xml_fwdl_entries)
             for fwdl_entry in root.findall('fwdl-entries'):
                 fwdl_index = int(fwdl_entry.find('index').text)
                 blade_name = fwdl_entry.find('blade-name').text
