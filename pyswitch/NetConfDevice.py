@@ -9,6 +9,7 @@ from ncclient import xml_
 import ncclient
 import re
 from pyswitch.utilities import Util
+from lxml import etree as letree
 from pyswitch.AbstractDevice import AbstractDevice
 import pyswitch.utilities as util
 
@@ -210,7 +211,7 @@ class NetConfDevice(AbstractDevice):
         try:
             if handler == 'get_config':
                 output = self._mgr.get_config(filter = ('xpath', call),source='running')
-                return re.sub(' xmlns[^ \t\n\r\f\v>]+', '', str(output.data))
+                return ET.fromstring(letree.tostring((output.data)))
 
 
 

@@ -1056,3 +1056,348 @@ class Interface(BaseInterface):
             else:
                 result = None
         return result
+
+
+    def create_evpn_instance(self, **kwargs):
+        """
+        Add evpn instance.
+
+        Args:
+            evpn_instance_name: Instance name for evpn
+            enable (bool): If evpn instance needs to be configured
+                or disabled.Default:``True``.
+            get (bool) : Get config instead of editing config. (True, False)
+            rbridge_id (str): rbridge-id for device. Only required when type is
+                `ve`.
+            callback (function): A function executed upon completion of the
+               method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if 'evpn_instance_name' is not passed.
+            ValueError: if 'evpn_instance_name' is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.26.8.210']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.create_evpn_instance(
+            ...         evpn_instance_name='sj_fabric')
+            ...         output = dev.interface.create_evpn_instance(
+            ...         get=True,
+            ...         evpn_instance_name='sj_fabric')
+            ...         print output
+            ...         output = dev.interface.create_evpn_instance(
+            ...         enable=False,
+            ...         evpn_instance_name='sj_fabric')
+            ...         output = dev.interface.create_evpn_instance(
+            ...         get=True)
+            ...         print output
+            ...         # doctest: +IGNORE_EXCEPTION_DETAIL
+            {'instance_name': 'sj_fabric', 'ignore_as': None, 'duplicate_mac_timer_value': None, 'rd_auto': None, 'max_count': None}
+            {'instance_name': None, 'ignore_as': None, 'duplicate_mac_timer_value': None, 'rd_auto': None, 'max_count': None}
+         """
+
+        evpn_instance_name = kwargs.pop('evpn_instance_name', '')
+        enable = kwargs.pop('enable', True)
+        get = kwargs.pop('get', False)
+        callback = kwargs.pop('callback', self._callback)
+        evpn_args = dict()
+
+        if evpn_instance_name != '':
+            evpn_args['evpn_instance'] = evpn_instance_name
+
+        if get:
+            enable = None
+
+        method_name = 'evpn_evpn_instance_create'
+        config = (method_name, evpn_args)
+
+        if get:
+            method_name = 'evpn_evpn_instance_get'
+            evpn_args['resource_depth'] = 2
+            config = (method_name, evpn_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            instance_name = util.find(util.root, './/instance-name')
+            ignore_as = util.find(util.root, './/ignore-as')
+            duplicate_mac_timer_value = util.find(
+                util.root, './/duplicate-mac-timer-value')
+            max_count = util.find(util.root, './/max-count')
+            auto = util.find(util.root, './/rd..auto')
+            return {'instance_name': instance_name, 'ignore_as': ignore_as,
+                    'duplicate_mac_timer_value': duplicate_mac_timer_value,
+                    'max_count': max_count, 'rd_auto': auto}
+        if not enable:
+            method_name = 'evpn_evpn_instance_delete'
+            config = (method_name, evpn_args)
+        return callback(config)
+
+
+    def evpn_instance_rd_auto(self, **kwargs):
+        """
+        Add RD auto under EVPN instance.
+
+        Args:
+            rbridge_id: Rbrdige id .
+            instance_name: EVPN instance name.
+
+        Returns:
+            True if command completes successfully or False if not.
+
+        Raises:
+            None
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.26.8.210']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.create_evpn_instance(
+            ...         evpn_instance_name='sj_fabric')
+            ...         output=dev.interface.evpn_instance_rd_auto(
+            ...         evpn_instance_name='sj_fabric')
+            
+         """
+        evpn_instance_name = kwargs.pop('evpn_instance_name', '')
+        # enable = kwargs.pop('enable', True)
+        # get = kwargs.pop('get', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        evpn_args = dict()
+
+        method_name = 'evpn_evpn_instance_rd_auto_update'
+        evpn_args['evpn_instance'] = evpn_instance_name
+        evpn_args['auto'] = True
+        config = (method_name, evpn_args)
+
+        return callback(config)
+
+
+    def evpn_instance_rt_both_ignore_as(self, **kwargs):
+        """
+        Add evpn instance route target ignore AS.
+
+        Args:
+            evpn_instance_name: Instance name for evpn
+            enable (bool): If target community needs to be enabled
+                or disabled.Default:``True``.
+            get (bool) : Get config instead of editing config. (True, False)
+            rbridge_id (str): rbridge-id for device. Only required when type is
+                `ve`.
+            callback (function): A function executed upon completion of the
+               method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if 'evpn_instance_name' is not passed.
+            ValueError: if 'evpn_instance_name' is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.26.8.210']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output=dev.interface.evpn_instance_rt_both_ignore_as(
+            ...         evpn_instance_name='sj_fabric')
+            ...         output=dev.interface.evpn_instance_rt_both_ignore_as(
+            ...         get=True,
+            ...         evpn_instance_name='sj_fabric')
+            ...         print output
+            ...         output=dev.interface.evpn_instance_rt_both_ignore_as(
+            ...         enable=False,
+            ...         evpn_instance_name='sj_fabric')
+            ...         output=dev.interface.evpn_instance_rt_both_ignore_as(
+            ...         get=True)
+            ...         print output
+            true
+            None
+         """
+
+        evpn_instance_name = kwargs.pop('evpn_instance_name', '')
+        enable = kwargs.pop('enable', True)
+        get = kwargs.pop('get', False)
+        callback = kwargs.pop('callback', self._callback)
+        evpn_args = dict()
+        if get:
+            enable = None
+
+        if get:
+            evpn_args['resource_depth'] = 3
+            method_name = 'evpn_evpn_instance_get'
+            config = (method_name, evpn_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            evpn_instance_item = util.find(util.root, './/ignore-as')
+            return evpn_instance_item
+
+        evpn_args['both'] = 'auto'
+        evpn_args['evpn_instance'] = evpn_instance_name
+
+        if not enable:
+            method_name = 'evpn_evpn_instance_route_target_both_delete'
+
+        else:
+            method_name = 'evpn_evpn_instance_route_target_both_create'
+            config = (method_name, evpn_args)
+            callback(config)
+
+            method_name = 'evpn_evpn_instance_route_target_both_update'
+            evpn_args['ignore_as'] = True
+
+        config = (method_name, evpn_args)
+        return callback(config)
+
+
+    def evpn_instance_duplicate_mac_timer(self, **kwargs):
+        """
+        Add "Duplicate MAC timer value" under evpn instance.
+
+        Args:
+            evpn_instance_name: Instance name for evpn
+            duplicate_mac_timer_value: Duplicate MAC timer value.
+            enable (bool): If target community needs to be enabled
+                or disabled.Default:``True``.
+            get (bool) : Get config instead of editing config. (True, False)
+            rbridge_id (str): rbridge-id for device. Only required when type is
+                `ve`.
+            callback (function): A function executed upon completion of the
+               method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if 'evpn_instance_name' is not passed.
+            ValueError: if 'evpn_instance_name' is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.26.8.210']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...        output=dev.interface.evpn_instance_duplicate_mac_timer(
+            ...         evpn_instance_name='evpn1',
+            ...         duplicate_mac_timer_value='11')
+            ...        output=dev.interface.evpn_instance_duplicate_mac_timer(
+            ...         get=True,
+            ...         evpn_instance_name='evpn1',
+            ...         duplicate_mac_timer_value='11')
+            ...        print output
+            11
+         """
+
+        evpn_instance_name = kwargs.pop('evpn_instance_name', '')
+        duplicate_mac_timer_value = kwargs.pop('duplicate_mac_timer_value',
+                                               '180')
+        enable = kwargs.pop('enable', True)
+        get = kwargs.pop('get', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        evpn_args = dict()
+        if get:
+            enable = None
+
+        if get:
+            evpn_args['resource_depth'] = 3
+            method_name = 'evpn_evpn_instance_get'
+            config = (method_name, evpn_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            evpn_instance_item = util.find(
+                util.root, './/duplicate-mac-timer-value')
+            return evpn_instance_item
+
+        evpn_args['evpn_instance'] = evpn_instance_name
+
+        if not enable:
+            method_name = 'evpn_evpn_instance_' \
+                          'duplicate_mac_timer_delete'
+            config = (method_name, evpn_args)
+        else:
+
+            evpn_args['duplicate_mac_timer_value'] = duplicate_mac_timer_value
+            method_name = 'evpn_evpn_instance_' \
+                          'duplicate_mac_timer_update'
+            config = (method_name, evpn_args)
+
+        return callback(config)
+
+    def evpn_instance_mac_timer_max_count(self, **kwargs):
+        """
+        Add "Duplicate MAC max count" under evpn instance.
+
+        Args:
+            evpn_instance_name: Instance name for evpn
+            max_count: Duplicate MAC max count.
+            enable (bool): If target community needs to be enabled
+                or disabled.Default:``True``.
+            get (bool) : Get config instead of editing config. (True, False)
+                `ve`.
+            callback (function): A function executed upon completion of the
+               method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if 'evpn_instance_name' is not passed.
+            ValueError: if 'evpn_instance_name' is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.26.8.210']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...        output=dev.interface.evpn_instance_mac_timer_max_count(
+            ...         evpn_instance_name='evpn1',
+            ...         max_count='10')
+            ...        output=dev.interface.evpn_instance_mac_timer_max_count(
+            ...         get=True,
+            ...         evpn_instance_name='evpn1',
+            ...         max_count='10')
+            ...        print output
+            10
+         """
+
+        evpn_instance_name = kwargs.pop('evpn_instance_name', '')
+        max_count = kwargs.pop('max_count', 5)
+        enable = kwargs.pop('enable', True)
+        get = kwargs.pop('get', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        evpn_args = dict()
+        if get:
+            enable = None
+
+        if get:
+            evpn_args['resource_depth'] = 3
+            method_name = 'evpn_evpn_instance_get'
+            config = (method_name, evpn_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            evpn_instance_item = util.find(util.root, './/max-count')
+            return evpn_instance_item
+
+        evpn_args['evpn_instance'] = evpn_instance_name
+
+        if not enable:
+            method_name = 'evpn_evpn_instance_' \
+                          'duplicate_mac_timer_delete'
+            config = (method_name, evpn_args)
+        else:
+            evpn_args['max_count'] = max_count
+            method_name = 'evpn_evpn_instance_' \
+                          'duplicate_mac_timer_update'
+            config = (method_name, evpn_args)
+
+        return callback(config)
+
+
+

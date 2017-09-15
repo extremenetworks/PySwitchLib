@@ -4225,15 +4225,11 @@ class Interface(object):
 
         Examples:
             >>> import pyswitch.device
-            >>> conn = ('10.24.39.211', '22')
+            >>> conn = ('10.37.18.136', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.interface.overlay_gateway_attach_rbridge_id(
-            ...     gw_name='Leaf', rbridge_id='10')
-            ...     output = dev.interface.overlay_gateway_attach_rbridge_id(
             ...     get=True)
-            ...     output = dev.interface.overlay_gateway_attach_rbridge_id(
-            ...     gw_name='Leaf', rbridge_id='1-2', delete=True)
         """
 
         callback = kwargs.pop('callback', self._callback)
@@ -5433,28 +5429,30 @@ class Interface(object):
             ValueError: if 'evpn_instance_name' is invalid.
         Examples:
             >>> import pyswitch.device
-            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> switches = ['10.24.39.231']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         output = dev.interface.create_evpn_instance(
-            ...         evpn_instance_name='100',
-            ...         rbridge_id='1')
+            ...         evpn_instance_name='sj_fabric',
+            ...         rbridge_id='231')
             ...         output = dev.interface.create_evpn_instance(
             ...         get=True,
-            ...         evpn_instance_name='100',
-            ...         rbridge_id='1')
+            ...         evpn_instance_name='sj_fabric',
+            ...         rbridge_id='231')
+            ...         print output
             ...         output = dev.interface.create_evpn_instance(
             ...         enable=False,
-            ...         evpn_instance_name='101',
-            ...         rbridge_id='1')
+            ...         evpn_instance_name='sj_fabric',
+            ...         rbridge_id='231')
             ...         output = dev.interface.create_evpn_instance(
             ...         get=True,
-            ...         rbridge_id='1')
+            ...         rbridge_id='231')
+            ...         print output
             ...         # doctest: +IGNORE_EXCEPTION_DETAIL
-            Traceback (most recent call last):
-            KeyError
+            {'instance_name': 'sj_fabric', 'ignore_as': None, 'duplicate_mac_timer_value': None, 'rd_auto': None, 'max_count': None}
+            {'instance_name': None, 'ignore_as': None, 'duplicate_mac_timer_value': None, 'rd_auto': None, 'max_count': None}
          """
 
         evpn_instance_name = kwargs.pop('evpn_instance_name', '')
@@ -5737,7 +5735,7 @@ class Interface(object):
             ...         evpn_instance_name='100',
             ...         max_count='10'
             ...         rbridge_id='1')
-            ...        output=dev.interface.evpn_instance_mac_timer_max_count(
+            ...         output=dev.interface.evpn_instance_mac_timer_max_count(
             ...         enable=False,
             ...         evpn_instance_name='101',
             ...         max_count='10'

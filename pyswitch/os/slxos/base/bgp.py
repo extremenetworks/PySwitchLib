@@ -276,6 +276,151 @@ class Bgp(BaseBgp):
             os=self.os)
         return callback(config)
 
+    def vlan_add(self, **kwargs):
+        """Add VNIs to the EVPN Instance
+        Args:
+            rbridge_id (str): rbridge-id for device.
+            evpn_instance (str): Name of the evpn instance.
+            vni (str): vnis to the evpn instance
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the vni configuration
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            KeyError: if `rbridge_id`,`evpn_instance`, 'vni' is not passed.
+            ValueError: if `rbridge_id`, `evpn_instance`, 'vni' is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.26.8.210']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.bgp.vlan_add(
+            ...         evpn_instance="evpn1", vlan='10')
+            ...         output = dev.bgp.vlan_add(evpn_instance="evpn1",
+            ...         get=True)
+            ...         print output
+            ...         output = dev.bgp.vlan_add(evpn_instance="evpn1",vlan='10',
+            ...         delete=True)
+
+        """
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        result = []
+        if not get_config:
+            evpn_instance = kwargs['evpn_instance']
+            vlan = kwargs.pop('vlan', None)
+            if not delete:
+                method_name = [
+                    self.method_prefix('evpn_evpn_instance_create'),
+                    self.method_prefix('evpn_evpn_instance_vlan_vlan_add_update')]
+            else:
+                method_name = [
+                    self.method_prefix('evpn_evpn_instance_vlan_evpn_vlan_delete'),
+                    self.method_prefix('evpn_evpn_instance_delete')]
+            for i in range(0, 2):
+                method = method_name[i]
+                vlan_args = dict(
+                    evpn_instance=evpn_instance)
+                if 'vlan' in method and not delete:
+                    vlan_args['add_'] = vlan
+                config = (method, vlan_args)
+                result = callback(config)
+
+        elif get_config:
+            evpn_instance = kwargs.pop('evpn_instance', '')
+            method_name = self.method_prefix('evpn_evpn_instance_vlan_vlan_add_get')
+            vlan_args = dict(
+                evpn_instance=evpn_instance,
+                resource_depth=2)
+            config = (method_name, vlan_args)
+            out = callback(config, handler='get_config')
+            bgp = Util(out.data)
+            tmp = {'rbridge_id': None,
+                   'evpn_instance': evpn_instance,
+                   'vlan': bgp.find(bgp.root, './/add')}
+            result.append(tmp)
+        return result
+
+
+    def bd_add(self, **kwargs):
+        """Add VNIs to the EVPN Instance
+        Args:
+            rbridge_id (str): rbridge-id for device.
+            evpn_instance (str): Name of the evpn instance.
+            vni (str): vnis to the evpn instance
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the vni configuration
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            KeyError: if `rbridge_id`,`evpn_instance`, 'vni' is not passed.
+            ValueError: if `rbridge_id`, `evpn_instance`, 'vni' is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.26.8.210']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.bgp.bd_add(
+            ...         evpn_instance="evpn1", bd='10')
+            ...         output = dev.bgp.bd_add(evpn_instance="evpn1",
+            ...         get=True)
+            ...         print output
+            ...         output = dev.bgp.bd_add(evpn_instance="evpn1",bd='10',
+            ...         delete=True)
+
+        """
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        result = []
+        if not get_config:
+            evpn_instance = kwargs['evpn_instance']
+            bd = kwargs.pop('bd', None)
+            if not delete:
+                method_name = [
+                    self.method_prefix('evpn_evpn_instance_create'),
+                    self.method_prefix('evpn_evpn_instance_bridge_domain_add_update')]
+            else:
+                method_name = [
+                    self.method_prefix('evpn_evpn_instance_bridge_domain_add_delete'),
+                    self.method_prefix('evpn_evpn_instance_delete')]
+            for i in range(0, 2):
+                method = method_name[i]
+                bd_args = dict(
+                    evpn_instance=evpn_instance)
+                if 'bridge_domain' in method and not delete:
+                    bd_args['bd_range_add'] = bd
+                config = (method, bd_args)
+                result = callback(config)
+
+        elif get_config:
+            evpn_instance = kwargs.pop('evpn_instance', '')
+            method_name = self.method_prefix('evpn_evpn_instance_bridge_domain_add_get')
+            bd_args = dict(
+                evpn_instance=evpn_instance,
+                resource_depth=2)
+            config = (method_name, bd_args)
+            out = callback(config, handler='get_config')
+            bgp = Util(out.data)
+            tmp = {'rbridge_id': None,
+                   'evpn_instance': evpn_instance,
+                   'bd': bgp.find(bgp.root, './/add')}
+            result.append(tmp)
+        return result
+
     def vni_add(self, **kwargs):
         return
 
