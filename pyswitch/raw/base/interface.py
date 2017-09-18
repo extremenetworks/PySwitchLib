@@ -59,8 +59,9 @@ class Interface(object):
             mac_legacy_aging_timeout = kwargs.pop('mac_legacy_aging_timeout','1800')
             mac_move_limit = kwargs.pop('mac_move_limit','5')
             t = Template(getattr(template, 'conversation_property_create'))
-            config = t.render(arp_aging_timeout=100, mac_aging_timeout=100, mac_legacy_aging_timeout=200,
-                     mac_move_limit=300)
+            config = t.render(arp_aging_timeout=arp_aging_timeout, mac_aging_timeout=mac_aging_timeout,
+                              mac_legacy_aging_timeout=mac_legacy_aging_timeout,
+                     mac_move_limit=mac_move_limit)
             self._callback(config)
 
         if get_config:
@@ -90,23 +91,6 @@ class Interface(object):
                         "conversational_arp": conversational_arp,
                         "arp_aging_timeout": arp_aging_timeout,
                         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

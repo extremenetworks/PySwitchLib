@@ -21,8 +21,6 @@ conversation_property_create = """
       </mac-address-table>     
 </config>
 """
-
-
 mac_address_table_get ="""
 /mac-address-table
 """

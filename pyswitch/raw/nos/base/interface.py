@@ -1,5 +1,6 @@
 from pyswitch.raw.base.interface import Interface as BaseInterface
 import template
+from jinja2 import Template
 import logging
 from pyswitch.utilities import Util
 import pyswitch.utilities as util
@@ -153,5 +154,50 @@ class Interface(BaseInterface):
                     'vni_auto':vni_auto,
                     }
 
+    def evpn_instance(self, **kwargs):
+        """
+        >>> import pyswitch.device
+        >>> conn = ('10.37.18.136', '22')
+        >>> auth = ('admin', 'password')
+        >>> with pyswitch.device.Device(conn=conn, auth=auth,connection_type='NETCONF') as dev:
+        ...      output = dev.interface.evpn_instance(get=True,rbridge_id='2')
+        ...      print output 
+        ...      output = dev.interface.evpn_instance(evi_name='Leaf1', duplicate_mac_timer=10,                                           
+        ...      max_count = '5',rbridge_id=2)
+        ...      output = dev.interface.evpn_instance(get=True,rbridge_id=2)
+        ...      print output 
+        """
 
+        get_config = kwargs.pop('get', False)
+
+        if not get_config:
+            evi_name = kwargs.pop('evi_name')
+            duplicate_mac_timer = kwargs.pop('duplicate_mac_timer')
+            max_count = kwargs.pop('max_count')
+            rbridge_id = kwargs.pop('rbridge_id')
+
+            t = Template(getattr(template, 'evpn_instance_create'))
+            config = t.render(evi_name=evi_name, duplicate_mac_timer=duplicate_mac_timer, duplicate_mac_timer_max_count=max_count,
+                              rbridge_id=rbridge_id)
+            self._callback(config)
+
+            t = Template(getattr(template, 'evpn_instance_router_target_auto'))
+            config = t.render(evi_name=evi_name, rbridge_id=rbridge_id)
+            self._callback(config)
+
+        if get_config:
+            rbridge_id = kwargs.pop('rbridge_id')
+            config = getattr(template, 'evpn_instance_get').format(rbridge_id=rbridge_id)
+            rest_root = self._callback(config, handler='get_config')
+            util = Util(rest_root)
+            evi_name = util.find(util.root, './/instance-name')
+            duplicate_mac_timer = util.find(util.root, './/duplicate-mac-timer-value')
+            max_count = util.find(util.root, './/max-count')
+
+
+
+            return {"evi_name": evi_name,
+                    "duplicate_mac_timer": duplicate_mac_timer,
+                    'max_count': max_count
+                    }
 
