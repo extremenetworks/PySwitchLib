@@ -108,7 +108,6 @@ class Firmware(object):
             fwdl_cmd_status = int(root.find('fwdl-cmd-status').text)
             for cluster_output in root.findall('cluster-output'):
                 rb_id = int(cluster_output.find('rbridge-id').text)
-                #fwdl_status = int(cluster_output.find('fwdl-status').text)
                 fwdl_status = fwdl_cmd_status
                 fwdl_msg = cluster_output.find('fwdl-msg').text
                 values = [rb_id, fwdl_status, fwdl_msg]
@@ -163,7 +162,6 @@ class Firmware(object):
 
         if response.data != '<output></output>':
             root = ET.fromstring(response.data)
-            num_xml_fwdl_entries = int(root.find('number-of-entries').text)
             for fwdl_entry in root.findall('fwdl-entries'):
                 fwdl_index = int(fwdl_entry.find('index').text)
                 blade_name = fwdl_entry.find('blade-name').text
