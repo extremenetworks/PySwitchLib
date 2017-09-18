@@ -2,6 +2,8 @@ import logging
 
 from pyswitch.raw.nos.base import template
 from pyswitch.utilities import Util
+import template
+from jinja2 import Template
 
 
 class Interface(object):
@@ -35,74 +37,67 @@ class Interface(object):
         else:
             return method
 
-
-
-    def create_loopback(self, **kwargs):
+    def conversation_property(self, **kwargs):
         """
-        Add loopback Interface .
-        Args:
-            lb_name: loopback name with which the Ve interface needs to be
-             created.
-            enable (bool): If vrf fowarding should be enabled
-                or disabled.Default:``True``.
-            get (bool) : Get config instead of editing config. (True, False)
-            rbridge_id (str): rbridge-id for device.
-            callback (function): A function executed upon completion of the
-               method.  The only parameter passed to `callback` will be the
-                ``ElementTree`` `config`.
-        Returns:
-            Return value of `callback`.
-        Raises:
-            ValueError: if `ve_name` is invalid.
+
+        Creates Overlay Gateway 
+
         Examples:
-            >>> import pyswitch.device
-            >>> switches = ['10.24.39.211', '10.24.39.203']
-            >>> auth = ('admin', 'password')
-            >>> for switch in switches:
-            ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output = dev.interface.create_loopback(
-             ...         lb_name='100',
-            ...         rbridge_id='1')
-            ...         output = dev.interface.create_loopback(
-            ...         get=True,
-            ...         rbridge_id='1')
-            ...         output = dev.interface.create_loopback(
-            ...         enable=False,
-            ...         lb_name='101',
-            ...         rbridge_id='1')
-            ...         # doctest: +IGNORE_EXCEPTION_DETAIL
-            Traceback (most recent call last):
-            KeyError
-         """
+        >>> import pyswitch.device
+        >>> conn = ('10.26.8.210', '22')
+        >>> auth = ('admin', 'password')
+        >>> with pyswitch.device.Device(conn=conn, auth=auth,connection_type='NETCONF') as dev:
+        ...      output = dev.interface.conversation_property(get=True)
+        ...      print output
+        """
 
-        lb_name = kwargs.pop('lb_name', '')
+        get_config = kwargs.pop('get', False)
 
-        enable = kwargs.pop('enable', True)
-        get = kwargs.pop('get', False)
-        callback = kwargs.pop('callback', self._callback)
-        ve_args = dict()
-        if self.has_rbridge_id:
-            rbridge_id = kwargs.pop('rbridge_id', '1')
-            ve_args['rbridge_id'] = rbridge_id
-        if get:
-            enable = None
+        if not get_config:
+            arp_aging_timeout = kwargs.pop('arp_aging_timeout','300')
+            mac_aging_timeout = kwargs.pop('mac_aging_timeout','300')
+            mac_legacy_aging_timeout = kwargs.pop('mac_legacy_aging_timeout','1800')
+            mac_move_limit = kwargs.pop('mac_move_limit','5')
+            t = Template(getattr(template, 'conversation_property_create'))
+            config = t.render(arp_aging_timeout=100, mac_aging_timeout=100, mac_legacy_aging_timeout=200,
+                     mac_move_limit=300)
+            self._callback(config)
 
-        method_name = self.method_prefix('interface_loopback_')
+        if get_config:
+            if get_config:
+                config = getattr(template, 'mac_address_table_get').format()
+                rest_root = self._callback(config, handler='get_config')
+                util = Util(rest_root)
+                conversational_mac = True if util.find(util.root, './/learning-mode') is not None else False
+                mac_aging_timeout = util.find(util.root, './/conversational-time-out')
+                mac_legacy_aging_timeout = util.find(util.root, './/legacy-time-out')
+                mac_move_limit = util.find(util.root, './/mac-move-limit')
+                mac_move_enable = True if util.find(util.root, './/mac-move-detect-enable') is not None else False
 
-        if get:
-            config = getattr(template, self.method_prefix('interface_loopback_get')).format(**ve_args)
-            output = callback(config, handler='get_config')
-            util = Util(output)
-            return util.findall(util.root, './/id')
+                config = getattr(template, 'host_table_get').format()
+                rest_root = self._callback(config, handler='get_config')
+                util = Util(rest_root)
 
-        ve_args['loopback'] = lb_name
-        if not enable:
-            method_name = "%sdelete" % method_name
-        else:
-            method_name = "%screate" % method_name
-        config = getattr(template, method_name).format(**ve_args)
-        return callback(config,handler='edit_config')
+                conversational_arp  = True if util.find(util.root, './/aging-mode') is not None else False
+                arp_aging_timeout = util.find(util.root, './/conversational-time-out')
+                
+
+                return {"conversational_mac": conversational_mac,
+                        "mac_aging_timeout": mac_aging_timeout,
+                        'mac_legacy_aging_timeout': mac_legacy_aging_timeout,
+                        'mac_move_limit': mac_move_limit,
+                        'mac_move_enable': mac_move_enable,
+                        "conversational_arp": conversational_arp,
+                        "arp_aging_timeout": arp_aging_timeout,
+                        }
+
+
+
+
+
+
+
+
 
 
 

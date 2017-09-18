@@ -1,7 +1,7 @@
 import pyswitch.utilities
 from pyswitch.utilities import Util
 from pyswitch.exceptions import InvalidVlanId
-from pyswitch.os.base.interface import Interface as BaseInterface
+from pyswitch.raw.base.interface import Interface as BaseInterface
 import template
 import logging
 
