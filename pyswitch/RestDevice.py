@@ -63,8 +63,8 @@ NOS_VERSIONS = {
             'services': pyswitch.os.nos.base.services.Services,
             'fabric_service': pyswitch.os.base.fabric_service.FabricService,
             'vcs': pyswitch.os.base.vcs.VCS,
-	    'firmware': pyswitch.os.base.firmware.Firmware
-
+	        'firmware': pyswitch.os.base.firmware.Firmware
+    },
 
     '7.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
