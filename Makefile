@@ -304,7 +304,6 @@ pylint: requirements .pylint
 	@echo
 	@echo "================== pylint ===================="
 	@echo
-	# Lint Pyswitch Wrapper
 	echo "==========================================================="; \
 	echo "Running pylint on pyswitch" \
 	echo "==========================================================="; \
