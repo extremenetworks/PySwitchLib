@@ -20,6 +20,7 @@ import logging
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
+from pyswitch.snmp.snmpconnector import SnmpUtils as SNMPUtils
 from pyswitch.AbstractDevice import AbstractDevice
 from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
@@ -58,7 +59,7 @@ class SnmpCliDevice(AbstractDevice):
         system: System level actions and attributes.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, sysobj, **kwargs):
         """
 
         """
@@ -71,6 +72,7 @@ class SnmpCliDevice(AbstractDevice):
         self._snmpversion = kwargs.pop('snmpver', 2)
         self._snmpport = kwargs.pop('snmpport', 161)
         self._snmpv2c = kwargs.pop('snmpv2c', 'public')
+        self._sysobj = sysobj
 
         if self._callback is None:
             self._callback = self._callback_main
@@ -79,9 +81,12 @@ class SnmpCliDevice(AbstractDevice):
 
         self.reconnect()
 
-        version_list = self.firmware_version
-        self._os_type = version_list[0][2]
-        self.fullver = version_list[0][1]
+        #self._os_type = version_list[0][2]
+        self.devicetype = SNMPUtils.SNMP_DEVICE_MAP[sysobj]
+        fwmap = SNMPUtils.DEVICE_FIRMWARE_MAP[self.devicetype]
+        self._os_type = fwmap[0]
+        self.fullver = self.firmware_version
+        #self.fullver = version_list[0][1]
 
         """
         thismodule = sys.modules[__name__]
@@ -163,7 +168,8 @@ class SnmpCliDevice(AbstractDevice):
             None
 
         """
-        return self._mgr['snmp'].get_os_version()
+        fwmap = SNMPUtils.DEVICE_FIRMWARE_MAP[self.devicetype]
+        return self._mgr['snmp'].get_os_version(fwmap[1])
 
     def _callback_main(self, call, handler='snmp-get', target='running',
                        source='startup'):
@@ -320,7 +326,7 @@ if __name__ == '__main__':
 
     #dev.interface.add_vlan_int(vlan_id='234')
     vers = dev.firmware_version
-    print vers[0][1]
+    print vers
     print dev.os_type
     print dev.suports_rbridge
     #print dev.interface.port_channels

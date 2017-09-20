@@ -66,7 +66,7 @@ class Device(object):
                 self.connection_type = 'SNMPCLI'
 
 	if self.connection_type is 'SNMPCLI':
-	    self.device_type = SnmpCliDevice(**kwargs)
+	    self.device_type = SnmpCliDevice(sysobj, **kwargs)
         if self.connection_type is 'REST':
             self.device_type = RestDevice(**kwargs)
         elif self.connection_type is 'NETCONF':
