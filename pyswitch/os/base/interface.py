@@ -468,7 +468,7 @@ class Interface(object):
                 config = (method_name, ip_args)
                 x = callback(config, handler='get_config')
 
-                method_name = 'interface_%s_ipv6_address_ipv6_address_get'\
+                method_name = 'interface_%s_ipv6_address_ipv6_address_get' \
                               % int_type
                 if (int_type == 've' or int_type == 'loopback') and self.has_rbridge_id:
                     method_name = "rbridge_id_%s" % method_name
@@ -779,7 +779,6 @@ class Interface(object):
             util = Util(x.data)
             return util.find(util.root, './/private-vlan//association//add')
 
-
         sec_vlan = kwargs.pop('sec_vlan')
 
         if not pyswitch.utilities.valid_vlan_id(sec_vlan):
@@ -1004,10 +1003,10 @@ class Interface(object):
                 util = Util(x.data)
 
                 if x.data == '<output></output>':
-                   raise ValueError('Interface %s %s not found on device' %(int_type,name))
+                    raise ValueError('Interface %s %s not found on device' % (int_type, name))
 
                 if self.has_rbridge_id and \
-                   (int_type == 've' or int_type == 'loopback'):
+                        (int_type == 've' or int_type == 'loopback'):
                     shut = util.find(util.root, '*shutdown')
                 else:
                     shut = util.find(util.root, '*shutdown')
@@ -1116,7 +1115,6 @@ class Interface(object):
         allowed_vlan_args = {int_type: name}
 
         if get:
-
             method_name = 'interface_%s_switchport_trunk_allowed_vlan_get' \
                           % int_type
             config = (method_name, allowed_vlan_args)
@@ -1125,9 +1123,9 @@ class Interface(object):
             util = Util(x.data)
             add = util.find(util.root, './/add')
 
-            all = util.find(util.root,'.//all')
+            all = util.find(util.root, './/all')
 
-            return {'add':add,'all':all}
+            return {'add': add, 'all': all}
 
         action = kwargs.pop('action')
         ctag = kwargs.pop('ctag', None)
@@ -1154,7 +1152,7 @@ class Interface(object):
 
         if not ctag:
 
-            method_name = 'interface_%s_switchport_trunk_allowed_vlan_update'\
+            method_name = 'interface_%s_switchport_trunk_allowed_vlan_update' \
                           % int_type
             if action == 'all':
                 allowed_vlan_args[action] = True
@@ -1244,17 +1242,17 @@ class Interface(object):
 
                 return 'trunk_host'
             elif util.find(util.root, './/switchport//mode//'
-                                   'private-vlan//trunk//basic'):
+                                      'private-vlan//trunk//basic'):
                 return 'trunk_basic'
             elif util.find(util.root, './/switchport//mode//'
-                                   'private-vlan//trunk//promiscuous'):
+                                      'private-vlan//trunk//promiscuous'):
 
                 return 'trunk_promiscuous'
 
             elif util.find(util.root, './/switchport//mode//private-vlan//host'):
                 return 'host'
             elif util.find(util.root, './/switchport//mode//'
-                                   'private-vlan//promiscuous'):
+                                      'private-vlan//promiscuous'):
 
                 return 'promiscuous'
             return None
@@ -1339,7 +1337,7 @@ class Interface(object):
         tag_args[int_type] = name
 
         if get:
-            method_name = 'interface_%s_switchport_trunk_tag_native_vlan_get'\
+            method_name = 'interface_%s_switchport_trunk_tag_native_vlan_get' \
                           % int_type
 
             config = (method_name, tag_args)
@@ -1356,7 +1354,7 @@ class Interface(object):
         if not isinstance(enabled, bool):
             raise ValueError("Invalid state.")
 
-        method_name = 'interface_%s_switchport_trunk_tag_native_vlan_update'\
+        method_name = 'interface_%s_switchport_trunk_tag_native_vlan_update' \
                       % int_type
 
         if not enabled:
@@ -1837,7 +1835,7 @@ class Interface(object):
                               % int_type
                 vrid_name = 'vrrp'
             else:
-                method_name = 'interface_%s_ipv6_vrrp_group_virtual_ip_get'\
+                method_name = 'interface_%s_ipv6_vrrp_group_virtual_ip_get' \
                               % int_type
                 vrid_name = 'vrrpv3_group'
 
@@ -1848,7 +1846,7 @@ class Interface(object):
                     vrid_name = 'vrrpv3'
             arguments[vrid_name] = (vrid, '3')
             config = (method_name, arguments)
-            x = callback(config,handler='get_config')
+            x = callback(config, handler='get_config')
             util = Util(x.data)
             return util.find(util.root, './/virtual-ipaddr')
 
@@ -2025,7 +2023,7 @@ class Interface(object):
                     vrid_name = 'vrrpv3'
             arguments[vrid_name] = (vrid, '3')
             config = (method_name, arguments)
-            x = callback(config,handler='get_config')
+            x = callback(config, handler='get_config')
             util = Util(x.data)
             return util.find(util.root, './/priority')
 
@@ -2759,7 +2757,7 @@ class Interface(object):
             raise InvalidVlanId("`name` must be between `1` and `4096`")
 
         if kwargs.pop('delete', False):
-            method_name = 'interface_%s_switchport_access_vlan_delete'\
+            method_name = 'interface_%s_switchport_access_vlan_delete' \
                           % int_type
         else:
             vlan_args['accessvlan'] = vlan
@@ -2911,10 +2909,9 @@ class Interface(object):
             interface_type = util.find(item, './/interface-type')
             interface_name = util.find(item, './/interface-name')
 
-            if "gigabitethernet" '' in interface_type or \
-                    "port-channel" in interface_type or 'ethernet'\
-                    in interface_type:
-                if "gigabitethernet" in interface_type or 'ethernet'\
+            if "gigabitethernet" '' in interface_type or "port-channel" in interface_type or \
+                    'ethernet' in interface_type:
+                if "gigabitethernet" in interface_type or 'ethernet' \
                         in interface_type:
                     interface_role = util.find(item, './/port-role')
                 else:
@@ -2932,7 +2929,7 @@ class Interface(object):
                                 'if-name': if_name,
                                 'interface-state': interface_state,
                                 'interface-proto-state':
-                                interface_proto_state,
+                                    interface_proto_state,
                                 'interface-mac': interface_mac}
                 result.append(item_results)
 
@@ -2965,10 +2962,9 @@ class Interface(object):
                 interface_name = util.find(item, './/interface-name')
                 last_interface_type = interface_type
                 last_interface_name = interface_name
-                if "gigabitethernet" '' in interface_type or \
-                        "port-channel" in interface_type or 'ethernet'\
-                        in interface_type:
-                    if "gigabitethernet" in interface_type or 'ethernet'\
+                if "gigabitethernet" '' in interface_type or "port-channel" in interface_type or \
+                        'ethernet' in interface_type:
+                    if "gigabitethernet" in interface_type or 'ethernet' \
                             in interface_type:
                         interface_role = util.find(item, './/port-role')
                     else:
@@ -2986,7 +2982,7 @@ class Interface(object):
                                     'if-name': if_name,
                                     'interface-state': interface_state,
                                     'interface-proto-state':
-                                    interface_proto_state,
+                                        interface_proto_state,
                                     'interface-mac': interface_mac}
                     result.append(item_results)
 
@@ -3026,6 +3022,7 @@ class Interface(object):
             return value.text
         else:
             return ''
+
     @property
     def vlans(self):
         """list[dict]: A list of dictionary items describing the details of
@@ -3048,8 +3045,6 @@ class Interface(object):
             ...     assert is_vlan_interface_present
             True
         """
-        urn = "{urn:brocade.com:mgmt:brocade-interface-ext}"
-
         result = []
         has_more = ''
         last_vlan_id = ''
@@ -3216,7 +3211,6 @@ class Interface(object):
                 result.append(results)
         return result
 
-
     @staticmethod
     def get_port_chann_detail_request(last_aggregator_id):
         """ Creates a new Netconf request based on the last received
@@ -3308,7 +3302,7 @@ class Interface(object):
                     vrid_name = 'vrrpv3e'
             arguments[vrid_name] = vrid
             config = (method_name, arguments)
-            x = callback(config,handler='get_config')
+            x = callback(config, handler='get_config')
 
             util = Util(x.data)
             basic = util.find(util.root, './/basic')
@@ -3359,16 +3353,16 @@ class Interface(object):
 
         if get:
             if version == 4:
-                method_name = 'interface_%s_vrrp_extended_group_get'\
+                method_name = 'interface_%s_vrrp_extended_group_get' \
                               % int_type
             else:
-                method_name = 'interface_%s_ipv6_vrrp_extended_group_get'\
+                method_name = 'interface_%s_ipv6_vrrp_extended_group_get' \
                               % int_type
             if int_type == 've' and self.has_rbridge_id:
                 method_name = "rbridge_id_%s" % method_name
                 arguments['rbridge_id'] = kwargs.pop('rbridge_id', 1)
             config = (method_name, arguments)
-            x = callback(config,handler='get_config')
+            x = callback(config, handler='get_config')
             util = Util(x.data)
             vr_list = util.findlist(util.root, './/vrrp-extended-group')
             result = []
@@ -3462,7 +3456,7 @@ class Interface(object):
                               int_type
                 vrid_name = 'vrrpe'
             else:
-                method_name = 'interface_%s_ipv6_vrrp_extended_group_get' %\
+                method_name = 'interface_%s_ipv6_vrrp_extended_group_get' % \
                               int_type
                 vrid_name = 'vrrpv3e_group'
 
@@ -3475,9 +3469,9 @@ class Interface(object):
             result = []
             arguments['resource_depth'] = 3
             config = (method_name, arguments)
-            x = callback(config,handler='get_config')
+            x = callback(config, handler='get_config')
             util = Util(x.data)
-            vr_list = util.findlist(util.root,'.//vrrp-extended-group')
+            vr_list = util.findlist(util.root, './/vrrp-extended-group')
             for vr in vr_list:
                 vip = util.find(vr, './/virtual-ipaddr')
                 vrid = util.find(vr, './/vrid')
@@ -3495,11 +3489,11 @@ class Interface(object):
             version = 4
 
         if version == 4:
-            method_name = 'interface_%s_vrrp_extended_group_virtual_ip_' %\
+            method_name = 'interface_%s_vrrp_extended_group_virtual_ip_' % \
                           int_type
             vrid_name = 'vrrpe'
         else:
-            method_name = 'interface_%s_ipv6_vrrp_extended_group_virtual_ip_'\
+            method_name = 'interface_%s_ipv6_vrrp_extended_group_virtual_ip_' \
                           % int_type
             vrid_name = 'vrrpv3e_group'
 
@@ -3607,13 +3601,11 @@ class Interface(object):
                     vrid_name = 'vrrpv3e'
             arguments[vrid_name] = vrid
             config = (method_name, arguments)
-            x = callback(config,handler='get_config')
+            x = callback(config, handler='get_config')
             if '<02e0.5200.00xx>true</02e0.5200.00xx>' in x.data:
                 return '02e0.5200.00xx'
             else:
                 return None
-
-
 
         if version == 4:
             method_name = 'interface_%s_vrrp_extended_group_virtual_mac_' \
@@ -3904,7 +3896,7 @@ class Interface(object):
         arp_aging_timeout = kwargs.pop('arp_aging_timeout', '')
         enable = kwargs.pop('enable', True)
         get = kwargs.pop('get', False)
-        rbridge_id = kwargs.pop('rbridge_id','1')
+        rbridge_id = kwargs.pop('rbridge_id', '1')
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = ['gigabitethernet', 'tengigabitethernet',
                            'fortygigabitethernet', 'hundredgigabitethernet',
@@ -4615,6 +4607,7 @@ class Interface(object):
             method_name = "%screate" % method_name
         config = (method_name, ve_args)
         return callback(config)
+
     """
     Version 7.0.1
     """
@@ -4711,7 +4704,7 @@ class Interface(object):
             arguments['ip_donor_interface_type'] = kwargs.pop('donor_type')
             arguments['ip_donor_interface_name'] = kwargs.pop('donor_name')
             method_name = 'interface_%s_ip_unnumbered_update' % kwargs[
-                          'int_type']
+                'int_type']
             config = (method_name, arguments)
         return callback(config)
 
@@ -5273,7 +5266,7 @@ class Interface(object):
             config = (method_name, rt_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
-            
+
             for vrf_node in util.findlist(util.root, './/vrf'):
                 vrf_name = util.find(vrf_node, './/vrf-name')
                 ipv4 = util.findNode(vrf_node, './/ipv4')
@@ -5408,7 +5401,6 @@ class Interface(object):
 
             output = callback(config, handler='get_config')
             util = Util(output.data)
-            item = util.find(util.root, './/suppress-arp')
             enable_item = util.find(util.root, './/enable')
 
             if enable_item is not None:
@@ -5468,8 +5460,10 @@ class Interface(object):
             ...         rbridge_id='231')
             ...         print output
             ...         # doctest: +IGNORE_EXCEPTION_DETAIL
-            {'instance_name': 'sj_fabric', 'ignore_as': None, 'duplicate_mac_timer_value': None, 'rd_auto': None, 'max_count': None}
-            {'instance_name': None, 'ignore_as': None, 'duplicate_mac_timer_value': None, 'rd_auto': None, 'max_count': None}
+            {'instance_name': 'sj_fabric', 'ignore_as': None, 'duplicate_mac_timer_value': None,
+            'rd_auto': None, 'max_count': None}
+            {'instance_name': None, 'ignore_as': None, 'duplicate_mac_timer_value': None,
+            'rd_auto': None, 'max_count': None}
          """
 
         evpn_instance_name = kwargs.pop('evpn_instance_name', '')
@@ -6035,8 +6029,6 @@ class Interface(object):
             KeyError
         """
         class_map = kwargs.pop('class_map_name')
-
-        get_config = kwargs.pop('get', True)
         callback = kwargs.pop('callback', self._callback)
 
         map_args = dict(class_map=class_map)
@@ -6097,20 +6089,20 @@ class Interface(object):
 
         map_args = dict(class_map=class_map)
         if delete:
-            method_name = 'class_map_match_access_group_access_'\
+            method_name = 'class_map_match_access_group_access_' \
                           'group_name_delete'
             config = (method_name, map_args)
             return callback(config)
         if not get_config:
             if access_group_name is None:
                 raise KeyError("`access_group_name` cannot be None")
-            method_name = 'class_map_match_access_group_access_'\
+            method_name = 'class_map_match_access_group_access_' \
                           'group_name_update'
             map_args.update(access_group_name=access_group_name)
             config = (method_name, map_args)
             return callback(config)
         elif get_config:
-            method_name = 'class_map_match_access_group_access_'\
+            method_name = 'class_map_match_access_group_access_' \
                           'group_name_get'
             config = (method_name, map_args)
             output = callback(config, handler='get_config')
@@ -6220,21 +6212,21 @@ class Interface(object):
 
         map_args = dict(class_map=class_map)
         if delete:
-            method_name = 'class_map_match_bridge_domain_'\
-                           'bridge_domain_range_delete'
+            method_name = 'class_map_match_bridge_domain_' \
+                          'bridge_domain_range_delete'
             config = (method_name, map_args)
             return callback(config)
         if not get_config:
             if bridge_domain_range is None:
                 raise KeyError("`bridge_domain_range` cannot be None")
-            method_name = 'class_map_match_bridge_domain_'\
-                           'bridge_domain_range_update'
+            method_name = 'class_map_match_bridge_domain_' \
+                          'bridge_domain_range_update'
             map_args.update(bridge_domain_range=bridge_domain_range)
             config = (method_name, map_args)
             return callback(config)
         elif get_config:
-            method_name = 'class_map_match_bridge_domain_'\
-                           'bridge_domain_range_get'
+            method_name = 'class_map_match_bridge_domain_' \
+                          'bridge_domain_range_get'
             config = (method_name, map_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
@@ -6375,13 +6367,13 @@ class Interface(object):
         Args:
             policy_map_name (str): Policy-Map name.
             class_map_name (str): Class-Map name.
-            cir (str) : Committed Information Rate. 
+            cir (str) : Committed Information Rate.
                         Valid Range <0-300000000000> bits Per Second
-            cbs (str) : Committed Burst Rate. 
+            cbs (str) : Committed Burst Rate.
                         Valid Range <1250-37500000000> Bytes
-            eir (str) : Exceeded Information Rate. 
+            eir (str) : Exceeded Information Rate.
                         Valid Range <0-300000000000> bits Per Second
-            ebs (str) : Exceeded Burst Rate. 
+            ebs (str) : Exceeded Burst Rate.
                         Valid Range <1250-37500000000> Bytes
             get (bool): Get config instead of editing config. (True, False)
             delete (bool): True, delete the class-map police on Policy-map.
@@ -6414,7 +6406,6 @@ class Interface(object):
         policy_map = kwargs.pop('policy_map_name')
         class_map = kwargs.pop('class_map_name')
 
-
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
@@ -6443,7 +6434,7 @@ class Interface(object):
             if ebs is not None and not 1251 < ebs < 37500000001:
                 raise ValueError("`ebs` must be in range <1250-37500000000>",
                                  ebs)
-            
+
             map_args.update(cir=cir, cbs=cbs, eir=eir, ebs=ebs)
             method_name = 'policy_map_class_police_update'
             config = (method_name, map_args)
@@ -6459,7 +6450,7 @@ class Interface(object):
                               eir=util.find(util.root, './/eir'),
                               ebs=util.find(util.root, './/ebs'))
             else:
-                result = None 
+                result = None
         return result
 
     def interface_service_policy(self, **kwargs):
@@ -6521,23 +6512,23 @@ class Interface(object):
             map_args = dict(port_channel=intf_name)
 
         if delete:
-            if in_policy is None and out_policy is None or\
-                    in_policy is not None and out_policy is not None:
-                method_name_in = 'interface_%s_service_policy_in_delete'\
+            if in_policy is None and out_policy is None or in_policy is not None and out_policy \
+                    is not None:
+                method_name_in = 'interface_%s_service_policy_in_delete' \
                                  % intf_type
-                method_name_out = 'interface_%s_service_policy_out_delete'\
+                method_name_out = 'interface_%s_service_policy_out_delete' \
                                   % intf_type
                 config_in = (method_name_in, map_args)
                 config_out = (method_name_out, map_args)
                 return callback(config_in), callback(config_out)
             elif in_policy is not None:
-                method_name_in = 'interface_%s_service_policy_in_delete'\
+                method_name_in = 'interface_%s_service_policy_in_delete' \
                                  % intf_type
                 config_in = (method_name_in, map_args)
                 return callback(config_in)
             elif out_policy is not None:
-                method_name_out = 'interface_%s_service_policy_out_delete'\
-                                 % intf_type
+                method_name_out = 'interface_%s_service_policy_out_delete' \
+                                  % intf_type
                 config_out = (method_name_out, map_args)
                 return callback(config_out)
         if not get_config:
@@ -6583,7 +6574,7 @@ class Interface(object):
             ...         mac_group_id=10)
         """
         mac_group_id = kwargs.pop('mac_group_id', None)
-        if mac_group_id is not None and mac_group_id not in range(1,501):
+        if mac_group_id is not None and mac_group_id not in range(1, 501):
             raise ValueError('`mac_group_id` not in range[1,500]', mac_group_id)
 
         get_config = kwargs.pop('get', False)
@@ -6849,7 +6840,7 @@ class Interface(object):
         if delete:
             if access_vlan_id is not None and mac_address is not None:
                 map_args.update(vlan=(access_vlan_id, mac_address))
-            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_'\
+            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_' \
                           'classification_delete' % intf_type
             config = (method_name, map_args)
             return callback(config)
@@ -6858,7 +6849,7 @@ class Interface(object):
             if not pyswitch.utilities.valid_vlan_id(access_vlan_id):
                 raise InvalidVlanId("`name` must be between `1` and `8191`")
 
-            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_'\
+            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_' \
                           'classification_create' % intf_type
             config = (method_name, map_args)
             return callback(config)
@@ -6866,7 +6857,7 @@ class Interface(object):
             if access_vlan_id is not None and mac_address is not None:
                 map_args.update(vlan=(access_vlan_id, mac_address))
 
-            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_'\
+            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_' \
                           'classification_get' % intf_type
             config = (method_name, map_args)
             output = callback(config, handler='get_config')
@@ -6931,12 +6922,10 @@ class Interface(object):
         if intf_type not in valid_int_types:
             raise ValueError('intf_type must be one of: %s' %
                              repr(valid_int_types))
-        if trunk_ctag_id is not None and\
-                int(trunk_ctag_id) not in range(1,4091):
+        if trunk_ctag_id is not None and int(trunk_ctag_id) not in range(1, 4091):
             raise ValueError('trunk_ctag_id %s must be '
                              'in range(1,4090)' % (trunk_ctag_id))
-        if trunk_vlan_id is not None and\
-                int(trunk_vlan_id) not in range(4096,8192):
+        if trunk_vlan_id is not None and int(trunk_vlan_id) not in range(4096, 8192):
             raise ValueError('trunk_vlan_id %s must be in '
                              'range(4096,8191)' % (trunk_vlan_id))
 
@@ -6958,20 +6947,20 @@ class Interface(object):
         if delete:
             map_args.update(remove=trunk_vlan_id,
                             trunk_ctag_range=trunk_ctag_id)
-            method_name = 'interface_%s_switchport_trunk_'\
+            method_name = 'interface_%s_switchport_trunk_' \
                           'allowed_vlan_remove_create' % intf_type
             config = (method_name, map_args)
             return callback(config)
         if not get_config:
             map_args.update(add=trunk_vlan_id,
                             trunk_ctag_range=trunk_ctag_id)
-            method_name = 'interface_%s_switchport_trunk_'\
+            method_name = 'interface_%s_switchport_trunk_' \
                           'allowed_vlan_add_create' % intf_type
             config = (method_name, map_args)
             return callback(config)
         elif get_config:
             map_args.update(add=trunk_vlan_id)
-            method_name = 'interface_%s_switchport_trunk_'\
+            method_name = 'interface_%s_switchport_trunk_' \
                           'allowed_vlan_add_ctag_get' % intf_type
             config = (method_name, map_args)
             output = callback(config, handler='get_config')
@@ -7023,14 +7012,11 @@ class Interface(object):
         vlan_vni_mapping = kwargs.pop('vlan_vni_mapping', None)
         vni = kwargs.pop('vni', None)
 
-        if vlan_vni_mapping is not None and not\
+        if vlan_vni_mapping is not None and not \
                 pyswitch.utilities.valid_vlan_id(vlan_vni_mapping):
-            raise InvalidVlanId("`vlan_vni_mapping`"\
-                                " must be between `1` and `8191`")
-        if vni is not None and\
-                int(vni) not in xrange(1,16777217):
-            raise ValueError('`vni` %s must be in '
-                             'range(1,16777215)' % (vni))
+            raise InvalidVlanId("`vlan_vni_mapping` must be between `1` and `8191`")
+        if vni is not None and int(vni) not in xrange(1, 16777217):
+            raise ValueError('`vni` %s must be in range(1,16777215)' % (vni))
 
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
@@ -7062,9 +7048,9 @@ class Interface(object):
                     result = util.find(util.root, './/vni')
                 else:
                     vls = util.findall(util.root, './/vlan')
-                    tvnis =[]
+                    tvnis = []
                     for each_vl in vls:
-                        method_name = 'overlay_gateway_map_vlan_vni_'\
+                        method_name = 'overlay_gateway_map_vlan_vni_' \
                                       'mapping_vni_get'
                         map_args.update(vlan_vni_mapping=str(each_vl))
                         output = callback(config, handler='get_config')

@@ -15,8 +15,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import xml.etree.ElementTree as ET
-
 from ipaddress import ip_interface
 
 import pyswitch.utilities as util
@@ -1146,7 +1144,7 @@ class Bgp(object):
                     ip_addr.ip),
                 op='_get',
                 os=self.os)
-            ret = callback(config,  handler='get_config')
+            ret = callback(config, handler='get_config')
             search = './/' + int_type
             bgp = Util(ret.data)
             ret = bgp.findText(bgp.root, search)
@@ -2315,7 +2313,7 @@ class Bgp(object):
                 ``ElementTree`` `config`.
             delete (bool): Deletes the peer group specified
                 if `delete` is ``True``.
-            get (bool): Get config instead of editing config. (True, False)    
+            get (bool): Get config instead of editing config. (True, False)
         Returns:
             Return value of `callback`.
         Raises:
@@ -2350,11 +2348,11 @@ class Bgp(object):
                 method_name = [
                     self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_create')
                 ]
-                args['peer_group_name']=True
+                args['peer_group_name'] = True
             else:
                 method_name = [
                     self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_peer_group_delete'),
-                    ]
+                ]
 
             method = method_name[0]
             config = (method, args)
@@ -2388,7 +2386,7 @@ class Bgp(object):
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
             delete (bool): Deletes the peer group password specified
-                if `delete` is ``True``.    
+                if `delete` is ``True``.
         Returns:
             Return value of `callback`.
         Raises:
@@ -2426,7 +2424,7 @@ class Bgp(object):
         else:
             method_name = [
                 self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_password_delete'),
-                ]
+            ]
 
         method = method_name[0]
         config = (method, args)
@@ -2442,7 +2440,7 @@ class Bgp(object):
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
             delete (bool): Deletes the peer group password specified
-                if `delete` is ``True``.    
+                if `delete` is ``True``.
         Returns:
             Return value of `callback`.
         Raises:
@@ -2479,7 +2477,7 @@ class Bgp(object):
         else:
             method_name = [
                 self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_bfd_bfd_enable_delete'),
-                ]
+            ]
 
         method = method_name[0]
         config = (method, args)
@@ -2494,9 +2492,9 @@ class Bgp(object):
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
-            ebgp_multihop_count: Integer value of ebgp-multihop count    
+            ebgp_multihop_count: Integer value of ebgp-multihop count
             delete (bool): Deletes the peer group ebgp-multihop
-                if `delete` is ``True``.    
+                if `delete` is ``True``.
         Returns:
             Return value of `callback`.
         Raises:
@@ -2535,7 +2533,7 @@ class Bgp(object):
         else:
             method_name = [
                 self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_ebgp_multihop_delete'),
-                ]
+            ]
 
         method = method_name[0]
         config = (method, args)
@@ -2557,10 +2555,10 @@ class Bgp(object):
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
-            loopback: loopback port number    
+            loopback: loopback port number
             delete (bool): Deletes the peer group ebgp-multihop
                 if `delete` is ``True``.
-            get (bool): Get config instead of editing config. (True, False)        
+            get (bool): Get config instead of editing config. (True, False)
         Returns:
             Return value of `callback`.
         Raises:
@@ -2611,7 +2609,8 @@ class Bgp(object):
             result = callback(config)
         else:
             # Get update-source details
-            method_name = self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_update_source_loopback_get')
+            method_name = self.method_prefix('router_bgp_neighbor_neighbor_peer_grp_update_source_'
+                                             'loopback_get')
             args = dict(
                 rbridge_id=rbridge_id,
                 resource_depth=2)
@@ -2634,10 +2633,10 @@ class Bgp(object):
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
-            ip_addr: neighbor address    
+            ip_addr: neighbor address
             delete (bool): Deletes the peer group ebgp-multihop
                 if `delete` is ``True``.
-            get (bool): Get config instead of editing config. (True, False)        
+            get (bool): Get config instead of editing config. (True, False)
         Returns:
             Return value of `callback`.
         Raises:
@@ -2685,7 +2684,7 @@ class Bgp(object):
             else:
                 method_name = [
                     self.method_prefix('router_bgp_neighbor_neighbor_addr_peer_group_delete'),
-                    ]
+                ]
 
             method = method_name[0]
             config = (method, args)
@@ -2716,10 +2715,10 @@ class Bgp(object):
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
-            ip_addr: neighbor address    
+            ip_addr: neighbor address
             delete (bool): Deletes the peer group ebgp-multihop
                 if `delete` is ``True``.
-            get (bool): Get config instead of editing config. (True, False)        
+            get (bool): Get config instead of editing config. (True, False)
         Returns:
             Return value of `callback`.
         Raises:
@@ -2764,7 +2763,7 @@ class Bgp(object):
             else:
                 method_name = [
                     self.method_prefix('router_bgp_neighbor_neighbor_addr_peer_group_delete'),
-                    ]
+                ]
 
             method = method_name[0]
             config = (method, args)
@@ -2794,10 +2793,10 @@ class Bgp(object):
             peer_group (bool): Name of the peer group
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
-                ``ElementTree`` `config`.    
+                ``ElementTree`` `config`.
             delete (bool): Deletes the peer group ebgp-multihop
                 if `delete` is ``True``.
-            get (bool): Get config instead of editing config. (True, False)        
+            get (bool): Get config instead of editing config. (True, False)
         Returns:
             Return value of `callback`.
         Raises:
@@ -2874,10 +2873,10 @@ class Bgp(object):
             peer_group (bool): Name of the peer group
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
-                ``ElementTree`` `config`.    
+                ``ElementTree`` `config`.
             delete (bool): Deletes the peer group ebgp-multihop
                 if `delete` is ``True``.
-            get (bool): Get config instead of editing config. (True, False)        
+            get (bool): Get config instead of editing config. (True, False)
         Returns:
             Return value of `callback`.
         Raises:
@@ -2985,7 +2984,7 @@ class Bgp(object):
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
-            allowas_in (str): Values for allowas_in (default: 5).    
+            allowas_in (str): Values for allowas_in (default: 5).
 
         Returns:
             Return value of `callback`.
@@ -3071,7 +3070,7 @@ class Bgp(object):
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
                 ``ElementTree`` `config`.
-            remote_as (str): Values for remote_as.    
+            remote_as (str): Values for remote_as.
 
         Returns:
             Return value of `callback`.

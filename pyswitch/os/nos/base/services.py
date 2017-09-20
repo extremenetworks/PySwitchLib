@@ -47,7 +47,7 @@ class Services(BaseServices):
         """dict: trill link details
                 """
 
-        config = ('get_arp_rpc',{})
+        config = ('get_arp_rpc', {})
         results = self._callback(config, handler='get')
         util = Util(results.data)
         result = []

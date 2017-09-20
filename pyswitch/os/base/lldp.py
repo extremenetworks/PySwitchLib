@@ -15,6 +15,7 @@ limitations under the License.
 """
 from pyswitch.utilities import Util
 
+
 class LLDP(object):
     """LLDP class containing LLDP methods and attributes.
     """
