@@ -20,6 +20,7 @@ import logging
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
+from pyswitch.snmp.snmpconnector import SnmpUtils as SNMPUtils
 from pyswitch.AbstractDevice import AbstractDevice
 from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
