@@ -316,6 +316,9 @@ flake8: requirements .flake8
 .PHONY: .flake8
 .flake8:
 	@echo
-	@echo "==================== flake ===================="
+	@echo "================== flake8 ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; flake8 --config ./lint-configs/python/.flake8 pyswitch
+	echo "==========================================================="; \
+	echo "Running flake8 on pyswitch" \
+	echo "==========================================================="; \
+	. $(VIRTUALENV_DIR)/bin/activate; flake8 --config ./lint-configs/python/.flake8 pyswitch || exit 1;
