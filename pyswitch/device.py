@@ -18,6 +18,7 @@ limitations under the License.
 from pyswitch.RestDevice import RestDevice
 from pyswitch.NetConfDevice import NetConfDevice
 
+
 class DeviceCommError(Exception):
     """
     Error with device communication.
@@ -29,6 +30,7 @@ class Reply:
 
     def __init__(self, xml):
         self.data = xml
+
 
 class Device(object):
     """
@@ -47,29 +49,26 @@ class Device(object):
 
         """
         kwargs['base'] = self
-        self.connection_type = kwargs.get('connection_type','REST')
+        self.connection_type = kwargs.get('connection_type', 'REST')
         if self.connection_type is 'REST':
             self.device_type = RestDevice(**kwargs)
         elif self.connection_type is 'NETCONF':
             self.device_type = NetConfDevice(**kwargs)
-
-
-
 
     def __enter__(self):
         self.device_type.__enter__()
         return self
 
     def __exit__(self, exctype, excisnt, exctb):
-        return self.device_type.__exit__( exctype, excisnt, exctb)
+        return self.device_type.__exit__(exctype, excisnt, exctb)
 
-    @property 
+    @property
     def asset(self):
-        return self.device_type._mgr 
+        return self.device_type._mgr
 
     @property
     def mac_table(self):
-       return self.device_type.mac_table
+        return self.device_type.mac_table
 
     @property
     def os_type(self):

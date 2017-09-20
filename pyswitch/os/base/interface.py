@@ -2858,7 +2858,7 @@ class Interface(object):
                        'interface-mac': None,
                        'ip-address': ip_address,
                        'ip-mtu': ip_mtu,
-                        'state': if_state}
+                       'state': if_state}
             x = next((x for x in result if int_type == x['interface-type'] and
                       int_name == x['interface-name']), None)
             if x is not None:

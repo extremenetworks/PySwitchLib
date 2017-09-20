@@ -1,20 +1,20 @@
-import sys
 import logging
-import pyswitch.raw.slxos.base.interface
-import pyswitch.raw.nos.base.interface
+import re
+import sys
 import xml.etree.ElementTree as ET
 
+import ncclient
+from lxml import etree as letree
 from ncclient import manager
 from ncclient import xml_
-import ncclient
-import re
-from pyswitch.utilities import Util
-from lxml import etree as letree
-from pyswitch.AbstractDevice import AbstractDevice
-import pyswitch.utilities as util
 
-NOS_ATTRS = ['snmp', 'interface', 'bgp',  'lldp', 'system', 'services',
-             'fabric_service', 'vcs']
+import pyswitch.raw.nos.base.interface
+import pyswitch.raw.slxos.base.interface
+import pyswitch.utilities as util
+from pyswitch.AbstractDevice import AbstractDevice
+from pyswitch.utilities import Util
+
+NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services', 'fabric_service', 'vcs']
 
 
 class DeviceCommError(Exception):
@@ -50,6 +50,7 @@ SLXOS_VERSIONS = {
     },
 
 }
+
 
 class NetConfDevice(AbstractDevice):
     """
@@ -104,7 +105,6 @@ class NetConfDevice(AbstractDevice):
 
         self._mgr = None
 
-
         self.reconnect()
         self._fetch_firmware_version()
 
@@ -112,14 +112,12 @@ class NetConfDevice(AbstractDevice):
 
         thismodule = sys.modules[__name__]
 
-        self.os_table = getattr(thismodule, '%s_VERSIONS' %
-                           str(self.os_type).upper())
+        self.os_table = getattr(thismodule, '%s_VERSIONS' % str(self.os_type).upper())
 
-        if self.fullver  in self.os_table:
-           self.ver = self.fullver
+        if self.fullver in self.os_table:
+            self.ver = self.fullver
         else:
-           self.ver = util.get_two_tuple_version(self.fullver )
-
+            self.ver = util.get_two_tuple_version(self.fullver)
 
         for nos_attr in NOS_ATTRS:
             if nos_attr in self.os_table[self.ver]:
@@ -129,8 +127,6 @@ class NetConfDevice(AbstractDevice):
                     self.os_table[self.ver][nos_attr](
                         self._callback_main))
 
-
-
     def __enter__(self):
         if not self.connection and self._test is False:
             self.reconnect()
@@ -139,8 +135,6 @@ class NetConfDevice(AbstractDevice):
     def __exit__(self, exctype, excisnt, exctb):
         if self.connection:
             self.close()
-
-    # ver = '7.0.1'
 
     @property
     def connection(self):
@@ -210,10 +204,8 @@ class NetConfDevice(AbstractDevice):
         """
         try:
             if handler == 'get_config':
-                output = self._mgr.get_config(filter = ('xpath', call),source='running')
-                return ET.fromstring(letree.tostring((output.data)))
-
-
+                output = self._mgr.get_config(filter=('xpath', call), source='running')
+                return ET.fromstring(letree.tostring(output.data))
 
             if handler == 'get':
                 call_element = xml_.to_ele(call)
@@ -284,7 +276,8 @@ class NetConfDevice(AbstractDevice):
         """
         table = []
 
-        config = '<get-mac-address-table xmlns="urn:brocade.com:mgmt:brocade-mac-address-table"></get-mac-address-table>'
+        config = '<get-mac-address-table xmlns="urn:brocade.com:mgmt:brocade-mac-address-table' \
+                 '"></get-mac-address-table>'
         rest_root = self._callback(config, handler='get')
 
         util = Util(rest_root)
@@ -302,7 +295,6 @@ class NetConfDevice(AbstractDevice):
                               state=state, vlan=vlan,
                               type=mac_type))
 
-
         return table
 
     @property
@@ -312,7 +304,6 @@ class NetConfDevice(AbstractDevice):
     @property
     def suports_rbridge(self):
         return self.os_type == 'nos'
-
 
     @property
     def firmware_version(self):
@@ -331,7 +322,8 @@ class NetConfDevice(AbstractDevice):
     def _fetch_firmware_version(self):
         namespace = "urn:brocade.com:mgmt:brocade-firmware-ext"
 
-        request_ver = '<show-firmware-version xmlns="urn:brocade.com:mgmt:brocade-firmware-ext"></show-firmware-version>'
+        request_ver = '<show-firmware-version ' \
+                      'xmlns="urn:brocade.com:mgmt:brocade-firmware-ext"></show-firmware-version>'
 
         ver = self._callback(request_ver, handler='get')
 
@@ -365,25 +357,17 @@ class NetConfDevice(AbstractDevice):
                 self._os_ver = '.'.join(slxos_ver)
 
 
-
-if __name__  == '__main__':
+if __name__ == '__main__':
     import time
-
     start = time.time()
-
-
     conn = ('10.26.8.212', '22')
-    #conn = ('10.24.84.173', '22')
     auth = ('admin', 'password')
-
     from pyswitch.device import Device
-    with Device(conn=conn, auth=auth,connection_type='NETCONF') as dev:
+    with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
         print dev.firmware_version
-        dev.interface.add_vlan_int(vlan_id_list=list(range(2,4)),desc='test')
-
+        dev.interface.add_vlan_int(vlan_id_list=list(range(2, 4)), desc='test')
         print dev.os_type
         print dev.suports_rbridge
-        #print dev.mac_table
 
         """
         from pyswitch.device import Device
@@ -393,5 +377,3 @@ if __name__  == '__main__':
         """
     end = time.time()
     print(end - start)
-
-

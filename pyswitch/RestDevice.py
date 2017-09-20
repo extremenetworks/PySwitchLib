@@ -14,29 +14,28 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+import re
 import sys
 
 import pyswitch.os.base.fabric_service
 import pyswitch.os.base.lldp
 import pyswitch.os.base.snmp
 import pyswitch.os.base.vcs
-import pyswitch.os.nos.base.interface
 import pyswitch.os.nos.base.bgp
+import pyswitch.os.nos.base.interface
 import pyswitch.os.nos.base.services
 import pyswitch.os.nos.base.system
-import pyswitch.os.slxos.base.interface
 import pyswitch.os.slxos.base.bgp
+import pyswitch.os.slxos.base.interface
+import pyswitch.os.slxos.base.isis
+import pyswitch.os.slxos.base.mpls
+import pyswitch.os.slxos.base.ospf
 import pyswitch.os.slxos.base.services
 import pyswitch.os.slxos.base.system
-import pyswitch.os.slxos.base.isis
-import pyswitch.os.slxos.base.ospf
-import pyswitch.os.slxos.base.mpls
 import pyswitch.utilities as util
-from pyswitch.utilities import Util
-from pyswitch.XMLAsset import XMLAsset
 from pyswitch.AbstractDevice import AbstractDevice
-
-import re
+from pyswitch.XMLAsset import XMLAsset
+from pyswitch.utilities import Util
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
              'fabric_service', 'vcs', 'isis', 'ospf', 'mpls']
@@ -50,19 +49,17 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS
-
     },
     '7.0': {
-            'snmp': pyswitch.os.base.snmp.SNMP,
-            'interface': pyswitch.os.nos.base.interface.Interface,
-            'bgp': pyswitch.os.nos.base.bgp.Bgp,
-            'lldp': pyswitch.os.base.lldp.LLDP,
-            'system': pyswitch.os.nos.base.system.System,
-            'services': pyswitch.os.nos.base.services.Services,
-            'fabric_service': pyswitch.os.base.fabric_service.FabricService,
-            'vcs': pyswitch.os.base.vcs.VCS
-
-        },
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.nos.base.interface.Interface,
+        'bgp': pyswitch.os.nos.base.bgp.Bgp,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.nos.base.system.System,
+        'services': pyswitch.os.nos.base.services.Services,
+        'fabric_service': pyswitch.os.base.fabric_service.FabricService,
+        'vcs': pyswitch.os.base.vcs.VCS
+    },
 
     '7.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -172,9 +169,9 @@ class RestDevice(AbstractDevice):
                            str(self.os_type).upper())
 
         if fullver in os_table:
-           ver = fullver
+            ver = fullver
         else:
-           ver = util.get_two_tuple_version(fullver)
+            ver = util.get_two_tuple_version(fullver)
 
         for nos_attr in NOS_ATTRS:
             if nos_attr in os_table[ver]:
@@ -221,7 +218,6 @@ class RestDevice(AbstractDevice):
         table = []
 
         config = ('get_mac_address_table_rpc', {})
-
         rest_root = self._callback(config, handler='get')
         util = Util(rest_root.data)
         for entry in util.findlist(util.root, './/mac-address-table'):
@@ -381,27 +377,25 @@ class RestDevice(AbstractDevice):
             self._mgr._session.close()
 
 
-
-
-if __name__  == '__main__':
+if __name__ == '__main__':
     import time
 
     start = time.time()
 
-
     conn = ('10.26.8.156', '22')
-    #conn = ('10.24.84.173', '22')
+    # conn = ('10.24.84.173', '22')
     auth = ('admin', 'password')
 
     from pyswitch.device import Device
+
     dev = Device(conn=conn, auth=auth)
 
     dev.interface.add_vlan_int(vlan_id='234')
     print dev.firmware_version
-    #print dev.os_type
-    #print dev.suports_rbridge
+    # print dev.os_type
+    # print dev.suports_rbridge
     print dev.interface.port_channels
-    #print dev.mac_table
+    # print dev.mac_table
 
     """
     from pyswitch.device import Device

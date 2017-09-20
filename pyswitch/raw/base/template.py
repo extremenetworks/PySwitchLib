@@ -1,6 +1,6 @@
 conversation_property_create = """
 <config>
-      <host-table xmlns="urn:brocade.com:mgmt:brocade-arp"> 
+      <host-table xmlns="urn:brocade.com:mgmt:brocade-arp">
          <aging-mode>
             <conversational></conversational>
          </aging-mode>
@@ -18,13 +18,13 @@ conversation_property_create = """
             <mac-move-detect-enable></mac-move-detect-enable>
             <mac-move-limit>{{mac_move_limit}}</mac-move-limit>
          </mac-move>
-      </mac-address-table>     
+      </mac-address-table>
 </config>
 """
-mac_address_table_get ="""
+mac_address_table_get = """
 /mac-address-table
 """
 
-host_table_get ="""
+host_table_get = """
 /host-table
 """
