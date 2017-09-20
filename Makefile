@@ -7,6 +7,7 @@ SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = docs/build
 VIRTUALENV_DIR ?= venv
+REQUIREMENTS := requirements.txt
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
