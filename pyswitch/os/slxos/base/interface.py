@@ -917,7 +917,7 @@ class Interface(BaseInterface):
 
         if intf_type not in self.valid_int_types:
             raise ValueError('intf_type must be one of: %s' %
-                             repr(valid_int_types))
+                             repr(self.valid_int_types))
         isis_args = {}
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)

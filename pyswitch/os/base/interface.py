@@ -1537,6 +1537,7 @@ class Interface(object):
         config = (method_name, {int_type: name, 'mtu': mtu})
         return callback(config)
 
+    # pylint: disable=E1101
     def ip_mtu(self, **kwargs):
         """Set interface mtu.
 

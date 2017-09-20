@@ -205,6 +205,7 @@ class NetConfDevice(AbstractDevice):
         try:
             if handler == 'get_config':
                 output = self._mgr.get_config(filter=('xpath', call), source='running')
+                # pylint: disable=E1101
                 return ET.fromstring(letree.tostring(output.data))
 
             if handler == 'get':

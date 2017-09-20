@@ -131,7 +131,7 @@ class Reply:
     def __init__(self, xml):
         self.data = xml
 
-
+# pylint: disable=E1101
 class RestDevice(AbstractDevice):
     """
     Device object holds the state for a single NOS device.

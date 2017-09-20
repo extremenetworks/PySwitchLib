@@ -49,7 +49,6 @@ class Mpls(object):
     def os(self):
         return 'slxos'
 
-
     def __init__(self, callback):
         """
         MPLS object init.
@@ -104,7 +103,7 @@ class Mpls(object):
 
         if intf_type not in self.valid_int_types:
             raise ValueError('intf_type must be one of: %s' %
-                             repr(valid_int_types))
+                             repr(self.valid_int_types))
 
         mpls_args = {}
 
@@ -176,7 +175,7 @@ class Mpls(object):
 
         if intf_type not in self.valid_int_types:
             raise ValueError('intf_type must be one of: %s' %
-                             repr(valid_int_types))
+                             repr(self.valid_int_types))
 
         mpls_args = {}
 
