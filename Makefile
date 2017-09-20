@@ -313,7 +313,7 @@ pylint: requirements .pylint
     echo "==========================================================="; \
     echo "Running pylint on pyswitch" \
     echo "==========================================================="; \
-	. $(VIRTUALENV_DIR)/bin/activate; pylint -E --rcfile=./lint-configs/python/.pylintrc pyswitch || exit 1; \
+	. $(VIRTUALENV_DIR)/bin/activate; pylint -E --rcfile=./lint-configs/python/.pylintrc pyswitch || exit 1;
 
 .PHONY: flake8
 flake8: requirements .flake8
