@@ -188,7 +188,10 @@ class SnmpCliDevice(AbstractDevice):
             elif handler == 'snmp-walk':
                 value = self._mgr['snmp'].table(call)
             elif handler == 'snmp-set':
-                value = self._mgr['snmp'].set(call)
+                if len(call) == 3:
+                    value = self._mgr['snmp'].set(call[0], call[1], call[2])
+                else
+                    value = self._mgr['snmp'].set(call[0], call[1])
             elif handler == 'snmp-set-multiple':
                 value = self._mgr['snmp'].set_multiple(call)
             elif handler == "cli-set":
