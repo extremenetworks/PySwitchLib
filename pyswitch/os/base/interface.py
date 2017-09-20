@@ -15,13 +15,12 @@ limitations under the License.
 """
 import logging
 import re
-from lxml import etree
 
 from ipaddress import ip_interface
 
 import pyswitch.utilities
-from pyswitch.utilities import Util
 from pyswitch.exceptions import InvalidVlanId, InvalidLoopbackName
+from pyswitch.utilities import Util
 
 
 class Interface(object):
@@ -2807,15 +2806,28 @@ class Interface(object):
 
                     interface_mac = util.find(item,
                                               './/current-hardware-address')
+                    interface_index = util.find(item, './/ifindex')
+                    mtu = util.find(item, './/mtu')
+                    ip_mtu = util.find(item, './/ip-mtu')
+                    if_state = util.find(item, './/if-state')
+                    if_description = util.find(item, './/if-description')
+                    actual_speed = util.find(item, './/actual-line-speed')
+                    configured_speed = util.find(item, './/configured-line-speed')
 
                     item_results = {'interface-type': interface_type,
                                     'interface-name': interface_name,
                                     'interface-role': interface_role,
                                     'if-name': if_name,
                                     'interface-state': interface_state,
-                                    'interface-proto-state':
-                                    interface_proto_state,
-                                    'interface-mac': interface_mac}
+                                    'interface-proto-state': interface_proto_state,
+                                    'interface-mac': interface_mac,
+                                    'interface-index': interface_index,
+                                    'mtu': mtu,
+                                    'ip-mtu': ip_mtu,
+                                    'state': if_state,
+                                    'description': if_description,
+                                    'actual-speed': actual_speed,
+                                    'configured-speed': configured_speed}
                     result.append(item_results)
         # Loopback interfaces. Probably for other non-physical interfaces, too.
         ip_result = []
@@ -2833,6 +2845,8 @@ class Interface(object):
             int_proto_state = util.find(interface, './/line-protocol-state')
 
             ip_address = util.find(interface, './/ipv4')
+            ip_mtu = util.find(item, './/ip-mtu')
+            if_state = util.find(item, './/if-state')
             if ip_address is not None and ip_address.endswith('/32') and 'loopback' not in int_type:
                 ip_address = 'unnumbered'
             results = {'interface-type': int_type,
@@ -2842,7 +2856,9 @@ class Interface(object):
                        'interface-state': int_state,
                        'interface-proto-state': int_proto_state,
                        'interface-mac': None,
-                       'ip-address': ip_address}
+                       'ip-address': ip_address,
+                       'ip-mtu': ip_mtu,
+                       'state': if_state}
             x = next((x for x in result if int_type == x['interface-type'] and
                       int_name == x['interface-name']), None)
             if x is not None:
