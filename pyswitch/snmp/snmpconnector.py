@@ -7,6 +7,10 @@ class SnmpUtils:
                         '1.3.6.1.4.1.1991.1.3.44.3.2' : 'MLX',
                       }
 
+    DEVICE_FIRMWARE_MAP = {
+                            'MLX' : ('NI', '1.3.6.1.4.1.1991.1.1.2.1.11.0')
+                          }
+
 
 class SnmpConnector(SNMP):
 
@@ -80,19 +84,9 @@ class SnmpConnector(SNMP):
         value = convert_value_to_native(value)
         return value
 
-    def get_os_version(self):
-        raw = self.table("1.3.6.1.2.1.47.1.1.1.1",
-                         columns={
-                            2: "PhysicalDescr",
-                            7: "PhysicalName",
-                            10: "SoftwareRev",
-                         },
-                         fetch_all_columns=False,
-                   )
-        version = []
-        for oitem in raw.rows:
-            if oitem['PhysicalDescr'] == 'NI-MLX-MR Management Module':
-                ver = (oitem['PhysicalName'], oitem['SoftwareRev'], 'NI')
-                version.append(ver)
-
-        return version
+    def get_os_version(self, oid=None):
+        if oid is not None:
+            raw = self.get(oid)
+            return raw
+        return None
+            
