@@ -15,8 +15,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import sys
+#import sys
 import logging
+
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
 from pyswitch.AbstractDevice import AbstractDevice
@@ -24,8 +25,6 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 #import pyswitch.os.base.snmp
-
-import re
 
 """
 ROUTER_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
@@ -38,6 +37,7 @@ NI_VERSIONS = {
 }
 """
 
+
 class DeviceCommError(Exception):
     """
     Error with device communication.
@@ -45,12 +45,8 @@ class DeviceCommError(Exception):
     pass
 
 
-class Reply:
-    def __init__(self, data):
-        self.data = data
-
-
 class SnmpCliDevice(AbstractDevice):
+
     """
     Device object holds the state for a single NOS device.
 
@@ -72,9 +68,9 @@ class SnmpCliDevice(AbstractDevice):
         self._auth = kwargs.pop('auth', (None, None))
         self._test = kwargs.pop('test', False)
         self._callback = kwargs.pop('callback', None)
-        self._snmpVersion = kwargs.pop('snmpver', 2)
-        self._snmpPort = kwargs.pop('snmpport', 161)
-        self._snmpV2c = kwargs.pop('snmpv2c', 'public')
+        self._snmpversion = kwargs.pop('snmpver', 2)
+        self._snmpport = kwargs.pop('snmpport', 161)
+        self._snmpv2c = kwargs.pop('snmpv2c', 'public')
 
         if self._callback is None:
             self._callback = self._callback_main
@@ -112,7 +108,7 @@ class SnmpCliDevice(AbstractDevice):
 
 
     def __enter__(self):
-        if not 'cli' in self._mgr or not 'snmp' in self._mgr:
+        if 'cli' not in self._mgr or 'snmp' not in self._mgr:
             self.reconnect()
 
         return self
@@ -120,7 +116,6 @@ class SnmpCliDevice(AbstractDevice):
     def __exit__(self, exctype, excisnt, exctb):
         if 'cli' in self._mgr or 'snmp' in self._mgr:
             self.close()
-        pass
 
     @property
     def connection(self):
@@ -135,8 +130,8 @@ class SnmpCliDevice(AbstractDevice):
         """
         if self._test is False:
             return self._mgr['snmp'].connected
-        else:
-            return False
+
+        return False
 
     @property
     def mac_table(self):
@@ -175,10 +170,52 @@ class SnmpCliDevice(AbstractDevice):
         """
         Callback for SNMP/CLI calls.
         Args:
+           handler: supports following values
+              'snmp-get'  - To get specific OID
+              'snmp-walk' - Table walk. Refer hnmp table method
+              'snmp-set'  - Snmp Set operation
+              'snmp-set-multiple' - Set multiple OIDs
+              'cli-set'   - Set operation through CLI session
+              'cli-get'   - Get command output through CLI session
+
+           call: Based on the handler call format varies
+              'snmp-get' - OID value. E.g '1.2.2.23.3.3.3.1.0'
+
+              'snmp-set' - Tuple (OID, value) or (OID, value, type)
+                           E.g. ('1.3.6.1.2.1.17.7.1.4.3.1.5.30', 6) or
+                                ('1.3.6.1.2.1.17.7.1.4.3.1.5.30', 6, INTEGER)
+
+              'snmp-set-multiple' - list of tuple [(OID, value), (OID, value)...]
+                           E.g.
+                           [('1.3.6.1.2.1.17.7.1.4.3.1.5.30', 6),
+                            ('1.3.6.1.2.1.17.7.1.4.3.1.1.40', 'vlan40')]
+
+              'cli-set'  - List of commands ['cmd1', 'cmd2', 'cmd3'...]
+                           E.g.
+                           ['int eth 0/1', 'enable', 'int eth 0/2', 'enable']
+
+              'cli-get'  - Command string E.g 'show ip in brief'
+
+              'snmp-walk' - Dict format:
+                    config = {'oid': <oidval>,
+                              'columns': {colid: colname, ...}
+                              'fetch_all': <True/False>
+                              'colmap': { colname: { value: 'newval', .....}}
+                             }
+                    Refer https://github.com/trehn/hnmp for columns and colmap
+                    parameter.
+
+                    E.g.
+                    config = {}
+                    config['oid'] = '1.3.6.1.2.1.47.1.1.1.1'
+                    config['columns'] = { 2: 'phydescr', 16: 'assetid'}
+                    config['fetch_all'] = False
+                    config['colmap'] = { "assetid": { 2: "chassis", 1: "module"} }
+
         Returns:
             None
         Raises:
-            None
+             SNMP/CLI execution error
         """
 
         try:
@@ -186,7 +223,13 @@ class SnmpCliDevice(AbstractDevice):
             if handler == 'snmp-get':
                 value = self._mgr['snmp'].get(call)
             elif handler == 'snmp-walk':
-                value = self._mgr['snmp'].table(call)
+                oid = call.get('oid')
+                col = call.get('columns', None)
+                fetch = call.get('fetch_all', False)
+                colmap = call.get('colmap', None)
+                value = self._mgr['snmp'].table(oid, columns=col,
+                                                column_value_mapping=colmap,
+                                                fetch_all_columns=fetch)
             elif handler == 'snmp-set':
                 if len(call) == 3:
                     value = self._mgr['snmp'].set(call[0], call[1], call[2])
@@ -203,7 +246,7 @@ class SnmpCliDevice(AbstractDevice):
             logging.error(error)
             raise DeviceCommError
         except:
-            print "CLI error" 
+            print "CLI error"
             raise DeviceCommError
 
         return value
@@ -221,11 +264,11 @@ class SnmpCliDevice(AbstractDevice):
         Raises:
             None
         """
-        if not 'snmp' in self._mgr:
-            self._mgr['snmp'] = SNMPDevice(host=self.host, port=self._snmpPort,
-                                           version=self._snmpVersion,
-                                           community=self._snmpV2c)
-	if not 'cli' in self._mgr:
+        if 'snmp' not in self._mgr:
+            self._mgr['snmp'] = SNMPDevice(host=self.host, port=self._snmpport,
+                                           version=self._snmpversion,
+                                           community=self._snmpv2c)
+        if not 'cli' not in self._mgr:
             # FIXME: Revisit this logic
             opt = {'device_type': 'brocade_netiron'}
             opt['ip'] = self.host
@@ -236,14 +279,14 @@ class SnmpCliDevice(AbstractDevice):
             net_connect = None
             try:
                 net_connect = ConnectHandler(**opt)
-            except (NetMikoTimeoutException, NetMikoAuthenticationException,) as e:
-                reason = e.message
-                raise ValueError('Failed to execute valueerror cli on due to %s',  reason)
-            except SSHException as e:
-                reason = e.message
+            except (NetMikoTimeoutException, NetMikoAuthenticationException,) as error:
+                reason = error.message
+                raise ValueError('Failed to execute valueerror cli on due to %s', reason)
+            except SSHException as error:
+                reason = error.message
                 raise ValueError('Failed to execute cli on due to %s', reason)
-            except Exception as e:
-                reason = e.message
+            except Exception as error:
+                reason = error.message
                 raise ValueError('Failed to execute due to %s', reason)
 
             if net_connect is not None:
@@ -260,12 +303,11 @@ class SnmpCliDevice(AbstractDevice):
         if 'cli' in self._mgr:
             self._mgr['cli'].disconnect()
             del self._mgr['cli']
-        pass
 
 
-
-if __name__  == '__main__':
+if __name__ == '__main__':
     import time
+    from pyswitch.device import Device
 
     start = time.time()
 
@@ -274,19 +316,25 @@ if __name__  == '__main__':
     #conn = ('10.24.84.173', '22')
     auth = ('admin', 'admin')
 
-    from pyswitch.device import Device
     dev = Device(conn=conn, auth=auth)
 
     #dev.interface.add_vlan_int(vlan_id='234')
-    vers =  dev.firmware_version
+    vers = dev.firmware_version
     print vers[0][1]
-     
     print dev.os_type
     print dev.suports_rbridge
     #print dev.interface.port_channels
     #print dev.mac_table
     #kwargs = {'handler': 'snmp-get', 'call': '1.3.6.1.2.1.1.2.0'}
-    #descr = dev.snmp.test_snmpdev(handler='snmp-get', call='1.3.6.1.2.1.1.2.0')
+    #call = {}
+    #call['oid'] = '1.3.6.1.2.1.47.1.1.1.1'
+    #call['columns'] = { 2: 'phydescr', 16: 'assetid'}
+    #call['fetch_all'] = False
+    #call['colmap'] = { "assetid": { 2: "chassis", 1: "module"} }
+    #descr = dev.snmp.test_snmpdev(handler='snmp-walk', call=call)
+    #for item in descr.rows:
+    #    print item['assetid']
+    #print descr.rows
     #print descr
 
     #config_commands = 'show interface eth 1/2'

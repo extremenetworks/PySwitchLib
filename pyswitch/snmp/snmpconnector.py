@@ -62,8 +62,6 @@ class SnmpConnector(SNMP):
             oid_tup = (oid[i][0], data)
             varbindlist.append(oid_tup)
 
-        print varbindlist
-
         try:
             engine_error, pdu_error, pdu_error_index, objects = self._cmdgen.setCmd(
                 snmpsecurity,
@@ -96,4 +94,5 @@ class SnmpConnector(SNMP):
             if oitem['PhysicalDescr'] == 'NI-MLX-MR Management Module':
                 ver = (oitem['PhysicalName'], oitem['SoftwareRev'], 'NI')
                 version.append(ver)
+
         return version
