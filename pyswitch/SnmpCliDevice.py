@@ -15,17 +15,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-#import sys
+import sys
 import logging
-
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
-from pyswitch.snmp.snmpconnector import SnmpUtils as SNMPUtils
 from pyswitch.AbstractDevice import AbstractDevice
 from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 #import pyswitch.os.base.snmp
+
+import re
 
 """
 ROUTER_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
@@ -38,7 +38,6 @@ NI_VERSIONS = {
 }
 """
 
-
 class DeviceCommError(Exception):
     """
     Error with device communication.
@@ -46,8 +45,12 @@ class DeviceCommError(Exception):
     pass
 
 
-class SnmpCliDevice(AbstractDevice):
+class Reply:
+    def __init__(self, data):
+        self.data = data
 
+
+class SnmpCliDevice(AbstractDevice):
     """
     Device object holds the state for a single NOS device.
 
@@ -121,6 +124,7 @@ class SnmpCliDevice(AbstractDevice):
     def __exit__(self, exctype, excisnt, exctb):
         if 'cli' in self._mgr or 'snmp' in self._mgr:
             self.close()
+        pass
 
     @property
     def connection(self):
