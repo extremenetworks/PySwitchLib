@@ -18,4 +18,5 @@ jobs:
           name: run tests
           command: |
             sudo pip install flake8
+            sudo pip install pylint==1.6.4
             make lint
