@@ -35,4 +35,6 @@ jobs:
           command: |
             sudo pip install flake8
             sudo pip install pylint==1.6.4
+            export PYTHONPATH="./venv
+            echo $PYTHONPATH
             make lint
