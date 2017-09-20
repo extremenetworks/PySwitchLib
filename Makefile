@@ -299,16 +299,6 @@ lint: requirements .lint
 .PHONY: pylint
 pylint: requirements .pylint
 
-.PHONY: .pylint
-.pylint:
-	@echo
-	@echo "================== pylint ===================="
-	@echo
-	echo "==========================================================="; \
-	echo "Running pylint on pyswitch" \
-	echo "==========================================================="; \
-	. $(VIRTUALENV_DIR)/bin/activate; pylint -E --rcfile=./lint-configs/python/.pylintrc pyswitch || exit 1;
-
 .PHONY: flake8
 flake8: requirements .flake8
 
@@ -321,3 +311,13 @@ flake8: requirements .flake8
 	echo "Running flake8 on pyswitch" \
 	echo "==========================================================="; \
 	. $(VIRTUALENV_DIR)/bin/activate; flake8 --config ./lint-configs/python/.flake8 pyswitch || exit 1;
+
+.PHONY: .pylint
+.pylint:
+	@echo
+	@echo "================== pylint ===================="
+	@echo
+	echo "==========================================================="; \
+	echo "Running pylint on pyswitch" \
+	echo "==========================================================="; \
+	. $(VIRTUALENV_DIR)/bin/activate; pylint -E --rcfile=./lint-configs/python/.pylintrc pyswitch || exit 1;
