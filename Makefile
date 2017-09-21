@@ -249,17 +249,9 @@ requirements: virtualenv
 	@echo
 	@echo "==================== requirements ===================="
 	@echo
-
-	# Make sure we use latest version of pip
-	$(VIRTUALENV_DIR)/bin/pip install --upgrade "pip>=8.1.2,<8.2"
-	$(VIRTUALENV_DIR)/bin/pip install virtualenv  # Required for packs.install in dev envs.
-
-	# Install requirements
-	#
-	for req in $(REQUIREMENTS); do \
-			echo "Installing $$req..." ; \
-			$(VIRTUALENV_DIR)/bin/pip install $(PIP_OPTIONS) -r $$req ; \
-	done
+	. $(VIRTUALENV_DIR)/bin/activate && $(VIRTUALENV_DIR)/bin/pip install --upgrade pip
+	. $(VIRTUALENV_DIR)/bin/activate && $(VIRTUALENV_DIR)/bin/pip install --cache-dir $(HOME)/.pip-cache -q -r requirements.txt
+	. $(VIRTUALENV_DIR)/bin/activate && $(VIRTUALENV_DIR)/bin/pip install --cache-dir $(HOME)/.pip-cache -q -r requirements_tests.txt
 
 .PHONY: virtualenv
 virtualenv: $(VIRTUALENV_DIR)/bin/activate
@@ -268,28 +260,6 @@ $(VIRTUALENV_DIR)/bin/activate:
 	@echo "==================== virtualenv ===================="
 	@echo
 	test -d $(VIRTUALENV_DIR) || virtualenv --no-site-packages $(VIRTUALENV_DIR)
-
-	# Setup PYTHONPATH in bash activate script...
-	echo '' >> $(VIRTUALENV_DIR)/bin/activate
-	echo '_OLD_PYTHONPATH=$$PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate
-	echo 'PYTHONPATH=$$_OLD_PYTHONPATH:$(COMPONENT_PYTHONPATH)' >> $(VIRTUALENV_DIR)/bin/activate
-	echo 'export PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate
-	touch $(VIRTUALENV_DIR)/bin/activate
-
-	# Setup PYTHONPATH in fish activate script...
-	echo '' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo 'set -gx _OLD_PYTHONPATH $$PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo 'set -gx PYTHONPATH $$_OLD_PYTHONPATH $(COMPONENT_PYTHONPATH)' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo 'functions -c deactivate old_deactivate' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo 'function deactivate' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '  if test -n $$_OLD_PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '    set -gx PYTHONPATH $$_OLD_PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '    set -e _OLD_PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '  end' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '  old_deactivate' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '  functions -e old_deactivate' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo 'end' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	touch $(VIRTUALENV_DIR)/bin/activate.fish
 
 .PHONY: lint
 lint: requirements .lint

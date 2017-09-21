@@ -23,7 +23,6 @@ jobs:
           name: install dependencies
           command: |
             make requirements
-            . ~/repo/venv/bin/activate; pip install --upgrade pip && sudo pip install flake8 && sudo pip install pylint==1.6.4
 
       - save_cache:
           paths:
