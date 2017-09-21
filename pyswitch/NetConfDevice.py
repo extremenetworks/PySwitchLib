@@ -366,8 +366,6 @@ if __name__ == '__main__':
     from pyswitch.device import Device
     with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
         print dev.firmware_version
-        dev.interface.add_vlan_int(vlan_id_list=list(range(2, 4)), desc='test')
-        print dev.os_type
         print dev.suports_rbridge
 
         """
