@@ -14,10 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import xml.etree.ElementTree as ET
-
-from pyswitch.utilities import Util
 from pyswitch.os.base.services import Services as BaseServices
+from pyswitch.utilities import Util
+
 
 class Services(BaseServices):
     """
@@ -42,7 +41,6 @@ class Services(BaseServices):
             None
         """
         super(Services, self).__init__(callback)
-
 
     def vrrp(self, **kwargs):
         """Enable or Disable VRRP.
@@ -172,7 +170,7 @@ class Services(BaseServices):
             util = Util(x.data)
 
             ipv4_vrrpe = util.find(util.root, './/vrrp-extended')
-            ipv4_vrrpe = ipv4_vrrpe if ipv4_vrrpe and ipv4_vrrpe == 'true'\
+            ipv4_vrrpe = ipv4_vrrpe if ipv4_vrrpe and ipv4_vrrpe == 'true' \
                 else False
 
             config = ('ipv6_protocol_vrrp_extended_get', vrrpe_args)
@@ -297,15 +295,15 @@ class Services(BaseServices):
             util = Util(x.data)
 
             ipv6_ospf = util.find(util.root, './/ospf//vrf')
-            ipv6_ospf = ipv6_ospf if ipv6_ospf  else False
+            ipv6_ospf = ipv6_ospf if ipv6_ospf else False
 
             return {'ipv4_ospf': ipv4_ospf, 'ipv6_ospf': ipv6_ospf}
 
         if not enable:
-            method_name = 'router_ospf_delete' if ip_version == '4'\
+            method_name = 'router_ospf_delete' if ip_version == '4' \
                 else 'ipv6_router_ospf_delete'
         else:
-            method_name = 'router_ospf_create' if ip_version == '4'\
+            method_name = 'router_ospf_create' if ip_version == '4' \
                 else 'ipv6_router_ospf_create'
         config = (method_name, ospf_args)
         return callback(config)

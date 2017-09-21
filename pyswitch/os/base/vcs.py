@@ -16,7 +16,6 @@ from ipaddress import ip_interface
 from pyswitch.utilities import Util
 
 
-
 class VCS(object):
     """
     VCS class containing all VCS methods and attributes.
@@ -145,7 +144,6 @@ class VCS(object):
             util = Util(op.data)
 
             vip_info['ipv4_vip'] = util.find(util.root, './/address/address')
-		
 
             method_name = 'vcs_virtual_ipv6_address_get'
 

@@ -348,7 +348,6 @@ class Bgp(BaseBgp):
             result.append(tmp)
         return result
 
-
     def bd_add(self, **kwargs):
         """Add VNIs to the EVPN Instance
         Args:

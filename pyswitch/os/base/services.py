@@ -14,10 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import xml.etree.ElementTree as ET
-
 from pyswitch.utilities import Util
-
 
 
 class Services(object):
@@ -49,19 +46,19 @@ class Services(object):
         """dict: trill link details
                 """
 
-        config = ('get_arp_rpc',{})
+        config = ('get_arp_rpc', {})
         results = self._callback(config, handler='get')
         util = Util(results.data)
         result = []
 
-        for item in util.findlist(util.root,'.//arp-entry' ):
-            ip_address = util.find(item,'.//ip-address' )
-            mac_address = util.find(item,'.//mac-address' )
-            interface_type = util.find(item,'.//interface-type' )
-            interface_name = util.find(item,'.//interface-name' )
-            is_resolved = util.find(item,'.//is-resolved' )
-            age = util.find(item,'.//age' )
-            entry_type = util.find(item,'.//entry-type' )
+        for item in util.findlist(util.root, './/arp-entry'):
+            ip_address = util.find(item, './/ip-address')
+            mac_address = util.find(item, './/mac-address')
+            interface_type = util.find(item, './/interface-type')
+            interface_name = util.find(item, './/interface-name')
+            is_resolved = util.find(item, './/is-resolved')
+            age = util.find(item, './/age')
+            entry_type = util.find(item, './/entry-type')
             item_results = {'ip-address': ip_address,
                             'mac-address': mac_address,
                             'interface-type': interface_type,
@@ -72,4 +69,3 @@ class Services(object):
                             }
             result.append(item_results)
         return result
-
