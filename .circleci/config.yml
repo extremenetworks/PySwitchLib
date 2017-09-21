@@ -23,6 +23,7 @@ jobs:
           name: install dependencies
           command: |
             make requirements
+            ./venv/bin/activate; sudo pip install flake8 && sudo pip install pylint==1.6.4
 
       - save_cache:
           paths:
@@ -33,10 +34,4 @@ jobs:
       - run:
           name: run tests
           command: |
-            sudo apt-get install python-dev
-            sudo python -m pip install -U pip
-            sudo pip install flake8
-            sudo pip install pylint==1.6.4
-            export PYTHONPATH="./venv"
-            echo $PYTHONPATH
             make lint
