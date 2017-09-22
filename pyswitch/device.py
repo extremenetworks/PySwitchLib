@@ -64,12 +64,12 @@ class Device(object):
         snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
         sysobj = str(snmpdev.get("1.3.6.1.2.1.1.2.0"))
 
-	if sysobj in SNMPUtils.SNMP_DEVICE_MAP:
+        if sysobj in SNMPUtils.SNMP_DEVICE_MAP:
             if SNMPUtils.SNMP_DEVICE_MAP[sysobj] == 'MLX':
                 self.connection_type = 'SNMPCLI'
 
-	if self.connection_type is 'SNMPCLI':
-	    self.device_type = SnmpCliDevice(sysobj, **kwargs)
+        if self.connection_type is 'SNMPCLI':
+            self.device_type = SnmpCliDevice(sysobj, **kwargs)
         if self.connection_type is 'REST':
             self.device_type = RestDevice(**kwargs)
         elif self.connection_type is 'NETCONF':

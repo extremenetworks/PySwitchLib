@@ -1,15 +1,26 @@
-from hnmp import *
+from hnmp import SNMP as SNMP
+from hnmp import SNMPError as SNMPError
+from hnmp import TYPES as TYPES
+from hnmp import is_ipv4_address as is_ipv4_address
 from hnmp import _convert_value_to_native as convert_value_to_native
+from pysnmp.entity.rfc3413.oneliner import cmdgen
+
+from pysnmp.proto.rfc1902 import (
+    Integer,
+    IpAddress,
+    OctetString,
+)
+
 
 class SnmpUtils:
 
     SNMP_DEVICE_MAP = {
-                        '1.3.6.1.4.1.1991.1.3.44.3.2' : 'MLX',
-                      }
+        '1.3.6.1.4.1.1991.1.3.44.3.2': 'MLX',
+    }
 
     DEVICE_FIRMWARE_MAP = {
-                            'MLX' : ('NI', '1.3.6.1.4.1.1991.1.1.2.1.11.0')
-                          }
+        'MLX': ('NI', '1.3.6.1.4.1.1991.1.1.2.1.11.0')
+    }
 
 
 class SnmpConnector(SNMP):
@@ -89,4 +100,3 @@ class SnmpConnector(SNMP):
             raw = self.get(oid)
             return raw
         return None
-            

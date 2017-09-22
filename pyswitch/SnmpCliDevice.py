@@ -15,7 +15,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-#import sys
 import logging
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
@@ -25,7 +24,6 @@ from pyswitch.AbstractDevice import AbstractDevice
 from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
-#import pyswitch.os.base.snmp
 
 """
 ROUTER_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
@@ -81,12 +79,12 @@ class SnmpCliDevice(AbstractDevice):
 
         self.reconnect()
 
-        #self._os_type = version_list[0][2]
+        # self._os_type = version_list[0][2]
         self.devicetype = SNMPUtils.SNMP_DEVICE_MAP[sysobj]
         fwmap = SNMPUtils.DEVICE_FIRMWARE_MAP[self.devicetype]
         self._os_type = fwmap[0]
         self.fullver = self.firmware_version
-        #self.fullver = version_list[0][1]
+        # self.fullver = version_list[0][1]
 
         """
         thismodule = sys.modules[__name__]
@@ -107,10 +105,9 @@ class SnmpCliDevice(AbstractDevice):
                     os_table[ver][router_attr](
                         self._callback))
         """
-        #setattr(self.base, 'snmp', NI_VERSIONS['6.1.0T163']['snmp'](self._callback))
+        # setattr(self.base, 'snmp', NI_VERSIONS['6.1.0T163']['snmp'](self._callback))
 
         setattr(self, 'asset', self._mgr)
-
 
     def __enter__(self):
         if 'cli' not in self._mgr or 'snmp' not in self._mgr:
@@ -274,13 +271,13 @@ class SnmpCliDevice(AbstractDevice):
                                            version=self._snmpversion,
                                            community=self._snmpv2c)
         if not 'cli' not in self._mgr:
-            # FIXME: Revisit this logic
+            #  FIXME: Revisit this logic
             opt = {'device_type': 'brocade_netiron'}
             opt['ip'] = self.host
             opt['username'] = self._auth[0]
             opt['password'] = self._auth[1]
             opt['global_delay_factor'] = 0.5
-            # FIXME: Do we need to catch error??
+            #  FIXME: Do we need to catch error??
             net_connect = None
             try:
                 net_connect = ConnectHandler(**opt)
@@ -316,35 +313,34 @@ if __name__ == '__main__':
 
     start = time.time()
 
-
     conn = ('10.24.85.107', '22')
-    #conn = ('10.24.84.173', '22')
+    # conn = ('10.24.84.173', '22')
     auth = ('admin', 'admin')
 
     dev = Device(conn=conn, auth=auth)
 
-    #dev.interface.add_vlan_int(vlan_id='234')
+    # dev.interface.add_vlan_int(vlan_id='234')
     vers = dev.firmware_version
     print vers
     print dev.os_type
     print dev.suports_rbridge
-    #print dev.interface.port_channels
-    #print dev.mac_table
-    #kwargs = {'handler': 'snmp-get', 'call': '1.3.6.1.2.1.1.2.0'}
-    #call = {}
-    #call['oid'] = '1.3.6.1.2.1.47.1.1.1.1'
-    #call['columns'] = { 2: 'phydescr', 16: 'assetid'}
-    #call['fetch_all'] = False
-    #call['colmap'] = { "assetid": { 2: "chassis", 1: "module"} }
-    #descr = dev.snmp.test_snmpdev(handler='snmp-walk', call=call)
-    #for item in descr.rows:
-    #    print item['assetid']
-    #print descr.rows
-    #print descr
+    # print dev.interface.port_channels
+    # print dev.mac_table
+    # kwargs = {'handler': 'snmp-get', 'call': '1.3.6.1.2.1.1.2.0'}
+    # call = {}
+    # call['oid'] = '1.3.6.1.2.1.47.1.1.1.1'
+    # call['columns'] = { 2: 'phydescr', 16: 'assetid'}
+    # call['fetch_all'] = False
+    # call['colmap'] = { "assetid": { 2: "chassis", 1: "module"} }
+    # descr = dev.snmp.test_snmpdev(handler='snmp-walk', call=call)
+    # for item in descr.rows:
+    #     print item['assetid']
+    # print descr.rows
+    # print descr
 
-    #config_commands = 'show interface eth 1/2'
-    #output = dev.snmp.test_snmpdev(handler='cli-get', call=config_commands)
-    #print output
+    # config_commands = 'show interface eth 1/2'
+    # output = dev.snmp.test_snmpdev(handler='cli-get', call=config_commands)
+    # print output
 
     """
     from pyswitch.device import Device
