@@ -278,6 +278,7 @@ class Interface(BaseInterface):
             pw_profile_name (str): Pw-profile name (Max Size - 64).
             bpdu_drop_enable (bool): Drop BPDU packets. (True, False)
             local_switching (bool): Configure local switching. (True, False)
+            firmware_version(str): OS version number.
             get (bool): Get config instead of editing config. (True, False)
             delete (bool): True, delete the bd.(True, False)
             callback (function): A function executed upon completion of the
@@ -307,7 +308,6 @@ class Interface(BaseInterface):
             Traceback (most recent call last):
             KeyError
         """
-
         bridge_domain = kwargs.pop('bridge_domain')
         bridge_domain_service = kwargs.pop('bridge_domain_service_type', 'p2mp')
         statistics = kwargs.pop('statistics', None)
@@ -326,34 +326,40 @@ class Interface(BaseInterface):
         bd_args = dict(bridge_domain=(bridge_domain, bridge_domain_service))
         if delete:
             config = (self.method_prefix('bridge_domain_delete'),
-                      bd_args)
+                                         bd_args)
             return callback(config)
 
         if not get_config:
             vc_id_num = kwargs.pop('vc_id_num')
-            bd_args = dict(bridge_domain=(bridge_domain, bridge_domain_service),
-                           vc_id_num=vc_id_num, statistics=statistics,
-                           pw_profile_name=pw_profile_name,
-                           bpdu_drop_enable=bpdu_drop_enable,
-                           local_switching=local_switching)
+            firmware = kwargs.pop('firmware_version', None)
+            re_pat1 = '\d+r'
+            if firmware is None or re.match(re_pat1, firmware):
+                bd_args = dict(bridge_domain=(bridge_domain,bridge_domain_service),
+                               vc_id_num=vc_id_num, statistics=statistics,
+                               pw_profile_name=pw_profile_name,
+                               bpdu_drop_enable=bpdu_drop_enable,
+                               local_switching=local_switching)
+            else:
+                bd_args = dict(bridge_domain=(bridge_domain,bridge_domain_service))
+
             config = (self.method_prefix('bridge_domain_create'),
-                      bd_args)
+                                         bd_args)
             result = callback(config)
         elif get_config:
             config = (self.method_prefix('bridge_domain_get'),
-                      bd_args)
+                                         bd_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
             bridge_domain_id = util.find(util.root, './/bridge-domain-id')
             if bridge_domain_id is not None:
                 bridge_domain_type = util.find(util.root, './/bridge-domain-type')
                 vc_id = util.find(util.root, './/vc-id')
-                pw_profile = util.find(util.root, './/pw-profile')
+                pw_profile =  util.find(util.root, './/pw-profile')
                 statistics = util.find(util.root, './/statistics')
                 bpdu_drop_enable = util.find(util.root, './/bpdu-drop-enable')
                 local_switching = util.find(util.root, './/local-switching')
                 result = {'bridge_domain_id': bridge_domain_id,
-                          'bridge_domain_type': bridge_domain_type,
+                          'bridge_domain_type' : bridge_domain_type,
                           'vc_id': vc_id, 'pw_profile': pw_profile,
                           'statistics': statistics,
                           'bpdu_drop_enable': bpdu_drop_enable,
@@ -708,6 +714,7 @@ class Interface(BaseInterface):
             intf_name (str): Intername name.
             lif_name  (str): Logical Interface name.
             untag_vlan_id (str): Outer vlan ID
+            firmware_version(str): OS version number.
             get (bool): Get config instead of editing config. (True, False)
             delete (bool): True, delete the untag vlan on lif.(True, False)
             callback (function): A function executed upon completion of the
@@ -738,6 +745,9 @@ class Interface(BaseInterface):
         intf_type = kwargs.pop('intf_type', 'ethernet')
         intf_name = kwargs.pop('intf_name', None)
         lif_name = kwargs.pop('lif_name', None)
+        firmware = kwargs.pop('firmware_version', None)
+        untagged_vlan_id = kwargs.pop('untag_vlan_id', None)
+        untagged_flag = kwargs.pop('untagged_flag', True)
 
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
@@ -747,33 +757,45 @@ class Interface(BaseInterface):
             raise ValueError("`intf_ype` must match one of them "
                              "`ethernet, port_channel`")
 
+        if untagged_vlan_id is not None and\
+                not pyswitch.utilities.valid_vlan_id(untagged_vlan_id):
+            raise InvalidVlanId("Invalid untagged Vlan value.")
+        re_pat1 = '\d+r'
         if intf_type == 'port_channel':
             lg_args = dict(port_channel=intf_name, port_channel_=lif_name)
         else:
             lg_args = dict(ethernet=intf_name, ethernet_=lif_name)
 
         if delete:
-            method_name = 'interface_%s_logical_interface_%s_' \
-                          'untagged_vlan_delete' % (intf_type, intf_type)
+            if not re.match(re_pat1, firmware):
+                method_name = 'interface_%s_logical_interface_%s_'\
+                              'untagged_vlan_delete' % (intf_type, intf_type)
+            else:
+                method_name = 'interface_%s_logical_interface_%s_'\
+                              'untagged_vlan_untagged_vlan_id_delete'\
+                              % (intf_type, intf_type)
             config = (method_name, lg_args)
             return callback(config)
         if not get_config:
-            untagged_vlan_id = kwargs.pop('untag_vlan_id')
-            if not pyswitch.utilities.valid_vlan_id(untagged_vlan_id):
-                raise InvalidVlanId("Invalid untagged Vlan value.")
-            if intf_type == 'port_channel':
-                lg_args = dict(port_channel=intf_name, port_channel_=lif_name,
-                               untagged_vlan_id=untagged_vlan_id)
+            lg_args.update(untagged_vlan_id=untagged_vlan_id)
+            if not re.match(re_pat1, firmware):
+                lg_args.update(untagged_flag=untagged_flag)
+                method_name = 'interface_%s_logical_interface_%s_'\
+                              'untagged_update' % (intf_type, intf_type)
             else:
-                lg_args = dict(ethernet=intf_name, ethernet_=lif_name,
-                               untagged_vlan_id=untagged_vlan_id)
-            method_name = 'interface_%s_logical_interface_%s_untagged_' \
-                          'vlan_update' % (intf_type, intf_type)
+                method_name = 'interface_%s_logical_interface_%s_'\
+                              'untagged_vlan_untagged_vlan_id_update'\
+                              % (intf_type, intf_type)
             config = (method_name, lg_args)
             result = callback(config)
         elif get_config:
-            method_name = 'interface_%s_logical_interface_%s_untagged_' \
-                          'vlan_get' % (intf_type, intf_type)
+            if not re.match(re_pat1, firmware):
+                method_name = 'interface_%s_logical_interface_%s_'\
+                              'untagged_vlan_get' % (intf_type, intf_type)
+            else:
+                method_name = 'interface_%s_logical_interface_%s_'\
+                              'untagged_vlan_untagged_vlan_id_get'\
+                              % (intf_type, intf_type)
             config = (method_name, lg_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
@@ -1394,3 +1416,67 @@ class Interface(BaseInterface):
             config = (method_name, evpn_args)
 
         return callback(config)
+
+    def bridge_domain_router_interface(self, **kwargs):
+        """Configure/get/delete router interface on a bridge-domain.
+        Args:
+            bridge_domain (str): bridge domain number.
+            bridge_domain_service_type (str): service type. ('p2mp', 'p2p')
+             (str): Type of interface. ['ethernet', 'port_channel']
+            vlan_id (str): Vlan number.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete single/all LIFs on a bd.(True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `bridge_domain` or `vlan_id` is not specified.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.bridge_domain_router_interface(
+            ...         get=True, bridge_domain='100')
+            ...         output = dev.interface.bridge_domain_router_interface(
+            ...         delete=True, bridge_domain='100')
+            ...         output = dev.interface.bridge_domain_router_interface(
+            ...         bridge_domain='100', vlan_id='100')
+        """
+        bridge_domain = kwargs.pop('bridge_domain')
+        bridge_domain_service = kwargs.pop('bridge_domain_service_type', 'p2mp')
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if bridge_domain_service not in ['p2mp', 'p2p']:
+            raise ValueError("`bridge_domain_service_type` must "
+                             "match one of them "
+                             "`p2mp, p2p`")
+
+        bd_args = dict(bridge_domain=\
+                      (bridge_domain,bridge_domain_service))
+        if delete:
+            method_name = 'bridge_domain_router_interface_ve_delete'
+            config = (method_name, bd_args)
+            return callback(config)
+        if not get_config:
+            vlan_id = kwargs.pop('vlan_id')
+            if not pyswitch.utilities.valid_vlan_id(vlan_id):
+                raise InvalidVlanId("Invalid Vlan ID Value.")
+            bd_args.update(router_ve=vlan_id)
+            method_name = 'bridge_domain_router_interface_ve_update'
+            config = (method_name, bd_args)
+            result = callback(config)
+        elif get_config:
+            method_name = 'bridge_domain_router_interface_ve_get'
+            config = (method_name, bd_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            result = util.find(util.root, './/router-interface')
+        return result
