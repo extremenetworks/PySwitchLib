@@ -1419,7 +1419,6 @@ class Interface(BaseInterface):
             ...         output = dev.interface.bridge_domain_all()
         """
 
-        get_config = True
         callback = kwargs.pop('callback', self._callback)
         bd_args = {}
         config = (self.method_prefix('bridge_domain_get'), bd_args)
