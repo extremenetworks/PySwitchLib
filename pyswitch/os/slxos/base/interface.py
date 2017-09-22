@@ -1394,3 +1394,36 @@ class Interface(BaseInterface):
             config = (method_name, evpn_args)
 
         return callback(config)
+
+    def bridge_domain_all(self, **kwargs):
+        """get all bridge-domains present on the device.
+
+        Args:
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.bridge_domain_all()
+        """
+
+        get_config = True
+        callback = kwargs.pop('callback', self._callback)
+        bd_args = {}
+        config = (self.method_prefix('bridge_domain_get'), bd_args)
+        output = callback(config, handler='get_config')
+        util = Util(output.data)
+        result = util.findall(util.root, './/bridge-domain-id')
+        return result
