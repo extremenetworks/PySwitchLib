@@ -190,7 +190,7 @@ class Mct(object):
         if client_id is not None and not xrange(1, 513):
             raise ValueError("client_id %s must be in range `1-512`"
                              % (client_id))
-        
+
         mct_args = dict(cluster=(cluster_name, str(cluster_id)))
         if delete:
             method_name = 'cluster_client_client_interface_delete'
@@ -201,7 +201,7 @@ class Mct(object):
             intf_name = kwargs.pop('intf_name')
             intf_type = kwargs.pop('intf_type', 'Ethernet')
             if intf_type == 'ethernet':
-                intf_type = 'Ethernet' 
+                intf_type = 'Ethernet'
             if intf_type == 'port_channel':
                 intf_type = 'Port-channel'
             if intf_type not in ['Ethernet', 'Port-channel']:
@@ -279,7 +279,7 @@ class Mct(object):
         if client_id not in xrange(1, 513):
             raise ValueError("client_id %s must be in range `1-512`"
                              % (client_id))
-        
+
         mct_args = dict(cluster=(cluster_name, str(cluster_id)))
         if delete:
             method_name = 'cluster_client_deploy_delete'
@@ -298,9 +298,9 @@ class Mct(object):
             config = (method_name, mct_args)
             output = callback(config, handler='get_config')
             if output.data != '<output></output>':
-                result = True 
+                result = True
             else:
-                result = False 
+                result = False
 
         return result
 
@@ -342,13 +342,13 @@ class Mct(object):
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
 
-        if cluster_id is not None and not xrange(1,65536):
+        if cluster_id is not None and not xrange(1, 65536):
             raise ValueError("cluster_id %s must be in range `1-65535`"
                              % (cluster_id))
 
         if delete:
             mct_args = dict(cluster=(cluster_name, str(cluster_id)))
-            method_name = 'cluster_delete' 
+            method_name = 'cluster_delete'
             config = (method_name, mct_args)
             return callback(config)
         if not get_config:
@@ -357,11 +357,11 @@ class Mct(object):
             config = (method_name, mct_args)
             return callback(config)
         elif get_config:
-            method_name = 'cluster_get' 
+            method_name = 'cluster_get'
             config = (method_name, mct_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
             result = util.find(util.root, './/cluster-name'),\
-                        util.find(util.root, './/cluster-id')
+                util.find(util.root, './/cluster-id')
 
         return result 
