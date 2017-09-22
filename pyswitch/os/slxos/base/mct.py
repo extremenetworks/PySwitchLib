@@ -353,7 +353,7 @@ class Mct(object):
             return callback(config)
         if not get_config:
             mct_args = dict(cluster=(cluster_name, str(cluster_id)))
-            method_name = 'cluster_create' 
+            method_name = 'cluster_create'
             config = (method_name, mct_args)
             return callback(config)
         elif get_config:
@@ -364,4 +364,4 @@ class Mct(object):
             result = util.find(util.root, './/cluster-name'),\
                 util.find(util.root, './/cluster-id')
 
-        return result 
+        return result
