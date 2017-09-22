@@ -2,6 +2,7 @@ import pyswitch.utilities
 from pyswitch.exceptions import InvalidVlanId
 from pyswitch.os.base.interface import Interface as BaseInterface
 from pyswitch.utilities import Util
+import re
 
 
 class Interface(BaseInterface):
@@ -325,8 +326,7 @@ class Interface(BaseInterface):
 
         bd_args = dict(bridge_domain=(bridge_domain, bridge_domain_service))
         if delete:
-            config = (self.method_prefix('bridge_domain_delete'),
-                                         bd_args)
+            config = (self.method_prefix('bridge_domain_delete'), bd_args)
             return callback(config)
 
         if not get_config:
@@ -334,32 +334,30 @@ class Interface(BaseInterface):
             firmware = kwargs.pop('firmware_version', None)
             re_pat1 = '\d+r'
             if firmware is None or re.match(re_pat1, firmware):
-                bd_args = dict(bridge_domain=(bridge_domain,bridge_domain_service),
+                bd_args = dict(bridge_domain=(bridge_domain, bridge_domain_service),
                                vc_id_num=vc_id_num, statistics=statistics,
                                pw_profile_name=pw_profile_name,
                                bpdu_drop_enable=bpdu_drop_enable,
                                local_switching=local_switching)
             else:
-                bd_args = dict(bridge_domain=(bridge_domain,bridge_domain_service))
+                bd_args = dict(bridge_domain=(bridge_domain, bridge_domain_service))
 
-            config = (self.method_prefix('bridge_domain_create'),
-                                         bd_args)
+            config = (self.method_prefix('bridge_domain_create'), bd_args)
             result = callback(config)
         elif get_config:
-            config = (self.method_prefix('bridge_domain_get'),
-                                         bd_args)
+            config = (self.method_prefix('bridge_domain_get'), bd_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
             bridge_domain_id = util.find(util.root, './/bridge-domain-id')
             if bridge_domain_id is not None:
                 bridge_domain_type = util.find(util.root, './/bridge-domain-type')
                 vc_id = util.find(util.root, './/vc-id')
-                pw_profile =  util.find(util.root, './/pw-profile')
+                pw_profile = util.find(util.root, './/pw-profile')
                 statistics = util.find(util.root, './/statistics')
                 bpdu_drop_enable = util.find(util.root, './/bpdu-drop-enable')
                 local_switching = util.find(util.root, './/local-switching')
                 result = {'bridge_domain_id': bridge_domain_id,
-                          'bridge_domain_type' : bridge_domain_type,
+                          'bridge_domain_type': bridge_domain_type,
                           'vc_id': vc_id, 'pw_profile': pw_profile,
                           'statistics': statistics,
                           'bpdu_drop_enable': bpdu_drop_enable,
@@ -1459,8 +1457,7 @@ class Interface(BaseInterface):
                              "match one of them "
                              "`p2mp, p2p`")
 
-        bd_args = dict(bridge_domain=\
-                      (bridge_domain,bridge_domain_service))
+        bd_args = dict(bridge_domain=(bridge_domain, bridge_domain_service))
         if delete:
             method_name = 'bridge_domain_router_interface_ve_delete'
             config = (method_name, bd_args)
