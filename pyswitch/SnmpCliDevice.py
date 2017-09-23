@@ -270,7 +270,7 @@ class SnmpCliDevice(AbstractDevice):
             self._mgr['snmp'] = SNMPDevice(host=self.host, port=self._snmpport,
                                            version=self._snmpversion,
                                            community=self._snmpv2c)
-        if not 'cli' not in self._mgr:
+        if 'cli' not in self._mgr:
             #  FIXME: Revisit this logic
             opt = {'device_type': 'brocade_netiron'}
             opt['ip'] = self.host
