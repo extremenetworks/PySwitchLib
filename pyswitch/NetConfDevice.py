@@ -234,10 +234,10 @@ class NetConfDevice(AbstractDevice):
         Raises:
             None
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> dev = pynos.device.Device(conn=conn, auth=auth)
+            >>> dev = pyswitch.device.Device(conn=conn, auth=auth)
             >>> dev.connection
             True
             >>> dev.close() # doctest: +ELLIPSIS
