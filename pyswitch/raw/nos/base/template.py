@@ -1,4 +1,3 @@
-
 rbridge_id_interface_loopback_create = """
    <config>
      <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
@@ -9,27 +8,27 @@ rbridge_id_interface_loopback_create = """
             </loopback>
          </interface>
       </rbridge-id>
-   </config>    
+   </config>
 
 """
 vlan_id = """
             <vlan>
                <name>{vlan_id}</name>
-            </vlan>            
+            </vlan>
 """
 
 vlan_id_desc = """
             <vlan>
                <name>{vlan_id}</name>
-               <description>{desc}</description> 
-            </vlan>            
+               <description>{desc}</description>
+            </vlan>
 """
 
-vlan_create ="""
+vlan_create = """
 <config>
     <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
          <interface>
-            {vlan_list}		
+            {vlan_list}
            </interface>
     </interface-vlan>
 </config>
@@ -39,7 +38,7 @@ rbridge_id_interface_loopback_get = """
   /rbridge-id/interface/loopback
 """
 
-interface_switchport_get ="""
+interface_switchport_get = """
 /interface/{int_type}[name='{int_name}']
 """
 
@@ -58,7 +57,7 @@ overlay_gateway_create = """
          {vni_auto_data}
          <activate></activate>
     </overlay-gateway>
-</config>  
+</config>
 
 """
 overlay_gateway_vni_auto = """
@@ -68,7 +67,7 @@ overlay_gateway_vni_auto = """
                   <auto></auto>
                </vni>
             </vlan>
-         </map> 
+         </map>
 """
 
 overlay_gateway_attach_rb = """
@@ -80,21 +79,21 @@ overlay_gateway_attach_rb = """
             <rbridge-id>
                <rb-add>{rbridge_id}</rb-add>
             </rbridge-id>
-         </attach>  
+         </attach>
     </overlay-gateway>
-</config>  
+</config>
 """
-overlay_gateway_get ="""
+overlay_gateway_get = """
 /overlay-gateway
 """
 
-evpn_instance_create="""
+evpn_instance_create = """
 <config>
      <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
          <rbridge-id>{{rbridge_id}}</rbridge-id>
          <evpn-instance xmlns="urn:brocade.com:mgmt:brocade-bgp">
             <instance-name>{{evi_name}}</instance-name>
-	        <route-distinguisher>
+            <route-distinguisher>
                <auto></auto>
             </route-distinguisher>
             <duplicate-mac-timer>
@@ -106,25 +105,23 @@ evpn_instance_create="""
 </config>
 """
 
-evpn_instance_router_target_auto="""
+evpn_instance_router_target_auto = """
 <config>
      <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
          <rbridge-id>{{rbridge_id}}</rbridge-id>
          <evpn-instance xmlns="urn:brocade.com:mgmt:brocade-bgp">
             <instance-name>{{evi_name}}</instance-name>
-	        <route-target>
+            <route-target>
                <both>
                   <target-community>auto</target-community>
                   <ignore-as></ignore-as>
                </both>
-            </route-target>    
+            </route-target>
          </evpn-instance>
       </rbridge-id>
 </config>
 """
 
-
-evpn_instance_get="""
+evpn_instance_get = """
 /rbridge-id[rbridge-id={rbridge_id}]/evpn-instance
 """
-

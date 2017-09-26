@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import xml.etree.ElementTree as ET
-from pyswitch.utilities import Util
 from pyswitch.os.base.services import Services as BaseServices
+from pyswitch.utilities import Util
+
 
 class Services(BaseServices):
     """
@@ -47,19 +47,19 @@ class Services(BaseServices):
         """dict: trill link details
                 """
 
-        config = ('get_arp_rpc',{})
+        config = ('get_arp_rpc', {})
         results = self._callback(config, handler='get')
         util = Util(results.data)
         result = []
 
-        for item in util.findlist(util.root,'.//arp-entry' ):
-            ip_address = util.find(item,'.//ip-address' )
-            mac_address = util.find(item,'.//mac-address' )
-            interface_type = util.find(item,'.//interface-type' )
-            interface_name = util.find(item,'.//interface-name' )
-            is_resolved = util.find(item,'.//is-resolved' )
-            age = util.find(item,'.//age' )
-            entry_type = util.find(item,'.//entry-type' )
+        for item in util.findlist(util.root, './/arp-entry'):
+            ip_address = util.find(item, './/ip-address')
+            mac_address = util.find(item, './/mac-address')
+            interface_type = util.find(item, './/interface-type')
+            interface_name = util.find(item, './/interface-name')
+            is_resolved = util.find(item, './/is-resolved')
+            age = util.find(item, './/age')
+            entry_type = util.find(item, './/entry-type')
             item_results = {'ip-address': ip_address,
                             'mac-address': mac_address,
                             'interface-type': interface_type,
@@ -92,12 +92,12 @@ class Services(BaseServices):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.203']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         output = dev.bgp.local_asn(rbridge_id='225')
             ...         output = dev.bgp.local_asn(rbridge_id='225',
             ...         enable=False)
@@ -167,12 +167,12 @@ class Services(BaseServices):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.203']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         dev.services.vrrpe(rbridge_id='25',enable=False)
             ...         dev.services.vrrpe(rbridge_id='25',enable=True)
             ...         dev.services.vrrpe()

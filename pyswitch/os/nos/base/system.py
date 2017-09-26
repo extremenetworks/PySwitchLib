@@ -1,5 +1,5 @@
-from pyswitch.utilities import Util
 from pyswitch.os.base.system import System as BaseSystem
+from pyswitch.utilities import Util
 
 
 class System(BaseSystem):
@@ -22,15 +22,13 @@ class System(BaseSystem):
     def chassis_name(self, **kwargs):
         """Get device's chassis name/Model.
         """
-        urn = "{urn:brocade.com:mgmt:brocade-rbridge}"
-
         config = ('rbridge_id_get', {'resource_depth': 2})
 
         output = self._callback(config, handler='get_config')
 
         util = Util(output.data)
 
-        chassis_name = util.find(util.root,'.//chassis-name')
+        chassis_name = util.find(util.root, './/chassis-name')
 
         return chassis_name
 
@@ -48,10 +46,10 @@ class System(BaseSystem):
         Raises:
             KeyError: if `router_id` is not specified.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.system.router_id(router_id='10.24.39.211',
             ...     rbridge_id='225')
             ...     dev.system.router_id() # doctest: +IGNORE_EXCEPTION_DETAIL
@@ -81,10 +79,10 @@ class System(BaseSystem):
         Raises:
             KeyError: if `rbridge_id` is not specified.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.system.host_name(rbridge_id='225',
             ...     host_name='sw0')
             ...     output = dev.system.host_name(rbridge_id='225', get=True)
@@ -94,8 +92,6 @@ class System(BaseSystem):
             ...         conf = None
             ...     assert conf == 'sw0'
         """
-        urn = "{urn:brocade.com:mgmt:brocade-rbridge}"
-
         is_get_config = kwargs.pop('get', False)
         rbridge_id = kwargs.pop('rbridge_id')
         if not is_get_config:
@@ -115,8 +111,7 @@ class System(BaseSystem):
 
             util = Util(output.data)
 
-            return util.find(util.root,'.//host-name')
-
+            return util.find(util.root, './/host-name')
 
         return callback(config)
 
@@ -135,10 +130,10 @@ class System(BaseSystem):
         Raises:
             KeyError: if `rbridge_id` is not specified.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.system.rbridge_id(rbridge_id='225')
             ...     output = dev.system.rbridge_id(rbridge_id='225', get=True)
             ...     dev.system.rbridge_id() # doctest: +IGNORE_EXCEPTION_DETAIL
@@ -157,7 +152,7 @@ class System(BaseSystem):
             op = callback(config, handler='get_config')
 
             util = Util(op.data)
-            return util.find(util.root,'rbridge-id')
+            return util.find(util.root, 'rbridge-id')
 
         rid_args = dict(rbridge_id=rbridge_id)
         config = ('vcs_rbridge_config_rpc', rid_args)
@@ -178,10 +173,10 @@ class System(BaseSystem):
         Raises:
             KeyError: if `rbridge_id` is not specified.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.202', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.system.maintenance_mode(rbridge_id='226')
             ...     output = dev.system.maintenance_mode(rbridge_id='226',
             ...     get=True)
@@ -253,10 +248,10 @@ class System(BaseSystem):
         version = kwargs.pop('version', 4)
         if version is 4:
             ip_prefix = 'ip'
-            ns = '{urn:brocade.com:mgmt:brocade-ip-access-list}'
+            # ns = '{urn:brocade.com:mgmt:brocade-ip-access-list}'
         if version is 6:
             ip_prefix = 'ipv6'
-            ns = '{urn:brocade.com:mgmt:brocade-mld-snooping}'
+            # ns = '{urn:brocade.com:mgmt:brocade-mld-snooping}'
 
         if kwargs.pop('get', False):
             method_name = '%s_mtu_get' % ip_prefix

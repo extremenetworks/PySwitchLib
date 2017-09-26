@@ -1,5 +1,6 @@
 import abc
 
+
 class AbstractDevice:
     __metaclass__ = abc.ABCMeta
 
@@ -47,4 +48,3 @@ class AbstractDevice:
     @abc.abstractmethod
     def close(self):
         pass
-

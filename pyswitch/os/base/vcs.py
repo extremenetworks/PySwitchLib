@@ -16,7 +16,6 @@ from ipaddress import ip_interface
 from pyswitch.utilities import Util
 
 
-
 class VCS(object):
     """
     VCS class containing all VCS methods and attributes.
@@ -93,12 +92,12 @@ class VCS(object):
             ValueError: if `vip` is invalid.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.203']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         dev.interface.vcs_vip(vip='10.1.1.1/24')
             ...         dev.interface.vcs_vip(vip='fe80::cafe:beef:1000:1/64')
             ...         dev.interface.vcs_vip(vip='10.1.1.1/24',get=True)
@@ -145,7 +144,6 @@ class VCS(object):
             util = Util(op.data)
 
             vip_info['ipv4_vip'] = util.find(util.root, './/address/address')
-		
 
             method_name = 'vcs_virtual_ipv6_address_get'
 

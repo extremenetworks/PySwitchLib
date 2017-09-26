@@ -30,7 +30,7 @@ class Asset(object):
 
         self._ip_addr = ip_addr
         self._auth = auth
-        self._os_type = 'unknown'
+        self._os_type = 'nos'
         self._os_ver = fw_ver
         self._os_full_ver = fw_ver
         self._default_connection_timeout = 60
@@ -207,30 +207,11 @@ class Asset(object):
                 elif 'SLX' in self._response.headers['Server']:
                     self._os_type = 'slxos'
 
-            if rest_root.find('show-firmware-version').find('firmware-full-version') is not None:
-                self._os_full_ver = rest_root.find('show-firmware-version').find('firmware-full-version').text
-
             if rest_root.find('show-firmware-version').find('os-version') is not None:
                 self._os_ver = rest_root.find('show-firmware-version').find('os-version').text
 
-                if self._os_type == 'slxos':
-                    slxos_ver = self._os_ver.split('.')
-
-                    if len(slxos_ver) >= 2:
-                        slxos_pattern_string = '^({0}[rs]{{1}})\.{1}\.'.format(slxos_ver[0], slxos_ver[1])
-                    elif len(slxos_ver) == 1:
-                        slxos_pattern_string = '^({0}[rs]{{1}})\.'.format(slxos_ver[0])
-                    else:
-                        slxos_pattern_string = '^(\d+[rs]{1})\.'
-
-                    slxos_pattern = re.compile(slxos_pattern_string)
-
-                    match = slxos_pattern.match(self._os_full_ver)
-
-                    if match:
-                        slxos_ver[0] = match.group(1)
-                        self._os_ver = '.'.join(slxos_ver)
-
+            if rest_root.find('show-firmware-version').find('firmware-full-version') is not None:
+                self._os_full_ver = rest_root.find('show-firmware-version').find('firmware-full-version').text
         except:
             pass
 

@@ -15,47 +15,47 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import re
-from jsonpath_rw import parse
-from ipaddress import ip_interface
-from lxml import etree
 import xml.etree.ElementTree as ElementTree
 from xml.etree.ElementTree import Element
 
+from ipaddress import ip_interface
+from jsonpath_rw import parse
+
 
 class Util(object):
-    def __init__(self,data):
-        if isinstance(data,Element):
+    def __init__(self, data):
+        if isinstance(data, Element):
             for child in data.getiterator():
                 child.tag = child.tag.split('}', 1)[1]
             self.root = data
-        elif data!='':
+        elif data != '':
             self.root = ElementTree.fromstring(data)
         else:
             self.root = Element('empty')
 
-    def find(self,node,expr):
+    def find(self, node, expr):
         x = node.find(expr)
         if x is not None:
             return x.text
         return None
 
-    def find_with_ns(self,node,expr_with_name_space):
+    def find_with_ns(self, node, expr_with_name_space):
         x = node.find(expr_with_name_space)
         if x is not None:
             return x.text
         return None
 
-    def findNode(self,node,expr):
-        return  node.find(expr)
+    def findNode(self, node, expr):
+        return node.find(expr)
 
-    def findlist(self,node,expr):
+    def findlist(self, node, expr):
         return node.findall(expr)
 
-    def findText(self,data, expr):
+    def findText(self, data, expr):
         x = self.find(data, expr)
         return x if x else ''
 
-    def findall(self,data, expr):
+    def findall(self, data, expr):
         return [match.text for match in data.findall(expr)]
 
 
@@ -63,12 +63,12 @@ def get_two_tuple_version(fullver):
     ver_tuple = fullver.split('.')
     return '%s.%s' % (ver_tuple[0], ver_tuple[1])
 
+
 def find(data, expr):
     x = parse(expr).find(data)
     if len(x) > 0:
         return x[0].value
     return None
-
 
 
 def findText(data, expr):

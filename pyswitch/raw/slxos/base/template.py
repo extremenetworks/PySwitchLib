@@ -1,4 +1,3 @@
-
 rbridge_id_interface_loopback_create = """
    <config>
      <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
@@ -9,26 +8,26 @@ rbridge_id_interface_loopback_create = """
             </loopback>
          </interface>
       </rbridge-id>
-   </config>    
+   </config>
 
 """
 vlan_id = """
             <vlan>
                <name>{vlan_id}</name>
-            </vlan>            
+            </vlan>
 """
 
 vlan_id_desc = """
             <vlan>
                <name>{vlan_id}</name>
-               <description>{desc}</description> 
-            </vlan>            
+               <description>{desc}</description>
+            </vlan>
 """
 
-vlan_create ="""
+vlan_create = """
 <config>
     <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
-            {vlan_list}		
+            {vlan_list}
     </interface-vlan>
 </config>
 """
@@ -37,7 +36,7 @@ rbridge_id_interface_loopback_get = """
   /rbridge-id/interface/loopback
 """
 
-interface_switchport_get ="""
+interface_switchport_get = """
 /interface/{int_type}[name='{int_name}']
 """
 
@@ -56,7 +55,7 @@ overlay_gateway_create = """
          {vni_auto_data}
          <activate></activate>
     </overlay-gateway>
-</config>  
+</config>
 
 """
 overlay_gateway_vni_auto = """
@@ -69,7 +68,7 @@ overlay_gateway_vni_auto = """
          </map>
 """
 evpn_instance_create = """
-<config>	
+<config>
    <routing-system xmlns="urn:brocade.com:mgmt:brocade-common-def">
          <evpn-config xmlns="urn:brocade.com:mgmt:brocade-bgp">
             <evpn>
@@ -95,10 +94,10 @@ evpn_instance_create = """
 </config>
 """
 
-overlay_gateway_get ="""
+overlay_gateway_get = """
 /overlay-gateway
 """
 
-evpn_instance_get="""
+evpn_instance_get = """
 /routing-system/evpn-config/evpn/evpn-instance
 """

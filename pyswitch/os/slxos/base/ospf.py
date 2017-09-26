@@ -15,11 +15,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import xml.etree.ElementTree as ET
 
-from ipaddress import ip_interface
-
-import pyswitch.utilities as util
 from pyswitch.utilities import Util
 
 
@@ -46,7 +42,6 @@ class Ospf(object):
     def os(self):
         return 'slxos'
 
-
     def __init__(self, callback):
         """
         ISIS object init.
@@ -64,7 +59,7 @@ class Ospf(object):
         self._cli = None
 
     def ospf_area(self, **kwargs):
-        """ Configure/get/delete area under router ospf 
+        """ Configure/get/delete area under router ospf
 
         Args:
             ip_version (str): ('4' or '6') address family
@@ -80,13 +75,13 @@ class Ospf(object):
             Return value of `callback`.
 
         Raises:
-            None 
+            None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.ospf.ospf_area(get=True, vrf='111')
             ...     output = dev.ospf.ospf_area(delete=True, vrf='111')
             ...     output = dev.ospf.ospf_area(vrf='111', area='10')
@@ -99,20 +94,19 @@ class Ospf(object):
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
 
-        afi = 'ipv4' if ip_version == '4' else 'ipv6'
         ospf_args = dict(ospf=vrf, area=area)
         if delete:
-            method_name = 'router_ospf_area_delete' if ip_version == '4'\
+            method_name = 'router_ospf_area_delete' if ip_version == '4' \
                 else 'ipv6_router_ospf_area_delete'
             config = (method_name, ospf_args)
             return callback(config)
         if not get_config:
-            method_name = 'router_ospf_area_create' if ip_version == '4'\
+            method_name = 'router_ospf_area_create' if ip_version == '4' \
                 else 'ipv6_router_ospf_area_create'
             config = (method_name, ospf_args)
             return callback(config)
         elif get_config:
-            method_name = 'router_ospf_area_get' if ip_version == '4'\
+            method_name = 'router_ospf_area_get' if ip_version == '4' \
                 else 'ipv6_router_ospf_area_get'
             config = (method_name, ospf_args)
             output = callback(config, handler='get_config')

@@ -1,10 +1,12 @@
-import re
 import json
+import re
+
 from pyswitchlib.asset import Asset
+
 
 class XMLAsset(Asset):
     def __init__(self, ip_addr='', auth=('admin', 'password'), fw_ver='', timeout=''):
-        super(XMLAsset, self).__init__(ip_addr=ip_addr, auth=auth ,fw_ver=fw_ver, timeout=timeout)
+        super(XMLAsset, self).__init__(ip_addr=ip_addr, auth=auth, fw_ver=fw_ver, timeout=timeout)
 
     def _rest_operation(self, rest_commands=None, yang_list=None, timeout=None):
         auth = self._auth
@@ -38,53 +40,64 @@ class XMLAsset(Asset):
             url = "http://" + self._ip_addr + uri_prefix_path
 
             if self._rest_session_auth_token != self._rest_session_auth_token_expired:
-                self._session.headers.update({'Authentication-Token': self._rest_session_auth_token})
+                self._session.headers.update(
+                    {'Authentication-Token': self._rest_session_auth_token})
             else:
                 if 'Authentication-Token' in self._session.headers:
                     self._session.headers.pop('Authentication-Token')
 
             if rest_cmd[0] == "GET":
                 if self._rest_session_auth_token == self._rest_session_auth_token_expired:
-                    self._response = self._session.get(url + rest_cmd[1], headers=header, auth=auth, timeout=timeout)
+                    self._response = self._session.get(url + rest_cmd[1], headers=header, auth=auth,
+                                                       timeout=timeout)
                 else:
-                    self._response = self._session.get(url + rest_cmd[1], headers=header, timeout=timeout)
+                    self._response = self._session.get(url + rest_cmd[1], headers=header,
+                                                       timeout=timeout)
             elif rest_cmd[0] == "POST":
                 if self._rest_session_auth_token == self._rest_session_auth_token_expired:
-                    self._response = self._session.post(url + rest_cmd[1], auth=auth, data=rest_cmd[2], timeout=timeout)
+                    self._response = self._session.post(url + rest_cmd[1], auth=auth,
+                                                        data=rest_cmd[2], timeout=timeout)
                 else:
-                    self._response = self._session.post(url + rest_cmd[1], data=rest_cmd[2], timeout=timeout)
+                    self._response = self._session.post(url + rest_cmd[1], data=rest_cmd[2],
+                                                        timeout=timeout)
             elif rest_cmd[0] == "PUT":
                 if self._rest_session_auth_token == self._rest_session_auth_token_expired:
-                    self._response = self._session.put(url + rest_cmd[1], auth=auth, data=rest_cmd[2], timeout=timeout)
+                    self._response = self._session.put(url + rest_cmd[1], auth=auth,
+                                                       data=rest_cmd[2], timeout=timeout)
                 else:
-                    self._response = self._session.put(url + rest_cmd[1], data=rest_cmd[2], timeout=timeout)
+                    self._response = self._session.put(url + rest_cmd[1], data=rest_cmd[2],
+                                                       timeout=timeout)
             elif rest_cmd[0] == "PATCH":
                 if self._rest_session_auth_token == self._rest_session_auth_token_expired:
-                    self._response = self._session.patch(url + rest_cmd[1], auth=auth, data=rest_cmd[2],
+                    self._response = self._session.patch(url + rest_cmd[1], auth=auth,
+                                                         data=rest_cmd[2],
                                                          timeout=timeout)
                 else:
-                    self._response = self._session.patch(url + rest_cmd[1], data=rest_cmd[2], timeout=timeout)
+                    self._response = self._session.patch(url + rest_cmd[1], data=rest_cmd[2],
+                                                         timeout=timeout)
             elif rest_cmd[0] == "DELETE":
                 if self._rest_session_auth_token == self._rest_session_auth_token_expired:
-                    self._response = self._session.delete(url + rest_cmd[1], auth=auth, timeout=timeout)
+                    self._response = self._session.delete(url + rest_cmd[1], auth=auth,
+                                                          timeout=timeout)
                 else:
                     self._response = self._session.delete(url + rest_cmd[1], timeout=timeout)
 
             if 'Authentication-Token' in self._response.headers:
                 self._rest_session_auth_token = self._response.headers['Authentication-Token']
 
-
-            text_response = self._response.text
+            # text_response = self._response.text
 
             if self._response.status_code >= 200 and self._response.status_code <= 299:
-                if re.match('^<', self._response.text):
-                    if rest_cmd[3] != "rpc":
-                        text_response = '<output>\r\n' + self._response.text + '</output>\r\n'
+                pass
+                # if re.match('^<', self._response.text):
+                #     if rest_cmd[3] != "rpc":
+                # text_response = '<output>\r\n' + self._response.text + '</output>\r\n'
 
             else:
                 self._auth_token_expiration()
 
-                if self._response.status_code == 401 and auth_retries < self._rest_session_auth_max_retries:
+                if self._response.status_code == 401 and auth_retries < \
+                        self._rest_session_auth_max_retries:
                     auth_retries += 1
                     continue
 
@@ -99,8 +112,6 @@ class XMLAsset(Asset):
             self._rest_session_timer_handle.start()
 
         return self._get_results()
-
-
 
     def get_xml_output(self):
         """

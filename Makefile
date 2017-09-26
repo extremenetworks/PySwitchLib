@@ -6,11 +6,8 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = docs/build
-
-# User-friendly check for sphinx-build
-ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
-	$(error The '$(SPHINXBUILD)' command was not found. Make sure you have Sphinx installed, then set the SPHINXBUILD environment variable to point to the full path of the '$(SPHINXBUILD)' executable. Alternatively you can add the directory with the executable to your PATH. If you don\'t have Sphinx installed, grab it from http://sphinx-doc.org/)
-endif
+VIRTUALENV_DIR ?= venv
+REQUIREMENTS := requirements.txt
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -228,3 +225,70 @@ dummy:
 	$(SPHINXBUILD) -b dummy $(ALLSPHINXOPTS) $(BUILDDIR)/dummy
 	@echo
 	@echo "Build finished. Dummy builder generates no files."
+
+.PHONY: clean
+clean: .cleanpycs
+
+.PHONY: distclean
+distclean: clean
+	@echo
+	@echo "==================== distclean ===================="
+	@echo
+	rm -rf $(VIRTUALENV_DIR)
+
+.PHONY: .cleanpycs
+.cleanpycs:
+	@echo "Removing all .pyc files"
+	find pyswitch  -name \*.pyc -type f -print0 | xargs -0 -I {} rm {}
+
+.PHONY: ci-checks
+ci-checks: pylint flake8
+
+.PHONY: requirements
+requirements: virtualenv
+	@echo
+	@echo "==================== requirements ===================="
+	@echo
+	. $(VIRTUALENV_DIR)/bin/activate && $(VIRTUALENV_DIR)/bin/pip install --upgrade pip
+	. $(VIRTUALENV_DIR)/bin/activate && $(VIRTUALENV_DIR)/bin/pip install --cache-dir $(HOME)/.pip-cache -q -r requirements.txt
+	. $(VIRTUALENV_DIR)/bin/activate && $(VIRTUALENV_DIR)/bin/pip install --cache-dir $(HOME)/.pip-cache -q -r requirements_tests.txt
+
+.PHONY: virtualenv
+virtualenv: $(VIRTUALENV_DIR)/bin/activate
+$(VIRTUALENV_DIR)/bin/activate:
+	@echo
+	@echo "==================== virtualenv ===================="
+	@echo
+	test -d $(VIRTUALENV_DIR) || virtualenv --no-site-packages $(VIRTUALENV_DIR)
+
+.PHONY: lint
+lint: requirements .lint
+
+.PHONY: .lint
+.lint: .flake8 .pylint
+
+.PHONY: pylint
+pylint: requirements .pylint
+
+.PHONY: flake8
+flake8: requirements .flake8
+
+.PHONY: .flake8
+.flake8:
+	@echo
+	@echo "================== flake8 ===================="
+	@echo
+	echo "==========================================================="; \
+	echo "Running flake8 on pyswitch" \
+	echo "==========================================================="; \
+	. $(VIRTUALENV_DIR)/bin/activate; flake8 --config ./lint-configs/python/.flake8 pyswitch || exit 1;
+
+.PHONY: .pylint
+.pylint:
+	@echo
+	@echo "================== pylint ===================="
+	@echo
+	echo "==========================================================="; \
+	echo "Running pylint on pyswitch" \
+	echo "==========================================================="; \
+	. $(VIRTUALENV_DIR)/bin/activate; pylint -E --rcfile=./lint-configs/python/.pylintrc pyswitch || exit 1;
