@@ -31,7 +31,7 @@ from paramiko.ssh_exception import SSHException
 ROUTER_ATTRS = ['interface']
 
 NI_VERSIONS = {
-    '6.1.0T163': {
+    '6.1': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
     },
 }
