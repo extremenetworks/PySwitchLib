@@ -2,6 +2,8 @@
 import pyswitch.utilities
 from pyswitch.exceptions import InvalidVlanId
 """
+import logging
+
 from pyswitch.snmp.base.interface import Interface as BaseInterface
 # from pyswitch.utilities import Util
 
