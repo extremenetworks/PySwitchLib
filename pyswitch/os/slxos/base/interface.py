@@ -1494,7 +1494,7 @@ class Interface(BaseInterface):
 
         if bd_vni_mapping is not None and not\
                 pyswitch.utilities.valid_vlan_id(bd_vni_mapping):
-            raise InvalidVlanId("`bd_vni_mapping`"\
+            raise InvalidVlanId("`bd_vni_mapping`"
                                 " must be between `1` and `4096`")
         if vni is not None and\
                 int(vni) not in xrange(1, 16777217):
@@ -1531,7 +1531,7 @@ class Interface(BaseInterface):
                     result = util.find(util.root, './/vni')
                 else:
                     vls = util.findall(util.root, './/bridge-domain')
-                    tvnis =[]
+                    tvnis = []
                     for each_vl in vls:
                         method_name = 'overlay_gateway_map_vni_get'
                         map_args.update(bd_vni_mapping=str(each_vl))
