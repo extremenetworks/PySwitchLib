@@ -1942,16 +1942,20 @@ class Bgp(object):
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output = dev.bgp.vni_add(rbridge_id='2',
-            ...         evpn_instance="leaf1", vni='10')
-            ...         output = dev.bgp.vni_add(rbridge_id='2',
-            ...         evpn_instance="leaf1", vni='10', delete=True)
-            ...         output = dev.bgp.vni_add(rbridge_id='2',
-            ...         evpn_instance="leaf1", vni='10', delete=True)
-            ...         output = dev.bgp.vni_add(rbridge_id='2',
-            ...         get=True)
-
+            ...         output = dev.bgp.vni_add(rbridge_id='235',
+            ...             evpn_instance="sj_fabric", get=True)
+            ...         print output
+            ...         dev.bgp.vni_add(rbridge_id='235',
+            ...             evpn_instance="sj_fabric", vni='10', delete=True)
+            ...         dev.bgp.vni_add(rbridge_id='235',
+            ...             evpn_instance="sj_fabric", vni='10')
+            ...         output = dev.bgp.vni_add(rbridge_id='235',
+            ...             evpn_instance="sj_fabric", get=True)
+            ...         print output
+            ...         dev.bgp.vni_add(rbridge_id='235',
+            ...             evpn_instance="sj_fabric", vni='10', delete=True)
         """
+
         rbridge_id = kwargs.pop('rbridge_id', '1')
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
@@ -1961,22 +1965,17 @@ class Bgp(object):
             evpn_instance = kwargs['evpn_instance']
             vni = kwargs.pop('vni', None)
             if not delete:
-                method_name = [
-                    self.method_prefix('evpn_instance_create'),
-                    self.method_prefix('evpn_instance_vni_add_update')]
+               method = 'rbridge_id_evpn_instance_vni_add_update'
             else:
-                method_name = [
-                    self.method_prefix('evpn_instance_vni_evpn_vni_delete'),
-                    self.method_prefix('evpn_instance_vni_remove_update')]
-            for i in range(0, 2):
-                method = method_name[i]
-                vni_args = dict(
-                    rbridge_id=rbridge_id,
-                    evpn_instance=evpn_instance)
-                if 'vni' in method and not delete:
-                    vni_args['add_'] = vni
-                config = (method, vni_args)
-                result = callback(config)
+                method = 'rbridge_id_evpn_instance_vni_remove_update'
+            vni_args = dict(rbridge_id=rbridge_id,
+                            evpn_instance=evpn_instance)
+            if 'vni' in method and not delete:
+                vni_args['add_'] = vni
+            elif 'vni' in method and delete:
+                vni_args['remove_'] = vni
+            config = (method, vni_args)
+            result = callback(config)
         elif get_config:
             evpn_instance = kwargs.pop('evpn_instance', '')
             method_name = self.method_prefix('evpn_instance_vni_get')
@@ -1984,16 +1983,12 @@ class Bgp(object):
                 rbridge_id=rbridge_id,
                 evpn_instance=evpn_instance,
                 resource_depth=2)
-            if self.os != 'nos':
-                vni_args.pop('rbridge_id', None)
             config = (method_name, vni_args)
             out = callback(config, handler='get_config')
             bgp = Util(out.data)
             tmp = {'rbridge_id': rbridge_id,
                    'evpn_instance': evpn_instance,
-                   'vni': bgp.find(bgp.root, './/vni-number')}
-            if self.os != 'nos':
-                tmp.pop('rbridge_id', None)
+                   'vni': bgp.find(bgp.root, './/add')}
             result.append(tmp)
         return result
 
