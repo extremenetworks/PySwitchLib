@@ -46,10 +46,10 @@ class System(BaseSystem):
         Raises:
             KeyError: if `router_id` is not specified.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.system.router_id(router_id='10.24.39.211',
             ...     rbridge_id='225')
             ...     dev.system.router_id() # doctest: +IGNORE_EXCEPTION_DETAIL
@@ -79,10 +79,10 @@ class System(BaseSystem):
         Raises:
             KeyError: if `rbridge_id` is not specified.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.system.host_name(rbridge_id='225',
             ...     host_name='sw0')
             ...     output = dev.system.host_name(rbridge_id='225', get=True)
@@ -130,10 +130,10 @@ class System(BaseSystem):
         Raises:
             KeyError: if `rbridge_id` is not specified.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.system.rbridge_id(rbridge_id='225')
             ...     output = dev.system.rbridge_id(rbridge_id='225', get=True)
             ...     dev.system.rbridge_id() # doctest: +IGNORE_EXCEPTION_DETAIL
@@ -173,10 +173,10 @@ class System(BaseSystem):
         Raises:
             KeyError: if `rbridge_id` is not specified.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.202', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.system.maintenance_mode(rbridge_id='226')
             ...     output = dev.system.maintenance_mode(rbridge_id='226',
             ...     get=True)

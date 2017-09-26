@@ -92,12 +92,12 @@ class VCS(object):
             ValueError: if `vip` is invalid.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.203']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         dev.interface.vcs_vip(vip='10.1.1.1/24')
             ...         dev.interface.vcs_vip(vip='fe80::cafe:beef:1000:1/64')
             ...         dev.interface.vcs_vip(vip='10.1.1.1/24',get=True)
