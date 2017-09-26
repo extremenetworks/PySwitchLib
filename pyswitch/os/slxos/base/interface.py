@@ -1395,6 +1395,60 @@ class Interface(BaseInterface):
 
         return callback(config)
 
+    def overlay_gateway_vlan_vni_auto(self, **kwargs):
+        """Configure Overlay Gateway Vlan VNI mapping auto on VDX switches
+        Args:
+            gw_name: Name of Overlay Gateway
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete vlan to vni auto mapping. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `gw_name` is not passed.
+            ValueError: if `gw_name` is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.39.211', '22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.overlay_gateway_vlan_vni_auto(
+            ...     gw_name='Leaf')
+            ...     output = dev.interface.overlay_gateway_vlan_vni_auto(
+            ...     get=True)
+            ...     output = dev.interface.overlay_gateway_vlan_vni_auto(
+            ...     gw_name='Leaf', delete=True)
+        """
+
+        callback = kwargs.pop('callback', self._callback)
+        get_config = kwargs.pop('get', False)
+        if not get_config:
+            gw_name = kwargs.pop('gw_name')
+
+            config = ('overlay_gateway_map_vni_update', {
+                'overlay_gateway': gw_name, 'auto': True})
+
+        if get_config:
+            gw_name = kwargs.pop('gw_name')
+            config = (
+                'overlay_gateway_map_vni_get', {
+                    'overlay_gateway': gw_name})
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            if util.find(util.root, './/auto') is not None:
+                return True
+            else:
+                return None
+
+        if kwargs.pop('delete', False):
+            config = (
+                'overlay_gateway_map_vni_delete', {
+                    'overlay_gateway': gw_name})
+
+        return callback(config)
+
     def bridge_domain_all(self, **kwargs):
         """get all bridge-domains present on the device.
 
@@ -1416,7 +1470,13 @@ class Interface(BaseInterface):
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         dev.interface.bridge_domain(bridge_domain='100')
+            ...         output = dev.interface.bridge_domain(
+            ...         bridge_domain='100', get=True)
+            ...         print output
+            ...         dev.interface.bridge_domain(bridge_domain='200')
             ...         output = dev.interface.bridge_domain_all()
+            ...         print output
         """
 
         callback = kwargs.pop('callback', self._callback)
@@ -1426,3 +1486,4 @@ class Interface(BaseInterface):
         util = Util(output.data)
         result = util.findall(util.root, './/bridge-domain-id')
         return result
+
