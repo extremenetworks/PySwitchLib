@@ -54,15 +54,15 @@ NOS_VERSIONS = {
 
     },
     '7.0': {
-            'snmp': pyswitch.os.base.snmp.SNMP,
-            'interface': pyswitch.os.nos.base.interface.Interface,
-            'bgp': pyswitch.os.nos.base.bgp.Bgp,
-            'lldp': pyswitch.os.base.lldp.LLDP,
-            'system': pyswitch.os.nos.base.system.System,
-            'services': pyswitch.os.nos.base.services.Services,
-            'fabric_service': pyswitch.os.base.fabric_service.FabricService,
-            'vcs': pyswitch.os.base.vcs.VCS,
-	        'firmware': pyswitch.os.base.firmware.Firmware
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.nos.base.interface.Interface,
+        'bgp': pyswitch.os.nos.base.bgp.Bgp,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.nos.base.system.System,
+        'services': pyswitch.os.nos.base.services.Services,
+        'fabric_service': pyswitch.os.base.fabric_service.FabricService,
+        'vcs': pyswitch.os.base.vcs.VCS,
+        'firmware': pyswitch.os.base.firmware.Firmware
     },
 
     '7.1': {

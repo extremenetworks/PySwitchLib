@@ -15,7 +15,7 @@ limitations under the License.
 """
 
 import xml.etree.ElementTree as ET
-from pyswitch.utilities import Util
+
 
 class Firmware(object):
     """
@@ -50,7 +50,8 @@ class Firmware(object):
                 user_name(str): User Name
                 password(str): Password
                 directory(str): Path to image to be downloaded
-                rbridge(0-9 or all): Rbridge id where the firmware need to be downloaded. Applicable only for NOS.
+                rbridge(0-9 or all): Rbridge id where the firmware need to be downloaded.
+                Applicable only for NOS.
                 auto_activate(bool): To activate new firmware on all nodes
                 coldboot(bool): Perform non ISSU firmware download
 
@@ -63,9 +64,12 @@ class Firmware(object):
                 >>> for switch in switches:
                 ...     conn = (switch, '22')
                 ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-                ...     dictstatus = dev.firmware.download_firmware(protocol='scp', host='10.31.2.25',
+                ...     dictstatus = dev.firmware.download_firmware(protocol='scp',
+                host='10.31.2.25',
                 ...                          user_name='fvt', password='pray4green',
-                ...                          directory='/proj/sredev/slxos17s.1.02_pit_a_davinci_bds_sre/slxos17s.1.02_pit_a_davinci_170823_1900/dist/',
+                ...
+                directory='/proj/sredev/slxos17s.1.02_pit_a_davinci_bds_sre/slxos17s.1
+                .02_pit_a_davinci_170823_1900/dist/',
                 ...                         )
                 ...     print(dictstatus)
         """
@@ -85,7 +89,7 @@ class Firmware(object):
 
         if os_type is 'nos':
             if coldboot is True:
-                #coldboot does not work when auto_activate is specified
+                # coldboot does not work when auto_activate is specified
                 argument = {'rbridge_id': rbridge, 'coldboot': coldboot,
                             'scp': (user_name, password, host, directory, 'release.plist')}
             else:
@@ -113,7 +117,7 @@ class Firmware(object):
                 values = [rb_id, fwdl_status, fwdl_msg]
                 dictlist.append(dict(zip(keys, values)))
             if not dictlist:
-                fwdl_msg =  root.find('fwdl-cmd-msg').text
+                fwdl_msg = root.find('fwdl-cmd-msg').text
                 values = [0, fwdl_cmd_status, fwdl_msg]
                 dictlist.append(dict(zip(keys, values)))
         else:
