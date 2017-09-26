@@ -15,11 +15,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import logging
+
 from pyswitch.RestDevice import RestDevice
 from pyswitch.NetConfDevice import NetConfDevice
 from pyswitch.SnmpCliDevice import SnmpCliDevice
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SnmpUtils as SNMPUtils
+from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
 
 
 class DeviceCommError(Exception):
@@ -61,8 +64,14 @@ class Device(object):
         snmpver = kwargs.get('snmpver', 2)
         snmpv2c = kwargs.get('snmpv2c', 'public')
 
-        snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
-        sysobj = str(snmpdev.get("1.3.6.1.2.1.1.2.0"))
+        sysobj = ''
+
+        try:
+           snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
+           sysobj = str(snmpdev.get("1.3.6.1.2.1.1.2.0"))
+        except (SNMPError) as error:
+           logging.error(error)
+           #print "SNMP query failed for device: ", error
 
         if sysobj in SNMPUtils.SNMP_DEVICE_MAP:
             if SNMPUtils.SNMP_DEVICE_MAP[sysobj] == 'MLX':
