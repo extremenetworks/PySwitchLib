@@ -1616,7 +1616,7 @@ class Interface(BaseInterface):
                         tvnis.append(vni_value)
                     result = dict(vlans=vls, vnis=tvnis)
         return result
-    
+
     def bridge_domain_all(self, **kwargs):
         """get all bridge-domains present on the device.
         Args:
@@ -1647,4 +1647,3 @@ class Interface(BaseInterface):
         util = Util(output.data)
         result = util.findall(util.root, './/bridge-domain-id')
         return result
-   
