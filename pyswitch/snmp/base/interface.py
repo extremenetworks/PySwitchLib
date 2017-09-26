@@ -13,10 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import logging
 
-
-# import pyswitch.utilities
+from pyswitch.snmp.SnmpMib import SnmpMib as SnmpMib
 
 
 class Interface(object):
@@ -97,8 +95,8 @@ class Interface(object):
             None
         """
         try:
-            vlan_mib = '1.3.6.1.2.1.17.7.1.4.3.1'
-            oid = vlan_mib + "." + str(5) + "." + str(vlan_id)
+            row_status = SnmpMib.mib_oid_map['dot1qVlanStaticRowStatus']
+            oid = row_status + "." + str(vlan_id)
             config = (oid, 6)
             ret_value = self._callback(config, handler='snmp-set')
             if ret_value:
@@ -107,14 +105,15 @@ class Interface(object):
                 return False
 
         except Exception as error:
-            logging.error(error)
+            reason = error.message
+            raise ValueError('Failed to delete VLAN %d due to %s', vlan_id, reason)
             return False
 
     def get_vlan_int(self, vlan_id):
         try:
-            vlan_mib = '1.3.6.1.2.1.17.7.1.4.3.1'
+            row_status = SnmpMib.mib_oid_map['dot1qVlanStaticRowStatus']
             # Get the rowstatus for vlan_id if it exists
-            oid = vlan_mib + "." + str(5) + "." + str(vlan_id)
+            oid = row_status + "." + str(vlan_id)
             ret_value = self._callback(oid, handler='snmp-get')
             if ret_value:
                 return True
@@ -122,5 +121,6 @@ class Interface(object):
                 return False
 
         except Exception as error:
-            logging.error(error)
+            reason = error.message
+            raise ValueError('Failed to get VLAN %d due to %s', vlan_id, reason)
             return False

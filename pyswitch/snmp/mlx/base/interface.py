@@ -2,7 +2,6 @@
 import pyswitch.utilities
 from pyswitch.exceptions import InvalidVlanId
 """
-import logging
 
 from pyswitch.snmp.base.interface import Interface as BaseInterface
 # from pyswitch.utilities import Util
@@ -51,18 +50,21 @@ class Interface(BaseInterface):
 
     @property
     def l2_mtu_const(self):
+        # TBD change below defaults
         minimum_mtu = 1548
         maximum_mtu = 9216
         return (minimum_mtu, maximum_mtu)
 
     @property
     def l3_mtu_const(self):
+        # TBD change below defaults
         minimum_mtu = 1300
         maximum_mtu = 9194
         return (minimum_mtu, maximum_mtu)
 
     @property
     def l3_ipv6_mtu_const(self):
+        # TBD change below defaults
         minimum_mtu = 1300
         maximum_mtu = 9194
         return (minimum_mtu, maximum_mtu)
@@ -101,5 +103,6 @@ class Interface(BaseInterface):
             self._callback(cli_arr, handler='cli-set')
             return True
         except Exception as error:
-            logging.error(error)
+            reason = error.message
+            raise ValueError('Failed to create VLAN due to %s', reason)
             return False
