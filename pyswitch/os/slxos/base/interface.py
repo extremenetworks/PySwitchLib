@@ -1440,10 +1440,14 @@ class Interface(BaseInterface):
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         output = dev.interface.bridge_domain_router_interface(
             ...         get=True, bridge_domain='100')
-            ...         output = dev.interface.bridge_domain_router_interface(
+            ...         print output
+            ...         dev.interface.bridge_domain_router_interface(
             ...         delete=True, bridge_domain='100')
             ...         output = dev.interface.bridge_domain_router_interface(
             ...         bridge_domain='100', vlan_id='100')
+            ...         output = dev.interface.bridge_domain_router_interface(
+            ...         get=True, bridge_domain='100')
+            ...         print output
         """
         bridge_domain = kwargs.pop('bridge_domain')
         bridge_domain_service = kwargs.pop('bridge_domain_service_type', 'p2mp')
@@ -1475,5 +1479,5 @@ class Interface(BaseInterface):
             config = (method_name, bd_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
-            result = util.find(util.root, './/router-interface')
+            result = util.find(util.root, './/Ve')
         return result
