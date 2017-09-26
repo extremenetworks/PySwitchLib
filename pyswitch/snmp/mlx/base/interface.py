@@ -77,3 +77,27 @@ class Interface(BaseInterface):
 
     def ip_anycast_gateway(self, **kwargs):
         raise ValueError('Not available on this Platform')
+
+    def add_vlan_int(self, vlan_id_list, desc=None):
+        """
+        Add VLAN Interface. VLAN interfaces are required for VLANs even when
+        not wanting to use the interface for any L3 features.
+
+        Args:
+            vlan_id_list: List of VLAN interface being created. Value of 2-4096.
+
+        Returns:
+            True if command completes successfully or False if not.
+
+        Raises:
+            None
+        """
+        try:
+            cli_arr = []
+            for vlan in vlan_id_list:
+                cli_arr.append('vlan' + " " + str(vlan) + " " + 'name' + " " + desc)
+            self._callback(cli_arr, handler='cli-set')
+            return True
+        except Exception as error:
+            logging.error(error)
+            return False

@@ -81,16 +81,7 @@ class Interface(object):
         Raises:
             None
         """
-        try:
-            cli_arr = []
-            for vlan in vlan_id_list:
-                cli_arr.append('vlan' + " " + str(vlan) + " " + 'name' + " " + desc)
-            self._callback(cli_arr, handler='cli-set')
-            return True
-
-        except Exception as error:
-            logging.error(error)
-            return False
+        pass
 
     def del_vlan_int(self, vlan_id):
         """
@@ -106,10 +97,14 @@ class Interface(object):
             None
         """
         try:
-            cli_arr = []
-            cli_arr.append('no vlan' + " " + str(vlan_id))
-            self._callback(cli_arr, handler='cli-set')
-            return True
+            vlan_mib = '1.3.6.1.2.1.17.7.1.4.3.1'
+            oid = vlan_mib + "." + str(5) + "." + str(vlan_id)
+            config = (oid, 6)
+            ret_value = self._callback(config, handler='snmp-set')
+            if ret_value:
+                return True
+            else:
+                return False
 
         except Exception as error:
             logging.error(error)

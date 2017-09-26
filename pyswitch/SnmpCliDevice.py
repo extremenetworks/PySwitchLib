@@ -28,8 +28,6 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 
-# ROUTER_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
-#             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls']
 ROUTER_ATTRS = ['interface']
 
 NI_VERSIONS = {
