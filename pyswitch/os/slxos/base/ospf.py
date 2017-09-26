@@ -78,10 +78,10 @@ class Ospf(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.ospf.ospf_area(get=True, vrf='111')
             ...     output = dev.ospf.ospf_area(delete=True, vrf='111')
             ...     output = dev.ospf.ospf_area(vrf='111', area='10')
