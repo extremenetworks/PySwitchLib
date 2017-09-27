@@ -109,10 +109,10 @@ class Bgp(object):
             KeyError: if `local_as` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.local_asn(local_as='65535',
@@ -190,10 +190,10 @@ class Bgp(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.remove_bgp(rbridge_id='225')
@@ -232,10 +232,10 @@ class Bgp(object):
             KeyError: if `remote_as` or `ip_addr` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.neighbor(ip_addr='10.10.10.10',
@@ -446,10 +446,10 @@ class Bgp(object):
             rbridge.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.neighbor(ip_addr='10.10.10.10',
@@ -600,10 +600,10 @@ class Bgp(object):
             KeyError: if `source` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.redistribute(source='connected',
             ...     rbridge_id='225')
             ...     output = dev.bgp.redistribute(source='connected',
@@ -692,10 +692,10 @@ class Bgp(object):
             ``AttributeError``: When `afi` is not one of ['ipv4', 'ipv6']
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.max_paths(paths='8',
             ...     rbridge_id='225')
             ...     output = dev.bgp.max_paths(paths='8',
@@ -776,10 +776,10 @@ class Bgp(object):
             ``AttributeError``: When `afi` is not one of ['ipv4', 'ipv6']
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.recursion(rbridge_id='225')
             ...     output = dev.bgp.recursion(rbridge_id='225', get=True)
             ...     output = dev.bgp.recursion(rbridge_id='225', delete=True)
@@ -860,10 +860,10 @@ class Bgp(object):
             ``AttributeError``: When `afi` is not one of ['ipv4', 'ipv6']
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.graceful_restart(rbridge_id='225')
             ...     output = dev.bgp.graceful_restart(rbridge_id='225',
             ...     get=True)
@@ -945,12 +945,12 @@ class Bgp(object):
             ``KeyError``: When `count` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.230']
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     auth = ('admin', 'password')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         dev.bgp.local_asn(local_as='65535', rbridge_id='225')
             ...         dev.bgp.neighbor(ip_addr='10.10.10.10',
             ...         remote_as='65535', rbridge_id='225')
@@ -1060,12 +1060,12 @@ class Bgp(object):
             ``KeyError``: When `int_type` or `int_name` are not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.230']
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     auth = ('admin', 'password')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         dev.interface.ip_address(int_type='loopback', name='6',
             ...         rbridge_id='225', ip_addr='6.6.6.6/32')
             ...         dev.interface.ip_address(int_type='loopback', name='6',
@@ -1191,10 +1191,10 @@ class Bgp(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.203', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.evpn_afi(rbridge_id='225')
@@ -1250,10 +1250,10 @@ class Bgp(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.203', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.evpn_afi(rbridge_id='225')
@@ -1339,12 +1339,12 @@ class Bgp(object):
             KeyError: if `tx`, `rx`, or `multiplier` is not passed.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.230']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...    conn = (switch, '22')
-            ...    with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...        output = dev.bgp.bfd(rx='300', tx='300', multiplier='3',
             ...        rbridge_id='230')
             ...        output = dev.bgp.bfd(rx='300', tx='300', multiplier='3',
@@ -1409,10 +1409,10 @@ class Bgp(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.203', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.retain_rt_all(rbridge_id='225')
@@ -1479,10 +1479,10 @@ class Bgp(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.203', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.neighbor(ip_addr='10.10.10.10',
@@ -1558,10 +1558,10 @@ class Bgp(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.203', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.neighbor(ip_addr='10.10.10.10',
@@ -1635,10 +1635,10 @@ class Bgp(object):
             ``AttributeError``: When `afi` is not one of ['ipv4', 'ipv6']
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.203', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.neighbor(ip_addr='10.10.10.10',
@@ -1747,12 +1747,12 @@ class Bgp(object):
             KeyError: if `tx`, `rx`, or `multiplier` is not passed.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.230']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...    conn = (switch, '22')
-            ...    with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...        output = dev.bgp.neighbor(ip_addr='10.10.10.20',
             ...        remote_as='65535', rbridge_id='230')
             ...        output = dev.bgp.peer_bfd_timers(peer_ip='10.10.10.20',
@@ -1845,12 +1845,12 @@ class Bgp(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.230']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...    conn = (switch, '22')
-            ...    with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...        output = dev.bgp.neighbor(ip_addr='10.10.10.20',
             ...        remote_as='65535', rbridge_id='230')
             ...        output = dev.bgp.enable_peer_bfd(peer_ip='10.10.10.20',
@@ -1965,7 +1965,7 @@ class Bgp(object):
             evpn_instance = kwargs['evpn_instance']
             vni = kwargs.pop('vni', None)
             if not delete:
-               method = 'rbridge_id_evpn_instance_vni_add_update'
+                method = 'rbridge_id_evpn_instance_vni_add_update'
             else:
                 method = 'rbridge_id_evpn_instance_vni_remove_update'
             vni_args = dict(rbridge_id=rbridge_id,
@@ -2014,10 +2014,10 @@ class Bgp(object):
             AttributeError: if 'afi' is not in ipv4,ipv6. Default = ipv4
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     device.bgp.vrf_redistribute_connected(vrf='vrf101',
             ...     rbridge_id='4')
             ...     device.bgp.vrf_redistribute_connected(vrf='vrf101',
@@ -2049,10 +2049,10 @@ class Bgp(object):
             AttributeError: if 'afi' is not in ipv4,ipv6. Default = ipv4
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     device.bgp.vrf_unicast_address_family(delete=True,
             ...     vrf='vrf101', rbridge_id='4')
             ...     device.bgp.vrf_unicast_address_family(get=True,
@@ -2112,10 +2112,10 @@ class Bgp(object):
             ``AttributeError``: When `afi` is not one of ['ipv4', 'ipv6']
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.vrf_max_paths(paths='8',
             ...     rbridge_id='225')
             ...     output = dev.bgp.vrf_max_paths(
@@ -2156,10 +2156,10 @@ class Bgp(object):
             AttributeError: if 'afi' is not in ipv4,ipv6.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     device.bgp.default_vrf_unicast_address_family(delete=True,
             ...     rbridge_id='4')
             ...     device.bgp.default_vrf_unicast_address_family(get=True,
@@ -2223,10 +2223,10 @@ class Bgp(object):
             ``AttributeError``: When `afi` is not one of ['ipv4', 'ipv6']
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.default_vrf_max_paths(paths='8',
             ...     rbridge_id='225')
             ...     output = dev.bgp.default_vrf_max_paths(
@@ -2258,12 +2258,12 @@ class Bgp(object):
         Raises:
             ValueError: if `enabled` are invalid.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.203']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         output = dev.bgp.local_asn(local_as='65535',
             ...         rbridge_id='225')
             ...         output = dev.bgp.as4_capability(

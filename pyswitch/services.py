@@ -91,12 +91,12 @@ class Services(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.203']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         output = dev.bgp.local_asn(rbridge_id='225')
             ...         output = dev.bgp.local_asn(rbridge_id='225',
             ...         enabled=False)
@@ -159,12 +159,12 @@ class Services(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.203']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         dev.services.vrrpe(rbridge_id='25',enable=False)
             ...         dev.services.vrrpe(rbridge_id='25',enable=True)
             ...         dev.services.vrrpe()
