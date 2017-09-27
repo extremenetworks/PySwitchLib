@@ -69,7 +69,7 @@ class Device(object):
         try:
             snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
             sysobj = str(snmpdev.get("1.3.6.1.2.1.1.2.0"))
-        except (SNMPError) as error:
+        except SNMPError as error:
             logging.error(error)
             # print "SNMP query failed for device: ", error
 
