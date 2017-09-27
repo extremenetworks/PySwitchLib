@@ -50,6 +50,14 @@ class SNMP(object):
 
         Raises:
             KeyError: if `community` is not defined.
+        Examples:
+        >>> import pyswitch.device
+        >>> switches = ['10.24.39.231']
+        >>> auth = ('admin', 'password')
+        >>> for switch in switches:
+        ...     conn = (switch, '22')
+        ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+        ...         output = dev.snmp.add_snmp_community(community='test123')
         """
         community = kwargs.pop('community')
         callback = kwargs.pop('callback', self._callback)
@@ -76,6 +84,14 @@ class SNMP(object):
 
         Raises:
             KeyError: if `community` is not defined.
+        Examples:
+        >>> import pyswitch.device
+        >>> switches = ['10.24.39.231']
+        >>> auth = ('admin', 'password')
+        >>> for switch in switches:
+        ...     conn = (switch, '22')
+        ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+        ...         output = dev.snmp.del_snmp_community(community='test123')
         """
         community = kwargs.pop('community')
         callback = kwargs.pop('callback', self._callback)
@@ -102,6 +118,16 @@ class SNMP(object):
 
         Raises:
             KeyError: if `host_info` or `community` is not defined.
+        Examples:
+        >>> import pyswitch.device
+        >>> switches = ['10.24.39.231']
+        >>> auth = ('admin', 'password')
+        >>> for switch in switches:
+        ...     conn = (switch, '22')
+        ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+        ...         output = dev.snmp.add_snmp_community(community='test123')
+        ...         output = dev.snmp.add_snmp_host(community='test123',
+        ...                  host_info=('10.32.45.3','23'))
         """
         host_info = kwargs.pop('host_info')
         community = kwargs.pop('community')
@@ -134,6 +160,14 @@ class SNMP(object):
 
         Raises:
             KeyError: if `host_info` or `community` is not defined.
+        >>> import pyswitch.device
+        >>> switches = ['10.24.39.231']
+        >>> auth = ('admin', 'password')
+        >>> for switch in switches:
+        ...     conn = (switch, '22')
+        ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+        ...         output = dev.snmp.del_snmp_host(community='test123',
+        ...         host_info=('10.32.45.3','23'))
         """
         host_info = kwargs.pop('host_info')
         community = kwargs.pop('community')

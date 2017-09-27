@@ -29,6 +29,7 @@ import pyswitch.os.slxos.base.bgp
 import pyswitch.os.slxos.base.interface
 import pyswitch.os.slxos.base.isis
 import pyswitch.os.slxos.base.mpls
+import pyswitch.os.base.firmware
 import pyswitch.os.slxos.base.ospf
 import pyswitch.os.slxos.base.mct
 import pyswitch.os.slxos.base.services
@@ -39,7 +40,8 @@ from pyswitch.XMLAsset import XMLAsset
 from pyswitch.utilities import Util
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
-             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls', 'mct']
+             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls', 'mct', 'firmware']
+
 NOS_VERSIONS = {
     '6.0': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -49,7 +51,9 @@ NOS_VERSIONS = {
         'system': pyswitch.os.nos.base.system.System,
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
-        'vcs': pyswitch.os.base.vcs.VCS
+        'vcs': pyswitch.os.base.vcs.VCS,
+        'firmware': pyswitch.os.base.firmware.Firmware
+
     },
     '7.0': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -59,9 +63,9 @@ NOS_VERSIONS = {
         'system': pyswitch.os.nos.base.system.System,
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
-        'vcs': pyswitch.os.base.vcs.VCS
+        'vcs': pyswitch.os.base.vcs.VCS,
+        'firmware': pyswitch.os.base.firmware.Firmware
     },
-
     '7.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.nos.base.interface.Interface,
@@ -70,7 +74,8 @@ NOS_VERSIONS = {
         'system': pyswitch.os.nos.base.system.System,
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
-        'vcs': pyswitch.os.base.vcs.VCS
+        'vcs': pyswitch.os.base.vcs.VCS,
+        'firmware': pyswitch.os.base.firmware.Firmware
     },
     '7.2': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -80,7 +85,19 @@ NOS_VERSIONS = {
         'system': pyswitch.os.nos.base.system.System,
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
-        'vcs': pyswitch.os.base.vcs.VCS
+        'vcs': pyswitch.os.base.vcs.VCS,
+        'firmware': pyswitch.os.base.firmware.Firmware
+    },
+    '7.3': {
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.nos.base.interface.Interface,
+        'bgp': pyswitch.os.nos.base.bgp.Bgp,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.nos.base.system.System,
+        'services': pyswitch.os.nos.base.services.Services,
+        'fabric_service': pyswitch.os.base.fabric_service.FabricService,
+        'vcs': pyswitch.os.base.vcs.VCS,
+        'firmware': pyswitch.os.base.firmware.Firmware
     },
 }
 SLXOS_VERSIONS = {
@@ -94,8 +111,8 @@ SLXOS_VERSIONS = {
         'isis': pyswitch.os.slxos.base.isis.Isis,
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
-        'mct': pyswitch.os.slxos.base.mct.Mct
-
+        'mct': pyswitch.os.slxos.base.mct.Mct,
+        'firmware': pyswitch.os.base.firmware.Firmware
     },
     '17r.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -107,7 +124,8 @@ SLXOS_VERSIONS = {
         'isis': pyswitch.os.slxos.base.isis.Isis,
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
-        'mct': pyswitch.os.slxos.base.mct.Mct
+        'mct': pyswitch.os.slxos.base.mct.Mct,
+        'firmware': pyswitch.os.base.firmware.Firmware
     },
     '17s.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -119,7 +137,8 @@ SLXOS_VERSIONS = {
         'isis': pyswitch.os.slxos.base.isis.Isis,
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
-        'mct': pyswitch.os.slxos.base.mct.Mct
+        'mct': pyswitch.os.slxos.base.mct.Mct,
+        'firmware': pyswitch.os.base.firmware.Firmware
     },
 }
 

@@ -76,10 +76,10 @@ class Isis(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.isis.address_family_ipv4_unicast(get=True)
             ...     output = dev.isis.address_family_ipv4_unicast()
             ...     output = dev.isis.address_family_ipv4_unicast(delete=True)
@@ -124,10 +124,10 @@ class Isis(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.isis.log_adjacency(get=True)
             ...     output = dev.isis.log_adjacency()
             ...     output = dev.isis.log_adjacency(delete=True)
@@ -171,10 +171,10 @@ class Isis(object):
             KeyError: if `net` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.isis.net_address(get=True)
             ...     output = dev.isis.net_address(
             ...     net='49.0001.0100.1001.0006.00')

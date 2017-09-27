@@ -39,7 +39,8 @@ InterfaceEVPNTestCase:
         int_type : tengigabitethernet
 InterfaceOverlayGatewayTestCase:
     switch:
-        ip: 10.37.18.131
+        #ip: 10.26.8.169
+        ip: 10.37.18.136
         username : admin
         password : password
         rbridge_id : 1
