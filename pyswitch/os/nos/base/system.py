@@ -21,6 +21,14 @@ class System(BaseSystem):
 
     def chassis_name(self, **kwargs):
         """Get device's chassis name/Model.
+        Examples:
+        >>> import pyswitch.device
+        >>> switches = ['10.24.39.231']
+        >>> auth = ('admin', 'password')
+        >>> for switch in switches:
+        ...     conn = (switch, '22')
+        ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+        ...         output = dev.system.chassis_name()
         """
         config = ('rbridge_id_get', {'resource_depth': 2})
 
@@ -46,15 +54,12 @@ class System(BaseSystem):
         Raises:
             KeyError: if `router_id` is not specified.
         Examples:
-            >>> import pynos.device
-            >>> conn = ('10.24.39.211', '22')
+            >>> import pyswitch.device
+            >>> conn = ('10.24.39.231', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.system.router_id(router_id='10.24.39.211',
-            ...     rbridge_id='225')
-            ...     dev.system.router_id() # doctest: +IGNORE_EXCEPTION_DETAIL
-            Traceback (most recent call last):
-            KeyError
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.system.router_id(router_id='10.24.39.231',
+            ...     rbridge_id='231')
         """
         router_id = kwargs.pop('router_id')
         rbridge_id = kwargs.pop('rbridge_id', '1')
@@ -79,18 +84,14 @@ class System(BaseSystem):
         Raises:
             KeyError: if `rbridge_id` is not specified.
         Examples:
-            >>> import pynos.device
-            >>> conn = ('10.24.39.211', '22')
+            >>> import pyswitch.device
+            >>> conn = ('10.24.39.231', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.system.host_name(rbridge_id='225',
-            ...     host_name='sw0')
-            ...     output = dev.system.host_name(rbridge_id='225', get=True)
-            ...     try:
-            ...         conf = output.data.find('.//{*}host-name').text
-            ...     except AttributeError:
-            ...         conf = None
-            ...     assert conf == 'sw0'
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.system.host_name(rbridge_id='231',
+            ...     host_name='sw0_231')
+            ...     output = dev.system.host_name(rbridge_id='231', get=True)
+            ...     print output
         """
         is_get_config = kwargs.pop('get', False)
         rbridge_id = kwargs.pop('rbridge_id')
@@ -130,15 +131,12 @@ class System(BaseSystem):
         Raises:
             KeyError: if `rbridge_id` is not specified.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.system.rbridge_id(rbridge_id='225')
             ...     output = dev.system.rbridge_id(rbridge_id='225', get=True)
-            ...     dev.system.rbridge_id() # doctest: +IGNORE_EXCEPTION_DETAIL
-            Traceback (most recent call last):
-            KeyError
         """
         callback = kwargs.pop('callback', self._callback)
         is_get_config = kwargs.pop('get', False)
@@ -173,10 +171,10 @@ class System(BaseSystem):
         Raises:
             KeyError: if `rbridge_id` is not specified.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.202', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.system.maintenance_mode(rbridge_id='226')
             ...     output = dev.system.maintenance_mode(rbridge_id='226',
             ...     get=True)
@@ -234,14 +232,17 @@ class System(BaseSystem):
 
             Examples:
                 >>> import pyswitch.device
-                >>> switches = ['10.24.39.211', '10.24.39.203']
+                >>> switches = ['10.24.39.231']
                 >>> auth = ('admin', 'password')
                 >>> for switch in switches:
                 ...  conn = (switch, '22')
                 ...  with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-                ...         output = dev.interface.system_mtu(mtu='1666')
-                Traceback (most recent call last):
-                KeyError
+                ...         output = dev.system.system_ip_mtu(mtu='1666')
+                ...         output = dev.system.system_ip_mtu(get=True)
+                ...         assert output == '1666'
+                ...         output = dev.system.system_ip_mtu(mtu='1667',version=6)
+                ...         output = dev.system.system_ip_mtu(get=True,version=6)
+                ...         assert output == '1667'
             """
 
         callback = kwargs.pop('callback', self._callback)
@@ -307,14 +308,17 @@ class System(BaseSystem):
 
             Examples:
                 >>> import pyswitch.device
-                >>> switches = ['10.24.39.211', '10.24.39.203']
+                >>> switches = ['10.24.39.231']
                 >>> auth = ('admin', 'password')
                 >>> for switch in switches:
                 ...  conn = (switch, '22')
                 ...  with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-                ...         output = dev.interface.system_l2_mtu(mtu='1666')
-                Traceback (most recent call last):
-                KeyError
+                ...         output = dev.system.system_l2_mtu(mtu='1666')
+                ...         output = dev.system.system_l2_mtu(get=True)
+                ...         assert output == '1666'
+                ...         output = dev.system.system_l2_mtu(mtu='1667',version=6)
+                ...         output = dev.system.system_l2_mtu(get=True,version=6)
+                ...         assert output == '1667'
             """
 
         callback = kwargs.pop('callback', self._callback)

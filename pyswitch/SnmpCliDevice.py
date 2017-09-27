@@ -128,7 +128,6 @@ class SnmpCliDevice(AbstractDevice):
         """
         if self._test is False:
             return self._mgr['snmp'].connected
-
         return False
 
     @property

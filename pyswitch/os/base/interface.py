@@ -21,6 +21,7 @@ from ipaddress import ip_interface
 import pyswitch.utilities
 from pyswitch.exceptions import InvalidVlanId, InvalidLoopbackName
 from pyswitch.utilities import Util
+from distutils.util import strtobool
 
 
 class Interface(object):
@@ -4034,7 +4035,10 @@ class Interface(object):
             util = Util(output.data)
             activate = util.find(util.root, './/activate')
             if activate:
-                return True
+                if strtobool(activate):
+                    return True
+                else:
+                    return None
             else:
                 return None
 
@@ -5110,12 +5114,12 @@ class Interface(object):
             KeyError: if `vrf_name`, 'l3vni' is not passed.
             ValueError: if `vrf_name`, 'l3vni'  is invalid.
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.203']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         output = dev.interface.vrf_vni(
             ...         vrf_name=vrf1, rbridge_id='2', l3vni ='7201')
             ...         output = dev.interface.vrf_vni(rbridge_id='2',
@@ -5517,12 +5521,12 @@ class Interface(object):
         Raises:
             None
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> switches = ['10.24.39.211', '10.24.39.203']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         output=dev.interface.evpn_instance_rd_auto(
             ...         evpn_instance_name='100',
             ...         rbridge_id='1')
@@ -5808,10 +5812,10 @@ class Interface(object):
         Raises:
             None
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.interface.mac_move_detect_enable()
             ...     output = dev.interface.mac_move_detect_enable(get=True)
             ...     output = dev.interface.mac_move_detect_enable(delete=True)
@@ -5853,10 +5857,10 @@ class Interface(object):
         Raises:
             None
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.interface.mac_move_limit()
             ...     output = dev.interface.mac_move_limit(get=True)
             ...     output = dev.interface.mac_move_limit(delete=True)

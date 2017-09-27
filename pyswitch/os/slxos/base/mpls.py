@@ -80,10 +80,10 @@ class Mpls(object):
             ValueError: if `intf_type` is not valid.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_interface(get=True)
             ...     output = dev.mpls.mpls_interface(get=True, intf_name='111',
             ...                                      intf_type='ve')
@@ -152,10 +152,10 @@ class Mpls(object):
             ValueError: if `intf_type` is not valid.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_interface_ldp_enable(get=True,
             ...                          intf_name='111', intf_type='ve')
             ...     output = dev.mpls.mpls_interface_ldp_enable(intf_name='111',
@@ -214,10 +214,10 @@ class Mpls(object):
             KeyError: if `path_name` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_path_create(get=True,
             ...                                        path_name='test')
             ...     output = dev.mpls.mpls_path_create(delete=True,
@@ -275,10 +275,10 @@ class Mpls(object):
             KeyError: if `path_name`,`path_hop_ip` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_path_hop_create(get=True,
             ...              path_hop_ip='1.1.1.1', path_name='test')
             ...     output = dev.mpls.mpls_path_hop_create(delete=True,
@@ -340,10 +340,10 @@ class Mpls(object):
             KeyError: if `lsp_name` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_create(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls__lsp_create(delete=True,
@@ -404,10 +404,10 @@ class Mpls(object):
             KeyError: if `lsp_name` and `lsp_primary_path` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_primary_path(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls_lsp_primary_path(delete=True,
@@ -465,10 +465,10 @@ class Mpls(object):
             KeyError: if `lsp_name` and `lsp_secondary_path` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_secondary_path(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls_lsp_secondary_path(delete=True,
@@ -526,10 +526,10 @@ class Mpls(object):
             KeyError: if `lsp_name` and `lsp_cos` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_cos(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls_lsp_cos(delete=True,
@@ -589,10 +589,10 @@ class Mpls(object):
             KeyError: if `lsp_name` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_enable(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls_lsp_enable(delete=True,
@@ -650,10 +650,10 @@ class Mpls(object):
             KeyError: if `lsp_name` and lsp_dest_address is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_destination_address(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls_lsp_destination_address(delete=True,
@@ -709,10 +709,10 @@ class Mpls(object):
             None.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_policy(get=True)
             ...     output = dev.mpls.mpls_policy(delete=True)
             ...     output = dev.mpls.mpls_policy()
@@ -773,10 +773,10 @@ class Mpls(object):
                       `ospf_area_as_decimal` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_policy_te_ospf(get=True)
             ...     output = dev.mpls.mpls_policy_te_ospf(delete=True)
             ...     output = dev.mpls.mpls_policy_te_ospf(
@@ -845,10 +845,10 @@ class Mpls(object):
             KeyError: if `isis_set_level` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_policy_te_isis(get=True)
             ...     output = dev.mpls.mpls_policy_te_isis(delete=True)
             ...     output = dev.mpls.mpls_policy_te_isis(
@@ -906,10 +906,10 @@ class Mpls(object):
             KeyError: if `lsp_name` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_get_details(
             ...              lsp_name='test')
         """
