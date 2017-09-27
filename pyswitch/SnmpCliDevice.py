@@ -15,7 +15,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import logging
 import sys
 import pyswitch.utilities as util
 import pyswitch.snmp.mlx.base.interface
@@ -243,8 +242,7 @@ class SnmpCliDevice(AbstractDevice):
             elif handler == "cli-get":
                 value = self._mgr['cli'].send_command(call)
         except (SNMPError) as error:
-            logging.error(error)
-            raise DeviceCommError
+            raise DeviceCommError(error)
         except:
             print "CLI error"
             raise DeviceCommError

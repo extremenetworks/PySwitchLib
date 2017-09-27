@@ -107,7 +107,6 @@ class Interface(object):
         except Exception as error:
             reason = error.message
             raise ValueError('Failed to delete VLAN %d due to %s', vlan_id, reason)
-            return False
 
     def get_vlan_int(self, vlan_id):
         try:
@@ -123,4 +122,3 @@ class Interface(object):
         except Exception as error:
             reason = error.message
             raise ValueError('Failed to get VLAN %d due to %s', vlan_id, reason)
-            return False
