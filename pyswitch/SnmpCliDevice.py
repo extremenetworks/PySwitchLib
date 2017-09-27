@@ -15,7 +15,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import logging
+import sys
+import pyswitch.utilities as util
+import pyswitch.snmp.mlx.base.interface
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
@@ -25,16 +27,13 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 
-"""
-ROUTER_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
-             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls']
+ROUTER_ATTRS = ['interface']
 
 NI_VERSIONS = {
-    '6.1.0T163': {
-        'snmp': pyswitch.os.base.snmp.SNMP,
+    '6.1': {
+        'interface': pyswitch.snmp.mlx.base.interface.Interface,
     },
 }
-"""
 
 
 class DeviceCommError(Exception):
@@ -86,16 +85,14 @@ class SnmpCliDevice(AbstractDevice):
         self.fullver = self.firmware_version
         # self.fullver = version_list[0][1]
 
-        """
         thismodule = sys.modules[__name__]
         os_table = getattr(thismodule, '%s_VERSIONS' %
                            str(self.os_type).upper())
 
-        if fullver in os_table:
-           ver = fullver
+        if self.fullver in os_table:
+            ver = self.fullver
         else:
-           ver = util.get_two_tuple_version(fullver)
-
+            ver = util.get_two_tuple_version(self.fullver)
 
         for router_attr in ROUTER_ATTRS:
             if router_attr in os_table[ver]:
@@ -104,7 +101,6 @@ class SnmpCliDevice(AbstractDevice):
                     router_attr,
                     os_table[ver][router_attr](
                         self._callback))
-        """
         # setattr(self.base, 'snmp', NI_VERSIONS['6.1.0T163']['snmp'](self._callback))
 
         setattr(self, 'asset', self._mgr)
@@ -246,8 +242,7 @@ class SnmpCliDevice(AbstractDevice):
             elif handler == "cli-get":
                 value = self._mgr['cli'].send_command(call)
         except (SNMPError) as error:
-            logging.error(error)
-            raise DeviceCommError
+            raise DeviceCommError(error)
         except:
             print "CLI error"
             raise DeviceCommError
