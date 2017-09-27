@@ -64,7 +64,6 @@ NOS_VERSIONS = {
         'vcs': pyswitch.os.base.vcs.VCS,
         'firmware': pyswitch.os.base.firmware.Firmware
     },
-
     '7.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.nos.base.interface.Interface,
@@ -234,7 +233,14 @@ class RestDevice(AbstractDevice):
     @property
     def mac_table(self):
         """list[dict]: the MAC table of the device.
-
+         Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.231']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.mac_table
         """
         table = []
 
@@ -280,6 +286,14 @@ class RestDevice(AbstractDevice):
 
         Raises:
             None
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.231']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.firmware_version
 
         """
 
@@ -362,7 +376,7 @@ class RestDevice(AbstractDevice):
         Examples:
             >>> from pprint import pprint
             >>> import pyswitch.device
-            >>> conn = ('10.24.39.211', '22')
+            >>> conn = ('10.24.39.231', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     x = dev.find_interface_by_mac(

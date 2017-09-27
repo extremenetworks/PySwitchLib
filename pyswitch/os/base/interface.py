@@ -21,6 +21,7 @@ from ipaddress import ip_interface
 import pyswitch.utilities
 from pyswitch.exceptions import InvalidVlanId, InvalidLoopbackName
 from pyswitch.utilities import Util
+from distutils.util import strtobool
 
 
 class Interface(object):
@@ -4034,7 +4035,10 @@ class Interface(object):
             util = Util(output.data)
             activate = util.find(util.root, './/activate')
             if activate:
-                return True
+                if strtobool(activate):
+                    return True
+                else:
+                    return None
             else:
                 return None
 
