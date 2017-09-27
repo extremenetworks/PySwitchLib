@@ -284,7 +284,7 @@ class InterfaceTestCase(unittest.TestCase):
             dev.interface.logical_interface_tag_vlan(
                 intf_name='10', lif_name='10.1',
                 outer_tag_vlan_id='100',
-                intf_type='port_channel'
+                intf_type='port_channel',
                 inner_vlan=True, inner_tag_vlan_id='200')
             op = dev.interface.logical_interface_tag_vlan(
                 get=True, intf_name='10', lif_name='10.1',

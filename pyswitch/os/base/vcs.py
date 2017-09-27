@@ -35,8 +35,14 @@ class VCS(object):
     @property
     def vcs_nodes(self):
         """dict: vcs node details
+        >>> import pyswitch.device
+        >>> switches = ['10.24.39.231']
+        >>> auth = ('admin', 'password')
+        >>> for switch in switches:
+        ...     conn = (switch, '22')
+        ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+        ...         output = dev.vcs.vcs_nodes
         """
-
         show_vcs = ('show_vcs_rpc', {})
 
         results = self._callback(show_vcs, handler='get')
@@ -92,27 +98,18 @@ class VCS(object):
             ValueError: if `vip` is invalid.
 
         Examples:
-            >>> import pynos.device
-            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.231']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pynos.device.Device(conn=conn, auth=auth) as dev:
-            ...         dev.interface.vcs_vip(vip='10.1.1.1/24')
-            ...         dev.interface.vcs_vip(vip='fe80::cafe:beef:1000:1/64')
-            ...         dev.interface.vcs_vip(vip='10.1.1.1/24',get=True)
-            ...         dev.interface.vcs_vip(vip='fe80::cafe:beef:1000:1/64',
-            ...                               get=True)
-            ...         dev.interface.vcs_vip(vip='fe80::cafe:beef:1000:1/64',
-            ...                               delete=True)
-            ...         dev.interface.vcs_vip(vip='10.1.1.1/24',get=True)
-            ...         dev.interface.vcs_vip(vip='fe80::cafe:beef:1000:1/64',
-            ...                               get=True)
-            ...         dev.interface.vcs_vip(vip='10.1.1.1/24',delete=True)
-            ...         dev.interface.vcs_vip(vip='fe80::cafe:beef:1000:1/64',
-            ...                               delete=True)
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         print dev.vcs.vcs_vip(get=True)
+            ...         output = dev.vcs.vcs_vip(vip='10.24.39.239/26')
+            ...         print dev.vcs.vcs_vip(get=True)
+            ...         output = dev.vcs.vcs_vip(vip='10.24.39.239/26',delete=True)
+            ...         print dev.vcs.vcs_vip(get=True)
         """
-
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
         callback = kwargs.pop('callback', self._callback)
