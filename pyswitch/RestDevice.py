@@ -64,7 +64,6 @@ NOS_VERSIONS = {
         'vcs': pyswitch.os.base.vcs.VCS,
         'firmware': pyswitch.os.base.firmware.Firmware
     },
-
     '7.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.nos.base.interface.Interface,
