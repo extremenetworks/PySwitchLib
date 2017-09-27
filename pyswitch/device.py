@@ -67,11 +67,11 @@ class Device(object):
         sysobj = ''
 
         try:
-           snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
-           sysobj = str(snmpdev.get("1.3.6.1.2.1.1.2.0"))
+            snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
+            sysobj = str(snmpdev.get("1.3.6.1.2.1.1.2.0"))
         except (SNMPError) as error:
-           logging.error(error)
-           #print "SNMP query failed for device: ", error
+            logging.error(error)
+            # print "SNMP query failed for device: ", error
 
         if sysobj in SNMPUtils.SNMP_DEVICE_MAP:
             if SNMPUtils.SNMP_DEVICE_MAP[sysobj] == 'MLX':
