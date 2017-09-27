@@ -64,7 +64,7 @@ class InvalidMode(Exception):
     pass
 
 
-class PynosException(Exception):
-    """Exception for unique PyNOS issues with no more specific exception.
+class PyswitchException(Exception):
+    """Exception for unique pyswitch issues with no more specific exception.
     """
     pass

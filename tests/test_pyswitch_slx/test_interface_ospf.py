@@ -55,7 +55,7 @@ class InterfaceOSPFTestCase(unittest.TestCase):
         with Device(conn=self.conn, auth=self.auth) as dev:
             dev.interface.ip_ospf(
                 intf_type='loopback',
-                intf_name='11'
+                intf_name='11',
                 area='10')
             op = dev.interface.ip_ospf(
                 intf_type='loopback',
