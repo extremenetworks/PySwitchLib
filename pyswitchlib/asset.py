@@ -1,4 +1,3 @@
-import pyswitchlib
 import requests
 import weakref
 import re
@@ -9,6 +8,9 @@ import xml.etree.ElementTree as ElementTree
 import xmltodict
 import json
 import atexit
+import Pyro4
+import Pyro4.errors
+from distutils.sysconfig import get_python_lib
 
 import pyswitchlib.exceptions
 locals().update(pyswitchlib.exceptions.__dict__)
@@ -62,10 +64,26 @@ class Asset(object):
         self._supported_module_name = self._get_supported_module()
         #self._load_module(supported_module_name=self._supported_module_name)
 
-        self._proxied = pyswitchlib.PySwitchLib(module_name=self._supported_module_name, module_obj=self._module_obj, rest_operation=self._rest_operation)
+        with Pyro4.Proxy("PYRONAME:PySwitchLib.Api") as pyro_proxy:
+            try:
+                pyro_proxy._pyroBind()
+            except (Pyro4.errors.NamingError, Pyro4.errors.CommunicationError) as e:
+                pyswitchlib_daemon = os.path.join(get_python_lib(), 'pyswitchlib', 'pyapi.py')
+                print pyswitchlib_daemon 
+                os.system('python ' + pyswitchlib_daemon + '&')
+
+            self._proxied = pyro_proxy
 
     def __getattr__(self, name):
-        return getattr(self._proxied, name)
+        if hasattr(self._proxied, name):
+            def getattr_wrapper(*args, **kwargs):
+                self._proxied.module_name(module_name=self._supported_module_name)
+                rest_operation_tuple = getattr(self._proxied, name)(*args, **kwargs)
+
+                return self._rest_operation(rest_commands=rest_operation_tuple[0], yang_list=rest_operation_tuple[1], timeout=rest_operation_tuple[2])
+            return getattr_wrapper
+        else:
+            raise AttributeError(name)
 
     def _rest_operation(self, rest_commands=None, yang_list=None, timeout=None):
         auth = self._auth
