@@ -1942,11 +1942,6 @@ class Bgp(object):
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output = dev.bgp.vni_add(rbridge_id='235',
-            ...             evpn_instance="sj_fabric", get=True)
-            ...         print output
-            ...         dev.bgp.vni_add(rbridge_id='235',
-            ...             evpn_instance="sj_fabric", vni='10', delete=True)
             ...         dev.bgp.vni_add(rbridge_id='235',
             ...             evpn_instance="sj_fabric", vni='10')
             ...         output = dev.bgp.vni_add(rbridge_id='235',
