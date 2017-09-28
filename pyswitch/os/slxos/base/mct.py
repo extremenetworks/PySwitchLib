@@ -174,7 +174,7 @@ class Mct(object):
             ...    print output
             ...    dev.mct.mct_client_interface_create(delete=True,
             ...        cluster_id=1, cluster_name='pod-cluster')
-            ...        client_id=1, client_name='client1')            
+            ...        client_id=1, client_name='client1')
         """
         cluster_name = kwargs.pop('cluster_name')
         cluster_id = kwargs.pop('cluster_id')
@@ -263,7 +263,7 @@ class Mct(object):
             ...     print output
             ...     dev.mct.mct_client_deploy(delete=True,
             ...              cluster_id=1, cluster_name='pod-cluster')
-            ...              client_id=1, client_name='client1')            
+            ...              client_id=1, client_name='client1')
         """
         cluster_name = kwargs.pop('cluster_name')
         cluster_id = kwargs.pop('cluster_id')
