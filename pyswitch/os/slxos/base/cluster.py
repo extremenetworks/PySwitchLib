@@ -72,11 +72,11 @@ class Cluster(object):
             isolation_strict = False
         else:
             isolation_strict = True
-        argument = {'cluster':(clname, clid),
-                    'client_interfaces_shutdown':False,
-                    'client_isolation_strict':isolation_strict,
-                    'designated_forwarder_hold_time':hold_time,
-                    'deploy':cldeploy
+        argument = {'cluster': (clname, clid),
+                    'client_interfaces_shutdown': False,
+                    'client_isolation_strict': isolation_strict,
+                    'designated_forwarder_hold_time': hold_time,
+                    'deploy': cldeploy
                     }
         config = ('cluster_create', argument)
         try:
@@ -86,7 +86,7 @@ class Cluster(object):
                 status['status_message'] = response.data
         except Exception, exc:
             status['status_code'] = -1
-            status['status_message'] = 'Exception:'+exc.message
+            status['status_message'] = 'Exception:' + exc.message
 
         return status
 
@@ -136,7 +136,7 @@ class Cluster(object):
                 status['status_message'] = response.data
         except Exception, exc:
             status['status_code'] = -1
-            status['status_message'] = 'Exception:'+exc.message
+            status['status_message'] = 'Exception:' + exc.message
 
         return status
 
@@ -196,7 +196,7 @@ class Cluster(object):
         (peerip, peerintf_type, peerintf) = cluster_args.pop('peer_info', None)
 
         status = dict()
-        #set default status buffer
+        # set default status buffer
         status['status_code'] = 0
         status['status_message'] = "cluster peer created"
 
@@ -207,7 +207,7 @@ class Cluster(object):
             status['status_code'] = -1
             status['status_message'] = "Peer interface and peer ip are required to add " \
                                        "cluster_peer"
-            return  status
+            return status
 
         argument = {'cluster': (clname, clid),
                     'peer': peerip,
@@ -221,10 +221,10 @@ class Cluster(object):
                 return status
         except Exception, exc:
             status['status_code'] = -1
-            status['status_message'] = 'Exception:'+exc.message
+            status['status_message'] = 'Exception:' + exc.message
 
         argument = {'cluster': (clname, clid),
-                    'peer_if_type': peerintf_type, 'peer_if_name':peerintf
+                    'peer_if_type': peerintf_type, 'peer_if_name': peerintf
                     }
         config = ('cluster_peer_interface_update', argument)
         try:
@@ -234,7 +234,7 @@ class Cluster(object):
                 status['status_message'] = response.data
         except Exception, exc:
             status['status_code'] = -1
-            status['status_message'] = 'Exception:'+exc.message
+            status['status_message'] = 'Exception:' + exc.message
 
         return status
 
@@ -275,7 +275,7 @@ class Cluster(object):
                 status['status_message'] = response.data
         except Exception, exc:
             status['status_code'] = -1
-            status['status_message'] = 'Exception:'+exc.message
+            status['status_message'] = 'Exception:' + exc.message
 
         return status
 
@@ -296,14 +296,14 @@ class Cluster(object):
         peerip = cluster_args.pop('peer_info')
 
         status = dict()
-        #set default status buffer
+        # set default status buffer
         status['status_code'] = 0
         status['status_message'] = "cluster peer deleted"
 
         if int(clid) not in xrange(1, 65536):
             raise ValueError("cluster_id %s must be in range `1-65535`" + clid)
 
-        #Delete the cluster peer interface first
+        # Delete the cluster peer interface first
         argument = {'cluster': (clname, clid),
                     }
         config = ('cluster_peer_interface_delete', argument)
@@ -319,7 +319,7 @@ class Cluster(object):
             status['status_message'] = 'Exception:' + exc.message
             return status
 
-        #Delete the cluster peer now
+        # Delete the cluster peer now
         argument = {'cluster': (clname, clid),
                     'peer': peerip,
                     }
@@ -333,7 +333,7 @@ class Cluster(object):
                 return status
         except Exception, exc:
             status['status_code'] = -1
-            status['status_message'] = 'Exception:'+exc.message
+            status['status_message'] = 'Exception:' + exc.message
 
         return status
 
@@ -355,7 +355,7 @@ class Cluster(object):
                     'resource_depth': 5
                     }
         config = ('cluster_get', argument)
-        cluster_data= dict()
+        cluster_data = dict()
         try:
             response = self._callback(config, 'GET')
             root = ET.fromstring(response.data)
@@ -366,14 +366,12 @@ class Cluster(object):
             cluster_data['peer_interface'] = root.find('{urn:brocade.com:mgmt:brocade-mct}'
                                                        'peer-interface').\
                 find('{urn:brocade.com:mgmt:brocade-mct}peer-if-type').text + \
-                                             root.find('{urn:brocade.com:mgmt:brocade-mct}'
-                                                       'peer-interface').\
+                root.find('{urn:brocade.com:mgmt:brocade-mct}peer-interface').\
                 find('{urn:brocade.com:mgmt:brocade-mct}peer-if-name').text
             cluster_data['peer_ip'] = root.find('{urn:brocade.com:mgmt:brocade-mct}peer'). \
                 find('{urn:brocade.com:mgmt:brocade-mct}peer-ip').text
             cluster_data['deploy'] = root.find('{urn:brocade.com:mgmt:brocade-mct}deploy').text
             return (cluster_data)
         except Exception, exc:
-            raise ValueError("Failed to get cluster (%s, %s) details Err:%s", clname, clid, exc.message)
-
-
+            raise ValueError("Failed to get cluster (%s, %s) details Err:%s", clname, clid,
+                             exc.message)
