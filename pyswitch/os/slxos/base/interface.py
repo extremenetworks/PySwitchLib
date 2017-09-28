@@ -1479,7 +1479,6 @@ class Interface(BaseInterface):
             ...         bd_vni_mapping='10', vni='100')
             ...         output = dev.interface.overlay_gateway_map_bd_vni(
             ...         get=True, gw_name='leaf1')
-            ...         print output
             ...         dev.interface.overlay_gateway_map_bd_vni(gw_name='leaf1',
             ...         delete=True)
         """
