@@ -39,6 +39,14 @@ class FabricService(object):
     @property
     def trill_links(self):
         """dict: trill link details
+        Examples:
+        >>> import pyswitch.device
+        >>> switches = ['10.24.39.231']
+        >>> auth = ('admin', 'password')
+        >>> for switch in switches:
+        ...     conn = (switch, '22')
+        ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+        ...         output = dev.fabric_service.trill_links
         """
 
         get_links_info = ('show_linkinfo_rpc', {})

@@ -38,6 +38,14 @@ class LLDP(object):
     def neighbors(self, **kwargs):
         """list[dict]: A list of dictionary items describing the operational
         state of LLDP.
+        Examples:
+        >>> import pyswitch.device
+        >>> switches = ['10.24.39.231']
+        >>> auth = ('admin', 'password')
+        >>> for switch in switches:
+        ...     conn = (switch, '22')
+        ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+        ...         output = dev.lldp.neighbors()
         """
 
         result = []
