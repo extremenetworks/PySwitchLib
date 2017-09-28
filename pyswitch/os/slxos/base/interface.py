@@ -1616,8 +1616,8 @@ class Interface(BaseInterface):
                         tvnis.append(vni_value)
                     result = dict(vlans=vls, vnis=tvnis)
         return result
-
-def bridge_domain_all(self, **kwargs):
+    
+    def bridge_domain_all(self, **kwargs):
         """get all bridge-domains present on the device.
         Args:
             callback (function): A function executed upon completion of the
