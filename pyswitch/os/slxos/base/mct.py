@@ -84,15 +84,16 @@ class Mct(object):
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.mct.mct_client_create(get=True,
-            ...              cluster_id=1, cluster_name='pod-cluster')
-            ...              client_id=1, client_name='client1')
-            ...     output = dev.mct.mct_client_create(delete=True,
-            ...              cluster_id=1, cluster_name='pod-cluster')
-            ...              client_id=1, client_name='client1')
             ...     dev.mct.mct_client_create(client_deploy=True,
-            ...              cluster_id=1, cluster_name='pod-cluster')
-            ...              client_id=1, client_name='client1')
+            ...         cluster_id=1, cluster_name='pod-cluster')
+            ...         client_id=1, client_name='client1')
+            ...     output = dev.mct.mct_client_create(get=True,
+            ...         cluster_id=1, cluster_name='pod-cluster')
+            ...         client_id=1, client_name='client1')
+            ...     print output
+            ...     dev.mct.mct_client_create(delete=True,
+            ...         cluster_id=1, cluster_name='pod-cluster')
+            ...         client_id=1, client_name='client1')
         """
         cluster_name = kwargs.pop('cluster_name')
         cluster_id = kwargs.pop('cluster_id')
@@ -163,16 +164,17 @@ class Mct(object):
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.mct.mct_client_interface_create(get=True,
-            ...              cluster_id=1, cluster_name='pod-cluster')
-            ...              client_id=1, client_name='client1')
-            ...     output = dev.mct.mct_client_interface_create(delete=True,
-            ...              cluster_id=1, cluster_name='pod-cluster')
-            ...              client_id=1, client_name='client1')
             ...     dev.mct.mct_client_interface_create(client_deploy=True,
             ...              cluster_id=1, cluster_name='pod-cluster')
             ...              client_id=1, client_name='client1',
             ...              intf_type='Ethernet', intf_name='0/35')
+            ...     output = dev.mct.mct_client_interface_create(get=True,
+            ...              cluster_id=1, cluster_name='pod-cluster')
+            ...              client_id=1, client_name='client1')
+            ...    print output
+            ...    dev.mct.mct_client_interface_create(delete=True,
+            ...        cluster_id=1, cluster_name='pod-cluster')
+            ...        client_id=1, client_name='client1')            
         """
         cluster_name = kwargs.pop('cluster_name')
         cluster_id = kwargs.pop('cluster_id')
@@ -252,15 +254,16 @@ class Mct(object):
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitchdevice.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.mct.mct_client_deploy(get=True,
-            ...              cluster_id=1, cluster_name='pod-cluster')
-            ...              client_id=1, client_name='client1')
-            ...     output = dev.mct.mct_client_deploy(delete=True,
-            ...              cluster_id=1, cluster_name='pod-cluster')
-            ...              client_id=1, client_name='client1')
             ...     dev.mct.mct_client_deploy(client_deploy=True,
             ...              cluster_id=1, cluster_name='pod-cluster')
             ...              client_id=1, client_name='client1')
+            ...     output = dev.mct.mct_client_deploy(get=True,
+            ...              cluster_id=1, cluster_name='pod-cluster')
+            ...              client_id=1, client_name='client1')
+            ...     print output
+            ...     dev.mct.mct_client_deploy(delete=True,
+            ...              cluster_id=1, cluster_name='pod-cluster')
+            ...              client_id=1, client_name='client1')            
         """
         cluster_name = kwargs.pop('cluster_name')
         cluster_id = kwargs.pop('cluster_id')
@@ -329,10 +332,11 @@ class Mct(object):
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.mct.mct_cluster_create(get=True)
-            ...     dev.mct.mct_cluster_create(delete=True)
             ...     output = dev.mct.mct_cluster_create(
             ...              cluster_name='Leaf', cluster_id=10)
+            ...     output = dev.mct.mct_cluster_create(get=True)
+            ...     print output
+            ...     dev.mct.mct_cluster_create(delete=True)
         """
         cluster_name = kwargs.pop('cluster_name', None)
         cluster_id = kwargs.pop('cluster_id', None)
