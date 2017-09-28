@@ -1617,9 +1617,8 @@ class Interface(BaseInterface):
                     result = dict(vlans=vls, vnis=tvnis)
         return result
 
-    def bridge_domain_all(self, **kwargs):
+def bridge_domain_all(self, **kwargs):
         """get all bridge-domains present on the device.
-
         Args:
             callback (function): A function executed upon completion of the
                 method.  The only parameter passed to `callback` will be the
@@ -1629,6 +1628,12 @@ class Interface(BaseInterface):
         Raises:
             None
         Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...         dev.interface.bridge_domain(bridge_domain='100')
             ...         output = dev.interface.bridge_domain(
             ...         bridge_domain='100', get=True)
@@ -1642,3 +1647,4 @@ class Interface(BaseInterface):
         util = Util(output.data)
         result = util.findall(util.root, './/bridge-domain-id')
         return result
+    
