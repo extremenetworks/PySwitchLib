@@ -485,14 +485,17 @@ class Interface(BaseInterface):
             None.
         Examples:
             >>> import pyswitch.device
-            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> switches = ['10.24.39.231']
             >>> auth = ('admin', 'password')
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output_all = dev.interface.vfab_enable(get=True)
-            ...         output_all = dev.interface.vfab_enable(delete=True)
             ...         output_all = dev.interface.vfab_enable(vfab_enable=True)
+            ...         output_all = dev.interface.vfab_enable(get=True)
+            ...         assert output_all == True
+            ...         output_all = dev.interface.vfab_enable(delete=True)
+            ...         output_all = dev.interface.vfab_enable(get=True)
+            ...         assert output_all == False
         """
 
         vfab_enable = kwargs.pop('vfab_enable', False)
