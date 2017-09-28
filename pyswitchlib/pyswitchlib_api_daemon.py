@@ -16,6 +16,8 @@ import pyswitchlib.api.delete
 import pyswitchlib.api.get
 import pyswitchlib.api.rpc
 import time
+import sys
+import os
 from daemon import runner
 
 @Pyro4.expose
@@ -30,16 +32,17 @@ class PySwitchLibApi(object):
     locals().update(pyswitchlib.api.get.__dict__)
     locals().update(pyswitchlib.api.rpc.__dict__)
 
-    def __init__(self, module_name='', module_obj=None):
+    def __init__(self, module_name='', module_obj=None, pyro_ns_port=None):
         """
         This is an auto-generated method for the PySwitchLib.
         """
 
         self._module_name = module_name
         self._module_obj = module_obj
+        self._pyro_ns_port = pyro_ns_port
         self.stdin_path = '/dev/null'
-        self.stdout_path = '/dev/tty'
-        self.stderr_path = '/dev/tty'
+        self.stdout_path = '/dev/null'
+        self.stderr_path = '/dev/null'
         self.pidfile_path =  '/tmp/pyswitchlib_api.pid'
         self.pidfile_timeout = 5
 
@@ -391,6 +394,9 @@ class PySwitchLibApi(object):
         return yang_name_list
 
     def _nameserver_loop(self):
+        if self._pyro_ns_port:
+            Pyro4.config.NS_PORT = self._pyro_ns_port
+            
         Pyro4.naming.startNSloop(host='localhost', enableBroadcast=False)
 
     def _daemon_loop(self):
@@ -416,7 +422,21 @@ class PySwitchLibApi(object):
             time.sleep(5)
 
 if __name__ == "__main__":
-    pyswitchlib_broker = PySwitchLibApi()
+    pyro_ns_port = None
+    ns_port_filename = '/tmp/pyswitchlib_api.ns_port'
+
+    if len(sys.argv) == 3:
+        pyro_ns_port = int(sys.argv[2])
+
+        with open(ns_port_filename, 'w') as ns_port_file:
+            ns_port_file.write(str(pyro_ns_port) + '\n')
+
+    if len(sys.argv) >= 2 and sys.argv[1] == 'stop':
+        try:
+            os.remove(ns_port_filename)
+        except:
+            pass
+
+    pyswitchlib_broker = PySwitchLibApi(pyro_ns_port=pyro_ns_port)
     daemon_runner = runner.DaemonRunner(pyswitchlib_broker)
     daemon_runner.do_action()
-    
