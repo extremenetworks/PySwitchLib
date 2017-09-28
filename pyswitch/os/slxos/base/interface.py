@@ -1647,4 +1647,4 @@ class Interface(BaseInterface):
         util = Util(output.data)
         result = util.findall(util.root, './/bridge-domain-id')
         return result
-    
+   
