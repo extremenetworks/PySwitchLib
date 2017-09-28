@@ -11,6 +11,10 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.84
+* Added back version check and reponse close logic.
+## 0.1.83
+* Added pybindgs support for slxos17r2.00.
 ## 0.1.82
 * Pyswitch Wrapper for v7.x.x in NOS 
 ## 0.1.81

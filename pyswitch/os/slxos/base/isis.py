@@ -15,17 +15,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import xml.etree.ElementTree as ET
 
-from ipaddress import ip_interface
-
-import pyswitch.utilities as util
 from pyswitch.utilities import Util
 
 
 class Isis(object):
     """
-    The ISIS class holds all relevent methods and attributes for the ISIS 
+    The ISIS class holds all relevent methods and attributes for the ISIS
     capabilities of the SLXOS device.
 
     Attributes:
@@ -46,7 +42,6 @@ class Isis(object):
     def os(self):
         return 'slxos'
 
-
     def __init__(self, callback):
         """
         ISIS object init.
@@ -64,7 +59,7 @@ class Isis(object):
         self._cli = None
 
     def address_family(self, **kwargs):
-        """ Configure address Family 
+        """ Configure address Family
 
         Args:
             ip_version (str): ('4' or '6') address family
@@ -78,13 +73,13 @@ class Isis(object):
             Return value of `callback`.
 
         Raises:
-            None 
+            None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.isis.address_family_ipv4_unicast(get=True)
             ...     output = dev.isis.address_family_ipv4_unicast()
             ...     output = dev.isis.address_family_ipv4_unicast(delete=True)
@@ -97,7 +92,7 @@ class Isis(object):
 
         afi = 'ipv4' if ip_version == '4' else 'ipv6'
         if delete:
-            method_name = 'router_isis_address_family_%s_unicast_delete' % afi 
+            method_name = 'router_isis_address_family_%s_unicast_delete' % afi
             config = (method_name, isis_args)
             return callback(config)
         if not get_config:
@@ -114,7 +109,7 @@ class Isis(object):
                 return True
 
     def log_adjacency(self, **kwargs):
-        """ Configure log adjacency 
+        """ Configure log adjacency
 
         Args:
             get (bool): Get config instead of editing config. (True, False)
@@ -129,10 +124,10 @@ class Isis(object):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.isis.log_adjacency(get=True)
             ...     output = dev.isis.log_adjacency()
             ...     output = dev.isis.log_adjacency(delete=True)
@@ -176,10 +171,10 @@ class Isis(object):
             KeyError: if `net` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.isis.net_address(get=True)
             ...     output = dev.isis.net_address(
             ...     net='49.0001.0100.1001.0006.00')
@@ -198,7 +193,7 @@ class Isis(object):
             return callback(config)
         if not get_config:
             net = kwargs.pop('net')
-            isis_args['net'] = net 
+            isis_args['net'] = net
             method_name = 'router_isis_net_create'
             config = (method_name, isis_args)
             return callback(config)

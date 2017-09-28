@@ -61,10 +61,10 @@ class Bgp(BaseBgp):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.203', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.evpn_afi(rbridge_id='225')
@@ -96,10 +96,10 @@ class Bgp(BaseBgp):
             None
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.203', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='65535',
             ...     rbridge_id='225')
             ...     output = dev.bgp.evpn_afi(rbridge_id='225')
@@ -347,7 +347,6 @@ class Bgp(BaseBgp):
                    'vlan': bgp.find(bgp.root, './/add')}
             result.append(tmp)
         return result
-
 
     def bd_add(self, **kwargs):
         """Add VNIs to the EVPN Instance

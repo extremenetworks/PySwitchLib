@@ -205,6 +205,7 @@ class NetConfDevice(AbstractDevice):
         try:
             if handler == 'get_config':
                 output = self._mgr.get_config(filter=('xpath', call), source='running')
+                # pylint: disable=E1101
                 return ET.fromstring(letree.tostring(output.data))
 
             if handler == 'get':
@@ -233,10 +234,10 @@ class NetConfDevice(AbstractDevice):
         Raises:
             None
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> dev = pynos.device.Device(conn=conn, auth=auth)
+            >>> dev = pyswitch.device.Device(conn=conn, auth=auth)
             >>> dev.connection
             True
             >>> dev.close() # doctest: +ELLIPSIS
@@ -365,8 +366,6 @@ if __name__ == '__main__':
     from pyswitch.device import Device
     with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
         print dev.firmware_version
-        dev.interface.add_vlan_int(vlan_id_list=list(range(2, 4)), desc='test')
-        print dev.os_type
         print dev.suports_rbridge
 
         """

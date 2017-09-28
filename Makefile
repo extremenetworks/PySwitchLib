@@ -7,11 +7,7 @@ SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = docs/build
 VIRTUALENV_DIR ?= venv
-
-# User-friendly check for sphinx-build
-ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
-	$(error The '$(SPHINXBUILD)' command was not found. Make sure you have Sphinx installed, then set the SPHINXBUILD environment variable to point to the full path of the '$(SPHINXBUILD)' executable. Alternatively you can add the directory with the executable to your PATH. If you don\'t have Sphinx installed, grab it from http://sphinx-doc.org/)
-endif
+REQUIREMENTS := requirements.txt
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -253,17 +249,9 @@ requirements: virtualenv
 	@echo
 	@echo "==================== requirements ===================="
 	@echo
-
-	# Make sure we use latest version of pip
-	$(VIRTUALENV_DIR)/bin/pip install --upgrade "pip>=8.1.2,<8.2"
-	$(VIRTUALENV_DIR)/bin/pip install virtualenv  # Required for packs.install in dev envs.
-
-	# Install requirements
-	#
-	for req in $(REQUIREMENTS); do \
-			echo "Installing $$req..." ; \
-			$(VIRTUALENV_DIR)/bin/pip install $(PIP_OPTIONS) -r $$req ; \
-	done
+	. $(VIRTUALENV_DIR)/bin/activate && $(VIRTUALENV_DIR)/bin/pip install --upgrade pip
+	. $(VIRTUALENV_DIR)/bin/activate && $(VIRTUALENV_DIR)/bin/pip install --cache-dir $(HOME)/.pip-cache -r requirements.txt
+	. $(VIRTUALENV_DIR)/bin/activate && $(VIRTUALENV_DIR)/bin/pip install --cache-dir $(HOME)/.pip-cache -r requirements_tests.txt
 
 .PHONY: virtualenv
 virtualenv: $(VIRTUALENV_DIR)/bin/activate
@@ -272,28 +260,6 @@ $(VIRTUALENV_DIR)/bin/activate:
 	@echo "==================== virtualenv ===================="
 	@echo
 	test -d $(VIRTUALENV_DIR) || virtualenv --no-site-packages $(VIRTUALENV_DIR)
-
-	# Setup PYTHONPATH in bash activate script...
-	echo '' >> $(VIRTUALENV_DIR)/bin/activate
-	echo '_OLD_PYTHONPATH=$$PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate
-	echo 'PYTHONPATH=$$_OLD_PYTHONPATH:$(COMPONENT_PYTHONPATH)' >> $(VIRTUALENV_DIR)/bin/activate
-	echo 'export PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate
-	touch $(VIRTUALENV_DIR)/bin/activate
-
-	# Setup PYTHONPATH in fish activate script...
-	echo '' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo 'set -gx _OLD_PYTHONPATH $$PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo 'set -gx PYTHONPATH $$_OLD_PYTHONPATH $(COMPONENT_PYTHONPATH)' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo 'functions -c deactivate old_deactivate' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo 'function deactivate' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '  if test -n $$_OLD_PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '    set -gx PYTHONPATH $$_OLD_PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '    set -e _OLD_PYTHONPATH' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '  end' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '  old_deactivate' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo '  functions -e old_deactivate' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	echo 'end' >> $(VIRTUALENV_DIR)/bin/activate.fish
-	touch $(VIRTUALENV_DIR)/bin/activate.fish
 
 .PHONY: lint
 lint: requirements .lint
@@ -304,23 +270,25 @@ lint: requirements .lint
 .PHONY: pylint
 pylint: requirements .pylint
 
-.PHONY: .pylint
-.pylint:
-	@echo
-	@echo "================== pylint ===================="
-	@echo
-	# Lint Pyswitch Wrapper
-    echo "==========================================================="; \
-    echo "Running pylint on pyswitch" \
-    echo "==========================================================="; \
-	. $(VIRTUALENV_DIR)/bin/activate; pylint -E --rcfile=./lint-configs/python/.pylintrc pyswitch || exit 1; \
-
 .PHONY: flake8
 flake8: requirements .flake8
 
 .PHONY: .flake8
 .flake8:
 	@echo
-	@echo "==================== flake ===================="
+	@echo "================== flake8 ===================="
 	@echo
-	. $(VIRTUALENV_DIR)/bin/activate; flake8 --config ./lint-configs/python/.flake8 pyswitch
+	echo "==========================================================="; \
+	echo "Running flake8 on pyswitch" \
+	echo "==========================================================="; \
+	. $(VIRTUALENV_DIR)/bin/activate; flake8 --config ./lint-configs/python/.flake8 pyswitch || exit 1;
+
+.PHONY: .pylint
+.pylint:
+	@echo
+	@echo "================== pylint ===================="
+	@echo
+	echo "==========================================================="; \
+	echo "Running pylint on pyswitch" \
+	echo "==========================================================="; \
+	. $(VIRTUALENV_DIR)/bin/activate; pylint -E --rcfile=./lint-configs/python/.pylintrc pyswitch || exit 1;

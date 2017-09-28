@@ -32,6 +32,7 @@ class Reply:
         self.data = xml
 
 
+# pylint: disable=E1101
 class Device(object):
     """
     Device object holds the state for a single NOS device.
@@ -84,8 +85,7 @@ class Device(object):
 
     def _callback_main(self, call, handler='edit_config', target='running',
                        source='startup'):
-        return self.device_type.__callback_main(self, call, handler, target,
-                       source)
+        return self.device_type.__callback_main(self, call, handler, target, source)
 
     def reconnect(self):
         return self.device_type.reconnect()

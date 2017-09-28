@@ -15,11 +15,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import xml.etree.ElementTree as ET
 
-from ipaddress import ip_interface
-
-import pyswitch.utilities as util
 from pyswitch.utilities import Util
 
 
@@ -49,7 +45,6 @@ class Mpls(object):
     def os(self):
         return 'slxos'
 
-
     def __init__(self, callback):
         """
         MPLS object init.
@@ -67,7 +62,7 @@ class Mpls(object):
         self._cli = None
 
     def mpls_interface(self, **kwargs):
-        """ Configure/get/delete router mpls interface 
+        """ Configure/get/delete router mpls interface
 
         Args:
             intf_type (str): Type of interface.['ethernet', 've']
@@ -85,10 +80,10 @@ class Mpls(object):
             ValueError: if `intf_type` is not valid.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_interface(get=True)
             ...     output = dev.mpls.mpls_interface(get=True, intf_name='111',
             ...                                      intf_type='ve')
@@ -104,7 +99,7 @@ class Mpls(object):
 
         if intf_type not in self.valid_int_types:
             raise ValueError('intf_type must be one of: %s' %
-                             repr(valid_int_types))
+                             repr(self.valid_int_types))
 
         mpls_args = {}
 
@@ -123,7 +118,7 @@ class Mpls(object):
             return callback(config)
         elif get_config:
             if intf_name is None:
-                mpls_args= {}
+                mpls_args = {}
             method_name = 'router_mpls_mpls_interface_get'
             config = (method_name, mpls_args)
             output = callback(config, handler='get_config')
@@ -138,7 +133,7 @@ class Mpls(object):
         return result
 
     def mpls_interface_ldp_enable(self, **kwargs):
-        """ Configure/get/delete router mpls interface 
+        """ Configure/get/delete router mpls interface
 
         Args:
             intf_type (str): Type of interface.['ethernet', 've']
@@ -157,10 +152,10 @@ class Mpls(object):
             ValueError: if `intf_type` is not valid.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_interface_ldp_enable(get=True,
             ...                          intf_name='111', intf_type='ve')
             ...     output = dev.mpls.mpls_interface_ldp_enable(intf_name='111',
@@ -176,7 +171,7 @@ class Mpls(object):
 
         if intf_type not in self.valid_int_types:
             raise ValueError('intf_type must be one of: %s' %
-                             repr(valid_int_types))
+                             repr(self.valid_int_types))
 
         mpls_args = {}
 
@@ -219,10 +214,10 @@ class Mpls(object):
             KeyError: if `path_name` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_path_create(get=True,
             ...                                        path_name='test')
             ...     output = dev.mpls.mpls_path_create(delete=True,
@@ -280,10 +275,10 @@ class Mpls(object):
             KeyError: if `path_name`,`path_hop_ip` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_path_hop_create(get=True,
             ...              path_hop_ip='1.1.1.1', path_name='test')
             ...     output = dev.mpls.mpls_path_hop_create(delete=True,
@@ -323,13 +318,13 @@ class Mpls(object):
             if output.data != '<output></output>':
                 hop_ip = util.find(util.root, './/path-hop-ip')
                 hop_type = util.find(util.root, './/path-hop-type')
-                result = {'hop_ip':hop_ip, 'hop_type':hop_type}
+                result = {'hop_ip': hop_ip, 'hop_type': hop_type}
             else:
                 result = None
         return result
 
     def mpls_lsp_create(self, **kwargs):
-        """ Configure/get/delete router mpls lsp 
+        """ Configure/get/delete router mpls lsp
 
         Args:
             lsp_name (str). Define lsp name
@@ -345,10 +340,10 @@ class Mpls(object):
             KeyError: if `lsp_name` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_create(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls__lsp_create(delete=True,
@@ -409,10 +404,10 @@ class Mpls(object):
             KeyError: if `lsp_name` and `lsp_primary_path` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_primary_path(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls_lsp_primary_path(delete=True,
@@ -470,10 +465,10 @@ class Mpls(object):
             KeyError: if `lsp_name` and `lsp_secondary_path` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_secondary_path(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls_lsp_secondary_path(delete=True,
@@ -531,10 +526,10 @@ class Mpls(object):
             KeyError: if `lsp_name` and `lsp_cos` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_cos(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls_lsp_cos(delete=True,
@@ -546,7 +541,7 @@ class Mpls(object):
 
         lsp_name = kwargs.pop('lsp_name')
         lsp_cos = kwargs.pop('lsp_cos', None)
-        if lsp_cos is not None and lsp_cos not in range(0,8):
+        if lsp_cos is not None and lsp_cos not in range(0, 8):
             raise ValueError('`lsp_cos` must be in range[0-7]')
 
         mpls_args = {}
@@ -577,7 +572,7 @@ class Mpls(object):
         return result
 
     def mpls_lsp_enable(self, **kwargs):
-        """ Configure/get/delete router mpls lsp enable 
+        """ Configure/get/delete router mpls lsp enable
 
         Args:
             lsp_name (str). Define lsp name
@@ -594,10 +589,10 @@ class Mpls(object):
             KeyError: if `lsp_name` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_enable(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls_lsp_enable(delete=True,
@@ -638,7 +633,7 @@ class Mpls(object):
         return result
 
     def mpls_lsp_destination_address(self, **kwargs):
-        """ Configure/get/delete router mpls lsp destination address 
+        """ Configure/get/delete router mpls lsp destination address
 
         Args:
             lsp_name (str). Define lsp name
@@ -655,10 +650,10 @@ class Mpls(object):
             KeyError: if `lsp_name` and lsp_dest_address is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_destination_address(get=True,
             ...              lsp_name='test')
             ...     output = dev.mpls.mpls_lsp_destination_address(delete=True,
@@ -699,7 +694,7 @@ class Mpls(object):
         return result
 
     def mpls_policy(self, **kwargs):
-        """ Configure/get/delete router mpls policy 
+        """ Configure/get/delete router mpls policy
 
         Args:
             get (bool): Get config instead of editing config. (True, False)
@@ -714,10 +709,10 @@ class Mpls(object):
             None.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_policy(get=True)
             ...     output = dev.mpls.mpls_policy(delete=True)
             ...     output = dev.mpls.mpls_policy()
@@ -756,7 +751,7 @@ class Mpls(object):
         return result
 
     def mpls_policy_te_ospf(self, **kwargs):
-        """ Configure/get/delete router mpls traffic engineering ospf 
+        """ Configure/get/delete router mpls traffic engineering ospf
 
         Args:
             Choose only one among the args while configuring..
@@ -778,10 +773,10 @@ class Mpls(object):
                       `ospf_area_as_decimal` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_policy_te_ospf(get=True)
             ...     output = dev.mpls.mpls_policy_te_ospf(delete=True)
             ...     output = dev.mpls.mpls_policy_te_ospf(
@@ -802,7 +797,7 @@ class Mpls(object):
         callback = kwargs.pop('callback', self._callback)
 
         if delete:
-            method_name = 'router_mpls_policy_traffic_'\
+            method_name = 'router_mpls_policy_traffic_' \
                           'engineering_ospf_area_delete'
             config = (method_name, mpls_args)
             return callback(config)
@@ -810,13 +805,13 @@ class Mpls(object):
             mpls_args.update(ospf_area_as_ip_address=ospf_area_as_ip_address,
                              ospf_area_as_decimal=ospf_area_as_decimal,
                              ospf_area_all=ospf_area_all)
-            method_name = 'router_mpls_policy_traffic_'\
+            method_name = 'router_mpls_policy_traffic_' \
                           'engineering_ospf_area_update'
             config = (method_name, mpls_args)
             return callback(config)
         elif get_config:
-            method_name = 'router_mpls_policy_traffic_'\
-                           'engineering_ospf_area_get'
+            method_name = 'router_mpls_policy_traffic_' \
+                          'engineering_ospf_area_get'
             config = (method_name, mpls_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
@@ -850,10 +845,10 @@ class Mpls(object):
             KeyError: if `isis_set_level` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_policy_te_isis(get=True)
             ...     output = dev.mpls.mpls_policy_te_isis(delete=True)
             ...     output = dev.mpls.mpls_policy_te_isis(
@@ -862,7 +857,7 @@ class Mpls(object):
 
         isis_set_level = kwargs.pop('isis_set_level', None)
 
-        if isis_set_level is not None and isis_set_level\
+        if isis_set_level is not None and isis_set_level \
                 not in ['level-2', 'level-1']:
             raise ValueError('`isis_set_level` must be of type '
                              '[level-2, level-1]')
@@ -873,19 +868,19 @@ class Mpls(object):
         callback = kwargs.pop('callback', self._callback)
 
         if delete:
-            method_name = 'router_mpls_policy_traffic_'\
+            method_name = 'router_mpls_policy_traffic_' \
                           'engineering_isis_delete'
             config = (method_name, mpls_args)
             return callback(config)
         if not get_config:
             mpls_args.update(isis_set_level=isis_set_level)
-            method_name = 'router_mpls_policy_traffic_'\
+            method_name = 'router_mpls_policy_traffic_' \
                           'engineering_isis_update'
             config = (method_name, mpls_args)
             return callback(config)
         elif get_config:
-            method_name = 'router_mpls_policy_traffic_'\
-                           'engineering_isis_get'
+            method_name = 'router_mpls_policy_traffic_' \
+                          'engineering_isis_get'
             config = (method_name, mpls_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
@@ -895,7 +890,7 @@ class Mpls(object):
                 result = None
 
         return result
-   
+
     def mpls_lsp_get_details(self, **kwargs):
         """ get all router mpls lsp details
 
@@ -911,10 +906,10 @@ class Mpls(object):
             KeyError: if `lsp_name` is not specified.
 
         Examples:
-            >>> import pynos.device
+            >>> import pyswitch.device
             >>> conn = ('10.24.39.211', '22')
             >>> auth = ('admin', 'password')
-            >>> with pynos.device.Device(conn=conn, auth=auth) as dev:
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.mpls.mpls_lsp_get_details(
             ...              lsp_name='test')
         """
@@ -922,8 +917,6 @@ class Mpls(object):
         lsp_name = kwargs.pop('lsp_name')
 
         mpls_args = {}
-
-        get_config = kwargs.pop('get', True)
         callback = kwargs.pop('callback', self._callback)
         mpls_args = dict(lsp=lsp_name)
         method_name = 'router_mpls_lsp_get'
@@ -937,11 +930,11 @@ class Mpls(object):
             lsp_secondary_path = util.find(util.root, './/secpath-name')
             lsp_cos = util.find(util.root, './/cos')
             lsp_enable = util.find(util.root, './/enable')
-            result = {'lsp_name':lsp_name,
-                      'lsp_destn_addr':lsp_destn_addr,
-                      'lsp_primary_path':lsp_primary_path,
-                      'lsp_secondary_path':lsp_secondary_path,
-                      'lsp_cos':lsp_cos, 'lsp_enable':lsp_enable}
+            result = {'lsp_name': lsp_name,
+                      'lsp_destn_addr': lsp_destn_addr,
+                      'lsp_primary_path': lsp_primary_path,
+                      'lsp_secondary_path': lsp_secondary_path,
+                      'lsp_cos': lsp_cos, 'lsp_enable': lsp_enable}
         else:
             result = None
         return result

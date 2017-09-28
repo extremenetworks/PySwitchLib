@@ -23,6 +23,7 @@ class Asset(object):
         def on_deletion (killed_ref):
             self._cleanup_timer_handle()
             self._session.close()
+            self._response.close()
 
         atexit.register(self._cleanup_timer_handle)
         self._weakref = weakref.ref(self, on_deletion)
@@ -183,7 +184,7 @@ class Asset(object):
             ["POST", "/show-firmware-version", "", "rpc", 1],
         )
 
-        self._rest_operation(rest_command)
+        self._rest_operation(rest_command, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
 
         status, result = self._get_results()
 
@@ -238,7 +239,7 @@ class Asset(object):
             ["GET", "", "", "discover", 1],
         )
 
-        self._rest_operation(rest_command)
+        self._rest_operation(rest_command, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
 
         status, result = self._get_results()
 

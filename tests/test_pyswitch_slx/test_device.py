@@ -10,7 +10,7 @@ class DeviceTestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(DeviceTestCase, self).__init__(*args, **kwargs)
-        with open('tests/test_pyswitch_slx/config.yaml') as fileobj:
+        with open('/root/PySwitchLib/tests/test_pyswitch_slx/config.yaml') as fileobj:
             cfg = AttrDict(yaml.safe_load(fileobj))
             switch = cfg.DeviceTestCase.switch
 
@@ -29,3 +29,6 @@ class DeviceTestCase(unittest.TestCase):
         self.conn = (self.wrong_ip, '22')
         with Device(conn=self.conn, auth=self.auth) as dev:
             pprint.pprint(dev.firmware_version)
+
+if __name__ == "__main__":
+    unittest.main()
