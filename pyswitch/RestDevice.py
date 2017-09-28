@@ -139,7 +139,7 @@ SLXOS_VERSIONS = {
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
         'mct': pyswitch.os.slxos.base.mct.Mct,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
         'cluster': pyswitch.os.slxos.base.cluster.Cluster
     },
 }
