@@ -15,6 +15,7 @@ limitations under the License.
 """
 
 from pyswitch.snmp.SnmpMib import SnmpMib as SnmpMib
+from pyswitch.exceptions import InvalidVlanId
 
 
 class Interface(object):
@@ -92,9 +93,11 @@ class Interface(object):
             True if command completes successfully or False if not.
 
         Raises:
-            None
+            InvalidVlanId, ValueError
         """
         try:
+            if vlan_id < 1 and vlan_id > 4090:
+                raise InvalidVlanId("VLAN id must be between 1-4090")
             row_status = SnmpMib.mib_oid_map['dot1qVlanStaticRowStatus']
             oid = row_status + "." + str(vlan_id)
             config = (oid, 6)
@@ -109,7 +112,21 @@ class Interface(object):
             raise ValueError('Failed to delete VLAN %d due to %s', vlan_id, reason)
 
     def get_vlan_int(self, vlan_id):
+        """
+        Get VLAN Interface.
+
+        Args:
+            vlan_id: ID for the VLAN interface being queried. Value of 2-4096.
+
+        Returns:
+            True if command completes successfully or False if not.
+
+        Raises:
+            InvalidVlanId
+        """
         try:
+            if vlan_id < 1 and vlan_id > 4090:
+                raise InvalidVlanId("VLAN id must be between 1-4090")
             row_status = SnmpMib.mib_oid_map['dot1qVlanStaticRowStatus']
             # Get the rowstatus for vlan_id if it exists
             oid = row_status + "." + str(vlan_id)
@@ -122,3 +139,72 @@ class Interface(object):
         except Exception as error:
             reason = error.message
             raise ValueError('Failed to get VLAN %d due to %s', vlan_id, reason)
+
+    def get_interface_name_id_mapping(self, ifname_list=None):
+        """
+        convert interface names to interface id. Function accepts a list of interface names \
+        for which interface id is needed. If list is empty all interface name->id map is \
+        returned
+
+        Args:
+            ifname_list (list): List of interfaces for which ifid is required ['ethernet1/1']
+
+        Returns:
+            dictionary of ifname to id mappings
+
+        Raises:
+            None
+
+        """
+        ifXtable_oid = SnmpMib.mib_oid_map['ifXEntry']
+        config = {}
+        config['oid'] = ifXtable_oid
+        config['columns'] = {1: 'if_name'}
+        config['fetch_all'] = False
+        ifname_table = self._callback(config, handler='snmp-walk')
+        ifname_to_id_map = {}
+        for row in ifname_table.rows:
+            if_name, value = row['if_name'], row['_row_id']
+            ifname_to_id_map.update({if_name: value})
+
+        if ifname_list is None:
+            return ifname_to_id_map
+        # Build a dict of ifname to id mappings for the interfaces and return
+        ifname_dict = {}
+        for item in ifname_list:
+            ifname_dict.update({item: ifname_to_id_map[item]})
+        return ifname_dict
+
+    def get_interface_id_name_mapping(self, ifname_list=None):
+        """
+        convert interface id to name. Function accepts a list of interface ids \
+        for which interface name is needed. If list is empty all interface id->name map is \
+        returned
+        Args:
+            ifname_list (list): List of interfaces for which ifname is required [1, 2]
+
+        Returns:
+            dictionary of ifid to ifname mappings
+
+        Raises:
+            None
+
+        """
+        ifXtable_oid = SnmpMib.mib_oid_map['ifXEntry']
+        config = {}
+        config['oid'] = ifXtable_oid
+        config['columns'] = {1: 'if_name'}
+        config['fetch_all'] = False
+        ifname_table = self._callback(config, handler='snmp-walk')
+        ifid_to_name_map = {}
+        for row in ifname_table.rows:
+            if_name, if_id = row['if_name'], row['_row_id']
+            ifid_to_name_map.update({if_id: if_name})
+
+        if ifname_list is None:
+            return ifid_to_name_map
+        # Build a dict of id to ifname id mappings for the interfaces and return
+        ifname_dict = {}
+        for item in ifname_list:
+            ifname_dict.update({item: ifid_to_name_map[str(item)]})
+        return ifname_dict
