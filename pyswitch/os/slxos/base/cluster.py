@@ -23,18 +23,24 @@ class Cluster(object):
     """
 
     def __init__(self, callback):
-        """System init method.
+        """Cluster init method.
 
                 Args:
                     callback: Callback function that will be called for each action.
 
                 Returns:
-                    System Object
+                    None
 
                 Raises:
                     None
                 """
         self._callback = callback
+
+    def cluster_validate(self, cluster_name, cluster_id):
+        if cluster_id not in xrange(1, 65536):
+            raise ValueError("cluster_id %d must be in range `1-65535`", cluster_id)
+        if len(cluster_name) not in xrange(1, 64):
+            raise ValueError("cluster_name %s must be in range `1-64`", cluster_name)
 
     def cluster_create(self, **cluster_args):
         """
@@ -52,17 +58,27 @@ class Cluster(object):
                  df_hold_time: optional, designated forwarder hold time. Bu default 3 sec.
                  deploy: optional, 'True' or 'False'. by default 'False'
 
-        return:
+        Returns:
             Returns dictionary keys (status_code, status_message). status_code=0 for SUCCESS
             and status_code=-1 for FAILURE
+
+        Example:
+            >>> import pyswitch.device
+            >>> switch = '10.24.84.148'
+            >>> auth = ('admin', 'password')
+            >>> conn = (switch, '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
+            ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
+            ...     print(response)
+            ...
+            {'status_code': 0, 'status_message': 'cluster created'}
         """
         (clname, clid) = cluster_args.pop('cluster')
         isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
         hold_time = cluster_args.pop('df_hold_time', 3)
         cldeploy = cluster_args.pop('deploy', False)
 
-        if int(clid) not in xrange(1, 65536):
-            raise ValueError("cluster_id %s must be in range `1-65535`" + clid)
+        self.cluster_validate(clname, int(clid))
 
         status = dict()
         # set default status buffer
@@ -105,14 +121,24 @@ class Cluster(object):
         return:
             Returns dictionary keys (status_code, status_message). status_code=0 for SUCCESS
             and status_code=-1 for FAILURE
+
+        Example:
+            >>> import pyswitch.device
+            >>> switch = '10.24.84.148'
+            >>> auth = ('admin', 'password')
+            >>> conn = (switch, '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
+            ...     response = device.cluster.cluster_update(cluster=('F47-F48','3'), deploy=True)
+            ...     print(response)
+            ...
+            {'status_code': 0, 'status_message': 'cluster updated'}
         """
         (clname, clid) = cluster_args.pop('cluster')
         isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
         hold_time = cluster_args.pop('df_hold_time', 3)
         cldeploy = cluster_args.pop('deploy', False)
 
-        if int(clid) not in xrange(1, 65536):
-            raise ValueError("cluster_id %s must be in range `1-65535`" + clid)
+        self.cluster_validate(clname, int(clid))
 
         status = dict()
         # set default status buffer
@@ -151,11 +177,20 @@ class Cluster(object):
         return:
             Returns dictionary keys (status_code, status_message). status_code=0 for SUCCESS
             and status_code=-1 for FAILURE
+        Example:
+            >>> import pyswitch.device
+            >>> switch = '10.24.84.148'
+            >>> auth = ('admin', 'password')
+            >>> conn = (switch, '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
+            ...     response = device.cluster.cluster_delete(cluster=('F47-F48','3'))
+            ...     print(response)
+            ...
+            {'status_code': 0, 'status_message': 'cluster deleted'}
         """
         (clname, clid) = cluster_args.pop('cluster')
 
-        if int(clid) not in xrange(1, 65536):
-            raise ValueError("cluster_id %s must be in range `1-65535`" + clid)
+        self.cluster_validate(clname, int(clid))
 
         status = dict()
         # set default status buffer
@@ -191,17 +226,27 @@ class Cluster(object):
         return:
             Returns dictionary keys (status_code, status_message). status_code=0 for SUCCESS
             and status_code=-1 for FAILURE
+        Example:
+            >>> import pyswitch.device
+            >>> switch = '10.24.84.148'
+            >>> auth = ('admin', 'password')
+            >>> conn = (switch, '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
+            ...     response = device.cluster.cluster_peer_create(cluster=('F47-F48','3'),
+            ...                                peer_info=('21.0.0.47', 'Ethernet', '0/1'))
+            ...     print(response)
+            ...
+            {'status_code': 0, 'status_message': 'cluster peer created'}
         """
         (clname, clid) = cluster_args.pop('cluster')
-        (peerip, peerintf_type, peerintf) = cluster_args.pop('peer_info', None)
+        (peerip, peerintf_type, peerintf) = cluster_args.pop('peer_info')
 
         status = dict()
         # set default status buffer
         status['status_code'] = 0
         status['status_message'] = "cluster peer created"
 
-        if int(clid) not in xrange(1, 65536):
-            raise ValueError("cluster_id %s must be in range `1-65535`" + clid)
+        self.cluster_validate(clname, int(clid))
 
         if peerip is None or peerintf is None or peerintf_type is None:
             status['status_code'] = -1
@@ -252,6 +297,17 @@ class Cluster(object):
         return:
             Returns dictionary keys (status_code, status_message). status_code=0 for SUCCESS
             and status_code=-1 for FAILURE
+        Example:
+            >>> import pyswitch.device
+            >>> switch = '10.24.84.148'
+            >>> auth = ('admin', 'password')
+            >>> conn = (switch, '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
+            ...     response = device.cluster.cluster_peer_update(cluster=('F47-F48','3'),
+            ...                                           peer_info=('Ethernet', '0/1'))
+            ...     print(response)
+            ...
+            {'status_code': 0, 'status_message': 'cluster peer created'}
         """
         (clname, clid) = cluster_args.pop('cluster')
         (peerintf_type, peerintf) = cluster_args.pop('peer_info')
@@ -261,8 +317,7 @@ class Cluster(object):
         status['status_code'] = 0
         status['status_message'] = "cluster configured"
 
-        if int(clid) not in xrange(1, 65536):
-            raise ValueError("cluster_id %s must be in range `1-65535`" + clid)
+        self.cluster_validate(clname, int(clid))
 
         argument = {'cluster': (clname, clid),
                     'peer_if_type': peerintf_type, 'peer_if_name': peerintf
@@ -291,6 +346,17 @@ class Cluster(object):
         return:
             Returns dictionary keys (status_code, status_message). status_code=0 for SUCCESS
             and status_code=-1 for FAILURE
+        Example:
+            >>> import pyswitch.device
+            >>> switch = '10.24.84.148'
+            >>> auth = ('admin', 'password')
+            >>> conn = (switch, '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
+            ...     response = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
+            ...                                           peer_info=('21.0.0.47'))
+            ...     print(response)
+            ...
+            {'status_code': 0, 'status_message': 'cluster peer deleted'}
         """
         (clname, clid) = cluster_args.pop('cluster')
         peerip = cluster_args.pop('peer_info')
@@ -300,8 +366,7 @@ class Cluster(object):
         status['status_code'] = 0
         status['status_message'] = "cluster peer deleted"
 
-        if int(clid) not in xrange(1, 65536):
-            raise ValueError("cluster_id %s must be in range `1-65535`" + clid)
+        self.cluster_validate(clname, int(clid))
 
         # Delete the cluster peer interface first
         argument = {'cluster': (clname, clid),
@@ -348,6 +413,14 @@ class Cluster(object):
         return:
             Returns dictionary keys (cluster_name, cluster_id, peer_interface,
             peer_ip, deploy).
+        Example:
+            >>> import pyswitch.device
+            >>> switch = '10.24.84.148'
+            >>> auth = ('admin', 'password')
+            >>> conn = (switch, '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
+            ...     response = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            ...
         """
         (clname, clid) = cluster_args.pop('cluster')
 
@@ -356,21 +429,41 @@ class Cluster(object):
                     }
         config = ('cluster_get', argument)
         cluster_data = dict()
+
+        # initialize default response dictionary
+        cluster_data['cluster_name'] = ''
+        cluster_data['cluster_id'] = ''
+        cluster_data['peer_interface'] = ''
+        cluster_data['peer_ip'] = ''
+        cluster_data['deploy'] = ''
         try:
             response = self._callback(config, 'GET')
             root = ET.fromstring(response.data)
-            cluster_data['cluster_name'] = root.find('{urn:brocade.com:mgmt:brocade-mct}'
-                                                     'cluster-name').text
-            cluster_data['cluster_id'] = root.find('{urn:brocade.com:mgmt:brocade-mct}'
-                                                   'cluster-id').text
-            cluster_data['peer_interface'] = root.find('{urn:brocade.com:mgmt:brocade-mct}'
-                                                       'peer-interface').\
-                find('{urn:brocade.com:mgmt:brocade-mct}peer-if-type').text + \
-                root.find('{urn:brocade.com:mgmt:brocade-mct}peer-interface').\
-                find('{urn:brocade.com:mgmt:brocade-mct}peer-if-name').text
-            cluster_data['peer_ip'] = root.find('{urn:brocade.com:mgmt:brocade-mct}peer'). \
-                find('{urn:brocade.com:mgmt:brocade-mct}peer-ip').text
-            cluster_data['deploy'] = root.find('{urn:brocade.com:mgmt:brocade-mct}deploy').text
+
+            cluster_name_node = root.find('{urn:brocade.com:mgmt:brocade-mct}cluster-name')
+            if cluster_name_node is not None:
+                cluster_data['cluster_name'] = cluster_name_node.text
+            cluster_id_node = root.find('{urn:brocade.com:mgmt:brocade-mct}cluster-id')
+            if cluster_id_node is not None:
+                cluster_data['cluster_id'] = cluster_id_node.text
+            peer_interface_node = root.find('{urn:brocade.com:mgmt:brocade-mct}peer-interface')
+            if peer_interface_node is not None:
+                peer_interface_type_node = peer_interface_node.find(
+                    '{urn:brocade.com:mgmt:brocade-mct}peer-if-type')
+                peer_interface_name_node = peer_interface_node.find(
+                    '{urn:brocade.com:mgmt:brocade-mct}peer-if-name')
+                if peer_interface_type_node is not None and peer_interface_name_node is not None:
+                    cluster_data['peer_interface'] = \
+                        peer_interface_type_node.text + peer_interface_name_node.text
+            peer_node = root.find('{urn:brocade.com:mgmt:brocade-mct}peer')
+            if peer_node is not None:
+                peer_ip_node = peer_node.find('{urn:brocade.com:mgmt:brocade-mct}peer-ip')
+                if peer_ip_node is not None:
+                    cluster_data['peer_ip'] = peer_ip_node.text
+            deploy_node = root.find('{urn:brocade.com:mgmt:brocade-mct}deploy')
+            if deploy_node is not None:
+                cluster_data['deploy'] = deploy_node.text
+
             return (cluster_data)
         except Exception, exc:
             raise ValueError("Failed to get cluster (%s, %s) details Err:%s", clname, clid,
