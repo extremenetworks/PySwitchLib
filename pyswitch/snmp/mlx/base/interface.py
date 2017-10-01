@@ -153,9 +153,8 @@ class Interface(BaseInterface):
 
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = self.valid_int_types
-        ifAdminStatus_oid ="1.3.6.1.2.1.2.2.1.7"
-        ifadminStatus_index = ifAdminStatus_oid + '.' + `port_id`
-
+        ifAdminStatus_oid = "1.3.6.1.2.1.2.2.1.7"
+        ifadminStatus_index = ifAdminStatus_oid + '.' + repr(port_id)
         if int_type == 'ethernet' and port_id is None:
             raise ValueError('pass valid port-id')
 
@@ -169,7 +168,6 @@ class Interface(BaseInterface):
         try:
             if get:
                 value = callback(ifadminStatus_index)
-
                 if value == 1:
                     enabled = True
                 else:
@@ -177,12 +175,10 @@ class Interface(BaseInterface):
                 return enabled
             else:
                 if enabled:
-                    value = 1 #enable
+                    value = 1  #  enable
                 else:
-                    value = 2 #disable
-                  
+                    value = 2  #  disable
                 state_args = (ifadminStatus_index, value)
-
                 return callback(state_args, handler='snmp-set')
         except AttributeError:
             return None
