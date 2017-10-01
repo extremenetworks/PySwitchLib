@@ -143,7 +143,6 @@ class Interface(BaseInterface):
         """
 
         int_type = kwargs.pop('int_type').lower()
-        name = kwargs.pop('name')
         get = kwargs.pop('get', False)
         if get:
             enabled = None
@@ -175,9 +174,9 @@ class Interface(BaseInterface):
                 return enabled
             else:
                 if enabled:
-                    value = 1  #  enable
+                    value = 1
                 else:
-                    value = 2  #  disable
+                    value = 2
                 state_args = (ifadminStatus_index, value)
                 return callback(state_args, handler='snmp-set')
         except AttributeError:
