@@ -3,7 +3,7 @@ import pyswitch.utilities
 from pyswitch.exceptions import InvalidVlanId
 """
 
-import re
+# import re
 
 from pyswitch.snmp.base.interface import Interface as BaseInterface
 from pyswitch.snmp.SnmpMib import SnmpMib as SnmpMib
@@ -173,19 +173,15 @@ class Interface(BaseInterface):
             # To delete the LAG, first disable member ports
             # get the member ports of LAG
             cli_arr = []
-            cli_arr = 'show running-config' + " " + 'lag' + " " + "id" + " " + str(portchannel_num)
-            output = self._callback(cli_arr, handler='cli-get')
-            for item in output.split("\n"):
-                if "lag" in item:
-                    lag_str = item
-                if "ports" in item:
-                    disable_ports = item[7:]
-                    break
-            lag_str_list = lag_str.split()
-            cli_arr = []
-            cli_arr.append('lag' + " " + lag_str_list[1])
-            cli_arr.append('disable' + " " + disable_ports)
-            cli_arr.append('no' + " " + 'lag' + " " + lag_str_list[1])
+            lag_name = self.get_lag_id_name_map(portchannel_num)
+            cli_arr.append('lag' + " " + lag_name)
+            ifid_name = self.get_port_channel_member_ports(lag_name)
+            for item in ifid_name:
+                port = ifid_name[item]
+                port = port.replace('ethernet', 'ethernet ')
+                cli_arr.append('disable' + " " + str(port))
+
+            cli_arr.append('no' + " " + 'lag' + " " + lag_name)
             self._callback(cli_arr, handler='cli-set')
             return True
         except Exception as error:
@@ -206,36 +202,20 @@ class Interface(BaseInterface):
             valueerror: if `name` or `int_type` are not valid values.
         """
         # Get the list of port-channels
-        cli_arr = []
-        cli_arr = 'show running-config' + " " + 'lag'
         po_list = []
-        output = self._callback(cli_arr, handler='cli-get')
-        member_ports_str_list = []
-        for item in output.split("\n"):
-            if "lag" in item:
-                lag_str_list = item.split()
-                # store (lag name, type)
-                po_list.append((lag_str_list[1], lag_str_list[2], lag_str_list[4]))
-            if "ports" in item:
-                member_ports_str = item[7:]
-                member_ports_str_list.append((lag_str_list[1], member_ports_str))
+        po_list = self.get_port_channel_list()
         # Retrieve the elements for each LAG
-        ifname_list = []
-        for po in po_list:
-            # print po[1], po[2], po[0]
-            ifname_list.append("LAG" + str(po[2]))
-        # Get ifindex for LAGxx where xx is PO id
-        ifname_index_map = self.get_interface_name_id_mapping(ifname_list)
         result = []
         # For each PO collect the information.
         for po in po_list:
             interface_list = []
-            lag_ifindex = ifname_index_map[str("LAG" + str(po[2]))]
-            aggregator_id = po[2]
+            lag_ifindex = str(self.get_port_channel_ifindex(str(po[0])))
+            aggregator_id = self.get_port_channel_id(str(po[0]))
+            deploy = po[3]
             aggregator_type = 'standard'
             is_vlag = False
             aggregator_mode = po[1]
-            if aggregator_mode == 'dynamic':
+            if aggregator_mode == 'dynamic' and deploy is True:
                 sys_priority_oid = SnmpMib.mib_oid_map['dot3adAggActorSystemPriority'] \
                     + "." + str(lag_ifindex)
                 system_priority = self._callback(sys_priority_oid, handler='snmp-get')
@@ -270,9 +250,7 @@ class Interface(BaseInterface):
             ready_agg = 0
 
             # Get member port list of LAG using SNMP fdryLinkAggregationGroupIfList
-            # TBD move below to another function
             lag_name = po[0]
-            lag_name = re.sub('"', '', lag_name)
             ifid_name = {}
             ifid_name = self.get_port_channel_member_ports(lag_name)
             for item in ifid_name:
@@ -304,7 +282,7 @@ class Interface(BaseInterface):
                        'tx-link-count': tx_link_count,
                        'individual-agg': individual_agg,
                        'ready-agg': ready_agg}
-            print "result", results
+            # print "result", results
             result.append(results)
         return result
 
@@ -315,7 +293,7 @@ class Interface(BaseInterface):
             lag_name (str) - port-channel name/descr (for e.g po50)
 
         returns:
-            return - dict containing port-channel member map (ifid: ifname)
+            return - dict containing port-channel member (ifid: ifname) mapping
 
         raises:
             keyerror: if `int_type`, `name`, or `description` is not specified.
@@ -345,3 +323,127 @@ class Interface(BaseInterface):
         ifid_name_map = {}
         ifid_name_map = self.get_interface_id_name_mapping(member_list)
         return ifid_name_map
+
+    def get_port_channel_list(self):
+        """ Returns a port-channel list
+
+        args:
+            None
+
+        returns:
+            return - list of port channels containing name, type, primary port, deploy
+
+        raises:
+            keyerror: if `int_type`, `name`, or `description` is not specified.
+            valueerror: if `name` or `int_type` are not valid values.
+        """
+        cli_arr = 'show lag brief'
+        po_list = []
+        output = self._callback(cli_arr, handler='cli-get')
+        lag_str_list = []
+        start_parse = False
+        for item in output.split("\n"):
+            if "Deploy" in item:
+                start_parse = True
+                continue
+            if start_parse is True:
+                if item == '':
+                    break
+                lag_str_list = item.split()
+                lag_name = lag_str_list[0]
+                lag_type = lag_str_list[1]
+                deploy = lag_str_list[2]
+                if deploy == 'Y':
+                    deploy = True
+                else:
+                    deploy = False
+                primary_port = lag_str_list[4]
+                po_list.append((lag_name, lag_type, primary_port, deploy))
+        return po_list
+
+    def get_port_channel_ifindex(self, lag_name=None):
+        """ Returns a port-channel ifindex
+
+        args:
+            lag_name (str) - port-channel name/descr (for e.g po50)
+
+        returns:
+            return - port-channel ifindex
+
+        raises:
+            keyerror: if `int_type`, `name`, or `description` is not specified.
+            valueerror: if `name` or `int_type` are not valid values.
+        """
+        if lag_name is None:
+                raise ValueError('Port-channel name is NULL')
+        key_len = len(lag_name)
+        if key_len < 1 or key_len > 64:
+            raise ValueError('Port-channel name should be 1-64 characters')
+        # Convert PO name to ASCII to construct the key to
+        # fdryLinkAggregationGroupTable
+        key_oid = [ord(c) for c in lag_name]
+        lag_name_oid = ""
+        for item in key_oid:
+            lag_name_oid = lag_name_oid + "." + str(item)
+        lag_ifindex_oid = SnmpMLXMib.mib_oid_map['fdryLinkAggregationGroupIfIndex'] + \
+            "." + str(key_len) + str(lag_name_oid)
+        lag_ifindex = self._callback(lag_ifindex_oid, handler='snmp-get')
+        return lag_ifindex
+
+    def get_port_channel_id(self, lag_name=None):
+        """ Returns a port-channel id given a lag name
+
+        args:
+            lag_name (str) - port-channel name/descr (for e.g po50)
+
+        returns:
+            return - port channel id
+
+        raises:
+            keyerror: if `int_type`, `name`, or `description` is not specified.
+            valueerror: if `name` or `int_type` are not valid values.
+        """
+        if lag_name is None:
+                raise ValueError('Port-channel name is NULL')
+        key_len = len(lag_name)
+        if key_len < 1 or key_len > 64:
+            raise ValueError('Port-channel name should be 1-64 characters')
+        # Convert PO name to ASCII to construct the key to
+        # fdryLinkAggregationGroupTable
+        key_oid = [ord(c) for c in lag_name]
+        lag_name_oid = ""
+        for item in key_oid:
+            lag_name_oid = lag_name_oid + "." + str(item)
+        lag_id_oid = SnmpMLXMib.mib_oid_map['fdryLinkAggregationGroupId'] + \
+            "." + str(key_len) + str(lag_name_oid)
+        lag_id = self._callback(lag_id_oid, handler='snmp-get')
+        return lag_id
+
+    def get_lag_id_name_map(self, lag_id):
+        """ Returns a dict containing the port-channel id, port-channel name
+
+        args:
+            lag_name (str) - port-channel id
+
+        returns:
+            return - dict containing the port-channel id, port-channel name
+
+        raises:
+            keyerror: if `int_type`, `name`, or `description` is not specified.
+            valueerror: if `name` or `int_type` are not valid values.
+        """
+        ifXtable_oid = SnmpMLXMib.mib_oid_map['fdryLinkAggregationGroupEntry']
+        config = {}
+        config['oid'] = ifXtable_oid
+        config['columns'] = {12: 'lag_id'}
+        config['fetch_all'] = False
+        lag_group_table = self._callback(config, handler='snmp-walk')
+        for row in lag_group_table.rows:
+            id, value = row['lag_id'], row['_row_id']
+            # Strip the length and convert ascii to string
+            value = value.split('.')
+            value.pop(0)
+            value = [int(x) for x in value]
+            lag_name = ''.join(chr(i) for i in value)
+            if id == lag_id:
+                return lag_name

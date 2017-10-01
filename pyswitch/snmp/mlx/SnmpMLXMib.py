@@ -9,6 +9,7 @@ class SnmpMLXMib(BaseSnmpMib):
     """
     BaseSnmpMib.mib_oid_map.update({
         'fdryLinkAggregationGroupTable': '1.3.6.1.4.1.1991.1.1.3.33.1.1',
+        'fdryLinkAggregationGroupEntry': '1.3.6.1.4.1.1991.1.1.3.33.1.1.1',
         'fdryLinkAggregationGroupName': '1.3.6.1.4.1.1991.1.1.3.33.1.1.1.1',
         'fdryLinkAggregationGroupType': '1.3.6.1.4.1.1991.1.1.3.33.1.1.1.2',
         'fdryLinkAggregationGroupAdminStatus': '1.3.6.1.4.1.1991.1.1.3.33.1.1.1.3',
