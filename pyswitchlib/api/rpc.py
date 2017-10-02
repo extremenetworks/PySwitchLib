@@ -5288,6 +5288,45 @@ def show_clock_rpc(self, rbridge_id=None, api_timeout=''):
 
     return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
 
+def show_cluster_management_rpc(self, api_timeout=''):
+    """
+    This is an auto-generated method for the PySwitchLib.
+
+    **Supported Versions**:
+
+        * SLXOS: 17s.1.02    
+
+    :type api_timeout: long or tuple(long, long)
+    :param api_timeout: Timeout for connection and response in seconds.  If a tuple is specified, then the first value is for the connection timeout and the second value is for the response timeout.
+
+    :rtype: (*bool, list*)
+    :returns: Returns a tuple.
+
+        #. **api_success** (*bool*) - The success or failure of the API.
+        #. **details** (*list*) - List of REST request/response dictionaries, keyed by the asset's ip address.
+
+    :raises ConnectionError: If requests module connection or response timeout occurs.
+    :raises UnsupportedOSError: If firmware version installed on asset is not supported.
+    :raises RestInterfaceError: If requests module does not get a successful response from the rest URI.
+    :raises ValueError: If the argument value does not meet type requirements or value restrictions.
+    """
+
+    operation_type = 'rpc'
+    compositions_list = []
+    bindings_list = [('pybind.slxos.v17s_1_02.brocade_cluster_rpc.show_cluster_management', 'pybind.slxos.v17s_1_02.brocade_cluster_rpc.brocade_cluster', 'pybind.slxos.v17s_1_02.brocade_cluster_rpc')]
+    composed_child_list = []
+    compositions_keyval_list = []
+    bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}
+    composed_child_leafval_list = []
+    leafval_map = {}
+    rest_leaf_name = ''
+    choices_kwargs_map = {}
+    leaf_os_support_map = {}
+    self._api_validation(choices_kwargs_map=choices_kwargs_map, leaf_os_support_map=leaf_os_support_map)
+    pybind_object = self._get_pybind_object(operation_type=operation_type, compositions_list=compositions_list, bindings_list=bindings_list, composed_child_list=composed_child_list, compositions_keyval_list=compositions_keyval_list, bindings_keyval=bindings_keyval, composed_child_leafval_list=composed_child_leafval_list, leafval_map=leafval_map)
+
+    return self._rpc_worker(operation_type=operation_type, pybind_object=pybind_object, resource_depth=1, timeout=api_timeout)
+
 def show_fabric_trunk_info_rpc(self, rbridge_id=None, all=None, api_timeout=''):
     """
     This is an auto-generated method for the PySwitchLib.
@@ -9213,7 +9252,7 @@ def show_zoning_enabled_configuration_rpc(self, zone_name_pattern=None, last_rcv
     **Supported Versions**:
 
         * NOS: 6.0.2c, 7.0.1b, 7.1.0, 7.2.0
-        * SLXOS: 16r.1.00b, 17r.1.01a, 17r.2.00, 17s.1.02    
+        * SLXOS: 16r.1.00b, 17r.1.01a, 17s.1.02    
 
     **Instance Argument(s)**:
 
@@ -9240,7 +9279,7 @@ def show_zoning_enabled_configuration_rpc(self, zone_name_pattern=None, last_rcv
 
     operation_type = 'rpc'
     compositions_list = []
-    bindings_list = [('pybind.nos.v6_0_2c.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v6_0_2c.brocade_zone_rpc.brocade_zone', 'pybind.nos.v6_0_2c.brocade_zone_rpc'), ('pybind.nos.v7_0_1b.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_0_1b.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_0_1b.brocade_zone_rpc'), ('pybind.nos.v7_1_0.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_1_0.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_1_0.brocade_zone_rpc'), ('pybind.nos.v7_2_0.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_2_0.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_2_0.brocade_zone_rpc'), ('pybind.slxos.v16r_1_00b.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v16r_1_00b.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v16r_1_00b.brocade_zone_rpc'), ('pybind.slxos.v17r_1_01a.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v17r_1_01a.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v17r_1_01a.brocade_zone_rpc'), ('pybind.slxos.v17r_2_00.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v17r_2_00.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v17r_2_00.brocade_zone_rpc'), ('pybind.slxos.v17s_1_02.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v17s_1_02.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v17s_1_02.brocade_zone_rpc')]
+    bindings_list = [('pybind.nos.v6_0_2c.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v6_0_2c.brocade_zone_rpc.brocade_zone', 'pybind.nos.v6_0_2c.brocade_zone_rpc'), ('pybind.nos.v7_0_1b.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_0_1b.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_0_1b.brocade_zone_rpc'), ('pybind.nos.v7_1_0.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_1_0.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_1_0.brocade_zone_rpc'), ('pybind.nos.v7_2_0.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.nos.v7_2_0.brocade_zone_rpc.brocade_zone', 'pybind.nos.v7_2_0.brocade_zone_rpc'), ('pybind.slxos.v16r_1_00b.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v16r_1_00b.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v16r_1_00b.brocade_zone_rpc'), ('pybind.slxos.v17r_1_01a.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v17r_1_01a.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v17r_1_01a.brocade_zone_rpc'), ('pybind.slxos.v17s_1_02.brocade_zone_rpc.show_zoning_enabled_configuration.input', 'pybind.slxos.v17s_1_02.brocade_zone_rpc.brocade_zone', 'pybind.slxos.v17s_1_02.brocade_zone_rpc')]
     composed_child_list = []
     compositions_keyval_list = []
     bindings_keyval = {'kwargs_key_name': '', 'keyval': '', 'extra_keyval': ''}

@@ -128,6 +128,19 @@ SLXOS_VERSIONS = {
         'mct': pyswitch.os.slxos.base.mct.Mct,
         'firmware': pyswitch.os.base.firmware.Firmware
     },
+    '17r.2': {
+        'snmp': pyswitch.os.base.snmp.SNMP,
+        'interface': pyswitch.os.slxos.base.interface.Interface,
+        'bgp': pyswitch.os.slxos.base.bgp.Bgp,
+        'lldp': pyswitch.os.base.lldp.LLDP,
+        'system': pyswitch.os.slxos.base.system.System,
+        'services': pyswitch.os.slxos.base.services.Services,
+        'isis': pyswitch.os.slxos.base.isis.Isis,
+        'ospf': pyswitch.os.slxos.base.ospf.Ospf,
+        'mpls': pyswitch.os.slxos.base.mpls.Mpls,
+        'mct': pyswitch.os.slxos.base.mct.Mct,
+        'firmware': pyswitch.os.base.firmware.Firmware
+    },
     '17s.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
         'interface': pyswitch.os.slxos.base.interface.Interface,

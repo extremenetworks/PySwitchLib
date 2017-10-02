@@ -39,6 +39,9 @@ class XMLAsset(Asset):
             header = {"Resource-Depth": str(rest_cmd[4])}
             url = "http://" + self._ip_addr + uri_prefix_path
 
+            self._session.headers.update(
+                {'Content-type': 'application/x-www-form-urlencoded'})
+
             if self._rest_session_auth_token != self._rest_session_auth_token_expired:
                 self._session.headers.update(
                     {'Authentication-Token': self._rest_session_auth_token})
