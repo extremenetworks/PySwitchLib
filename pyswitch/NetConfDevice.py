@@ -45,6 +45,9 @@ SLXOS_VERSIONS = {
     '17r.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
     },
+    '17r.2': {
+        'interface': pyswitch.raw.slxos.base.interface.Interface,
+    },
     '17s.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
     },
