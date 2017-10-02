@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.87
+* Added v17r.2.00 support in pyswitch netconf device.
 ## 0.1.86
 * Added v17r.2.00 support in pyswitch.
 ## 0.1.85
