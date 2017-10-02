@@ -23,6 +23,7 @@ from pyswitch.SnmpCliDevice import SnmpCliDevice
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SnmpUtils as SNMPUtils
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
+from pyswitch.snmp.SnmpMib import SnmpMib as MIB
 
 
 class DeviceCommError(Exception):
@@ -68,7 +69,7 @@ class Device(object):
 
         try:
             snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
-            sysobj = str(snmpdev.get("1.3.6.1.2.1.1.2.0"))
+            sysobj = str(snmpdev.get(MIB.mib_oid_map['sysObjectId']))
         except SNMPError as error:
             logging.error(error)
             # print "SNMP query failed for device: ", error
