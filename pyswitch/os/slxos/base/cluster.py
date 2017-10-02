@@ -64,14 +64,14 @@ class Cluster(object):
 
         Example:
             >>> import pyswitch.device
-            >>> switch = '10.24.84.148'
+            >>> switch = '10.24.86.57'
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
             ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
-            ...     print(response)
+            ...     response1 = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            ...     response2 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
-            {'status_code': 0, 'status_message': 'cluster created'}
         """
         (clname, clid) = cluster_args.pop('cluster')
         isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
@@ -124,14 +124,15 @@ class Cluster(object):
 
         Example:
             >>> import pyswitch.device
-            >>> switch = '10.24.84.148'
+            >>> switch = '10.24.86.57'
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
-            ...     response = device.cluster.cluster_update(cluster=('F47-F48','3'), deploy=True)
-            ...     print(response)
+            ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
+            ...     response1 = device.cluster.cluster_update(cluster=('F47-F48','3'), deploy=True)
+            ...     response2 = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            ...     response3 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
-            {'status_code': 0, 'status_message': 'cluster updated'}
         """
         (clname, clid) = cluster_args.pop('cluster')
         isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
@@ -179,14 +180,14 @@ class Cluster(object):
             and status_code=-1 for FAILURE
         Example:
             >>> import pyswitch.device
-            >>> switch = '10.24.84.148'
+            >>> switch = '10.24.86.57'
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
-            ...     response = device.cluster.cluster_delete(cluster=('F47-F48','3'))
-            ...     print(response)
+            ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
+            ...     response1 = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            ...     response2 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
-            {'status_code': 0, 'status_message': 'cluster deleted'}
         """
         (clname, clid) = cluster_args.pop('cluster')
 
@@ -228,15 +229,18 @@ class Cluster(object):
             and status_code=-1 for FAILURE
         Example:
             >>> import pyswitch.device
-            >>> switch = '10.24.84.148'
+            >>> switch = '10.24.86.57'
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
-            ...     response = device.cluster.cluster_peer_create(cluster=('F47-F48','3'),
+            ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
+            ...     response1 = device.cluster.cluster_peer_create(cluster=('F47-F48','3'),
             ...                                peer_info=('21.0.0.47', 'Ethernet', '0/1'))
-            ...     print(response)
+            ...     response2 = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            ...     response3 = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
+            ...                                           peer_info=('21.0.0.47'))
+            ...     response4 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
-            {'status_code': 0, 'status_message': 'cluster peer created'}
         """
         (clname, clid) = cluster_args.pop('cluster')
         (peerip, peerintf_type, peerintf) = cluster_args.pop('peer_info')
@@ -299,15 +303,20 @@ class Cluster(object):
             and status_code=-1 for FAILURE
         Example:
             >>> import pyswitch.device
-            >>> switch = '10.24.84.148'
+            >>> switch = '10.24.86.57'
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
-            ...     response = device.cluster.cluster_peer_update(cluster=('F47-F48','3'),
+            ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
+            ...     response1 = device.cluster.cluster_peer_create(cluster=('F47-F48','3'),
+            ...                                peer_info=('21.0.0.47', 'Ethernet', '0/1'))
+            ...     response2 = device.cluster.cluster_peer_update(cluster=('F47-F48','3'),
             ...                                           peer_info=('Ethernet', '0/1'))
-            ...     print(response)
+            ...     response3 = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            ...     response4 = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
+            ...                                           peer_info=('21.0.0.47'))
+            ...     response5 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
-            {'status_code': 0, 'status_message': 'cluster peer created'}
         """
         (clname, clid) = cluster_args.pop('cluster')
         (peerintf_type, peerintf) = cluster_args.pop('peer_info')
@@ -352,11 +361,16 @@ class Cluster(object):
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
-            ...     response = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
+            ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
+            ...     response1 = device.cluster.cluster_peer_create(cluster=('F47-F48','3'),
+            ...                                peer_info=('21.0.0.47', 'Ethernet', '0/1'))
+            ...     response2 = device.cluster.cluster_peer_update(cluster=('F47-F48','3'),
+            ...                                           peer_info=('Ethernet', '0/1'))
+            ...     response3 = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            ...     response4 = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
             ...                                           peer_info=('21.0.0.47'))
-            ...     print(response)
+            ...     response5 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
-            {'status_code': 0, 'status_message': 'cluster peer deleted'}
         """
         (clname, clid) = cluster_args.pop('cluster')
         peerip = cluster_args.pop('peer_info')
@@ -419,7 +433,15 @@ class Cluster(object):
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
-            ...     response = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
+            ...     response1 = device.cluster.cluster_peer_create(cluster=('F47-F48','3'),
+            ...                                peer_info=('21.0.0.47', 'Ethernet', '0/1'))
+            ...     response2 = device.cluster.cluster_peer_update(cluster=('F47-F48','3'),
+            ...                                           peer_info=('Ethernet', '0/1'))
+            ...     response3 = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            ...     response4 = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
+            ...                                           peer_info=('21.0.0.47'))
+            ...     response5 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
         """
         (clname, clid) = cluster_args.pop('cluster')
