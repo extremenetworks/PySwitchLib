@@ -1,3 +1,5 @@
+python-daemon
+Pyro4
 dicttoxml
 ipaddress==1.0.14
 jsonpath-rw

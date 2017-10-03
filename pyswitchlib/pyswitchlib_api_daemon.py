@@ -1,24 +1,20 @@
-import pyangbind.lib.pybindJSON as pybindJSON
-from pyswitchlib.exceptions import (MultipleChoicesSetError)
-import pyswitchlib.exceptions
-from collections import OrderedDict
-from dicttoxml import dicttoxml
+import os
+import sys
+import time
+import threading
 import json
 import re
-import threading
 import Pyro4
 import Pyro4.naming
-import pybind.nos
-import pybind.slxos
-import pyswitchlib.api.create
-import pyswitchlib.api.update
-import pyswitchlib.api.delete
-import pyswitchlib.api.get
-import pyswitchlib.api.rpc
-import time
-import sys
-import os
+import pyangbind.lib.pybindJSON as pybindJSON
+from pyswitchlib.exceptions import (MultipleChoicesSetError)
+from collections import OrderedDict
+from dicttoxml import dicttoxml
 from daemon import runner
+from lockfile import LockTimeout
+
+pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_api.pid')
+ns_port_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_api.ns_port')
 
 @Pyro4.expose
 class PySwitchLibApi(object):
@@ -26,28 +22,33 @@ class PySwitchLibApi(object):
     This is an auto-generated class for the PySwitchLib.
     Providing python bindings to configure a switch through the REST interface.
     """
-    locals().update(pyswitchlib.api.create.__dict__)
-    locals().update(pyswitchlib.api.update.__dict__)
-    locals().update(pyswitchlib.api.delete.__dict__)
-    locals().update(pyswitchlib.api.get.__dict__)
-    locals().update(pyswitchlib.api.rpc.__dict__)
 
     def __init__(self, module_name='', module_obj=None, pyro_ns_port=None):
         """
         This is an auto-generated method for the PySwitchLib.
         """
-
         self._module_name = module_name
         self._module_obj = module_obj
+        self._api_lock = threading.Lock()
         self._pyro_ns_port = pyro_ns_port
-        self.stdin_path = '/dev/null'
-        self.stdout_path = '/dev/null'
-        self.stderr_path = '/dev/null'
-        self.pidfile_path =  '/tmp/pyswitchlib_api.pid'
-        self.pidfile_timeout = 5
+        self._nameserver_thread = threading.Thread(target=self._nameserver_loop)
+        self._nameserver_thread.setDaemon(True)
+        self._daemon_thread = threading.Thread(target=self._daemon_loop)
+        self._daemon_thread.setDaemon(True)
+        self.stdin_path = os.path.join(os.sep, 'dev', 'null')
+        self.stdout_path = os.path.join(os.sep, 'dev', 'null')
+        self.stderr_path = os.path.join(os.sep, 'dev', 'null')
+        self.pidfile_path =  pid_file
+        self.pidfile_timeout = 1
 
     def module_name(self, module_name=''):
         self._module_name = module_name
+
+    def api_acquire(self):
+        self._api_lock.acquire()
+
+    def api_release(self):
+        self._api_lock.release()
 
     def _api_validation(self, choices_kwargs_map=None, leaf_os_support_map=None, **kwargs):
         """
@@ -145,7 +146,7 @@ class PySwitchLibApi(object):
                     pybind_obj = pybind_module
 
                 for kwarg in kwargs:
-                    if kwarg in bindings_keyval['kwargs_key_name']:
+                    if kwarg == bindings_keyval['kwargs_key_name']:
                         if bindings_keyval['extra_keyval'] and kwargs[kwarg] is not None:
                             kwargs_map = {}
                             key_instance = []
@@ -200,8 +201,8 @@ class PySwitchLibApi(object):
                                         pybind_update_child_assignment(kwargs[child_tuple[1]][leaf_index])
 
                 for kwarg in kwargs:
-                    if kwarg not in kwargs_exclusion_list and kwargs[kwarg] != None:
-                        if kwarg not in bindings_keyval['kwargs_key_name']:
+                    if kwarg not in kwargs_exclusion_list:
+                        if kwarg != bindings_keyval['kwargs_key_name']:
                             if kwargs[kwarg] is not None:
                                 mapped_kwarg = kwarg
 
@@ -310,8 +311,11 @@ class PySwitchLibApi(object):
                 rest_data = rest_data.rsplit('<', 1)[0]
                 rest_data = rest_data.split(end_marker, 1)[-1]
 
-                if operation_type == 'create' and end_marker[:-1] in rest_uri:
-                    rest_uri = rest_uri.split(end_marker[:-1], 1)[0]
+                if operation_type == 'create' and end_marker[:-1] + '/' in uri:
+                    rest_uri = uri.rsplit(end_marker[:-1] + '/', 1)[0]
+
+                    if len(rest_uri) > 1:
+                        rest_uri = rest_uri.rstrip('/')
             else:
                 if operation_type == 'create':
                     uri = uri.split('/')[-1]
@@ -397,11 +401,30 @@ class PySwitchLibApi(object):
         if self._pyro_ns_port:
             Pyro4.config.NS_PORT = self._pyro_ns_port
             
-        Pyro4.naming.startNSloop(host='localhost', enableBroadcast=False)
+        try:
+            Pyro4.locateNS(host='localhost')
+        except Pyro4.errors.NamingError:
+            Pyro4.naming.startNSloop(host='localhost', enableBroadcast=False)
 
     def _daemon_loop(self):
         with Pyro4.Daemon() as daemon:
-            uri = daemon.register(PySwitchLibApi)
+
+            Pyro4.config.THREADPOOL_SIZE_MIN = 10
+            Pyro4.config.THREADPOOL_SIZE = 200
+
+            pyswitchlib_api_create = __import__('pyswitchlib.api.create', fromlist=['*'])
+            pyswitchlib_api_update = __import__('pyswitchlib.api.update', fromlist=['*'])
+            pyswitchlib_api_delete = __import__('pyswitchlib.api.delete', fromlist=['*'])
+            pyswitchlib_api_get = __import__('pyswitchlib.api.get', fromlist=['*'])
+            pyswitchlib_api_rpc = __import__('pyswitchlib.api.rpc', fromlist=['*'])
+
+            map(lambda filtered_api: setattr(PySwitchLibApi, filtered_api[0], filtered_api[1]), filter(lambda api: '__' not in api[0], pyswitchlib_api_create.__dict__.items()))
+            map(lambda filtered_api: setattr(PySwitchLibApi, filtered_api[0], filtered_api[1]), filter(lambda api: '__' not in api[0], pyswitchlib_api_update.__dict__.items()))
+            map(lambda filtered_api: setattr(PySwitchLibApi, filtered_api[0], filtered_api[1]), filter(lambda api: '__' not in api[0], pyswitchlib_api_delete.__dict__.items()))
+            map(lambda filtered_api: setattr(PySwitchLibApi, filtered_api[0], filtered_api[1]), filter(lambda api: '__' not in api[0], pyswitchlib_api_get.__dict__.items()))
+            map(lambda filtered_api: setattr(PySwitchLibApi, filtered_api[0], filtered_api[1]), filter(lambda api: '__' not in api[0], pyswitchlib_api_rpc.__dict__.items()))
+
+            uri = daemon.register(Pyro4.expose(PySwitchLibApi))
 
             with Pyro4.locateNS(host='localhost') as ns:
                 ns.register("PySwitchLib.Api", uri)
@@ -409,34 +432,59 @@ class PySwitchLibApi(object):
             daemon.requestLoop()
 
     def run(self):
-        nameserver_thread = threading.Thread(target=self._nameserver_loop)
-        daemon_thread = threading.Thread(target=self._daemon_loop)
-
-        nameserver_thread.setDaemon(True)
-        daemon_thread.setDaemon(True)
-
-        nameserver_thread.start()
-        daemon_thread.start()
+        self._nameserver_thread.start()
 
         while True:
+            if self._daemon_thread.isAlive() == False and self._nameserver_thread.isAlive() == True:
+                self._daemon_thread.start()
+
             time.sleep(5)
+
 
 if __name__ == "__main__":
     pyro_ns_port = None
-    ns_port_filename = '/tmp/pyswitchlib_api.ns_port'
+    ns_port_filename = ns_port_file
 
-    if len(sys.argv) == 3:
+    if len(sys.argv) >= 2: 
+        if sys.argv[1] == 'stop':
+            try:
+                os.remove(ns_port_filename)
+            except:
+                pass
+        elif sys.argv[1] == 'start':
+            if os.path.exists(pid_file):
+                with open(pid_file, 'r') as pid:
+                    if os.path.isdir(os.path.join(os.sep, 'proc', pid.readline().rstrip())):
+                        print(sys.argv[0].split('/')[-1] + ' is already started.')
+                        sys.exit(1)
+        elif sys.argv[1] == 'restart':
+            if not os.path.exists(pid_file):
+                print(sys.argv[0].split('/')[-1] + ' is not started.')
+                sys.exit(2)
+        elif sys.argv[1] == 'status':
+            if os.path.exists(pid_file):
+                with open(pid_file, 'r') as pid:
+                    proc_pid = pid.readline().rstrip()
+                    if os.path.isdir(os.path.join(os.sep, 'proc', proc_pid)):
+                        print(sys.argv[0].split('/')[-1] + ' (pid ' + proc_pid + ') is running...')
+                        sys.exit(0)
+                    else:
+                        print(sys.argv[0].split('/')[-1] + ' is stopped.')
+                        sys.exit(3)
+            else:
+                print(sys.argv[0].split('/')[-1] + ' is stopped.')
+                sys.exit(3)
+
+    if len(sys.argv) == 3 and sys.argv[1] != 'stop':
         pyro_ns_port = int(sys.argv[2])
 
-        with open(ns_port_filename, 'w') as ns_port_file:
+        with open(ns_port_filename, 'w') as ns_port_file:                                                                                                               
             ns_port_file.write(str(pyro_ns_port) + '\n')
-
-    if len(sys.argv) >= 2 and sys.argv[1] == 'stop':
-        try:
-            os.remove(ns_port_filename)
-        except:
-            pass
 
     pyswitchlib_broker = PySwitchLibApi(pyro_ns_port=pyro_ns_port)
     daemon_runner = runner.DaemonRunner(pyswitchlib_broker)
-    daemon_runner.do_action()
+
+    try:
+        daemon_runner.do_action()
+    except (LockTimeout, runner.DaemonRunnerStopFailureError) as e:
+        sys.exit()

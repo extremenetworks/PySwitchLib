@@ -66,7 +66,8 @@ class Asset(object):
         #self._load_module(supported_module_name=self._supported_module_name)
         self._pyro_ns_port = None
         self._pyro_proxy_name = 'PYRONAME:PySwitchLib.Api'
-        self._ns_port_filename = '/tmp/pyswitchlib_api.ns_port'
+        self._ns_port_filename = '/tmp/.pyswitchlib_api.ns_port'
+        self._pyro_bind_max_retries = 30 
 
         if api_port:
             self._pyro_ns_port = api_port
@@ -77,33 +78,41 @@ class Asset(object):
             self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
 
         with Pyro4.Proxy(self._pyro_proxy_name) as pyro_proxy:
-            try:
-                pyro_proxy._pyroBind()
-            except (Pyro4.errors.NamingError, Pyro4.errors.CommunicationError) as e:
-                if os.path.exists(self._ns_port_filename):
-                    bound_api_port = self._get_api_port_from_filename(self._ns_port_filename)
+            for n in range(self._pyro_bind_max_retries):
+                try:
+                    pyro_proxy._pyroBind()
+                except (Pyro4.errors.NamingError, Pyro4.errors.CommunicationError) as e:
+                    if n == 0:
+                        if os.path.exists(self._ns_port_filename):
+                            bound_api_port = self._get_api_port_from_filename(self._ns_port_filename)
 
-                    if bound_api_port and self._pyro_ns_port and bound_api_port != self._pyro_ns_port:
-                        raise ExistingApiPortBound("API port: " + str(bound_api_port) + " is already bound.")
+                            if bound_api_port and self._pyro_ns_port and bound_api_port != self._pyro_ns_port:
+                                raise ExistingApiPortBound("API port: " + str(bound_api_port) + " is already bound.")
 
-                pyswitchlib_api_daemon = os.path.join(get_python_lib(), 'pyswitchlib', 'pyswitchlib_api_daemon.py')
-                pyswitchlib_api_start_string = 'python ' + pyswitchlib_api_daemon + ' start'
+                        pyswitchlib_api_daemon = os.path.join(get_python_lib(), 'pyswitchlib', 'pyswitchlib_api_daemon.py')
+                        pyswitchlib_api_start_string = 'python ' + pyswitchlib_api_daemon + ' start'
 
-                if self._pyro_ns_port:
-                    pyswitchlib_api_start_string += ' ' + str(self._pyro_ns_port)
+                        if self._pyro_ns_port:
+                            pyswitchlib_api_start_string += ' ' + str(self._pyro_ns_port)
 
-                os.system(pyswitchlib_api_start_string)
+                        os.system(pyswitchlib_api_start_string)
+                else:
+                    break
 
-                if self._pyro_ns_port:
-                    time.sleep(1)
+                time.sleep(1)
+
+            else:
+                raise ApiDaemonConnectionError("Cannot connect to pyswitchlib_api_daemon.py.")
 
             self._proxied = pyro_proxy
 
     def __getattr__(self, name):
         if hasattr(self._proxied, name):
             def getattr_wrapper(*args, **kwargs):
+                self._proxied.api_acquire()
                 self._proxied.module_name(module_name=self._supported_module_name)
                 rest_operation_tuple = getattr(self._proxied, name)(*args, **kwargs)
+                self._proxied.api_release()
 
                 return self._rest_operation(rest_commands=rest_operation_tuple[0], yang_list=rest_operation_tuple[1], timeout=rest_operation_tuple[2])
             return getattr_wrapper
