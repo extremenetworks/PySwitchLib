@@ -87,13 +87,20 @@ class Interface(object):
         Delete VLAN Interface.
 
         Args:
-            vlan_id: ID for the VLAN interface being created. Value of 2-4096.
+            vlan_id (int): ID for the VLAN interface being deleted. Value of 2-4096.
 
         Returns:
             True if command completes successfully or False if not.
 
         Raises:
             InvalidVlanId, ValueError
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.85.107', '22')
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.del_vlan_int(300)
         """
         try:
             if vlan_id < 1 and vlan_id > 4090:
@@ -123,6 +130,13 @@ class Interface(object):
 
         Raises:
             InvalidVlanId
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.85.107', '22')
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.get_vlan_int(300)
         """
         try:
             if vlan_id < 1 and vlan_id > 4090:
