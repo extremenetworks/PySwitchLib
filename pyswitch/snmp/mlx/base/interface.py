@@ -101,6 +101,14 @@ class Interface(BaseInterface):
 
         Raises:
             None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.85.107', '22')
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     vlan_list = [700,800, 900]
+            ...     output = dev.interface.add_vlan_int(vlan_list, 'vlan_name')
         """
         try:
             cli_arr = []
@@ -128,6 +136,14 @@ class Interface(BaseInterface):
         raises:
             keyerror: if `int_type`, `name`, or `description` is not specified.
             valueerror: if `name` or `int_type` are not valid values.
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.85.107', '22')
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     ports = ['2/1', '2/2']
+            ...     output = dev.interface.create_port_channel(ports, 'ethernet',
+            ...                         50, 'static', 'po50')
         """
         try:
             cli_arr = []
@@ -156,11 +172,11 @@ class Interface(BaseInterface):
             reason = error.message
             raise ValueError('Failed to create Port-channel due to %s', reason)
 
-    def remove_port_channel(self, portchannel_num):
+    def remove_port_channel(self, port_int):
         """delete port channel
 
         args:
-            portchannel_num (int): port-channel number (1, 2, 3, etc).
+            port_int (str): port-channel number (1, 2, 3, etc).
 
         returns:
             return True for success and False for failure.
@@ -168,12 +184,19 @@ class Interface(BaseInterface):
         raises:
             keyerror: if `int_type`, `name`, or `description` is not specified.
             valueerror: if `name` or `int_type` are not valid values.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.85.107', '22')
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.remove_port_channel(20)
         """
         try:
             # To delete the LAG, first disable member ports
             # get the member ports of LAG
             cli_arr = []
-            lag_name = self.get_lag_id_name_map(portchannel_num)
+            lag_name = self.get_lag_id_name_map(port_int)
             cli_arr.append('lag' + " " + lag_name)
             ifid_name = self.get_port_channel_member_ports(lag_name)
             for item in ifid_name:
@@ -200,6 +223,13 @@ class Interface(BaseInterface):
         raises:
             keyerror: if `int_type`, `name`, or `description` is not specified.
             valueerror: if `name` or `int_type` are not valid values.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.85.107', '22')
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.port_channels
         """
         # Get the list of port-channels
         po_list = []
@@ -267,7 +297,7 @@ class Interface(BaseInterface):
                 interface_list.append(port_channel_interface)
             results = {'interface-name': lag_name,
                        'interfaces': interface_list,
-                       'aggregator_id': aggregator_id,
+                       'aggregator_id': str(aggregator_id),
                        'aggregator_type': aggregator_type,
                        'is_vlag': is_vlag,
                        'aggregator_mode': aggregator_mode,
@@ -298,7 +328,14 @@ class Interface(BaseInterface):
         raises:
             keyerror: if `int_type`, `name`, or `description` is not specified.
             valueerror: if `name` or `int_type` are not valid values.
-        """
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.85.107', '22')
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.get_port_channel_member_ports('po50')
+         """
         if lag_name is None:
                 raise ValueError('Port-channel name is NULL')
         key_len = len(lag_name)
@@ -423,7 +460,7 @@ class Interface(BaseInterface):
         """ Returns a dict containing the port-channel id, port-channel name
 
         args:
-            lag_name (str) - port-channel id
+            lag_id (str) - port-channel id
 
         returns:
             return - dict containing the port-channel id, port-channel name
@@ -445,5 +482,5 @@ class Interface(BaseInterface):
             value.pop(0)
             value = [int(x) for x in value]
             lag_name = ''.join(chr(i) for i in value)
-            if id == lag_id:
+            if str(id) == lag_id:
                 return lag_name
