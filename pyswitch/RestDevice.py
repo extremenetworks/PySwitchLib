@@ -34,13 +34,14 @@ import pyswitch.os.slxos.base.ospf
 import pyswitch.os.slxos.base.mct
 import pyswitch.os.slxos.base.services
 import pyswitch.os.slxos.base.system
+import pyswitch.os.slxos.base.cluster
 import pyswitch.utilities as util
 from pyswitch.AbstractDevice import AbstractDevice
 from pyswitch.XMLAsset import XMLAsset
 from pyswitch.utilities import Util
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
-             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls', 'mct', 'firmware']
+             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls', 'mct', 'firmware', 'cluster']
 
 NOS_VERSIONS = {
     '6.0': {
@@ -151,7 +152,8 @@ SLXOS_VERSIONS = {
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
         'mct': pyswitch.os.slxos.base.mct.Mct,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'cluster': pyswitch.os.slxos.base.cluster.Cluster
     },
 }
 
