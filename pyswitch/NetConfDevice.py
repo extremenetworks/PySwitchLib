@@ -223,7 +223,7 @@ class NetConfDevice(AbstractDevice):
                 ncclient.transport.SessionCloseError,
                 ncclient.transport.SSHError,
                 ncclient.transport.AuthenticationError,
-                ncclient.transport.SSHUnknownHostError) as error:
+                ncclient.transport.SSHUnknownHostError):
             raise DeviceCommError
 
     def close(self):
