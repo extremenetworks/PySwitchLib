@@ -1,4 +1,3 @@
-import logging
 import re
 import sys
 import xml.etree.ElementTree as ET
@@ -225,7 +224,6 @@ class NetConfDevice(AbstractDevice):
                 ncclient.transport.SSHError,
                 ncclient.transport.AuthenticationError,
                 ncclient.transport.SSHUnknownHostError) as error:
-            logging.error(error)
             raise DeviceCommError
 
     def close(self):
