@@ -46,10 +46,7 @@ class Interface(object):
         return False
 
     def method_prefix(self, method):
-        if self.has_rbridge_id:
-            return 'rbridge_id_%s' % method
-        else:
-            return method
+        return method
 
     def __init__(self, callback):
         """
