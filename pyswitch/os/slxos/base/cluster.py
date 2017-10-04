@@ -510,6 +510,7 @@ class Cluster(object):
              ...                                peer_info=('21.0.0.48', 'Ethernet', '0/47'))
              ...     response2 = device.cluster.cluster_update(cluster=('F47-F48','3'),deploy=True)
              ...     response3 = device.cluster.cluster_mgmt_get()
+             ...     assert len(response3) >= 1
              ...     response4 = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
              ...                                           peer_info=('21.0.0.48'))
              ...     response5 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
