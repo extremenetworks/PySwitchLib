@@ -652,3 +652,4 @@ class Interface(BaseInterface):
             raise ValueError('Failed to set interface admin status to %s',
                 reason)
         return None
+    
