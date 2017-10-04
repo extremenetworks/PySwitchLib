@@ -490,3 +490,126 @@ class Cluster(object):
         except Exception, exc:
             raise ValueError("Failed to get cluster (%s, %s) details Err:%s", clname, clid,
                              exc.message)
+
+    def cluster_mgmt_get(self):
+        """
+         Method to get cluster management information
+         args:
+             None
+         return:
+             Returns dictionary keys (cluster_name, cluster_id, peer_interface,
+             peer_ip, deploy).
+         Example:
+             >>> import pyswitch.device
+             >>> switch = '10.24.86.57'
+             >>> auth = ('admin', 'password')
+             >>> conn = (switch, '22')
+             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
+             ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
+             ...     response1 = device.cluster.cluster_peer_create(cluster=('F47-F48','3'),
+             ...                                peer_info=('21.0.0.48', 'Ethernet', '0/47'))
+             ...     response2 = device.cluster.cluster_update(cluster=('F47-F48','3'),deploy=True)
+             ...     response3 = device.cluster.cluster_mgmt_get()
+             ...     response4 = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
+             ...                                           peer_info=('21.0.0.48'))
+             ...     response5 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
+             ...
+         """
+        config = ('show_cluster_management_rpc', {})
+        try:
+            response = self._callback(config, 'GET')
+            output = self.parse_cluster_mgmt_reponse(response)
+        except Exception, exc:
+            raise ValueError("Failed to get management cluster details Err:%s", exc.message)
+        return output
+
+    def get_key_with_namespace(self, root, namespace, key):
+        lkupkey = namespace + key
+        return root.find(lkupkey)
+
+    def parse_cluster_mgmt_reponse(self, response):
+        namespace = '{http://brocade.com/ns/brocade-cluster}'
+        root = ET.fromstring(response.data)
+        cluster_keys = ['serial_num', 'node_condition', 'node_status', 'node_id', 'node_principal',
+                        'node_mac', 'node_internal_ip', 'node_public_ip', 'firmware_version',
+                        'node_switch_type', 'node_is_local']
+
+        output = dict()
+        principal_mac_node = self.get_key_with_namespace(root, namespace, 'principal-switch-mac')
+        if principal_mac_node is not None:
+            output['principal-switch-mac'] = principal_mac_node.text
+        num_node_node = self.get_key_with_namespace(root, namespace, 'total-nodes-in-cluster')
+        if num_node_node is not None:
+            output['num-nodes'] = num_node_node.text
+        disconnect_node = self.get_key_with_namespace(root, namespace,
+                                                      'nodes-disconnected-from-cluster')
+        if disconnect_node is not None:
+            output['num-nodes-disconnected'] = disconnect_node.text
+
+        cluster_list = []
+        cluster_nodes = self.get_key_with_namespace(root, namespace, 'cluster-nodes')
+        for cluster_node in cluster_nodes:
+            serial_num = ''
+            node_condition = ''
+            node_status = ''
+            node_id = ''
+            node_principal = ''
+            node_mac = ''
+            node_internal_ip = ''
+            node_public_ips = []
+            firmware_version = ''
+            node_switch_type = ''
+            node_is_local = ''
+
+            serial_num_node = self.get_key_with_namespace(cluster_node, namespace,
+                                                          'node-serial-num')
+            if serial_num_node is not None:
+                serial_num = serial_num_node.text
+            node_condition_node = self.get_key_with_namespace(cluster_node, namespace,
+                                                              'node-condition')
+            if node_condition_node is not None:
+                node_condition = node_condition_node.text
+            node_status_node = self.get_key_with_namespace(cluster_node, namespace, 'node-status')
+            if node_status_node is not None:
+                node_status = node_status_node.text
+            node_id_node = self.get_key_with_namespace(cluster_node, namespace, 'node-id')
+            if node_id_node is not None:
+                node_id = node_id_node.text
+            node_principal_node = self.get_key_with_namespace(cluster_node, namespace,
+                                                              'node-is-principal')
+            if node_principal_node is not None:
+                node_principal = node_principal_node.text
+            node_switch_mac_node = self.get_key_with_namespace(cluster_node, namespace,
+                                                               'node-switch-mac')
+            if node_switch_mac_node is not None:
+                node_mac = node_switch_mac_node.text
+            node_internal_ip_node = self.get_key_with_namespace(cluster_node, namespace,
+                                                                'node-internal-ip-address')
+            if node_internal_ip_node is not None:
+                node_internal_ip = node_internal_ip_node.text
+            node_public_ips_node = self.get_key_with_namespace(cluster_node, namespace,
+                                                               'node-public-ip-addresses')
+            if node_public_ips_node is not None:
+                for node_public_ip_node in node_public_ips_node.findall(namespace +
+                                                                        'node-public-ip-address'):
+                    node_public_ips.append(node_public_ip_node.text)
+            firmware_version_node = self.get_key_with_namespace(cluster_node, namespace,
+                                                                'firmware-version')
+            if firmware_version_node is not None:
+                firmware_version = firmware_version_node.text
+            node_switch_type_node = self.get_key_with_namespace(cluster_node, namespace,
+                                                                'node-switchtype')
+            if node_switch_type_node is not None:
+                node_switch_type = node_switch_type_node.text
+            node_is_local_node = self.get_key_with_namespace(cluster_node, namespace,
+                                                             'node-is-local')
+            if node_is_local_node is not None:
+                node_is_local = node_is_local_node.text
+
+            cluster_values = [serial_num, node_condition, node_status, node_id, node_principal,
+                        node_mac, node_internal_ip, node_public_ips, firmware_version,
+                        node_switch_type, node_is_local]
+            cluster_list.append(dict(zip(cluster_keys, cluster_values)))
+
+        output['cluster'] = cluster_list
+        return output
