@@ -15,8 +15,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import logging
-
 from pyswitch.RestDevice import RestDevice
 from pyswitch.NetConfDevice import NetConfDevice
 from pyswitch.SnmpCliDevice import SnmpCliDevice
@@ -70,9 +68,11 @@ class Device(object):
         try:
             snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
             sysobj = str(snmpdev.get(MIB.mib_oid_map['sysObjectId']))
-        except SNMPError as error:
-            logging.error(error)
-            # print "SNMP query failed for device: ", error
+        except SNMPError:
+            """
+               if SNMP is not supported then fallback to other connection type
+            """
+            pass
 
         if sysobj in SNMPUtils.SNMP_DEVICE_MAP:
             if SNMPUtils.SNMP_DEVICE_MAP[sysobj] == 'MLX':

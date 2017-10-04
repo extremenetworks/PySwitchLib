@@ -243,7 +243,6 @@ class SnmpCliDevice(AbstractDevice):
         except (SNMPError) as error:
             raise DeviceCommError(error)
         except:
-            print "CLI error"
             raise DeviceCommError
 
         return value
@@ -309,39 +308,13 @@ if __name__ == '__main__':
     start = time.time()
 
     conn = ('10.24.85.107', '22')
-    # conn = ('10.24.84.173', '22')
     auth = ('admin', 'admin')
 
     dev = Device(conn=conn, auth=auth)
-
-    # dev.interface.add_vlan_int(vlan_id='234')
     vers = dev.firmware_version
     print vers
     print dev.os_type
     print dev.suports_rbridge
-    # print dev.interface.port_channels
-    # print dev.mac_table
-    # kwargs = {'handler': 'snmp-get', 'call': '1.3.6.1.2.1.1.2.0'}
-    # call = {}
-    # call['oid'] = '1.3.6.1.2.1.47.1.1.1.1'
-    # call['columns'] = { 2: 'phydescr', 16: 'assetid'}
-    # call['fetch_all'] = False
-    # call['colmap'] = { "assetid": { 2: "chassis", 1: "module"} }
-    # descr = dev.snmp.test_snmpdev(handler='snmp-walk', call=call)
-    # for item in descr.rows:
-    #     print item['assetid']
-    # print descr.rows
-    # print descr
 
-    # config_commands = 'show interface eth 1/2'
-    # output = dev.snmp.test_snmpdev(handler='cli-get', call=config_commands)
-    # print output
-
-    """
-    from pyswitch.device import Device
-    dev = Device(conn=conn, auth=auth)
-    for vlan_id in range(2,4090):
-        dev.interface.add_vlan_int(vlan_id=vlan_id)
-    """
     end = time.time()
     print(end - start)
