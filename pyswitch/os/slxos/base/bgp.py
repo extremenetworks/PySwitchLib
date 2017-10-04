@@ -1,6 +1,5 @@
-from pyswitch.os.base.bgp import Bgp as BaseBgp
-
 import pyswitch.utilities as util
+from pyswitch.os.base.bgp import Bgp as BaseBgp
 from pyswitch.utilities import Util
 
 
@@ -43,7 +42,8 @@ class Bgp(BaseBgp):
         return
 
     def evpn_afi(self, **kwargs):
-        """EVPN AFI. This method just enables/disables or gets the EVPN AFI.
+        """
+        EVPN AFI. This method just enables/disables or gets the EVPN AFI.
 
         Args:
             rbridge_id (str): The rbridge ID of the device on which BGP will be
@@ -51,8 +51,7 @@ class Bgp(BaseBgp):
             delete (bool): Deletes the neighbor if `delete` is ``True``.
             get (bool): Get config instead of editing config. (True, False)
             callback (function): A function executed upon completion of the
-                method.  The only parameter passed to `callback` will be the
-                ``ElementTree`` `config`.
+                method. The only parameter passed to `callback` will be the``ElementTree`` `config`
 
         Returns:
             Return value of `callback`.
@@ -72,6 +71,7 @@ class Bgp(BaseBgp):
             ...     output = dev.bgp.evpn_afi(rbridge_id='225',
             ...     delete=True)
         """
+
         return
 
     def evpn_afi_peer_activate(self, **kwargs):
@@ -116,6 +116,7 @@ class Bgp(BaseBgp):
             ...     output = dev.bgp.remove_bgp(rbridge_id='225')
 
         """
+
         return
 
     def evpn_afi_peergroup_encapsulation(self, **kwargs):
