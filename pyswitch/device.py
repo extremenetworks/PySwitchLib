@@ -17,6 +17,11 @@ limitations under the License.
 
 from pyswitch.RestDevice import RestDevice
 from pyswitch.NetConfDevice import NetConfDevice
+from pyswitch.SnmpCliDevice import SnmpCliDevice
+from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
+from pyswitch.snmp.snmpconnector import SnmpUtils as SNMPUtils
+from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
+from pyswitch.snmp.SnmpMib import SnmpMib as MIB
 
 
 class DeviceCommError(Exception):
@@ -51,6 +56,30 @@ class Device(object):
         """
         kwargs['base'] = self
         self.connection_type = kwargs.get('connection_type', 'REST')
+
+        conn = kwargs.get('conn')
+        host = conn[0]
+        snmpport = kwargs.get('snmpport', 161)
+        snmpver = kwargs.get('snmpver', 2)
+        snmpv2c = kwargs.get('snmpv2c', 'public')
+
+        sysobj = ''
+
+        try:
+            snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
+            sysobj = str(snmpdev.get(MIB.mib_oid_map['sysObjectId']))
+        except SNMPError:
+            """
+               if SNMP is not supported then fallback to other connection type
+            """
+            pass
+
+        if sysobj in SNMPUtils.SNMP_DEVICE_MAP:
+            if SNMPUtils.SNMP_DEVICE_MAP[sysobj] == 'MLX':
+                self.connection_type = 'SNMPCLI'
+
+        if self.connection_type is 'SNMPCLI':
+            self.device_type = SnmpCliDevice(sysobj, **kwargs)
         if self.connection_type is 'REST':
             self.device_type = RestDevice(**kwargs)
         elif self.connection_type is 'NETCONF':
