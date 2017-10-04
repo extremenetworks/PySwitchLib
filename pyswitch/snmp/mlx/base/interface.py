@@ -108,7 +108,8 @@ class Interface(BaseInterface):
             >>> auth = ('admin', 'admin')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     vlan_list = [700,800, 900]
-            ...     output = dev.interface.add_vlan_int(vlan_list, 'vlan_name')
+            ...     ret = dev.interface.add_vlan_int(vlan_list, 'vlan_name')
+            ...     assert ret == True
         """
         try:
             cli_arr = []
@@ -144,6 +145,9 @@ class Interface(BaseInterface):
             ...     ports = ['2/1', '2/2']
             ...     output = dev.interface.create_port_channel(ports, 'ethernet',
             ...                         50, 'static', 'po50')
+            ...     assert output == True
+            ...     ifindex = dev.interface.get_port_channel_ifindex('po50')
+            ...     assert len(str(ifindex)) >= 1
         """
         try:
             cli_arr = []
@@ -190,7 +194,14 @@ class Interface(BaseInterface):
             >>> conn = ('10.24.85.107', '22')
             >>> auth = ('admin', 'admin')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     ports = ['2/1', '2/2']
+            ...     output = dev.interface.create_port_channel(ports, 'ethernet',
+            ...                         50, 'static', 'po50')
+            ...     assert output == True
+            ...     ifindex = dev.interface.get_port_channel_ifindex('po50')
+            ...     assert len(str(ifindex)) >= 1
             ...     output = dev.interface.remove_port_channel(20)
+            ...     assert output == True
         """
         try:
             # To delete the LAG, first disable member ports
@@ -229,7 +240,12 @@ class Interface(BaseInterface):
             >>> conn = ('10.24.85.107', '22')
             >>> auth = ('admin', 'admin')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.interface.port_channels
+            ...     ports = ['2/1', '2/2']
+            ...     output = dev.interface.create_port_channel(ports, 'ethernet',
+            ...                         50, 'static', 'po50')
+            ...     assert output == True
+            ...     result = dev.interface.port_channels
+            ...     assert len(result) >= 1
         """
         # Get the list of port-channels
         po_list = []
@@ -334,7 +350,12 @@ class Interface(BaseInterface):
             >>> conn = ('10.24.85.107', '22')
             >>> auth = ('admin', 'admin')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     ports = ['2/1', '2/2']
+            ...     output = dev.interface.create_port_channel(ports, 'ethernet',
+            ...                         50, 'static', 'po50')
+            ...     assert output == True
             ...     output = dev.interface.get_port_channel_member_ports('po50')
+            ...     assert len(output) >= 1
          """
         if lag_name is None:
                 raise ValueError('Port-channel name is NULL')

@@ -100,7 +100,12 @@ class Interface(object):
             >>> conn = ('10.24.85.107', '22')
             >>> auth = ('admin', 'admin')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.interface.del_vlan_int(300)
+            ...     vlan_list = [300]
+            ...     output = dev.interface.add_vlan_int(vlan_list, 'vlan_300')
+            ...     output = dev.interface.get_vlan_int(300)
+            ...     assert output == True
+            ...     ret = dev.interface.del_vlan_int(300)
+            ...     assert ret == True
         """
         try:
             if vlan_id < 1 and vlan_id > 4090:
@@ -136,7 +141,10 @@ class Interface(object):
             >>> conn = ('10.24.85.107', '22')
             >>> auth = ('admin', 'admin')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.interface.get_vlan_int(300)
+            ...     vlan_list = [300]
+            ...     output = dev.interface.add_vlan_int(vlan_list, 'vlan_300')
+            ...     ret = dev.interface.get_vlan_int(300)
+            ...     assert ret == True
         """
         try:
             if vlan_id < 1 and vlan_id > 4090:
