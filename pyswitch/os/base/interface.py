@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import logging
 import re
 
 from ipaddress import ip_interface
@@ -91,8 +90,7 @@ class Interface(object):
             self._callback(config)
             return True
 
-        except Exception as error:
-            logging.error(error)
+        except Exception:
             return False
 
     def get_vlan_int(self, vlan_id):
@@ -107,8 +105,7 @@ class Interface(object):
             else:
                 return False
 
-        except Exception as error:
-            logging.error(error)
+        except Exception:
             return False
 
     def interface_exists(self, **kwargs):
@@ -158,8 +155,7 @@ class Interface(object):
             self._callback(config)
             return True
 
-        except Exception as error:
-            logging.error(error)
+        except Exception:
             return False
 
     def enable_switchport(self, inter_type, inter):
@@ -183,8 +179,7 @@ class Interface(object):
         try:
             self._callback(config)
             return True
-        except Exception as error:
-            logging.error(error)
+        except Exception:
             return False
 
     def disable_switchport(self, inter_type, inter):
@@ -208,8 +203,7 @@ class Interface(object):
         try:
             self._callback(config)
             return True
-        except Exception as error:
-            logging.error(error)
+        except Exception:
             return False
 
     def access_vlan(self, inter_type, inter, vlan_id):
@@ -236,8 +230,7 @@ class Interface(object):
         try:
             self._callback(config)
             return True
-        except Exception as error:
-            logging.error(error)
+        except Exception:
             return False
 
     def del_access_vlan(self, inter_type, inter, vlan_id):
@@ -264,9 +257,8 @@ class Interface(object):
         try:
             self._callback(config)
             return True
-        # TODO add logging and narrow exception window.
-        except Exception as error:
-            logging.error(error)
+        # TODO narrow exception window.
+        except Exception:
             return False
 
     def set_ip(self, inter_type, inter, ip_addr):
@@ -293,8 +285,7 @@ class Interface(object):
         try:
             self._callback(config)
             return True
-        except Exception as error:
-            logging.error(error)
+        except Exception:
             return False
 
     def remove_port_channel(self, **kwargs):
