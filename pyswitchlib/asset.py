@@ -66,13 +66,13 @@ class Asset(object):
         #self._load_module(supported_module_name=self._supported_module_name)
         self._pyro_ns_port = None
         self._pyro_proxy_name = 'PYRONAME:PySwitchLib.Api'
-        self._ns_port_filename = '/tmp/.pyswitchlib_api.ns_port'
         self._pyro_bind_max_retries = 30 
+        self._pyswitchlib_conf_filename = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
 
         if api_port:
             self._pyro_ns_port = api_port
-        elif os.path.exists(self._ns_port_filename):
-            self._pyro_ns_port = self._get_api_port_from_filename(self._ns_port_filename)
+        elif os.path.exists(self._pyswitchlib_conf_filename):
+            self._pyro_ns_port = self._get_api_port_from_filename(self._pyswitchlib_conf_filename)
 
         if self._pyro_ns_port:
             self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
@@ -83,8 +83,8 @@ class Asset(object):
                     pyro_proxy._pyroBind()
                 except (Pyro4.errors.NamingError, Pyro4.errors.CommunicationError) as e:
                     if n == 0:
-                        if os.path.exists(self._ns_port_filename):
-                            bound_api_port = self._get_api_port_from_filename(self._ns_port_filename)
+                        if os.path.exists(self._pyswitchlib_conf_filename):
+                            bound_api_port = self._get_api_port_from_filename(self._pyswitchlib_conf_filename)
 
                             if bound_api_port and self._pyro_ns_port and bound_api_port != self._pyro_ns_port:
                                 raise ExistingApiPortBound("API port: " + str(bound_api_port) + " is already bound.")
@@ -119,12 +119,29 @@ class Asset(object):
         else:
             raise AttributeError(name)
 
+    def _read_conf_file(self, filename=None):
+        conf_dict = {}
+        conf_pattern = re.compile('\s*(\w+)\s*=\s*(\w+)\s*')
+
+        if os.path.exists(filename):
+            with open(filename, 'r') as conf_file:
+                for conf_line in conf_file:
+                    line = conf_line.strip()
+
+                    if not re.match('^#', line):
+                        match = conf_pattern.match(line)
+
+                        if match:
+                            conf_dict[match.group(1)] = match.group(2)
+
+        return conf_dict
+
     def _get_api_port_from_filename(self, filename):
         api_port = None
+        conf_dict = self._read_conf_file(filename=filename)
 
-        if filename:
-             with open(filename) as ns_port_file:
-                api_port = int(ns_port_file.read().rstrip('\n\r'))
+        if 'ns_port' in conf_dict:
+            api_port = int(conf_dict['ns_port'])
 
         return api_port
 

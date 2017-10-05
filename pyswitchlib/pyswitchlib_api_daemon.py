@@ -14,7 +14,7 @@ from daemon import runner
 from lockfile import LockTimeout
 
 pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_api.pid')
-ns_port_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_api.ns_port')
+pyswitchlib_conf_file = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
 
 @Pyro4.expose
 class PySwitchLibApi(object):
@@ -440,18 +440,43 @@ class PySwitchLibApi(object):
 
             time.sleep(5)
 
+def read_conf_file(filename=None):
+    conf_dict = {}
+    conf_pattern = re.compile('\s*(\w+)\s*=\s*(\w+)\s*')
+
+    if os.path.exists(filename):
+         with open(filename, 'r') as conf_file:
+             for conf_line in conf_file:
+                line = conf_line.strip()
+                  
+                if not re.match('^#', line): 
+                    match = conf_pattern.match(line)
+
+                    if match:        
+                        conf_dict[match.group(1)] = match.group(2)
+
+    return conf_dict
+
+def write_conf_file(filename=None, conf_dict=None):
+    merged_conf = read_conf_file(filename=filename)
+
+    if conf_dict:
+        merged_conf.update(conf_dict)
+
+        with open(filename, 'w') as conf_file:
+            for key in merged_conf:
+                conf_file.write(key + ' = ' + merged_conf[key] + '\n')
+
 
 if __name__ == "__main__":
     pyro_ns_port = None
-    ns_port_filename = ns_port_file
+    pyswitchlib_conf = read_conf_file(filename=pyswitchlib_conf_file)
+
+    if 'ns_port' in pyswitchlib_conf:
+        pyro_ns_port = int(pyswitchlib_conf['ns_port'])
 
     if len(sys.argv) >= 2: 
-        if sys.argv[1] == 'stop':
-            try:
-                os.remove(ns_port_filename)
-            except:
-                pass
-        elif sys.argv[1] == 'start':
+        if sys.argv[1] == 'start':
             if os.path.exists(pid_file):
                 with open(pid_file, 'r') as pid:
                     if os.path.isdir(os.path.join(os.sep, 'proc', pid.readline().rstrip())):
@@ -477,9 +502,9 @@ if __name__ == "__main__":
 
     if len(sys.argv) == 3 and sys.argv[1] != 'stop':
         pyro_ns_port = int(sys.argv[2])
+        conf_dict['ns_port'] = pyro_ns_port
 
-        with open(ns_port_filename, 'w') as ns_port_file:                                                                                                               
-            ns_port_file.write(str(pyro_ns_port) + '\n')
+        write_conf_file(filename=pyswitchlib_conf_file, conf_dict=conf_dict)
 
     pyswitchlib_broker = PySwitchLibApi(pyro_ns_port=pyro_ns_port)
     daemon_runner = runner.DaemonRunner(pyswitchlib_broker)

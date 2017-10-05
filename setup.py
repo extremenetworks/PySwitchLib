@@ -67,5 +67,6 @@ setup(
     cmdclass={
         'install': PostInstallCommand,
     },
-    data_files=[('/etc/init.d', ['pyswitchlib-api-daemon'])]
+    data_files=[('/etc/pyswitchlib', ['pyswitchlib.conf']),
+                ('/etc/init.d', ['pyswitchlib-api-daemon'])]
 )
