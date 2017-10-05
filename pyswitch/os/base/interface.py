@@ -3753,11 +3753,9 @@ class Interface(object):
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.interface.conversational_mac_conversational_timeout()
-            ...     print output
             ...     output = dev.interface.conversational_mac_conversational_timeout(get=True)
-            ...     print output
             ...     output = dev.interface.conversational_mac_conversational_timeout(delete=True)
-            ...     print output
+            ...     output = dev.interface.conversational_mac_conversational_timeout(delete=True)
         """
 
         callback = kwargs.pop('callback', self._callback)
@@ -3806,11 +3804,8 @@ class Interface(object):
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.interface.conversational_mac_legacy_timeout()
-            ...     print output
             ...     output = dev.interface.conversational_mac_legacy_timeout(get=True)
-            ...     print output
             ...     output = dev.interface.conversational_mac_legacy_timeout(delete=True)
-            ...     print output
         """
 
         callback = kwargs.pop('callback', self._callback)
@@ -5413,23 +5408,31 @@ class Interface(object):
 
         Examples:
             >>> import pyswitch.device
-            >>> conn = ('10.24.39.211', '22')
+            >>> conn = ('10.24.39.231', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.interface.conversational_arp(rbridge_id="1")
-            ...     output = dev.interface.conversational_arp(rbridge_id="1",
-                             get=True)
-            ...     output = dev.interface.conversational_arp(rbridge_id="1",
-                             delete=True)
+            ...     output = dev.interface.conversational_arp(rbridge_id="231")
+            ...     output = dev.interface.conversational_arp(rbridge_id="231",
+            ...                 get=True)
+            ...     output = dev.interface.conversational_arp(rbridge_id="231",
+            ...                 delete=True)
+            >>> conn = ('10.26.8.214', '22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.conversational_arp()
+            ...     output = dev.interface.conversational_arp(get=True)
+            ...     output = dev.interface.conversational_arp(delete=True)
         """
 
-        rbridge_id = kwargs.pop('rbridge_id', '1')
         callback = kwargs.pop('callback', self._callback)
-
-        arp_args = dict(rbridge_id=rbridge_id)
+        if self.has_rbridge_id:
+            rbridge_id = kwargs.pop('rbridge_id', '1')
+            arp_args = dict(rbridge_id=rbridge_id)
+        else:
+            arp_args = dict()
 
         if kwargs.pop('get', False):
-            method_name = 'rbridge_id_get'
+            method_name = self.method_prefix('host_table_aging_mode_conversational_get')
             config = (method_name, arp_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
@@ -5440,12 +5443,12 @@ class Interface(object):
             else:
                 return None
         if kwargs.pop('delete', False):
-            method_name = 'rbridge_id_host_table_aging_mode_' \
-                          'conversational_update'
+            method_name = self.method_prefix('host_table_aging_mode_'
+                                             'conversational_update')
             arp_args['conversational'] = False
         else:
-            method_name = 'rbridge_id_host_table_aging_mode_' \
-                          'conversational_update'
+            method_name = self.method_prefix('host_table_aging_mode_'
+                                             'conversational_update')
             arp_args['conversational'] = True
         config = (method_name, arp_args)
         return callback(config)
