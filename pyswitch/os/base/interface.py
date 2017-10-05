@@ -3730,6 +3730,112 @@ class Interface(object):
         config = (method_name, arguments)
         return callback(config)
 
+    def conversational_mac_conversational_timeout(self, **kwargs):
+        """Enable conversational mac learning on vdx switches
+
+        Args:
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the mac-learning. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> #conn = ('10.24.39.231', '22')
+            >>> conn = ('10.26.8.214','22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.conversational_mac_conversational_timeout()
+            ...     print output
+            ...     output = dev.interface.conversational_mac_conversational_timeout(get=True)
+            ...     print output
+            ...     output = dev.interface.conversational_mac_conversational_timeout(delete=True)
+            ...     print output
+        """
+
+        callback = kwargs.pop('callback', self._callback)
+        conversational_time_out = kwargs.pop('conversational_time_out', 300)
+        method_name = 'mac_address_table_aging_time_conversational_'
+
+        arguments = dict()
+        if kwargs.pop('get', False):
+            method_name = "%sget" % method_name
+            config = (method_name, arguments)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            item = util.find(util.root, './/conversational')
+
+            if item is not None:
+                return item
+            return None
+        if kwargs.pop('delete', False):
+            method_name = "%sdelete" % method_name
+        else:
+            method_name = "%supdate" % method_name
+            arguments['conversational_time_out'] = conversational_time_out
+        config = (method_name, arguments)
+        return callback(config)
+
+    def conversational_mac_legacy_timeout(self, **kwargs):
+        """Enable conversational mac learning on vdx switches
+
+        Args:
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the mac-learning. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> #conn = ('10.24.39.231', '22')
+            >>> conn = ('10.26.8.214','22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.conversational_mac_legacy_timeout()
+            ...     print output
+            ...     output = dev.interface.conversational_mac_legacy_timeout(get=True)
+            ...     print output
+            ...     output = dev.interface.conversational_mac_legacy_timeout(delete=True)
+            ...     print output
+        """
+
+        callback = kwargs.pop('callback', self._callback)
+        legacy_time_out = kwargs.pop('legacy_time_out', 1800)
+        method_name = 'mac_address_table_aging_time_legacy_time_out_'
+
+        arguments = dict()
+        if kwargs.pop('get', False):
+            method_name = "%sget" % method_name
+            config = (method_name, arguments)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            item = util.find(util.root, './/legacy-time-out')
+
+            if item is not None:
+                return item
+            return None
+        if kwargs.pop('delete', False):
+            method_name = "%sdelete" % method_name
+        else:
+            method_name = "%supdate" % method_name
+            arguments['legacy_time_out'] = legacy_time_out
+        config = (method_name, arguments)
+        return callback(config)
+
     def add_int_vrf(self, **kwargs):
         """
         Add L3 Interface in Vrf.
