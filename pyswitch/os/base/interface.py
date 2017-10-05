@@ -5490,7 +5490,7 @@ class Interface(object):
         """
 
         callback = kwargs.pop('callback', self._callback)
-        conversational_timeout = kwargs.pop('conversational_timeout', 400)
+        conversational_timeout = kwargs.pop('conversational_timeout', 300)
         if self.has_rbridge_id:
             rbridge_id = kwargs.pop('rbridge_id', '1')
             arp_args = dict(rbridge_id=rbridge_id)
