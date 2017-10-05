@@ -5453,6 +5453,72 @@ class Interface(object):
         config = (method_name, arp_args)
         return callback(config)
 
+    def conversational_arp_conversational_timeout(self, **kwargs):
+        """Enable conversational arp timeout on switches
+
+        Args:
+            rbridge_id (str): rbridge-id for device.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the conversation arp learning.
+                          (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `rbridge_id` is not passed.
+            ValueError: if `rbridge_id` is invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.39.231', '22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.conversational_arp_conversational_timeout(
+            ...                  rbridge_id="231")
+            ...     output = dev.interface.conversational_arp_conversational_timeout(
+            ...                 rbridge_id="231",get=True)
+            ...     output = dev.interface.conversational_arp_conversational_timeout(
+            ...                 rbridge_id="231",delete=True)
+            >>> conn = ('10.26.8.214', '22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.conversational_arp_conversational_timeout()
+            ...     output = dev.interface.conversational_arp_conversational_timeout(get=True)
+            ...     output = dev.interface.conversational_arp_conversational_timeout(delete=True)
+        """
+
+        callback = kwargs.pop('callback', self._callback)
+        conversational_timeout = kwargs.pop('conversational_timeout', 300)
+        if self.has_rbridge_id:
+            rbridge_id = kwargs.pop('rbridge_id', '1')
+            arp_args = dict(rbridge_id=rbridge_id)
+        else:
+            arp_args = dict()
+
+        if kwargs.pop('get', False):
+            method_name = self.method_prefix('host_table_aging_time_conversational_get')
+            config = (method_name, arp_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            item = util.findNode(util.root, './/aging-time')
+            conversational = util.find(item, './/conversational')
+            if conversational is not None:
+                return conversational
+            else:
+                return None
+        if kwargs.pop('delete', False):
+            method_name = self.method_prefix('host_table_aging_time_'
+                                             'conversational_delete')
+        else:
+            method_name = self.method_prefix('host_table_aging_time_'
+                                             'conversational_update')
+            arp_args['conversational_timeout'] = conversational_timeout
+
+        config = (method_name, arp_args)
+        return callback(config)
+
     def arp_suppression(self, **kwargs):
         """
         Enable Arp Suppression on a Vlan.
