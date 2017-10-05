@@ -1,5 +1,5 @@
 pyswitch
-=====
+========
 
 .. toctree::
    :maxdepth: 5
