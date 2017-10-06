@@ -118,7 +118,7 @@ class Interface(BaseInterface):
             return True
         except Exception as error:
             reason = error.message
-            raise ValueError('Failed to create VLAN due to %s', reason)
+            raise ValueError('Failed to create VLAN %s' % (reason))
 
     def create_port_channel(self, ports, int_type, portchannel_num, mode, desc=None):
         """create port channel
@@ -154,6 +154,8 @@ class Interface(BaseInterface):
                 raise ValueError('Port channel description is NULL for PO %d', portchannel_num)
             if len(desc) < 1 or len(desc) > 64:
                 raise ValueError('Port-channel name should be 1-64 characters')
+            if int(portchannel_num) < 1 or int(portchannel_num) > 256:
+                raise ValueError('Port-channel id should be between 1 and 256')
             # Check if a port-channel exists with same id TBD in action
             cli_arr.append('lag' + " " + desc + " " + str(mode) + " " + 'id' +
                     " " + str(portchannel_num))
@@ -169,11 +171,14 @@ class Interface(BaseInterface):
             cli_arr.append('deploy')
             # Enable the member ports
             cli_arr.append('enable' + " " + port_list_str)
-            self._callback(cli_arr, handler='cli-set')
+            output = self._callback(cli_arr, handler='cli-set')
+            for line in output.split('\n'):
+                if 'Error' in line:
+                    raise ValueError(str(line))
             return True
         except Exception as error:
-            reason = error.message
-            raise ValueError('Failed to create Port-channel due to %s', reason)
+            reason = str(error.message)
+            raise ValueError("Failed to create Port-channel!! %s" % (reason))
 
     def remove_port_channel(self, port_int):
         """delete port channel
@@ -205,6 +210,8 @@ class Interface(BaseInterface):
         try:
             # To delete the LAG, first disable member ports
             # get the member ports of LAG
+            if int(port_int) < 1 or int(port_int) > 256:
+                raise ValueError('Port-channel id should be between 1 and 256')
             cli_arr = []
             lag_name = self.get_lag_id_name_map(port_int)
             cli_arr.append('lag' + " " + lag_name)
@@ -215,11 +222,15 @@ class Interface(BaseInterface):
                 cli_arr.append('disable' + " " + str(port))
 
             cli_arr.append('no' + " " + 'lag' + " " + lag_name)
-            self._callback(cli_arr, handler='cli-set')
+            output = self._callback(cli_arr, handler='cli-set')
+            for line in output.split('\n'):
+                if 'Error' in line:
+                    if 'LAG not deployed' not in line:
+                        raise ValueError(str(line))
             return True
         except Exception as error:
-            reason = error.message
-            raise ValueError('Failed to delete Port-channel due to %s', reason)
+            reason = str(error.message)
+            raise ValueError('Failed to delete Port-channel!! %s' % (reason))
 
     @property
     def port_channels(self):
@@ -582,8 +593,7 @@ class Interface(BaseInterface):
             return None
         except Exception as error:
             reason = error.message
-            raise ValueError('Failed to set interface admin status to %s',
-                reason)
+            raise ValueError('Failed to set interface admin status to %s' % (reason))
         return None
 
     def description(self, **kwargs):
@@ -649,6 +659,5 @@ class Interface(BaseInterface):
             return None
         except Exception as error:
             reason = error.message
-            raise ValueError('Failed to set interface admin status to %s',
-                reason)
+            raise ValueError('Failed to set interface admin status to %s' % (reason))
         return None
