@@ -1,5 +1,5 @@
 pyswitch package
-=============
+================
 
 Subpackages
 -----------
@@ -12,7 +12,7 @@ Submodules
 ----------
 
 pyswitch.device module
--------------------
+----------------------
 
 .. automodule:: pyswitch.device
     :members:
@@ -20,7 +20,7 @@ pyswitch.device module
     :show-inheritance:
 
 pyswitch.utilities module
-----------------------
+-------------------------
 
 .. automodule:: pyswitch.utilities
     :members:

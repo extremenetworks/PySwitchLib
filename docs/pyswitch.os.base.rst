@@ -1,11 +1,11 @@
 pyswitch.os.base package
-===========================
+========================
 
 Submodules
 ----------
 
 pyswitch.os.base.bgp module
-------------------------------
+---------------------------
 
 .. automodule:: pyswitch.os.base.bgp
     :members:
@@ -13,7 +13,7 @@ pyswitch.os.base.bgp module
     :show-inheritance:
 
 pyswitch.os.base.fabric_service module
-------------------------------
+--------------------------------------
 
 .. automodule:: pyswitch.os.base.fabric_service
     :members:
@@ -21,7 +21,7 @@ pyswitch.os.base.fabric_service module
     :show-inheritance:
 
 pyswitch.os.base.interface module
-------------------------------------
+---------------------------------
 
 .. automodule:: pyswitch.os.base.interface
     :members:
@@ -29,7 +29,7 @@ pyswitch.os.base.interface module
     :show-inheritance:
 
 pyswitch.os.base.lldp module
--------------------------------
+----------------------------
 
 .. automodule:: pyswitch.os.base.lldp
     :members:
@@ -37,7 +37,7 @@ pyswitch.os.base.lldp module
     :show-inheritance:
 
 pyswitch.os.base.services module
-------------------------------
+--------------------------------
 
 .. automodule:: pyswitch.os.base.services
     :members:
@@ -45,7 +45,7 @@ pyswitch.os.base.services module
     :show-inheritance:
 
 pyswitch.os.base.snmp module
--------------------------------
+----------------------------
 
 .. automodule:: pyswitch.os.base.snmp
     :members:
@@ -53,7 +53,7 @@ pyswitch.os.base.snmp module
     :show-inheritance:
 
 pyswitch.os.base.system module
----------------------------------
+------------------------------
 
 .. automodule:: pyswitch.os.base.system
     :members:
@@ -61,7 +61,7 @@ pyswitch.os.base.system module
     :show-inheritance:
 
 pyswitch.os.base.vcs module
-------------------------------
+---------------------------
 
 .. automodule:: pyswitch.os.base.vcs
     :members:
