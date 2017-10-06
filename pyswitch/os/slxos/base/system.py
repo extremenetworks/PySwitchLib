@@ -34,11 +34,10 @@ class System(BaseSystem):
         """Configures device's Router ID.
         Args:
             router_id (str): Router ID for the device.
-            rbridge_id (str): The rbridge ID of the device on which BGP will be
-                configured in a VCS fabric.
-            callback (function): A function executed upon completion of the
-                method.  The only parameter passed to `callback` will be the
-                ``ElementTree`` `config`.
+            rbridge_id (str): The rbridge ID of the device on which BGP will be configured in a
+            VCS fabric.
+            callback (function): A function executed upon completion of the method.  The only
+            parameter passed to `callback` will be the ``ElementTree`` `config`.
         Returns:
             Return value of `callback`.
         Raises:
@@ -105,9 +104,8 @@ class System(BaseSystem):
             rbridge_id (str): The rbridge ID of the device on which BGP will be
                 configured in a VCS fabric.
             get (bool): Get config instead of editing config. (True, False)
-            callback (function): A function executed upon completion of the
-                method.  The only parameter passed to `callback` will be the
-                ``ElementTree`` `config`.
+            callback (function): A function executed upon completion of the method.  The only
+            parameter passed to `callback` will be the ``ElementTree`` `config`.
         Returns:
             Return value of `callback`.
         Raises:
@@ -163,9 +161,8 @@ class System(BaseSystem):
 
                 mtu (str): Value between 1522 and 9216
                 version (int) : 4 or 6
-                callback (function): A function executed upon completion of
-                    method.  The only parameter passed to `callback` will be s
-                    ``ElementTree`` `config`.
+                callback (function): A function executed upon completion of method.  The only
+                parameter passed to `callback` will be ``ElementTree`` `config`.
 
             Returns:
                 Return value of `callback`.
@@ -184,7 +181,7 @@ class System(BaseSystem):
                 ...         output = dev.interface.system_mtu(mtu='1666')
                 Traceback (most recent call last):
                 KeyError
-            """
+        """
 
         raise ValueError('Not available on this Platform')
 
@@ -195,9 +192,8 @@ class System(BaseSystem):
 
                 mtu (str): Value between 1522 and 9216
                 version (int) : 4 or 6
-                callback (function): A function executed upon completion of
-                    method.  The only parameter passed to `callback` will be
-                    ``ElementTree`` `config`.
+                callback (function): A function executed upon completion of method.  The only
+                parameter passed to `callback` will be ``ElementTree`` `config`.
 
             Returns:
                 Return value of `callback`.
@@ -216,6 +212,6 @@ class System(BaseSystem):
                 ...         output = dev.interface.system_l2_mtu(mtu='1666')
                 Traceback (most recent call last):
                 KeyError
-            """
+        """
 
         raise ValueError('Not available on this Platform')
