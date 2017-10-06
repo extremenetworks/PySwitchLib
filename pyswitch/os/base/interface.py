@@ -3730,6 +3730,107 @@ class Interface(object):
         config = (method_name, arguments)
         return callback(config)
 
+    def conversational_mac_conversational_timeout(self, **kwargs):
+        """Enable conversational mac learning on vdx switches
+
+        Args:
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the mac-learning. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> #conn = ('10.24.39.231', '22')
+            >>> conn = ('10.26.8.214','22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.conversational_mac_conversational_timeout()
+            ...     output = dev.interface.conversational_mac_conversational_timeout(get=True)
+            ...     output = dev.interface.conversational_mac_conversational_timeout(delete=True)
+            ...     output = dev.interface.conversational_mac_conversational_timeout(delete=True)
+        """
+
+        callback = kwargs.pop('callback', self._callback)
+        conversational_time_out = kwargs.pop('conversational_time_out', 300)
+        method_name = 'mac_address_table_aging_time_conversational_'
+
+        arguments = dict()
+        if kwargs.pop('get', False):
+            method_name = "%sget" % method_name
+            config = (method_name, arguments)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            item = util.find(util.root, './/conversational')
+
+            if item is not None:
+                return item
+            return None
+        if kwargs.pop('delete', False):
+            method_name = "%sdelete" % method_name
+        else:
+            method_name = "%supdate" % method_name
+            arguments['conversational_time_out'] = conversational_time_out
+        config = (method_name, arguments)
+        return callback(config)
+
+    def conversational_mac_legacy_timeout(self, **kwargs):
+        """Enable conversational mac learning on vdx switches
+
+        Args:
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the mac-learning. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> #conn = ('10.24.39.231', '22')
+            >>> conn = ('10.26.8.214','22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.conversational_mac_legacy_timeout()
+            ...     output = dev.interface.conversational_mac_legacy_timeout(get=True)
+            ...     output = dev.interface.conversational_mac_legacy_timeout(delete=True)
+        """
+
+        callback = kwargs.pop('callback', self._callback)
+        legacy_time_out = kwargs.pop('legacy_time_out', 1800)
+        method_name = 'mac_address_table_aging_time_legacy_time_out_'
+
+        arguments = dict()
+        if kwargs.pop('get', False):
+            method_name = "%sget" % method_name
+            config = (method_name, arguments)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            item = util.find(util.root, './/legacy-time-out')
+
+            if item is not None:
+                return item
+            return None
+        if kwargs.pop('delete', False):
+            method_name = "%sdelete" % method_name
+        else:
+            method_name = "%supdate" % method_name
+            arguments['legacy_time_out'] = legacy_time_out
+        config = (method_name, arguments)
+        return callback(config)
+
     def add_int_vrf(self, **kwargs):
         """
         Add L3 Interface in Vrf.
@@ -5307,23 +5408,31 @@ class Interface(object):
 
         Examples:
             >>> import pyswitch.device
-            >>> conn = ('10.24.39.211', '22')
+            >>> conn = ('10.24.39.231', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.interface.conversational_arp(rbridge_id="1")
-            ...     output = dev.interface.conversational_arp(rbridge_id="1",
-                             get=True)
-            ...     output = dev.interface.conversational_arp(rbridge_id="1",
-                             delete=True)
+            ...     output = dev.interface.conversational_arp(rbridge_id="231")
+            ...     output = dev.interface.conversational_arp(rbridge_id="231",
+            ...                 get=True)
+            ...     output = dev.interface.conversational_arp(rbridge_id="231",
+            ...                 delete=True)
+            >>> conn = ('10.26.8.214', '22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.conversational_arp()
+            ...     output = dev.interface.conversational_arp(get=True)
+            ...     output = dev.interface.conversational_arp(delete=True)
         """
 
-        rbridge_id = kwargs.pop('rbridge_id', '1')
         callback = kwargs.pop('callback', self._callback)
-
-        arp_args = dict(rbridge_id=rbridge_id)
+        if self.has_rbridge_id:
+            rbridge_id = kwargs.pop('rbridge_id', '1')
+            arp_args = dict(rbridge_id=rbridge_id)
+        else:
+            arp_args = dict()
 
         if kwargs.pop('get', False):
-            method_name = 'rbridge_id_get'
+            method_name = self.method_prefix('host_table_aging_mode_conversational_get')
             config = (method_name, arp_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
@@ -5334,13 +5443,79 @@ class Interface(object):
             else:
                 return None
         if kwargs.pop('delete', False):
-            method_name = 'rbridge_id_host_table_aging_mode_' \
-                          'conversational_update'
+            method_name = self.method_prefix('host_table_aging_mode_'
+                                             'conversational_update')
             arp_args['conversational'] = False
         else:
-            method_name = 'rbridge_id_host_table_aging_mode_' \
-                          'conversational_update'
+            method_name = self.method_prefix('host_table_aging_mode_'
+                                             'conversational_update')
             arp_args['conversational'] = True
+        config = (method_name, arp_args)
+        return callback(config)
+
+    def conversational_arp_conversational_timeout(self, **kwargs):
+        """Enable conversational arp timeout on switches
+
+        Args:
+            rbridge_id (str): rbridge-id for device.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the conversation arp learning.
+                          (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `rbridge_id` is not passed.
+            ValueError: if `rbridge_id` is invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.39.231', '22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.conversational_arp_conversational_timeout(
+            ...                  rbridge_id="231")
+            ...     output = dev.interface.conversational_arp_conversational_timeout(
+            ...                 rbridge_id="231",get=True)
+            ...     output = dev.interface.conversational_arp_conversational_timeout(
+            ...                 rbridge_id="231",delete=True)
+            >>> conn = ('10.26.8.214', '22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.conversational_arp_conversational_timeout()
+            ...     output = dev.interface.conversational_arp_conversational_timeout(get=True)
+            ...     output = dev.interface.conversational_arp_conversational_timeout(delete=True)
+        """
+
+        callback = kwargs.pop('callback', self._callback)
+        conversational_timeout = kwargs.pop('conversational_timeout', 300)
+        if self.has_rbridge_id:
+            rbridge_id = kwargs.pop('rbridge_id', '1')
+            arp_args = dict(rbridge_id=rbridge_id)
+        else:
+            arp_args = dict()
+
+        if kwargs.pop('get', False):
+            method_name = self.method_prefix('host_table_aging_time_conversational_get')
+            config = (method_name, arp_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            item = util.findNode(util.root, './/aging-time')
+            conversational = util.find(item, './/conversational')
+            if conversational is not None:
+                return conversational
+            else:
+                return None
+        if kwargs.pop('delete', False):
+            method_name = self.method_prefix('host_table_aging_time_'
+                                             'conversational_delete')
+        else:
+            method_name = self.method_prefix('host_table_aging_time_'
+                                             'conversational_update')
+            arp_args['conversational_timeout'] = conversational_timeout
+
         config = (method_name, arp_args)
         return callback(config)
 
