@@ -22,6 +22,10 @@ class PostInstallCommand(install):
         def _post_install():
             pyswitchlib_init_scriptname = 'pyswitchlib-api-daemon'
             pyswitchlib_daemon_scriptname = 'pyswitchlib_api_daemon.py'
+            pyswitchlib_default_conf_filename = 'pyswitchlib.conf.default'
+            pyswitchlib_conf_filename = 'pyswitchlib.conf'
+            pyswitchlib_default_conf_path = os.path.join('etc', 'pyswitchlib', pyswitchlib_default_conf_filename)
+            pyswitchlib_conf_path = os.path.join('etc', 'pyswitchlib', pyswitchlib_conf_filename)
 
             ubuntu_init_script_cmd = 'update-rc.d ' + pyswitchlib_init_scriptname + ' defaults 95 05'
             centos_init_script_cmd = 'chkconfig --add ' + pyswitchlib_init_scriptname
@@ -36,6 +40,9 @@ class PostInstallCommand(install):
                     subprocess.check_call(centos_init_script_cmd, shell=True)
                 except:
                     pass
+
+            if not os.path.exists(pyswitchlib_conf_path):
+                os.system('cp ' + pyswitchlib_default_conf_path + ' ' + pyswitchlib_conf_path)
 
             rc = os.WEXITSTATUS(os.system(python_prefix + ' ' + pyswitchlib_api_daemon + ' status'))
 
@@ -67,6 +74,6 @@ setup(
     cmdclass={
         'install': PostInstallCommand,
     },
-    data_files=[('/etc/pyswitchlib', ['pyswitchlib.conf']),
+    data_files=[('/etc/pyswitchlib', ['pyswitchlib.conf.default']),
                 ('/etc/init.d', ['pyswitchlib-api-daemon'])]
 )
