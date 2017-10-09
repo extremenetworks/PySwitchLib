@@ -447,3 +447,57 @@ class Interface(BaseInterface):
                 return ipv6_addr
             else:
                 return False
+
+    def mtu(self, **kwargs):
+        """Set interface mtu.
+
+        Args:
+            int_type (str): Type of interface. (ethernet, etc)
+            name (str): Name of interface. (1/1 etc)
+            mtu (str): Value between 1522 and 9216
+            callback (function): A function executed upon completion of the
+                method.
+        Returns:
+            Return value of `mtu(str)`, True
+
+        Raises:
+            KeyError: if `int_type`, `name`, or `mtu` is not specified.
+            ValueError: if `int_type`, `name`, or `mtu` is invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.mtu(mtu='1666',
+            ...         int_type='ethernet', name='1/1')
+            ...         output = dev.interface.mtu(get=True,
+            ...         int_type='ethernet', name='1/1')
+            ...         print output
+            ...         dev.interface.mtu() # doctest: +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            KeyError
+        """
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+
+        callback = kwargs.pop('callback', self._callback)
+
+        int_types = self.valid_int_types
+
+        if int_type not in int_types:
+            raise ValueError("Incorrect int_type value.")
+
+        if kwargs.pop('get', False):
+            cli_cmd = 'show interfaces' + ' ' + int_type + ' ' + name + ' ' + ' | inc MTU'
+            cli_output = callback(cli_cmd, handler='cli-get')
+
+            mtu = re.split(' ', cli_output)
+
+            return mtu[1]
+
+        else:
+            raise ValueError("MLX Doesn't support per port L2 MTU configuration")
+        return None
