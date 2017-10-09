@@ -33,6 +33,9 @@ NI_VERSIONS = {
     '6.1': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
     },
+    '6.2': {
+        'interface': pyswitch.snmp.mlx.base.interface.Interface,
+    },
 }
 
 
