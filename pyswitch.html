@@ -84,9 +84,9 @@
 <li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#submodules">Submodules</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#module-pyswitch.os.slxos.base.bgp">pyswitch.os.slxos.base.bgp module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#module-pyswitch.os.slxos.base.interface">pyswitch.os.slxos.base.interface module</a></li>
-<li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#pyswitch-os-slxos-base-isis-module">pyswitch.os.slxos.base.isis module</a></li>
-<li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#pyswitch-os-slxos-base-mpls-module">pyswitch.os.slxos.base.mpls module</a></li>
-<li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#pyswitch-os-slxos-base-ospf-module">pyswitch.os.slxos.base.ospf module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#module-pyswitch.os.slxos.base.isis">pyswitch.os.slxos.base.isis module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#module-pyswitch.os.slxos.base.mpls">pyswitch.os.slxos.base.mpls module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#module-pyswitch.os.slxos.base.ospf">pyswitch.os.slxos.base.ospf module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#module-pyswitch.os.slxos.base.services">pyswitch.os.slxos.base.services module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#module-pyswitch.os.slxos.base.system">pyswitch.os.slxos.base.system module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyswitch.os.slxos.base.html#module-pyswitch.os.slxos.base">Module contents</a></li>
@@ -134,82 +134,30 @@ snmp: SNMP related actions and attributes.
 lldp: LLDP related actions and attributes.
 system: System level actions and attributes.</dd>
 </dl>
+<dl class="attribute">
+<dt id="pyswitch.device.Device.asset">
+<code class="descname">asset</code><a class="headerlink" href="#pyswitch.device.Device.asset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyswitch.device.Device.close">
 <code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.device.Device.close" title="Permalink to this definition">¶</a></dt>
-<dd><p>Close REST session.
-Args:</p>
-<blockquote>
-<div>None</div></blockquote>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd>None</dd>
-<dt>Raises:</dt>
-<dd>None</dd>
-<dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.39.211&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dev</span> <span class="o">=</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dev</span><span class="o">.</span><span class="n">connection</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dev</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
-<span class="go">&lt;?xml...&lt;rpc-reply...&lt;ok/&gt;...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dev</span><span class="o">.</span><span class="n">connection</span>
-<span class="go">False</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="pyswitch.device.Device.find_interface_by_mac">
 <code class="descname">find_interface_by_mac</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.device.Device.find_interface_by_mac" title="Permalink to this definition">¶</a></dt>
-<dd><p>Find the interface through which a MAC can be reached.
-Args:</p>
-<blockquote>
-<div>mac_address (str): A MAC address in ‘xx:xx:xx:xx:xx:xx’ format.</div></blockquote>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd>list[dict]: a list of mac table data.</dd>
-<dt>Raises:</dt>
-<dd>KeyError: if <cite>mac_address</cite> is not specified.</dd>
-<dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.39.211&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">find_interface_by_mac</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">mac_address</span><span class="o">=</span><span class="s1">&#39;10:23:45:67:89:ab&#39;</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
-<span class="go">[{&#39;interface&#39;...&#39;mac_address&#39;...&#39;state&#39;...&#39;type&#39;...&#39;vlan&#39;...}]</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pyswitch.device.Device.firmware_version">
 <code class="descname">firmware_version</code><a class="headerlink" href="#pyswitch.device.Device.firmware_version" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns firmware version.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>None</dd>
-<dt>Returns:</dt>
-<dd>Dictionary</dd>
-<dt>Raises:</dt>
-<dd>None</dd>
-</dl>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pyswitch.device.Device.mac_table">
 <code class="descname">mac_table</code><a class="headerlink" href="#pyswitch.device.Device.mac_table" title="Permalink to this definition">¶</a></dt>
-<dd><p>list[dict]: the MAC table of the device.</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pyswitch.device.Device.os_type">
@@ -219,16 +167,7 @@ Args:</p>
 <dl class="method">
 <dt id="pyswitch.device.Device.reconnect">
 <code class="descname">reconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.device.Device.reconnect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reconnect session with device.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>None</dd>
-<dt>Returns:</dt>
-<dd>bool: True if reconnect succeeds, False if not.</dd>
-<dt>Raises:</dt>
-<dd>None</dd>
-</dl>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pyswitch.device.Device.suports_rbridge">
@@ -246,7 +185,7 @@ Args:</p>
 
 <dl class="class">
 <dt id="pyswitch.device.Reply">
-<em class="property">class </em><code class="descclassname">pyswitch.device.</code><code class="descname">Reply</code><span class="sig-paren">(</span><em>json</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.device.Reply" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pyswitch.device.</code><code class="descname">Reply</code><span class="sig-paren">(</span><em>xml</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.device.Reply" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -275,6 +214,42 @@ limitations under the License.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
 </dd></dl>
 
+<dl class="class">
+<dt id="pyswitch.utilities.Util">
+<em class="property">class </em><code class="descclassname">pyswitch.utilities.</code><code class="descname">Util</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.Util" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pyswitch.utilities.Util.find">
+<code class="descname">find</code><span class="sig-paren">(</span><em>node</em>, <em>expr</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.Util.find" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.utilities.Util.findNode">
+<code class="descname">findNode</code><span class="sig-paren">(</span><em>node</em>, <em>expr</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.Util.findNode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.utilities.Util.findText">
+<code class="descname">findText</code><span class="sig-paren">(</span><em>data</em>, <em>expr</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.Util.findText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.utilities.Util.find_with_ns">
+<code class="descname">find_with_ns</code><span class="sig-paren">(</span><em>node</em>, <em>expr_with_name_space</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.Util.find_with_ns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.utilities.Util.findall">
+<code class="descname">findall</code><span class="sig-paren">(</span><em>data</em>, <em>expr</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.Util.findall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.utilities.Util.findlist">
+<code class="descname">findlist</code><span class="sig-paren">(</span><em>node</em>, <em>expr</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.Util.findlist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="function">
 <dt id="pyswitch.utilities.find">
 <code class="descclassname">pyswitch.utilities.</code><code class="descname">find</code><span class="sig-paren">(</span><em>data</em>, <em>expr</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.find" title="Permalink to this definition">¶</a></dt>
@@ -298,6 +273,11 @@ limitations under the License.</p>
 <dl class="function">
 <dt id="pyswitch.utilities.get_bgp_api">
 <code class="descclassname">pyswitch.utilities.</code><code class="descname">get_bgp_api</code><span class="sig-paren">(</span><em>api=None</em>, <em>vrf='default'</em>, <em>n_addr=None</em>, <em>rbridge_id=1</em>, <em>os='nos'</em>, <em>afi=None</em>, <em>feature=''</em>, <em>op='_update'</em>, <em>resource_depth=1</em>, <em>evpn_n_addr=None</em>, <em>args=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.get_bgp_api" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyswitch.utilities.get_two_tuple_version">
+<code class="descclassname">pyswitch.utilities.</code><code class="descname">get_two_tuple_version</code><span class="sig-paren">(</span><em>fullver</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.get_two_tuple_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -333,6 +313,35 @@ limitations under the License.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;1/0&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pyswitch</span><span class="o">.</span><span class="n">os</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">valid_interface</span><span class="p">(</span><span class="n">int_type</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 <span class="go">False</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyswitch.utilities.valid_lopback_number">
+<code class="descclassname">pyswitch.utilities.</code><code class="descname">valid_lopback_number</code><span class="sig-paren">(</span><em>loopback_number</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.utilities.valid_lopback_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates a VLAN ID.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>loopback_number (integer): Loopback port number to validate.</dt>
+<dd>If passed as <code class="docutils literal"><span class="pre">str</span></code>, it will be cast to <code class="docutils literal"><span class="pre">int</span></code>.</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>bool: <code class="docutils literal"><span class="pre">True</span></code> if it is a valid loopback_number.  <code class="docutils literal"><span class="pre">False</span></code> if not.</dd>
+<dt>Raises:</dt>
+<dd>None</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.utilities</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loopback_number</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pyswitch</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">valid_lopback_number</span><span class="p">(</span><span class="n">loopback_number</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">extended</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vlan</span> <span class="o">=</span> <span class="s1">&#39;256&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pyswitch</span><span class="o">.</span><span class="n">os</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">valid_lopback_number</span><span class="p">(</span><span class="n">loopback_number</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>

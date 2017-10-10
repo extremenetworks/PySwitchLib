@@ -349,6 +349,38 @@ ValueError: if <cite>int_type</cite>, <cite>name</cite>, or <cite>enabled</cite>
 <code class="descname">valid_intp_types</code><a class="headerlink" href="#pyswitch.os.nos.base.interface.Interface.valid_intp_types" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="pyswitch.os.nos.base.interface.Interface.vfab_enable">
+<code class="descname">vfab_enable</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.os.nos.base.interface.Interface.vfab_enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Config/get/delete vfab enable</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>vfab_enable (bool): Enable/Disable virtual fabric. (True, False)
+get (bool): Get config instead of editing config. (True, False)
+delete (bool): True, delete the service policy on the interface.</dd>
+<dt>Returns:</dt>
+<dd>Return value of <cite>callback</cite>.</dd>
+<dt>Raises:</dt>
+<dd>None.</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.39.231&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">switch</span> <span class="ow">in</span> <span class="n">switches</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="n">switch</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">output_all</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">vfab_enable</span><span class="p">(</span><span class="n">vfab_enable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output_all</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">vfab_enable</span><span class="p">(</span><span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">assert</span> <span class="n">output_all</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="gp">... </span>        <span class="n">output_all</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">vfab_enable</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output_all</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">vfab_enable</span><span class="p">(</span><span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">assert</span> <span class="n">output_all</span> <span class="o">==</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -378,7 +410,15 @@ and disabling NOS services, such as VRRP.</p>
 <dl class="attribute">
 <dt id="pyswitch.os.nos.base.services.Services.arp">
 <code class="descname">arp</code><a class="headerlink" href="#pyswitch.os.nos.base.services.Services.arp" title="Permalink to this definition">¶</a></dt>
-<dd><p>dict: trill link details</p>
+<dd><p>dict: arp details
+Examples:
+&gt;&gt;&gt; import pyswitch.device
+&gt;&gt;&gt; switches = [‘10.24.39.231’]
+&gt;&gt;&gt; auth = (‘admin’, ‘password’)
+&gt;&gt;&gt; for switch in switches:
+…     conn = (switch, ‘22’)
+…     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+…         output = dev.services.arp</p>
 </dd></dl>
 
 <dl class="method">
@@ -404,22 +444,16 @@ and disabling NOS services, such as VRRP.</p>
 <dt>Raises:</dt>
 <dd>None</dd>
 <dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pynos.device</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.39.211&#39;</span><span class="p">,</span> <span class="s1">&#39;10.24.39.203&#39;</span><span class="p">]</span>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.39.231&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">switch</span> <span class="ow">in</span> <span class="n">switches</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="n">switch</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="k">with</span> <span class="n">pynos</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
-<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">bgp</span><span class="o">.</span><span class="n">local_asn</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;225&#39;</span><span class="p">)</span>
-<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">bgp</span><span class="o">.</span><span class="n">local_asn</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;225&#39;</span><span class="p">,</span>
-<span class="gp">... </span>        <span class="n">enable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">bgp</span><span class="o">.</span><span class="n">local_asn</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;225&#39;</span><span class="p">,</span>
-<span class="gp">... </span>        <span class="n">ip_version</span><span class="o">=</span><span class="s1">&#39;6&#39;</span><span class="p">)</span>
-<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">bgp</span><span class="o">.</span><span class="n">local_asn</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;225&#39;</span><span class="p">,</span>
-<span class="gp">... </span>        <span class="n">enable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ip_version</span><span class="o">=</span><span class="s1">&#39;6&#39;</span><span class="p">)</span>
-<span class="gp">... </span>        <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrp</span><span class="p">()</span> 
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">KeyError</span>
+<span class="gp">... </span>    <span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrp</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">,</span><span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrp</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">,</span><span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrp</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">,</span><span class="n">enable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrp</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">,</span><span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
@@ -454,17 +488,16 @@ rbridge_id (str): The rbridge ID of the device on which vrrpe will</p>
 <dt>Raises:</dt>
 <dd>None</dd>
 <dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pynos.device</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.39.211&#39;</span><span class="p">,</span> <span class="s1">&#39;10.24.39.203&#39;</span><span class="p">]</span>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.39.231&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">switch</span> <span class="ow">in</span> <span class="n">switches</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="n">switch</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="k">with</span> <span class="n">pynos</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
-<span class="gp">... </span>        <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrpe</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;25&#39;</span><span class="p">,</span><span class="n">enable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gp">... </span>        <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrpe</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;25&#39;</span><span class="p">,</span><span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">... </span>        <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrpe</span><span class="p">()</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">KeyError</span>
+<span class="gp">... </span>    <span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrpe</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrpe</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrpe</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">,</span><span class="n">enable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">vrrpe</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
@@ -484,7 +517,15 @@ rbridge_id (str): The rbridge ID of the device on which vrrpe will</p>
 <dl class="method">
 <dt id="pyswitch.os.nos.base.system.System.chassis_name">
 <code class="descname">chassis_name</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.os.nos.base.system.System.chassis_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get device’s chassis name/Model.</p>
+<dd><p>Get device’s chassis name/Model.
+Examples:
+&gt;&gt;&gt; import pyswitch.device
+&gt;&gt;&gt; switches = [‘10.24.39.231’]
+&gt;&gt;&gt; auth = (‘admin’, ‘password’)
+&gt;&gt;&gt; for switch in switches:
+…     conn = (switch, ‘22’)
+…     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+…         output = dev.system.chassis_name()</p>
 </dd></dl>
 
 <dl class="method">
@@ -510,18 +551,14 @@ callback (function): A function executed upon completion of the</p>
 <dt>Raises:</dt>
 <dd>KeyError: if <cite>rbridge_id</cite> is not specified.</dd>
 <dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pynos.device</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.39.211&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.39.231&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pynos</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">host_name</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;225&#39;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">host_name</span><span class="o">=</span><span class="s1">&#39;sw0&#39;</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">host_name</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;225&#39;</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
-<span class="gp">... </span>        <span class="n">conf</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;.//{*}host-name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<span class="gp">... </span>    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-<span class="gp">... </span>        <span class="n">conf</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="gp">... </span>    <span class="k">assert</span> <span class="n">conf</span> <span class="o">==</span> <span class="s1">&#39;sw0&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">host_name</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">host_name</span><span class="o">=</span><span class="s1">&#39;sw0_231&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">host_name</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="n">output</span>
 </pre></div>
 </div>
 </dd>
@@ -550,10 +587,10 @@ callback (function): A function executed upon completion of the</p>
 <dt>Raises:</dt>
 <dd>KeyError: if <cite>rbridge_id</cite> is not specified.</dd>
 <dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pynos.device</span>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.39.202&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pynos</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">maintenance_mode</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;226&#39;</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">maintenance_mode</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;226&#39;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -592,15 +629,12 @@ callback (function): A function executed upon completion of the</p>
 <dt>Raises:</dt>
 <dd>KeyError: if <cite>rbridge_id</cite> is not specified.</dd>
 <dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pynos.device</span>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.39.211&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pynos</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">rbridge_id</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;225&#39;</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">rbridge_id</span><span class="p">(</span><span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;225&#39;</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">rbridge_id</span><span class="p">()</span> 
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">KeyError</span>
 </pre></div>
 </div>
 </dd>
@@ -629,15 +663,12 @@ rbridge_id (str): The rbridge ID of the device on which BGP will be</p>
 <dt>Raises:</dt>
 <dd>KeyError: if <cite>router_id</cite> is not specified.</dd>
 <dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pynos.device</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.39.211&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.39.231&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pynos</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">router_id</span><span class="p">(</span><span class="n">router_id</span><span class="o">=</span><span class="s1">&#39;10.24.39.211&#39;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;225&#39;</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">router_id</span><span class="p">()</span> 
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">KeyError</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">router_id</span><span class="p">(</span><span class="n">router_id</span><span class="o">=</span><span class="s1">&#39;10.24.39.231&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">rbridge_id</span><span class="o">=</span><span class="s1">&#39;231&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
@@ -666,14 +697,17 @@ be the
 ValueError: if <cite>int_type</cite>, <cite>name</cite>, or <cite>mtu</cite> is invalid.</dd>
 <dt>Examples:</dt>
 <dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.39.211&#39;</span><span class="p">,</span> <span class="s1">&#39;10.24.39.203&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.39.231&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">switch</span> <span class="ow">in</span> <span class="n">switches</span><span class="p">:</span>
 <span class="gp">... </span> <span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="n">switch</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
 <span class="gp">... </span> <span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
-<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">system_mtu</span><span class="p">(</span><span class="n">mtu</span><span class="o">=</span><span class="s1">&#39;1666&#39;</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">KeyError</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">system_ip_mtu</span><span class="p">(</span><span class="n">mtu</span><span class="o">=</span><span class="s1">&#39;1666&#39;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">system_ip_mtu</span><span class="p">(</span><span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="s1">&#39;1666&#39;</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">system_ip_mtu</span><span class="p">(</span><span class="n">mtu</span><span class="o">=</span><span class="s1">&#39;1667&#39;</span><span class="p">,</span><span class="n">version</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">system_ip_mtu</span><span class="p">(</span><span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">version</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="s1">&#39;1667&#39;</span>
 </pre></div>
 </div>
 </dd>
@@ -705,14 +739,17 @@ the method.  The only parameter passed to <cite>callback</cite> will be</p>
 ValueError: if <cite>int_type</cite>, <cite>name</cite>, or <cite>mtu</cite> is invalid.</dd>
 <dt>Examples:</dt>
 <dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.39.211&#39;</span><span class="p">,</span> <span class="s1">&#39;10.24.39.203&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.39.231&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">switch</span> <span class="ow">in</span> <span class="n">switches</span><span class="p">:</span>
 <span class="gp">... </span> <span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="n">switch</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
 <span class="gp">... </span> <span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
-<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">system_l2_mtu</span><span class="p">(</span><span class="n">mtu</span><span class="o">=</span><span class="s1">&#39;1666&#39;</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">KeyError</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">system_l2_mtu</span><span class="p">(</span><span class="n">mtu</span><span class="o">=</span><span class="s1">&#39;1666&#39;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">system_l2_mtu</span><span class="p">(</span><span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="s1">&#39;1666&#39;</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">system_l2_mtu</span><span class="p">(</span><span class="n">mtu</span><span class="o">=</span><span class="s1">&#39;1667&#39;</span><span class="p">,</span><span class="n">version</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">system_l2_mtu</span><span class="p">(</span><span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">version</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="s1">&#39;1667&#39;</span>
 </pre></div>
 </div>
 </dd>
