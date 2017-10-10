@@ -52,7 +52,7 @@ clean:
 
 .PHONY: gh-pages
 gh-pages:
-	git checkout gh_pages
+	git checkout gh-pages
 	rm -rf build _sources _static
 	git checkout master $(GH_PAGES_SOURCES)
 	git reset HEAD
@@ -60,7 +60,7 @@ gh-pages:
 	mv -fv docs/build/html/* ./
 	rm -rf $(GH_PAGES_SOURCES) build
 	git add -A
-	git commit -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push origin gh_pages ; git checkout master
+	git commit -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push origin gh-pages ; git checkout master
 
 .PHONY: html
 html:
