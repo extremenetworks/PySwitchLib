@@ -1,0 +1,479 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pyswitch.snmp.mlx.base package &#8212; pyswitchlib 0.1.87 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.87',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/icon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="pyswitch.snmp.mlx package" href="pyswitch.snmp.mlx.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pyswitch-snmp-mlx-base-package">
+<h1>pyswitch.snmp.mlx.base package<a class="headerlink" href="#pyswitch-snmp-mlx-base-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyswitch.snmp.mlx.base.interface">
+<span id="pyswitch-snmp-mlx-base-interface-module"></span><h2>pyswitch.snmp.mlx.base.interface module<a class="headerlink" href="#module-pyswitch.snmp.mlx.base.interface" title="Permalink to this headline">¶</a></h2>
+<p>import pyswitch.utilities
+from pyswitch.exceptions import InvalidVlanId</p>
+<dl class="class">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface">
+<em class="property">class </em><code class="descclassname">pyswitch.snmp.mlx.base.interface.</code><code class="descname">Interface</code><span class="sig-paren">(</span><em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyswitch.snmp.base.html#pyswitch.snmp.base.interface.Interface" title="pyswitch.snmp.base.interface.Interface"><code class="xref py py-class docutils literal"><span class="pre">pyswitch.snmp.base.interface.Interface</span></code></a></p>
+<p>The Interface class holds all the actions associated with the Interfaces
+of a MLX device.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>None</dd>
+</dl>
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.add_vlan_int">
+<code class="descname">add_vlan_int</code><span class="sig-paren">(</span><em>vlan_id_list</em>, <em>desc=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.add_vlan_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add VLAN Interface. VLAN interfaces are required for VLANs even when
+not wanting to use the interface for any L3 features.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>vlan_id_list: List of VLAN interface being created. Value of 2-4096.</dd>
+<dt>Returns:</dt>
+<dd>True if command completes successfully or False if not.</dd>
+<dt>Raises:</dt>
+<dd>None</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.85.107&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">vlan_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">700</span><span class="p">,</span><span class="mi">800</span><span class="p">,</span> <span class="mi">900</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">ret</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">add_vlan_int</span><span class="p">(</span><span class="n">vlan_list</span><span class="p">,</span> <span class="s1">&#39;vlan_name&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="n">ret</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.admin_state">
+<code class="descname">admin_state</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.admin_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set interface administrative state.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">int_type (str): Type of interface. (ethernet, etc).
+name (str): Name of interface. (1/1, etc).
+enabled (bool): Is the interface enabled? (True, False)
+get (bool): Get config instead of editing config. (True, False)
+callback (function): A function executed upon completion of the</p>
+<blockquote class="last">
+<div>method.  The only parameter passed to <cite>callback</cite> will be the
+<code class="docutils literal"><span class="pre">ElementTree</span></code> <cite>config</cite>.</div></blockquote>
+</dd>
+<dt>Returns:</dt>
+<dd>Return value of <cite>callback</cite>.</dd>
+<dt>Raises:</dt>
+<dd><dl class="first docutils">
+<dt>KeyError: if <cite>int_type</cite>, <cite>name</cite>, or <cite>enabled</cite> is not passed and</dt>
+<dd><cite>get</cite> is not <code class="docutils literal"><span class="pre">True</span></code>.</dd>
+</dl>
+<p class="last">ValueError: if <cite>int_type</cite>, <cite>name</cite>, or <cite>enabled</cite> are invalid.</p>
+</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.85.107&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">switch</span> <span class="ow">in</span> <span class="n">switches</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="n">switch</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">admin_state</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">int_type</span><span class="o">=</span><span class="s1">&#39;ethernet&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;1/1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">enabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">admin_state</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">int_type</span><span class="o">=</span><span class="s1">&#39;ethernet&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;1/1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.create_port_channel">
+<code class="descname">create_port_channel</code><span class="sig-paren">(</span><em>ports</em>, <em>int_type</em>, <em>portchannel_num</em>, <em>mode</em>, <em>desc=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.create_port_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>create port channel</p>
+<dl class="docutils">
+<dt>args:</dt>
+<dd>int_type (str): type of interface. (ethernet, , etc)
+ports(list): port numbers (1/1, 2/1 etc)
+portchannel_num (int): port-channel number (1, 2, 3, etc).
+mode (str): mode of port-channel (static, dynamic)
+desc: name of port-channel</dd>
+<dt>returns:</dt>
+<dd>return True for success and False for failure.</dd>
+<dt>raises:</dt>
+<dd>keyerror: if <cite>int_type</cite>, <cite>name</cite>, or <cite>description</cite> is not specified.
+valueerror: if <cite>name</cite> or <cite>int_type</cite> are not valid values.</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.85.107&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">ports</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2/1&#39;</span><span class="p">,</span> <span class="s1">&#39;2/2&#39;</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">create_port_channel</span><span class="p">(</span><span class="n">ports</span><span class="p">,</span> <span class="s1">&#39;ethernet&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;po50&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="gp">... </span>    <span class="n">ifindex</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">get_port_channel_ifindex</span><span class="p">(</span><span class="s1">&#39;po50&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ifindex</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.description">
+<code class="descname">description</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set interface description.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">int_type (str): Type of interface. (ethernet, etc).
+name (str): Name of interface. (1/1, etc).
+desc (str): The description of the interface.
+get (bool): Get config instead of editing config. (True, False)
+callback (function): A function executed upon completion of the</p>
+<blockquote class="last">
+<div>method.  The only parameter passed to <cite>callback</cite> will be the
+<code class="docutils literal"><span class="pre">ElementTree</span></code> <cite>config</cite>.</div></blockquote>
+</dd>
+<dt>Returns:</dt>
+<dd>Return value of <cite>callback</cite>.</dd>
+<dt>Raises:</dt>
+<dd><dl class="first docutils">
+<dt>KeyError: if <cite>int_type</cite>, <cite>name</cite>, or <cite>enabled</cite> is not passed and</dt>
+<dd><cite>get</cite> is not <code class="docutils literal"><span class="pre">True</span></code>.</dd>
+</dl>
+<p class="last">ValueError: if <cite>int_type</cite>, <cite>name</cite>, or <cite>desc</cite> are invalid.</p>
+</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10.24.85.107&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">switch</span> <span class="ow">in</span> <span class="n">switches</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="n">switch</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">description</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">int_type</span><span class="o">=</span><span class="s1">&#39;ethernet&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;1/1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<span class="gp">... </span>        
+<span class="gt">Traceback (most recent call last):</span>
+<span class="gr">KeyError</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.fabric_isl">
+<code class="descname">fabric_isl</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.fabric_isl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.fabric_trunk">
+<code class="descname">fabric_trunk</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.fabric_trunk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.get_lag_id_name_map">
+<code class="descname">get_lag_id_name_map</code><span class="sig-paren">(</span><em>lag_id</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.get_lag_id_name_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dict containing the port-channel id, port-channel name</p>
+<dl class="docutils">
+<dt>args:</dt>
+<dd>lag_id (str) - port-channel id</dd>
+<dt>returns:</dt>
+<dd>return - dict containing the port-channel id, port-channel name</dd>
+<dt>raises:</dt>
+<dd>keyerror: if <cite>int_type</cite>, <cite>name</cite>, or <cite>description</cite> is not specified.
+valueerror: if <cite>name</cite> or <cite>int_type</cite> are not valid values.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.get_port_channel_id">
+<code class="descname">get_port_channel_id</code><span class="sig-paren">(</span><em>lag_name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.get_port_channel_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a port-channel id given a lag name</p>
+<dl class="docutils">
+<dt>args:</dt>
+<dd>lag_name (str) - port-channel name/descr (for e.g po50)</dd>
+<dt>returns:</dt>
+<dd>return - port channel id</dd>
+<dt>raises:</dt>
+<dd>keyerror: if <cite>int_type</cite>, <cite>name</cite>, or <cite>description</cite> is not specified.
+valueerror: if <cite>name</cite> or <cite>int_type</cite> are not valid values.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.get_port_channel_ifindex">
+<code class="descname">get_port_channel_ifindex</code><span class="sig-paren">(</span><em>lag_name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.get_port_channel_ifindex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a port-channel ifindex</p>
+<dl class="docutils">
+<dt>args:</dt>
+<dd>lag_name (str) - port-channel name/descr (for e.g po50)</dd>
+<dt>returns:</dt>
+<dd>return - port-channel ifindex</dd>
+<dt>raises:</dt>
+<dd>keyerror: if <cite>int_type</cite>, <cite>name</cite>, or <cite>description</cite> is not specified.
+valueerror: if <cite>name</cite> or <cite>int_type</cite> are not valid values.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.get_port_channel_list">
+<code class="descname">get_port_channel_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.get_port_channel_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a port-channel list</p>
+<dl class="docutils">
+<dt>args:</dt>
+<dd>None</dd>
+<dt>returns:</dt>
+<dd>return - list of port channels containing name, type, primary port, deploy</dd>
+<dt>raises:</dt>
+<dd>keyerror: if <cite>int_type</cite>, <cite>name</cite>, or <cite>description</cite> is not specified.
+valueerror: if <cite>name</cite> or <cite>int_type</cite> are not valid values.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.get_port_channel_member_ports">
+<code class="descname">get_port_channel_member_ports</code><span class="sig-paren">(</span><em>lag_name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.get_port_channel_member_ports" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a map of port-channel member ports</p>
+<dl class="docutils">
+<dt>args:</dt>
+<dd>lag_name (str) - port-channel name/descr (for e.g po50)</dd>
+<dt>returns:</dt>
+<dd>return - dict containing port-channel member (ifid: ifname) mapping</dd>
+<dt>raises:</dt>
+<dd>keyerror: if <cite>int_type</cite>, <cite>name</cite>, or <cite>description</cite> is not specified.
+valueerror: if <cite>name</cite> or <cite>int_type</cite> are not valid values.</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.85.107&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">ports</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2/1&#39;</span><span class="p">,</span> <span class="s1">&#39;2/2&#39;</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">create_port_channel</span><span class="p">(</span><span class="n">ports</span><span class="p">,</span> <span class="s1">&#39;ethernet&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;po50&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">get_port_channel_member_ports</span><span class="p">(</span><span class="s1">&#39;po50&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.has_rbridge_id">
+<code class="descname">has_rbridge_id</code><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.has_rbridge_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.ip_anycast_gateway">
+<code class="descname">ip_anycast_gateway</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.ip_anycast_gateway" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.l2_mtu_const">
+<code class="descname">l2_mtu_const</code><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.l2_mtu_const" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.l3_ipv6_mtu_const">
+<code class="descname">l3_ipv6_mtu_const</code><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.l3_ipv6_mtu_const" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.l3_mtu_const">
+<code class="descname">l3_mtu_const</code><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.l3_mtu_const" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.port_channels">
+<code class="descname">port_channels</code><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.port_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>list[dict]: A list of dictionary items of port channels.
+Args:</p>
+<dl class="docutils">
+<dt>returns:</dt>
+<dd>returns a list of dictionary items of all port channels including member ports</dd>
+<dt>raises:</dt>
+<dd>keyerror: if <cite>int_type</cite>, <cite>name</cite>, or <cite>description</cite> is not specified.
+valueerror: if <cite>name</cite> or <cite>int_type</cite> are not valid values.</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.85.107&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">ports</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2/1&#39;</span><span class="p">,</span> <span class="s1">&#39;2/2&#39;</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">create_port_channel</span><span class="p">(</span><span class="n">ports</span><span class="p">,</span> <span class="s1">&#39;ethernet&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;po50&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="gp">... </span>    <span class="n">result</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">port_channels</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.remove_port_channel">
+<code class="descname">remove_port_channel</code><span class="sig-paren">(</span><em>port_int</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.remove_port_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete port channel</p>
+<dl class="docutils">
+<dt>args:</dt>
+<dd>port_int (str): port-channel number (1, 2, 3, etc).</dd>
+<dt>returns:</dt>
+<dd>return True for success and False for failure.</dd>
+<dt>raises:</dt>
+<dd>keyerror: if <cite>int_type</cite>, <cite>name</cite>, or <cite>description</cite> is not specified.
+valueerror: if <cite>name</cite> or <cite>int_type</cite> are not valid values.</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.85.107&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">ports</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2/1&#39;</span><span class="p">,</span> <span class="s1">&#39;2/2&#39;</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">create_port_channel</span><span class="p">(</span><span class="n">ports</span><span class="p">,</span> <span class="s1">&#39;ethernet&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;po50&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="gp">... </span>    <span class="n">ifindex</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">get_port_channel_ifindex</span><span class="p">(</span><span class="s1">&#39;po50&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ifindex</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">remove_port_channel</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.valid_int_types">
+<code class="descname">valid_int_types</code><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.valid_int_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.mlx.base.interface.Interface.valid_intp_types">
+<code class="descname">valid_intp_types</code><a class="headerlink" href="#pyswitch.snmp.mlx.base.interface.Interface.valid_intp_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyswitch.snmp.mlx.base">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyswitch.snmp.mlx.base" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/icon.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pyswitch.snmp.mlx.base package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-pyswitch.snmp.mlx.base.interface">pyswitch.snmp.mlx.base.interface module</a></li>
+<li><a class="reference internal" href="#module-pyswitch.snmp.mlx.base">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">pyswitch</a><ul>
+  <li><a href="pyswitch.html">pyswitch package</a><ul>
+  <li><a href="pyswitch.snmp.html">pyswitch.snmp package</a><ul>
+  <li><a href="pyswitch.snmp.mlx.html">pyswitch.snmp.mlx package</a><ul>
+      <li>Previous: <a href="pyswitch.snmp.mlx.html" title="previous chapter">pyswitch.snmp.mlx package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/pyswitch.snmp.mlx.base.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brocade Communication Systems.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/pyswitch.snmp.mlx.base.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

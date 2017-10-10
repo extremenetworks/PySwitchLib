@@ -1,0 +1,161 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pyswitch.raw.base package &#8212; pyswitchlib 0.1.87 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.87',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/icon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyswitch.raw.nos package" href="pyswitch.raw.nos.html" />
+    <link rel="prev" title="pyswitch.raw package" href="pyswitch.raw.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pyswitch-raw-base-package">
+<h1>pyswitch.raw.base package<a class="headerlink" href="#pyswitch-raw-base-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="pyswitch-raw-base-interface-module">
+<h2>pyswitch.raw.base.interface module<a class="headerlink" href="#pyswitch-raw-base-interface-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-pyswitch.raw.base.interface"></span><dl class="class">
+<dt id="pyswitch.raw.base.interface.Interface">
+<em class="property">class </em><code class="descclassname">pyswitch.raw.base.interface.</code><code class="descname">Interface</code><span class="sig-paren">(</span><em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.raw.base.interface.Interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pyswitch.raw.base.interface.Interface.conversation_property">
+<code class="descname">conversation_property</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.raw.base.interface.Interface.conversation_property" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates Overlay Gateway</p>
+<p>Examples:
+&gt;&gt;&gt; import pyswitch.device
+&gt;&gt;&gt; conn = (‘10.26.8.210’, ‘22’)
+&gt;&gt;&gt; auth = (‘admin’, ‘password’)
+&gt;&gt;&gt; with pyswitch.device.Device(conn=conn, auth=auth,connection_type=’NETCONF’) as dev:
+…      output = dev.interface.conversation_property(get=True)
+…      print output</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.raw.base.interface.Interface.has_rbridge_id">
+<code class="descname">has_rbridge_id</code><a class="headerlink" href="#pyswitch.raw.base.interface.Interface.has_rbridge_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.raw.base.interface.Interface.method_prefix">
+<code class="descname">method_prefix</code><span class="sig-paren">(</span><em>method</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.raw.base.interface.Interface.method_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.raw.base.interface.Interface.valid_int_types">
+<code class="descname">valid_int_types</code><a class="headerlink" href="#pyswitch.raw.base.interface.Interface.valid_int_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyswitch.raw.base">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyswitch.raw.base" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/icon.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pyswitch.raw.base package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#pyswitch-raw-base-interface-module">pyswitch.raw.base.interface module</a></li>
+<li><a class="reference internal" href="#module-pyswitch.raw.base">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">pyswitch</a><ul>
+  <li><a href="pyswitch.html">pyswitch package</a><ul>
+  <li><a href="pyswitch.raw.html">pyswitch.raw package</a><ul>
+      <li>Previous: <a href="pyswitch.raw.html" title="previous chapter">pyswitch.raw package</a></li>
+      <li>Next: <a href="pyswitch.raw.nos.html" title="next chapter">pyswitch.raw.nos package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/pyswitch.raw.base.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brocade Communication Systems.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/pyswitch.raw.base.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

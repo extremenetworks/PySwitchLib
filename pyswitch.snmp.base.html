@@ -1,0 +1,273 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pyswitch.snmp.base package &#8212; pyswitchlib 0.1.87 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.87',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/icon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyswitch.snmp.mlx package" href="pyswitch.snmp.mlx.html" />
+    <link rel="prev" title="pyswitch.snmp package" href="pyswitch.snmp.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pyswitch-snmp-base-package">
+<h1>pyswitch.snmp.base package<a class="headerlink" href="#pyswitch-snmp-base-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="pyswitch-snmp-base-interface-module">
+<h2>pyswitch.snmp.base.interface module<a class="headerlink" href="#pyswitch-snmp-base-interface-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-pyswitch.snmp.base.interface"></span><p>Copyright 2015 Brocade Communications Systems, Inc.</p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<blockquote>
+<div><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></div></blockquote>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+<dl class="class">
+<dt id="pyswitch.snmp.base.interface.Interface">
+<em class="property">class </em><code class="descclassname">pyswitch.snmp.base.interface.</code><code class="descname">Interface</code><span class="sig-paren">(</span><em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The Interface class holds all the actions assocaiated with the Interfaces
+of a SNMPCLI device.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>None</dd>
+</dl>
+<dl class="method">
+<dt id="pyswitch.snmp.base.interface.Interface.add_vlan_int">
+<code class="descname">add_vlan_int</code><span class="sig-paren">(</span><em>vlan_id_list</em>, <em>desc=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface.add_vlan_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add VLAN Interface. VLAN interfaces are required for VLANs even when
+not wanting to use the interface for any L3 features.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>vlan_id_list: List of VLAN interface being created. Value of 2-4096.</dd>
+<dt>Returns:</dt>
+<dd>True if command completes successfully or False if not.</dd>
+<dt>Raises:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.base.interface.Interface.del_vlan_int">
+<code class="descname">del_vlan_int</code><span class="sig-paren">(</span><em>vlan_id</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface.del_vlan_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete VLAN Interface.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>vlan_id (int): ID for the VLAN interface being deleted. Value of 2-4096.</dd>
+<dt>Returns:</dt>
+<dd>True if command completes successfully or False if not.</dd>
+<dt>Raises:</dt>
+<dd>InvalidVlanId, ValueError</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.85.107&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">vlan_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">300</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">add_vlan_int</span><span class="p">(</span><span class="n">vlan_list</span><span class="p">,</span> <span class="s1">&#39;vlan_300&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">get_vlan_int</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="gp">... </span>    <span class="n">ret</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">del_vlan_int</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="n">ret</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.base.interface.Interface.get_interface_id_name_mapping">
+<code class="descname">get_interface_id_name_mapping</code><span class="sig-paren">(</span><em>ifname_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface.get_interface_id_name_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert interface id to name. Function accepts a list of interface ids         for which interface name is needed. If list is empty all interface id-&gt;name map is         returned
+Args:</p>
+<blockquote>
+<div>ifname_list (list): List of interfaces for which ifname is required [1, 2]</div></blockquote>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>dictionary of ifid to ifname mappings</dd>
+<dt>Raises:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.base.interface.Interface.get_interface_name_id_mapping">
+<code class="descname">get_interface_name_id_mapping</code><span class="sig-paren">(</span><em>ifname_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface.get_interface_name_id_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert interface names to interface id. Function accepts a list of interface names         for which interface id is needed. If list is empty all interface name-&gt;id map is         returned</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>ifname_list (list): List of interfaces for which ifid is required [‘ethernet1/1’]</dd>
+<dt>Returns:</dt>
+<dd>dictionary of ifname to id mappings</dd>
+<dt>Raises:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.base.interface.Interface.get_vlan_int">
+<code class="descname">get_vlan_int</code><span class="sig-paren">(</span><em>vlan_id</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface.get_vlan_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get VLAN Interface.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>vlan_id: ID for the VLAN interface being queried. Value of 2-4096.</dd>
+<dt>Returns:</dt>
+<dd>True if command completes successfully or False if not.</dd>
+<dt>Raises:</dt>
+<dd>InvalidVlanId</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyswitch.device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;10.24.85.107&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pyswitch</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span> <span class="k">as</span> <span class="n">dev</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">vlan_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">300</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">output</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">add_vlan_int</span><span class="p">(</span><span class="n">vlan_list</span><span class="p">,</span> <span class="s1">&#39;vlan_300&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">ret</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">get_vlan_int</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="n">ret</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.base.interface.Interface.has_rbridge_id">
+<code class="descname">has_rbridge_id</code><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface.has_rbridge_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.base.interface.Interface.l2_mtu_const">
+<code class="descname">l2_mtu_const</code><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface.l2_mtu_const" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyswitch.snmp.base.interface.Interface.method_prefix">
+<code class="descname">method_prefix</code><span class="sig-paren">(</span><em>method</em><span class="sig-paren">)</span><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface.method_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.base.interface.Interface.valid_int_types">
+<code class="descname">valid_int_types</code><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface.valid_int_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyswitch.snmp.base.interface.Interface.valid_intp_types">
+<code class="descname">valid_intp_types</code><a class="headerlink" href="#pyswitch.snmp.base.interface.Interface.valid_intp_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyswitch.snmp.base">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyswitch.snmp.base" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/icon.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pyswitch.snmp.base package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#pyswitch-snmp-base-interface-module">pyswitch.snmp.base.interface module</a></li>
+<li><a class="reference internal" href="#module-pyswitch.snmp.base">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">pyswitch</a><ul>
+  <li><a href="pyswitch.html">pyswitch package</a><ul>
+  <li><a href="pyswitch.snmp.html">pyswitch.snmp package</a><ul>
+      <li>Previous: <a href="pyswitch.snmp.html" title="previous chapter">pyswitch.snmp package</a></li>
+      <li>Next: <a href="pyswitch.snmp.mlx.html" title="next chapter">pyswitch.snmp.mlx package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/pyswitch.snmp.base.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brocade Communication Systems.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/pyswitch.snmp.base.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
