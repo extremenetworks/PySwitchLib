@@ -1,4 +1,3 @@
-import logging
 import re
 import sys
 import xml.etree.ElementTree as ET
@@ -43,6 +42,9 @@ SLXOS_VERSIONS = {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
     },
     '17r.1': {
+        'interface': pyswitch.raw.slxos.base.interface.Interface,
+    },
+    '17r.2': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
     },
     '17s.1': {
@@ -221,8 +223,7 @@ class NetConfDevice(AbstractDevice):
                 ncclient.transport.SessionCloseError,
                 ncclient.transport.SSHError,
                 ncclient.transport.AuthenticationError,
-                ncclient.transport.SSHUnknownHostError) as error:
-            logging.error(error)
+                ncclient.transport.SSHUnknownHostError):
             raise DeviceCommError
 
     def close(self):

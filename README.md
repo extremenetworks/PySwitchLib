@@ -11,6 +11,13 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.87
+* Added v17r.2.00 support in pyswitch netconf device.
+## 0.1.86
+* Added v17r.2.00 support in pyswitch.
+## 0.1.85
+* Updated v17s.1.02 bindings to include show_management_cluster rpc.
+* Fixed v17r.2.00 support for rest rpc requests.
 ## 0.1.84
 * Added back version check and reponse close logic.
 ## 0.1.83
