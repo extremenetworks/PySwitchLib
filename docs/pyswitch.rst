@@ -7,6 +7,8 @@ Subpackages
 .. toctree::
 
     pyswitch.os
+    pyswitch.raw
+    pyswitch.snmp
 
 Submodules
 ----------
