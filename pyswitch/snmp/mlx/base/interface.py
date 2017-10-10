@@ -726,7 +726,7 @@ class Interface(BaseInterface):
                 ``ElementTree`` `config`.
 
         Returns:
-            Return value of `callback`.
+            Return True on success or raises ValueError on failure
 
         Raises:
             KeyError: if `int_type`, `name`, or `vlan` is not specified.
@@ -791,7 +791,7 @@ class Interface(BaseInterface):
             callback (function): A function executed upon completion of the
                  method.
             Returns:
-            List of 0 or more IPs configure on the specified interface.
+            False or IP address on the specified interface.
 
         Raises:
             KeyError: if `int_type` or `name` is not passed.
