@@ -8,7 +8,7 @@ PAPER         =
 BUILDDIR      = docs/build
 VIRTUALENV_DIR ?= venv
 REQUIREMENTS := requirements.txt
-GH_PAGES_SOURCES = source Makefile
+GH_PAGES_SOURCES = docs Makefile
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
