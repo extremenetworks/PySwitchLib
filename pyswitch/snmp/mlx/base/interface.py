@@ -822,7 +822,7 @@ class Interface(BaseInterface):
         callback = kwargs.pop('callback', self._callback)
 
         if version == 4:
-            cli_cmd = 'show ip inter' + ' ' + int_type + ' ' + name
+            cli_cmd = 'show ip inter' + ' ' + int_type + ' ' + name + ' | include address'
             cli_output = callback(cli_cmd, handler='cli-get')
             if re.search(r'ip address:', cli_output):
                 ip = re.split(' ', cli_output)
