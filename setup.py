@@ -22,7 +22,7 @@ setup(
         'Operating System :: POSIX :: Linux',
         'Operating System :: MacOS',
     ],
-    url="https://github.com/StackStorm/PySwitchLib",
+    url="https://stackstorm.github.io/PySwitchLib/",
     include_package_data=True,
     install_requires=reqs,
 )
