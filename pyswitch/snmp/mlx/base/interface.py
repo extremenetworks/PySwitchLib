@@ -7,6 +7,9 @@ from pyswitch.exceptions import InvalidVlanId
 
 from pyswitch.snmp.base.interface import Interface as BaseInterface
 from pyswitch.snmp.SnmpMib import SnmpMib as SnmpMib
+import pyswitch.utilities
+from pyswitch.exceptions import InvalidVlanId
+import re
 from pyswitch.snmp.mlx.SnmpMLXMib import SnmpMLXMib as SnmpMLXMib
 from hnmp import mac_address
 # from pyswitch.utilities import Util
@@ -563,13 +566,13 @@ class Interface(BaseInterface):
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = self.valid_int_types
         ifAdminStatus_oid = SnmpMib.mib_oid_map['ifAdminStatus']
-        ifadminStatus_index = ifAdminStatus_oid + '.' + repr(port_id)
+        ifadminStatus_index = ifAdminStatus_oid + '.' + str(port_id)
         if int_type == 'ethernet' and port_id is None:
             raise ValueError('pass valid port-id')
 
         if int_type not in valid_int_types:
             raise ValueError('`int_type` must be one of: %s' %
-                             repr(valid_int_types))
+                             str(valid_int_types))
 
         if not isinstance(enabled, bool) and not get:
             raise ValueError('`enabled` must be `True` or `False`.')
@@ -639,13 +642,13 @@ class Interface(BaseInterface):
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = self.valid_int_types
         ifAlias = SnmpMib.mib_oid_map['ifAlias']
-        ifAlias_oid = ifAlias + '.' + repr(port_id)
+        ifAlias_oid = ifAlias + '.' + str(port_id)
         if int_type == 'ethernet' and port_id is None:
             raise ValueError('pass valid port-id')
 
         if int_type not in valid_int_types:
             raise ValueError('`int_type` must be one of: %s' %
-                             repr(valid_int_types))
+                             str(valid_int_types))
 
         try:
             if get:
@@ -660,4 +663,234 @@ class Interface(BaseInterface):
         except Exception as error:
             reason = error.message
             raise ValueError('Failed to set interface admin status to %s' % (reason))
+        return None
+
+    def switchport(self, **kwargs):
+        """Set interface switchport status.
+           it is a dummy function for MLX as there is no switchport mode
+
+        Args:
+            int_type (str): Type of interface. (gigabitethernet,
+                tengigabitethernet, etc)
+            name (str): Name of interface. (1/0/5, 1/0/10, etc)
+            enabled (bool): Is the interface enabled? (True, False)
+            get (bool): Get config instead of editing config. (True, False)
+
+        Returns:
+            Return value of `True or False`.
+
+        Raises:
+            KeyError: if `int_type` or `name` is not specified.
+            ValueError: if `name` or `int_type` is not a valid
+                value.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.switchport(name='1/1',
+            ...         int_type='ethernet')
+            ...         dev.interface.switchport()
+            ...         # doctest: +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            KeyError
+        """
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+        int_types = self.valid_int_types
+
+        if int_type not in int_types:
+            raise ValueError("`int_type` must be one of: %s"
+                             % str(int_types))
+        if not pyswitch.utilities.valid_interface(int_type, name):
+            raise ValueError('`name` must be in the format of x/y/z for '
+                             'physical interfaces or x for port channel.')
+
+        if kwargs.pop('get', False):
+            return None
+        else:
+            return True
+
+    def acc_vlan(self, **kwargs):
+        """Set access VLAN on a port.
+        Args:
+            int_type (str): Type of interface. (gigabitethernet,
+                tengigabitethernet, etc)
+            name (str): Name of interface. (1/1, 1/2, etc)
+            vlan (str): VLAN ID to set as the access VLAN.
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return True on success or raises ValueError on failure
+
+        Raises:
+            KeyError: if `int_type`, `name`, or `vlan` is not specified.
+            ValueError: if `int_type`, `name`, or `vlan` is not valid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> int_type = 'ethernet'
+            >>> name = '1/1'
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.add_vlan_int('736')
+            ...         output = dev.interface.acc_vlan(int_type=int_type,
+            ...         name=name, vlan='736')
+            ...         dev.interface.acc_vlan()
+            ...         # doctest: +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            KeyError
+        """
+        int_type = kwargs.pop('int_type')
+        name = kwargs.pop('name')
+
+        callback = kwargs.pop('callback', self._callback)
+        int_types = self.valid_int_types
+        cli_arr = []
+
+        if int_type not in int_types:
+            raise ValueError("`int_type` must be one of: %s"
+                             % repr(int_types))
+        if not pyswitch.utilities.valid_interface(int_type, name):
+            raise ValueError('`name` must be in the format of y/z for '
+                             'physical interfaces or x for port channel.')
+
+        vlan = kwargs.pop('vlan')
+        if not pyswitch.utilities.valid_vlan_id(vlan):
+            raise InvalidVlanId("`name` must be between `1` and `4096`")
+
+        cli_arr.append('vlan' + ' ' + str(vlan))
+
+        if kwargs.pop('delete', False):
+            cli_arr.append('no untagged' + ' ' + int_type + ' ' + name)
+        else:
+            cli_arr.append('untagged' + ' ' + int_type + ' ' + name)
+
+        cli_res = callback(cli_arr, handler='cli-set')
+        error = re.search(r'Error:(.+)', cli_res)
+        if error:
+            raise ValueError("%s" % error.group(0))
+        return True
+
+    def get_ip_addresses(self, **kwargs):
+        """
+        Get IP Addresses already set on an Interface.
+
+        Args:
+            int_type (str): Type of interface. (ethernet).
+            name (str): Name of interface id.
+                 (For interface: 1/1, 1/2 etc).
+            version (int): 4 or 6 to represent IPv4 or IPv6 address
+            callback (function): A function executed upon completion of the
+                 method.
+            Returns:
+            False or IP address on the specified interface.
+
+        Raises:
+            KeyError: if `int_type` or `name` is not passed.
+            ValueError: if `int_type` or `name` are invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...    conn = (switch, '22')
+            ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...        int_type = 'ethernet'
+            ...        name = '4/4'
+            ...        version = 4
+            ...        result = dev.interface.get_ip_addresses(
+            ...        int_type=int_type, name=name, version=version)
+            ...        print result
+            ...        version = 6
+            ...        result = dev.interface.get_ip_addresses(
+            ...        int_type=int_type, name=name, version=version)
+            ...        print result
+        """
+
+        int_type = str(kwargs.pop('int_type').lower())
+        name = str(kwargs.pop('name'))
+        version = int(kwargs.pop('version'))
+        callback = kwargs.pop('callback', self._callback)
+
+        if version == 4:
+            cli_cmd = 'show ip inter' + ' ' + int_type + ' ' + name + ' | include address'
+            cli_output = callback(cli_cmd, handler='cli-get')
+            if re.search(r'ip address:', cli_output):
+                ip = re.split(' ', cli_output)
+                return ip[4]
+            else:
+                return False
+        elif version == 6:
+            cli_cmd = 'show ipv6 inter' + ' ' + int_type + ' ' + name
+            cli_output = callback(cli_cmd, handler='cli-get')
+            if re.search(r'IPv6 is enabled', cli_output):
+                ipv6_s = re.search(r'(.+) \[Preferred\],  subnet is (.+)',
+                        cli_output)
+                subnet_s = re.search(r'::/(.+)', ipv6_s.group(2))
+                ipv6_addr = ipv6_s.group(1).strip() + '/' + subnet_s.group(1)
+                return ipv6_addr
+            else:
+                return False
+
+    def mtu(self, **kwargs):
+        """Set interface mtu.
+
+        Args:
+            int_type (str): Type of interface. (ethernet, etc)
+            name (str): Name of interface. (1/1 etc)
+            mtu (str): Value between 1522 and 9216
+            callback (function): A function executed upon completion of the
+                method.
+        Returns:
+            Return value of `mtu(str)`, True
+
+        Raises:
+            KeyError: if `int_type`, `name`, or `mtu` is not specified.
+            ValueError: if `int_type`, `name`, or `mtu` is invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.mtu(mtu='1666',
+            ...         int_type='ethernet', name='1/1')
+            ...         output = dev.interface.mtu(get=True,
+            ...         int_type='ethernet', name='1/1')
+            ...         print output
+            ...         dev.interface.mtu() # doctest: +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            KeyError
+        """
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+
+        callback = kwargs.pop('callback', self._callback)
+
+        int_types = self.valid_int_types
+
+        if int_type not in int_types:
+            raise ValueError("Incorrect int_type value.")
+
+        if kwargs.pop('get', False):
+            cli_cmd = 'show interfaces' + ' ' + int_type + ' ' + name + ' ' + ' | inc MTU'
+            cli_output = callback(cli_cmd, handler='cli-get')
+
+            mtu = re.split(' ', cli_output)
+
+            return mtu[1]
+
+        else:
+            raise ValueError("MLX Doesn't support per port L2 MTU configuration")
         return None
