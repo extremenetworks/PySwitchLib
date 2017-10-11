@@ -11,6 +11,8 @@ Inside a python program do this:
 ```
     import pyswitchlib.asset
 ```
+## 0.1.88
+* Changed requirements to be locked to pybind 0.1.29.
 ## 0.1.87
 * Added v17r.2.00 support in pyswitch netconf device.
 ## 0.1.86
