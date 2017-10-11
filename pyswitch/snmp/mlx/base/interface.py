@@ -211,26 +211,26 @@ class Interface(BaseInterface):
             ...     assert output == True
         """
         try:
-            # To delete the LAG, first disable member ports
-            # get the member ports of LAG
-            if int(port_int) < 1 or int(port_int) > 256:
-                raise ValueError('Port-channel id should be between 1 and 256')
-            cli_arr = []
-            lag_name = self.get_lag_id_name_map(port_int)
-            cli_arr.append('lag' + " " + lag_name)
-            ifid_name = self.get_port_channel_member_ports(lag_name)
-            for item in ifid_name:
-                port = ifid_name[item]
-                port = port.replace('ethernet', 'ethernet ')
-                cli_arr.append('disable' + " " + str(port))
-
-            cli_arr.append('no' + " " + 'lag' + " " + lag_name)
-            output = self._callback(cli_arr, handler='cli-set')
-            for line in output.split('\n'):
-                if 'Error' in line:
-                    if 'LAG not deployed' not in line:
-                        raise ValueError(str(line))
-            return True
+            lag_name = self.get_lag_id_name_map(str(port_int))
+            if lag_name is None:
+                    raise ValueError('Port-channel name is NULL')
+            key_len = len(lag_name)
+            if key_len < 1 or key_len > 64:
+                raise ValueError('Port-channel name should be 1-64 characters')
+            # Convert PO name to ASCII to construct the key to
+            # fdryLinkAggregationGroupTable
+            key_oid = [ord(c) for c in lag_name]
+            lag_name_oid = ""
+            for item in key_oid:
+                lag_name_oid = lag_name_oid + "." + str(item)
+            rowstatus_oid = SnmpMLXMib.mib_oid_map['fdryLinkAggregationGroupRowStatus'] + \
+                "." + str(key_len) + str(lag_name_oid)
+            config = (rowstatus_oid, 6)
+            ret_value = self._callback(config, handler='snmp-set')
+            if ret_value:
+                return True
+            else:
+                return False
         except Exception as error:
             reason = str(error.message)
             raise ValueError('Failed to delete Port-channel!! %s' % (reason))
@@ -317,7 +317,21 @@ class Interface(BaseInterface):
                 int_type = 'ethernet'
                 int_name = ifid_name[item].strip('ethernet')
                 actor_port = item  # TBD to confirm
-                sync = 0  # TBD extract from CLI?
+                sync = '0'
+                if aggregator_mode == 'dynamic' and deploy is True:
+                    port = self.get_lacp_member_info(lag_name, int_name)
+                    if port['actor_agg'] is True and port['part_agg'] is True:
+                        ready_agg = 1
+                        if port['actor_coll'] is True and \
+                           port['part_coll'] is True and \
+                           port['actor_dist'] is True and \
+                           port['part_dist'] is True:
+                            sync = '1'
+                    if int(port['tx_count']) > 0:
+                        tx_link_count += 1
+                    if int(port['rx_count']) > 0:
+                        rx_link_count += 1
+
                 port_channel_interface = {'rbridge-id': rbridge_id,
                                           'interface-type': int_type,
                                           'interface-name': int_name,
@@ -344,6 +358,69 @@ class Interface(BaseInterface):
             # print "result", results
             result.append(results)
         return result
+
+    def get_lacp_member_info(self, lag_name, intf_name):
+        """ Returns a dict containing all the LACP port specific information
+            User needs to call this API only for dynamic LAG type.
+
+        args:
+            lag_name (str) - port-channel name/descr (for e.g po50)
+            intf_name - interface number e.g 1/1, 2/1
+
+        returns:
+            return - dict containing LACP information of port-channel member
+
+        raises:
+            keyerror: if `int_type`, `name`, or `description` is not specified.
+            valueerror: if `name` or `int_type` are not valid values.
+        """
+        cli_arr = 'show lacp lag_name ' + str(lag_name)
+        output = self._callback(cli_arr, handler='cli-get')
+        interface_info = {}
+        for line in output.split('\n'):
+            if 'Error' in line:
+                raise ValueError(str(line))
+            if intf_name in line:
+                port_info = line.split()
+                if port_info[1] == 'ACTR':
+                    actor_oper_key = port_info[4]
+                    actor_activity = True if port_info[5] == 'Yes' else False
+                    actor_agg = True if port_info[7] == 'Agg' else False
+                    actor_syn = True if port_info[8] == 'Syn' else False
+                    actor_coll = True if port_info[9] == 'Col' else False
+                    actor_dist = True if port_info[10] == 'Dis' else False
+                    interface_info.update({
+                        'int_name': intf_name,
+                        'actor_oper_key': actor_oper_key,
+                        'actor_agg': actor_agg,
+                        'actor_syn': actor_syn,
+                        'actor_coll': actor_coll,
+                        'actor_dist': actor_dist,
+                        'actor_activity': actor_activity,
+                    })
+                elif port_info[1] == 'PRTR':
+                    part_oper_key = port_info[4]
+                    part_activity = True if port_info[5] == 'Yes' else False
+                    part_agg = True if port_info[7] == 'Agg' else False
+                    part_syn = True if port_info[8] == 'Syn' else False
+                    part_coll = True if port_info[9] == 'Col' else False
+                    part_dist = True if port_info[10] == 'Dis' else False
+                    interface_info.update({
+                        'part_oper_key': part_oper_key,
+                        'part_agg': part_agg,
+                        'part_syn': part_syn,
+                        'part_coll': part_coll,
+                        'part_dist': part_dist,
+                        'part_activity': part_activity,
+                    })
+                else:
+                    rx_count = port_info[2]
+                    tx_count = port_info[4]
+                    interface_info.update({
+                        'rx_count': rx_count,
+                        'tx_count': tx_count,
+                    })
+        return interface_info
 
     def get_port_channel_member_ports(self, lag_name=None):
         """ Returns a map of port-channel member ports

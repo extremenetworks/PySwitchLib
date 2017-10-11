@@ -32,6 +32,7 @@ class SnmpUtils:
 
     SNMP_DEVICE_MAP = {
         '1.3.6.1.4.1.1991.1.3.44.3.2': 'MLX',
+        '1.3.6.1.4.1.1991.1.3.55.3.2': 'MLX',
     }
 
     DEVICE_FIRMWARE_MAP = {
