@@ -27,6 +27,7 @@ class PySwitchLibApi(object):
         """
         This is an auto-generated method for the PySwitchLib.
         """
+
         self._module_name = module_name
         self._module_obj = module_obj
         self._api_lock = threading.Lock()
@@ -42,12 +43,24 @@ class PySwitchLibApi(object):
         self.pidfile_timeout = 1
 
     def module_name(self, module_name=''):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         self._module_name = module_name
 
     def api_acquire(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         self._api_lock.acquire()
 
     def api_release(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         self._api_lock.release()
 
     def _api_validation(self, choices_kwargs_map=None, leaf_os_support_map=None, **kwargs):
@@ -271,7 +284,7 @@ class PySwitchLibApi(object):
                     if match:
                         update_object_rest_data = match.group(1)
 
-                    if temp_pybind_obj == False:
+                    if repr(temp_pybind_obj) is 'False':
                         rest_operation = 'DELETE'
                     else:
                         if 'update_patch' in operation_type:
@@ -398,17 +411,24 @@ class PySwitchLibApi(object):
         return yang_name_list
 
     def _nameserver_loop(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         if self._pyro_ns_port:
             Pyro4.config.NS_PORT = self._pyro_ns_port
-            
+
         try:
             Pyro4.locateNS(host='localhost')
         except Pyro4.errors.NamingError:
             Pyro4.naming.startNSloop(host='localhost', enableBroadcast=False)
 
     def _daemon_loop(self):
-        with Pyro4.Daemon() as daemon:
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
 
+        with Pyro4.Daemon() as daemon:
             Pyro4.config.THREADPOOL_SIZE_MIN = 10
             Pyro4.config.THREADPOOL_SIZE = 200
 
@@ -432,6 +452,10 @@ class PySwitchLibApi(object):
             daemon.requestLoop()
 
     def run(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         self._nameserver_thread.start()
 
         while True:
@@ -445,14 +469,14 @@ def read_conf_file(filename=None):
     conf_pattern = re.compile('\s*(\w+)\s*=\s*(\w+)\s*')
 
     if os.path.exists(filename):
-         with open(filename, 'r') as conf_file:
-             for conf_line in conf_file:
+        with open(filename, 'r') as conf_file:
+            for conf_line in conf_file:
                 line = conf_line.strip()
-                  
-                if not re.match('^#', line): 
+
+                if not re.match('^#', line):
                     match = conf_pattern.match(line)
 
-                    if match:        
+                    if match:
                         conf_dict[match.group(1)] = match.group(2)
 
     return conf_dict
@@ -475,7 +499,7 @@ if __name__ == "__main__":
     if 'ns_port' in pyswitchlib_conf:
         pyro_ns_port = int(pyswitchlib_conf['ns_port'])
 
-    if len(sys.argv) >= 2: 
+    if len(sys.argv) >= 2:
         if sys.argv[1] == 'start':
             if os.path.exists(pid_file):
                 with open(pid_file, 'r') as pid:
@@ -490,6 +514,7 @@ if __name__ == "__main__":
             if os.path.exists(pid_file):
                 with open(pid_file, 'r') as pid:
                     proc_pid = pid.readline().rstrip()
+
                     if os.path.isdir(os.path.join(os.sep, 'proc', proc_pid)):
                         print(sys.argv[0].split('/')[-1] + ' (pid ' + proc_pid + ') is running...')
                         sys.exit(0)
@@ -513,3 +538,4 @@ if __name__ == "__main__":
         daemon_runner.do_action()
     except (LockTimeout, runner.DaemonRunnerStopFailureError) as e:
         sys.exit()
+
