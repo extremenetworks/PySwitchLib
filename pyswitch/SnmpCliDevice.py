@@ -18,6 +18,7 @@ limitations under the License.
 import sys
 import pyswitch.utilities as util
 import pyswitch.snmp.mlx.base.interface
+import pyswitch.snmp.mlx.base.system
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
@@ -27,14 +28,16 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 
-ROUTER_ATTRS = ['interface']
+ROUTER_ATTRS = ['interface', 'system']
 
 NI_VERSIONS = {
     '6.1': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
+        'system': pyswitch.snmp.mlx.base.system.System,
     },
     '6.2': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
+        'system': pyswitch.snmp.mlx.base.system.System,
     },
 }
 
