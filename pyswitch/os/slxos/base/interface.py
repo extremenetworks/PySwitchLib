@@ -3,6 +3,7 @@ from pyswitch.exceptions import InvalidVlanId
 from pyswitch.os.base.interface import Interface as BaseInterface
 from pyswitch.utilities import Util
 import re
+from ipaddress import ip_interface
 
 
 class Interface(BaseInterface):
@@ -76,7 +77,106 @@ class Interface(BaseInterface):
         raise ValueError('Not available on this Platform')
 
     def ip_anycast_gateway(self, **kwargs):
-        raise ValueError('Not available on this Platform')
+        """
+        Add anycast gateway under interface ve.
+
+        Args:
+            int_type: L3 interface type on which the anycast ip
+               needs to be configured.
+            name:L3 interface name on which the anycast ip
+               needs to be configured.
+            anycast_ip: Anycast ip which the L3 interface
+               needs to be associated.
+            enable (bool): If ip anycast gateway should be enabled
+                or disabled.Default:``True``.
+            get (bool) : Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+               method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `int_type`, `name`, `anycast_ip` is not passed.
+            ValueError: if `int_type`, `name`, `anycast_ip` is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         dev.interface.ip_anycast_gateway(
+            ...         int_type='ve', name='89',
+            ...         anycast_ip='10.20.1.1/24')
+            ...         output = dev.interface.ip_anycast_gateway(
+            ...         get=True,int_type='ve',name='89',
+            ...         anycast_ip='10.20.1.1/24')
+            ...         dev.interface.ip_anycast_gateway(
+            ...         enable=False,int_type='ve',
+            ...         name='89',anycast_ip='10.20.1.1/24')
+         """
+
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+        anycast_ip = kwargs.pop('anycast_ip', '')
+        enable = kwargs.pop('enable', True)
+        get = kwargs.pop('get', False)
+        callback = kwargs.pop('callback', self._callback)
+        valid_int_types = ['ve']
+
+        if get and anycast_ip == '':
+            enable = None
+            if int_type not in valid_int_types:
+                raise ValueError('`int_type` must be one of: %s' %
+                                 repr(valid_int_types))
+            anycast_args = dict(ve=name)
+
+            method_name1 = 'interface_%s_ip_anycast_address_get'\
+                           % int_type
+            method_name2 = 'interface_%s_ipv6_anycast_address_get'\
+                           % int_type
+            if not pyswitch.utilities.valid_vlan_id(name):
+                raise InvalidVlanId("`name` must be between `1` and `8191`")
+
+            config1 = (method_name1, anycast_args)
+            config2 = (method_name2, anycast_args)
+            result = []
+            op = callback(config1, handler='get_config')
+            util = Util(op.data)
+            result.append(util.find(util.root, './/ip-address'))
+            op = callback(config2, handler='get_config')
+            util = Util(op.data)
+            result.append(util.find(util.root, './/ipv6-address'))
+
+            return result
+
+        ipaddress = ip_interface(unicode(anycast_ip))
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             repr(valid_int_types))
+        if anycast_ip != '':
+            ipaddress = ip_interface(unicode(anycast_ip))
+            if ipaddress.version == 4:
+                anycast_args = dict(
+                    ve=name, ip_anycast_address=(str(anycast_ip),))
+                method_name = 'interface_%s_ip_anycast_address'\
+                              % int_type
+            elif ipaddress.version == 6:
+                anycast_args = dict(
+                    ve=name, ipv6_anycast_address=(
+                        str(anycast_ip),))
+                method_name = 'interface_%s_ipv6_anycast_address'\
+                              % int_type
+
+        if not pyswitch.utilities.valid_vlan_id(name):
+            raise InvalidVlanId("`name` must be between `1` and `8191`")
+        create_method = "%s_create" % method_name
+        config = (create_method, anycast_args)
+
+        if not enable:
+            delete_method = "%s_delete" % method_name
+            config = (delete_method, anycast_args)
+        return callback(config)
 
     def spanning_tree_state(self, **kwargs):
         """Set Spanning Tree state.
