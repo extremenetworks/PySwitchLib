@@ -29,12 +29,9 @@ class System(BaseSystem):
 
             Args:
 
-                mtu (str): Value between 1522 and 9216
-                version (int) : 4 or 6
+                mtu (str): Value between 1298 and 9216
                 callback (function): A function executed upon completion of
-                the method.  The only parameter passed to `callback` will be
-                 the
-                    ``ElementTree`` `config`.
+                the method.  
 
             Returns:
                 Return True or raise ValueError
@@ -52,8 +49,10 @@ class System(BaseSystem):
                 ...  with pyswitch.device.Device(conn=conn, auth=auth) as dev:
                 ...         output = dev.system.system_l2_mtu(mtu='1666')
                 ...         assert output == '1666'
-                ...         output = dev.system.system_l2_mtu(mtu='1667',version=6)
+                ...         output = dev.system.system_l2_mtu(mtu='1667')
                 ...         assert output == '1667'
+                ...         output = dev.system.system_l2_mtu(get=True)
+                ...         print output
         """
 
         callback = kwargs.pop('callback', self._callback)
