@@ -31,7 +31,7 @@ class System(BaseSystem):
 
                 mtu (str): Value between 1298 and 9216
                 callback (function): A function executed upon completion of
-                the method.  
+                the method.
 
             Returns:
                 Return True or raise ValueError
