@@ -79,6 +79,6 @@ class System(BaseSystem):
         if error:
             raise ValueError("%s" % error.group(0))
         else:
-           success_msg = re.search(r'Reload required.(.+)', cli_res)
+            success_msg = re.search(r'Reload required.(.+)', cli_res)
 
         return success_msg.group(0)
