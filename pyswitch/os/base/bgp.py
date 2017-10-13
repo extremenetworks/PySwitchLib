@@ -2281,14 +2281,36 @@ class Bgp(object):
             return
 
     def evpn_graceful_restart(self, **kwargs):
-        """Set BGP evpn graceful restart property.
+        """Set BGP next hop recursion property.
+
+        Args:
+            rbridge_id (str): The rbridge ID of the device on which BGP will be
+                configured in a VCS fabric.
+            get (bool): Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            ``AttributeError``: When `afi` is not one of ['ipv4', 'ipv6']
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.39.211', '22')
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.bgp.evpn_graceful_restart(rbridge_id='225')
         """
 
-        api = 'rbridge_id_router_bgp_address_family_l2vpn_evpn_' \
+        api = 'router_bgp_address_family_l2vpn_evpn_' \
               'graceful_restart_update'
         rbridge_id = kwargs.pop('rbridge_id', '1')
         callback = kwargs.pop('callback', self._callback)
         args = dict(rbridge_id=rbridge_id, graceful_restart_status=True)
+        api = self.method_prefix(api, args)
         return callback((api, args))
 
     def neighbor_peer_group(self, **kwargs):
