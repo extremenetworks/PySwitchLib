@@ -48,7 +48,7 @@ class System(BaseSystem):
         router_id = kwargs.pop('router_id')
         callback = kwargs.pop('callback', self._callback)
 
-        rid_args = {'router_id':router_id}
+        rid_args = {'router_id': router_id}
         config = ('ip_router_id_update', rid_args)
         return callback(config)
 
