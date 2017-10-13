@@ -56,13 +56,6 @@ class System(BaseSystem):
         """
 
         callback = kwargs.pop('callback', self._callback)
-
-        if kwargs.pop('get', False):
-            cli_cmd = 'show max-frame-size'
-            cli_res = callback(cli_cmd, handler='cli-get')
-            mtu = re.search(r'Default max frame size for ETH : (.+)', cli_res)
-            return mtu.group(1)
-
         mtu = kwargs.pop('mtu')
 
         minimum_mtu = 1298
@@ -71,6 +64,17 @@ class System(BaseSystem):
             raise ValueError(
                 "Incorrect mtu value, Valid Range %s-%s" %
                 (minimum_mtu, maximum_mtu))
+
+        cli_cmd = 'show max-frame-size'
+        cli_res = callback(cli_cmd, handler='cli-get')
+        mtu_match = re.search(r'Default max frame size for ETH : (.+)', cli_res)
+
+        if kwargs.pop('get', False):
+            return mtu_match.group(1)
+
+        if int(mtu) == int(mtu_match.group(1)):
+            raise ValueError("system MTU:%s is already configured" % mtu)
+
         cli_arr = []
         cli_arr.append('default-max-frame-size' + ' ' + str(mtu))
         cli_res = callback(cli_arr, handler='cli-set')
