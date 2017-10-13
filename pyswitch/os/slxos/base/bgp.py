@@ -116,7 +116,7 @@ class Bgp(BaseBgp):
             ...     output = dev.bgp.remove_bgp(rbridge_id='225')
 
         """
-
+        BaseBgp.evpn_afi_peer_activate(self, **kwargs)
         return
 
     def evpn_afi_peergroup_encapsulation(self, **kwargs):
@@ -225,17 +225,24 @@ class Bgp(BaseBgp):
 
         Examples:
             >>> import pyswitch.device
-            >>> conn = ('10.26.8.210', '22')
+            >>> conn = ('10.24.86.60', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.bgp.local_asn(local_as='64101')
             ...     output = dev.bgp.neighbor(ip_addr='10.10.10.10',
             ...     remote_as='65535')
+            ...     output= dev.bgp.neighbor(ip_addr='20.20.20.20',
+            ...     remote_as='65555')
             ...     output = dev.bgp.evpn_afi_peer_activate(peer_ip='10.10.10.10')
+            ...     output = dev.bgp.evpn_afi_peer_activate(peer_ip='20.20.20.20')
             ...     output = dev.bgp.evpn_encapsulation(
             ...     ip_addr='10.10.10.10',encapsulation_type='vxlan')
             ...     output = dev.bgp.evpn_encapsulation(
+            ...     ip_addr='20.20.20.20',encapsulation_type='nsh')
+            ...     output = dev.bgp.evpn_encapsulation(
             ...     ip_addr='10.10.10.10', get=True)
+            ...     output = dev.bgp.evpn_encapsulation(
+            ...     ip_addr='20.20.20.20', get=True)
             ...     output = dev.bgp.evpn_encapsulation(
             ...     ip_addr='10.10.10.10', delete=True)
         """

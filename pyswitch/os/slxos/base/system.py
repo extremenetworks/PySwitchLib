@@ -34,26 +34,23 @@ class System(BaseSystem):
         """Configures device's Router ID.
         Args:
             router_id (str): Router ID for the device.
-            rbridge_id (str): The rbridge ID of the device on which BGP will be configured in a
-            VCS fabric.
-            callback (function): A function executed upon completion of the method.  The only
-            parameter passed to `callback` will be the ``ElementTree`` `config`.
         Returns:
             Return value of `callback`.
         Raises:
             KeyError: if `router_id` is not specified.
         Examples:
             >>> import pyswitch.device
-            >>> conn = ('10.24.39.211', '22')
+            >>> conn = ('10.24.86.60', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     output = dev.system.router_id(router_id='10.24.39.211',
-            ...     rbridge_id='225')
-            ...     dev.system.router_id() # doctest: +IGNORE_EXCEPTION_DETAIL
-            Traceback (most recent call last):
-            KeyError
+            ...     output = dev.system.router_id(router_id='10.24.39.211')
         """
-        raise ValueError('Not available on this Platform')
+        router_id = kwargs.pop('router_id')
+        callback = kwargs.pop('callback', self._callback)
+
+        rid_args = {'router_id':router_id}
+        config = ('ip_router_id_update', rid_args)
+        return callback(config)
 
     def host_name(self, **kwargs):
         """Configures device's host name.
