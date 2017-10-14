@@ -971,3 +971,128 @@ class Interface(BaseInterface):
         else:
             raise ValueError("MLX Doesn't support per port L2 MTU configuration")
         return None
+
+    def trunk_allowed_vlan(self, **kwargs):
+        """Add member ports to a vlan.
+
+        Args:
+            int_type (str): Type of interface. (ethernet)
+            name (str): Name of interface. (1/1, 2/1 etc)
+            action (str): Action to take on trunk. (add, remove)
+            vlan (str): vlan id for action. Only valid for add and remove.
+            callback (function): A function executed upon completion of the
+                method.
+
+        Returns:
+            Return True or Value Error.
+
+        Raises:
+            KeyError: if `int_type`, `name`, or `mode` is not specified.
+            ValueError: if `int_type`, `name`, or `mode` is invalid.
+
+        Examples:
+            >>> def test_trunk_allowed_vlan():
+            ...     import pyswitch.device
+            ...     switches = ['10.24.85.107']
+            ...     auth = ('admin', 'admin')
+            ...     int_type = 'ethernet'
+            ...     name = '1/4'
+            ...     for switch in switches:
+            ...         conn = (switch, '22')
+            ...         with pyswitch.device.Device(conn=conn, auth=auth)
+                            as dev:
+            ...             output = dev.interface.add_vlan_int('25')
+            ...             output = dev.interface.trunk_allowed_vlan(
+            ...             int_type=int_type, name=name, action='add',
+            ...             vlan='25')
+            ...             dev.interface.private_vlan_mode()
+            ...             # doctest: +IGNORE_EXCEPTION_DETAIL
+            >>> test_trunk_allowed_vlan() # doctest: +SKIP
+        """
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+
+        callback = kwargs.pop('callback', self._callback)
+
+        int_types = self.valid_int_types
+        valid_actions = ['add', 'remove']
+
+        if int_type not in int_types:
+            raise ValueError("`int_type` must be one of: %s" %
+                             repr(int_types))
+
+        action = kwargs.pop('action')
+        vlan = kwargs.pop('vlan', None)
+
+        if action not in valid_actions:
+            raise ValueError('%s must be one of: %s' %
+                             (action, valid_actions))
+
+        if not pyswitch.utilities.valid_interface(int_type, name):
+            raise ValueError('`name` must be in the format of y/z for '
+                             'physical interfaces or x for port channel.')
+        cli_arr = []
+        cli_arr.append('vlan' + ' ' + str(vlan))
+        if action == 'add':
+            cli_arr.append('tagged' + ' ' + int_type + ' ' + name)
+        else:
+
+            cli_arr.append('no tagged' + ' ' + int_type + ' ' + name)
+
+        try:
+            cli_res = callback(cli_arr, handler='cli-set')
+            error = re.search(r'Error:(.+)', cli_res)
+            if error:
+                raise ValueError("%s" % error.group(0))
+            return True
+        except Exception as error:
+            reason = error.message
+            raise ValueError('Failed to add member port to vlan %s' % (reason))
+
+    def trunk_mode(self, **kwargs):
+        """ dummy function as MLX do not support trunk mode
+        """
+        pass
+
+    def interface_exists(self, **kwargs):
+        """check whether interface exist.
+
+        Args:
+            int_type (str): Type of interface. (ethernet, etc)
+            name (str): Name of interface. (1/1 etc)
+            callback (function): A function executed upon completion of the
+                method.
+        Returns:
+            Return True or False
+
+        Raises:
+            KeyError: if `int_type`, `name`, or `mtu` is not specified.
+            ValueError: if `int_type`, `name`, or `mtu` is invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.interface_exists(
+            ...         int_type='ethernet', name='1/1')
+            ...         print output
+            Traceback (most recent call last):
+            KeyError
+        """
+
+        int_type = str(kwargs.pop('int_type').lower())
+        name = str(kwargs.pop('name'))
+
+        valid_int_types = self.valid_int_types
+        if int_type not in valid_int_types:
+            raise ValueError('int_type must be one of: %s' %
+                             repr(valid_int_types))
+
+        ifname_Ids = self.get_interface_name_id_mapping()
+        if int_type + name in ifname_Ids:
+            return True
+        else:
+            return False
