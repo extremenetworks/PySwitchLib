@@ -987,8 +987,7 @@ class Interface(BaseInterface):
             Return True or Value Error.
 
         Raises:
-            KeyError: if `int_type`, `name`, or `mode` is not specified.
-            ValueError: if `int_type`, `name`, or `mode` is invalid.
+            ValueError: if `int_type`, `name`.
 
         Examples:
             >>> def test_trunk_allowed_vlan():
@@ -1005,7 +1004,6 @@ class Interface(BaseInterface):
             ...             output = dev.interface.trunk_allowed_vlan(
             ...             int_type=int_type, name=name, action='add',
             ...             vlan='25')
-            ...             dev.interface.private_vlan_mode()
             ...             # doctest: +IGNORE_EXCEPTION_DETAIL
             >>> test_trunk_allowed_vlan() # doctest: +SKIP
         """
@@ -1058,16 +1056,15 @@ class Interface(BaseInterface):
         """check whether interface exist.
 
         Args:
-            int_type (str): Type of interface. (ethernet, etc)
-            name (str): Name of interface. (1/1 etc)
+            int_type (str): Type of interface. (ethernet)
+            name (str): Name of interface. (1/1, 1/2 etc)
             callback (function): A function executed upon completion of the
                 method.
         Returns:
             Return True or False
 
         Raises:
-            KeyError: if `int_type`, `name`, or `mtu` is not specified.
-            ValueError: if `int_type`, `name`, or `mtu` is invalid.
+            ValueError: if `int_type`, `name`.
 
         Examples:
             >>> import pyswitch.device
