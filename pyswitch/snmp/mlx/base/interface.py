@@ -976,8 +976,8 @@ class Interface(BaseInterface):
         """Add member ports to a vlan.
 
         Args:
-            int_type (str): Type of interface. (ethernet)
-            name (str): Name of interface. (1/1, 2/1 etc)
+            int_type (str): Type of interface. (ethernet, port_channel)
+            name (str): Name of interface. (1/1, 2/1, 50 etc)
             action (str): Action to take on trunk. (add, remove)
             vlan (str): vlan id for action. Only valid for add and remove.
             callback (function): A function executed upon completion of the
@@ -1029,19 +1029,36 @@ class Interface(BaseInterface):
         if not pyswitch.utilities.valid_interface(int_type, name):
             raise ValueError('`name` must be in the format of y/z for '
                              'physical interfaces or x for port channel.')
-        cli_arr = []
-        cli_arr.append('vlan' + ' ' + str(vlan))
-        if action == 'add':
-            cli_arr.append('tagged' + ' ' + int_type + ' ' + name)
-        else:
 
-            cli_arr.append('no tagged' + ' ' + int_type + ' ' + name)
+        if int_type == 'port_channel':
+            cli_cmd = "show lag id" + ' ' + str(name)
+            cli_output = callback(cli_cmd, handler='cli-get')
+            primary_match = re.search(r'Primary Port:  (.+)', cli_output)
+            if primary_match is None or primary_match.group(1) is None:
+                raise ValueError('primary port is not found for lag %s' % name)
+            else:
+                name = primary_match.group(1).strip()
+                int_type = 'ethernet'
+        vlan_list = pyswitch.utilities.get_vlan_list(vlan)
+        if vlan_list is None:
+            raise ValueError('vlan or vlan range is not allowed')
+
+        cli_arr = []
+        for vid in vlan_list:
+            cli_arr.append('vlan' + ' ' + str(vid))
+            if action == 'add':
+                cli_arr.append('tagged' + ' ' + int_type + ' ' + name)
+            else:
+                cli_arr.append('no tagged' + ' ' + int_type + ' ' + name)
 
         try:
             cli_res = callback(cli_arr, handler='cli-set')
             error = re.search(r'Error:(.+)', cli_res)
+            invalid_input = re.search(r'Invalid input', cli_res)
             if error:
                 raise ValueError("%s" % error.group(0))
+            if invalid_input:
+                raise ValueError("%s" % invalid_input.group(0))
             return True
         except Exception as error:
             reason = error.message
@@ -1084,12 +1101,14 @@ class Interface(BaseInterface):
         name = str(kwargs.pop('name'))
 
         valid_int_types = self.valid_int_types
+
         if int_type not in valid_int_types:
             raise ValueError('int_type must be one of: %s' %
                              repr(valid_int_types))
 
         ifname_Ids = self.get_interface_name_id_mapping()
-        if int_type + name in ifname_Ids:
+        lag_name = self.get_lag_id_name_map(str(name))
+        if int_type + name in ifname_Ids or lag_name is not None:
             return True
         else:
             return False

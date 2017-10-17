@@ -20,6 +20,7 @@ from xml.etree.ElementTree import Element
 
 from ipaddress import ip_interface
 from jsonpath_rw import parse
+import itertools
 
 
 class Util(object):
@@ -316,3 +317,61 @@ def valid_physical_name(name, type):
     else:
         pattern = r'^[0-9]{1,3}/[0-9]{1,3}/[0-9]{1,3}(:[1-4])?$'
     return re.search(pattern, name) is not None
+
+
+def get_vlan_list(vlan_id):
+    """ Expand the vlan_id values into a list """
+    vlan_list = []
+    vlanlist = vlan_id.split(',')
+    for val in vlanlist:
+        temp = expand_vlan_range(vlan_id=val)
+        if temp is None:
+            raise ValueError('Reserved/Control/Invalid vlans passed in args `vlan_id`')
+
+        vlan_list.append(temp)
+
+    vlan_list = list(itertools.chain.from_iterable(vlan_list))
+    return vlan_list
+
+
+def expand_vlan_range(vlan_id):
+    """Fail the task if vlan id is zero or one or above 4096 .
+    """
+
+    re_pattern1 = r"^(\d+)$"
+    re_pattern2 = r"^(\d+)\-?(\d+)$"
+    re_pattern3 = r"^(\d+)\,?(\d+)$"
+
+    if re.search(re_pattern1, vlan_id):
+        try:
+            vlan_id = (int(vlan_id),)
+        except ValueError:
+            return None
+    elif re.search(re_pattern2, vlan_id):
+        try:
+            vlan_id = re.match(re_pattern2, vlan_id)
+        except ValueError:
+            return None
+
+        vlan_id = range(int(vlan_id.groups()[0]), int(
+            vlan_id.groups()[1]) + 1)
+    elif re.search(re_pattern3, vlan_id):
+        vlan_id = vlan_id.split(",")
+    else:
+        return None
+
+    for vid in vlan_id:
+        if vid > 4096:
+            extended = "true"
+        else:
+            extended = "false"
+
+        tmp_vlan_id = valid_vlan_id(vid, extended=extended)
+
+        reserved_vlan_list = range(4087, 4096)
+        if not tmp_vlan_id:
+            return None
+        elif vid in reserved_vlan_list:
+            return None
+
+    return vlan_id
