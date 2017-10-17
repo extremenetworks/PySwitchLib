@@ -86,7 +86,7 @@ class SnmpCliDevice(AbstractDevice):
 
         # self._os_type = version_list[0][2]
         devicemap = SNMPUtils.SNMP_DEVICE_MAP[sysobj]
-        self.devicetype = devicemap[0] 
+        self.devicetype = devicemap[0]
         self._os_type = devicemap[1]
         self.fullver = self.firmware_version
         # self.fullver = version_list[0][1]

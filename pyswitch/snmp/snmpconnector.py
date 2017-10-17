@@ -30,8 +30,21 @@ from pysnmp.proto.rfc1902 import (
 
 class SnmpUtils:
 
+    """
+        SNMP_DEVICE_MAP:
+           This map  holds the mapping of sysobjectid to
+        (devicetype, firmwaretype). The device which
+        needs SNMPCLI device should be part of the list.
+        E.g.
+          'sysobjectid':('devicetype', 'ostype')
+
+        DEVICE_FIRMWARE_MAP:
+           This map consists of firmware name to SNMP OID
+        through which firmwareversion can be obtained.
+    """
+
     SNMP_DEVICE_MAP = {
-        # 'sysobjectid':('devicetype', 'ostype')
+
         '1.3.6.1.4.1.1991.1.3.44.1.2': ('MLX16', 'NI'),
         '1.3.6.1.4.1.1991.1.3.44.2.2': ('MLX8', 'NI'),
         '1.3.6.1.4.1.1991.1.3.44.3.2': ('MLX4', 'NI'),
