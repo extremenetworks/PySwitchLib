@@ -75,8 +75,7 @@ class Device(object):
             pass
 
         if sysobj in SNMPUtils.SNMP_DEVICE_MAP:
-            if SNMPUtils.SNMP_DEVICE_MAP[sysobj] == 'MLX':
-                self.connection_type = 'SNMPCLI'
+            self.connection_type = 'SNMPCLI'
 
         if self.connection_type is 'SNMPCLI':
             self.device_type = SnmpCliDevice(sysobj, **kwargs)

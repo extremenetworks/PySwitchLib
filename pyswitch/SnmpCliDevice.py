@@ -31,6 +31,18 @@ from paramiko.ssh_exception import SSHException
 ROUTER_ATTRS = ['interface', 'system']
 
 NI_VERSIONS = {
+    '5.8': {
+        'interface': pyswitch.snmp.mlx.base.interface.Interface,
+        'system': pyswitch.snmp.mlx.base.system.System,
+    },
+    '5.9': {
+        'interface': pyswitch.snmp.mlx.base.interface.Interface,
+        'system': pyswitch.snmp.mlx.base.system.System,
+    },
+    '6.0': {
+        'interface': pyswitch.snmp.mlx.base.interface.Interface,
+        'system': pyswitch.snmp.mlx.base.system.System,
+    },
     '6.1': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
@@ -85,9 +97,9 @@ class SnmpCliDevice(AbstractDevice):
         self.reconnect()
 
         # self._os_type = version_list[0][2]
-        self.devicetype = SNMPUtils.SNMP_DEVICE_MAP[sysobj]
-        fwmap = SNMPUtils.DEVICE_FIRMWARE_MAP[self.devicetype]
-        self._os_type = fwmap[0]
+        devicemap = SNMPUtils.SNMP_DEVICE_MAP[sysobj]
+        self.devicetype = devicemap[0]
+        self._os_type = devicemap[1]
         self.fullver = self.firmware_version
         # self.fullver = version_list[0][1]
 
@@ -166,8 +178,8 @@ class SnmpCliDevice(AbstractDevice):
             None
 
         """
-        fwmap = SNMPUtils.DEVICE_FIRMWARE_MAP[self.devicetype]
-        return self._mgr['snmp'].get_os_version(fwmap[1])
+        oid = SNMPUtils.DEVICE_FIRMWARE_MAP[self.os_type]
+        return self._mgr['snmp'].get_os_version(oid)
 
     def _callback_main(self, call, handler='snmp-get', target='running',
                        source='startup'):
