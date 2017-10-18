@@ -137,7 +137,7 @@ class Cluster(object):
         (clname, clid) = cluster_args.pop('cluster')
         isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
         hold_time = cluster_args.pop('df_hold_time', 3)
-        cldeploy = cluster_args.pop('deploy', False)
+        cldeploy = cluster_args.pop('deploy', True)
 
         self.cluster_validate(clname, int(clid))
 

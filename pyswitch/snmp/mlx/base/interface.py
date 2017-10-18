@@ -97,12 +97,13 @@ class Interface(BaseInterface):
 
         Args:
             vlan_id_list: List of VLAN interface being created. Value of 2-4096.
+            desc (str): VLAN description
 
         Returns:
             True if command completes successfully or False if not.
 
         Raises:
-            None
+            ValueError
 
         Examples:
             >>> import pyswitch.device
@@ -116,7 +117,11 @@ class Interface(BaseInterface):
         try:
             cli_arr = []
             for vlan in vlan_id_list:
-                cli_arr.append('vlan' + " " + str(vlan) + " " + 'name' + " " + desc)
+                self._callback(cli_arr, handler='cli-set')
+                if desc is None:
+                    cli_arr.append('vlan' + " " + str(vlan))
+                else:
+                    cli_arr.append('vlan' + " " + str(vlan) + " " + 'name' + " " + desc)
             self._callback(cli_arr, handler='cli-set')
             return True
         except Exception as error:
