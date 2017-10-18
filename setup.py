@@ -46,10 +46,10 @@ class PostInstallCommand(install):
 
             rc = os.WEXITSTATUS(os.system(python_prefix + ' ' + pyswitchlib_api_daemon + ' status'))
 
-            if rc == 0:
-                os.system(python_prefix + ' ' + pyswitchlib_api_daemon + ' stop')
-
-            os.system(python_prefix + ' ' + pyswitchlib_api_daemon + ' start')
+            if rc == 3:
+                os.system(python_prefix + ' ' + pyswitchlib_api_daemon + ' start &')
+            else:
+                os.system(python_prefix + ' ' + pyswitchlib_api_daemon + ' restart &')
 
         atexit.register(_post_install)
         install.run(self)

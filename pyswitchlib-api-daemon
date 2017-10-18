@@ -46,8 +46,12 @@ pyswitchlib_api_daemon_wrapper()
         if [ -n "$VIRTENV_PACK_PATH" ]; then
             . "$VIRTENV_PACK_PATH/bin/activate"
         fi
+        
+        if [ "$OPERATION" == "start" || "$OPERATION" == "restart" ]; then
+            (python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION" &)
+        else:
+            python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION"
 
-        (python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION" &)
         RETVAL="$?"
     fi
 
