@@ -9,12 +9,16 @@ import xmltodict
 import json
 import atexit
 import Pyro4
+import Pyro4.util
 import Pyro4.errors
 from distutils.sysconfig import get_python_lib
 import time
 
-import pyswitchlib.exceptions                                                                                                                                                       
-locals().update(pyswitchlib.exceptions.__dict__) 
+from pyswitchlib.util.config import ConfigFileUtil
+import pyswitchlib.exceptions
+locals().update(pyswitchlib.exceptions.__dict__)
+
+sys.excepthook = Pyro4.util.excepthook
 
 
 class Asset(object):
@@ -37,9 +41,9 @@ class Asset(object):
         self._os_type = 'unknown'
         self._os_ver = fw_ver
         self._os_full_ver = fw_ver
-        self._default_connection_timeout = 60                                                                                                                                       
-        self._default_response_timeout = 1800                                                                                                                                       
-        self._session_timeout = (self._default_connection_timeout, self._default_response_timeout) 
+        self._default_connection_timeout = 60
+        self._default_response_timeout = 1800
+        self._session_timeout = (self._default_connection_timeout, self._default_response_timeout)
         self._session = requests.Session()
         self._response = requests.Response()
         self._overall_success = True
@@ -66,17 +70,27 @@ class Asset(object):
         self._supported_module_name = self._get_supported_module()
         #self._load_module(supported_module_name=self._supported_module_name)
         self._pyro_ns_port = None
-        self._pyro_proxy_name = 'PYRONAME:PySwitchLib.Api'
+        self._pyro_proxy_name = 'PYRONAME:PySwitchLib.'
+        self._pyro_daemon_id = 'default'
         self._pyro_bind_max_retries = 30
+        self._pyswitchlib_conf_util = ConfigFileUtil()
         self._pyswitchlib_conf_filename = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
+        self._pyswitchlib_conf = self._pyswitchlib_conf_util.read(filename=self._pyswitchlib_conf_filename)
+
+        for key in self._pyswitchlib_conf:
+            if 'ns_port' == key:
+                self._pyro_ns_port = int(self._pyswitchlib_conf[key])
+            elif 'api_daemon_' in key:
+                if sys.prefix in self._pyswitchlib_conf[key]:
+                    self._pyro_daemon_id = key
 
         if api_port:
             self._pyro_ns_port = api_port
-        elif os.path.exists(self._pyswitchlib_conf_filename):
-            self._pyro_ns_port = self._get_api_port_from_filename(self._pyswitchlib_conf_filename)
 
         if self._pyro_ns_port:
-            self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
+            self._pyro_proxy_name += self._pyro_daemon_id + '@localhost:' + str(self._pyro_ns_port)
+        else:
+            self._pyro_proxy_name += self._pyro_daemon_id
 
         with Pyro4.Proxy(self._pyro_proxy_name) as pyro_proxy:
             for n in range(self._pyro_bind_max_retries):
@@ -84,14 +98,14 @@ class Asset(object):
                     pyro_proxy._pyroBind()
                 except (Pyro4.errors.NamingError, Pyro4.errors.CommunicationError) as e:
                     if n == 0:
-                        if os.path.exists(self._ns_port_filename):
-                            bound_api_port = self._get_api_port_from_filename(self._ns_port_filename)
+                        if self._pyswitchlib_conf and 'ns_port' in self._pyswitchlib_conf:
+                            bound_api_port = int(self._pyswitchlib_conf['ns_port'])
 
                             if bound_api_port and self._pyro_ns_port and bound_api_port != self._pyro_ns_port:
                                 raise ExistingApiPortBound("API port: " + str(bound_api_port) + " is already bound.")
 
                         pyswitchlib_api_daemon = os.path.join(get_python_lib(), 'pyswitchlib', 'pyswitchlib_api_daemon.py')
-                        pyswitchlib_api_start_string = 'python ' + pyswitchlib_api_daemon + ' start'
+                        pyswitchlib_api_start_string = 'python ' + pyswitchlib_api_daemon + ' start &'
 
                         if self._pyro_ns_port:
                             pyswitchlib_api_start_string += ' ' + str(self._pyro_ns_port)
@@ -119,32 +133,6 @@ class Asset(object):
             return getattr_wrapper
         else:
             raise AttributeError(name)
-
-    def _read_conf_file(self, filename=None):
-        conf_dict = {}
-        conf_pattern = re.compile('\s*(\w+)\s*=\s*(\w+)\s*')
-
-        if os.path.exists(filename):
-            with open(filename, 'r') as conf_file:
-                for conf_line in conf_file:
-                    line = conf_line.strip()
-
-                    if not re.match('^#', line):
-                        match = conf_pattern.match(line)
-
-                        if match:
-                            conf_dict[match.group(1)] = match.group(2)
-
-        return conf_dict
-
-    def _get_api_port_from_filename(self, filename):
-        api_port = None
-        conf_dict = self._read_conf_file(filename=filename)
-
-        if 'ns_port' in conf_dict:
-            api_port = int(conf_dict['ns_port'])
-
-        return api_port
 
     def _rest_operation(self, rest_commands=None, yang_list=None, timeout=None):
         auth = self._auth
@@ -438,7 +426,7 @@ class Asset(object):
         safe_os_version = 'v'+'_'.join(supported_os_version)
         package_name = '.'.join(['pybind', self._os_type, safe_os_version])
 
-        return package_name, os.path.join(pybind_dir, safe_os_version)
+        return package_name
 
     def _load_module(self, supported_module_name=''):
         if supported_module_name:

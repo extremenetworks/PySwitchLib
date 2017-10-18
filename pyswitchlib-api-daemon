@@ -47,7 +47,7 @@ pyswitchlib_api_daemon_wrapper()
             . "$VIRTENV_PACK_PATH/bin/activate"
         fi
 
-        python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION"
+        (python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION" &)
         RETVAL="$?"
     fi
 
