@@ -1036,14 +1036,9 @@ class Interface(BaseInterface):
                              'physical interfaces or x for port channel.')
 
         if int_type == 'port_channel':
-            cli_cmd = "show lag id" + ' ' + str(name)
-            cli_output = callback(cli_cmd, handler='cli-get')
-            primary_match = re.search(r'Primary Port:  (.+)', cli_output)
-            if primary_match is None or primary_match.group(1) is None:
-                raise ValueError('primary port is not found for lag %s' % name)
-            else:
-                name = primary_match.group(1).strip()
-                int_type = 'ethernet'
+            name = self.get_lag_primary_port(name)
+            int_type = 'ethernet'
+
         vlan_list = pyswitch.utilities.get_vlan_list(vlan)
         if vlan_list is None:
             raise ValueError('vlan or vlan range is not allowed')
@@ -1058,12 +1053,7 @@ class Interface(BaseInterface):
 
         try:
             cli_res = callback(cli_arr, handler='cli-set')
-            error = re.search(r'Error:(.+)', cli_res)
-            invalid_input = re.search(r'Invalid input', cli_res)
-            if error:
-                raise ValueError("%s" % error.group(0))
-            if invalid_input:
-                raise ValueError("%s" % invalid_input.group(0))
+            pyswitch.utilities.check_mlx_cli_set_error(cli_res)
             return True
         except Exception as error:
             reason = error.message
@@ -1117,3 +1107,14 @@ class Interface(BaseInterface):
             return True
         else:
             return False
+
+    def get_lag_primary_port(self, lag_id):
+        """
+            returns lag primary ethernet port
+        """
+        cli_cmd = "show lag id" + ' ' + str(lag_id)
+        cli_output = self._callback(cli_cmd, handler='cli-get')
+        primary_match = re.search(r'Primary Port:  (.+)', cli_output)
+        if primary_match is None or primary_match.group(1) is None:
+            raise ValueError('primary port is not found for lag %s' % lag_id)
+        return primary_match.group(1).strip()
