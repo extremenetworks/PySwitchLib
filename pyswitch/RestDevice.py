@@ -190,7 +190,8 @@ class RestDevice(AbstractDevice):
         self.base = kwargs.pop('base')
         self._conn = kwargs.pop('conn')
         self.host = self._conn[0]
-        self._auth = kwargs.pop('auth', (None, None))
+        auth_snmp = kwargs.pop('auth', (None, None, None, None))
+        self._auth = (auth_snmp[0], auth_snmp[1])
         self._callback = kwargs.pop('callback', None)
         self.os_type_val = None
 

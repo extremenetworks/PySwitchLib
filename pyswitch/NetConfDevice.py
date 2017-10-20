@@ -107,7 +107,8 @@ class NetConfDevice(AbstractDevice):
         """
         self.base = kwargs.pop('base')
         self._conn = kwargs.pop('conn')
-        self._auth = kwargs.pop('auth', (None, None))
+        auth_snmp = kwargs.pop('auth', (None, None, None, None))
+        self._auth = (auth_snmp[0], auth_snmp[1])
         self._hostkey_verify = kwargs.pop('hostkey_verify', None)
         self._auth_method = kwargs.pop('auth_method', 'userpass')
         self._auth_key = kwargs.pop('auth_key', None)
