@@ -466,12 +466,14 @@ class Interface(BaseInterface):
         lag_grp_list_oid = SnmpMLXMib.mib_oid_map['fdryLinkAggregationGroupIfList'] + \
             "." + str(key_len) + str(lag_name_oid)
         lag_grp_list = self._callback(lag_grp_list_oid, handler='snmp-get')
-        # member_ports is hexstring
-        member_list = []
-        member_list = [(ord(c)) for c in lag_grp_list]
-        # Remove all 0's from list
-        while 0 in member_list:
-            member_list.remove(0)
+        # lag_grp_list is list of member_port ifid in hexstring with each member_port
+        # taking 4 octets
+        m_list = []
+        m_list = [hex(ord(x)).lstrip("0x").zfill(2) for x in lag_grp_list]
+        hex_list = ["0x" + x for x in [''.join(x) for x in zip(m_list[0::4],
+                    m_list[1::4], m_list[2::4], m_list[3::4])]]
+        # convert ifid list of member ports to decimals
+        member_list = [int(c, 16) for c in hex_list]
         # Get the interface name/num for a given interface id
         ifid_name_map = {}
         ifid_name_map = self.get_interface_id_name_mapping(member_list)
