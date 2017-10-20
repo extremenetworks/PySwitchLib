@@ -7,13 +7,16 @@ from lxml import etree as letree
 from ncclient import manager
 from ncclient import xml_
 
+import pyswitch.raw.base.acl
+import pyswitch.raw.slxos.base.acl
 import pyswitch.raw.nos.base.interface
 import pyswitch.raw.slxos.base.interface
 import pyswitch.utilities as util
 from pyswitch.AbstractDevice import AbstractDevice
 from pyswitch.utilities import Util
 
-NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services', 'fabric_service', 'vcs']
+NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
+             'fabric_service', 'vcs', 'acl']
 
 
 class DeviceCommError(Exception):
@@ -26,29 +29,37 @@ class DeviceCommError(Exception):
 NOS_VERSIONS = {
     '6.0': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
+        'acl': pyswitch.raw.base.acl.Acl,
     },
     '7.0': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
+        'acl': pyswitch.raw.base.acl.Acl,
     },
     '7.1': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
+        'acl': pyswitch.raw.base.acl.Acl,
     },
     '7.2': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
+        'acl': pyswitch.raw.base.acl.Acl,
     },
 }
 SLXOS_VERSIONS = {
     '16r.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
+        'acl': pyswitch.raw.base.acl.Acl,
     },
     '17r.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
+        'acl': pyswitch.raw.slxos.base.acl.Acl,
     },
     '17r.2': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
+        'acl': pyswitch.raw.slxos.base.acl.Acl,
     },
     '17s.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
+        'acl': pyswitch.raw.base.acl.Acl,
     },
 
 }
