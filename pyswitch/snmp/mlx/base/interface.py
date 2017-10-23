@@ -66,15 +66,15 @@ class Interface(BaseInterface):
     @property
     def l3_mtu_const(self):
         # TBD change below defaults
-        minimum_mtu = 1300
-        maximum_mtu = 9194
+        minimum_mtu = 576
+        maximum_mtu = 8982
         return (minimum_mtu, maximum_mtu)
 
     @property
     def l3_ipv6_mtu_const(self):
         # TBD change below defaults
-        minimum_mtu = 1300
-        maximum_mtu = 9194
+        minimum_mtu = 1280
+        maximum_mtu = 8982
         return (minimum_mtu, maximum_mtu)
 
     @property
@@ -1120,3 +1120,91 @@ class Interface(BaseInterface):
         if primary_match is None or primary_match.group(1) is None:
             raise ValueError('primary port is not found for lag %s' % lag_id)
         return primary_match.group(1).strip()
+
+    # pylint: disable=E1101
+    def ip_mtu(self, **kwargs):
+        """Set/get the interface mtu.
+
+        Args:
+            int_type (str): Type of interface. (ethernet,port_channel and ve
+                , etc)
+            name (str): Name of interface. (1/4, 4/4, etc)
+            mtu (str): IPv4 MTU value should be between 576 to  8982
+                IPv6 MTU value should be between 1280 to  8982
+
+            callback (function): A function executed upon completion of the
+                method.
+
+        Returns:
+            Return mtu or True.
+
+        Raises:
+            ValueError: if `int_type`, `name`, or `mtu` is invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.ip_mtu(mtu='1666',
+            ...         int_type='ethernet', name='1/1')
+            ...         dev.interface.ip_mtu() # doctest:
+            +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            KeyError
+        """
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+        version = kwargs.pop('version', 4)
+
+        callback = kwargs.pop('callback', self._callback)
+
+        int_types = self.valid_int_types
+
+        if int_type not in int_types:
+            raise ValueError("Incorrect int_type value.")
+
+        if int_type == 'port_channel':
+            name = self.get_lag_primary_port(name)
+            int_type = 'ethernet'
+
+        ifname_Ids = self.get_interface_name_id_mapping()
+        port_id = ifname_Ids[int_type + name]
+
+        if port_id is None:
+            raise ValueError('pass valid port-id')
+
+        mtu_oid = SnmpMib.mib_oid_map['snRtIpPortIfMtu'] + '.' + str(port_id)
+        mtu_v6_oid = SnmpMib.mib_oid_map['ipv6IfEffectiveMtu'] + '.' + str(port_id)
+
+        if kwargs.pop('get', False):
+            ipv4_mtu = callback(mtu_oid)
+            ipv6_mtu = callback(mtu_v6_oid)
+            return {'ipv4': ipv4_mtu, 'ipv6': ipv6_mtu}
+
+        mtu = kwargs.pop('mtu')
+
+        if not pyswitch.utilities.valid_interface(int_type, name):
+            raise ValueError('`name` must be in the format of y/z for '
+                             'physical interfaces.')
+        if version == 6:
+            minimum_mtu, maximum_mtu = self.l3_ipv6_mtu_const
+        else:
+            minimum_mtu, maximum_mtu = self.l3_mtu_const
+
+        if int(mtu) < minimum_mtu or int(mtu) > maximum_mtu:
+            raise ValueError(
+                "Incorrect mtu value %s-%s" %
+                (minimum_mtu, maximum_mtu))
+        if version == 4:
+            mtu_config = (mtu_oid, mtu)
+            callback(mtu_config, 'snmp-set')
+        else:
+            cli_arr = []
+            cli_arr.append('interface ' + int_type + ' ' + name)
+            cli_arr.append('ipv6 mtu ' + str(mtu))
+            callback(cli_arr, handler='cli-set')
+
+        return True

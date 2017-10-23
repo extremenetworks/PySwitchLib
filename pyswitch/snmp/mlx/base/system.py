@@ -92,7 +92,7 @@ class System(BaseSystem):
             Args:
 
                 mtu (str): Value between 576  and 9198 for ipv4
-                           value between 1280 - 8982 for ipv6
+                           Value between 1280 - 8982 for ipv6
                 version (int) : 4 or 6
                 callback (function): A function executed upon completion of
                     the method.
@@ -151,4 +151,4 @@ class System(BaseSystem):
             return True
         except Exception as error:
             reason = error.message
-            raise ValueError('Failed to add member port to vlan %s' % (reason))
+            raise ValueError('Failed to set system l3 mtu %s' % (reason))
