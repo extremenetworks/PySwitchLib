@@ -497,8 +497,10 @@ class PySwitchLibApiRunner(DaemonRunner):
                     api_deamon_pids[daemon_id] = os.getpid()
                     ConfigFileUtil().write(filename=daemon_pid_file, conf_dict=api_deamon_pids)
 
-                    self._daemon_processes[daemon_id].join()
-
+                    while True:
+                        if self._daemon_processes[daemon_id].is_alive() == False:
+                            self._daemon_processes[daemon_id].join()
+                        time.sleep(5)
 
     def _start(self):
         """
@@ -515,7 +517,10 @@ class PySwitchLibApiRunner(DaemonRunner):
         api_deamon_pids = ConfigFileUtil().read(filename=daemon_pid_file)
 
         for daemon_id in api_deamon_pids:
-            os.kill(int(api_deamon_pids[daemon_id]), signal.SIGTERM)
+            try:
+                os.kill(int(api_deamon_pids[daemon_id]), signal.SIGTERM)
+            except:
+                pass
 
         try:
             os.unlink(daemon_pid_file)
