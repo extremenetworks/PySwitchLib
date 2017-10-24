@@ -59,15 +59,16 @@ class Device(object):
 
         conn = kwargs.get('conn')
         host = conn[0]
-        auth = kwargs.get('auth', (None, None, None, None))
-        snmpconfig = auth[3]
+        auth_snmp = kwargs.get('auth_snmp', (None, None, None, None))
+
+        snmpconfig = auth_snmp[3]
+        snmpver = 0
+        sysobj = ''
 
         if snmpconfig:
             snmpport = snmpconfig['snmpport']
             snmpver = snmpconfig['version']
             snmpv2c = snmpconfig['snmpv2c']
-
-        sysobj = ''
 
         if snmpver == 2 or snmpver == 3:
             try:
