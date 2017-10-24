@@ -1205,6 +1205,10 @@ class Interface(BaseInterface):
             cli_arr = []
             cli_arr.append('interface ' + int_type + ' ' + name)
             cli_arr.append('ipv6 mtu ' + str(mtu))
-            callback(cli_arr, handler='cli-set')
-
-        return True
+            try:
+                cli_res = callback(cli_arr, handler='cli-set')
+                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+                return True
+            except Exception as error:
+                reason = error.message
+                raise ValueError('Failed to set IPv6 MTU %s' % (reason))
