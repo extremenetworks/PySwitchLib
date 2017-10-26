@@ -457,11 +457,12 @@ class Cluster(object):
         cluster_data['cluster_id'] = ''
         cluster_data['peer_interface'] = ''
         cluster_data['peer_ip'] = ''
-        cluster_data['deploy'] = ''
+        cluster_data['deploy'] = 'false'
+        cluster_data['df_load_balance'] = 'false'
         try:
             response = self._callback(config, 'GET')
             root = ET.fromstring(response.data)
-
+            print response.data
             cluster_name_node = root.find('{urn:brocade.com:mgmt:brocade-mct}cluster-name')
             if cluster_name_node is not None:
                 cluster_data['cluster_name'] = cluster_name_node.text
@@ -485,7 +486,9 @@ class Cluster(object):
             deploy_node = root.find('{urn:brocade.com:mgmt:brocade-mct}deploy')
             if deploy_node is not None:
                 cluster_data['deploy'] = deploy_node.text
-
+            load_balance_node = root.find('{urn:brocade.com:mgmt:brocade-mct}df-load-balance')
+            if load_balance_node is not None:
+                cluster_data['df_load_balance'] = load_balance_node.text
             return (cluster_data)
         except Exception, exc:
             raise ValueError("Failed to get cluster (%s, %s) details Err:%s", clname, clid,
