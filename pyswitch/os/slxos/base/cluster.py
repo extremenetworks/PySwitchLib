@@ -462,7 +462,6 @@ class Cluster(object):
         try:
             response = self._callback(config, 'GET')
             root = ET.fromstring(response.data)
-            print response.data
             cluster_name_node = root.find('{urn:brocade.com:mgmt:brocade-mct}cluster-name')
             if cluster_name_node is not None:
                 cluster_data['cluster_name'] = cluster_name_node.text
