@@ -90,6 +90,11 @@ class SnmpCliDevice(AbstractDevice):
         self._snmpversion = snmpconfig['version']
         self._snmpport = snmpconfig['snmpport']
         self._snmpv2c = snmpconfig['snmpv2c']
+        self._v3user = snmpconfig['v3user']
+        self._v3auth = snmpconfig['v3auth']
+        self._v3priv = snmpconfig['v3priv']
+        self._authpass = snmpconfig['authpass']
+        self._privpass = snmpconfig['privpass']
         self._sysobj = sysobj
 
         if self._callback is None:
@@ -284,7 +289,12 @@ class SnmpCliDevice(AbstractDevice):
         if 'snmp' not in self._mgr:
             self._mgr['snmp'] = SNMPDevice(host=self.host, port=self._snmpport,
                                            version=self._snmpversion,
-                                           community=self._snmpv2c)
+                                           community=self._snmpv2c,
+                                           username=self._v3user,
+                                           authproto=self._v3auth,
+                                           authkey=self._authpass,
+                                           privproto=self._v3priv,
+                                           privkey=self._privpass)
         if 'cli' not in self._mgr:
             #  FIXME: Revisit this logic
             opt = {'device_type': 'brocade_netiron'}
