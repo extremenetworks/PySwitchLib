@@ -974,7 +974,6 @@ class Interface(BaseInterface):
             raise ValueError("MLX Doesn't support per port L2 MTU configuration")
         return None
 
-
     def trunk_allowed_vlan(self, **kwargs):
         """Add member ports to a vlan.
 
@@ -1359,7 +1358,6 @@ class Interface(BaseInterface):
             get (bool) : If True return the list of VE names, default- False
         Returns:
             return True/False for enable
- 
         Examples:
             >>> import pyswitch.device
             >>> switches = ['10.24.85.107']
