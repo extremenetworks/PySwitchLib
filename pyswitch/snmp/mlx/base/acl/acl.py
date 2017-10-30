@@ -22,7 +22,7 @@ from pyswitch.snmp.base.acl.macacl import MacAcl
 class Acl(BaseAcl):
     """
     The Acl class holds all the functions assocaiated with the
-    Access Control list of a NOS device.
+    Access Control list of a MLX device.
     Attributes:
         None
     """
@@ -99,6 +99,8 @@ class Acl(BaseAcl):
         Raise:
             Raises ValueError, Exception
             >>> from pyswitch.device import Device
+            >>> conn=('10.37.73.148', 22)
+            >>> auth=('admin', 'admin')
             >>> with Device(conn=conn, auth=auth,
             ...             connection_type='NETCONF') as dev:
             ...     print dev.firmware_version
@@ -167,6 +169,8 @@ class Acl(BaseAcl):
             Raises ValueError, Exception
         Examples:
             >>> from pyswitch.device import Device
+            >>> conn=('10.37.73.148', 22)
+            >>> auth=('admin', 'admin')
             >>> with Device(conn=conn, auth=auth,
             ...             connection_type='NETCONF') as dev:
             ...     print dev.firmware_version
@@ -214,6 +218,8 @@ class Acl(BaseAcl):
             Raises ValueError, Exception
         Examples:
             >>> from pyswitch.device import Device
+            >>> conn=('10.37.73.148', 22)
+            >>> auth=('admin', 'admin')
             >>> with Device(conn=conn, auth=auth,
             ...             connection_type='NETCONF') as dev:
             ...     print dev.firmware_version

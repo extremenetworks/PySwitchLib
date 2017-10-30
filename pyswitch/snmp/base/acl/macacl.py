@@ -26,7 +26,8 @@ class MacAcl(object):
         """
         parse supported actions by MLX platform
         Args:
-            parameters is the dict containing actoin key to parse for.
+            parameters contains:
+                action (string): Allowed actions are 'permit' and 'deny'
         Returns:
             Return parsed string on success
         Raise:
@@ -66,8 +67,11 @@ class MacAcl(object):
         """
         parse the source param.
         Args:
-            parameters is the dict containing source, srchost and
-            src_mac_addr_mask keys to parse for.
+            parameters contains:
+                source (string): Source filter, can be 'any' or
+                    the actual MAC in HHHH.HHHH.HHHH format.
+                src_mac_addr_mask (string): Mask for the source MAC
+                    in HHHH.HHHH.HHHH format.
         Returns:
             Return None or parsed string on success
         Raise:
@@ -97,8 +101,11 @@ class MacAcl(object):
         """
         parse the dst param
         Args:
-            parameters is the dict containing dst, dsthost and
-            dst_mac_addr_mask keys to parse for.
+            parameters contains:
+                dst (string): Destination filter, can be 'any' or
+                    the actual MAC in HHHH.HHHH.HHHH format.
+                dst_mac_addr_mask (string): Mask for the destination MAC
+                    in HHHH.HHHH.HHHH format.
         Returns:
             Return None or parsed string on success
         Raise:
@@ -128,7 +135,8 @@ class MacAcl(object):
         """
         parse the vlan param
         Args:
-            parameters is the dict containing vlan key to be parsed.
+            parameters contains:
+                vlan(string): 'any' or 1-4096
         Returns:
             Return None or parsed string on success
         Raise:
@@ -155,7 +163,9 @@ class MacAcl(object):
         """
         parse the ethertype param
         Args:
-            parameters is the dict containing ethertype key to be parsed.
+            parameters contains:
+                ethertype(string): EtherType, can be 'arp', 'fcoe', 'ipv4-15', 'ipv6' or
+                    custom value between 1536 and 65535.
         Returns:
             Return None or parsed string on success
         Raise:
@@ -185,7 +195,10 @@ class MacAcl(object):
         """
         parse the arp_guard param
         Args:
-            parameters is the dict containing arp_guard key to be parsed.
+            parameters contains:
+                arp_guard( string): Enables arp-guard for the rule
+                ethertype(string): EtherType, can be 'arp', 'fcoe', 'ipv4-15', 'ipv6' or
+                    custom value between 1536 and 65535.
         Returns:
             Return None or parsed string on success
         Raise:
@@ -217,8 +230,14 @@ class MacAcl(object):
         """
         parse the drop_precedence_force param
         Args:
-            parameters is the dict containing drop_precedence_force
-            key to be parsed.
+            parameters contains:
+                drop_precedence_force( string): Matches the specified value
+                    against the drop_precedence_force value of the packet to
+                    filter.  Allowed values are 0 through 3.
+
+                drop_precedence( string): Matches the specified value
+                    against the drop_precedence value of the packet to
+                    filter.  Allowed values are 0 through 3.
         Returns:
             Return None or parsed string on success
         Raise:
@@ -244,8 +263,14 @@ class MacAcl(object):
         """
         parse the drop_precedence_force param
         Args:
-            parameters is the dict containing drop_precedence_force
-            key to be parsed.
+            parameters contains:
+                drop_precedence_force( string): Matches the specified value
+                    against the drop_precedence_force value of the packet to
+                    filter.  Allowed values are 0 through 3.
+
+                drop_precedence( string): Matches the specified value
+                    against the drop_precedence value of the packet to
+                    filter.  Allowed values are 0 through 3.
         Returns:
             Return None or parsed string on success
         Raise:
@@ -273,7 +298,9 @@ class MacAcl(object):
         """
         parse the log param
         Args:
-            parameters is the dict containing log key to be parsed.
+            parameters contains:
+                log(string): Enables the logging
+                mirror(string): Enables mirror for the rule.
         Returns:
             Return None or parsed string on success
         Raise:
@@ -302,7 +329,9 @@ class MacAcl(object):
         """
         parse the mirror param
         Args:
-            parameters is the dict containing mirror key to be parsed.
+            parameters contains:
+                log(string): Enables the logging
+                mirror(string): Enables mirror for the rule.
         Returns:
             Return None or parsed string on success
         Raise:
@@ -331,7 +360,10 @@ class MacAcl(object):
         """
         parse the priority param
         Args:
-            parameters is the dict containing priority key to be parsed.
+            parameters contains:
+                priority(integer): Matches the specified value against the
+                    priority value of the packet to filter.
+                    Allowed values are 0 through 7.
         Returns:
             Return None or parsed string on success
         Raise:
@@ -357,7 +389,10 @@ class MacAcl(object):
         """
         parse the priority_force param
         Args:
-            parameters is the dict containing priority_force key to be parsed.
+            parameters contains:
+                priority_force(integer): Matches specified value against the
+                    priority_force value of the packet to filter.
+                    Allowed values are 0 through 7.
         Returns:
             Return None or parsed string on success
         Raise:
@@ -383,7 +418,10 @@ class MacAcl(object):
         """
         parse the priority_mapping param
         Args:
-            parameters is the dict containing priority_mapping key to be parsed
+            parameters contains:
+                priority_mapping(integer): Matches specified value against the
+                    priority_mapping value of the packet to filter.
+                    Allowed values are 0 through 7.
         Returns:
             Return None or parsed string on success
         Raise:
