@@ -1280,6 +1280,8 @@ class Interface(BaseInterface):
            Args:
                vrf_name (str): Name of the vrf (vrf101, vrf-1 etc).
                afi (str): Address family (ip/ipv6).
+               rd (str) : Route Distinguiser <asn:nn or vpn rd> mandatory for
+               mlx vrf create
                get (bool): Get config instead of editing config.
                            List all the details of
                            all afi under all vrf(True, False)
