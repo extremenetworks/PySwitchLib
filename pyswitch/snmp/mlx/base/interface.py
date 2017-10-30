@@ -1263,7 +1263,12 @@ class Interface(BaseInterface):
 
         elif get_config:
             cli_cmd = "show vrf detail | inc VRF"
-            cli_output = callback(cli_cmd, handler='cli-get')
+            try:
+                cli_output = callback(cli_cmd, handler='cli-get')
+            except Exception as error:
+                reason = error.message
+                raise ValueError('Failed to get vrf details %s' % (reason))
+
             for line in cli_output.split('\n'):
                 if(re.search(', default', line)):
                     vrf_name = re.split('[\s,]', line)[1]
@@ -1295,7 +1300,7 @@ class Interface(BaseInterface):
                ...    conn = (switch, '22')
                ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
                ...         output = dev.interface.vrf_vni(afi="ip",
-               ...         vrf_name="vrf1")
+               ...         vrf_name="vrf1", rd='9:9')
                ...         output = dev.interface.vrf_vni(afi="ip",
                ...         vrf_name="vrf1", get=True)
                ...         output = dev.interface.vrf_vni(afi="ip",
@@ -1318,7 +1323,7 @@ class Interface(BaseInterface):
             else:
                 rd = kwargs.pop('rd', None)
                 if(rd is None):
-                    raise KeyError('user must pass rd for mlx')
+                    raise KeyError('rd value is missing for mlx platform')
                 cli_arr.append('rd ' + str(rd))
                 cli_arr.append('address-family ' + afi)
             try:
