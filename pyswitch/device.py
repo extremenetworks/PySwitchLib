@@ -59,20 +59,26 @@ class Device(object):
 
         conn = kwargs.get('conn')
         host = conn[0]
-        snmpport = kwargs.get('snmpport', 161)
-        snmpver = kwargs.get('snmpver', 2)
-        snmpv2c = kwargs.get('snmpv2c', 'public')
+        auth_snmp = kwargs.get('auth_snmp', (None, None, None, None))
 
+        snmpconfig = auth_snmp[3]
+        snmpver = 0
         sysobj = ''
 
-        try:
-            snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
-            sysobj = str(snmpdev.get(MIB.mib_oid_map['sysObjectId']))
-        except SNMPError:
-            """
-               if SNMP is not supported then fallback to other connection type
-            """
-            pass
+        if snmpconfig:
+            snmpport = snmpconfig['snmpport']
+            snmpver = snmpconfig['version']
+            snmpv2c = snmpconfig['snmpv2c']
+
+        if snmpver == 2 or snmpver == 3:
+            try:
+                snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
+                sysobj = str(snmpdev.get(MIB.mib_oid_map['sysObjectId']))
+            except SNMPError:
+                """
+                   if SNMP is not supported then fallback to other connection type
+                """
+                pass
 
         if sysobj in SNMPUtils.SNMP_DEVICE_MAP:
             self.connection_type = 'SNMPCLI'
