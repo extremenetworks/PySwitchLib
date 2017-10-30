@@ -61,15 +61,15 @@ class Interface(BaseInterface):
     @property
     def l3_mtu_const(self):
         # TBD change below defaults
-        minimum_mtu = 1300
-        maximum_mtu = 9194
+        minimum_mtu = 576
+        maximum_mtu = 8982
         return (minimum_mtu, maximum_mtu)
 
     @property
     def l3_ipv6_mtu_const(self):
         # TBD change below defaults
-        minimum_mtu = 1300
-        maximum_mtu = 9194
+        minimum_mtu = 1280
+        maximum_mtu = 8982
         return (minimum_mtu, maximum_mtu)
 
     @property
@@ -974,6 +974,382 @@ class Interface(BaseInterface):
             raise ValueError("MLX Doesn't support per port L2 MTU configuration")
         return None
 
+
+    def trunk_allowed_vlan(self, **kwargs):
+        """Add member ports to a vlan.
+
+        Args:
+            int_type (str): Type of interface. (ethernet, port_channel)
+            name (str): Name of interface. (1/1, 2/1, 50 etc)
+            action (str): Action to take on trunk. (add, remove)
+            vlan (str): vlan id for action. Only valid for add and remove.
+            callback (function): A function executed upon completion of the
+                method.
+
+        Returns:
+            Return True or Value Error.
+
+        Raises:
+            ValueError: if `int_type`, `name`.
+
+        Examples:
+            >>> def test_trunk_allowed_vlan():
+            ...     import pyswitch.device
+            ...     switches = ['10.24.85.107']
+            ...     auth = ('admin', 'admin')
+            ...     int_type = 'ethernet'
+            ...     name = '1/4'
+            ...     for switch in switches:
+            ...         conn = (switch, '22')
+            ...         with pyswitch.device.Device(conn=conn, auth=auth)
+                            as dev:
+            ...             output = dev.interface.add_vlan_int('25')
+            ...             output = dev.interface.trunk_allowed_vlan(
+            ...             int_type=int_type, name=name, action='add',
+            ...             vlan='25')
+            ...             # doctest: +IGNORE_EXCEPTION_DETAIL
+            >>> test_trunk_allowed_vlan() # doctest: +SKIP
+        """
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+
+        callback = kwargs.pop('callback', self._callback)
+
+        int_types = self.valid_int_types
+        valid_actions = ['add', 'remove']
+
+        if int_type not in int_types:
+            raise ValueError("`int_type` must be one of: %s" %
+                             repr(int_types))
+
+        action = kwargs.pop('action')
+        vlan = kwargs.pop('vlan', None)
+
+        if action not in valid_actions:
+            raise ValueError('%s must be one of: %s' %
+                             (action, valid_actions))
+
+        if not pyswitch.utilities.valid_interface(int_type, name):
+            raise ValueError('`name` must be in the format of y/z for '
+                             'physical interfaces or x for port channel.')
+
+        if int_type == 'port_channel':
+            name = self.get_lag_primary_port(name)
+            int_type = 'ethernet'
+
+        vlan_list = pyswitch.utilities.get_vlan_list(vlan)
+        if vlan_list is None:
+            raise ValueError('vlan or vlan range is not allowed')
+
+        cli_arr = []
+        for vid in vlan_list:
+            cli_arr.append('vlan' + ' ' + str(vid))
+            if action == 'add':
+                cli_arr.append('tagged' + ' ' + int_type + ' ' + name)
+            else:
+                cli_arr.append('no tagged' + ' ' + int_type + ' ' + name)
+
+        try:
+            cli_res = callback(cli_arr, handler='cli-set')
+            pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+            return True
+        except Exception as error:
+            reason = error.message
+            raise ValueError('Failed to add member port to vlan %s' % (reason))
+
+    def trunk_mode(self, **kwargs):
+        """ dummy function as MLX do not support trunk mode
+        """
+        pass
+
+    def interface_exists(self, **kwargs):
+        """check whether interface exist.
+
+        Args:
+            int_type (str): Type of interface. (ethernet)
+            name (str): Name of interface. (1/1, 1/2 etc)
+            callback (function): A function executed upon completion of the
+                method.
+        Returns:
+            Return True or False
+
+        Raises:
+            ValueError: if `int_type`, `name`.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.interface_exists(
+            ...         int_type='ethernet', name='1/1')
+            ...         print output
+            Traceback (most recent call last):
+            KeyError
+        """
+
+        int_type = str(kwargs.pop('int_type').lower())
+        name = str(kwargs.pop('name'))
+
+        valid_int_types = self.valid_int_types
+
+        if int_type not in valid_int_types:
+            raise ValueError('int_type must be one of: %s' %
+                             repr(valid_int_types))
+
+        ifname_Ids = self.get_interface_name_id_mapping()
+        lag_name = self.get_lag_id_name_map(str(name))
+        if int_type + name in ifname_Ids or lag_name is not None:
+            return True
+        else:
+            return False
+
+    def get_lag_primary_port(self, lag_id):
+        """
+            returns lag primary ethernet port
+        """
+        cli_cmd = "show lag id" + ' ' + str(lag_id)
+        cli_output = self._callback(cli_cmd, handler='cli-get')
+        primary_match = re.search(r'Primary Port:  (.+)', cli_output)
+        if primary_match is None or primary_match.group(1) is None:
+            raise ValueError('primary port is not found for lag %s' % lag_id)
+        return primary_match.group(1).strip()
+
+    # pylint: disable=E1101
+    def ip_mtu(self, **kwargs):
+        """Set/get the interface mtu.
+
+        Args:
+            int_type (str): Type of interface. (ethernet,port_channel and ve
+                , etc)
+            name (str): Name of interface. (1/4, 4/4, etc)
+            mtu (str): IPv4 MTU value should be between 576 to  8982
+                IPv6 MTU value should be between 1280 to  8982
+
+            callback (function): A function executed upon completion of the
+                method.
+
+        Returns:
+            Return mtu or True.
+
+        Raises:
+            ValueError: if `int_type`, `name`, or `mtu` is invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.ip_mtu(mtu='1666',
+            ...         int_type='ethernet', name='1/1')
+            ...         dev.interface.ip_mtu() # doctest:
+            +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            KeyError
+        """
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+        version = kwargs.pop('version', 4)
+
+        callback = kwargs.pop('callback', self._callback)
+
+        int_types = self.valid_int_types
+
+        if int_type not in int_types:
+            raise ValueError("Incorrect int_type value.")
+
+        if int_type == 'port_channel':
+            name = self.get_lag_primary_port(name)
+            int_type = 'ethernet'
+
+        ifname_Ids = self.get_interface_name_id_mapping()
+        port_id = ifname_Ids[int_type + name]
+
+        if port_id is None:
+            raise ValueError('pass valid port-id')
+
+        mtu_oid = SnmpMib.mib_oid_map['snRtIpPortIfMtu'] + '.' + str(port_id)
+        mtu_v6_oid = SnmpMib.mib_oid_map['ipv6IfEffectiveMtu'] + '.' + str(port_id)
+
+        if kwargs.pop('get', False):
+            ipv4_mtu = callback(mtu_oid)
+            ipv6_mtu = callback(mtu_v6_oid)
+            return {'ipv4': ipv4_mtu, 'ipv6': ipv6_mtu}
+
+        mtu = kwargs.pop('mtu')
+
+        if not pyswitch.utilities.valid_interface(int_type, name):
+            raise ValueError('`name` must be in the format of y/z for '
+                             'physical interfaces.')
+        if version == 6:
+            minimum_mtu, maximum_mtu = self.l3_ipv6_mtu_const
+        else:
+            minimum_mtu, maximum_mtu = self.l3_mtu_const
+
+        if int(mtu) < minimum_mtu or int(mtu) > maximum_mtu:
+            raise ValueError(
+                "Incorrect mtu value %s-%s" %
+                (minimum_mtu, maximum_mtu))
+        if version == 4:
+            mtu_config = (mtu_oid, mtu)
+            callback(mtu_config, 'snmp-set')
+        else:
+            cli_arr = []
+            cli_arr.append('interface ' + int_type + ' ' + name)
+            cli_arr.append('ipv6 mtu ' + str(mtu))
+            try:
+                cli_res = callback(cli_arr, handler='cli-set')
+                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+                return True
+            except Exception as error:
+                reason = error.message
+                raise ValueError('Failed to set IPv6 MTU %s' % (reason))
+
+    def vrf(self, **kwargs):
+        """Create a vrf.
+        Args:
+            vrf_name (str): Name of the vrf (vrf101, vrf-1 etc).
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): False, the vrf is created and True if its to
+                be deleted (True, False). Default value will be False if not
+                specified.
+            callback (function): A function executed upon completion of the
+                method.
+
+            Returns:
+               Return True.
+        Raises:
+            ValueError: if  `vrf_name` is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.vrf(vrf_name=vrf1 )
+            ...         output = dev.interface.vrf(vrf_name=vrf1
+            ...         ,delete=True)
+
+        """
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        result = []
+
+        if not get_config:
+            vrf_name = kwargs['vrf_name']
+            cli_arr = []
+            if delete:
+                cli_arr.append('no vrf ' + vrf_name)
+            else:
+                cli_arr.append('vrf ' + vrf_name)
+
+            try:
+                cli_res = callback(cli_arr, handler='cli-set')
+                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+                return True
+            except Exception as error:
+                reason = error.message
+                raise ValueError('Failed to create/delete vrf %s' % (reason))
+
+        elif get_config:
+            cli_cmd = "show vrf detail | inc VRF"
+            try:
+                cli_output = callback(cli_cmd, handler='cli-get')
+            except Exception as error:
+                reason = error.message
+                raise ValueError('Failed to get vrf details %s' % (reason))
+
+            for line in cli_output.split('\n'):
+                if(re.search(', default', line)):
+                    vrf_name = re.split('[\s,]', line)[1]
+                    result.append({'vrf_name': vrf_name})
+            return result
+
+    def vrf_afi(self, **kwargs):
+        """Configure Target VPN Extended Communities
+           Args:
+               vrf_name (str): Name of the vrf (vrf101, vrf-1 etc).
+               afi (str): Address family (ip/ipv6).
+               rd (str) : Route Distinguiser <asn:nn or vpn rd> mandatory for
+               mlx vrf create
+               get (bool): Get config instead of editing config.
+                           List all the details of
+                           all afi under all vrf(True, False)
+
+               delete (bool): True to delet the ip/ipv6 address family
+                   Default value will be False if not specified.
+               callback (function): A function executed upon completion of the
+                   method.
+           Returns:
+               Return True.
+           Raises:
+               KeyError: if rd is not passed.
+           Examples:
+               >>> import pyswitch.device
+               >>> switches = ['10.24.85.107']
+               >>> auth = ('admin', 'admin')
+               >>> for switch in switches:
+               ...    conn = (switch, '22')
+               ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+               ...         output = dev.interface.vrf_vni(afi="ip",
+               ...         vrf_name="vrf1", rd='9:9')
+               ...         output = dev.interface.vrf_vni(afi="ip",
+               ...         vrf_name="vrf1", get=True)
+               ...         output = dev.interface.vrf_vni(afi="ip",
+               ...         vrf_name="vrf1", delete=True)
+           """
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if not get_config:
+            cli_arr = []
+            afi = kwargs['afi']
+            afi = 'ipv4' if (afi == 'ip') else afi
+            vrf_name = kwargs['vrf_name']
+            cli_arr.append('vrf ' + vrf_name)
+
+            if delete is True:
+                cli_arr.append('no address-family ' + afi)
+            else:
+                rd = kwargs.pop('rd', None)
+                if(rd is None):
+                    raise KeyError('rd value is missing for mlx platform')
+                cli_arr.append('rd ' + str(rd))
+                cli_arr.append('address-family ' + afi)
+            try:
+                cli_res = callback(cli_arr, handler='cli-set')
+                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+                return True
+            except Exception as error:
+                reason = error.message
+                raise ValueError('Failed to set/reset vrf afi %s' % (reason))
+
+        elif get_config:
+            vrf_name = kwargs.pop('vrf_name', '')
+
+            cli_cmd = 'show vrf ' + vrf_name
+            cli_output = callback(cli_cmd, handler='cli-get')
+
+            if re.search('Address Family IPv4', cli_output):
+                ipv4_unicast_enabled = True
+            else:
+                ipv4_unicast_enabled = False
+
+            if re.search('Address Family IPv6', cli_output):
+                ipv6_unicast_enabled = True
+            else:
+                ipv6_unicast_enabled = False
+
+            return {'ipv4': ipv4_unicast_enabled, 'ipv6': ipv6_unicast_enabled}
+
     def create_ve(self, **kwargs):
         """
         Add Ve Interface
@@ -983,7 +1359,7 @@ class Interface(BaseInterface):
             get (bool) : If True return the list of VE names, default- False
         Returns:
             return True/False for enable
-            return list of VE names when get=True
+ 
         Examples:
             >>> import pyswitch.device
             >>> switches = ['10.24.85.107']
@@ -1086,141 +1462,6 @@ class Interface(BaseInterface):
                         item['interface-proto-state'] = int_proto_state
         # pprint.pprint(ve_list)
         return ve_list
-
-    def vrf(self, **kwargs):
-        """Create a vrf.
-        Args:
-            vrf_name (str): Name of the vrf (vrf101, vrf-1 etc).
-            get (bool): Get config instead of editing config. (True, False)
-            delete (bool): False, the vrf is created and True if its to
-                be deleted (True, False). Default value will be False if not
-                specified.
-            callback (function): A function executed upon completion of the
-                method.
-
-            Returns:
-               Return True.
-        Raises:
-            ValueError: if  `vrf_name` is invalid.
-        Examples:
-            >>> import pyswitch.device
-            >>> switches = ['10.24.85.107']
-            >>> auth = ('admin', 'admin')
-            >>> for switch in switches:
-            ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output = dev.interface.vrf(vrf_name=vrf1 )
-            ...         output = dev.interface.vrf(vrf_name=vrf1
-            ...         ,delete=True)
-
-        """
-        get_config = kwargs.pop('get', False)
-        delete = kwargs.pop('delete', False)
-        callback = kwargs.pop('callback', self._callback)
-        result = []
-
-        if not get_config:
-            vrf_name = kwargs['vrf_name']
-            cli_arr = []
-            if delete:
-                cli_arr.append('no vrf ' + vrf_name)
-            else:
-                cli_arr.append('vrf ' + vrf_name)
-
-            try:
-                cli_res = callback(cli_arr, handler='cli-set')
-                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
-                return True
-            except Exception as error:
-                reason = error.message
-                raise ValueError('Failed to create/delete vrf %s' % (reason))
-
-        elif get_config:
-            cli_cmd = "show vrf detail | inc VRF"
-            cli_output = callback(cli_cmd, handler='cli-get')
-            for line in cli_output.split('\n'):
-                if(re.search(', default', line)):
-                    vrf_name = re.split('[\s,]', line)[1]
-                    result.append({'vrf_name': vrf_name})
-            return result
-
-    def vrf_afi(self, **kwargs):
-        """Configure Target VPN Extended Communities
-           Args:
-               vrf_name (str): Name of the vrf (vrf101, vrf-1 etc).
-               afi (str): Address family (ip/ipv6).
-               get (bool): Get config instead of editing config.
-                           List all the details of
-                           all afi under all vrf(True, False)
-
-               delete (bool): True to delet the ip/ipv6 address family
-                   Default value will be False if not specified.
-               callback (function): A function executed upon completion of the
-                   method.
-           Returns:
-               Return True.
-           Raises:
-               KeyError: if rd is not passed.
-           Examples:
-               >>> import pyswitch.device
-               >>> switches = ['10.24.85.107']
-               >>> auth = ('admin', 'admin')
-               >>> for switch in switches:
-               ...    conn = (switch, '22')
-               ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-               ...         output = dev.interface.vrf_vni(afi="ip",
-               ...         vrf_name="vrf1")
-               ...         output = dev.interface.vrf_vni(afi="ip",
-               ...         vrf_name="vrf1", get=True)
-               ...         output = dev.interface.vrf_vni(afi="ip",
-               ...         vrf_name="vrf1", delete=True)
-           """
-
-        get_config = kwargs.pop('get', False)
-        delete = kwargs.pop('delete', False)
-        callback = kwargs.pop('callback', self._callback)
-
-        if not get_config:
-            cli_arr = []
-            afi = kwargs['afi']
-            afi = 'ipv4' if (afi == 'ip') else afi
-            vrf_name = kwargs['vrf_name']
-            cli_arr.append('vrf ' + vrf_name)
-
-            if delete is True:
-                cli_arr.append('no address-family ' + afi)
-            else:
-                rd = kwargs.pop('rd', None)
-                if(rd is None):
-                    raise KeyError('user must pass rd for mlx')
-                cli_arr.append('rd ' + str(rd))
-                cli_arr.append('address-family ' + afi)
-            try:
-                cli_res = callback(cli_arr, handler='cli-set')
-                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
-                return True
-            except Exception as error:
-                reason = error.message
-                raise ValueError('Failed to set/reset vrf afi %s' % (reason))
-
-        elif get_config:
-            vrf_name = kwargs.pop('vrf_name', '')
-
-            cli_cmd = 'show vrf ' + vrf_name
-            cli_output = callback(cli_cmd, handler='cli-get')
-
-            if re.search('Address Family IPv4', cli_output):
-                ipv4_unicast_enabled = True
-            else:
-                ipv4_unicast_enabled = False
-
-            if re.search('Address Family IPv6', cli_output):
-                ipv6_unicast_enabled = True
-            else:
-                ipv6_unicast_enabled = False
-
-            return {'ipv4': ipv4_unicast_enabled, 'ipv6': ipv6_unicast_enabled}
-
 
     def add_int_vrf(self, **kwargs):
         """
