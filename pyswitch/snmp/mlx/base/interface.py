@@ -1,18 +1,12 @@
-"""
-import pyswitch.utilities
-from pyswitch.exceptions import InvalidVlanId
-"""
-
-# import re
 
 from pyswitch.snmp.base.interface import Interface as BaseInterface
 from pyswitch.snmp.SnmpMib import SnmpMib as SnmpMib
 import pyswitch.utilities
-from pyswitch.exceptions import InvalidVlanId
+from pyswitch.exceptions import InvalidVlanId, InvalidLoopbackName
 import re
 from pyswitch.snmp.mlx.SnmpMLXMib import SnmpMLXMib as SnmpMLXMib
 from hnmp import mac_address
-# from pyswitch.utilities import Util
+from ipaddress import ip_interface
 
 
 class Interface(BaseInterface):
@@ -651,8 +645,8 @@ class Interface(BaseInterface):
         valid_int_types = self.valid_int_types
         ifAdminStatus_oid = SnmpMib.mib_oid_map['ifAdminStatus']
         ifadminStatus_index = ifAdminStatus_oid + '.' + str(port_id)
-        if int_type == 'ethernet' and port_id is None:
-            raise ValueError('pass valid port-id')
+        if port_id is None:
+            raise ValueError(' Invalid port-id')
 
         if int_type not in valid_int_types:
             raise ValueError('`int_type` must be one of: %s' %
@@ -1353,3 +1347,513 @@ class Interface(BaseInterface):
                 ipv6_unicast_enabled = False
 
             return {'ipv4': ipv4_unicast_enabled, 'ipv6': ipv6_unicast_enabled}
+
+    def create_ve(self, **kwargs):
+        """
+        Add Ve Interface
+        Args:
+            ve_name (str): VE interface name
+            enable (bool): True - Create False - Delete, default - True
+            get (bool) : If True return the list of VE names, default- False
+        Returns:
+            return True/False for enable
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.create_ve(
+            ...                     ve_name='100')
+            ...         output = dev.interface.create_ve(
+            ...                     get=True,
+            ...                     ve_name='100')
+            ...         output = dev.interface.create_ve(
+            ...                     enable=False,
+            ...                     ve_name='100')
+        """
+
+        ve_name = kwargs.pop('ve_name', '')
+        enable = kwargs.pop('enable', True)
+        get = kwargs.pop('get', False)
+
+        if get:
+            enable = None
+            ve_list = []
+            cli_arr = 'show running-config interface | inc ve'
+            output = self._callback(cli_arr, handler='cli-get')
+            for line in output.split('\n'):
+                info = re.search(r'interface ve (.+)', line)
+                ve_id = info.group(1)
+                if ve_id:
+                    ve_list.append(ve_id)
+            return ve_list
+
+        if not enable:
+            cli_arr = 'no interface ' + 've' + ' ' + ve_name
+            output = self._callback(cli_arr, handler='cli-set')
+            return True
+        else:
+            cli_arr = 'interface ' + 've' + ' ' + ve_name
+            output = self._callback(cli_arr, handler='cli-set')
+            return True
+
+    def ve_interfaces(self, **kwargs):
+        """list[dict]: A list of dictionary items describing the operational
+        state of ve interfaces along with the ip address associations.
+
+        Args:
+            callback (function): A function executed upon completion of the
+                method
+        Returns:
+            Return list of dict containing VE interface info
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.ve_interfaces()
+        """
+
+        ve_list = []
+        cli_arr = 'show running-config interface | inc ve'
+        output = self._callback(cli_arr, handler='cli-get')
+        # Populate the VE interface list with default data and update later
+        for line in output.split('\n'):
+            info = re.search(r'interface ve (.+)', line)
+            ve_id = info.group(1)
+            if_name = 'Ve ' + ve_id
+            ve_info = {'interface-type': 've',
+                       'interface-name': str(ve_id),
+                       'if-name': if_name,
+                       'interface-state': 'down',
+                       'interface-proto-state': 'down',
+                       'ip-address': 'unassigned'}
+            ve_list.append(ve_info)
+        cli_arr = 'show ip interface | inc ve'
+        output = self._callback(cli_arr, handler='cli-get')
+        for line in output.split('\n'):
+            info = re.search(r've (.+)', line)
+            if info is not None:
+                list = info.group(0).split()
+                int_name = list[1]
+                int_state = list[5]
+                int_proto_state = list[6]
+                cli_arr = 'show ip interface ve' + ' ' + int_name
+                cli_out = self._callback(cli_arr, handler='cli-get')
+                ve_ip = re.search(r'ip address:(.+)', cli_out)
+                if ve_ip:
+                    ip_address = ve_ip.group(1).strip()
+                else:
+                    ip_address = 'unassigned'
+                # Check if the VE already is added to list
+                for item in ve_list:
+                    if item['interface-name'] == int_name and item['ip-address'] == 'unassigned':
+                        item['ip-address'] = ip_address
+                        item['interface-state'] = int_state
+                        item['interface-proto-state'] = int_proto_state
+        # pprint.pprint(ve_list)
+        return ve_list
+
+    def add_int_vrf(self, **kwargs):
+        """
+        Add L3 Interface in Vrf.
+
+        Args:
+            int_type(str): L3 interface type on which the vrf needs to be configured.
+            name(str):L3 interface name on which the vrf needs to be configured.
+            vrf_name(str): Vrf name with which the L3 interface needs to be associated.
+            enable (bool): If vrf fowarding should be enabled or disabled.
+                        default is enabled.
+            get (bool) : Get VRF config when get=True, default is False
+        Returns:
+            return VRF when get=True. return None if no VRF is associated
+            True or ValueError for create and delete
+        Raises:
+            ValueError: if `int_type`, `name`, `vrf` is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.add_int_vrf(
+            ...                     int_type='ve',
+            ...                     name='200',
+            ...                     vrf_name='red')
+            ...         vrf = dev.interface.add_int_vrf(
+            ...                     get=True, int_type='ve',
+            ...                     name='200')
+            ...         assert(vrf == 'red')
+            ...         output = dev.interface.add_int_vrf(
+            ...                     enable=False,
+            ...                     int_type='ve',
+            ...                     name='200',
+            ...                     vrf_name='red')
+            ...         # doctest: +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            KeyError
+         """
+
+        name = kwargs.pop('name')
+
+        int_type = kwargs.pop('int_type').lower()
+        enable = kwargs.pop('enable', True)
+        get = kwargs.pop('get', False)
+        in_vrf_name = kwargs.pop('vrf_name', 'Default')
+        valid_int_types = self.valid_int_types
+
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                    repr(valid_int_types))
+        if get:
+            if int_type == 've':
+                cli_arr = 'show ip interface ve ' + name
+                cli_res = self._callback(cli_arr, handler='cli-get')
+                error = re.search(r'Error(.+)', cli_res)
+                if error:
+                    return None
+                result = re.search(r'Port belongs to VRF: (.+)', cli_res)
+                vrf_name = result.group(1).strip()
+                return vrf_name
+        if not enable:
+            if int_type == 've':
+                cli_arr = []
+                cli_arr.append('interface ve ' + name)
+                cli_arr.append('no vrf forwarding ' + in_vrf_name)
+                cli_res = self._callback(cli_arr, handler='cli-set')
+                error = re.search(r'Error(.+)', cli_res)
+                if error:
+                    raise ValueError("%s" % error.group(0))
+                return True
+        if int_type == 've':
+            cli_arr = []
+            cli_arr.append('interface ve ' + name)
+            cli_arr.append('vrf forwarding ' + in_vrf_name)
+            cli_res = self._callback(cli_arr, handler='cli-set')
+            error = re.search(r'Error(.+)', cli_res)
+            if error:
+                raise ValueError("%s" % error.group(0))
+            return True
+
+    def vlan_router_ve(self, **kwargs):
+        """Configure/get/delete router interface ve on a vlan.
+
+        Args:
+            vlan_id (str): Vlan number.
+            ve_config (str) : router ve interface
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, delete the router ve on the vlan.(True, False)
+
+        Returns:
+            return True/False for create/delete
+            return VE name/None for get
+
+        Raises:
+            KeyError: if `vlan_id`  is not specified.
+            ValueError: if `vlan_id` is not a valid value.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.vlan_router_ve(
+            ...         vlan_id='100', ve_config='200')
+            ...         output = dev.interface.vlan_router_ve(
+            ...         get=True, vlan_id='100')
+            ...         output = dev.interface.vlan_router_ve(
+            ...         delete=True, vlan_id='100', ve_config='200')
+        """
+        vlan = kwargs.pop('vlan_id')
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+
+        if not self.valid_vlan_id(vlan):
+            raise InvalidVlanId(
+                'VLAN Id %s not in range 1 to 4090.' % vlan)
+        if delete:
+            ve_config = kwargs.pop('ve_config')
+            cli_arr = []
+            cli_arr.append('vlan ' + vlan)
+            cli_arr.append('no router-interface ve ' + ve_config)
+            cli_res = self._callback(cli_arr, handler='cli-set')
+            error = re.search(r'Error(.+)', cli_res)
+            if error:
+                raise ValueError("%s" % error.group(0))
+            return True
+
+        if not get_config:
+            ve_config = kwargs.pop('ve_config')
+            cli_arr = []
+            cli_arr.append('vlan ' + vlan)
+            cli_arr.append('router-interface ve ' + ve_config)
+            cli_res = self._callback(cli_arr, handler='cli-set')
+            error = re.search(r'Error(.+)', cli_res)
+            if error:
+                raise ValueError("%s" % error.group(0))
+            return True
+        elif get_config:
+            cli_arr = 'show vlan ' + str(vlan) + ' | inc Ve'
+            cli_res = self._callback(cli_arr, handler='cli-get')
+            if cli_res != '':
+                ve_info = re.search(r'Ve(.+?) is', cli_res)
+                return ve_info.group(1)
+            else:
+                return None
+
+    def ip_address(self, **kwargs):
+        """
+        Set IP Address on an Interface.
+
+        Args:
+            int_type (str): Type of interface. ('ethernet' etc)
+            name (str): Name of interface id 1/1, 1/2 etc.
+            ip_addr (str): IPv4/IPv6 IP Address..
+                Ex: 10.10.10.1/24 or 2001:db8::/48
+            delete (bool): True is the IP address is added and False if its to
+                be deleted (True, False). Default value will be False if not
+                specified.
+            get (bool): Get Ipv4/Ipv6 address. (True, False)
+
+        Returns:
+            Return True/False. get returns Ipv4/Ipv6 address
+
+        Raises:
+            KeyError: if `int_type`, `name`, or `ip_addr` is not passed.
+            ValueError: if `int_type`, `name`, or `ip_addr` are invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...    conn = (switch, '22')
+            ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...        int_type = 'ethernet'
+            ...        name = '4/1'
+            ...        ip_addr = '20.10.10.1/24'
+            ...        output = dev.interface.ip_address(int_type=int_type,
+            ...        name=name, ip_addr=ip_addr)
+            ...        output = dev.interface.ip_address(int_type=int_type,
+            ...        name=name, get=True)
+            ...        output = dev.interface.ip_address(int_type=int_type,
+            ...        name=name, ip_addr=ip_addr, delete=True)
+            ...        output = dev.interface.ip_address(int_type='ve',
+            ...        name='86', ip_addr=ip_addr)
+            ...        output = dev.interface.ip_address(int_type='ve',
+            ...        name='86', get=True)
+            ...        output = dev.interface.ip_address(int_type='ve',
+            ...        name='86', ip_addr=ip_addr, delete=True)
+            ...        ip_addr = 'fc00:1:3:1ad3:0:0:23:a/64'
+            ...        output = dev.interface.ip_address(int_type=int_type,
+            ...        name=name, ip_addr=ip_addr)
+            ...        output = dev.interface.ip_address(int_type=int_type,
+            ...        name=name, get=True)
+            ...        output = dev.interface.ip_address(int_type=int_type,
+            ...        name=name, ip_addr=ip_addr, delete=True)
+        """
+
+        int_type = str(kwargs.pop('int_type').lower())
+        name = str(kwargs.pop('name'))
+
+        delete = kwargs.pop('delete', False)
+        valid_int_types = self.valid_int_types
+
+        get = kwargs.pop('get', False)
+
+        if int_type not in valid_int_types:
+            raise ValueError('int_type must be one of: %s' %
+                             repr(valid_int_types))
+        if int_type == 've':
+            if not self.valid_ve_id(name):
+                raise ValueError("Ve Id must be between `1` and `255`")
+        elif int_type == 'loopback':
+            if not self.valid_loopback_number(name):
+                raise InvalidLoopbackName('Loopback number must be between 1 and 64')
+        if not get:
+            ip_addr = str(kwargs.pop('ip_addr'))
+            ipaddress = ip_interface(unicode(ip_addr))
+            if delete:
+                cli_arr = []
+                cli_arr.append('interface ' + int_type + ' ' + name)
+                if ipaddress.version == 4:
+                    cli_arr.append('no ip address ' + ip_addr)
+                elif ipaddress.version == 6:
+                    cli_arr.append('no ipv6 address ' + ip_addr)
+                cli_res = self._callback(cli_arr, handler='cli-set')
+                error = re.search(r'Error(.+)', cli_res)
+                if error:
+                    raise ValueError("%s" % error.group(0))
+                return True
+            else:
+                cli_arr = []
+                cli_arr.append('interface ' + int_type + ' ' + name)
+                if ipaddress.version == 4:
+                    cli_arr.append('ip address ' + ip_addr)
+                elif ipaddress.version == 6:
+                    cli_arr.append('ipv6 address ' + ip_addr)
+                cli_res = self._callback(cli_arr, handler='cli-set')
+                error = re.search(r'Error(.+)', cli_res)
+                if error:
+                    raise ValueError("%s" % error.group(0))
+                return True
+
+        if get:
+                cli_arr = []
+                cli_arr.append('show ip interface ' + int_type + ' ' + name)
+                cli_res = self._callback(cli_arr, handler='cli-get')
+                error = re.search(r'Error(.+)', cli_res)
+                if error:
+                    raise ValueError("%s" % error.group(0))
+                ipv4 = re.search(r'ip address: (.+)', cli_res)
+                ipv4_add = ipv4.group(1)
+                cli_arr.append('show running-config interface ' + int_type + ' ' + name)
+                cli_res = self._callback(cli_arr, handler='cli-get')
+                error = re.search(r'Error(.+)', cli_res)
+                if error:
+                    raise ValueError("%s" % error.group(0))
+                for line in cli_res.split('\n'):
+                    if 'ipv6 address' in line:
+                        if 'link-local' not in line:
+                            ipv6 = re.search(r'ipv6 address: (.+)', line)
+                            ipv6_add = ipv6.group(1)
+                            break
+                return {'ipv4_address': ipv4_add,
+                        'ipv6_address': ipv6_add}
+
+    def ipv6_link_local(self, **kwargs):
+        """Enable auto configure ipv6 link local address on interfaces
+
+        Args:
+            int_type: Interface type on which the ipv6 link local needs to be
+             configured.
+            name: 'Ve' or 'loopback' or 'ethernet' interface name.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True - disable auto configuration of link-local
+                           False - enable auto configuration of link-local
+        Returns:
+            Return True/False
+
+        Raises:
+            KeyError: if `int_type`, `name` is not passed.
+            ValueError: if `int_type`, `name` is invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.85.107', '22')
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...    output = dev.interface.ipv6_link_local(name='500',
+            ...     int_type='ve')
+            ...    output = dev.interface.ipv6_link_local(get=True,name='500',
+            ...     int_type='ve')
+            ...    output = dev.interface.ipv6_link_local(delete=True,
+            ...     name='500', int_type='ve')
+        """
+        int_type = kwargs.pop('int_type').lower()
+        ve_name = kwargs.pop('name')
+        valid_int_types = self.valid_int_types
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             repr(valid_int_types))
+
+        if kwargs.pop('get', False):
+            cli_arr = 'show ipv6 interface ' + int_type + ' ' + ve_name
+            cli_res = self._callback(cli_arr, handler='cli-get')
+            error = re.search(r'Error(.+)', cli_res)
+            if error:
+                raise ValueError("%s" % error.group(0))
+            ipv6 = re.search(r'IPv6 is enabled', cli_res)
+            if ipv6:
+                return True
+            else:
+                return False
+
+        if kwargs.pop('delete', False):
+            cli_arr = []
+            cli_arr.append('interface ' + int_type + ' ' + ve_name)
+            cli_arr.append('no ipv6 enable')
+            cli_res = self._callback(cli_arr, handler='cli-set')
+            error = re.search(r'Error(.+)', cli_res)
+            if error:
+                raise ValueError("%s" % error.group(0))
+            return True
+        else:
+            cli_arr = []
+            cli_arr.append('interface ' + int_type + ' ' + ve_name)
+            cli_arr.append('ipv6 enable')
+            cli_res = self._callback(cli_arr, handler='cli-set')
+            error = re.search(r'Error(.+)', cli_res)
+            if error:
+                raise ValueError("%s" % error.group(0))
+            return True
+
+    def valid_vlan_id(self, vlan_id):
+        """Validates a VLAN ID.
+
+        Args:
+            vlan_id (integer): VLAN ID to validate.  If passed as ``str``, it will
+                be cast to ``int``.
+
+        Returns:
+            bool: True if it is a valid VLAN ID. False if not.
+
+        Raises:
+            None
+        """
+        minimum_vlan_id = 1
+        maximum_vlan_id = 4090
+        return minimum_vlan_id <= int(vlan_id) <= maximum_vlan_id
+
+    def valid_ve_id(self, ve_id):
+        """Validates a VE ID.
+
+        Args:
+            ve_id (integer): VE Id to validate.  If passed as str, it will
+                be cast to int.
+
+        Returns:
+            bool: True if it is a valid VE ID. False if not.
+
+        Raises:
+            None
+        """
+
+        min_ve_id = 1
+        max_ve_id = 255
+        return min_ve_id <= int(ve_id) <= max_ve_id
+
+    def valid_loopback_number(self, loopback_number):
+        """Validates a loopback interface Id.
+
+        Args:
+            loopback_number (integer): Loopback port number to validate.
+                If passed as ``str``, it will be cast to ``int``.
+        Returns:
+            bool: ``True`` if it is a valid loopback_number.  ``False`` if not.
+
+        Raises:
+            None
+        """
+        minimum_loopback_id = 1
+        maximum_loopback_id = 64
+        return minimum_loopback_id <= int(loopback_number) <= maximum_loopback_id
+
+    def is_ve_id_required(self):
+        """ Check if VE id is required for creating VE or vlan id is sufficient
+        """
+        return True
+
+    def is_vlan_rtr_ve_config_req(self):
+        """ Check if router interface config is required for VLAN
+        """
+        return True
