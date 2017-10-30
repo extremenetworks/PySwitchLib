@@ -1095,15 +1095,13 @@ class Interface(BaseInterface):
             delete (bool): False, the vrf is created and True if its to
                 be deleted (True, False). Default value will be False if not
                 specified.
-            rbridge_id (str): rbridge-id for device.
             callback (function): A function executed upon completion of the
-                method.  The only parameter passed to `callback` will be the
-                ``ElementTree`` `config`.
-        Returns:
-            Return value of `callback`.
+                method.
+
+            Returns:
+               Return True.
         Raises:
-            KeyError: if `rbridge_id`,`vrf_name` is not passed.
-            ValueError: if `rbridge_id`, `vrf_name` is invalid.
+            ValueError: if  `vrf_name` is invalid.
         Examples:
             >>> import pyswitch.device
             >>> switches = ['10.24.85.107']
@@ -1111,13 +1109,118 @@ class Interface(BaseInterface):
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output = dev.interface.vrf(get=True)
+            ...         output = dev.interface.vrf(vrf_name=vrf1 )
+            ...         output = dev.interface.vrf(vrf_name=vrf1
+            ...         ,delete=True)
 
         """
         get_config = kwargs.pop('get', False)
-        # TBD merge with Selvam's code
-        if get_config:
-            return []
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        result = []
+
+        if not get_config:
+            vrf_name = kwargs['vrf_name']
+            cli_arr = []
+            if delete:
+                cli_arr.append('no vrf ' + vrf_name)
+            else:
+                cli_arr.append('vrf ' + vrf_name)
+
+            try:
+                cli_res = callback(cli_arr, handler='cli-set')
+                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+                return True
+            except Exception as error:
+                reason = error.message
+                raise ValueError('Failed to create/delete vrf %s' % (reason))
+
+        elif get_config:
+            cli_cmd = "show vrf detail | inc VRF"
+            cli_output = callback(cli_cmd, handler='cli-get')
+            for line in cli_output.split('\n'):
+                if(re.search(', default', line)):
+                    vrf_name = re.split('[\s,]', line)[1]
+                    result.append({'vrf_name': vrf_name})
+            return result
+
+    def vrf_afi(self, **kwargs):
+        """Configure Target VPN Extended Communities
+           Args:
+               vrf_name (str): Name of the vrf (vrf101, vrf-1 etc).
+               afi (str): Address family (ip/ipv6).
+               get (bool): Get config instead of editing config.
+                           List all the details of
+                           all afi under all vrf(True, False)
+
+               delete (bool): True to delet the ip/ipv6 address family
+                   Default value will be False if not specified.
+               callback (function): A function executed upon completion of the
+                   method.
+           Returns:
+               Return True.
+           Raises:
+               KeyError: if rd is not passed.
+           Examples:
+               >>> import pyswitch.device
+               >>> switches = ['10.24.85.107']
+               >>> auth = ('admin', 'admin')
+               >>> for switch in switches:
+               ...    conn = (switch, '22')
+               ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+               ...         output = dev.interface.vrf_vni(afi="ip",
+               ...         vrf_name="vrf1")
+               ...         output = dev.interface.vrf_vni(afi="ip",
+               ...         vrf_name="vrf1", get=True)
+               ...         output = dev.interface.vrf_vni(afi="ip",
+               ...         vrf_name="vrf1", delete=True)
+           """
+
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+
+        if not get_config:
+            cli_arr = []
+            afi = kwargs['afi']
+            afi = 'ipv4' if (afi == 'ip') else afi
+            vrf_name = kwargs['vrf_name']
+            cli_arr.append('vrf ' + vrf_name)
+
+            if delete is True:
+                cli_arr.append('no address-family ' + afi)
+            else:
+                rd = kwargs.pop('rd', None)
+                if(rd is None):
+                    raise KeyError('user must pass rd for mlx')
+                cli_arr.append('rd ' + str(rd))
+                cli_arr.append('address-family ' + afi)
+            try:
+                cli_res = callback(cli_arr, handler='cli-set')
+                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+                return True
+            except Exception as error:
+                reason = error.message
+                raise ValueError('Failed to set/reset vrf afi %s' % (reason))
+
+        elif get_config:
+            vrf_name = kwargs.pop('vrf_name', '')
+
+            cli_cmd = 'show vrf ' + vrf_name
+            cli_output = callback(cli_cmd, handler='cli-get')
+
+            if re.search('Address Family IPv4', cli_output):
+                ipv4_unicast_enabled = True
+            else:
+                ipv4_unicast_enabled = False
+
+            if re.search('Address Family IPv6', cli_output):
+                ipv6_unicast_enabled = True
+            else:
+                ipv6_unicast_enabled = False
+
+            return {'ipv4': ipv4_unicast_enabled, 'ipv6': ipv6_unicast_enabled}
+
 
     def add_int_vrf(self, **kwargs):
         """
@@ -1268,49 +1371,6 @@ class Interface(BaseInterface):
                 return ve_info.group(1)
             else:
                 return None
-
-    def vrf_afi(self, **kwargs):
-        """Configure Target VPN Extended Communities
-           Args:
-               vrf_name (str): Name of the vrf (vrf101, vrf-1 etc).
-               afi (str): Address family (ip/ipv6).
-               get (bool): Get config instead of editing config.
-                           List all the details of
-                           all afi under all vrf(True, False)
-
-               delete (bool): True to delete the ip/ipv6 address family
-                   Default value will be False if not specified.
-           Returns:
-               Return afi IPv4/IPv6
-           Raises:
-               KeyError or ValueError
-
-           Examples:
-               >>> import pyswitch.device
-               >>> switches = ['10.24.85.107']
-               >>> auth = ('admin', 'admin')
-               >>> for switch in switches:
-               ...    conn = (switch, '22')
-               ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-               ...         output = dev.interface.vrf_afi(
-               ...                  get=True, vrf_name='red')
-
-        """
-        get_config = kwargs.pop('get', False)
-        # delete = kwargs.pop('delete', False)
-        vrf_name = kwargs.pop('vrf_name', '')
-
-        if get_config:
-            cli_arr = []
-            cli_arr.append('show vrf ' + vrf_name)
-            cli_res = self._callback(cli_arr, handler='cli-get')
-            if cli_res is not None:
-                res = re.findall(r'Address Family IPv(.+?)', str, re.DOTALL)
-                ipv4_en = True if '4' in res else False
-                ipv6_en = True if '6' in res else False
-                return {'ipv4': ipv4_en, 'ipv6': ipv6_en}
-            else:
-                return {'ipv4': False, 'ipv6': False}
 
     def ip_address(self, **kwargs):
         """
@@ -1469,8 +1529,7 @@ class Interface(BaseInterface):
                              repr(valid_int_types))
 
         if kwargs.pop('get', False):
-            cli_arr = []
-            cli_arr.append('show ipv6 interface ' + int_type + ' ' + ve_name)
+            cli_arr = 'show ipv6 interface ' + int_type + ' ' + ve_name
             cli_res = self._callback(cli_arr, handler='cli-get')
             error = re.search(r'Error(.+)', cli_res)
             if error:
