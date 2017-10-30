@@ -83,12 +83,15 @@ class SnmpCliDevice(AbstractDevice):
         self.base = kwargs.pop('base')
         self._conn = kwargs.pop('conn')
         self.host = self._conn[0]
-        self._auth = kwargs.pop('auth', (None, None))
+        auth_snmp = kwargs.pop('auth_snmp', (None, None, None, None))
+        self._auth = (auth_snmp[0], auth_snmp[1])
         self._test = kwargs.pop('test', False)
         self._callback = kwargs.pop('callback', None)
-        self._snmpversion = kwargs.pop('snmpver', 2)
-        self._snmpport = kwargs.pop('snmpport', 161)
-        self._snmpv2c = kwargs.pop('snmpv2c', 'public')
+        self._enablepass = auth_snmp[2]
+        snmpconfig = auth_snmp[3]
+        self._snmpversion = snmpconfig['version']
+        self._snmpport = snmpconfig['snmpport']
+        self._snmpv2c = snmpconfig['snmpv2c']
         self._sysobj = sysobj
 
         if self._callback is None:
@@ -291,6 +294,8 @@ class SnmpCliDevice(AbstractDevice):
             opt['username'] = self._auth[0]
             opt['password'] = self._auth[1]
             opt['global_delay_factor'] = 0.5
+            if self._enablepass:
+                opt['secret'] = self._enablepass
             #  FIXME: Do we need to catch error??
             net_connect = None
             try:
