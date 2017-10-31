@@ -1354,9 +1354,14 @@ class Interface(BaseInterface):
         Args:
             ve_name (str): VE interface name
             enable (bool): True - Create False - Delete, default - True
+            vlan_router_ve() should be called prior to calling this function
+            for both create and delete VE
             get (bool) : If True return the list of VE names, default- False
         Returns:
             return True/False for enable
+            return list of VE names when get=True
+        Raises:
+            KeyError: if `ve_name` is not passed.
         Examples:
             >>> import pyswitch.device
             >>> switches = ['10.24.85.107']
@@ -1393,10 +1398,14 @@ class Interface(BaseInterface):
         if not enable:
             cli_arr = 'no interface ' + 've' + ' ' + ve_name
             output = self._callback(cli_arr, handler='cli-set')
+            # No error handling reqd as vlan_router_ve() removes the VE
             return True
         else:
             cli_arr = 'interface ' + 've' + ' ' + ve_name
             output = self._callback(cli_arr, handler='cli-set')
+            error = re.search(r'Error(.+)', output)
+            if error:
+                raise ValueError("%s" % error.group(0))
             return True
 
     def ve_interfaces(self, **kwargs):
@@ -1423,6 +1432,9 @@ class Interface(BaseInterface):
         ve_list = []
         cli_arr = 'show running-config interface | inc ve'
         output = self._callback(cli_arr, handler='cli-get')
+        error = re.search(r'Error(.+)', output)
+        if error:
+            raise ValueError("%s" % error.group(0))
         # Populate the VE interface list with default data and update later
         for line in output.split('\n'):
             info = re.search(r'interface ve (.+)', line)
@@ -1437,6 +1449,9 @@ class Interface(BaseInterface):
             ve_list.append(ve_info)
         cli_arr = 'show ip interface | inc ve'
         output = self._callback(cli_arr, handler='cli-get')
+        error = re.search(r'Error(.+)', output)
+        if error:
+            raise ValueError("%s" % error.group(0))
         for line in output.split('\n'):
             info = re.search(r've (.+)', line)
             if info is not None:
@@ -1462,7 +1477,8 @@ class Interface(BaseInterface):
 
     def add_int_vrf(self, **kwargs):
         """
-        Add L3 Interface in Vrf.
+        Add L3 Interface in Vrf. Currently supports VE interface.
+        TBD for other ethernet and loopback interfaces
 
         Args:
             int_type(str): L3 interface type on which the vrf needs to be configured.
@@ -1475,6 +1491,7 @@ class Interface(BaseInterface):
             return VRF when get=True. return None if no VRF is associated
             True or ValueError for create and delete
         Raises:
+            KeyError: if `int_type`, `name`, or `vrf_name` is not passed.
             ValueError: if `int_type`, `name`, `vrf` is invalid.
         Examples:
             >>> import pyswitch.device
@@ -1556,7 +1573,7 @@ class Interface(BaseInterface):
             return VE name/None for get
 
         Raises:
-            KeyError: if `vlan_id`  is not specified.
+            KeyError: if `vlan_id`, `ve_config`  is not specified.
             ValueError: if `vlan_id` is not a valid value.
 
         Examples:
@@ -1612,7 +1629,7 @@ class Interface(BaseInterface):
 
     def ip_address(self, **kwargs):
         """
-        Set IP Address on an Interface.
+        Set/Get IP Address on an Interface.
 
         Args:
             int_type (str): Type of interface. ('ethernet' etc)
@@ -1731,7 +1748,7 @@ class Interface(BaseInterface):
                         'ipv6_address': ipv6_add}
 
     def ipv6_link_local(self, **kwargs):
-        """Enable auto configure ipv6 link local address on interfaces
+        """Enable/Get auto configure ipv6 link local address on interfaces
 
         Args:
             int_type: Interface type on which the ipv6 link local needs to be
@@ -1760,14 +1777,14 @@ class Interface(BaseInterface):
             ...     name='500', int_type='ve')
         """
         int_type = kwargs.pop('int_type').lower()
-        ve_name = kwargs.pop('name')
+        int_name = kwargs.pop('name')
         valid_int_types = self.valid_int_types
         if int_type not in valid_int_types:
             raise ValueError('`int_type` must be one of: %s' %
                              repr(valid_int_types))
 
         if kwargs.pop('get', False):
-            cli_arr = 'show ipv6 interface ' + int_type + ' ' + ve_name
+            cli_arr = 'show ipv6 interface ' + int_type + ' ' + int_name
             cli_res = self._callback(cli_arr, handler='cli-get')
             error = re.search(r'Error(.+)', cli_res)
             if error:
@@ -1780,7 +1797,7 @@ class Interface(BaseInterface):
 
         if kwargs.pop('delete', False):
             cli_arr = []
-            cli_arr.append('interface ' + int_type + ' ' + ve_name)
+            cli_arr.append('interface ' + int_type + ' ' + int_name)
             cli_arr.append('no ipv6 enable')
             cli_res = self._callback(cli_arr, handler='cli-set')
             error = re.search(r'Error(.+)', cli_res)
@@ -1789,7 +1806,7 @@ class Interface(BaseInterface):
             return True
         else:
             cli_arr = []
-            cli_arr.append('interface ' + int_type + ' ' + ve_name)
+            cli_arr.append('interface ' + int_type + ' ' + int_name)
             cli_arr.append('ipv6 enable')
             cli_res = self._callback(cli_arr, handler='cli-set')
             error = re.search(r'Error(.+)', cli_res)
