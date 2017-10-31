@@ -36,7 +36,7 @@ class Firmware(object):
         Raises:
             None
         """
-        self.valid_protocol_type = ['scp']
+        self.valid_protocol_type = ['scp', 'sftp', 'ftp']
         self._callback = callback
 
     def download_firmware(self, **fdparam):
@@ -64,14 +64,11 @@ class Firmware(object):
                 >>> for switch in switches:
                 ...     conn = (switch, '22')
                 ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-                ...     dictstatus = dev.firmware.download_firmware(protocol='scp',
-                host='10.31.2.25',
-                ...                          user_name='fvt', password='pray4green',
-                ...
-                directory='/proj/sredev/slxos17s.1.02_pit_a_davinci_bds_sre/slxos17s.1
-                .02_pit_a_davinci_170823_1900/dist/',
-                ...                         )
-                ...     print(dictstatus)
+                ...       dictstatus = dev.firmware.download_firmware(protocol='scp',host='10.31.2.25',
+                ...                            user_name='fvt', password='pray4green',
+                ...                            directory='/proj/sredev/slxos17s.1.02_pit_a_davinci_bds_sre/'
+                ...                            'slxos17s.1.02_pit_a_davinci_170823_1900/dist/',
+                ...                     )
         """
         protocol = fdparam.pop('protocol')
         host = fdparam.pop('host')
@@ -86,19 +83,22 @@ class Firmware(object):
         if protocol not in self.valid_protocol_type:
             raise ValueError('protocol must be one of:%s' %
                              repr(self.valid_protocol_type))
+        #populate the argument type based on protocol
+        if protocol.encode('utf8') == 'sftp':
+            protoarg = (user_name, password, host, directory, 'release.plist', 22, False)
+        else:
+            protoarg = (user_name, password, host, directory, 'release.plist')
 
         if os_type is 'nos':
             if coldboot is True:
                 # coldboot does not work when auto_activate is specified
                 argument = {'rbridge_id': rbridge, 'coldboot': coldboot,
-                            'scp': (user_name, password, host, directory, 'release.plist')}
+                            protocol: protoarg}
             else:
                 argument = {'rbridge_id': rbridge, 'auto_activate': auto_activate,
-                            'coldboot': coldboot,
-                            'scp': (user_name, password, host, directory, 'release.plist')}
+                            'coldboot': coldboot, protocol: protoarg}
         else:
-            argument = {'rbridge_id': rbridge, 'coldboot': coldboot,
-                        'scp': (user_name, password, host, directory, 'release.plist')}
+            argument = {'rbridge_id': rbridge, 'coldboot': coldboot, protocol: protoarg}
 
         config = ('firmware_download_rpc', argument)
         response = self._callback(config, 'get')
