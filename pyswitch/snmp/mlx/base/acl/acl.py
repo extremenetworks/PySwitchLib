@@ -363,6 +363,110 @@ class Acl(BaseAcl):
 
         raise ValueError('{} not exists for acl {}'.format(seq_id, acl_name))
 
+    def apply_acl(self, **parameters):
+        """
+        Apply Access Control List on interface.
+        Args:
+            parameters contains:
+                acl_name: Name of the access list.
+                intf_type: - ethernet, ve
+                intf_name: array of interfaces
+                acl_direction: Direction of ACL binding on the specified
+                    interface
+        Returns:
+            Return True
+        Raises:
+            Exception, ValueError for invalid seq_id.
+        """
+
+        cli_arr = []
+        acl_name = parameters['acl_name']
+        intf_type = parameters['intf_type']
+        intf_name = parameters.pop('intf_name', None)
+
+        if not intf_name:
+            raise ValueError('No Interface specified')
+
+        address_type = self.get_address_type(acl_name)
+
+        if address_type == 'mac':
+            if intf_type != 'ethernet':
+                raise ValueError('intf type:{} not supported'
+                                 .format(intf_type))
+
+            for intf in intf_name:
+                cmd = acl_template.interface_submode_template
+                t = jinja2.Template(cmd)
+                config = t.render(intf_name=intf, **parameters)
+                config = ' '.join(config.split())
+                cli_arr.append(config)
+
+                cmd = acl_template.apply_acl_mac_template
+                t = jinja2.Template(cmd)
+                config = t.render(**parameters)
+                config = ' '.join(config.split())
+                cli_arr.append(config)
+
+                cli_arr.append('exit')
+        else:
+            raise ValueError('{} not supported'.format(address_type))
+
+        output = self._callback(cli_arr, handler='cli-set')
+        return self._process_cli_output(inspect.stack()[0][3], config, output)
+
+    def remove_acl(self, **parameters):
+        """
+        Remove Access Control List from interface.
+        Args:
+            parameters contains:
+                acl_name: Name of the access list.
+                intf_type: - ethernet, ve
+                intf_name: array of interfaces
+                acl_direction: Direction of ACL binding on the specified
+                    interface
+        Returns:
+            Return True
+        Raises:
+            Exception, ValueError for invalid seq_id.
+        """
+
+        cli_arr = []
+        acl_name = parameters['acl_name']
+        intf_type = parameters['intf_type']
+        intf_name = parameters.pop('intf_name', None)
+
+        if not intf_name:
+            raise ValueError('No Interface specified')
+
+        address_type = self.get_address_type(acl_name)
+
+        if address_type == 'mac':
+            if intf_type != 'ethernet':
+                raise ValueError('intf type:{} not supported'
+                                 .format(intf_type))
+
+            for intf in intf_name:
+                cmd = acl_template.interface_submode_template
+                t = jinja2.Template(cmd)
+                config = t.render(intf_name=intf, **parameters)
+                config = ' '.join(config.split())
+                cli_arr.append(config)
+
+                cmd = acl_template.remove_acl_mac_template
+                t = jinja2.Template(cmd)
+                config = t.render(**parameters)
+                config = ' '.join(config.split())
+                cli_arr.append(config)
+
+                cli_arr.append('exit')
+
+                output = self._callback(cli_arr, handler='cli-set')
+                self._process_cli_output(inspect.stack()[0][3], config, output)
+        else:
+            raise ValueError('{} not supported'.format(address_type))
+
+        return True
+
     def get_address_type(self, acl_name):
         """
         get_address_type determines address type for the provided acl_name

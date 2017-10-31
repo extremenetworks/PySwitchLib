@@ -51,3 +51,15 @@ add_l2_acl_rule_template = '''
 delete_rule_by_seq_id = '''
     no sequence {{ seq_id_str }}
     '''
+
+interface_submode_template = '''
+    interface ethernet {{ intf_name }}
+'''
+
+apply_acl_mac_template = '''
+    mac access-group {{ acl_name }} {{ acl_direction }}
+'''
+
+remove_acl_mac_template = '''
+    no mac access-group {{ acl_name }} {{ acl_direction }}
+'''

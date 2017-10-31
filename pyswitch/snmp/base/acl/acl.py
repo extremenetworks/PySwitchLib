@@ -169,6 +169,44 @@ class Acl(object):
         """
         return
 
+    @abc.abstractmethod
+    def apply_acl(self, **parameters):
+        """
+        Apply Access Control List on interface.
+        Args:
+            parameters contains:
+                address_type (str): ACL address type, ip or ipv6 or mac.
+                acl_name: Name of the access list.
+                intf_type: - ethernet, ve
+                intf_name: array of slot/port or ve interfaces
+                acl_direction: Direction of ACL binding on the specified
+                    interface
+        Returns:
+            Return True
+        Raises:
+            Exception, ValueError for invalid seq_id.
+        """
+        return
+
+    @abc.abstractmethod
+    def remove_acl(self, **parameters):
+        """
+        Apply Access Control List on interface.
+        Args:
+            parameters contains:
+                address_type (str): ACL address type, ip or ipv6 or mac.
+                acl_name: Name of the access list.
+                intf_type: - ethernet, ve
+                intf_name: array of slot/port or ve interfaces
+                acl_direction: Direction of ACL binding on the specified
+                    interface
+        Returns:
+            Return True
+        Raises:
+            Exception, ValueError for invalid seq_id.
+        """
+        return
+
     def _process_cli_output(self, method, config, output):
         """
         Parses CLI response from switch.
