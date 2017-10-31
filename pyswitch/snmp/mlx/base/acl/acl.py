@@ -389,7 +389,7 @@ class Acl(BaseAcl):
 
         address_type = self.get_address_type(acl_name)
 
-        if address_type not in [ 'mac', 'ip', 'ipv6']:
+        if address_type not in ['mac', 'ip', 'ipv6']:
             raise ValueError('{} not supported'.format(address_type))
 
         if address_type == 'mac':
@@ -441,7 +441,7 @@ class Acl(BaseAcl):
 
         address_type = self.get_address_type(acl_name)
 
-        if address_type not in [ 'mac', 'ip', 'ipv6']:
+        if address_type not in ['mac', 'ip', 'ipv6']:
             raise ValueError('{} not supported'.format(address_type))
 
         if address_type == 'mac':
