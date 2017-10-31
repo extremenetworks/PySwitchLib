@@ -389,27 +389,28 @@ class Acl(BaseAcl):
 
         address_type = self.get_address_type(acl_name)
 
+        if address_type not in [ 'mac', 'ip', 'ipv6']:
+            raise ValueError('{} not supported'.format(address_type))
+
         if address_type == 'mac':
             if intf_type != 'ethernet':
                 raise ValueError('intf type:{} not supported'
                                  .format(intf_type))
 
-            for intf in intf_name:
-                cmd = acl_template.interface_submode_template
-                t = jinja2.Template(cmd)
-                config = t.render(intf_name=intf, **parameters)
-                config = ' '.join(config.split())
-                cli_arr.append(config)
+        for intf in intf_name:
+            cmd = acl_template.interface_submode_template
+            t = jinja2.Template(cmd)
+            config = t.render(intf_name=intf, **parameters)
+            config = ' '.join(config.split())
+            cli_arr.append(config)
 
-                cmd = acl_template.apply_acl_mac_template
-                t = jinja2.Template(cmd)
-                config = t.render(**parameters)
-                config = ' '.join(config.split())
-                cli_arr.append(config)
+            cmd = acl_template.apply_acl_template
+            t = jinja2.Template(cmd)
+            config = t.render(address_type=address_type, **parameters)
+            config = ' '.join(config.split())
+            cli_arr.append(config)
 
-                cli_arr.append('exit')
-        else:
-            raise ValueError('{} not supported'.format(address_type))
+            cli_arr.append('exit')
 
         output = self._callback(cli_arr, handler='cli-set')
         return self._process_cli_output(inspect.stack()[0][3], config, output)
@@ -440,32 +441,31 @@ class Acl(BaseAcl):
 
         address_type = self.get_address_type(acl_name)
 
+        if address_type not in [ 'mac', 'ip', 'ipv6']:
+            raise ValueError('{} not supported'.format(address_type))
+
         if address_type == 'mac':
             if intf_type != 'ethernet':
                 raise ValueError('intf type:{} not supported'
                                  .format(intf_type))
 
-            for intf in intf_name:
-                cmd = acl_template.interface_submode_template
-                t = jinja2.Template(cmd)
-                config = t.render(intf_name=intf, **parameters)
-                config = ' '.join(config.split())
-                cli_arr.append(config)
+        for intf in intf_name:
+            cmd = acl_template.interface_submode_template
+            t = jinja2.Template(cmd)
+            config = t.render(intf_name=intf, **parameters)
+            config = ' '.join(config.split())
+            cli_arr.append(config)
 
-                cmd = acl_template.remove_acl_mac_template
-                t = jinja2.Template(cmd)
-                config = t.render(**parameters)
-                config = ' '.join(config.split())
-                cli_arr.append(config)
+            cmd = acl_template.remove_acl_template
+            t = jinja2.Template(cmd)
+            config = t.render(address_type=address_type, **parameters)
+            config = ' '.join(config.split())
+            cli_arr.append(config)
 
-                cli_arr.append('exit')
+            cli_arr.append('exit')
 
-                output = self._callback(cli_arr, handler='cli-set')
-                self._process_cli_output(inspect.stack()[0][3], config, output)
-        else:
-            raise ValueError('{} not supported'.format(address_type))
-
-        return True
+        output = self._callback(cli_arr, handler='cli-set')
+        return self._process_cli_output(inspect.stack()[0][3], config, output)
 
     def get_address_type(self, acl_name):
         """

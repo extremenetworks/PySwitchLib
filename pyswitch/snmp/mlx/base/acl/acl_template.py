@@ -53,13 +53,13 @@ delete_rule_by_seq_id = '''
     '''
 
 interface_submode_template = '''
-    interface ethernet {{ intf_name }}
+    interface {{ intf_type }} {{ intf_name }}
 '''
 
-apply_acl_mac_template = '''
-    mac access-group {{ acl_name }} {{ acl_direction }}
+apply_acl_template = '''
+    {{ address_type }} access-group {{ acl_name }} {{ acl_direction }}
 '''
 
-remove_acl_mac_template = '''
-    no mac access-group {{ acl_name }} {{ acl_direction }}
+remove_acl_template = '''
+    no {{ address_type }} access-group {{ acl_name }} {{ acl_direction }}
 '''
