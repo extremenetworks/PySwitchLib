@@ -19,6 +19,7 @@ import sys
 import pyswitch.utilities as util
 import pyswitch.snmp.mlx.base.interface
 import pyswitch.snmp.mlx.base.system
+import pyswitch.snmp.mlx.base.acl.acl
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
@@ -28,7 +29,7 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 
-ROUTER_ATTRS = ['interface', 'system']
+ROUTER_ATTRS = ['interface', 'system', 'acl']
 
 NI_VERSIONS = {
     '5.8': {
@@ -42,6 +43,7 @@ NI_VERSIONS = {
     '6.0': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
+        'acl': pyswitch.snmp.mlx.base.acl.acl.Acl,
     },
     '6.1': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
@@ -268,7 +270,7 @@ class SnmpCliDevice(AbstractDevice):
                 value = self._mgr['cli'].send_command(call)
         except (SNMPError) as error:
             raise DeviceCommError(error)
-        except:
+        except Exception:
             raise DeviceCommError
 
         return value
