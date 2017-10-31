@@ -368,6 +368,18 @@ class Interface(BaseInterface):
             result = util.find(util.root, './/Ve')
         return result
 
+    def is_ve_id_required(self):
+        """ Check if VE id is required for creating VE or vlan id is sufficient
+        """
+        # TBD change this to True once workflow impact is considered by making VE as
+        # mandatory
+        return False
+
+    def is_vlan_rtr_ve_config_req(self):
+        """ Check if router interface config is required for VLAN
+        """
+        return True
+
     def bridge_domain(self, **kwargs):
         """Configure/get/delete bridge-domain.
 
