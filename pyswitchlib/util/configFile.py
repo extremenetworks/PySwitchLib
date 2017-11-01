@@ -1,5 +1,8 @@
 import os
 import re
+import fasteners
+
+lock_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_config_file.lock')
 
 class ConfigFileUtil(object):
     """
@@ -11,16 +14,17 @@ class ConfigFileUtil(object):
         conf_dict = {}
         conf_pattern = re.compile('\s*(\w+)\s*=\s*(\S+)\s*')
 
-        if os.path.exists(filename):
-            with open(filename, 'r') as conf_file:
-                for conf_line in conf_file:
-                    line = conf_line.strip()
+        with fasteners.InterProcessLock(lock_file):
+            if os.path.exists(filename):
+                with open(filename, 'r') as conf_file:
+                    for conf_line in conf_file:
+                        line = conf_line.strip()
 
-                    if not re.match('^#', line):
-                        match = conf_pattern.match(line)
+                        if not re.match('^#', line):
+                            match = conf_pattern.match(line)
 
-                        if match:
-                            conf_dict[match.group(1)] = match.group(2)
+                            if match:
+                                conf_dict[match.group(1)] = match.group(2)
 
         return conf_dict
 
@@ -33,6 +37,7 @@ class ConfigFileUtil(object):
         if conf_dict != None:
             merged_conf.update(conf_dict)
 
-            with open(filename, 'w') as conf_file:
-                for key in merged_conf:
-                    conf_file.write(key + ' = ' + str(merged_conf[key]) + '\n')
+            with fasteners.InterProcessLock(lock_file):
+                with open(filename, 'w') as conf_file:
+                    for key in merged_conf:
+                        conf_file.write(key + ' = ' + str(merged_conf[key]) + '\n')
