@@ -7229,3 +7229,13 @@ class Interface(object):
                         tvnis.append(vni_value)
                     result = dict(vlans=vls, vnis=tvnis)
         return result
+
+    def is_ve_id_required(self):
+        """ Check if VE id is required for creating VE or vlan id is sufficient
+        """
+        return False
+
+    def is_vlan_rtr_ve_config_req(self):
+        """ Check if router interface config is required for VLAN
+        """
+        return False

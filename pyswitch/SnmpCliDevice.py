@@ -19,6 +19,7 @@ import sys
 import pyswitch.utilities as util
 import pyswitch.snmp.mlx.base.interface
 import pyswitch.snmp.mlx.base.system
+import pyswitch.snmp.mlx.base.acl.acl
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
@@ -28,9 +29,22 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 
-ROUTER_ATTRS = ['interface', 'system']
+ROUTER_ATTRS = ['interface', 'system', 'acl']
 
 NI_VERSIONS = {
+    '5.8': {
+        'interface': pyswitch.snmp.mlx.base.interface.Interface,
+        'system': pyswitch.snmp.mlx.base.system.System,
+    },
+    '5.9': {
+        'interface': pyswitch.snmp.mlx.base.interface.Interface,
+        'system': pyswitch.snmp.mlx.base.system.System,
+    },
+    '6.0': {
+        'interface': pyswitch.snmp.mlx.base.interface.Interface,
+        'system': pyswitch.snmp.mlx.base.system.System,
+        'acl': pyswitch.snmp.mlx.base.acl.acl.Acl,
+    },
     '6.1': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
@@ -69,12 +83,20 @@ class SnmpCliDevice(AbstractDevice):
         self.base = kwargs.pop('base')
         self._conn = kwargs.pop('conn')
         self.host = self._conn[0]
-        self._auth = kwargs.pop('auth', (None, None))
+        auth_snmp = kwargs.pop('auth_snmp', (None, None, None, None))
+        self._auth = (auth_snmp[0], auth_snmp[1])
         self._test = kwargs.pop('test', False)
         self._callback = kwargs.pop('callback', None)
-        self._snmpversion = kwargs.pop('snmpver', 2)
-        self._snmpport = kwargs.pop('snmpport', 161)
-        self._snmpv2c = kwargs.pop('snmpv2c', 'public')
+        self._enablepass = auth_snmp[2]
+        snmpconfig = auth_snmp[3]
+        self._snmpversion = snmpconfig['version']
+        self._snmpport = snmpconfig['snmpport']
+        self._snmpv2c = snmpconfig['snmpv2c']
+        self._v3user = snmpconfig['v3user']
+        self._v3auth = snmpconfig['v3auth']
+        self._v3priv = snmpconfig['v3priv']
+        self._authpass = snmpconfig['authpass']
+        self._privpass = snmpconfig['privpass']
         self._sysobj = sysobj
 
         if self._callback is None:
@@ -85,9 +107,9 @@ class SnmpCliDevice(AbstractDevice):
         self.reconnect()
 
         # self._os_type = version_list[0][2]
-        self.devicetype = SNMPUtils.SNMP_DEVICE_MAP[sysobj]
-        fwmap = SNMPUtils.DEVICE_FIRMWARE_MAP[self.devicetype]
-        self._os_type = fwmap[0]
+        devicemap = SNMPUtils.SNMP_DEVICE_MAP[sysobj]
+        self.devicetype = devicemap[0]
+        self._os_type = devicemap[1]
         self.fullver = self.firmware_version
         # self.fullver = version_list[0][1]
 
@@ -166,8 +188,8 @@ class SnmpCliDevice(AbstractDevice):
             None
 
         """
-        fwmap = SNMPUtils.DEVICE_FIRMWARE_MAP[self.devicetype]
-        return self._mgr['snmp'].get_os_version(fwmap[1])
+        oid = SNMPUtils.DEVICE_FIRMWARE_MAP[self.os_type]
+        return self._mgr['snmp'].get_os_version(oid)
 
     def _callback_main(self, call, handler='snmp-get', target='running',
                        source='startup'):
@@ -248,7 +270,7 @@ class SnmpCliDevice(AbstractDevice):
                 value = self._mgr['cli'].send_command(call)
         except (SNMPError) as error:
             raise DeviceCommError(error)
-        except:
+        except Exception:
             raise DeviceCommError
 
         return value
@@ -269,7 +291,12 @@ class SnmpCliDevice(AbstractDevice):
         if 'snmp' not in self._mgr:
             self._mgr['snmp'] = SNMPDevice(host=self.host, port=self._snmpport,
                                            version=self._snmpversion,
-                                           community=self._snmpv2c)
+                                           community=self._snmpv2c,
+                                           username=self._v3user,
+                                           authproto=self._v3auth,
+                                           authkey=self._authpass,
+                                           privproto=self._v3priv,
+                                           privkey=self._privpass)
         if 'cli' not in self._mgr:
             #  FIXME: Revisit this logic
             opt = {'device_type': 'brocade_netiron'}
@@ -277,6 +304,8 @@ class SnmpCliDevice(AbstractDevice):
             opt['username'] = self._auth[0]
             opt['password'] = self._auth[1]
             opt['global_delay_factor'] = 0.5
+            if self._enablepass:
+                opt['secret'] = self._enablepass
             #  FIXME: Do we need to catch error??
             net_connect = None
             try:
