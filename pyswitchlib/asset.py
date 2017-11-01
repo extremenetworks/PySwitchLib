@@ -73,6 +73,7 @@ class Asset(object):
         self._pyro_proxy_name = ''
         self._pyro_daemon_id = 'default'
         self._pyro_bind_max_retries = 30
+        self._ns_pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns.pid')
         self._pyswitchlib_conf_filename = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
         self._pyswitchlib_ns_daemon_filename = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns_daemon.uri')
         self._pyswitchlib_conf = ConfigFileUtil().read(filename=self._pyswitchlib_conf_filename)
@@ -88,14 +89,15 @@ class Asset(object):
         if api_port:
             self._pyro_ns_port = api_port
 
-        if self._pyswitchlib_ns_daemon:
-            if self._pyro_daemon_id in self._pyswitchlib_ns_daemon:
-                self._pyro_proxy_name = self._pyswitchlib_ns_daemon[self._pyro_daemon_id]
-        else:
+        if os.path.exists(self._ns_pid_file):
             self._pyro_proxy_name = 'PYRONAME:PySwitchLib.' + self._pyro_daemon_id
-
+            
             if self._pyro_ns_port:
                 self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
+        else:
+            if self._pyswitchlib_ns_daemon:
+                if self._pyro_daemon_id in self._pyswitchlib_ns_daemon:
+                    self._pyro_proxy_name = self._pyswitchlib_ns_daemon[self._pyro_daemon_id]
 
         with Pyro4.Proxy(self._pyro_proxy_name) as pyro_proxy:
             for n in range(self._pyro_bind_max_retries):
