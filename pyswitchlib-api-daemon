@@ -150,7 +150,7 @@ pyswitchlib_api_daemon_wrapper()
             if [ -d "$VIRTENV_DAEMON_PATH" ]; then
                 . "$VIRTENV_DAEMON_PATH/bin/activate"
             fi
-            echo "API_DAEMON: $API_DAEMON, $PYSWITCHLIB_DAEMON_PATH" 
+
             python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION"
 
             RETVAL="$?"
