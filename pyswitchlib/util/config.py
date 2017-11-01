@@ -34,9 +34,10 @@ class ConfigUtil(object):
             if daemon_id in conf_dict:
                 prefixes = conf_dict[daemon_id].split(':')
                 
-                for path in prefixes:
-                    prefix = path
-                    break
+                if sys.prefix in prefixes:
+                    prefix = sys.prefix
+                else:
+                    prefix = prefixes[0]
 
         return prefix
 
