@@ -113,18 +113,49 @@ get_api_deamon_path_from_pyswitchlib_conf()
 
     if [ -n "$API_DAEMON" ]; then
         DAEMON_PATHS=(${PYSWITCHLIB_CONF[$API_DAEMON]//:/ })
-
-        VIRTENV_PATH="${DAEMON_PATHS[0]}"
-        PYSWITCHLIB_DAEMON_PATH="$VIRTENV_PATH$PYSWITCHLIB_PATH/$FILENAME"
+        
+        if [ ${#DAEMON_PATHS[@]} -ge 1 ]; then
+            VIRTENV_PATH="${DAEMON_PATHS[0]}"
+            PYSWITCHLIB_DAEMON_PATH="$VIRTENV_PATH$PYSWITCHLIB_PATH/$FILENAME"
+        fi
     fi
 
     echo "$PYSWITCHLIB_DAEMON_PATH:$VIRTENV_PATH"
 }
 
+stop_stale_pyswitchlib_pids()
+{
+    local PYSWITCHLIB_PID_FILES=(`ls -1 /tmp/.pyswitchlib*pid 2>/dev/null`)
+
+    if [ ${#PYSWITCHLIB_PID_FILES[@]} -ge 1 ]; then
+        for pid_file in "${PYSWITCHLIB_PID_FILES[@]}"; do
+            if [ -f "$pid_file" ]; then
+                kill `cat $pid_file`
+            fi
+        done
+    fi
+}
+
+eval_overall_return_value()
+{
+    local RETVALS=("$@")
+    local OVERALL_RETVAL=0
+
+    for ret in "${RETVALS[@]}"; do
+        if [ $ret -ne 0 ]; then
+            OVERALL_RETVAL=$ret
+            break
+        fi
+    done
+
+    return $OVERALL_RETVAL
+}
+
 pyswitchlib_api_daemon_wrapper()
 {
     local OPERATION="$1"
-    local RETVAL=0
+    local OVERALL_RETVAL=0
+    local RETVALS=()
     local NS_PORT=`get_ns_port_from_pyswitchlib_conf`
     local API_DAEMONS=(`get_api_daemons_from_pyswitchlib_conf`)
     local PYSWITCHLIB_NS_PATHS=`get_pyswitchlib_paths pyswitchlib_ns_daemon.py`
@@ -141,6 +172,8 @@ pyswitchlib_api_daemon_wrapper()
             fi
 
             python "$PYSWITCHLIB_NS_PATH" "$OPERATION"
+
+            RETVALS+=("$?")
         fi
     fi
 
@@ -156,11 +189,18 @@ pyswitchlib_api_daemon_wrapper()
 
             python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION"
 
-            RETVAL="$?"
+            RETVALS+=("$?")
         fi
     done
 
-    return "$RETVAL"
+    if [ "$OPERATION" = "stop" ]; then
+        stop_stale_pyswitchlib_pids
+    fi
+
+    eval_overall_return_value "${RETVALS[@]}"
+    OVERALL_RETVAL=$?
+
+    return $OVERALL_RETVAL
 }
 
 case "$1" in
