@@ -69,10 +69,17 @@ class Device(object):
             snmpport = snmpconfig['snmpport']
             snmpver = snmpconfig['version']
             snmpv2c = snmpconfig['snmpv2c']
+            v3user = snmpconfig['v3user']
+            v3auth = snmpconfig['v3auth']
+            v3priv = snmpconfig['v3priv']
+            authpass = snmpconfig['authpass']
+            privpass = snmpconfig['privpass']
 
         if snmpver == 2 or snmpver == 3:
             try:
-                snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c)
+                snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c,
+                                     username=v3user, authproto=v3auth, authkey=authpass,
+                                     privproto=v3priv, privkey=privpass)
                 sysobj = str(snmpdev.get(MIB.mib_oid_map['sysObjectId']))
             except SNMPError:
                 """
