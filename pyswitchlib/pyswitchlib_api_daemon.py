@@ -49,8 +49,8 @@ class PySwitchLibApiDaemon(DaemonRunner):
             self._daemon_thread.daemon = True
                             
         self.stdin_path = os.path.join(os.sep, 'dev', 'null')
-        self.stdout_path = os.path.join(os.sep, 'dev', 'tty')
-        self.stderr_path = os.path.join(os.sep, 'dev', 'tty')
+        self.stdout_path = os.path.join(os.sep, 'dev', 'null')
+        self.stderr_path = os.path.join(os.sep, 'dev', 'null')
         self.pidfile_path =  ConfigUtil().get_pidfilename_for_daemon_id(daemon_id=self._daemon_id, conf_dict=self._pyswitchlib_conf)
         self.pidfile_timeout = 1
         super(PySwitchLibApiDaemon, self).__init__(self)

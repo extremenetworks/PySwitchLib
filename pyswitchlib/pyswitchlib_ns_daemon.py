@@ -28,8 +28,8 @@ class PySwitchLibNsDaemon(DaemonRunner):
         self._nameserver_thread = threading.Thread(target=self._nameserver_loop)
         self._nameserver_thread.setDaemon(True)
         self.stdin_path = os.path.join(os.sep, 'dev', 'null')
-        self.stdout_path = os.path.join(os.sep, 'dev', 'tty')
-        self.stderr_path = os.path.join(os.sep, 'dev', 'tty')
+        self.stdout_path = os.path.join(os.sep, 'dev', 'null')
+        self.stderr_path = os.path.join(os.sep, 'dev', 'null')
         self.pidfile_path =  pid_file
         self.pidfile_timeout = 1
         super(PySwitchLibNsDaemon, self).__init__(self)
