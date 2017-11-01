@@ -19,6 +19,7 @@ import sys
 import pyswitch.utilities as util
 import pyswitch.snmp.mlx.base.interface
 import pyswitch.snmp.mlx.base.system
+import pyswitch.snmp.mlx.base.acl.acl
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
@@ -28,7 +29,7 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 
-ROUTER_ATTRS = ['interface', 'system']
+ROUTER_ATTRS = ['interface', 'system', 'acl']
 
 NI_VERSIONS = {
     '5.8': {
@@ -42,6 +43,7 @@ NI_VERSIONS = {
     '6.0': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
+        'acl': pyswitch.snmp.mlx.base.acl.acl.Acl,
     },
     '6.1': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
@@ -90,6 +92,11 @@ class SnmpCliDevice(AbstractDevice):
         self._snmpversion = snmpconfig['version']
         self._snmpport = snmpconfig['snmpport']
         self._snmpv2c = snmpconfig['snmpv2c']
+        self._v3user = snmpconfig['v3user']
+        self._v3auth = snmpconfig['v3auth']
+        self._v3priv = snmpconfig['v3priv']
+        self._authpass = snmpconfig['authpass']
+        self._privpass = snmpconfig['privpass']
         self._sysobj = sysobj
 
         if self._callback is None:
@@ -263,7 +270,7 @@ class SnmpCliDevice(AbstractDevice):
                 value = self._mgr['cli'].send_command(call)
         except (SNMPError) as error:
             raise DeviceCommError(error)
-        except:
+        except Exception:
             raise DeviceCommError
 
         return value
@@ -284,7 +291,12 @@ class SnmpCliDevice(AbstractDevice):
         if 'snmp' not in self._mgr:
             self._mgr['snmp'] = SNMPDevice(host=self.host, port=self._snmpport,
                                            version=self._snmpversion,
-                                           community=self._snmpv2c)
+                                           community=self._snmpv2c,
+                                           username=self._v3user,
+                                           authproto=self._v3auth,
+                                           authkey=self._authpass,
+                                           privproto=self._v3priv,
+                                           privkey=self._privpass)
         if 'cli' not in self._mgr:
             #  FIXME: Revisit this logic
             opt = {'device_type': 'brocade_netiron'}
