@@ -4,8 +4,8 @@ import time
 import threading
 import Pyro4
 import Pyro4.naming
-from  pyswitchlib.util.configFile import ConfigFileUtil
-from  pyswitchlib.util.config import ConfigUtil
+from pyswitchlib.util.configFile import ConfigFileUtil
+from pyswitchlib.util.config import ConfigUtil
 from daemon.runner import (DaemonRunner, DaemonRunnerStopFailureError)
 from lockfile import LockTimeout
 

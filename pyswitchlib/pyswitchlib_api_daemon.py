@@ -7,8 +7,8 @@ import re
 import Pyro4
 import Pyro4.naming
 import pyangbind.lib.pybindJSON as pybindJSON
-from  pyswitchlib.util.configFile import ConfigFileUtil
-from  pyswitchlib.util.config import ConfigUtil
+from pyswitchlib.util.configFile import ConfigFileUtil
+from pyswitchlib.util.config import ConfigUtil
 from pyswitchlib.exceptions import (MultipleChoicesSetError)
 from collections import OrderedDict
 from dicttoxml import dicttoxml
