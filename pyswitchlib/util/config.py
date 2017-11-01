@@ -1,37 +1,76 @@
 import os
-import re
+import sys
 
-class ConfigFileUtil(object):
+class ConfigUtil(object):
     """
     This is an auto-generated class for the PySwitchLib device asset.
     Asset provides connection information for PySwitchLib APIs.
     """
 
-    def read(self, filename=None):
-        conf_dict = {}
-        conf_pattern = re.compile('\s*(\w+)\s*=\s*(\S+)\s*')
+    def get_daemon_id_for_prefix(self, prefix='', conf_dict=None):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
 
-        if os.path.exists(filename):
-            with open(filename, 'r') as conf_file:
-                for conf_line in conf_file:
-                    line = conf_line.strip()
-
-                    if not re.match('^#', line):
-                        match = conf_pattern.match(line)
-
-                        if match:
-                            conf_dict[match.group(1)] = match.group(2)
-
-        return conf_dict
-
-    def write(self, filename=None, conf_dict=None):
-        merged_conf = self.read(filename=filename)
+        daemon_id = ''
 
         if conf_dict:
-            merged_conf.update(conf_dict)
+            for key in conf_dict:
+                if 'api_daemon_' in key:
+                    if prefix in conf_dict[key]:
+                        daemon_id = key
+                        break
 
-            with open(filename, 'w') as conf_file:
-                for key in merged_conf:
-                    conf_file.write(key + ' = ' + str(merged_conf[key]) + '\n')
+        return daemon_id
 
+    def get_prefix_for_daemon_id(self, daemon_id='', conf_dict=None):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+        
+        prefix = sys.prefix
 
+        if conf_dict:
+            if daemon_id in conf_dict:
+                prefixes = conf_dict[daemon_id].split(':')
+                
+                for path in prefixes:
+                    prefix = path
+                    break
+
+        return prefix
+
+    def get_prefix_lib_path(self, prefix='', package=''):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        prefix_lib_path = ''
+
+        python_version = sys.version_info
+        python_lib_ver = 'python' + str(python_version[0]) + '.' + str(python_version[1])
+
+        lib_path = os.path.join(prefix, 'lib', python_lib_ver, 'site-packages', package)
+
+        if os.path.exists(lib_path):
+            prefix_lib_path = lib_path
+
+        return prefix_lib_path
+
+    def get_pidfilename_for_daemon_id(self, daemon_id=None, conf_dict=None):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        pidfilename = ''
+
+        if conf_dict and daemon_id:
+            if daemon_id in conf_dict:
+                pidfilename = '.pyswitchlib_' + daemon_id + '.pid'
+
+        if not pidfilename:
+            pidfilename = '.pyswitchlib_default.pid'
+                
+        pidfilename = os.path.join(os.sep, 'tmp', pidfilename)
+
+        return pidfilename

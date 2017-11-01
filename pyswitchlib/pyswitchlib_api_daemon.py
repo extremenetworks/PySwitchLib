@@ -1,41 +1,59 @@
 import os
 import sys
-import signal
 import time
 import threading
-import multiprocessing
 import json
 import re
 import Pyro4
 import Pyro4.naming
 import pyangbind.lib.pybindJSON as pybindJSON
-from  pyswitchlib.util.config import ConfigFileUtil
+from  pyswitchlib.util.configFile import ConfigFileUtil
+from  pyswitchlib.util.config import ConfigUtil
 from pyswitchlib.exceptions import (MultipleChoicesSetError)
 from collections import OrderedDict
 from dicttoxml import dicttoxml
 from daemon.runner import (DaemonRunner, DaemonRunnerStopFailureError)
 from lockfile import LockTimeout
 
-pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_api.pid')
-daemon_pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_api_daemon.pid')
 pyswitchlib_conf_file = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
+pyswitchlib_ns_daemon_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns_daemon.uri')
 
 @Pyro4.behavior(instance_mode="single")
-class PySwitchLibApiDaemon(object):
+class PySwitchLibApiDaemon(DaemonRunner):
     """
     This is an auto-generated class for the PySwitchLib.
     Providing python bindings to configure a switch through the REST interface.
     """
 
-    def __init__(self, module_name='', module_obj=None, pyro_daemon=None):
+    def __init__(self, module_name='', module_obj=None, pyro_daemon=None, daemon_id='default', pyswitchlib_conf=None):
         """
         This is an auto-generated method for the PySwitchLib.
         """
 
+        self._pyswitchlib_conf = pyswitchlib_conf
         self._module_name = module_name
         self._module_obj = module_obj
         self._api_lock = threading.Lock()
         self._pyro_daemon = pyro_daemon
+        self._pyro_ns_port = None
+        self._daemon_thread = None
+        self._daemon_id = daemon_id
+        self._daemon_prefix = ConfigUtil().get_prefix_for_daemon_id(daemon_id=self._daemon_id, conf_dict=self._pyswitchlib_conf)
+
+        if self._pyswitchlib_conf:
+            if 'ns_port' in self._pyswitchlib_conf:
+                self._pyro_ns_port = int(self._pyswitchlib_conf['ns_port'])
+
+        if self._daemon_thread == None:
+            self._daemon_thread = threading.Thread(target=self._daemon_loop, kwargs={'daemon_id': self._daemon_id, 'daemon_prefix':self._daemon_prefix, 'pyro_ns_port': self._pyro_ns_port})
+            self._daemon_thread.daemon = True
+                            
+        self.stdin_path = os.path.join(os.sep, 'dev', 'null')
+        self.stdout_path = os.path.join(os.sep, 'dev', 'tty')
+        self.stderr_path = os.path.join(os.sep, 'dev', 'tty')
+        self.pidfile_path =  ConfigUtil().get_pidfilename_for_daemon_id(daemon_id=self._daemon_id, conf_dict=self._pyswitchlib_conf)
+        self.pidfile_timeout = 1
+        super(PySwitchLibApiDaemon, self).__init__(self)
 
     def shutdown(self):
         """
@@ -413,178 +431,23 @@ class PySwitchLibApiDaemon(object):
 
         return yang_name_list
 
-
-class PySwitchLibApiRunner(DaemonRunner):
-    """
-    This is an auto-generated class for the PySwitchLib.
-    Providing python bindings to configure a switch through the REST interface.
-    """
-
-    def __init__(self, pyswitchlib_conf=None):
-        """
-        This is an auto-generated method for the PySwitchLib.
-        """
-
-        self._pyswitchlib_conf = pyswitchlib_conf
-        self._pyro_ns_port = None
-        self._nameserver_thread = threading.Thread(target=self._nameserver_loop)
-        self._nameserver_thread.setDaemon(True)
-        self._daemon_processes = {}
-        self._daemon_id = 'default'
-        self.stdin_path = os.path.join(os.sep, 'dev', 'null')
-        self.stdout_path = os.path.join(os.sep, 'dev', 'null')
-        self.stderr_path = os.path.join(os.sep, 'dev', 'null')
-        self.pidfile_path =  pid_file
-        self.pidfile_timeout = 1
-        super(PySwitchLibApiRunner, self).__init__(self)
-
-        self.daemon_context.detach_process = False
-
-        if self._pyswitchlib_conf:
-            if 'ns_port' in self._pyswitchlib_conf:
-                self._pyro_ns_port = int(self._pyswitchlib_conf['ns_port'])
-
-            for key in self._pyswitchlib_conf:
-                if 'api_daemon_' in key:
-                    prefixes = self._pyswitchlib_conf[key].split(':')
-                    daemon_prefix = ''
-
-                    for prefix in prefixes:
-                        if os.path.exists(prefix):
-                            daemon_prefix = prefix
-                            break
-
-                    if daemon_prefix:
-                        daemon_process = multiprocessing.Process(target=self._daemon_loop, kwargs={'daemon_id': key, 'daemon_prefix':daemon_prefix, 'pyro_ns_port': self._pyro_ns_port})
-                        daemon_process.daemon = True
-                        self._daemon_processes[key] = daemon_process
-
-        if len(self._daemon_processes) == 0:
-            daemon_process = multiprocessing.Process(target=self._daemon_loop, kwargs={'daemon_id': self._daemon_id, 'daemon_prefix':sys.prefix, 'pyro_ns_port': self._pyro_ns_port})
-            daemon_process.daemon = True
-            self._daemon_processes[self._daemon_id] = daemon_process
-
-    def _restart(self):
-        """
-        This is an auto-generated method for the PySwitchLib.
-        """
-
-        daemon_id = self._get_daemon_id_for_prefix(prefix=sys.prefix)
-        if daemon_id in self._daemon_processes:
-            pyro_proxy_name = 'PySwitchLib.' + daemon_id
-
-            with Pyro4.locateNS(host='localhost', port=self._pyro_ns_port) as ns:
-                uri = None
-
-                try:
-                    uri = ns.lookup(pyro_proxy_name)
-                except:
-                    pass
-
-                if uri:
-                    with Pyro4.Proxy(uri) as pyro_proxy:
-                        pyro_proxy.shutdown()
-                        pyro_proxy._pyroRelease()
-
-                    ns.remove(pyro_proxy_name)
-
-                    daemon_thread = threading.Thread(target=self._daemon_loop, kwargs={'daemon_id': daemon_id, 'daemon_prefix':sys.prefix, 'pyro_ns_port': self._pyro_ns_port})
-                    daemon_thread.setDaemon (True)
-                    self._daemon_processes[daemon_id] = daemon_thread
-                    self._daemon_processes[daemon_id].start()
-
-                    api_deamon_pids = {}
-                    api_deamon_pids[daemon_id] = os.getpid()
-                    ConfigFileUtil().write(filename=daemon_pid_file, conf_dict=api_deamon_pids)
-
-                    while True:
-                        if self._daemon_processes[daemon_id].is_alive() == False:
-                            self._daemon_processes[daemon_id].join()
-                        time.sleep(5)
-
-    def _start(self):
-        """
-        This is an auto-generated method for the PySwitchLib.
-        """
-
-        super(PySwitchLibApiRunner, self)._start()
-
-    def _stop(self):
-        """
-        This is an auto-generated method for the PySwitchLib.
-        """
-
-        api_deamon_pids = ConfigFileUtil().read(filename=daemon_pid_file)
-
-        for daemon_id in api_deamon_pids:
-            try:
-                os.kill(int(api_deamon_pids[daemon_id]), signal.SIGTERM)
-            except:
-                pass
-
-        try:
-            os.unlink(daemon_pid_file)
-        except:
-            pass
-
-        super(PySwitchLibApiRunner, self)._stop()
-
-    action_funcs = {
-        'start': _start,
-        'stop': _stop,
-        'restart': _restart,
-        }
-
-    def _get_daemon_id_for_prefix(self, prefix=''):
-        """
-        This is an auto-generated method for the PySwitchLib.
-        """
-
-        daemon_id = ''
-
-        if self._pyswitchlib_conf:
-            for key in self._pyswitchlib_conf:
-                if 'api_daemon_' in key:
-                    if prefix in self._pyswitchlib_conf[key]:
-                        daemon_id = key
-                        break
-
-        return daemon_id
-
-    def _get_prefix_lib_path(self, prefix='', package=''):                                                                                                                          
-        """
-        This is an auto-generated method for the PySwitchLib.
-        """
-
-        prefix_lib_path = ''                                                                                                                                                        
-                                                                                                                                                                                    
-        python_version = sys.version_info                                                                                                                                           
-        python_lib_ver = 'python' + str(python_version[0]) + '.' + str(python_version[1])                                                                                           
-                                                                                                                                                                                    
-        lib_path = os.path.join(prefix, 'lib', python_lib_ver, 'site-packages', package)                                                                                            
-                                                                                                                                                                                    
-        if os.path.exists(lib_path):                                                                                                                                                
-            prefix_lib_path = lib_path                                                                                                                                              
-                                                                                                                                                                                    
-        return prefix_lib_path
-
     def _get_configured_daemon(self, daemon_id='', daemon_prefix=''):
         """
         This is an auto-generated method for the PySwitchLib.
         """
 
+        daemon_uri_dict = {}
         pyro_daemon = Pyro4.Daemon()
 
         Pyro4.config.THREADPOOL_SIZE_MIN = 10
         Pyro4.config.THREADPOOL_SIZE = 200
 
-        daemon_lib_path = self._get_prefix_lib_path(prefix=daemon_prefix, package='pyswitchlib')
+        daemon_lib_path = ConfigUtil().get_prefix_lib_path(prefix=daemon_prefix, package='pyswitchlib')
 
         if daemon_lib_path:
             sys.prefix = daemon_prefix
             sys.exec_prefix = daemon_prefix
             sys.path.insert(0, daemon_lib_path)
-
 
         pyswitchlib_api_create = __import__('pyswitchlib.api.create', fromlist=['*'])
         pyswitchlib_api_update = __import__('pyswitchlib.api.update', fromlist=['*'])
@@ -601,22 +464,15 @@ class PySwitchLibApiRunner(DaemonRunner):
         api_exposed_class = Pyro4.expose(PySwitchLibApiDaemon)
         daemon_obj = api_exposed_class(pyro_daemon=pyro_daemon)
 
+        print(daemon_obj, api_exposed_class)
+
         uri = pyro_daemon.register(daemon_obj, force=True)
 
+        daemon_uri_dict[daemon_id] = uri
+
+        ConfigFileUtil().write(filename=pyswitchlib_ns_daemon_file, conf_dict=daemon_uri_dict)
+
         return pyro_daemon, uri
-
-    def _nameserver_loop(self):
-        """
-        This is an auto-generated method for the PySwitchLib.
-        """
-
-        if self._pyro_ns_port:
-            Pyro4.config.NS_PORT = self._pyro_ns_port
-
-        try:
-            Pyro4.locateNS(host='localhost')
-        except Pyro4.errors.NamingError:
-            Pyro4.naming.startNSloop(host='localhost', enableBroadcast=False)
 
     def _daemon_loop(self, daemon_id='', daemon_prefix='', pyro_ns_port=None):
         """
@@ -624,29 +480,106 @@ class PySwitchLibApiRunner(DaemonRunner):
         """
 
         if daemon_id:
-            pyro_daemon, pyro_uri = self._get_configured_daemon(daemon_id=daemon_id, daemon_prefix=daemon_prefix)
+            pyro_daemon, pyro_uri = self._get_configured_daemon(daemon_id=daemon_id, daemon_prefix=daemon_prefix) 
 
-            with Pyro4.locateNS(host='localhost', port=pyro_ns_port) as ns:
-                ns.register("PySwitchLib." + daemon_id, pyro_uri)
+            try:
+                with Pyro4.locateNS(host='localhost', port=pyro_ns_port) as ns:
+                    ns.register("PySwitchLib." + daemon_id, pyro_uri)
+            except:
+                pass
+            finally:
                 pyro_daemon.requestLoop()
                 pyro_daemon.close()
 
-    def run(self):
+    def _start(self):
         """
         This is an auto-generated method for the PySwitchLib.
         """
 
-        self._nameserver_thread.start()
+        super(PySwitchLibApiDaemon, self)._start()
 
+    def _stop(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        if self._daemon_id:
+            pyro_proxy_name = 'PySwitchLib.' + self._daemon_id
+            uri = None
+
+            try:
+                with Pyro4.locateNS(host='localhost', port=self._pyro_ns_port) as ns:
+                    try:
+                        uri = ns.lookup(pyro_proxy_name)
+                    except:
+                        pass
+
+                    if uri:
+                        ns.remove(pyro_proxy_name)
+            except:
+                pass
+            finally:
+                ns_daemon_dict = ConfigFileUtil().read(filename=pyswitchlib_ns_daemon_file)
+
+                if self._daemon_id in ns_daemon_dict:
+                    uri = ns_daemon_dict[self._daemon_id]
+                    del ns_daemon_dict[self._daemon_id]
+
+                    if len(ns_daemon_dict):
+                        ConfigFileUtil().write(filename=pyswitchlib_ns_daemon_file, conf_dict=ns_daemon_dict, do_merge=False)
+                    else:
+                        try:
+                            os.unlink(pyswitchlib_ns_daemon_file)
+                        except:
+                            pass
+
+                if uri:
+                    try:
+                        with Pyro4.Proxy(uri) as pyro_proxy:
+                            pyro_proxy.shutdown()
+                            pyro_proxy._pyroRelease()
+                    except:
+                        pass
+
+        super(PySwitchLibApiDaemon, self)._stop()
+
+    def _restart(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        super(PySwitchLibApiDaemon, self)._restart()
+
+    action_funcs = {
+        'start': _start,
+        'stop': _stop,
+        'restart': _restart,
+        }
+
+    def run(self):                                                                                                                                                                  
+        """                                                                                                                                                                         
+        This is an auto-generated method for the PySwitchLib.                                                                                                                       
+        """                                                                                                                                                                         
+
+        self._daemon_thread.start()
+                                                                                                                                                                                    
         while True:
-            for daemon_id in self._daemon_processes:
-                if self._daemon_processes[daemon_id].ident == None and self._nameserver_thread.is_alive() == True:
-                    self._daemon_processes[daemon_id].start()
-
             time.sleep(5)
 
-if __name__ == "__main__":
+if __name__ == "__main__":                                                                                                                                                          
     pyswitchlib_conf = ConfigFileUtil().read(filename=pyswitchlib_conf_file)
+    daemon_id = None
+
+    if len(sys.argv) == 3:
+        if sys.argv[2] in pyswitchlib_conf:
+            daemon_id = sys.argv[2]
+    else:
+        daemon_id = ConfigUtil().get_daemon_id_for_prefix(prefix=sys.prefix, conf_dict=pyswitchlib_conf)
+
+    if not daemon_id:
+        daemon_id = 'default'
+
+    pid_file = ConfigUtil().get_pidfilename_for_daemon_id(daemon_id=daemon_id, conf_dict=pyswitchlib_conf)
 
     if len(sys.argv) >= 2:
         if sys.argv[1] == 'start':
@@ -674,16 +607,12 @@ if __name__ == "__main__":
                 print(sys.argv[0].split('/')[-1] + ' is stopped.')
                 sys.exit(3)
 
-    if len(sys.argv) == 3 and sys.argv[1] != 'stop':
-        pyswitchlib_conf['ns_port'] = sys.argv[2]
-
-        ConfigFileUtil().write(filename=pyswitchlib_conf_file, conf_dict=pyswitchlib_conf)
-
-    pyswitchlib_runner = PySwitchLibApiRunner(pyswitchlib_conf=pyswitchlib_conf)
+    pyswitchlib_runner = PySwitchLibApiDaemon(pyswitchlib_conf=pyswitchlib_conf, daemon_id=daemon_id)
     pyswitchlib_runner.parse_args(argv=sys.argv)
 
     try:
         pyswitchlib_runner.do_action()
     except (LockTimeout, DaemonRunnerStopFailureError) as e:
         sys.exit()
+
 

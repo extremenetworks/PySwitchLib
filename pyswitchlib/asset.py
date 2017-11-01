@@ -14,7 +14,7 @@ import Pyro4.errors
 from distutils.sysconfig import get_python_lib
 import time
 
-from pyswitchlib.util.config import ConfigFileUtil
+from pyswitchlib.util.configFile import ConfigFileUtil
 import pyswitchlib.exceptions
 locals().update(pyswitchlib.exceptions.__dict__)
 
@@ -70,12 +70,13 @@ class Asset(object):
         self._supported_module_name = self._get_supported_module()
         #self._load_module(supported_module_name=self._supported_module_name)
         self._pyro_ns_port = None
-        self._pyro_proxy_name = 'PYRONAME:PySwitchLib.'
+        self._pyro_proxy_name = ''
         self._pyro_daemon_id = 'default'
         self._pyro_bind_max_retries = 30
-        self._pyswitchlib_conf_util = ConfigFileUtil()
         self._pyswitchlib_conf_filename = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
-        self._pyswitchlib_conf = self._pyswitchlib_conf_util.read(filename=self._pyswitchlib_conf_filename)
+        self._pyswitchlib_ns_daemon_filename = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns_daemon.uri')
+        self._pyswitchlib_conf = ConfigFileUtil().read(filename=self._pyswitchlib_conf_filename)
+        self._pyswitchlib_ns_daemon = ConfigFileUtil().read(filename=self._pyswitchlib_ns_daemon_filename)
 
         for key in self._pyswitchlib_conf:
             if 'ns_port' == key:
@@ -87,10 +88,14 @@ class Asset(object):
         if api_port:
             self._pyro_ns_port = api_port
 
-        if self._pyro_ns_port:
-            self._pyro_proxy_name += self._pyro_daemon_id + '@localhost:' + str(self._pyro_ns_port)
+        if self._pyswitchlib_ns_daemon:
+            if self._pyro_daemon_id in self._pyswitchlib_ns_daemon:
+                self._pyro_proxy_name = self._pyswitchlib_ns_daemon[self._pyro_daemon_id]
         else:
-            self._pyro_proxy_name += self._pyro_daemon_id
+            self._pyro_proxy_name = 'PYRONAME:PySwitchLib.' + self._pyro_daemon_id
+
+            if self._pyro_ns_port:
+                self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
 
         with Pyro4.Proxy(self._pyro_proxy_name) as pyro_proxy:
             for n in range(self._pyro_bind_max_retries):
@@ -105,7 +110,7 @@ class Asset(object):
                                 raise ExistingApiPortBound("API port: " + str(bound_api_port) + " is already bound.")
 
                         pyswitchlib_api_daemon = os.path.join(get_python_lib(), 'pyswitchlib', 'pyswitchlib_api_daemon.py')
-                        pyswitchlib_api_start_string = 'python ' + pyswitchlib_api_daemon + ' start &'
+                        pyswitchlib_api_start_string = 'python ' + pyswitchlib_api_daemon + ' start'
 
                         if self._pyro_ns_port:
                             pyswitchlib_api_start_string += ' ' + str(self._pyro_ns_port)

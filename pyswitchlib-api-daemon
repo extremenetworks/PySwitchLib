@@ -18,51 +18,151 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="pyswitchlib-api-daemon"
 NAME=pyswitchlib-api-daemon
 SCRIPTNAME=/etc/init.d/$NAME
-VIRTENV_PATH="/opt/stackstorm/virtualenvs"
-PYSWITCHLIB_PATH="/lib/python2.7/site-packages/pyswitchlib"
-PACKNAME="network_essentials"
-PACKNAME2="dcfabric"
-FILENAME="pyswitchlib_api_daemon.py"
-PYSWITCHLIB_DAEMON_PATH=""
-VIRTENV_PACK_PATH=""
+PYSWITCHLIB_CONF_PATH="/etc/pyswitchlib/pyswitchlib.conf"
 
-if [ -e "$VIRTENV_PATH/$PACKNAME$PYSWITCHLIB_PATH/$FILENAME" ]; then
-    PYSWITCHLIB_DAEMON_PATH="$VIRTENV_PATH/$PACKNAME$PYSWITCHLIB_PATH/$FILENAME"
-    VIRTENV_PACK_PATH="$VIRTENV_PATH/$PACKNAME"
-elif [ -e "$VIRTENV_PATH/$PACKNAME2/$PYSWITCHLIB_PATH/$FILENAME" ]; then
-    PYSWITCHLIB_DAEMON_PATH="$VIRTENV_PATH/$PACKNAME2$PYSWITCHLIB_PATH/$FILENAME"
-    VIRTENV_PACK_PATH="$VIRTENV_PATH/$PACKNAME2"
-else
-    PYSWITCHLIB_DAEMON_PATH="`python -c \"import os; import sys; print(sorted(os.path.join(x, 'pyswitchlib') for x in sys.path if os.path.isdir(os.path.join(x, 'pyswitchlib')))[0])\"`/$FILENAME"
-    VIRTENV_PACK_PATH=""
-fi
+typeset -A PYSWITCHLIB_CONF
+
+read_pyswitchlib_conf()
+{
+    local PYSWITCHLIB_CONF_LIST=()
+    local OLD_IFS=$IFS
+
+    if [ -f "$PYSWITCHLIB_CONF_PATH" ]; then
+        IFS=$'\n'
+        PYSWITCHLIB_CONF_LIST=$(<"$PYSWITCHLIB_CONF_PATH")
+    fi
+
+    for line in ${PYSWITCHLIB_CONF_LIST[@]}; do
+        key=${line%[ \t]*=[ \t]*}
+        value=${line#*[ \t]*=[ \t]*}
+
+        PYSWITCHLIB_CONF[$key]=$value
+    done
+
+    IFS=$OLD_IFS
+}
+
+get_ns_port_from_pyswitchlib_conf()
+{
+    local NS_PORT=""
+
+    for key in "${!PYSWITCHLIB_CONF[@]}"; do
+        if [ "$key" = "ns_port" ]; then
+            NS_PORT=${PYSWITCHLIB_CONF[$key]}
+            break
+        fi
+    done
+
+    echo "$NS_PORT"
+}
+
+get_api_daemons_from_pyswitchlib_conf()
+{
+    local API_DAEMONS=()
+
+    for key in "${!PYSWITCHLIB_CONF[@]}"; do
+        if [ "${key%_daemon_*}" = "api" ]; then
+            API_DAEMONS+=("$key")
+        fi
+    done
+
+    echo "${API_DAEMONS[@]}"
+}
+
+get_pyswitchlib_paths()
+{
+    local FILENAME="$1"
+
+    local VIRTENV_PATH="/opt/stackstorm/virtualenvs"
+    local PYSWITCHLIB_PATH="/lib/python2.7/site-packages/pyswitchlib"
+    local PACKNAME="network_essentials"
+    local PACKNAME2="dcfabric"
+
+    local PYSWITCHLIB_DAEMON_PATH=""
+    local VIRTENV_PACK_PATH=""
+
+    if [ -z "$FILENAME" ]; then
+        FILENAME="pyswitchlib_api_daemon.py"
+    fi
+
+    if [ -e "$VIRTENV_PATH/$PACKNAME$PYSWITCHLIB_PATH/$FILENAME" ]; then
+        PYSWITCHLIB_DAEMON_PATH="$VIRTENV_PATH/$PACKNAME$PYSWITCHLIB_PATH/$FILENAME"
+        VIRTENV_PACK_PATH="$VIRTENV_PATH/$PACKNAME"
+    elif [ -e "$VIRTENV_PATH/$PACKNAME2$PYSWITCHLIB_PATH/$FILENAME" ]; then
+        PYSWITCHLIB_DAEMON_PATH="$VIRTENV_PATH/$PACKNAME2$PYSWITCHLIB_PATH/$FILENAME"
+        VIRTENV_PACK_PATH="$VIRTENV_PATH/$PACKNAME2"
+    else
+        PYSWITCHLIB_DAEMON_PATH="`python -c \"import os; import sys; print(sorted(os.path.join(x, 'pyswitchlib') for x in sys.path if os.path.isdir(os.path.join(x, 'pyswitchlib')))[0])\"`/$FILENAME"
+        VIRTENV_PACK_PATH=""
+    fi
+
+    echo "$PYSWITCHLIB_DAEMON_PATH:$VIRTENV_PACK_PATH"
+}
+
+get_api_deamon_path_from_pyswitchlib_conf()
+{
+    local API_DAEMON="$1"
+    local PYSWITCHLIB_PATH="/lib/python2.7/site-packages/pyswitchlib"
+    local FILENAME="pyswitchlib_api_daemon.py"
+    local PYSWITCHLIB_DAEMON_PATH=""
+    local VIRTENV_PATH=""
+    local DAEMON_PATHS=()
+
+    if [ -n "$API_DAEMON" ]; then
+        DAEMON_PATHS=(${PYSWITCHLIB_CONF[$API_DAEMON]//:/ })
+
+        VIRTENV_PATH="${DAEMON_PATHS[0]}"
+        PYSWITCHLIB_DAEMON_PATH="$VIRTENV_PATH$PYSWITCHLIB_PATH/$FILENAME"
+    fi
+
+    echo "$PYSWITCHLIB_DAEMON_PATH:$VIRTENV_PATH"
+}
 
 pyswitchlib_api_daemon_wrapper()
 {
     local OPERATION="$1"
     local RETVAL=0
+    local NS_PORT=`get_ns_port_from_pyswitchlib_conf`
+    local API_DAEMONS=(`get_api_daemons_from_pyswitchlib_conf`)
+    local PYSWITCHLIB_NS_PATHS=`get_pyswitchlib_paths pyswitchlib_ns_daemon.py`
+    local PYSWITCHLIB_NS_PATH=${PYSWITCHLIB_NS_PATHS%:*}
+    local VIRTENV_NS_PATH=${PYSWITCHLIB_NS_PATHS#*:}
+    local PYSWITCHLIB_DAEMON_PATHS=""
+    local PYSWITCHLIB_DAEMON_PATH=""
+    local VIRTENV_DAEMON_PATH=""
 
-    if [ -n "$PYSWITCHLIB_DAEMON_PATH" ]; then
-        if [ -n "$VIRTENV_PACK_PATH" ]; then
-            . "$VIRTENV_PACK_PATH/bin/activate"
-        fi
-        
-        if [ "$OPERATION" = "start" ]; then
-            (python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION" &)
-        elif [ "$OPERATION" = "restart" ]; then
-            (python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION" &)
-        else
-            python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION"
-        fi
+    if [ -n "$NS_PORT" ]; then
+        if [ -f "$PYSWITCHLIB_NS_PATH" ]; then
+            if [ -d "$VIRTENV_NS_PATH" ]; then
+                . "$VIRTENV_NS_PATH/bin/activate"
+            fi
 
-        RETVAL="$?"
+            python "$PYSWITCHLIB_NS_PATH" "$OPERATION"
+        fi
     fi
+
+    for API_DAEMON in "${API_DAEMONS[@]}"; do
+        PYSWITCHLIB_DAEMON_PATHS=`get_api_deamon_path_from_pyswitchlib_conf $API_DAEMON`
+        PYSWITCHLIB_DAEMON_PATH=${PYSWITCHLIB_DAEMON_PATHS%:*}
+        VIRTENV_DAEMON_PATH=${PYSWITCHLIB_DAEMON_PATHS#*:}
+
+        if [ -f "$PYSWITCHLIB_DAEMON_PATH" ]; then
+            if [ -d "$VIRTENV_DAEMON_PATH" ]; then
+                . "$VIRTENV_DAEMON_PATH/bin/activate"
+            fi
+            echo "API_DAEMON: $API_DAEMON, $PYSWITCHLIB_DAEMON_PATH" 
+            python "$PYSWITCHLIB_DAEMON_PATH" "$OPERATION"
+
+            RETVAL="$?"
+        fi
+    done
 
     return "$RETVAL"
 }
 
 case "$1" in
     start|stop|restart|status)
+    read_pyswitchlib_conf
     pyswitchlib_api_daemon_wrapper "$1"
     exit $?
     ;;
