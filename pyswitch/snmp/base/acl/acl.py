@@ -210,7 +210,7 @@ class Acl(object):
     @abc.abstractmethod
     def add_ipv4_rule_acl(self, **parameters):
         """
-        Apply Access Control List on interface.
+        Add rules to Access Control List of ipv4.
         Args:
             parameters contains:
                 acl_name: (string) Name of the access list
@@ -246,6 +246,28 @@ class Acl(object):
                     (Available for permit or deny only)
                 mirror: (string) Enables mirror for the rule
                 copy_sflow: (string) Enables copy-sflow for the rule
+
+                dscp-marking: (string) dscp-marking number is used to mark the
+                    DSCP value in the incoming packet with the value you
+                    specify to filter.  Allowed values are 0 through 63.
+                fragment: (string) Use fragment keyword to allow the ACL to
+                    filter fragmented packets. Use the non-fragment keyword to
+                    filter non-fragmented packets.
+                    Allowed values are- fragment, non-fragment
+                precedence: (integer) Match packets with given precedence value
+                    Allowed value in range 0 to 7.
+                option: (string) Match match IP option packets.
+                    supported values are:
+                        any, eol, extended-security, ignore, loose-source-route
+                        no-op, record-route, router-alert, security, streamid,
+                        strict-source-route, timestamp
+                        Allowed value in decimal <0-255>.
+                suppress-rpf-drop: (boolean) Permit packets that fail RPF check
+                priority: (integer) set priority
+                priority-force: (integer) force packet outgoing priority.
+                priority-mapping: (integer) map incoming packet priority.
+                tos: (integer) Match packets with given TOS value.
+                    Allowed value in decimal <0-15>.
         Returns:
             Return True
         Raises:
