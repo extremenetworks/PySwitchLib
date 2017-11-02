@@ -51,3 +51,15 @@ add_l2_acl_rule_template = '''
 delete_rule_by_seq_id = '''
     no sequence {{ seq_id_str }}
     '''
+
+interface_submode_template = '''
+    interface {{ intf_type }} {{ intf_name }}
+'''
+
+apply_acl_template = '''
+    {{ address_type }} access-group {{ acl_name }} {{ acl_direction }}
+'''
+
+remove_acl_template = '''
+    no {{ address_type }} access-group {{ acl_name }} {{ acl_direction }}
+'''
