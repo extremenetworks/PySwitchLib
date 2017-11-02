@@ -17,6 +17,7 @@ import acl_template
 
 from pyswitch.snmp.base.acl.acl import Acl as BaseAcl
 from pyswitch.snmp.base.acl.macacl import MacAcl
+from pyswitch.snmp.base.acl.ipacl import IpAcl
 
 
 class Acl(BaseAcl):
@@ -40,10 +41,15 @@ class Acl(BaseAcl):
         super(Acl, self).__init__(callback)
 
         self._mac = MacAcl()
+        self._ip = IpAcl()
 
     @property
     def mac(self):
         return self._mac
+
+    @property
+    def ip(self):
+        return self._ip
 
     def create_acl(self, **parameters):
         """
@@ -362,6 +368,278 @@ class Acl(BaseAcl):
                 return True
 
         raise ValueError('{} not exists for acl {}'.format(seq_id, acl_name))
+
+    def add_ipv4_rule_acl(self, **parameters):
+        """
+        Apply Access Control List on interface.
+        Args:
+            parameters contains:
+                acl_name: (string) Name of the access list
+                seq_id: (integer) Sequence number of the rule,
+                    if not specified, the rule is added at the end of the list.
+                    Valid range is 0 to 4294967290
+                action: (string) Action performed by ACL rule
+                    - permit
+                    - deny
+                protocol_type: (string) Type of IP packets to be filtered
+                    based on protocol. Valid values are <0-255> or key words
+                    tcp, udp, icmp or ip
+                source: (string) Source address filters
+                    { any | S_IPaddress/mask(0.0.0.255) |
+                    host,S_IPaddress } [ source-operator [ S_port-numbers ] ]
+                destination: (string) Destination address filters
+                    { any | S_IPaddress/mask(0.0.0.255) |
+                    host,S_IPaddress } [ source-operator [ S_port-numbers ] ]
+                dscp: (string) Matches the specified value against the DSCP
+                    value of the packet to filter.
+                     Allowed values are 0 through 63.
+                drop_precedence_force: (string) Matches the drop_precedence
+                    value of the packet.  Allowed values are 0 through 2.
+                urg: (string) Enables urg for the rule
+                ack: (string) Enables ack for the rule
+                push: (string) Enables push for the rule
+                fin: (string) Enables fin for the rule
+                rst: (string) Enables rst for the rule
+                sync: (string) Enables sync for the rule
+                vlan_id: (integer) VLAN interface to which the ACL is bound
+                count: (string) Enables statistics for the rule
+                log: (string) Enables logging for the rule
+                    (Available for permit or deny only)
+                mirror: (string) Enables mirror for the rule
+                copy_sflow: (string) Enables copy-sflow for the rule
+        Returns:
+            Return True
+        Raises:
+            Exception, ValueError for invalid seq_id.
+            >>> from pyswitch.device import Device
+            >>> conn=('10.37.73.148', 22)
+            >>> auth=('admin', 'admin')
+            >>> with Device(conn=conn, auth=auth,
+            ...             connection_type='NETCONF') as dev:
+            ...     print dev.firmware_version
+            ...     print dev.os_type
+            ...     print dev.acl.create_acl(acl_name='Acl_1',
+            ...                              acl_type='standard',
+            ...                              address_type='ip')
+            ...     print dev.acl.add_ipv4_rule_acl(acl_name='Acl_1',
+            ...                                   action='permit',
+            ...                                   source='any',
+            ...                                   dst='any',
+            ...                                   vlan=10)
+        """
+        acl_name = parameters['acl_name']
+        ret = self.get_acl_address_and_acl_type(acl_name)
+        acl_type = ret['type']
+        address_type = ret['protocol']
+
+        if address_type != 'ip':
+            raise ValueError('{} not supported'.format(address_type))
+
+        cli_arr = ['ip access-list ' + ' ' + acl_type + ' ' + acl_name]
+
+        if acl_type == 'standard':
+            user_data = self.parse_params_for_add_ipv4_standard(**parameters)
+            cmd = acl_template.add_ip_standard_acl_rule_template
+        elif acl_type == 'extended':
+            user_data = self.parse_params_for_add_ipv4_extended(**parameters)
+            cmd = acl_template.add_ip_extended_acl_rule_template
+        else:
+            raise ValueError('{} not supported'.format(acl_type))
+
+        t = jinja2.Template(cmd)
+        config = t.render(**user_data)
+        config = ' '.join(config.split())
+        cli_arr.append(config)
+
+        output = self._callback(cli_arr, handler='cli-set')
+        if 'Failed to initialize dns request' in output:
+            raise ValueError('ACL DNS: Errno(5) Failed '
+                             'to initialize dns request')
+        return self._process_cli_output(inspect.stack()[0][3], config, output)
+
+    def parse_params_for_add_ipv4_standard(self, **parameters):
+        """
+        Parses params for l2 Rule to be added to standard Access Control List.
+        Args:
+            Parse below params if contained in parameters.
+                acl_name: (string) Name of the access list
+                seq_id: (integer) Sequence number of the rule,
+                    if not specified, the rule is added at the end of the list.
+                    Valid range is 0 to 4294967290
+                action: (string) Action performed by ACL rule
+                    - permit
+                    - deny
+                source: (string) Source address filters
+                    { any | S_IPaddress/mask(0.0.0.255) |
+                    host,S_IPaddress } [ source-operator [ S_port-numbers ] ]
+                vlan_id: (integer) VLAN interface to which the ACL is bound
+                log: (string) Enables logging for the rule
+                    (Available for permit or deny only)
+        Returns:
+            Return a dict cotaining the parameters in string format
+            key name will be key name in the parameter followed by _str.
+        Raise:
+            Raises ValueError, Exception
+        Examples:
+        """
+
+        user_data = {}
+
+        user_data['acl_name_str'] = parameters['acl_name']
+        user_data['seq_id_str'] = parameters['seq_id']
+        user_data['action_str'] = self.ip.parse_action(**parameters)
+        user_data['source_str'] = self.ip.parse_source(**parameters)
+        user_data['vlan_str'] = self.ip.parse_vlan(**parameters)
+        user_data['log_str'] = self.ip.parse_log(**parameters)
+        parameters['user_data'] = user_data
+        return user_data
+
+    def parse_params_for_add_ipv4_extended(self, **parameters):
+        """
+        Parses params for l2 Rule to be added to Access Control List.
+        Args:
+            Parse below params if contained in parameters.
+                acl_name: (string) Name of the access list
+                seq_id: (integer) Sequence number of the rule,
+                    if not specified, the rule is added at the end of the list.
+                    Valid range is 0 to 4294967290
+                action: (string) Action performed by ACL rule
+                    - permit
+                    - deny
+                protocol_type: (string) Type of IP packets to be filtered
+                    based on protocol. Valid values are <0-255> or key words
+                    tcp, udp, icmp or ip
+                source: (string) Source address filters
+                    { any | S_IPaddress/mask(0.0.0.255) |
+                    host,S_IPaddress } [ source-operator [ S_port-numbers ] ]
+                destination: (string) Destination address filters
+                    { any | S_IPaddress/mask(0.0.0.255) |
+                    host,S_IPaddress } [ source-operator [ S_port-numbers ] ]
+                dscp: (string) Matches the specified value against the DSCP
+                    value of the packet to filter.
+                     Allowed values are 0 through 63.
+                drop_precedence_force: (string) Matches the drop_precedence
+                    value of the packet.  Allowed values are 0 through 2.
+                urg: (string) Enables urg for the rule
+                ack: (string) Enables ack for the rule
+                push: (string) Enables push for the rule
+                fin: (string) Enables fin for the rule
+                rst: (string) Enables rst for the rule
+                sync: (string) Enables sync for the rule
+                vlan_id: (integer) VLAN interface to which the ACL is bound
+                count: (string) Enables statistics for the rule
+                log: (string) Enables logging for the rule
+                    (Available for permit or deny only)
+                mirror: (string) Enables mirror for the rule
+                copy_sflow: (string) Enables copy-sflow for the rule
+
+                dscp-marking: (string) dscp-marking number is used to mark the
+                    DSCP value in the incoming packet with the value you
+                    specify to filter.  Allowed values are 0 through 63.
+                fragment: (string) Use fragment keyword to allow the ACL to
+                    filter fragmented packets. Use the non-fragment keyword to
+                    filter non-fragmented packets.
+                    Allowed values are- fragment, non-fragment
+                precedence: (integer) Match packets with given precedence value
+                    Allowed value in range 0 to 7.
+                option: (string) Match match IP option packets.
+                    supported values are:
+                        any, eol, extended-security, ignore, loose-source-route
+                        no-op, record-route, router-alert, security, streamid,
+                        strict-source-route, timestamp
+                        Allowed value in decimal <0-255>.
+                suppress-rpf-drop: (boolean) Permit packets that fail RPF check
+                priority: (integer) set priority
+                priority-force: (integer) force packet outgoing priority.
+                priority-mapping: (integer) map incoming packet priority.
+                tos: (integer) Match packets with given TOS value.
+                    Allowed value in decimal <0-15>.
+
+
+        Returns:
+            Return a dict cotaining the parameters in string format
+            key name will be key name in the parameter followed by _str.
+        Raise:
+            Raises ValueError, Exception
+        Examples:
+        """
+
+        user_data = {}
+
+        user_data['acl_name_str'] = parameters['acl_name']
+        user_data['seq_id_str'] = parameters['seq_id']
+        user_data['action_str'] = self.ip.parse_action(**parameters)
+        user_data['source_str'] = self.ip.parse_source(**parameters)
+        user_data['dst_str'] = self.ip.parse_destination(**parameters)
+        user_data['protocol_str'] = self.ip.parse_protocol(**parameters)
+        user_data['dscp_mapping_str'] = \
+            self.ip.parse_dscp_mapping(**parameters)
+        user_data['dscp_marking_str'] = \
+            self.ip.parse_dscp_marking(**parameters)
+        user_data['fragment_str'] = self.ip.parse_fragment(**parameters)
+        user_data['precedence_str'] = self.ip.parse_precedence(**parameters)
+        user_data['option_str'] = self.ip.parse_option(**parameters)
+        user_data['suppress_rpf_drop_str'] = \
+            self.ip.parse_suppress_rpf_drop(**parameters)
+        user_data['priority_str'] = self.ip.parse_priority(**parameters)
+        user_data['priority__force_str'] = \
+            self.ip.parse_priority_force(**parameters)
+        user_data['priority__mapping_str'] = \
+            self.ip.parse_priority_mapping(**parameters)
+        user_data['tos_str'] = self.ip.parse_tos(**parameters)
+        user_data['log_str'] = self.ip.parse_log(**parameters)
+        user_data['mirror_str'] = self.ip.parse_mirror(**parameters)
+
+        return user_data
+
+    def delete_ipv4_acl_rule(self, **parameters):
+        """
+        Delete Rule from Access Control List.
+        Args:
+            parameters contains:
+                acl_name: Name of the access list.
+                seq_id: Sequence number of the rule. For add operation,
+                    if not specified, the rule is added at the end of the list.
+        Returns:
+            Return value of `string` message.
+        Raise:
+            Raises ValueError, Exception
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> conn=('10.37.73.148', 22)
+            >>> auth=('admin', 'admin')
+            >>> with Device(conn=conn, auth=auth,
+            ...             connection_type='NETCONF') as dev:
+            ...     print dev.firmware_version
+            ...     print dev.os_type
+            ...     print dev.acl.create_acl(acl_name='Acl_1',
+            ...                              acl_type='extended',
+            ...                              address_type='mac')
+            ...     print dev.acl.add_ipv4_rule_acl(acl_name='Acl_1',
+            ...                                   action='permit',
+            ...                                   source='any',
+            ...                                   dst='any',
+            ...                                   vlan=10)
+            ...     print dev.acl.delete_ipv4_acl_rule(acl_name='Acl_1',
+            ...                                   seq_id=10)
+        """
+
+        acl_name = parameters['acl_name']
+        seq_id = parameters['seq_id']
+        acl_type = self.get_acl_type(acl_name)
+        self.is_valid_seq_id(seq_id, acl_name)
+
+        cli_arr = ['ip access-list ' + ' ' + acl_type + ' ' + acl_name]
+
+        cmd = acl_template.delete_rule_by_seq_id
+        t = jinja2.Template(cmd)
+        config = t.render(seq_id_str=parameters['seq_id'])
+        config = re.sub(r'[^a-zA-Z0-9 .-]', r'', config)
+        config = ' '.join(config.split())
+        cli_arr.append(config)
+
+        output = self._callback(cli_arr, handler='cli-set')
+        return self._process_cli_output(inspect.stack()[0][3], config, output)
 
     def get_address_type(self, acl_name):
         """
