@@ -115,7 +115,7 @@ class Interface(BaseInterface):
                 if desc is None:
                     cli_arr.append('vlan' + " " + str(vlan))
                 else:
-                    cli_arr.append('vlan' + " " + str(vlan) + " " + 'name' + " " + desc)
+                    cli_arr.append('vlan' + " " + str(vlan) + " " + 'name' + " " + '"' + desc + '"')
             self._callback(cli_arr, handler='cli-set')
             return True
         except Exception as error:
@@ -159,7 +159,7 @@ class Interface(BaseInterface):
             if int(portchannel_num) < 1 or int(portchannel_num) > 256:
                 raise ValueError('Port-channel id should be between 1 and 256')
             # Check if a port-channel exists with same id TBD in action
-            cli_arr.append('lag' + " " + desc + " " + str(mode) + " " + 'id' +
+            cli_arr.append('lag' + " " + '"' + desc + '"' + " " + str(mode) + " " + 'id' +
                     " " + str(portchannel_num))
             # Add ports to port-channel
             port_list = []
@@ -261,7 +261,7 @@ class Interface(BaseInterface):
         """
         # Get the list of port-channels
         po_list = []
-        po_list = self.get_port_channel_list()
+        po_list = self.get_port_channel_info()
         # Retrieve the elements for each LAG
         result = []
         # For each PO collect the information.
@@ -373,7 +373,7 @@ class Interface(BaseInterface):
             keyerror: if `int_type`, `name`, or `description` is not specified.
             valueerror: if `name` or `int_type` are not valid values.
         """
-        cli_arr = 'show lacp lag_name ' + str(lag_name)
+        cli_arr = 'show lacp lag_name ' + '"' + str(lag_name) + '"'
         output = self._callback(cli_arr, handler='cli-get')
         interface_info = {}
         for line in output.split('\n'):
@@ -473,41 +473,40 @@ class Interface(BaseInterface):
         ifid_name_map = self.get_interface_id_name_mapping(member_list)
         return ifid_name_map
 
-    def get_port_channel_list(self):
-        """ Returns a port-channel list
+    def get_port_channel_info(self):
+        """ Returns a port-channel list containing LAG info
 
         args:
             None
 
         returns:
-            return - list of port channels containing name, type, primary port, deploy
+            return - list of port channels containing name, LAG id, type, deploy
 
         raises:
-            keyerror: if `int_type`, `name`, or `description` is not specified.
-            valueerror: if `name` or `int_type` are not valid values.
+            ValueError
         """
-        cli_arr = 'show lag brief'
+        cli_arr = 'show lag | inc Deployed'
         po_list = []
         output = self._callback(cli_arr, handler='cli-get')
-        lag_str_list = []
-        start_parse = False
-        for item in output.split("\n"):
-            if "Deploy" in item:
-                start_parse = True
+        error = re.search(r'Error(.+)', output)
+        if error:
+            raise ValueError("%s" % error.group(0))
+        for line in output.split("\n"):
+            if 'keep-alive' in line:
                 continue
-            if start_parse is True:
-                if item == '':
-                    break
-                lag_str_list = item.split()
-                lag_name = lag_str_list[0]
-                lag_type = lag_str_list[1]
-                deploy = lag_str_list[2]
-                if deploy == 'Y':
-                    deploy = True
-                else:
-                    deploy = False
-                primary_port = lag_str_list[4]
-                po_list.append((lag_name, lag_type, primary_port, deploy))
+            po_name = re.search(r'LAG \"(.+)\" ID (.+) \((.+) Deployed\)', line)
+            lag_name = po_name.group(1)
+            lag_id = po_name.group(2)
+            type = po_name.group(3)
+            if 'Not' in type:
+                deploy = False
+            else:
+                deploy = True
+            if 'static' in type:
+                lag_type = 'static'
+            elif 'dynamic' in type:
+                lag_type = 'dynamic'
+            po_list.append((lag_name, lag_type, lag_id, deploy))
         return po_list
 
     def get_port_channel_ifindex(self, lag_name=None):
@@ -1491,7 +1490,6 @@ class Interface(BaseInterface):
             return VRF when get=True. return None if no VRF is associated
             True or ValueError for create and delete
         Raises:
-            KeyError: if `int_type`, `name`, or `vrf_name` is not passed.
             ValueError: if `int_type`, `name`, `vrf` is invalid.
         Examples:
             >>> import pyswitch.device
