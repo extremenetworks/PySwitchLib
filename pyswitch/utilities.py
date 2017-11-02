@@ -15,6 +15,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import re
+import socket
+import ipaddress
+import pynos.utilities
 import xml.etree.ElementTree as ElementTree
 from xml.etree.ElementTree import Element
 
@@ -387,4 +390,156 @@ def check_mlx_cli_set_error(cli_res):
         raise ValueError("%s" % error.group(0))
     if invalid_input:
         raise ValueError("%s" % invalid_input.group(0))
+    return True
+
+
+def is_valid_ip_network(addr):
+    """
+    Checks whether address represents a valid IPv4 or IPv6 address,
+    or the network doesn't have host bits set.
+    (example 'addr': '192.168.0.0/28' or '2001:db8::/46')
+    """
+    try:
+        ipaddress.ip_network(addr)
+        return True
+    except socket.error:
+        return False
+
+
+def is_valid_mac_address(mac):
+    """
+    This will only validate the HHHH.HHHH.HHHH MAC format.
+    """
+    if re.match('[0-9A-Fa-f]{4}[.][0-9A-Fa-f]{4}[.][0-9A-Fa-f]{4}$', mac):
+        return True
+    else:
+        return False
+
+
+def is_valid_ip_address(addr, address_type):
+    """
+    This will only validate the IPv4 and IPv6 addresses.
+    """
+    try:
+        if address_type == 'ipv6':
+            socket.inet_pton(socket.AF_INET6, addr)
+        else:
+            socket.inet_pton(socket.AF_INET, addr)
+        return True
+    except socket.error:
+        return False
+
+
+def extend_interface_range(intf_type, intf_name, logger=None):
+    msg = None
+    int_list = intf_name
+    re_pattern1 = r"^(\d+)\-?(\d+)$"
+    re_pattern2 = r"^(\d+)\/(\d+)\-?(\d+)$"
+    re_pattern3 = r"^(\d+)\/(\d+)\/(\d+)\-?(\d+)$"
+
+    if re.search(re_pattern1, int_list):
+        try:
+            int_list = re.match(re_pattern1, int_list)
+        except Exception:
+            return None
+
+        if logger and int(int_list.groups()[0]) == int(int_list.groups()[1]):
+            logger.info("Use range command only for unique values")
+        int_list = range(int(int_list.groups()[0]), int(
+            int_list.groups()[1]) + 1)
+
+    elif re.search(re_pattern2, int_list):
+        try:
+            temp_list = re.match(re_pattern2, int_list)
+        except Exception:
+            return None
+
+        if logger and int(temp_list.groups()[1]) == int(temp_list.groups()[2]):
+            logger.info("Use range command only for unique values")
+        intList = range(int(temp_list.groups()[1]), int(
+            temp_list.groups()[2]) + 1)
+        int_list = []
+        for intf in intList:
+            int_list.append(temp_list.groups()[0] + '/' + str(intf))
+        int_list = int_list
+
+    elif re.search(re_pattern3, int_list):
+        try:
+            temp_list = re.match(re_pattern3, int_list)
+        except Exception:
+            return None
+
+        if logger and int(temp_list.groups()[2]) == int(temp_list.groups()[3]):
+            logger.info("Use range command only for unique values")
+        intList = range(int(temp_list.groups()[2]), int(
+            temp_list.groups()[3]) + 1)
+        int_list = []
+        for intf in intList:
+            int_list.append(temp_list.groups()[0] + '/' + temp_list.groups()[1] + '/' +
+                            str(intf))
+        int_list = int_list
+    else:
+        msg = 'Invalid interface format'
+
+    if msg is not None:
+        if logger:
+            logger.error(msg)
+        return None
+
+    return int_list
+
+
+def validate_interface(intf_type, intf_name, rbridge_id=None, os_type=None, logger=None):
+    msg = None
+    # int_list = intf_name
+    re_pattern1 = r"^(\d+)$"
+    re_pattern2 = r"^(\d+)\/(\d+)\/(\d+)(:(\d+))?$"
+    re_pattern3 = r"^(\d+)\/(\d+)(:(\d+))?$"
+    intTypes = ["port_channel", "gigabitethernet", "tengigabitethernet",
+                "fortygigabitethernet", "hundredgigabitethernet", "ethernet"]
+    NosIntTypes = [
+        "gigabitethernet",
+        "tengigabitethernet",
+        "fortygigabitethernet"]
+    if os_type is None or os_type == "nos":
+        if rbridge_id is None and 'loopback' in intf_type:
+            msg = 'Must specify `rbridge_id` when specifying a `loopback`'
+        elif rbridge_id is None and 've' in intf_type:
+            msg = 'Must specify `rbridge_id` when specifying a `ve`'
+        elif rbridge_id is not None and intf_type in intTypes:
+            msg = 'Should not specify `rbridge_id` when specifying a ' + intf_type
+        elif re.search(re_pattern1, intf_name):
+            intf = intf_name
+        elif re.search(re_pattern2, intf_name) and intf_type in NosIntTypes:
+            intf = intf_name
+        elif re.search(re_pattern3, intf_name) and 'ethernet' in intf_type:
+            intf = intf_name
+        else:
+            msg = 'Invalid interface format'
+    elif os_type == "slxos":
+        if re.search(re_pattern1, intf_name):
+            intf = intf_name
+        elif re.search(re_pattern2, intf_name) and intf_type in NosIntTypes:
+            intf = intf_name
+        elif re.search(re_pattern3, intf_name) and 'ethernet' in intf_type:
+            intf = intf_name
+        else:
+            msg = 'Invalid interface format'
+
+    if msg is not None:
+        if logger:
+            logger.error(msg)
+        return False
+
+    intTypes = ["ve", "loopback", "ethernet"]
+    if intf_type not in intTypes:
+        tmp_vlan_id = pynos.utilities.valid_interface(
+            intf_type, name=str(intf))
+
+        if not tmp_vlan_id:
+            if logger:
+                logger.error(
+                    "Not a valid interface type %s or name %s", intf_type, intf)
+            return False
+
     return True

@@ -26,6 +26,8 @@ class Acl(BaseAcl):
         None
     """
 
+    os_type = "slxos"
+
     seq_variables_ip_std = ('seq_id', 'action', 'src_host_any_sip', 'src_host_ip',
                             'src_mask', 'count', 'log', 'copy-sflow')
 

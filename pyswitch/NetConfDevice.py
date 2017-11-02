@@ -9,6 +9,8 @@ from ncclient import xml_
 
 import pyswitch.raw.base.acl
 import pyswitch.raw.slxos.base.acl
+import pyswitch.raw.slxos.ver_16r.acl
+import pyswitch.raw.slxos.ver_17s.acl
 import pyswitch.raw.nos.base.interface
 import pyswitch.raw.slxos.base.interface
 import pyswitch.utilities as util
@@ -47,7 +49,7 @@ NOS_VERSIONS = {
 SLXOS_VERSIONS = {
     '16r.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.slxos.ver_16r.acl.Acl,
     },
     '17r.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
@@ -59,7 +61,7 @@ SLXOS_VERSIONS = {
     },
     '17s.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.slxos.ver_17s.acl.Acl,
     },
 
 }
