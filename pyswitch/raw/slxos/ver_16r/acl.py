@@ -42,4 +42,3 @@ class Acl(BaseAcl):
             None
         """
         super(Acl, self).__init__(callback)
-
