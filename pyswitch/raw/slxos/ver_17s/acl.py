@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from pyswitch.raw.base.acl import Acl as BaseAcl
+from pyswitch.raw.nos.base.acl import Acl as NosBaseAcl
 
 
-class Acl(BaseAcl):
+class Acl(NosBaseAcl):
     """
     The Acl class holds all the actions assocaiated with the Access Control list
     of a SLX device.

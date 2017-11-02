@@ -7,7 +7,7 @@ from lxml import etree as letree
 from ncclient import manager
 from ncclient import xml_
 
-import pyswitch.raw.base.acl
+import pyswitch.raw.nos.base.acl
 import pyswitch.raw.slxos.base.acl
 import pyswitch.raw.slxos.ver_16r.acl
 import pyswitch.raw.slxos.ver_17s.acl
@@ -31,19 +31,19 @@ class DeviceCommError(Exception):
 NOS_VERSIONS = {
     '6.0': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.nos.base.acl.Acl,
     },
     '7.0': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.nos.base.acl.Acl,
     },
     '7.1': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.nos.base.acl.Acl,
     },
     '7.2': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.nos.base.acl.Acl,
     },
 }
 SLXOS_VERSIONS = {
