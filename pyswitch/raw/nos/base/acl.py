@@ -32,30 +32,30 @@ class Acl(BaseAcl):
 
     os_type = "nos"
 
-    seq_variables_ip_std = ('seq_id', 'action', 'src_host_any_sip', 'src_host_ip',
-                            'src_mask', 'count', 'log')
+    __seq_variables_ip_std = ('seq_id', 'action', 'src_host_any_sip', 'src_host_ip',
+                              'src_mask', 'count', 'log')
 
-    seq_variables_ip_ext = ('seq_id', 'action', 'protocol_type', 'src_host_any_sip',
-                            'src_host_ip', 'src_mask', 'sport', 'sport_number_eq_neq_tcp',
-                            'sport_number_lt_tcp', 'sport_number_gt_tcp',
-                            'sport_number_eq_neq_udp', 'sport_number_lt_udp',
-                            'sport_number_gt_udp', 'sport_number_range_lower_tcp',
-                            'sport_number_range_lower_udp', 'sport_number_range_higher_tcp',
-                            'sport_number_range_higher_udp', 'dst_host_any_dip', 'dst_host_ip',
-                            'dst_mask', 'dport', 'dport_number_eq_neq_tcp',
-                            'dport_number_lt_tcp', 'dport_number_gt_tcp',
-                            'dport_number_eq_neq_udp', 'dport_number_lt_udp',
-                            'dport_number_gt_udp', 'dport_number_range_lower_tcp',
-                            'dport_number_range_lower_udp', 'dport_number_range_higher_tcp',
-                            'dport_number_range_higher_udp', 'dscp', 'urg', 'ack', 'push',
-                            'fin', 'rst', 'sync', 'vlan', 'count', 'log')
+    __seq_variables_ip_ext = ('seq_id', 'action', 'protocol_type', 'src_host_any_sip',
+                              'src_host_ip', 'src_mask', 'sport', 'sport_number_eq_neq_tcp',
+                              'sport_number_lt_tcp', 'sport_number_gt_tcp',
+                              'sport_number_eq_neq_udp', 'sport_number_lt_udp',
+                              'sport_number_gt_udp', 'sport_number_range_lower_tcp',
+                              'sport_number_range_lower_udp', 'sport_number_range_higher_tcp',
+                              'sport_number_range_higher_udp', 'dst_host_any_dip', 'dst_host_ip',
+                              'dst_mask', 'dport', 'dport_number_eq_neq_tcp',
+                              'dport_number_lt_tcp', 'dport_number_gt_tcp',
+                              'dport_number_eq_neq_udp', 'dport_number_lt_udp',
+                              'dport_number_gt_udp', 'dport_number_range_lower_tcp',
+                              'dport_number_range_lower_udp', 'dport_number_range_higher_tcp',
+                              'dport_number_range_higher_udp', 'dscp', 'urg', 'ack', 'push',
+                              'fin', 'rst', 'sync', 'vlan', 'count', 'log')
 
-    seq_variables_mac_std = ('seq_id', 'action', 'source', 'srchost',
-                             'src_mac_addr_mask', 'count', 'log')
+    __seq_variables_mac_std = ('seq_id', 'action', 'source', 'srchost',
+                               'src_mac_addr_mask', 'count', 'log')
 
-    seq_variables_mac_ext = ('seq_id', 'action', 'source', 'srchost',
-                             'src_mac_addr_mask', 'dst', 'dsthost',
-                             'dst_mac_addr_mask', 'ethertype', 'count', 'log')
+    __seq_variables_mac_ext = ('seq_id', 'action', 'source', 'srchost',
+                               'src_mac_addr_mask', 'dst', 'dsthost',
+                               'dst_mac_addr_mask', 'ethertype', 'count', 'log')
 
     def __init__(self, callback):
         """
@@ -79,70 +79,64 @@ class Acl(BaseAcl):
 
         try:
             # Check 'acl_name' in the 'mac' 'standard' ACLs
-            fltr = getattr(template, 'mac_fltr').format(acl_type='standard', acl_name=acl_name)
-            config = getattr(template, 'acl_get_config').format(filter=fltr)
+            fltr = template.mac_fltr.format(acl_type='standard', acl_name=acl_name)
+            config = template.acl_get_config.format(filter=fltr)
             res = self._callback(config, handler='get')
             if res[0][0][0][0][0].text == acl_name:
                 return {'type': 'standard', 'protocol': 'mac'}
         except IndexError:
             pass        # acl_name not present in mac standard ACLs, pass for next checks.
-        except:
-            raise
+
         try:
             # Check 'acl_name' in the 'mac' 'extended' ACLs
-            fltr = getattr(template, 'mac_fltr').format(acl_type='extended', acl_name=acl_name)
-            config = getattr(template, 'acl_get_config').format(filter=fltr)
+            fltr = template.mac_fltr.format(acl_type='extended', acl_name=acl_name)
+            config = template.acl_get_config.format(filter=fltr)
             res = self._callback(config, handler='get')
             if res[0][0][0][0][0].text == acl_name:
                 return {'type': 'extended', 'protocol': 'mac'}
         except IndexError:
             pass        # acl_name not present in mac extended ACLs, pass for next checks.
-        except:
-            raise
+
         try:
             # Check 'acl_name' in the 'ip' 'standard' ACLs
-            fltr = getattr(template, 'ipv4_fltr').format(acl_type='standard', acl_name=acl_name)
-            config = getattr(template, 'acl_get_config').format(filter=fltr)
+            fltr = template.ipv4_fltr.format(acl_type='standard', acl_name=acl_name)
+            config = template.acl_get_config.format(filter=fltr)
             res = self._callback(config, handler='get')
             if res[0][0][0][0][0][0].text == acl_name:
                 return {'type': 'standard', 'protocol': 'ip'}
         except IndexError:
             pass        # acl_name not present in ip standard ACLs, pass for next checks.
-        except:
-            raise
+
         try:
             # Check 'acl_name' in the 'ip' 'extended' ACLs
-            fltr = getattr(template, 'ipv4_fltr').format(acl_type='extended', acl_name=acl_name)
-            config = getattr(template, 'acl_get_config').format(filter=fltr)
+            fltr = template.ipv4_fltr.format(acl_type='extended', acl_name=acl_name)
+            config = template.acl_get_config.format(filter=fltr)
             res = self._callback(config, handler='get')
             if res[0][0][0][0][0][0].text == acl_name:
                 return {'type': 'extended', 'protocol': 'ip'}
         except IndexError:
             pass        # acl_name not present in ip extended ACLs, pass for next checks.
-        except:
-            raise
+
         try:
             # Check 'acl_name' in the 'ipv6' 'standard' ACLs
-            fltr = getattr(template, 'ipv6_fltr').format(acl_type='standard', acl_name=acl_name)
-            config = getattr(template, 'acl_get_config').format(filter=fltr)
+            fltr = template.ipv6_fltr.format(acl_type='standard', acl_name=acl_name)
+            config = template.acl_get_config.format(filter=fltr)
             res = self._callback(config, handler='get')
             if res[0][0][0][0][0][0].text == acl_name:
                 return {'type': 'standard', 'protocol': 'ipv6'}
         except IndexError:
             pass        # acl_name not present in ipv6 standard ACLs, pass for next checks.
-        except:
-            raise
+
         try:
             # Check 'acl_name' in the 'ipv6' 'extended' ACLs
-            fltr = getattr(template, 'ipv6_fltr').format(acl_type='extended', acl_name=acl_name)
-            config = getattr(template, 'acl_get_config').format(filter=fltr)
+            fltr = template.ipv6_fltr.format(acl_type='extended', acl_name=acl_name)
+            config = template.acl_get_config.format(filter=fltr)
             res = self._callback(config, handler='get')
             if res[0][0][0][0][0][0].text == acl_name:
                 return {'type': 'extended', 'protocol': 'ipv6'}
         except IndexError:
             pass        # acl_name not present in ipv6 extended ACLs also.
-        except:
-            raise
+
         raise ValueError('Failed to identify acl_type. Check if the ACL %s exists' % acl_name)
 
     def get_seq(self, acl_name, seq_id, acl_type, address_type):
@@ -154,47 +148,47 @@ class Acl(BaseAcl):
         seqIdx = ""
 
         if address_type == 'mac':
-            fltr = getattr(template, 'mac_fltr').format(acl_type=acl_type, acl_name=acl_name)
+            fltr = template.mac_fltr.format(acl_type=acl_type, acl_name=acl_name)
             seqIdx = "res[0][0][0][0][1]"
         elif address_type == 'ip':
-            fltr = getattr(template, 'ipv4_fltr').format(acl_type=acl_type, acl_name=acl_name)
+            fltr = template.ipv4_fltr.format(acl_type=acl_type, acl_name=acl_name)
             seqIdx = "res[0][0][0][0][0][1]"
         elif address_type == 'ipv6':
-            fltr = getattr(template, 'ipv6_fltr').format(acl_type=acl_type, acl_name=acl_name)
+            fltr = template.ipv6_fltr.format(acl_type=acl_type, acl_name=acl_name)
             seqIdx = "res[0][0][0][0][0]"
 
-        config = getattr(template, 'acl_get_config').format(filter=fltr)
+        config = template.acl_get_config.format(filter=fltr)
         try:
             res = self._callback(config, handler='get')
-            seqElements = []
-            try:
-                res[0][0][0][0][0]      # to keep lint happy.
-                seqElements = list(eval(seqIdx))
-            except:
-                return None             # No sequences found
-            seqElem = seqElements[-1] if not seq_id and len(seqElements) > 0 else None
-            if seqElem is None:
-                for elem in seqElements:
-                    if 'seq' in elem.tag:
-                        for tag in elem:
-                            if 'seq-id' in tag.tag:
-                                if tag.text == str(seq_id):
-                                    seqElem = elem
-                                break
-                        if seqElem is not None:
-                            break
-            if seqElem is not None and 'seq' in seqElem.tag:
-                seq_dict = dict()
-                for tag in seqElem:
-                    key = tag.tag.split('}')[1]
-                    seq_dict[key.replace('-', '_')] = 'True' if not tag.text else tag.text
-                return seq_dict
-            else:
-                return None
         except pyswitch.NetConfDevice.DeviceCommError:
             raise
         except:
             raise ValueError('Failed to get sequence details')
+        seqElements = []
+        try:
+            res[0][0][0][0][0]      # to keep lint happy.
+            seqElements = list(eval(seqIdx))
+        except:
+            return None             # No sequences found
+        seqElem = seqElements[-1] if not seq_id and len(seqElements) > 0 else None
+        if seqElem is None:
+            for elem in seqElements:
+                if 'seq' in elem.tag:
+                    for tag in elem:
+                        if 'seq-id' in tag.tag:
+                            if tag.text == str(seq_id):
+                                seqElem = elem
+                            break
+                    if seqElem is not None:
+                        break
+        if seqElem is not None and 'seq' in seqElem.tag:
+            seq_dict = dict()
+            for tag in seqElem:
+                key = tag.tag.split('}')[1]
+                seq_dict[key.replace('-', '_')] = 'True' if not tag.text else tag.text
+            return seq_dict
+        else:
+            return None
 
     def get_seq_id(self, acl_name, acl_type, address_type=None):
         """
@@ -315,14 +309,14 @@ class Acl(BaseAcl):
         sequences = ''
         if address_type == 'mac':
             if acl_type == 'standard':
-                seq_vars = self.seq_variables_mac_std
+                seq_vars = self.__seq_variables_mac_std
             else:
-                seq_vars = self.seq_variables_mac_ext
+                seq_vars = self.__seq_variables_mac_ext
         else:
             if acl_type == 'standard':
-                seq_vars = self.seq_variables_ip_std
+                seq_vars = self.__seq_variables_ip_std
             else:
-                seq_vars = self.seq_variables_ip_ext
+                seq_vars = self.__seq_variables_ip_ext
         for seq in seqs_list:
             if delete:
                 if 'seq_id' in seq and seq['seq_id'] is not None:
@@ -350,9 +344,9 @@ class Acl(BaseAcl):
                 sequences = "<hide-mac-acl-ext>\n{}</hide-mac-acl-ext>\n".format(sequences)
 
         if address_type == 'mac':
-            config = getattr(template, 'acl_rule_mac')
+            config = template.acl_rule_mac
         else:
-            config = getattr(template, 'acl_rule_ip')
+            config = template.acl_rule_ip
 
         config = config.format(address_type=address_type,
                                acl_name=acl_name,
@@ -393,9 +387,9 @@ class Acl(BaseAcl):
         self.logger.info('Creating ACL %s (%s:%s)', acl_name, address_type, acl_type)
 
         if address_type == 'mac':
-            config = getattr(template, 'acl_create_mac')
+            config = template.acl_create_mac
         else:
-            config = getattr(template, 'acl_create_ip')
+            config = template.acl_create_ip
 
         config = config.format(address_type=address_type,
                                acl_name=acl_name,
@@ -436,9 +430,9 @@ class Acl(BaseAcl):
             self.logger.info('Deleting ACL %s (%s:%s)', acl_name, address_type, acl_type)
 
             if address_type == 'mac':
-                config = getattr(template, 'acl_create_mac')
+                config = template.acl_create_mac
             else:
-                config = getattr(template, 'acl_create_ip')
+                config = template.acl_create_ip
 
             config = config.format(address_type=address_type,
                                    acl_name=acl_name,
@@ -508,11 +502,11 @@ class Acl(BaseAcl):
                     raise ValueError("Input is not a valid Interface")
         for intf in interface_list:
             if address_type == 'mac':
-                acl_apply = getattr(template, 'acl_apply_mac')
+                acl_apply = template.acl_apply_mac
             elif address_type == 'ip':
-                acl_apply = getattr(template, 'acl_apply_ipv4')
+                acl_apply = template.acl_apply_ipv4
             else:
-                acl_apply = getattr(template, 'acl_apply_ipv6')
+                acl_apply = template.acl_apply_ipv6
 
             self.logger.info('Applying ACL %s on interface (%s-%s)', acl_name, intf_type, intf)
             acl_apply = acl_apply.format(address_type=address_type,
@@ -523,7 +517,7 @@ class Acl(BaseAcl):
                                          '<traffic-type>' + traffic_type + '</traffic-type>',
                                          delete='')
             if rbridge_id:
-                config = getattr(template, 'rbridge_acl_apply')
+                config = template.rbridge_acl_apply
             else:
                 config = '<config> {acl_apply} </config>'
 
@@ -591,11 +585,11 @@ class Acl(BaseAcl):
                     raise ValueError("Input is not a valid Interface")
         for intf in interface_list:
             if address_type == 'mac':
-                acl_apply = getattr(template, 'acl_apply_mac')
+                acl_apply = template.acl_apply_mac
             elif address_type == 'ip':
-                acl_apply = getattr(template, 'acl_apply_ipv4')
+                acl_apply = template.acl_apply_ipv4
             else:
-                acl_apply = getattr(template, 'acl_apply_ipv6')
+                acl_apply = template.acl_apply_ipv6
 
             self.logger.info('Removing ACL %s from interface (%s-%s)', acl_name, intf_type, intf)
             acl_apply = acl_apply.format(address_type=address_type,
@@ -606,7 +600,7 @@ class Acl(BaseAcl):
                                          '<traffic-type>' + traffic_type + '</traffic-type>',
                                          delete='operation=\'delete\'')
             if rbridge_id:
-                config = getattr(template, 'rbridge_acl_apply')
+                config = template.rbridge_acl_apply
             else:
                 config = '<config> {acl_apply} </config>'
 
@@ -672,9 +666,9 @@ class Acl(BaseAcl):
         self.logger.info('Successfully identified the acl_type as (%s:%s)',
                          acl['protocol'], acl_type)
         if acl_type == 'standard':
-            seq_variables = self.seq_variables_mac_std
+            seq_variables = self.__seq_variables_mac_std
         elif acl_type == 'extended':
-            seq_variables = self.seq_variables_mac_ext
+            seq_variables = self.__seq_variables_mac_ext
 
         if address_type is not 'mac':
             raise ValueError('ACL %s is not compatible for adding L2 acl rule', acl_name)
@@ -812,9 +806,9 @@ class Acl(BaseAcl):
         self.logger.info('Successfully identified the acl_type as (%s:%s)',
                          acl['protocol'], acl_type)
         if acl_type == 'standard':
-            seq_variables = self.seq_variables_ip_std
+            seq_variables = self.__seq_variables_ip_std
         elif acl_type == 'extended':
-            seq_variables = self.seq_variables_ip_ext
+            seq_variables = self.__seq_variables_ip_ext
 
         if address_type is 'ip' and acl['protocol'] is not 'ip':
             raise ValueError('ACL %s is not compatible for adding IPV4 acl rule', acl_name)

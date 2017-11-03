@@ -29,35 +29,35 @@ class Acl(NosBaseAcl):
 
     os_type = "slxos"
 
-    seq_variables_ip_std = ('seq_id', 'action', 'src_host_any_sip', 'src_host_ip',
-                            'src_mask', 'count', 'log', 'copy-sflow')
+    __seq_variables_ip_std = ('seq_id', 'action', 'src_host_any_sip', 'src_host_ip',
+                              'src_mask', 'count', 'log', 'copy-sflow')
 
-    seq_variables_ip_ext = ('seq_id', 'action', 'protocol_type', 'src_host_any_sip',
-                            'src_host_ip', 'src_mask', 'sport', 'sport_number_eq_neq_tcp',
-                            'sport_number_lt_tcp', 'sport_number_gt_tcp',
-                            'sport_number_eq_neq_udp', 'sport_number_lt_udp',
-                            'sport_number_gt_udp', 'sport_number_range_lower_tcp',
-                            'sport_number_range_lower_udp', 'sport_number_range_higher_tcp',
-                            'sport_number_range_higher_udp', 'dst_host_any_dip', 'dst_host_ip',
-                            'dst_mask', 'dport', 'dport_number_eq_neq_tcp',
-                            'dport_number_lt_tcp', 'dport_number_gt_tcp',
-                            'dport_number_eq_neq_udp', 'dport_number_lt_udp',
-                            'dport_number_gt_udp', 'dport_number_range_lower_tcp',
-                            'dport_number_range_lower_udp', 'dport_number_range_higher_tcp',
-                            'dport_number_range_higher_udp', 'dscp', 'dscp-force',
-                            'drop-precedence-force', 'urg', 'ack', 'push', 'fin', 'rst',
-                            'sync', 'vlan', 'count', 'log', 'mirror', 'copy-sflow')
+    __seq_variables_ip_ext = ('seq_id', 'action', 'protocol_type', 'src_host_any_sip',
+                              'src_host_ip', 'src_mask', 'sport', 'sport_number_eq_neq_tcp',
+                              'sport_number_lt_tcp', 'sport_number_gt_tcp',
+                              'sport_number_eq_neq_udp', 'sport_number_lt_udp',
+                              'sport_number_gt_udp', 'sport_number_range_lower_tcp',
+                              'sport_number_range_lower_udp', 'sport_number_range_higher_tcp',
+                              'sport_number_range_higher_udp', 'dst_host_any_dip', 'dst_host_ip',
+                              'dst_mask', 'dport', 'dport_number_eq_neq_tcp',
+                              'dport_number_lt_tcp', 'dport_number_gt_tcp',
+                              'dport_number_eq_neq_udp', 'dport_number_lt_udp',
+                              'dport_number_gt_udp', 'dport_number_range_lower_tcp',
+                              'dport_number_range_lower_udp', 'dport_number_range_higher_tcp',
+                              'dport_number_range_higher_udp', 'dscp', 'dscp-force',
+                              'drop-precedence-force', 'urg', 'ack', 'push', 'fin', 'rst',
+                              'sync', 'vlan', 'count', 'log', 'mirror', 'copy-sflow')
 
-    seq_variables_mac_std = ('seq_id', 'action', 'source', 'srchost',
-                             'src_mac_addr_mask', 'count', 'log', 'copy-sflow')
+    __seq_variables_mac_std = ('seq_id', 'action', 'source', 'srchost',
+                               'src_mac_addr_mask', 'count', 'log', 'copy-sflow')
 
-    seq_variables_mac_ext = ('seq_id', 'action', 'source', 'srchost',
-                             'src_mac_addr_mask', 'dst', 'dsthost',
-                             'dst_mac_addr_mask', 'vlan-tag-format', 'vlan',
-                             'vlan-id-mask', 'outer-vlan', 'outer-vlan-id-mask',
-                             'inner-vlan', 'inner-vlan-id-mask', 'ethertype',
-                             'arp-guard', 'pcp', 'pcp-force', 'drop-precedence-force',
-                             'count', 'log', 'mirror', 'copy-sflow')
+    __seq_variables_mac_ext = ('seq_id', 'action', 'source', 'srchost',
+                               'src_mac_addr_mask', 'dst', 'dsthost',
+                               'dst_mac_addr_mask', 'vlan-tag-format', 'vlan',
+                               'vlan-id-mask', 'outer-vlan', 'outer-vlan-id-mask',
+                               'inner-vlan', 'inner-vlan-id-mask', 'ethertype',
+                               'arp-guard', 'pcp', 'pcp-force', 'drop-precedence-force',
+                               'count', 'log', 'mirror', 'copy-sflow')
 
     def __init__(self, callback):
         """
@@ -128,9 +128,9 @@ class Acl(NosBaseAcl):
         self.logger.info('Successfully identified the acl_type as (%s:%s)',
                          acl['protocol'], acl_type)
         if acl_type == 'standard':
-            seq_variables = self.seq_variables_mac_std
+            seq_variables = self.__seq_variables_mac_std
         elif acl_type == 'extended':
-            seq_variables = self.seq_variables_mac_ext
+            seq_variables = self.__seq_variables_mac_ext
 
         if address_type is not 'mac':
             raise ValueError('ACL %s is not compatible for adding L2 acl rule', acl_name)
@@ -346,9 +346,9 @@ class Acl(NosBaseAcl):
         self.logger.info('Successfully identified the acl_type as (%s:%s)',
                          acl['protocol'], acl_type)
         if acl_type == 'standard':
-            seq_variables = self.seq_variables_ip_std
+            seq_variables = self.__seq_variables_ip_std
         elif acl_type == 'extended':
-            seq_variables = self.seq_variables_ip_ext
+            seq_variables = self.__seq_variables_ip_ext
 
         if address_type is 'ip' and acl['protocol'] is not 'ip':
             raise ValueError('ACL %s is not compatible for adding IPV4 acl rule', acl_name)
