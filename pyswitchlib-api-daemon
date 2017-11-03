@@ -193,6 +193,22 @@ pyswitchlib_api_daemon_wrapper()
         fi
     done
 
+    if [ ${#RETVALS[@]} -eq 0 ]; then
+        local PYSWITCHLIB_DEFAULT_DAEMON_PATHS=`get_pyswitchlib_paths pyswitchlib_api_daemon.py`
+        local PYSWITCHLIB_DEFAULT_DAEMON_PATH=${PYSWITCHLIB_DEFAULT_DAEMON_PATHS%:*}
+        local VIRTENV_DEFAULT_DAEMON_PATH=${PYSWITCHLIB_DEFAULT_DAEMON_PATHS#*:}
+
+        if [ -f "$PYSWITCHLIB_DEFAULT_DAEMON_PATH" ]; then
+            if [ -d "$VIRTENV_DEFAULT_DAEMON_PATH" ]; then
+                . "$VIRTENV_DEFAULT_DAEMON_PATH/bin/activate"
+            fi
+
+            python "$PYSWITCHLIB_DEFAULT_DAEMON_PATH" "$OPERATION"
+
+            RETVALS+=("$?")
+        fi
+    fi
+
     if [ "$OPERATION" = "stop" ]; then
         stop_stale_pyswitchlib_pids
     fi

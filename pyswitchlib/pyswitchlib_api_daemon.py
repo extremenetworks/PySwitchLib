@@ -551,14 +551,15 @@ class PySwitchLibApiDaemon(DaemonRunner):
         daemon_prefix = ConfigUtil().get_prefix_for_daemon_id(daemon_id=self._daemon_id, conf_dict=self._pyswitchlib_conf)
 
         if daemon_prefix:
-            daemon_prefixes = self._pyswitchlib_conf[self._daemon_id].split(':')
+            if self._daemon_id in self._pyswitchlib_conf:
+                daemon_prefixes = self._pyswitchlib_conf[self._daemon_id].split(':')
             
-            if len(daemon_prefixes) > 1:
-                daemon_prefixes.remove(daemon_prefix)
-                daemon_prefixes.insert(0, daemon_prefix)
+                if len(daemon_prefixes) > 1:
+                    daemon_prefixes.remove(daemon_prefix)
+                    daemon_prefixes.insert(0, daemon_prefix)
 
-                self._pyswitchlib_conf[self._daemon_id] = ':'.join(daemon_prefixes)
-                ConfigFileUtil().write(filename=pyswitchlib_conf_file, conf_dict=self._pyswitchlib_conf)
+                    self._pyswitchlib_conf[self._daemon_id] = ':'.join(daemon_prefixes)
+                    ConfigFileUtil().write(filename=pyswitchlib_conf_file, conf_dict=self._pyswitchlib_conf)
 
         super(PySwitchLibApiDaemon, self)._restart()
 
