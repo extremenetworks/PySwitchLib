@@ -51,3 +51,48 @@ add_l2_acl_rule_template = '''
 delete_rule_by_seq_id = '''
     no sequence {{ seq_id_str }}
     '''
+
+interface_submode_template = '''
+    interface {{ intf_type }} {{ intf_name }}
+'''
+
+apply_acl_template = '''
+    {{ address_type }} access-group {{ acl_name }} {{ acl_direction }}
+'''
+
+remove_acl_template = '''
+    no {{ address_type }} access-group {{ acl_name }} {{ acl_direction }}
+'''
+
+add_ip_standard_acl_rule_template = '''
+    {% if seq_id_str is not none %} sequence {{ seq_id_str }} {% endif %}
+    {% if action_str is not none %} {{ action_str }} {% endif %}
+    {% if vlan_str is not none %} vlan {{ vlan_str }} {% endif %}
+    {% if source_str is not none %} {{ source_str }} {% endif %}
+    {% if log_str is not none %} {{ log_str }} {% endif %}
+    '''
+
+add_ip_extended_acl_rule_template = '''
+    {% if seq_id_str is not none %} sequence {{ seq_id_str }} {% endif %}
+    {% if action_str is not none %} {{ action_str }} {% endif %}
+    {% if protocol_str is not none %} {{ protocol_str }} {% endif %}
+    {% if source_str is not none %} {{ source_str }} {% endif %}
+    {% if dst_str is not none %} {{ dst_str }} {% endif %}
+    {% if drop_precedence_force_str is not none %}
+        {{ drop_precedence_force_str }} {% endif %}
+    {% if dscp_mapping_str is not none %} {{ dscp_mapping_str }} {% endif %}
+    {% if dscp_marking_str is not none %} {{ dscp_marking_str }} {% endif %}
+    {% if fragment_str is not none %} {{ fragment_str }} {% endif %}
+    {% if precedence_str is not none %} {{ precedence_str }} {% endif %}
+    {% if option_str is not none %} {{ option_str }} {% endif %}
+    {% if suppress_rpf_drop_str is not none %}
+        {{ suppress_rpf_drop_str }} {% endif %}
+    {% if priority_str is not none %} {{ priority_str }} {% endif %}
+    {% if priority__force_str is not none %}
+        {{ priority__force_str }} {% endif %}
+    {% if priority__mapping_str is not none %}
+        {{ priority__mapping_str }} {% endif %}
+    {% if tos_str is not none %} {{ tos_str }} {% endif %}
+    {% if log_str is not none %} {{ log_str }} {% endif %}
+    {% if mirror_str is not none %} {{ mirror_str }} {% endif %}
+    '''

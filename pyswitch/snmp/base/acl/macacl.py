@@ -164,7 +164,8 @@ class MacAcl(object):
         parse the ethertype param
         Args:
             parameters contains:
-                ethertype(string): EtherType, can be 'arp', 'fcoe', 'ipv4-15', 'ipv6' or
+                ethertype(string): EtherType, can be 'arp',
+                    'fcoe', 'ipv4-15', 'ipv6' or
                     custom value between 1536 and 65535.
         Returns:
             Return None or parsed string on success
@@ -197,7 +198,8 @@ class MacAcl(object):
         Args:
             parameters contains:
                 arp_guard( string): Enables arp-guard for the rule
-                ethertype(string): EtherType, can be 'arp', 'fcoe', 'ipv4-15', 'ipv6' or
+                ethertype(string): EtherType, can be 'arp', 'fcoe',
+                    'ipv4-15', 'ipv6' or
                     custom value between 1536 and 65535.
         Returns:
             Return None or parsed string on success
@@ -378,9 +380,8 @@ class MacAcl(object):
         if not priority:
             return None
 
-        if priority.isdigit():
-            if int(priority) >= 0 or int(priority) <= 7:
-                return 'priority ' + priority
+        if int(priority) >= 0 or int(priority) <= 7:
+            return 'priority ' + str(priority)
 
         raise ValueError("The \'priority\' value {} is invalid."
                          " Supported range is 0 to 7".format(priority))
@@ -407,9 +408,8 @@ class MacAcl(object):
         if not priority_force:
             return None
 
-        if priority_force.isdigit():
-            if int(priority_force) >= 0 or int(priority_force) <= 7:
-                return 'priority-force ' + priority_force
+        if int(priority_force) >= 0 or int(priority_force) <= 7:
+            return 'priority-force ' + str(priority_force)
 
         raise ValueError("The \'priority_force\' value {} is invalid."
                          " Supported range is 0 to 7".format(priority_force))
@@ -436,9 +436,8 @@ class MacAcl(object):
         if not priority_mapping:
             return None
 
-        if priority_mapping.isdigit():
-            if int(priority_mapping) >= 0 or int(priority_mapping) <= 7:
-                return 'priority-mapping ' + priority_mapping
+        if int(priority_mapping) >= 0 or int(priority_mapping) <= 7:
+            return 'priority-mapping ' + str(priority_mapping)
 
         raise ValueError("The \'priority_mapping\' value {} is invalid."
                          " Supported range is 0 to 7".format(priority_mapping))
