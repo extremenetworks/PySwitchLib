@@ -10,6 +10,18 @@ class ConfigFileUtil(object):
     Asset provides connection information for PySwitchLib APIs.
     """
 
+    def __init__(self):
+        if not os.path.exists(lock_file):
+            original_mask = os.umask(0o111)
+
+            try:
+                with os.fdopen(os.open(lock_file, os.O_WRONLY | os.O_CREAT, 0o666), 'w') as fd:
+                    pass
+            except:
+                pass
+            finally:
+                os.umask(original_mask)
+        
     def read(self, filename=None):
         conf_dict = {}
         conf_pattern = re.compile('\s*(\w+)\s*=\s*(\S+)\s*')
