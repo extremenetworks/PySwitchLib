@@ -19,41 +19,21 @@ pyswitchlib_conf_file = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.
 pyswitchlib_ns_daemon_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns_daemon.uri')
 
 @Pyro4.behavior(instance_mode="single")
-class PySwitchLibApiDaemon(DaemonRunner):
+class PySwitchLibApiDaemon(object):
     """
     This is an auto-generated class for the PySwitchLib.
     Providing python bindings to configure a switch through the REST interface.
     """
 
-    def __init__(self, module_name='', module_obj=None, pyro_daemon=None, daemon_id='default', pyswitchlib_conf=None):
+    def __init__(self, module_name='', module_obj=None, pyro_daemon=None):
         """
         This is an auto-generated method for the PySwitchLib.
         """
 
-        self._pyswitchlib_conf = pyswitchlib_conf
         self._module_name = module_name
         self._module_obj = module_obj
         self._api_lock = threading.Lock()
         self._pyro_daemon = pyro_daemon
-        self._pyro_ns_port = None
-        self._daemon_thread = None
-        self._daemon_id = daemon_id
-        self._daemon_prefix = ConfigUtil().get_prefix_for_daemon_id(daemon_id=self._daemon_id, conf_dict=self._pyswitchlib_conf)
-
-        if self._pyswitchlib_conf:
-            if 'ns_port' in self._pyswitchlib_conf:
-                self._pyro_ns_port = int(self._pyswitchlib_conf['ns_port'])
-
-        if self._daemon_thread == None:
-            self._daemon_thread = threading.Thread(target=self._daemon_loop, kwargs={'daemon_id': self._daemon_id, 'daemon_prefix':self._daemon_prefix, 'pyro_ns_port': self._pyro_ns_port})
-            self._daemon_thread.daemon = True
-                            
-        self.stdin_path = os.path.join(os.sep, 'dev', 'null')
-        self.stdout_path = os.path.join(os.sep, 'dev', 'null')
-        self.stderr_path = os.path.join(os.sep, 'dev', 'null')
-        self.pidfile_path =  ConfigUtil().get_pidfilename_for_daemon_id(daemon_id=self._daemon_id, conf_dict=self._pyswitchlib_conf)
-        self.pidfile_timeout = 1
-        super(PySwitchLibApiDaemon, self).__init__(self)
 
     def shutdown(self):
         """
@@ -431,6 +411,40 @@ class PySwitchLibApiDaemon(DaemonRunner):
 
         return yang_name_list
 
+
+class PySwitchLibApiDaemonRunner(DaemonRunner):
+    """
+    This is an auto-generated class for the PySwitchLib.
+    Providing python bindings to configure a switch through the REST interface.
+    """
+
+    def __init__(self, pyswitchlib_conf=None, daemon_id='default'):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        self._pyswitchlib_conf = pyswitchlib_conf
+        self._daemon_id = daemon_id
+        self._daemon_prefix = ConfigUtil().get_prefix_for_daemon_id(daemon_id=self._daemon_id, conf_dict=self._pyswitchlib_conf)
+        self._daemon_thread = None
+        self._pyro_ns_port = None
+
+        if self._pyswitchlib_conf:
+            if 'ns_port' in self._pyswitchlib_conf:
+                self._pyro_ns_port = int(self._pyswitchlib_conf['ns_port'])
+
+        if self._daemon_thread == None:
+            self._daemon_thread = threading.Thread(target=self._daemon_loop, kwargs={'daemon_id': self._daemon_id, 'daemon_prefix':self._daemon_prefix, 'pyro_ns_port': self._pyro_ns_port})
+            self._daemon_thread.daemon = True
+
+        self.stdin_path = os.path.join(os.sep, 'dev', 'null')
+        self.stdout_path = os.path.join(os.sep, 'dev', 'null')
+        self.stderr_path = os.path.join(os.sep, 'dev', 'null')
+        self.pidfile_path =  ConfigUtil().get_pidfilename_for_daemon_id(daemon_id=self._daemon_id, conf_dict=self._pyswitchlib_conf)
+        self.pidfile_timeout = 1
+
+        super(PySwitchLibApiDaemonRunner, self).__init__(self)
+                            
     def _get_configured_daemon(self, daemon_id='', daemon_prefix=''):
         """
         This is an auto-generated method for the PySwitchLib.
@@ -496,7 +510,7 @@ class PySwitchLibApiDaemon(DaemonRunner):
         This is an auto-generated method for the PySwitchLib.
         """
 
-        super(PySwitchLibApiDaemon, self)._start()
+        super(PySwitchLibApiDaemonRunner, self)._start()
 
     def _stop(self):
         """
@@ -541,7 +555,7 @@ class PySwitchLibApiDaemon(DaemonRunner):
                     except:
                         pass
 
-        super(PySwitchLibApiDaemon, self)._stop()
+        super(PySwitchLibApiDaemonRunner, self)._stop()
 
     def _restart(self):
         """
@@ -561,7 +575,7 @@ class PySwitchLibApiDaemon(DaemonRunner):
                     self._pyswitchlib_conf[self._daemon_id] = ':'.join(daemon_prefixes)
                     ConfigFileUtil().write(filename=pyswitchlib_conf_file, conf_dict=self._pyswitchlib_conf)
 
-        super(PySwitchLibApiDaemon, self)._restart()
+        super(PySwitchLibApiDaemonRunner, self)._restart()
 
     action_funcs = {
         'start': _start,
@@ -569,13 +583,13 @@ class PySwitchLibApiDaemon(DaemonRunner):
         'restart': _restart,
         }
 
-    def run(self):                                                                                                                                                                  
-        """                                                                                                                                                                         
-        This is an auto-generated method for the PySwitchLib.                                                                                                                       
-        """                                                                                                                                                                         
+    def run(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
 
         self._daemon_thread.start()
-                                                                                                                                                                                    
+
         while True:
             time.sleep(5)
 
@@ -620,7 +634,7 @@ if __name__ == "__main__":
                 print(sys.argv[0].split('/')[-1] + ' is stopped.')
                 sys.exit(3)
 
-    pyswitchlib_runner = PySwitchLibApiDaemon(pyswitchlib_conf=pyswitchlib_conf, daemon_id=daemon_id)
+    pyswitchlib_runner = PySwitchLibApiDaemonRunner(pyswitchlib_conf=pyswitchlib_conf, daemon_id=daemon_id)
     pyswitchlib_runner.parse_args(argv=sys.argv)
 
     try:
