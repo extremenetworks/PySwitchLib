@@ -20,6 +20,7 @@ import pyswitch.utilities as util
 import pyswitch.snmp.mlx.base.interface
 import pyswitch.snmp.mlx.base.system
 import pyswitch.snmp.mlx.base.acl.acl
+import pyswitch.snmp.mlx.base.services
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
@@ -29,29 +30,34 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 
-ROUTER_ATTRS = ['interface', 'system', 'acl']
+ROUTER_ATTRS = ['interface', 'system', 'acl', 'services']
 
 NI_VERSIONS = {
     '5.8': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
+        'services': pyswitch.snmp.mlx.base.services.Services,
     },
     '5.9': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
+        'services': pyswitch.snmp.mlx.base.services.Services,
     },
     '6.0': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
         'acl': pyswitch.snmp.mlx.base.acl.acl.Acl,
+        'services': pyswitch.snmp.mlx.base.services.Services,
     },
     '6.1': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
+        'services': pyswitch.snmp.mlx.base.services.Services,
     },
     '6.2': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
+        'services': pyswitch.snmp.mlx.base.services.Services,
     },
 }
 
