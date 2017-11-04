@@ -169,6 +169,128 @@ class Acl(object):
         """
         return
 
+    @abc.abstractmethod
+    def apply_acl(self, **parameters):
+        """
+        Apply Access Control List on interface.
+        Args:
+            parameters contains:
+                address_type (str): ACL address type, ip or ipv6 or mac.
+                acl_name: Name of the access list.
+                intf_type: - ethernet, ve
+                intf_name: array of slot/port or ve interfaces
+                acl_direction: Direction of ACL binding on the specified
+                    interface
+        Returns:
+            Return True
+        Raises:
+            Exception, ValueError for invalid seq_id.
+        """
+        return
+
+    @abc.abstractmethod
+    def remove_acl(self, **parameters):
+        """
+        Apply Access Control List on interface.
+        Args:
+            parameters contains:
+                address_type (str): ACL address type, ip or ipv6 or mac.
+                acl_name: Name of the access list.
+                intf_type: - ethernet, ve
+                intf_name: array of slot/port or ve interfaces
+                acl_direction: Direction of ACL binding on the specified
+                    interface
+        Returns:
+            Return True
+        Raises:
+            Exception, ValueError for invalid seq_id.
+        """
+        return
+
+    @abc.abstractmethod
+    def add_ipv4_rule_acl(self, **parameters):
+        """
+        Add rules to Access Control List of ipv4.
+        Args:
+            parameters contains:
+                acl_name: (string) Name of the access list
+                seq_id: (integer) Sequence number of the rule,
+                    if not specified, the rule is added at the end of the list.
+                    Valid range is 0 to 4294967290
+                action: (string) Action performed by ACL rule
+                    - permit
+                    - deny
+                protocol_type: (string) Type of IP packets to be filtered
+                    based on protocol. Valid values are <0-255> or key words
+                    tcp, udp, icmp or ip
+                source: (string) Source address filters
+                    { any | S_IPaddress/mask(0.0.0.255) |
+                    host,S_IPaddress } [ source-operator [ S_port-numbers ] ]
+                destination: (string) Destination address filters
+                    { any | S_IPaddress/mask(0.0.0.255) |
+                    host,S_IPaddress } [ source-operator [ S_port-numbers ] ]
+                dscp: (string) Matches the specified value against the DSCP
+                    value of the packet to filter.
+                     Allowed values are 0 through 63.
+                drop_precedence_force: (string) Matches the drop_precedence
+                    value of the packet.  Allowed values are 0 through 2.
+                urg: (string) Enables urg for the rule
+                ack: (string) Enables ack for the rule
+                push: (string) Enables push for the rule
+                fin: (string) Enables fin for the rule
+                rst: (string) Enables rst for the rule
+                sync: (string) Enables sync for the rule
+                vlan_id: (integer) VLAN interface to which the ACL is bound
+                count: (string) Enables statistics for the rule
+                log: (string) Enables logging for the rule
+                    (Available for permit or deny only)
+                mirror: (string) Enables mirror for the rule
+                copy_sflow: (string) Enables copy-sflow for the rule
+
+                dscp-marking: (string) dscp-marking number is used to mark the
+                    DSCP value in the incoming packet with the value you
+                    specify to filter.  Allowed values are 0 through 63.
+                fragment: (string) Use fragment keyword to allow the ACL to
+                    filter fragmented packets. Use the non-fragment keyword to
+                    filter non-fragmented packets.
+                    Allowed values are- fragment, non-fragment
+                precedence: (integer) Match packets with given precedence value
+                    Allowed value in range 0 to 7.
+                option: (string) Match match IP option packets.
+                    supported values are:
+                        any, eol, extended-security, ignore, loose-source-route
+                        no-op, record-route, router-alert, security, streamid,
+                        strict-source-route, timestamp
+                        Allowed value in decimal <0-255>.
+                suppress-rpf-drop: (boolean) Permit packets that fail RPF check
+                priority: (integer) set priority
+                priority-force: (integer) force packet outgoing priority.
+                priority-mapping: (integer) map incoming packet priority.
+                tos: (integer) Match packets with given TOS value.
+                    Allowed value in decimal <0-15>.
+        Returns:
+            Return True
+        Raises:
+            Exception, ValueError for invalid seq_id.
+        """
+        return
+
+    def delete_ipv4_acl_rule(self, **parameters):
+        """
+        Delete Rule from Access Control List.
+        Args:
+            parameters contains:
+                acl_name: Name of the access list.
+                seq_id: Sequence number of the rule. For add operation,
+                    if not specified, the rule is added at the end of the list.
+        Returns:
+            Return value of `string` message.
+        Raise:
+            Raises ValueError, Exception
+        Examples:
+        """
+        return
+
     def _process_cli_output(self, method, config, output):
         """
         Parses CLI response from switch.
