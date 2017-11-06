@@ -75,7 +75,7 @@ class Asset(object):
         self._pyro_bind_max_retries = 30
         self._ns_pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns.pid')
         self._pyswitchlib_conf_filename = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
-        self._pyswitchlib_ns_daemon_filename = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns_daemon.uri')
+        self._pyswitchlib_ns_daemon_filename = os.path.join(os.sep, 'etc', 'pyswitchlib', '.pyswitchlib_ns_daemon.uri')
         self._pyswitchlib_conf = ConfigFileUtil().read(filename=self._pyswitchlib_conf_filename)
         self._pyswitchlib_ns_daemon = ConfigFileUtil().read(filename=self._pyswitchlib_ns_daemon_filename)
 

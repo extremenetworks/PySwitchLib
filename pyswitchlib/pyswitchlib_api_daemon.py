@@ -16,7 +16,7 @@ from daemon.runner import (DaemonRunner, DaemonRunnerStopFailureError)
 from lockfile import LockTimeout
 
 pyswitchlib_conf_file = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
-pyswitchlib_ns_daemon_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns_daemon.uri')
+pyswitchlib_ns_daemon_file = os.path.join(os.sep, 'etc', 'pyswitchlib', '.pyswitchlib_ns_daemon.uri')
 
 @Pyro4.behavior(instance_mode="single")
 class PySwitchLibApiDaemon(object):
