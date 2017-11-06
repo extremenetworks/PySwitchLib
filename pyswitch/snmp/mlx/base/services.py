@@ -18,6 +18,7 @@ from pyswitch.snmp.base.services import Services as BaseServices
 from pyswitch.snmp.SnmpMib import SnmpMib as SnmpMib
 from pyswitch.snmp.base.interface import Interface as Interface
 from hnmp import mac_address
+import pyswitch.utilities
 
 
 class Services(BaseServices):
@@ -88,8 +89,7 @@ class Services(BaseServices):
             key = row['_row_id']
             mac = mac_address(mac_addr)
             # Convert mac to xxxx.xxxx.xxxx format
-            mac = mac.split(":")
-            mac_addr = "".join(mac[0:2]) + "." + "".join(mac[2:4]) + "." + "".join(mac[4:6])
+            mac_addr = pyswitch.utilities.convert_mac_colon_to_dot_format(mac)
             key_list = key.split('.', 3)
             ifid = key_list[0]
             ip_address = key_list[3]

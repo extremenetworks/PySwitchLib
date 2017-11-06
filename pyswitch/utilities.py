@@ -388,3 +388,20 @@ def check_mlx_cli_set_error(cli_res):
     if invalid_input:
         raise ValueError("%s" % invalid_input.group(0))
     return True
+
+
+def convert_mac_colon_to_dot_format(mac_addr):
+    """
+    Convert mac address in colon format to dot format
+    For e.g convert aa:bb:cc:dd:ee:ff to aabb.ccdd.eeff
+
+    Args(str):
+        mac address in colon format
+
+    Returns(str):
+        mac address in dot format
+
+    """
+    mac = mac_addr.split(":")
+    mac_addr_dot = "".join(mac[0:2]) + "." + "".join(mac[2:4]) + "." + "".join(mac[4:6])
+    return mac_addr_dot
