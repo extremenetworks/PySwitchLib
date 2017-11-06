@@ -544,7 +544,7 @@ def validate_interface(intf_type, intf_name, rbridge_id=None, os_type=None, logg
 
     return True
 
- 
+
 def convert_mac_colon_to_dot_format(mac_addr):
     """
     Convert mac address in colon format to dot format
