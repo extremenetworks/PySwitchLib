@@ -371,13 +371,10 @@ class Acl(BaseAcl):
             >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
             >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
                                              address_type='mac')
-            True
             >>>     print dev.acl.create_acl(acl_name='Acl_2', acl_type='extended',
                                              address_type='ip')
-            True
             >>>     print dev.acl.create_acl(acl_name='Acl_3', acl_type='extended',
                                              address_type='ipv6')
-            True
         """
 
         address_type = kwargs.pop('address_type', '')
@@ -414,11 +411,8 @@ class Acl(BaseAcl):
             >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
             >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
                                              address_type='mac')
-            True
             >>>     print dev.acl.delete_acl(acl_name='Acl_2')
-            None
             >>>     print dev.acl.delete_acl(acl_name='Acl_1')
-            True
         """
 
         acl_name = kwargs.pop('acl_name', '')
@@ -470,15 +464,13 @@ class Acl(BaseAcl):
             >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
             >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
                                              address_type='mac')
-            True
-            >>>     print dev.acl.apply_acl(intf_type='ethernet', intf_names='0/1,0/2',
+            >>>     print dev.acl.apply_acl(intf_type='ethernet', intf_name='0/1,0/2',
                                             acl_name='Acl_1', acl_direction='in',
                                             traffic_type='switched')
-            True
         """
         rbridge_id = kwargs.pop('rbridge_id', '')
         intf_type = kwargs.pop('intf_type', '').lower()
-        intf_names = kwargs.pop('intf_names', '')
+        intf_name = kwargs.pop('intf_name', '')
         acl_name = kwargs.pop('acl_name', '')
         acl_direction = kwargs.pop('acl_direction', '')
         traffic_type = kwargs.pop('traffic_type', '')
@@ -488,7 +480,7 @@ class Acl(BaseAcl):
         result = {}
 
         # Check is the user input for Interface Name is correct
-        for intf in intf_names:
+        for intf in intf_name:
             if "-" not in str(intf):
                 interface_list.append(intf)
             else:
@@ -534,7 +526,7 @@ class Acl(BaseAcl):
         Args:
             rbridge_id (str): RBridge ID of the VDX switch under which VE will be configured
             intf_type (str): Interface type, (physical, port channel, VE or management interface).
-            intf_names (str[]): Array of the Interface Names.
+            intf_name (str[]): Array of the Interface Names.
             acl_name (str): Name of the access list.
             acl_direction (str): Direction of ACL binding on the specified interface [in/out].
             traffic_type (str): Traffic type for the ACL being applied [switched/routed].
@@ -549,19 +541,16 @@ class Acl(BaseAcl):
             >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
             >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
                                              address_type='mac')
-            True
-            >>>     print dev.acl.apply_acl(intf_type='ethernet', intf_names='0/1,0/2',
+            >>>     print dev.acl.apply_acl(intf_type='ethernet', intf_name='0/1,0/2',
                                             acl_name='Acl_1', acl_direction='in',
                                             traffic_type='switched')
-            True
-            >>>     print dev.acl.remove_acl(intf_type='ethernet', intf_names='0/1,0/2',
+            >>>     print dev.acl.remove_acl(intf_type='ethernet', intf_name='0/1,0/2',
                                             acl_name='Acl_1', acl_direction='in',
                                             traffic_type='switched')
-            True
         """
         rbridge_id = kwargs.pop('rbridge_id', '')
         intf_type = kwargs.pop('intf_type', '').lower()
-        intf_names = kwargs.pop('intf_names', '')
+        intf_name = kwargs.pop('intf_name', '')
         acl_name = kwargs.pop('acl_name', '')
         acl_direction = kwargs.pop('acl_direction', '')
         traffic_type = kwargs.pop('traffic_type', '')
@@ -571,7 +560,7 @@ class Acl(BaseAcl):
         result = {}
 
         # Check is the user input for Interface Name is correct
-        for intf in intf_names:
+        for intf in intf_name:
             if "-" not in str(intf):
                 interface_list.append(intf)
             else:
@@ -619,7 +608,7 @@ class Acl(BaseAcl):
                     raise
         return result
 
-    def add_mac_acl_rule(self, **kwargs):
+    def add_l2_acl_rule(self, **kwargs):
         """
         Add ACL rule to an existing L2 ACL.
         Args:
@@ -647,11 +636,9 @@ class Acl(BaseAcl):
             >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
             >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
                                              address_type='mac')
-            True
             >>>     print dev.acl.add_mac_acl_rule(acl_name='Acl_1', seq_id=20,
                                                    action='permit', source='host',
                                                    srchost='2222.2222.2222')
-            True
         """
         acl_name = kwargs.pop('acl_name', '')
         acl_rules = kwargs.pop('acl_rules', [])
@@ -754,9 +741,9 @@ class Acl(BaseAcl):
                     raise
         return result
 
-    def add_ip_acl_rule(self, **kwargs):
+    def __add_ip_acl_rules(self, **kwargs):
         """
-        Add ACL rule to an existing ACL.
+        Add ACL rule to an existing IPv4 or IPv6 ACL.
         Args:
             acl_name (str): Name of the access list.
             address_type (str): ACL address type, ip or ipv6.
@@ -781,17 +768,6 @@ class Acl(BaseAcl):
         Returns:
             True, False or None for Success, failure and no-change respectively
             for each seq_ids.
-
-        Examples:
-            >>> from pyswitch.device import Device
-            >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
-            >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
-                                             address_type='ip')
-            True
-            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_id=10,
-                                                  action='permit',
-                                                  source='host 192.168.0.3')
-            True
         """
         acl_name = kwargs.pop('acl_name', '')
         address_type = kwargs.pop('address_type', '')
@@ -908,13 +884,27 @@ class Acl(BaseAcl):
                     raise
         return result
 
-    def remove_acl_rule(self, **kwargs):
+    def add_ipv4_rule_acl(self, **kwargs):
         """
-        Remove ACL rule from an existing ACL..
+        Add ACL rule to an existing IPv4 ACL.
         Args:
-            address_type (str): ACL address type, ip or ipv6 or mac.
             acl_name (str): Name of the access list.
-            seq_ids (list): Rule sequence-ids.
+            acl_rules (array): List of ACL sequence rules.
+            seq_id (int): Sequence number of the rule.
+            action (str): Action to apply on the traffic (deny/permit/hard-drop).
+            protocol_type (str): Type of IP packets to be filtered (<0-255>, tcp, udp, icmp or ip).
+            source (str): Source filter, can be 'any' or 'host', or the actual MAC address.
+            destination (str): Destination filter, can be 'any' or 'host', or the actual MAC.
+            dscp (str): DSCP values of the packet to filter.
+            urg (str): Enables urg for the rule.
+            ack (str): Enables ack for the rule.
+            push (str):Enables push for the rule.
+            fin (str): Enables fin for the rule.
+            rst (str): Enables rst for the rule.
+            sync (str): Enables sync for the rule.
+            vlan (str): VLAN ID for the rule.
+            count (str): Enables the packet count.
+            log (str): Enables the logging.
             callback (function): A function executed upon completion of the method.
                The only parameter passed to `callback` will be the ``ElementTree`` `config`.
         Returns:
@@ -926,17 +916,69 @@ class Acl(BaseAcl):
             >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
             >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
                                              address_type='ip')
-            True
             >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_id=10,
                                                   action='permit',
                                                   source='host 192.168.0.3')
-            True
-            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_ids='10,20')
-            True
+        """
+        kwargs['address_type'] = 'ip'
+        return self.__add_ip_acl_rules(**kwargs)
+
+    def add_ipv6_rule_acl(self, **kwargs):
+        """
+        Add ACL rule to an existing IPv6 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            address_type (str): ACL address type, ip or ipv6.
+            acl_rules (array): List of ACL sequence rules.
+            seq_id (int): Sequence number of the rule.
+            action (str): Action to apply on the traffic (deny/permit/hard-drop).
+            protocol_type (str): Type of IP packets to be filtered (<0-255>, tcp, udp, icmp or ip).
+            source (str): Source filter, can be 'any' or 'host', or the actual MAC address.
+            destination (str): Destination filter, can be 'any' or 'host', or the actual MAC.
+            dscp (str): DSCP values of the packet to filter.
+            urg (str): Enables urg for the rule.
+            ack (str): Enables ack for the rule.
+            push (str):Enables push for the rule.
+            fin (str): Enables fin for the rule.
+            rst (str): Enables rst for the rule.
+            sync (str): Enables sync for the rule.
+            vlan (str): VLAN ID for the rule.
+            count (str): Enables the packet count.
+            log (str): Enables the logging.
+            callback (function): A function executed upon completion of the method.
+               The only parameter passed to `callback` will be the ``ElementTree`` `config`.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
+                                             address_type='ipv6')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_id=10,
+                                                  action='permit',
+                                                  source='host 2:2::2:2')
+        """
+        kwargs['address_type'] = 'ipv6'
+        return self.__add_ip_acl_rules(**kwargs)
+
+    def __delete_acl_rules(self, **kwargs):
+        """
+        Remove ACL rule from an existing ACL.
+        Args:
+            address_type (str): ACL address type, ip or ipv6 or mac.
+            acl_name (str): Name of the access list.
+            seq_ids (list): Rule sequence-ids.
+            callback (function): A function executed upon completion of the method.
+               The only parameter passed to `callback` will be the ``ElementTree`` `config`.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
         """
         address_type = kwargs.pop('address_type', '')
         acl_name = kwargs.pop('acl_name', '')
-        seq_ids = kwargs.pop('seq_ids', '')
+        seq_ids = kwargs.pop('seq_ids', [])
         callback = kwargs.pop('callback', self._callback)
         seqs_list = []
         result = {}
@@ -969,3 +1011,103 @@ class Acl(BaseAcl):
             self.logger.info('Successfully removed rule from ACL %s', acl_name)
             result['Seq-%s' % str(seq_dict['seq_id'])] = True
         return result
+
+    def delete_l2_acl_rule(self, **kwargs):
+        """
+        Remove ACL rule from an existing L2 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            seq_ids (list): Rule sequence-ids for bulk operation.
+            seq_ids (int): Rule sequence-id.
+            callback (function): A function executed upon completion of the method.
+               The only parameter passed to `callback` will be the ``ElementTree`` `config`.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
+                                             address_type='ip')
+            True
+            >>>     print dev.acl.add_mac_acl_rule(acl_name='Acl_1', seq_id=20,
+                                                   action='permit', source='host',
+                                                   srchost='2222.2222.2222')
+            True
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_ids='10,20')
+            True
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_id=10)
+            None
+        """
+        seq_ids = kwargs.pop('seq_ids', [])
+        seq_id = kwargs.pop('seq_id', -1)
+        if seq_id != -1:
+            seq_ids.append(seq_id)
+        kwargs['address_type'] = 'mac'
+        kwargs['seq_ids'] = seq_ids
+        return self.__delete_acl_rules(**kwargs)
+
+    def delete_ipv4_acl_rule(self, **kwargs):
+        """
+        Remove ACL rule from an existing IPv4 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            seq_ids (list): Rule sequence-ids for bulk operation.
+            seq_ids (int): Rule sequence-id.
+            callback (function): A function executed upon completion of the method.
+               The only parameter passed to `callback` will be the ``ElementTree`` `config`.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
+                                             address_type='ip')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_id=10,
+                                                  action='permit',
+                                                  source='host 192.168.0.3')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_ids='10,20')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_id=10)
+        """
+        seq_ids = kwargs.pop('seq_ids', [])
+        seq_id = kwargs.pop('seq_id', -1)
+        if seq_id != -1:
+            seq_ids.append(seq_id)
+        kwargs['address_type'] = 'ip'
+        kwargs['seq_ids'] = seq_ids
+        return self.__delete_acl_rules(**kwargs)
+
+    def delete_ipv6_acl_rule(self, **kwargs):
+        """
+        Remove ACL rule from an existing IPv6 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            seq_ids (list): Rule sequence-ids for bulk operation.
+            seq_ids (int): Rule sequence-id.
+            callback (function): A function executed upon completion of the method.
+               The only parameter passed to `callback` will be the ``ElementTree`` `config`.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
+                                             address_type='ipv6')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_id=10,
+                                                  action='permit',
+                                                  source='host 2:2::2:2')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_ids='10,20')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_id=10)
+        """
+        seq_ids = kwargs.pop('seq_ids', [])
+        seq_id = kwargs.pop('seq_id', -1)
+        if seq_id != -1:
+            seq_ids.append(seq_id)
+        kwargs['address_type'] = 'ipv6'
+        kwargs['seq_ids'] = seq_ids
+        return self.__delete_acl_rules(**kwargs)

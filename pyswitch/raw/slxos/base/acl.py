@@ -74,7 +74,7 @@ class Acl(NosBaseAcl):
         """
         super(Acl, self).__init__(callback)
 
-    def add_mac_acl_rule(self, **kwargs):
+    def add_l2_acl_rule(self, **kwargs):
         """
         Add ACL rule to an existing L2 ACL.
         Args:
@@ -291,7 +291,7 @@ class Acl(NosBaseAcl):
                     raise
         return result
 
-    def add_ip_acl_rule(self, **kwargs):
+    def __add_ip_acl_rule(self, **kwargs):
         """
         Add ACL rule to an existing ACL.
         Args:
