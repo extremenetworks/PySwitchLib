@@ -1,0 +1,2 @@
+api_daemon_bwc_topology = /opt/brocade/bwc-topology
+api_daemon_virtualenv_packs = /opt/stackstorm/virtualenvs/network_essentials:/opt/stackstorm/virtualenvs/dcfabric
