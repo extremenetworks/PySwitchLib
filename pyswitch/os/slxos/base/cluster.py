@@ -64,13 +64,13 @@ class Cluster(object):
 
         Example:
             >>> import pyswitch.device
-            >>> switch = '10.24.86.57'
+            >>> switch = '10.24.84.148'
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
-            ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
-            ...     response1 = device.cluster.cluster_get(cluster=('F47-F48','3'))
-            ...     response2 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
+            ...     response = device.cluster.cluster_create(cluster=('F47-F47','3'))
+            #...     response1 = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            #...     response2 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
         """
         (clname, clid) = cluster_args.pop('cluster')
@@ -98,8 +98,11 @@ class Cluster(object):
         try:
             response = self._callback(config, 'POST')
             if response.data != '':
-                status['status_code'] = -1
-                status['status_message'] = response.data
+                if "object already exists" in response.data:
+                    pass
+                else:
+                    status['status_code'] = -1
+                    status['status_message'] = response.data
         except Exception, exc:
             status['status_code'] = -1
             status['status_message'] = 'Exception:' + exc.message
