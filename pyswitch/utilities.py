@@ -17,7 +17,7 @@ limitations under the License.
 import re
 import socket
 import ipaddress
-import pynos.utilities
+import pyswitch.utilities
 import xml.etree.ElementTree as ElementTree
 from xml.etree.ElementTree import Element
 
@@ -533,7 +533,7 @@ def validate_interface(intf_type, intf_name, rbridge_id=None, os_type=None, logg
 
     intTypes = ["ve", "loopback", "ethernet"]
     if intf_type not in intTypes:
-        tmp_vlan_id = pynos.utilities.valid_interface(
+        tmp_vlan_id = pyswitch.utilities.valid_interface(
             intf_type, name=str(intf))
 
         if not tmp_vlan_id:
