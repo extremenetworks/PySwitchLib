@@ -18,3 +18,6 @@ class MultipleChoicesSetError(PyswitchlibException):
 class ExistingApiPortBound(PyswitchlibException):
     """If defined API port is different that existing bound port. The existing bound port should be used."""
 
+class ApiDaemonConnectionError(PyswitchlibException):
+    """If connecion to the API daemon fails or API deamon cannot be found."""
+
