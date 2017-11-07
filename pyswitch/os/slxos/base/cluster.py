@@ -616,3 +616,57 @@ class Cluster(object):
 
         output['cluster'] = cluster_list
         return output
+
+    def cluster_node_id(self, **cluster_args):
+        """
+         Method to get cluster peer
+         args:
+           cluster_args:
+             node_id(integer): name of the cluster
+             principal_priority(integer): Priority for this node to be selected as principal
+             return:
+                   Returns dictionary keys (status_code, status_message). status_code=0 for SUCCESS
+                   and status_code=-1 for FAILURE.
+             Example:
+                    >>> import pyswitch.device
+                    >>> switch = '10.24.84.148'
+                    >>> auth = ('admin', 'password')
+                    >>> conn = (switch, '22')
+                    >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
+                    ...     response = device.cluster.cluster_node_id(node_id=27,
+                    ...                 principal_priority=29)
+        """
+        node_id = cluster_args.pop('node_id', None)
+        principal_priority = cluster_args.pop('principal_priority', None)
+
+        priority_valid = False
+        status = dict()
+
+        if node_id is None:
+            raise ValueError("invalid node id")
+        if node_id not in xrange(1, 255):
+            raise ValueError("node id must be in range 1-255")
+        if principal_priority is not None:
+            if principal_priority not in xrange(1, 128):
+                raise ValueError("principal priority must be in range 1-128")
+            else:
+                priority_valid = True
+
+        command = 'cluster management node-id ' + str(node_id)
+        argument = {'command': command}
+        config = ('run_command', argument)
+
+        try:
+            self._callback(config, 'POST')
+        except Exception, exc:
+            raise ValueError("Exception when running run_command, error:%s", exc.message)
+
+        if priority_valid is True:
+            argument = {'node_id': node_id, 'principal_priority': principal_priority}
+            config = ('node_id_cluster_management_update', argument)
+            try:
+                self._callback(config, 'POST')
+            except Exception, exc:
+                raise ValueError("Exception when running run_command, error:%s", exc.message)
+
+        return status
