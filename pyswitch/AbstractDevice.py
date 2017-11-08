@@ -16,10 +16,6 @@ class AbstractDevice:
     def __exit__(self, exctype, excisnt, exctb):
         pass
 
-    @abc.abstractmethod
-    def mac_table(self):
-        pass
-
     @abc.abstractproperty
     def os_type(self):
         pass
@@ -39,10 +35,6 @@ class AbstractDevice:
 
     @abc.abstractmethod
     def reconnect(self):
-        pass
-
-    @abc.abstractmethod
-    def find_interface_by_mac(self, **kwargs):
         pass
 
     @abc.abstractmethod
