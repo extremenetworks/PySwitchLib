@@ -121,3 +121,65 @@ class Services(BaseServices):
                         }
             arp_list.append(arp_dict)
         return arp_list
+
+    @property
+    def mac_table(self, **kwargs):
+        """ Get mac address details in dict
+        Args:
+            None
+        Returns:
+            Return list of dict containing MAC information
+        Raises:
+            None
+        Examples:
+        >>> import pyswitch.device
+        >>> switches = ['10.24.85.107']
+        >>> auth = ('admin', 'admin')
+        >>> for switch in switches:
+        ...     conn = (switch, '22')
+        ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+        ...         output = dev.services.mac_table
+        """
+        mactable_oid = SnmpMib.mib_oid_map['dot1qTpFdbEntry']
+        config = {}
+        config['oid'] = mactable_oid
+        config['columns'] = {2: 'port',
+                             3: 'status'}
+
+        config['fetch_all'] = False
+        mac_list = []
+        mac_table = self._callback(config, handler='snmp-walk')
+        for row in mac_table.rows:
+            ifid = row['port']
+            ifid_list = []
+            ifid_list.append(ifid)
+            interface_obj = Interface(self._callback)
+            ifid_name_map = interface_obj.get_interface_id_name_mapping(ifname_list=ifid_list)
+            if_name = ifid_name_map[ifid]
+            if 'ethernet' in if_name:
+                interface_type = 'ethernet'
+                interface_name = if_name[8:]
+            elif 'LAG' in if_name:
+                interface_type = 'port-channel'
+                interface_name = if_name[3:]
+            else:
+                interface_type = 'unknown'
+                interface_name = 'unknown'
+            status = row['status']
+            if status == 5:
+                mac_type = 'static'
+            elif status == 3:
+                mac_type = 'dynamic'
+            else:
+                mac_type = 'invalid'
+            key = row['_row_id']
+            key_list = key.split('.', 1)
+            vlan = key_list[0]
+            int_arr = key_list[1].split('.')
+            mac = [format(int(i), '02x') for i in int_arr]
+            mac_addr = ":".join(mac)
+            interface = interface_type + interface_name
+            mac_list.append(dict(mac_address=mac_addr, interface_type=interface_type,
+                              interface_name=interface_name, interface=interface,
+                              state='active', vlan=vlan, type=mac_type))
+        return mac_list
