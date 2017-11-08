@@ -57,11 +57,19 @@ interface_submode_template = '''
 '''
 
 apply_acl_template = '''
-    {{ address_type }} access-group {{ acl_name }} {{ acl_direction }}
+    {% if 'ipv6' == address_type %}
+        {{ address_type }} traffic-filter {{ acl_name }} {{ acl_direction }}
+    {% else %}
+        {{ address_type }} access-group {{ acl_name }} {{ acl_direction }}
+    {% endif %}
 '''
 
 remove_acl_template = '''
-    no {{ address_type }} access-group {{ acl_name }} {{ acl_direction }}
+    {% if 'ipv6' == address_type %}
+        no {{ address_type }} traffic-filter {{ acl_name }} {{ acl_direction }}
+    {% else %}
+        no {{ address_type }} access-group {{ acl_name }} {{ acl_direction }}
+    {% endif %}
 '''
 
 add_ip_standard_acl_rule_template = '''
