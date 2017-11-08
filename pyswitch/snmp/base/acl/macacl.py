@@ -79,7 +79,8 @@ class MacAcl(object):
         Examples:
         """
         if 'source' not in parameters:
-            return None
+            raise ValueError("\'source\' not present "
+                             "in parameters arg")
 
         if 'src_mac_addr_mask' not in parameters:
             raise ValueError("\'src_mac_addr_mask\' not present "
@@ -88,10 +89,17 @@ class MacAcl(object):
         src = parameters['source']
         src_mac_addr_mask = parameters['src_mac_addr_mask']
 
+        if not src:
+            raise ValueError("\'source\' not present "
+                             "in parameters arg")
+
         if src == "any":
             return "any"
         elif self.is_valid_mac(src):
             if self.is_valid_mac(src_mac_addr_mask):
+                if not src_mac_addr_mask:
+                    raise ValueError("\'src_mac_addr_mask\' not present "
+                                     "in parameters arg")
                 return src + ' ' + src_mac_addr_mask
 
         raise ValueError("Invalid {} mask: {}. Supported format is \
@@ -113,7 +121,8 @@ class MacAcl(object):
         Examples:
         """
         if 'dst' not in parameters:
-            return None
+            raise ValueError("\'dst\' not present "
+                             "in parameters arg")
 
         if 'dst_mac_addr_mask' not in parameters:
             raise ValueError("\'dst_mac_addr_mask\' not present parameter arg")
@@ -121,10 +130,17 @@ class MacAcl(object):
         dst = parameters['dst']
         dst_mac_addr_mask = parameters['dst_mac_addr_mask']
 
+        if not dst:
+            raise ValueError("\'dst\' not present "
+                             "in parameters arg")
+
         if dst == "any":
             return "any"
         elif self.is_valid_mac(dst):
             if self.is_valid_mac(dst_mac_addr_mask):
+                if not dst_mac_addr_mask:
+                    raise ValueError("\'dst_mac_addr_mask\' not present "
+                                     "in parameters arg")
                 return dst + ' ' + dst_mac_addr_mask
 
         raise ValueError("Invalid {} mask: {}. Supported format is "
@@ -147,6 +163,8 @@ class MacAcl(object):
             return None
 
         vlan = parameters['vlan']
+        if not vlan:
+            return None
 
         if vlan:
             if vlan.isdigit():
@@ -212,7 +230,7 @@ class MacAcl(object):
 
         arp_guard = parameters['arp_guard']
 
-        if arp_guard == 'False':
+        if arp_guard != 'True':
             return None
 
         if 'ethertype' not in parameters:
@@ -222,7 +240,7 @@ class MacAcl(object):
 
         ethertype = parameters['ethertype']
 
-        if arp_guard == 'True' and ethertype == 'arp':
+        if ethertype and ethertype == 'arp':
             return 'arp-guard'
 
         raise ValueError("\'arp_guard\' configuration allowed"
