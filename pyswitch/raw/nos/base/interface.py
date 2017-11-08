@@ -89,10 +89,8 @@ class Interface(BaseInterface):
 
             config = getattr(template, 'vlan_create').format(vlan_list=str)
             self._callback(config)
-
-        except Exception:
-            # TODO throw back exception
-            return False
+        except Exception as error:
+            raise error
 
     def overlay_gateway(self, **kwargs):
         """

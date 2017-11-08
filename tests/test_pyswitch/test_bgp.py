@@ -1,5 +1,5 @@
 import unittest
-from pynos.device import Device
+from pyswitch.device import Device
 
 
 class InterfaceTestCase(unittest.TestCase):
