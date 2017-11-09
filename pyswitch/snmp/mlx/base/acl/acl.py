@@ -843,7 +843,6 @@ class Acl(BaseAcl):
         config = ' '.join(config.split())
         cli_arr.append(config)
 
-        print cli_arr
         output = self._callback(cli_arr, handler='cli-set')
         return self._process_cli_output(inspect.stack()[0][3], config, output)
 
