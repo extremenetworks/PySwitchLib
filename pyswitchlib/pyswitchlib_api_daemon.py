@@ -440,11 +440,11 @@ class PySwitchLibApiDaemonRunner(DaemonRunner):
         self.stdin_path = os.path.join(os.sep, 'dev', 'null')
         self.stdout_path = os.path.join(os.sep, 'dev', 'null')
         self.stderr_path = os.path.join(os.sep, 'dev', 'null')
-        self.pidfile_path =  ConfigUtil().get_pidfilename_for_daemon_id(daemon_id=self._daemon_id, conf_dict=self._pyswitchlib_conf)
+        self.pidfile_path = ConfigUtil().get_pidfilename_for_daemon_id(daemon_id=self._daemon_id, conf_dict=self._pyswitchlib_conf)
         self.pidfile_timeout = 1
 
         super(PySwitchLibApiDaemonRunner, self).__init__(self)
-                            
+
     def _get_configured_daemon(self, daemon_id='', daemon_prefix=''):
         """
         This is an auto-generated method for the PySwitchLib.
@@ -478,8 +478,6 @@ class PySwitchLibApiDaemonRunner(DaemonRunner):
         api_exposed_class = Pyro4.expose(PySwitchLibApiDaemon)
         daemon_obj = api_exposed_class(pyro_daemon=pyro_daemon)
 
-        print(daemon_obj, api_exposed_class)
-
         uri = pyro_daemon.register(daemon_obj, force=True)
 
         daemon_uri_dict[daemon_id] = uri
@@ -494,7 +492,7 @@ class PySwitchLibApiDaemonRunner(DaemonRunner):
         """
 
         if daemon_id:
-            pyro_daemon, pyro_uri = self._get_configured_daemon(daemon_id=daemon_id, daemon_prefix=daemon_prefix) 
+            pyro_daemon, pyro_uri = self._get_configured_daemon(daemon_id=daemon_id, daemon_prefix=daemon_prefix)
 
             try:
                 with Pyro4.locateNS(host='localhost', port=pyro_ns_port) as ns:
@@ -567,7 +565,7 @@ class PySwitchLibApiDaemonRunner(DaemonRunner):
         if daemon_prefix:
             if self._daemon_id in self._pyswitchlib_conf:
                 daemon_prefixes = self._pyswitchlib_conf[self._daemon_id].split(':')
-            
+
                 if len(daemon_prefixes) > 1:
                     daemon_prefixes.remove(daemon_prefix)
                     daemon_prefixes.insert(0, daemon_prefix)
@@ -593,7 +591,7 @@ class PySwitchLibApiDaemonRunner(DaemonRunner):
         while True:
             time.sleep(5)
 
-if __name__ == "__main__":                                                                                                                                                          
+if __name__ == "__main__":
     pyswitchlib_conf = ConfigFileUtil().read(filename=pyswitchlib_conf_file)
     daemon_id = None
 
@@ -641,5 +639,4 @@ if __name__ == "__main__":
         pyswitchlib_runner.do_action()
     except (LockTimeout, DaemonRunnerStopFailureError) as e:
         sys.exit()
-
 
