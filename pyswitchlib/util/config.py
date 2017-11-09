@@ -11,7 +11,6 @@ class ConfigUtil(object):
         """
         This is an auto-generated method for the PySwitchLib.
         """
-
         daemon_id = ''
 
         if conf_dict:
@@ -27,13 +26,12 @@ class ConfigUtil(object):
         """
         This is an auto-generated method for the PySwitchLib.
         """
-        
         prefix = sys.prefix
 
         if conf_dict:
             if daemon_id in conf_dict:
                 prefixes = conf_dict[daemon_id].split(':')
-                
+
                 if sys.prefix in prefixes:
                     prefix = sys.prefix
                 else:
@@ -45,7 +43,6 @@ class ConfigUtil(object):
         """
         This is an auto-generated method for the PySwitchLib.
         """
-
         prefix_lib_path = ''
 
         python_version = sys.version_info
@@ -62,7 +59,6 @@ class ConfigUtil(object):
         """
         This is an auto-generated method for the PySwitchLib.
         """
-
         pidfilename = ''
 
         if conf_dict and daemon_id:
@@ -71,7 +67,9 @@ class ConfigUtil(object):
 
         if not pidfilename:
             pidfilename = '.pyswitchlib_default.pid'
-                
+
         pidfilename = os.path.join(os.sep, 'tmp', pidfilename)
 
         return pidfilename
+
+

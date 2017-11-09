@@ -11,6 +11,9 @@ class ConfigFileUtil(object):
     """
 
     def __init__(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
         if not os.path.exists(lock_file):
             original_mask = os.umask(0o111)
 
@@ -21,8 +24,11 @@ class ConfigFileUtil(object):
                 pass
             finally:
                 os.umask(original_mask)
-        
+
     def read(self, filename=None):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
         conf_dict = {}
         conf_pattern = re.compile('\s*(\w+)\s*=\s*(\S+)\s*')
 
@@ -41,6 +47,9 @@ class ConfigFileUtil(object):
         return conf_dict
 
     def write(self, filename=None, conf_dict=None, do_merge=True):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
         if do_merge:
             merged_conf = self.read(filename=filename)
         else:
@@ -53,3 +62,5 @@ class ConfigFileUtil(object):
                 with open(filename, 'w') as conf_file:
                     for key in merged_conf:
                         conf_file.write(key + ' = ' + str(merged_conf[key]) + '\n')
+
+

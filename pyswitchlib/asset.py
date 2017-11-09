@@ -91,7 +91,7 @@ class Asset(object):
 
         if os.path.exists(self._ns_pid_file):
             self._pyro_proxy_name = 'PYRONAME:PySwitchLib.' + self._pyro_daemon_id
-            
+
             if self._pyro_ns_port:
                 self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
         else:
