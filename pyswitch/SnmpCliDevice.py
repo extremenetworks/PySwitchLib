@@ -19,6 +19,7 @@ import sys
 import pyswitch.utilities as util
 import pyswitch.snmp.mlx.base.interface
 import pyswitch.snmp.mlx.base.system
+import pyswitch.snmp.base.utils
 import pyswitch.snmp.mlx.base.acl.acl
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
@@ -29,29 +30,34 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 from paramiko.ssh_exception import SSHException
 
-ROUTER_ATTRS = ['interface', 'system', 'acl']
+ROUTER_ATTRS = ['interface', 'system', 'acl', 'utils']
 
 NI_VERSIONS = {
     '5.8': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
+        'utils': pyswitch.snmp.base.utils.Utils,
     },
     '5.9': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
+        'utils': pyswitch.snmp.base.utils.Utils,
     },
     '6.0': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
         'acl': pyswitch.snmp.mlx.base.acl.acl.Acl,
+        'utils': pyswitch.snmp.base.utils.Utils,
     },
     '6.1': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
+        'utils': pyswitch.snmp.base.utils.Utils,
     },
     '6.2': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
+        'utils': pyswitch.snmp.base.utils.Utils,
     },
 }
 
