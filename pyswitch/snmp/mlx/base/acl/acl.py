@@ -365,7 +365,7 @@ class Acl(BaseAcl):
         config = t.render(acl_name_str=acl_name)
         config = ' '.join(config.split())
 
-        output = self._callback([config], handler='cli-set')
+        output = self._callback(config, handler='cli-get')
 
         # Check if there is any error
         self._process_cli_output(inspect.stack()[0][3], config, output)
@@ -985,9 +985,10 @@ class Acl(BaseAcl):
         """
 
         ret = {'type': '', 'protocol': ''}
-        res = self._callback(['show access-list all',
-                              'show ipv6 access-list'],
-                             handler='cli-set').split('\n')
+        res = self._callback('show access-list all',
+                             handler='cli-get').split('\n')
+        res += self._callback('show ipv6 access-list',
+                              handler='cli-get').split('\n')
 
         for line in res:
             if acl_name in line:
