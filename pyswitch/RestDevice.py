@@ -39,7 +39,6 @@ import pyswitch.os.slxos.base.cluster
 import pyswitch.utilities as util
 from pyswitch.AbstractDevice import AbstractDevice
 from pyswitch.XMLAsset import XMLAsset
-from pyswitch.utilities import Util
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
              'fabric_service', 'vcs', 'isis', 'ospf', 'mpls', 'mct', 'firmware', 'cluster',
@@ -277,39 +276,6 @@ class RestDevice(AbstractDevice):
             return False
 
     @property
-    def mac_table(self):
-        """list[dict]: the MAC table of the device.
-         Examples:
-            >>> import pyswitch.device
-            >>> switches = ['10.24.39.231']
-            >>> auth = ('admin', 'password')
-            >>> for switch in switches:
-            ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output = dev.mac_table
-        """
-        table = []
-
-        config = ('get_mac_address_table_rpc', {})
-        rest_root = self._callback(config, handler='get')
-        util = Util(rest_root.data)
-        for entry in util.findlist(util.root, './/mac-address-table'):
-            address = util.find(entry, './/mac-address')
-            vlan = util.find(entry, './/vlanid')
-            mac_type = util.find(entry, './/mac-type')
-            state = util.find(entry, './/mac-state')
-            interface = util.findNode(entry, './/forwarding-interface')
-            interface_type = util.find(interface, './/interface-type')
-            interface_name = util.find(interface, './/interface-name')
-            interface = '%s%s' % (interface_type, interface_name)
-
-            table.append(dict(mac_address=address, interface=interface,
-                              state=state, vlan=vlan,
-                              type=mac_type))
-
-        return table
-
-    @property
     def os_type(self):
         if self.os_type_val is None:
             self.os_type_val = self._mgr.get_os_type()
@@ -410,29 +376,6 @@ class RestDevice(AbstractDevice):
 
         self._mgr = XMLAsset(ip_addr=self._conn[0], auth=self._auth)
         return True
-
-    def find_interface_by_mac(self, **kwargs):
-        """Find the interface through which a MAC can be reached.
-        Args:
-            mac_address (str): A MAC address in 'xx:xx:xx:xx:xx:xx' format.
-        Returns:
-            list[dict]: a list of mac table data.
-        Raises:
-            KeyError: if `mac_address` is not specified.
-        Examples:
-            >>> from pprint import pprint
-            >>> import pyswitch.device
-            >>> conn = ('10.24.39.231', '22')
-            >>> auth = ('admin', 'password')
-            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     x = dev.find_interface_by_mac(
-            ...     mac_address='10:23:45:67:89:ab')
-            ...     pprint(x) # doctest: +ELLIPSIS
-            [{'interface'...'mac_address'...'state'...'type'...'vlan'...}]
-        """
-        mac = kwargs.pop('mac_address')
-        results = [x for x in self.mac_table if x['mac_address'] == mac]
-        return results
 
     def close(self):
         """Close REST session.
