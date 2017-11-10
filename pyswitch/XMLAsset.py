@@ -5,10 +5,10 @@ from pyswitchlib.asset import Asset
 
 
 class XMLAsset(Asset):
-    def __init__(self, ip_addr='', auth=('admin', 'password'), 
-                rest_proto='', ca_cert='', fw_ver='', timeout=''):
-        super(XMLAsset, self).__init__(ip_addr=ip_addr, auth=auth, 
-                rest_proto=rest_proto, ca_cert=ca_cert, fw_ver=fw_ver, timeout=timeout)
+    def __init__(self, ip_addr='', auth=('admin', 'password'),
+                 rest_proto='', ca_cert='', fw_ver='', timeout=''):
+        super(XMLAsset, self).__init__(ip_addr=ip_addr, auth=auth,
+              rest_proto=rest_proto, ca_cert=ca_cert, fw_ver=fw_ver, timeout=timeout)
 
     def _rest_operation(self, rest_commands=None, yang_list=None, timeout=None):
         auth = self._auth
