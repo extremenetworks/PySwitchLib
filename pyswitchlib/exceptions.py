@@ -21,3 +21,8 @@ class ExistingApiPortBound(PyswitchlibException):
 class ApiDaemonConnectionError(PyswitchlibException):
     """If connecion to the API daemon fails or API deamon cannot be found."""
 
+class RestProtocolTypeError(PyswitchlibException):
+    """If provided rest protocol type specified is invalid."""
+
+class CACertificateNotFoundError(PyswitchlibException):
+    """If provided path to the CA certificate cannot be found."""

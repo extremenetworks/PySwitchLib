@@ -50,12 +50,18 @@ class Asset(object):
         self._overall_success = True
         self._overall_status = []
 
-        if rest_proto == 'http' or rest_proto == 'https':
-            self._rest_protocol = rest_proto
+        if rest_proto:
+            if rest_proto.lower() == 'http' or rest_proto.lower() == 'https':
+                self._rest_protocol = rest_proto.lower()
+            else:
+                raise RestProtocolTypeError("Rest protocol type must be 'http' or 'https'.  '" + rest_proto + "' was specified.")
 
         if ca_cert:
-            self._session.verify = ca_cert
-            self._rest_protocol = 'https'
+            if os.path.isfile(ca_cert):
+                self._session.verify = ca_cert
+                self._rest_protocol = 'https'
+            else:
+                raise CACertificateNotFoundError("The CA certificate file '" + ca_cert + "' could not be found.")
 
         if timeout != '':
             self._session_timeout = timeout
