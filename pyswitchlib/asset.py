@@ -27,7 +27,7 @@ class Asset(object):
     Asset provides connection information for PySwitchLib APIs.
     """
 
-    def __init__(self, ip_addr='', auth=('admin', 'password'), fw_ver='', timeout='', api_port=None):
+    def __init__(self, ip_addr='', auth=('admin', 'password'), rest_proto='', ca_cert='', fw_ver='', timeout='', api_port=None):
         def on_deletion (killed_ref):
             self._cleanup_timer_handle()
             self._session.close()
@@ -38,6 +38,7 @@ class Asset(object):
 
         self._ip_addr = ip_addr
         self._auth = auth
+        self._rest_protocol = 'http'
         self._os_type = 'unknown'
         self._os_ver = fw_ver
         self._os_full_ver = fw_ver
@@ -48,6 +49,13 @@ class Asset(object):
         self._response = requests.Response()
         self._overall_success = True
         self._overall_status = []
+
+        if rest_proto == 'http' or rest_proto == 'https':
+            self._rest_protocol = rest_proto
+
+        if ca_cert:
+            self._session.verify = ca_cert
+            self._rest_protocol = 'https'
 
         if timeout != '':
             self._session_timeout = timeout
@@ -176,7 +184,7 @@ class Asset(object):
                 uri_prefix_path = self._rest_discover_path
 
             header = {"Resource-Depth" : str(rest_cmd[4])}
-            url = "http://"+self._ip_addr+uri_prefix_path
+            url = self._rest_protocol+"://"+self._ip_addr+uri_prefix_path
 
             self._session.headers.update({'Content-Type': 'application/x-www-form-urlencoded'})
 
