@@ -7,13 +7,14 @@ from lxml import etree as letree
 from ncclient import manager
 from ncclient import xml_
 
-import pyswitch.raw.base.acl
+import pyswitch.raw.nos.base.acl
 import pyswitch.raw.slxos.base.acl
+import pyswitch.raw.slxos.ver_16r.acl
+import pyswitch.raw.slxos.ver_17s.acl
 import pyswitch.raw.nos.base.interface
 import pyswitch.raw.slxos.base.interface
 import pyswitch.utilities as util
 from pyswitch.AbstractDevice import AbstractDevice
-from pyswitch.utilities import Util
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
              'fabric_service', 'vcs', 'acl']
@@ -29,25 +30,25 @@ class DeviceCommError(Exception):
 NOS_VERSIONS = {
     '6.0': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.nos.base.acl.Acl,
     },
     '7.0': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.nos.base.acl.Acl,
     },
     '7.1': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.nos.base.acl.Acl,
     },
     '7.2': {
         'interface': pyswitch.raw.nos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.nos.base.acl.Acl,
     },
 }
 SLXOS_VERSIONS = {
     '16r.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.slxos.ver_16r.acl.Acl,
     },
     '17r.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
@@ -59,7 +60,7 @@ SLXOS_VERSIONS = {
     },
     '17s.1': {
         'interface': pyswitch.raw.slxos.base.interface.Interface,
-        'acl': pyswitch.raw.base.acl.Acl,
+        'acl': pyswitch.raw.slxos.ver_17s.acl.Acl,
     },
 
 }
@@ -261,57 +262,6 @@ class NetConfDevice(AbstractDevice):
             False
         """
         return self._mgr.close_session()
-
-    def find_interface_by_mac(self, **kwargs):
-        """Find the interface through which a MAC can be reached.
-        Args:
-            mac_address (str): A MAC address in 'xx:xx:xx:xx:xx:xx' format.
-        Returns:
-            list[dict]: a list of mac table data.
-        Raises:
-            KeyError: if `mac_address` is not specified.
-        Examples:
-            >>> from pprint import pprint
-            >>> import pyswitch.device
-            >>> conn = ('10.24.39.211', '22')
-            >>> auth = ('admin', 'password')
-            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     x = dev.find_interface_by_mac(
-            ...     mac_address='10:23:45:67:89:ab')
-            ...     pprint(x) # doctest: +ELLIPSIS
-            [{'interface'...'mac_address'...'state'...'type'...'vlan'...}]
-        """
-        mac = kwargs.pop('mac_address')
-        results = [x for x in self.mac_table if x['mac_address'] == mac]
-        return results
-
-    @property
-    def mac_table(self):
-        """list[dict]: the MAC table of the device.
-
-        """
-        table = []
-
-        config = '<get-mac-address-table xmlns="urn:brocade.com:mgmt:brocade-mac-address-table' \
-                 '"></get-mac-address-table>'
-        rest_root = self._callback(config, handler='get')
-
-        util = Util(rest_root)
-        for entry in util.findlist(util.root, './/mac-address-table'):
-            address = util.find(entry, './/mac-address')
-            vlan = util.find(entry, './/vlanid')
-            mac_type = util.find(entry, './/mac-type')
-            state = util.find(entry, './/mac-state')
-            interface = util.findNode(entry, './/forwarding-interface')
-            interface_type = util.find(interface, './/interface-type')
-            interface_name = util.find(interface, './/interface-name')
-            interface = '%s%s' % (interface_type, interface_name)
-
-            table.append(dict(mac_address=address, interface=interface,
-                              state=state, vlan=vlan,
-                              type=mac_type))
-
-        return table
 
     @property
     def os_type(self):

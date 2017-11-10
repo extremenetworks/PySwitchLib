@@ -109,10 +109,6 @@ class Device(object):
         return self.device_type._mgr
 
     @property
-    def mac_table(self):
-        return self.device_type.mac_table
-
-    @property
     def os_type(self):
         return self.device_type.os_type
 
