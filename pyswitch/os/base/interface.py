@@ -427,13 +427,13 @@ class Interface(object):
 
             if ipaddress.version == 4:
                 method_name = 'interface_%s_ip_address_' % int_type
-                ip_args['address'] = (ip_addr, False, False, False)
+                ip_args['address'] = (ip_addr)
 
             elif ipaddress.version == 6:
                 method_name = 'interface_%s_ipv6_address_ipv6_address_' \
                               % int_type
                 if not delete:
-                    ip_args['ipv6_address'] = (ip_addr, False, False)
+                    ip_args['ipv6_address'] = (ip_addr)
             if int_type == 've' and self.has_rbridge_id:
                 method_name = "rbridge_id_%s" % method_name
                 ip_args['rbridge_id'] = rbridge_id
