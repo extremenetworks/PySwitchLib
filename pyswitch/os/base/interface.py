@@ -7239,3 +7239,58 @@ class Interface(object):
         """ Check if router interface config is required for VLAN
         """
         return False
+
+    def validate_interface_vlan(self, **kwargs):
+        """ Check if interface vlan(s) mapping exist
+        Args:
+           vlan_list(str): List of VLAN's
+           intf_type(str): interface type
+           intf_name(str): interface name e.g 0/1, 2/1/1, 1, 2
+           int_mode (str): access/trunk
+        Returns:
+            True - if mapping of port->vlans exist
+            False - if mapping doesn't exist
+        Raises:
+            KeyError - If input args vlan_list, int_name are not passed
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.81.183']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.validate_interface_vlan(vlan_list=[100,200],
+            ...         intf_type='ethernet', intf_name='0/1', int_mode='access')
+            ...         output = dev.interface.validate_interface_vlan(vlan_list=[100,200],
+            ...         intf_type='port_channel', intf_name='10', int_mode='trunk')
+ """
+        vlan_list = kwargs.pop('vlan_list')
+        intf_name = kwargs.pop('intf_name')
+        intf_type = kwargs.pop('intf_type')
+        intf_mode = kwargs.pop('intf_mode', None)
+        if intf_type == 'port_channel':
+            # remap the intf type for port-channel
+            intf_type = 'port-channel'
+        swp_list = self.switchport_list
+        all_true = True
+        for vlan_id in vlan_list:
+            is_vlan_interface_present = False
+            is_intf_name_present = False
+            for out in swp_list:
+                for vid in out['vlan-id']:
+                    if str(vlan_id) == str(vid):
+                        is_vlan_interface_present = True
+                        if intf_name == out['interface-name'] and \
+                                intf_type == out['interface_type']:
+                            is_intf_name_present = True
+                            if intf_mode in out['mode']:
+                                continue
+                            else:
+                                all_true = False
+                        else:
+                            continue
+            if not is_vlan_interface_present:
+                all_true = False
+            if is_vlan_interface_present and not is_intf_name_present:
+                all_true = False
+        return all_true
