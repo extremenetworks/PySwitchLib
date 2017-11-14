@@ -1883,10 +1883,16 @@ class Interface(BaseInterface):
         Examples:
             >>> import pyswitch.device
             >>> switches = ['10.24.85.107']
-            >>> auth = ('admin', 'admin')
+            >>> auth_snmp = ('admin', 'admin', None,
+            >>>              {'version': 2,
+            >>>               'snmpport': 161,
+            >>>               'snmpv2c': 'public',
+            >>>               'v3user':'',
+            >>>               'v3priv':'', 'v3auth':'',
+            >>>               'authpass':'', 'privpass':''})
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth_snmp=auth_snmp) as dev:
             ...         output = dev.interface.get_vlans
         """
         vlan_oid = SnmpMib.mib_oid_map['dot1qVlanStaticEntry']
@@ -1913,10 +1919,16 @@ class Interface(BaseInterface):
         Examples:
             >>> import pyswitch.device
             >>> switches = ['10.24.85.107']
-            >>> auth = ('admin', 'admin')
+            >>> auth_snmp = ('admin', 'admin', None,
+            >>>              {'version': 2,
+            >>>               'snmpport': 161,
+            >>>               'snmpv2c': 'public',
+            >>>               'v3user':'',
+            >>>               'v3priv':'', 'v3auth':'',
+            >>>               'authpass':'', 'privpass':''})
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth_snmp=auth_snmp) as dev:
             ...         output = dev.interface.get_vlan_port_map
         """
         vlan_oid = SnmpMib.mib_oid_map['dot1qVlanStaticEntry']
@@ -1974,10 +1986,16 @@ class Interface(BaseInterface):
         Examples:
             >>> import pyswitch.device
             >>> switches = ['10.24.85.107']
-            >>> auth = ('admin', 'admin')
+            >>> auth_snmp = ('admin', 'admin', None,
+            >>>              {'version': 2,
+            >>>               'snmpport': 161,
+            >>>               'snmpv2c': 'public',
+            >>>               'v3user':'',
+            >>>               'v3priv':'', 'v3auth':'',
+            >>>               'authpass':'', 'privpass':''})
             >>> for switch in switches:
             ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     with pyswitch.device.Device(conn=conn, auth_snmp=auth_snmp) as dev:
             ...         output = dev.interface.validate_interface_vlan(vlan_list=[100,200],
             ...         intf_type='ethernet', intf_name='2/1')
             ...         output = dev.interface.validate_interface_vlan(vlan_list=[100,200],
