@@ -7252,7 +7252,18 @@ class Interface(object):
             False - if mapping doesn't exist
         Raises:
             KeyError - If input args vlan_list, int_name are not passed
-        """
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.81.183']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.validate_interface_vlan(vlan_list=[100,200],
+            ...         intf_type='ethernet', intf_name='0/1', int_mode='access')
+            ...         output = dev.interface.validate_interface_vlan(vlan_list=[100,200],
+            ...         intf_type='port_channel', intf_name='10', int_mode='trunk')
+ """
         vlan_list = kwargs.pop('vlan_list')
         intf_name = kwargs.pop('intf_name')
         intf_type = kwargs.pop('intf_type')

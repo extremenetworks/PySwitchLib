@@ -1880,6 +1880,14 @@ class Interface(BaseInterface):
             None
         Returns:
             List of VLANs
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.get_vlans
         """
         vlan_oid = SnmpMib.mib_oid_map['dot1qVlanStaticEntry']
         config = {}
@@ -1902,6 +1910,14 @@ class Interface(BaseInterface):
             None
         Returns:
             List of dictionary of vlan->port mappings
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.get_vlan_port_map
         """
         vlan_oid = SnmpMib.mib_oid_map['dot1qVlanStaticEntry']
         config = {}
@@ -1917,6 +1933,8 @@ class Interface(BaseInterface):
             # extract ports from each slot
             slot_octet = 1
             list = []
+            # In SNMP output each slot occupies 6 octets (48 bits) accomodating 48 ports
+            # Max slots is 32 and total octets is 192
             for i in range(0, 192, 6):
                 slot_octet = key_oid[i: 6 + i]
                 list.append(slot_octet)
@@ -1953,6 +1971,17 @@ class Interface(BaseInterface):
         Raises:
             KeyError - If input args vlan_list, int_name are not passed
             ValueError - invalid intf type
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.validate_interface_vlan(vlan_list=[100,200],
+            ...         intf_type='ethernet', intf_name='2/1')
+            ...         output = dev.interface.validate_interface_vlan(vlan_list=[100,200],
+            ...         intf_type='port_channel', intf_name='10')
         """
         vlan_list = kwargs.pop('vlan_list')
         intf_name = kwargs.pop('intf_name')
