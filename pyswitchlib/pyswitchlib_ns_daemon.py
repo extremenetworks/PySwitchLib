@@ -12,6 +12,7 @@ from lockfile import LockTimeout
 pyswitchlib_conf_file = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
 pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns.pid')
 
+
 class PySwitchLibNsDaemon(DaemonRunner):
     """
     This is an auto-generated class for the PySwitchLib.
@@ -61,7 +62,6 @@ class PySwitchLibNsDaemon(DaemonRunner):
                             pyro_proxy._pyroRelease()
 
                         ns.remove(pyro_proxy_name)
-
 
     def _start(self):
         """

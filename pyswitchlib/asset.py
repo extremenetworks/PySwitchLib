@@ -91,7 +91,7 @@ class Asset(object):
 
         if os.path.exists(self._ns_pid_file):
             self._pyro_proxy_name = 'PYRONAME:PySwitchLib.' + self._pyro_daemon_id
-            
+
             if self._pyro_ns_port:
                 self._pyro_proxy_name += '@localhost:' + str(self._pyro_ns_port)
         else:
@@ -133,8 +133,14 @@ class Asset(object):
             def getattr_wrapper(*args, **kwargs):
                 self._proxied.api_acquire()
                 self._proxied.module_name(module_name=self._supported_module_name)
-                rest_operation_tuple = getattr(self._proxied, name)(*args, **kwargs)
-                self._proxied.api_release()
+                rest_operation_tuple = ()
+
+                try:
+                    rest_operation_tuple = getattr(self._proxied, name)(*args, **kwargs)
+                except Exception as e:
+                    raise e
+                finally:
+                    self._proxied.api_release()
 
                 return self._rest_operation(rest_commands=rest_operation_tuple[0], yang_list=rest_operation_tuple[1], timeout=rest_operation_tuple[2])
             return getattr_wrapper
