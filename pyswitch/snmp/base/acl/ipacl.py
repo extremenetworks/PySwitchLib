@@ -638,7 +638,7 @@ class IpAcl(object):
             return None
 
         if 'drop_precedence_force' in parameters and \
-                not parameters['drop_precedence_force']:
+                parameters['drop_precedence_force']:
             raise ValueError('drop-precedence and drop-precedence-force can '
                              'not be enabled at the same time!')
 
@@ -647,7 +647,7 @@ class IpAcl(object):
 
         if drop_precedence.isdigit():
             if int(drop_precedence) >= 0 and int(drop_precedence) <= 3:
-                return 'drop_precedence ' + drop_precedence
+                return 'drop-precedence ' + drop_precedence
 
         raise ValueError("drop-precedence value should be 0 - 3")
 
@@ -669,7 +669,7 @@ class IpAcl(object):
             return None
 
         if 'drop_precedence' in parameters and \
-                not parameters['drop_precedence']:
+                parameters['drop_precedence']:
             raise ValueError('drop-precedence and drop-precedence-force can '
                              'not be enabled at the same time!')
 
@@ -679,6 +679,6 @@ class IpAcl(object):
         if drop_precedence_force.isdigit():
             if int(drop_precedence_force) >= 0 and \
                     int(drop_precedence_force) <= 3:
-                return 'drop_precedence_force ' + drop_precedence_force
+                return 'drop-precedence-force ' + drop_precedence_force
 
         raise ValueError("drop-precedence-force value should be 0 - 3")
