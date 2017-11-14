@@ -2081,13 +2081,13 @@ class Interface(BaseInterface):
                 else:
                     cli_arr.append('ipv6 vrrp-extended vrid ' + str(vrid))
                     cli_arr.append('virtual-mac ' + virtual_mac)
-        try:
-            cli_res = callback(cli_arr, handler='cli-set')
-            pyswitch.utilities.check_mlx_cli_set_error(cli_res)
-            return True
-        except Exception as error:
-            reason = error.message
-            raise ValueError('failed to create/delete VRRP vip %s' % (reason))
+            try:
+                cli_res = callback(cli_arr, handler='cli-set')
+                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+                return True
+            except Exception as error:
+                reason = error.message
+                raise ValueError('failed to create/delete VRRP vip %s' % (reason))
 
     def vrrpe_vrid(self, **kwargs):
         """Set/get vrrpe vrid.
@@ -2274,3 +2274,70 @@ class Interface(BaseInterface):
         except Exception as error:
             reason = error.message
             raise ValueError('failed to create/delete VRRP vip %s' % (reason))
+
+    def get_eth_l3_interfaces(self, **kwargs):
+        """list[dict]: A list of dictionary items describing ethernet l3
+        interfaces
+
+        Args:
+            callback (function): A function executed upon completion of the
+                method
+        Returns:
+            Return list of dict containing ethernet l3 interface info
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.get_eth_l3_interfaces()
+        """
+        eth_l3_list = []
+        callback = kwargs.pop('callback', self._callback)
+        cli_arr = 'show ip interface | inc eth'
+        output = callback(cli_arr, handler='cli-get')
+        error = re.search(r'Error(.+)', output)
+        if error:
+            raise ValueError("%s" % error.group(0))
+        # Populate the VE interface list with default data and update later
+        for line in output.split('\n'):
+            if(re.search(r'eth ', line)):
+                info = re.split('\s+', line)
+                eth_id = info[1]
+                if_name = info[0] + ' ' + info[1]
+                eth_info = {'interface-type': 'ethernet',
+                            'interface-name': str(eth_id),
+                            'if-name': if_name,
+                            'interface-state': info[5],
+                            'interface-proto-state': info[6],
+                            'ip-address': info[2]}
+
+                eth_l3_list.append(eth_info)
+        return eth_l3_list
+
+    def vrrpe_supported_intf(self, **kwargs):
+        """
+        validate vrrpe supported interface type
+
+        Args:
+        intf_type(str): 've' or 'ethernet'
+        Returns:
+                   None
+        Raises:
+             valueError if intf type is not ve or ethernet
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.vrrpe_supported_intf('ethernet')
+        """
+        valid_int_types = ['ethernet', 've']
+        int_type = kwargs.pop('intf_type').lower()
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             repr(valid_int_types))
