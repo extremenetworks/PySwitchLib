@@ -707,13 +707,13 @@ class Acl(BaseAcl):
         """
 
         user_data = {}
-
         user_data['acl_name_str'] = parameters['acl_name']
         user_data['seq_id_str'] = parameters['seq_id']
         user_data['action_str'] = self.ip.parse_action(**parameters)
+        user_data['protocol_str'] = self.ip.parse_protocol(**parameters)
         user_data['source_str'] = self.ip.parse_source(**parameters)
         user_data['dst_str'] = self.ip.parse_destination(**parameters)
-        user_data['protocol_str'] = self.ip.parse_protocol(**parameters)
+        user_data['established_str'] = self.ip.parse_established(**parameters)
         user_data['dscp_mapping_str'] = \
             self.ip.parse_dscp_mapping(**parameters)
         user_data['dscp_marking_str'] = \
@@ -729,6 +729,10 @@ class Acl(BaseAcl):
         user_data['priority_mapping_str'] = \
             self.ip.parse_priority_mapping(**parameters)
         user_data['tos_str'] = self.ip.parse_tos(**parameters)
+        user_data['drop_precedence_str'] = \
+            self.ip.parse_drop_precedence(**parameters)
+        user_data['drop_precedence_force_str'] = \
+            self.ip.parse_drop_precedence_force(**parameters)
         user_data['log_str'] = self.ip.parse_log(**parameters)
         user_data['mirror_str'] = self.ip.parse_mirror(**parameters)
 

@@ -30,6 +30,7 @@ import pyswitch.os.slxos.base.interface
 import pyswitch.os.slxos.base.isis
 import pyswitch.os.slxos.base.mpls
 import pyswitch.os.base.firmware
+import pyswitch.os.base.utils
 import pyswitch.os.slxos.base.ospf
 import pyswitch.os.slxos.base.mct
 import pyswitch.os.slxos.base.services
@@ -38,10 +39,10 @@ import pyswitch.os.slxos.base.cluster
 import pyswitch.utilities as util
 from pyswitch.AbstractDevice import AbstractDevice
 from pyswitch.XMLAsset import XMLAsset
-from pyswitch.utilities import Util
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
-             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls', 'mct', 'firmware', 'cluster']
+             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls', 'mct', 'firmware', 'cluster',
+             'utils']
 
 NOS_VERSIONS = {
     '6.0': {
@@ -53,7 +54,8 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
 
     },
     '7.0': {
@@ -65,7 +67,8 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '7.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -76,7 +79,8 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '7.2': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -87,7 +91,8 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '7.3': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -98,7 +103,8 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
 }
 SLXOS_VERSIONS = {
@@ -113,7 +119,8 @@ SLXOS_VERSIONS = {
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
         'mct': pyswitch.os.slxos.base.mct.Mct,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '17r.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -126,7 +133,8 @@ SLXOS_VERSIONS = {
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
         'mct': pyswitch.os.slxos.base.mct.Mct,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '17r.2': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -139,7 +147,8 @@ SLXOS_VERSIONS = {
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
         'mct': pyswitch.os.slxos.base.mct.Mct,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '17s.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -153,7 +162,8 @@ SLXOS_VERSIONS = {
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
         'mct': pyswitch.os.slxos.base.mct.Mct,
         'firmware': pyswitch.os.base.firmware.Firmware,
-        'cluster': pyswitch.os.slxos.base.cluster.Cluster
+        'cluster': pyswitch.os.slxos.base.cluster.Cluster,
+        'utils': pyswitch.os.base.utils.Utils
     },
 }
 
@@ -217,11 +227,24 @@ class RestDevice(AbstractDevice):
 
         for nos_attr in NOS_ATTRS:
             if nos_attr in os_table[ver]:
-                setattr(
-                    self.base,
-                    nos_attr,
-                    os_table[ver][nos_attr](
-                        self._callback))
+                """
+                  utils class should be considered as
+                  special as it can execute CLI commands
+                  wherever REST is not supported. Hence
+                  we need to pass the host and auth parameters.
+                """
+                if nos_attr == 'utils':
+                    setattr(
+                        self.base,
+                        nos_attr,
+                        os_table[ver][nos_attr](
+                            self._callback, self.host, self._auth))
+                else:
+                    setattr(
+                        self.base,
+                        nos_attr,
+                        os_table[ver][nos_attr](
+                            self._callback))
 
         setattr(self, 'asset', self._mgr)
 
@@ -251,39 +274,6 @@ class RestDevice(AbstractDevice):
             return self._mgr.connected
         else:
             return False
-
-    @property
-    def mac_table(self):
-        """list[dict]: the MAC table of the device.
-         Examples:
-            >>> import pyswitch.device
-            >>> switches = ['10.24.39.231']
-            >>> auth = ('admin', 'password')
-            >>> for switch in switches:
-            ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output = dev.mac_table
-        """
-        table = []
-
-        config = ('get_mac_address_table_rpc', {})
-        rest_root = self._callback(config, handler='get')
-        util = Util(rest_root.data)
-        for entry in util.findlist(util.root, './/mac-address-table'):
-            address = util.find(entry, './/mac-address')
-            vlan = util.find(entry, './/vlanid')
-            mac_type = util.find(entry, './/mac-type')
-            state = util.find(entry, './/mac-state')
-            interface = util.findNode(entry, './/forwarding-interface')
-            interface_type = util.find(interface, './/interface-type')
-            interface_name = util.find(interface, './/interface-name')
-            interface = '%s%s' % (interface_type, interface_name)
-
-            table.append(dict(mac_address=address, interface=interface,
-                              state=state, vlan=vlan,
-                              type=mac_type))
-
-        return table
 
     @property
     def os_type(self):
@@ -386,29 +376,6 @@ class RestDevice(AbstractDevice):
 
         self._mgr = XMLAsset(ip_addr=self._conn[0], auth=self._auth)
         return True
-
-    def find_interface_by_mac(self, **kwargs):
-        """Find the interface through which a MAC can be reached.
-        Args:
-            mac_address (str): A MAC address in 'xx:xx:xx:xx:xx:xx' format.
-        Returns:
-            list[dict]: a list of mac table data.
-        Raises:
-            KeyError: if `mac_address` is not specified.
-        Examples:
-            >>> from pprint import pprint
-            >>> import pyswitch.device
-            >>> conn = ('10.24.39.231', '22')
-            >>> auth = ('admin', 'password')
-            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...     x = dev.find_interface_by_mac(
-            ...     mac_address='10:23:45:67:89:ab')
-            ...     pprint(x) # doctest: +ELLIPSIS
-            [{'interface'...'mac_address'...'state'...'type'...'vlan'...}]
-        """
-        mac = kwargs.pop('mac_address')
-        results = [x for x in self.mac_table if x['mac_address'] == mac]
-        return results
 
     def close(self):
         """Close REST session.

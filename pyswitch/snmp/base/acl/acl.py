@@ -370,7 +370,8 @@ class Acl(object):
         ret = method + ' : Successful'
 
         for line in output.split('\n'):
-            if 'Invalid input ' in line or 'error' in line.lower():
+            if 'Invalid input ' in line or 'error' in line.lower() or \
+                    'Incomplete command' in line:
                 ret = method + ' [ ' + config + ' ]: failed ' + line
 
         return ret

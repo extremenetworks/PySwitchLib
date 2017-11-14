@@ -40,4 +40,8 @@ class SnmpMib:
         'ipNetToPhysicalType': '1.3.6.1.2.1.4.35.1.6',
         'ipNetToPhysicalState': '1.3.6.1.2.1.4.35.1.7',
         'ipNetToPhysicalRowStatus': '1.3.6.1.2.1.4.35.1.8',
+        'dot1qTpFdbTable': '1.3.6.1.2.1.17.7.1.2.2',
+        'dot1qTpFdbEntry': '1.3.6.1.2.1.17.7.1.2.2.1',
+        'dot1qTpFdbPort': '1.3.6.1.2.1.17.7.1.2.2.2',
+        'dot1qTpFdbStatus': '1.3.6.1.2.1.17.7.1.2.2.3',
     }
