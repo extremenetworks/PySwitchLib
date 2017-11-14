@@ -63,6 +63,23 @@ class MacAcl(object):
 
         return False
 
+    def parse_source_dst_param(self, mac_param, mask_param):
+        if mac_param == "any":
+            return "any"
+
+        if not mask_param:
+            raise ValueError("MAC MASK required param if MAC is not \'any\'")
+
+        if not self.is_valid_mac(mac_param):
+            raise ValueError("Invalid MAC format. Supported format is "
+                             "HHHH.HHHH.HHHH")
+
+        if not self.is_valid_mac(mask_param):
+            raise ValueError("Invalid MAC MASK format. Supported format is "
+                             "HHHH.HHHH.HHHH")
+
+        return mac_param + ' ' + mask_param
+
     def parse_source(self, **parameters):
         """
         parse the source param.
@@ -78,32 +95,15 @@ class MacAcl(object):
             Raise ValueError exception
         Examples:
         """
-        if 'source' not in parameters:
-            raise ValueError("\'source\' not present "
-                             "in parameters arg")
+        src_mac_addr_mask = None
+        if 'source' not in parameters or not parameters['source']:
+            raise ValueError("\'source\' is required param for MLX")
 
-        if 'src_mac_addr_mask' not in parameters:
-            raise ValueError("\'src_mac_addr_mask\' not present "
-                             "in parameters arg")
+        if 'src_mac_addr_mask' in parameters:
+            src_mac_addr_mask = parameters['src_mac_addr_mask']
 
-        src = parameters['source']
-        src_mac_addr_mask = parameters['src_mac_addr_mask']
-
-        if not src:
-            raise ValueError("\'source\' not present "
-                             "in parameters arg")
-
-        if src == "any":
-            return "any"
-        elif self.is_valid_mac(src):
-            if self.is_valid_mac(src_mac_addr_mask):
-                if not src_mac_addr_mask:
-                    raise ValueError("\'src_mac_addr_mask\' not present "
-                                     "in parameters arg")
-                return src + ' ' + src_mac_addr_mask
-
-        raise ValueError("Invalid {} mask: {}. Supported format is \
-            HHHH.HHHH.HHHH HHHH.HHHH.HHHH".format(src, src_mac_addr_mask))
+        return self.parse_source_dst_param(parameters['source'],
+                                           src_mac_addr_mask)
 
     def parse_dst(self, **parameters):
         """
@@ -120,32 +120,15 @@ class MacAcl(object):
             Raise ValueError exception
         Examples:
         """
-        if 'dst' not in parameters:
-            raise ValueError("\'dst\' not present "
-                             "in parameters arg")
+        dst_mac_addr_mask = None
+        if 'dst' not in parameters or not parameters['dst']:
+            raise ValueError("\'dst\' is required param for MLX")
 
-        if 'dst_mac_addr_mask' not in parameters:
-            raise ValueError("\'dst_mac_addr_mask\' not present parameter arg")
+        if 'dst_mac_addr_mask' in parameters:
+            dst_mac_addr_mask = parameters['dst_mac_addr_mask']
 
-        dst = parameters['dst']
-        dst_mac_addr_mask = parameters['dst_mac_addr_mask']
-
-        if not dst:
-            raise ValueError("\'dst\' not present "
-                             "in parameters arg")
-
-        if dst == "any":
-            return "any"
-        elif self.is_valid_mac(dst):
-            if self.is_valid_mac(dst_mac_addr_mask):
-                if not dst_mac_addr_mask:
-                    raise ValueError("\'dst_mac_addr_mask\' not present "
-                                     "in parameters arg")
-                return dst + ' ' + dst_mac_addr_mask
-
-        raise ValueError("Invalid {} mask: {}. Supported format is "
-                         "HHHH.HHHH.HHHH HHHH.HHHH.HHHH"
-                         .format(dst, dst_mac_addr_mask))
+        return self.parse_source_dst_param(parameters['dst'],
+                                           dst_mac_addr_mask)
 
     def parse_vlan(self, **parameters):
         """
@@ -225,26 +208,21 @@ class MacAcl(object):
             Raise ValueError exception
         Examples:
         """
-        if 'arp_guard' not in parameters:
+        if 'arp_guard' not in parameters or parameters['arp_guard'] != 'True':
             return None
 
-        arp_guard = parameters['arp_guard']
+        if 'ethertype' not in parameters or parameters['ethertype'] != 'arp':
+            raise ValueError("arp guard acl cannot be configured for etype "
+                             "other than ARP !!")
 
-        if arp_guard != 'True':
-            return None
+        if 'log' in parameters and parameters['log'] == 'True':
+            raise ValueError("\'arp_guard\' and \'log\' can not be configured "
+                             "together")
 
-        if 'ethertype' not in parameters:
-            raise ValueError("The \'arp-guard\' value {} is invalid."
-                             " Can be supported ethertype arp only"
-                             .format(arp_guard))
-
-        ethertype = parameters['ethertype']
-
-        if ethertype and ethertype == 'arp':
-            return 'arp-guard'
-
-        raise ValueError("\'arp_guard\' configuration allowed"
-                         " only for \'arp\' ethertype")
+        if 'mirror' in parameters and parameters['mirror'] == 'True':
+            raise ValueError("\'arp_guard\' and \'mirror\' can not be "
+                             "configured together")
+        return 'arp-guard'
 
     def parse_drop_precedence(self, **parameters):
         """
@@ -271,6 +249,11 @@ class MacAcl(object):
             return None
 
         drop_precedence = parameters['drop_precedence']
+
+        if 'drop_precedence_force' in parameters and \
+                parameters['drop_precedence_force']:
+            raise ValueError("drop-precedence-force and drop-precedence "
+                             "can not be enabled at the same time!")
 
         if drop_precedence.isdigit():
             if int(drop_precedence) >= 0 or int(drop_precedence) <= 3:
@@ -304,6 +287,10 @@ class MacAcl(object):
             return None
 
         drop_precedence_force = parameters['drop_precedence_force']
+
+        if 'drop_precedence' in parameters and parameters['drop_precedence']:
+            raise ValueError("drop-precedence-force and drop-precedence "
+                             "can not be enabled at the same time!")
 
         if drop_precedence_force.isdigit():
             if int(drop_precedence_force) >= 0 or \
@@ -341,9 +328,8 @@ class MacAcl(object):
         else:
             return None
 
-        raise ValueError("The \'log\' value {} is invalid."
-                         " log can not be configured along with mirror"
-                         .format(log))
+        raise ValueError("Error: mirror and log keywords can not be "
+                         "used together")
 
     def parse_mirror(self, **parameters):
         """
@@ -372,9 +358,8 @@ class MacAcl(object):
         else:
             return None
 
-        raise ValueError("The \'mirror\' value {} is invalid."
-                         " mirror can not be configured along with mirror"
-                         .format(mirror))
+        raise ValueError("Error: mirror and log keywords can not be "
+                         "used together")
 
     def parse_priority(self, **parameters):
         """
@@ -397,6 +382,10 @@ class MacAcl(object):
 
         if not priority:
             return None
+
+        if 'priority_force' in parameters and parameters['priority_force']:
+            raise ValueError("priority and priority-force can not be "
+                             "enabled at the same time!")
 
         if int(priority) >= 0 or int(priority) <= 7:
             return 'priority ' + str(priority)
@@ -425,6 +414,10 @@ class MacAcl(object):
 
         if not priority_force:
             return None
+
+        if 'priority' in parameters and parameters['priority']:
+            raise ValueError("priority and priority-force can not be "
+                             "enabled at the same time!")
 
         if int(priority_force) >= 0 or int(priority_force) <= 7:
             return 'priority-force ' + str(priority_force)
