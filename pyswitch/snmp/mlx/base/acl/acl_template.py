@@ -78,6 +78,9 @@ add_ip_extended_acl_rule_template = '''
     {% if protocol_str is not none %} {{ protocol_str }} {% endif %}
     {% if source_str is not none %} {{ source_str }} {% endif %}
     {% if dst_str is not none %} {{ dst_str }} {% endif %}
+    {% if established_str is not none %} {{ established_str }} {% endif %}
+    {% if drop_precedence_str is not none %}
+        {{ drop_precedence_str }} {% endif %}
     {% if drop_precedence_force_str is not none %}
         {{ drop_precedence_force_str }} {% endif %}
     {% if dscp_mapping_str is not none %} {{ dscp_mapping_str }} {% endif %}
