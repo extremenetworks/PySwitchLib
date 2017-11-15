@@ -73,6 +73,8 @@ setup(
     install_requires=reqs,
     cmdclass={
         'install': PostInstallCommand,
+        'develop': PostInstallCommand,
+        'egg_info': PostInstallCommand,
     },
     data_files=[('/etc/pyswitchlib', ['pyswitchlib.conf.default']),
                 ('/etc/init.d', ['pyswitchlib-api-daemon'])]
