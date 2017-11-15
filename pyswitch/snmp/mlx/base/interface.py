@@ -2341,3 +2341,173 @@ class Interface(BaseInterface):
         if int_type not in valid_int_types:
             raise ValueError('`int_type` must be one of: %s' %
                              repr(valid_int_types))
+
+    @property
+    def get_vlans(self):
+        """ Get the list of VLAN configured
+        Args:
+            None
+        Returns:
+            List of VLANs
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth_snmp = ('admin', 'admin', None,
+            >>>              {'version': 2,
+            >>>               'snmpport': 161,
+            >>>               'snmpv2c': 'public',
+            >>>               'v3user':'',
+            >>>               'v3priv':'', 'v3auth':'',
+            >>>               'authpass':'', 'privpass':''})
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth_snmp=auth_snmp) as dev:
+            ...         output = dev.interface.get_vlans
+        """
+        vlan_oid = SnmpMib.mib_oid_map['dot1qVlanStaticEntry']
+        config = {}
+        config['oid'] = vlan_oid
+        config['columns'] = {5: 'row_status'}
+        config['fetch_all'] = False
+        list = []
+        vlan_table = self._callback(config, handler='snmp-walk')
+        for row in vlan_table.rows:
+            vlan = row['_row_id']
+            list.append(vlan)
+        return list
+
+    @property
+    def get_vlan_port_map(self):
+        """ Get the list of ports associated with vlan
+            Each element in the list is a dict containing vlan and list of interfaces
+            [{'vlan':10, 'interfaces':[1/1, 2/1]}, {'vlan': 20, 'interfaces':[4/1]}]
+        Args:
+            None
+        Returns:
+            List of dictionary of vlan->port mappings
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth_snmp = ('admin', 'admin', None,
+            >>>              {'version': 2,
+            >>>               'snmpport': 161,
+            >>>               'snmpv2c': 'public',
+            >>>               'v3user':'',
+            >>>               'v3priv':'', 'v3auth':'',
+            >>>               'authpass':'', 'privpass':''})
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth_snmp=auth_snmp) as dev:
+            ...         output = dev.interface.get_vlan_port_map
+        """
+        vlan_oid = SnmpMib.mib_oid_map['dot1qVlanStaticEntry']
+        config = {}
+        config['oid'] = vlan_oid
+        config['columns'] = {2: 'ports'}
+        config['fetch_all'] = False
+        vlan_table = self._callback(config, handler='snmp-walk')
+        vlan_list = []
+        for row in vlan_table.rows:
+            key = row['_row_id']
+            ports = row['ports']
+            key_oid = [hex(ord(c)) for c in ports]
+            # extract ports from each slot
+            slot_octet = 1
+            list = []
+            # In SNMP output each slot occupies 6 octets (48 bits) accomodating 48 ports
+            # Max slots is 32 and total octets is 192
+            for i in range(0, 192, 6):
+                slot_octet = key_oid[i: 6 + i]
+                list.append(slot_octet)
+            slot_num = 1
+            port_list = []
+            j = 0
+            for slot in list:
+                k = 0
+                for octet in slot:
+                    x = int(octet, 16)
+                    for i in range(8):
+                        if (x & (1 << i) != 0):
+                            port = k + 8 - i
+                            int_name = str(slot_num) + '/' + str(port)
+                            port_list.append(int_name)
+                    k = k + 8
+                    j += 1
+                slot_num += 1
+            vlan = {'vlan': key,
+                    'interfaces': port_list}
+            vlan_list.append(vlan)
+        return vlan_list
+
+    def validate_interface_vlan(self, **kwargs):
+        """ Check if interface vlan(s) mapping exist
+        Args:
+           vlan_list(str): List of VLAN's
+           intf_type(str): interface type
+           intf_name(str): interface name e.g 0/1, 2/1/1, 1, 2
+           int_mode (str): intf mode. Not applicable for MLX
+        Returns:
+            True - if mapping of port->vlans exist
+            False - if mapping doesn't exist
+        Raises:
+            KeyError - If input args vlan_list, int_name are not passed
+            ValueError - invalid intf type
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth_snmp = ('admin', 'admin', None,
+            >>>              {'version': 2,
+            >>>               'snmpport': 161,
+            >>>               'snmpv2c': 'public',
+            >>>               'v3user':'',
+            >>>               'v3priv':'', 'v3auth':'',
+            >>>               'authpass':'', 'privpass':''})
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth_snmp=auth_snmp) as dev:
+            ...         output = dev.interface.validate_interface_vlan(vlan_list=[100,200],
+            ...         intf_type='ethernet', intf_name='2/1')
+            ...         output = dev.interface.validate_interface_vlan(vlan_list=[100,200],
+            ...         intf_type='port_channel', intf_name='10')
+        """
+        vlan_list = kwargs.pop('vlan_list')
+        intf_name = kwargs.pop('intf_name')
+        intf_type = kwargs.pop('intf_type')
+        # intf_mode = kwargs.pop('intf_mode', None)
+        all_true = True
+        if not (intf_type == 'ethernet' or intf_type == 'port_channel'):
+            raise ValueError('Invalid interface type for MLX')
+        if intf_type == 'port_channel':
+            lag_name = self.get_lag_id_name_map(str(intf_name))
+            # get the member ports of LAG
+            ifid_name = self.get_port_channel_member_ports(lag_name)
+            # pick a member of port-channel
+            if ifid_name:
+                intf = ifid_name[next(iter(ifid_name))]
+                intf_name = intf.strip('ethernet')
+            else:
+                # Port-channel doesn't have any member ports
+                return False
+        vlan_port = self.get_vlan_port_map
+        for vlan_id in vlan_list:
+            is_vlan_present = False
+            is_intf_name_present = False
+            for entry in vlan_port:
+                if str(entry['vlan']) == str(vlan_id):
+                    is_vlan_present = True
+                    if intf_name in entry['interfaces']:
+                        is_intf_name_present = True
+                        break
+                    else:
+                        is_intf_name_present = False
+                        break
+                else:
+                    continue
+            # Given vlan is not matching with any vlan->port mapping
+            if not is_vlan_present:
+                all_true = False
+                break
+            if is_vlan_present and not is_intf_name_present:
+                all_true = False
+                break
+        return all_true

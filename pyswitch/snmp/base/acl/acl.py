@@ -291,6 +291,68 @@ class Acl(object):
         """
         return
 
+    @abc.abstractmethod
+    def add_ipv6_rule_acl(self, **parameters):
+        """
+        Add rules to Access Control List of ipv6.
+        Args:
+            parameters contains:
+                acl_name(string): Name of the access list
+                seq_id(integer): Sequence number of the rule,
+                    if not specified, the rule is added
+                    at the end of the list. Valid range is 0 to 4294967290
+                action(string): Action performed by ACL rule
+                    - permit (default)
+                    - deny
+                    - hard-drop
+                protocol_type(string): Type of IP packets to be filtered based
+                    on protocol. Valid values are 0 through 255 or key words
+                    tcp, udp, icmp or ip
+                source(string): Source address filters
+                    { any | S_IPaddress mask | host S_IPaddress }
+                        [ source-operator [ S_port-numbers ] ]
+                destination(string):Destination address filters
+                    { any | S_IPaddress mask | host S_IPaddress }
+                        [ source-operator [ S_port-numbers ] ]
+                dscp(string): Matches the specified value against the DSCP
+                    value of the packet to filter.
+                    Can be either a numerical value or DSCP name
+                drop_precedence_force(string): Matches the drop_precedence
+                    value of the packet.  Allowed values are 0 through 2.
+                urg(string): Enables urg for the rule
+                ack(string): Enables ack for the rule
+                push(string): Enables push for the rule
+                fin(string): Enables fin for the rule
+                rst(string): Enables rst for the rule
+                sync(string): Enables sync for the rule
+                vlan_id:(integer): VLAN interface to which the ACL is bound
+                count(string): Enables statistics for the rule
+                log(string): Enables logging for the rule (Available for permit or deny only).
+                mirror(string): Enables mirror for the rule
+                copy_sflow(string): Enables copy-sflow for the rule
+        Returns:
+            Return True
+        Raises:
+            Exception, ValueError for invalid seq_id.
+        """
+        return
+
+    def delete_ipv6_acl_rule(self, **parameters):
+        """
+        Delete Rule from Access Control List.
+        Args:
+            parameters contains:
+                acl_name: Name of the access list.
+                seq_id: Sequence number of the rule. For add operation,
+                    if not specified, the rule is added at the end of the list.
+        Returns:
+            Return value of `string` message.
+        Raise:
+            Raises ValueError, Exception
+        Examples:
+        """
+        return
+
     def _process_cli_output(self, method, config, output):
         """
         Parses CLI response from switch.
@@ -308,7 +370,8 @@ class Acl(object):
         ret = method + ' : Successful'
 
         for line in output.split('\n'):
-            if 'Invalid input ' in line or 'error' in line.lower():
+            if 'Invalid input ' in line or 'error' in line.lower() or \
+                    'Incomplete command' in line:
                 ret = method + ' [ ' + config + ' ]: failed ' + line
 
         return ret
