@@ -18,6 +18,7 @@ import acl_template
 from pyswitch.snmp.base.acl.acl import Acl as BaseAcl
 from pyswitch.snmp.base.acl.macacl import MacAcl
 from pyswitch.snmp.base.acl.ipacl import IpAcl
+from pyswitch.snmp.base.acl.ipv6acl import Ipv6Acl
 
 
 class Acl(BaseAcl):
@@ -42,6 +43,7 @@ class Acl(BaseAcl):
 
         self._mac = MacAcl()
         self._ip = IpAcl()
+        self._ipv6 = Ipv6Acl()
 
     @property
     def mac(self):
@@ -50,6 +52,10 @@ class Acl(BaseAcl):
     @property
     def ip(self):
         return self._ip
+
+    @property
+    def ipv6(self):
+        return self._ipv6
 
     def create_acl(self, **parameters):
         """
@@ -87,6 +93,8 @@ class Acl(BaseAcl):
             return 'create_acl : Successful'
         elif address_type == 'ip':
             config = 'ip access-list ' + acl_type + ' ' + acl_name
+        elif address_type == 'ipv6':
+            config = 'ipv6 access-list ' + acl_name
         else:
             raise ValueError("Address Type: {} not supported".format(
                              address_type))
@@ -127,8 +135,13 @@ class Acl(BaseAcl):
             cmd = acl_template.delete_acl_template
             t = jinja2.Template(cmd)
             config = t.render(acl_name_str=acl_name)
-        else:
+        elif address_type == 'ip':
             config = 'no ip access-list ' + acl_type + ' ' + acl_name
+        elif address_type == 'ipv6':
+            config = 'no ipv6 access-list ' + acl_name
+        else:
+            raise ValueError("Address Type: {} not supported".format(
+                             address_type))
 
         output = self._callback([config], handler='cli-set')
         return self._process_cli_output(inspect.stack()[0][3], config, output)
@@ -343,6 +356,8 @@ class Acl(BaseAcl):
             cmd = acl_template.show_l2_access_list
         elif address_type == 'ip':
             cmd = acl_template.show_ip_access_list
+        elif address_type == 'ipv6':
+            cmd = acl_template.show_ipv6_access_list
         else:
             raise ValueError('{} not supported'.format(address_type))
 
@@ -350,7 +365,7 @@ class Acl(BaseAcl):
         config = t.render(acl_name_str=acl_name)
         config = ' '.join(config.split())
 
-        output = self._callback([config], handler='cli-set')
+        output = self._callback(config, handler='cli-get')
 
         # Check if there is any error
         self._process_cli_output(inspect.stack()[0][3], config, output)
@@ -361,6 +376,7 @@ class Acl(BaseAcl):
                 continue
 
             line_seq_id = line.split(':')[0]
+            line_seq_id = ' '.join(line_seq_id.split())
             if not line_seq_id.isdigit():
                 continue
 
@@ -691,13 +707,13 @@ class Acl(BaseAcl):
         """
 
         user_data = {}
-
         user_data['acl_name_str'] = parameters['acl_name']
         user_data['seq_id_str'] = parameters['seq_id']
         user_data['action_str'] = self.ip.parse_action(**parameters)
+        user_data['protocol_str'] = self.ip.parse_protocol(**parameters)
         user_data['source_str'] = self.ip.parse_source(**parameters)
         user_data['dst_str'] = self.ip.parse_destination(**parameters)
-        user_data['protocol_str'] = self.ip.parse_protocol(**parameters)
+        user_data['established_str'] = self.ip.parse_established(**parameters)
         user_data['dscp_mapping_str'] = \
             self.ip.parse_dscp_mapping(**parameters)
         user_data['dscp_marking_str'] = \
@@ -708,11 +724,15 @@ class Acl(BaseAcl):
         user_data['suppress_rpf_drop_str'] = \
             self.ip.parse_suppress_rpf_drop(**parameters)
         user_data['priority_str'] = self.ip.parse_priority(**parameters)
-        user_data['priority__force_str'] = \
+        user_data['priority_force_str'] = \
             self.ip.parse_priority_force(**parameters)
-        user_data['priority__mapping_str'] = \
+        user_data['priority_mapping_str'] = \
             self.ip.parse_priority_mapping(**parameters)
         user_data['tos_str'] = self.ip.parse_tos(**parameters)
+        user_data['drop_precedence_str'] = \
+            self.ip.parse_drop_precedence(**parameters)
+        user_data['drop_precedence_force_str'] = \
+            self.ip.parse_drop_precedence_force(**parameters)
         user_data['log_str'] = self.ip.parse_log(**parameters)
         user_data['mirror_str'] = self.ip.parse_mirror(**parameters)
 
@@ -756,6 +776,161 @@ class Acl(BaseAcl):
         self.is_valid_seq_id(seq_id, acl_name)
 
         cli_arr = ['ip access-list ' + ' ' + acl_type + ' ' + acl_name]
+
+        cmd = acl_template.delete_rule_by_seq_id
+        t = jinja2.Template(cmd)
+        config = t.render(seq_id_str=parameters['seq_id'])
+        config = re.sub(r'[^a-zA-Z0-9 .-]', r'', config)
+        config = ' '.join(config.split())
+        cli_arr.append(config)
+
+        output = self._callback(cli_arr, handler='cli-set')
+        return self._process_cli_output(inspect.stack()[0][3], config, output)
+
+    def add_ipv6_rule_acl(self, **parameters):
+        """
+        Add rules to Access Control List of ipv6.
+        Args:
+            parameters contains:
+                acl_name(string): Name of the access list
+                seq_id(integer): Sequence number of the rule,
+                    if not specified, the rule is added
+                    at the end of the list. Valid range is 0 to 4294967290
+                action(string): Action performed by ACL rule
+                    - permit (default)
+                    - deny
+                protocol_type(string): Type of IP packets to be filtered based
+                    on protocol. Valid values are 0 through 255 or key words
+                    ahp, esp, icmp, ipv6, sctp, tcp, udp
+                source(string): Source address filters
+                    { any | S_IPaddress mask | host S_IPaddress }
+                        [ source-operator [ S_port-numbers ] ]
+                destination(string):Destination address filters
+                    { any | S_IPaddress mask | host S_IPaddress }
+                        [ source-operator [ S_port-numbers ] ]
+                dscp(string): Matches the specified value against the DSCP
+                    value of the packet to filter.
+                    Can be either a numerical value or DSCP name
+                drop_precedence_force(string): Matches the drop_precedence
+                    value of the packet.  Allowed values are 0 through 2.
+                urg(string): Enables urg for the rule
+                ack(string): Enables ack for the rule
+                push(string): Enables push for the rule
+                fin(string): Enables fin for the rule
+                rst(string): Enables rst for the rule
+                sync(string): Enables sync for the rule
+                vlan_id:(integer): VLAN interface to which the ACL is bound
+                count(string): Enables statistics for the rule
+                log(string): Enables logging for the rule
+                mirror(string): Enables mirror for the rule
+                copy_sflow(string): Enables copy-sflow for the rule
+        Returns:
+            Return True
+        Raises:
+            Exception, ValueError for invalid seq_id.
+        """
+
+        acl_name = parameters['acl_name']
+        ret = self.get_acl_address_and_acl_type(acl_name)
+        address_type = ret['protocol']
+
+        if address_type != 'ipv6':
+            raise ValueError('{} not supported'.format(address_type))
+
+        cli_arr = ['ipv6 access-list ' + ' ' + acl_name]
+
+        user_data = self.parse_params_for_add_ipv6_extended(**parameters)
+        cmd = acl_template.add_ipv6_standard_acl_rule_template
+
+        t = jinja2.Template(cmd)
+        config = t.render(**user_data)
+        config = ' '.join(config.split())
+        cli_arr.append(config)
+
+        output = self._callback(cli_arr, handler='cli-set')
+        return self._process_cli_output(inspect.stack()[0][3], config, output)
+
+    def parse_params_for_add_ipv6_extended(self, **parameters):
+        """
+        Parase parameters passed to add_ipv6_rule_acl method.
+        Args:
+            parameters contains:
+                all parameters passed to add_ipv6_rule_acl
+        Returns:
+            Return a dict cotaining the parameters in string format
+            key name will be key name in the parameter followed by _str.
+        Raise:
+            Raises ValueError, Exception
+        """
+        user_data = {}
+        user_data['acl_name_str'] = parameters['acl_name']
+        user_data['seq_id_str'] = parameters['seq_id']
+        user_data['action_str'] = self.ipv6.parse_action(**parameters)
+        user_data['vlan_str'] = self.ipv6.parse_vlan(**parameters)
+        user_data['protocol_str'] = self.ipv6.parse_protocol(**parameters)
+        user_data['source_str'] = self.ipv6.parse_source(**parameters)
+        user_data['dst_str'] = self.ipv6.parse_destination(**parameters)
+        user_data['dscp_mapping_str'] = \
+            self.ipv6.parse_dscp_mapping(**parameters)
+        user_data['fragment_str'] = self.ipv6.parse_fragment(**parameters)
+        user_data['tcp_operator_str'] = \
+            self.ipv6.parse_tcp_operator(**parameters)
+        user_data['icmp_filter_str'] = \
+            self.ipv6.parse_icmp_filter(**parameters)
+        user_data['copy_sflow_str'] = self.ipv6.parse_copy_sflow(**parameters)
+        user_data['drop_precedence_str'] = \
+            self.ipv6.parse_drop_precedence(**parameters)
+        user_data['drop_precedence_force_str'] = \
+            self.ipv6.parse_drop_precedence_force(**parameters)
+        user_data['dscp_marking_str'] = \
+            self.ipv6.parse_dscp_marking(**parameters)
+        user_data['priority_force_str'] = \
+            self.ipv6.parse_priority_force(**parameters)
+        user_data['priority_mapping_str'] = \
+            self.ipv6.parse_priority_mapping(**parameters)
+        user_data['suppress_rpf_drop_str'] = \
+            self.ipv6.parse_suppress_rpf_drop(**parameters)
+        user_data['mirror_str'] = self.ipv6.parse_mirror(**parameters)
+        user_data['log_str'] = self.ipv6.parse_log(**parameters)
+        return user_data
+
+    def delete_ipv6_acl_rule(self, **parameters):
+        """
+        Delete Rule from Access Control List.
+        Args:
+            parameters contains:
+                acl_name: Name of the access list.
+                seq_id: Sequence number of the rule. For add operation,
+                    if not specified, the rule is added at the end of the list.
+        Returns:
+            Return value of `string` message.
+        Raise:
+            Raises ValueError, Exception
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> conn=('10.37.73.148', 22)
+            >>> auth=('admin', 'admin')
+            >>> with Device(conn=conn, auth=auth,
+            ...             connection_type='NETCONF') as dev:
+            ...     print dev.firmware_version
+            ...     print dev.os_type
+            ...     print dev.acl.create_acl(acl_name='Acl_1',
+            ...                              acl_type='extended',
+            ...                              address_type='ipv6')
+            ...     print dev.acl.add_ipv6_rule_acl(acl_name='Acl_1',
+            ...                                   action='permit',
+            ...                                   source='any',
+            ...                                   dst='any',
+            ...                                   vlan=10)
+            ...     print dev.acl.delete_ipv6_acl_rule(acl_name='Acl_1',
+            ...                                   seq_id=10)
+        """
+
+        acl_name = parameters['acl_name']
+        seq_id = parameters['seq_id']
+        self.is_valid_seq_id(seq_id, acl_name)
+
+        cli_arr = ['ipv6 access-list ' + ' ' + acl_name]
 
         cmd = acl_template.delete_rule_by_seq_id
         t = jinja2.Template(cmd)
@@ -814,8 +989,10 @@ class Acl(BaseAcl):
         """
 
         ret = {'type': '', 'protocol': ''}
-        res = self._callback(['show access-list all'],
-                             handler='cli-set').split('\n')
+        res = self._callback('show access-list all',
+                             handler='cli-get').split('\n')
+        res += self._callback('show ipv6 access-list',
+                              handler='cli-get').split('\n')
 
         for line in res:
             if acl_name in line:
@@ -828,6 +1005,9 @@ class Acl(BaseAcl):
                         ret['type'] = 'extended'
                     else:
                         ret['type'] = 'standard'
+                elif line[0:5] == 'ipv6 ':
+                    ret['protocol'] = 'ipv6'
+                    ret['type'] = 'standard'
                 break
 
         if ret['protocol'] != '':

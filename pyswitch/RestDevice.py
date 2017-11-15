@@ -30,6 +30,7 @@ import pyswitch.os.slxos.base.interface
 import pyswitch.os.slxos.base.isis
 import pyswitch.os.slxos.base.mpls
 import pyswitch.os.base.firmware
+import pyswitch.os.base.utils
 import pyswitch.os.slxos.base.ospf
 import pyswitch.os.slxos.base.mct
 import pyswitch.os.slxos.base.services
@@ -40,7 +41,8 @@ from pyswitch.AbstractDevice import AbstractDevice
 from pyswitch.XMLAsset import XMLAsset
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
-             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls', 'mct', 'firmware', 'cluster']
+             'fabric_service', 'vcs', 'isis', 'ospf', 'mpls', 'mct', 'firmware', 'cluster',
+             'utils']
 
 NOS_VERSIONS = {
     '6.0': {
@@ -52,7 +54,8 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
 
     },
     '7.0': {
@@ -64,7 +67,8 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '7.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -75,7 +79,8 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '7.2': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -86,7 +91,8 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '7.3': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -97,7 +103,8 @@ NOS_VERSIONS = {
         'services': pyswitch.os.nos.base.services.Services,
         'fabric_service': pyswitch.os.base.fabric_service.FabricService,
         'vcs': pyswitch.os.base.vcs.VCS,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
 }
 SLXOS_VERSIONS = {
@@ -112,7 +119,8 @@ SLXOS_VERSIONS = {
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
         'mct': pyswitch.os.slxos.base.mct.Mct,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '17r.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -125,7 +133,8 @@ SLXOS_VERSIONS = {
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
         'mct': pyswitch.os.slxos.base.mct.Mct,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '17r.2': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -138,7 +147,8 @@ SLXOS_VERSIONS = {
         'ospf': pyswitch.os.slxos.base.ospf.Ospf,
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
         'mct': pyswitch.os.slxos.base.mct.Mct,
-        'firmware': pyswitch.os.base.firmware.Firmware
+        'firmware': pyswitch.os.base.firmware.Firmware,
+        'utils': pyswitch.os.base.utils.Utils
     },
     '17s.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
@@ -152,7 +162,8 @@ SLXOS_VERSIONS = {
         'mpls': pyswitch.os.slxos.base.mpls.Mpls,
         'mct': pyswitch.os.slxos.base.mct.Mct,
         'firmware': pyswitch.os.base.firmware.Firmware,
-        'cluster': pyswitch.os.slxos.base.cluster.Cluster
+        'cluster': pyswitch.os.slxos.base.cluster.Cluster,
+        'utils': pyswitch.os.base.utils.Utils
     },
 }
 
@@ -216,11 +227,24 @@ class RestDevice(AbstractDevice):
 
         for nos_attr in NOS_ATTRS:
             if nos_attr in os_table[ver]:
-                setattr(
-                    self.base,
-                    nos_attr,
-                    os_table[ver][nos_attr](
-                        self._callback))
+                """
+                  utils class should be considered as
+                  special as it can execute CLI commands
+                  wherever REST is not supported. Hence
+                  we need to pass the host and auth parameters.
+                """
+                if nos_attr == 'utils':
+                    setattr(
+                        self.base,
+                        nos_attr,
+                        os_table[ver][nos_attr](
+                            self._callback, self.host, self._auth))
+                else:
+                    setattr(
+                        self.base,
+                        nos_attr,
+                        os_table[ver][nos_attr](
+                            self._callback))
 
         setattr(self, 'asset', self._mgr)
 
