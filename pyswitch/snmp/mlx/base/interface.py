@@ -2042,3 +2042,16 @@ class Interface(BaseInterface):
                 all_true = False
                 break
         return all_true
+
+    def mac_move_detect_enable(self, **kwargs):
+        """Enable mac move detect. Not supported on MLX platform
+        Args:
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True - delete mac move detection
+                           False - Enable mac move detection
+        Returns:
+            error
+        Raises:
+            NotImplementedError
+        """
+        raise NotImplementedError("Not supported for MLX platform")
