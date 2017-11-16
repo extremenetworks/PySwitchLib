@@ -597,6 +597,9 @@ class Acl(BaseAcl):
         if 'Failed to initialize dns request' in output:
             raise ValueError('ACL DNS: Errno(5) Failed '
                              'to initialize dns request')
+        if 'are undefined' in output:
+            raise ValueError('Invlaid icmp filter: {}'
+                             .format(parameters['icmp_filter']))
         return self._process_cli_output(inspect.stack()[0][3], config, output)
 
     def parse_params_for_add_ipv4_standard(self, **parameters):
@@ -714,6 +717,8 @@ class Acl(BaseAcl):
         user_data['source_str'] = self.ip.parse_source(**parameters)
         user_data['dst_str'] = self.ip.parse_destination(**parameters)
         user_data['established_str'] = self.ip.parse_established(**parameters)
+        user_data['icmp_filter_str'] = \
+            self.ip.parse_icmp_filter(**parameters)
         user_data['dscp_mapping_str'] = \
             self.ip.parse_dscp_mapping(**parameters)
         user_data['dscp_marking_str'] = \
