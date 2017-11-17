@@ -682,3 +682,99 @@ class IpAcl(object):
                 return 'drop-precedence-force ' + drop_precedence_force
 
         raise ValueError("drop-precedence-force value should be 0 - 3")
+
+    def _parse_icmp_type_and_code(self, icmp_type, icmp_code=None):
+        """
+        parse the icmp_type and icmp_code param
+        Args:
+            icmp_type(integer): Validate an ICMP type.
+            icmp_code(integer): Validate an ICMP code.
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        ret = None
+
+        if int(icmp_type) >= 0 and int(icmp_type) <= 255:
+            ret = icmp_type
+
+            if icmp_code:
+                if int(icmp_code) >= 0 and int(icmp_code) <= 255:
+                    ret = ret + ' ' + icmp_code
+
+        return ret
+
+    def _parse_icmp_message(self, icmp_message):
+        """
+        parse the icmp_message param
+        Args:
+            icmp_message(string): Validate an ICMP message.
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+
+        if icmp_message in ['administratively-prohibited', 'any-icmp-type',
+                            'destination-host-prohibited',
+                            'destination-host-unknown',
+                            'destination-net-prohibited',
+                            'destination-network-unknown', 'echo',
+                            'echo-reply', 'general-parameter-problem',
+                            'host-precedence-violation', 'host-redirect',
+                            'host-tos-redirec', 'host-tos-unreachable',
+                            'host-unreachable', 'information-reply',
+                            'information-request', 'mask-reply',
+                            'mask-request', 'net-redirect', 'net-tos-redirect',
+                            'net-tos-unreachable', 'net-unreachable',
+                            'packet-too-big', 'parameter-problem',
+                            'port-unreachable', 'precedence-cutoff',
+                            'protocol-unreachable', 'reassembly-timeout',
+                            'redirect', 'router-advertisement',
+                            'router-solicitation', 'source-host-isolated',
+                            'source-quench', 'source-route-failed',
+                            'time-exceeded', 'timestamp-reply',
+                            'timestamp-request', 'ttl-exceeded',
+                            'unreachable']:
+            return icmp_message
+        raise ValueError("{} icmp message not supported."
+                         "Refer config guide for supported messages"
+                         .format(icmp_message))
+
+    def parse_icmp_filter(self, **parameters):
+        """
+        parse the icmp_type and icmp_code param
+        Args:
+            parameters contains:
+                icmp_filter(string): The string contains vlaues in below format
+                [ [icmp-type <vlaue>] [icmp-code <value> ] ] |
+                [ icmp-message <value> ]
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+
+        if 'icmp_filter' not in parameters or not parameters['icmp_filter']:
+            return None
+
+        if 'protocol_type' not in parameters or \
+                not parameters['protocol_type'] or \
+                parameters['protocol_type'] != 'icmp':
+
+            raise ValueError("icmp filter is supported only for."
+                             "protocol_type = icmp")
+
+        icmp_filter = parameters['icmp_filter']
+        icmp_filter = ' '.join(icmp_filter.split()).split()
+
+        if icmp_filter[0].isdigit():
+            return self._parse_icmp_type_and_code(*icmp_filter)
+        elif len(icmp_filter) == 1:
+            return self._parse_icmp_message(icmp_filter[0])
+
+        raise ValueError("invalid icmp filter string")

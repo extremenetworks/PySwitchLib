@@ -327,7 +327,7 @@ class Acl(object):
                 sync(string): Enables sync for the rule
                 vlan_id:(integer): VLAN interface to which the ACL is bound
                 count(string): Enables statistics for the rule
-                log(string): Enables logging for the rule (Available for permit or deny only).
+                log(string): Enables logging for the rule
                 mirror(string): Enables mirror for the rule
                 copy_sflow(string): Enables copy-sflow for the rule
         Returns:
