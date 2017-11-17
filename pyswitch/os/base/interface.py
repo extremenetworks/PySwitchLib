@@ -7240,6 +7240,30 @@ class Interface(object):
         """
         return False
 
+    def vrrpe_supported_intf(self, **kwargs):
+        """
+        validate vrrpe supported interface type
+
+        Args:
+        intf_type(str): 've'
+        Returns:
+                   None
+        Raises:
+             valueError if intf type is not ve
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ['10.24.81.200']
+            >>> auth = ('admin', 'password')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.vrrpe_supported_intf('ve')
+        """
+        valid_int_types = ['ve']
+        int_type = kwargs.pop('intf_type').lower()
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             repr(valid_int_types))
+
     def validate_interface_vlan(self, **kwargs):
         """ Check if interface vlan(s) mapping exist
         Args:

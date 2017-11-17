@@ -1873,6 +1873,475 @@ class Interface(BaseInterface):
         """
         return True
 
+    def vrrpe_vip(self, **kwargs):
+        """Set/get vrrpe VIP.
+
+        Args:
+            int_type (str): Type of interface. (ethernet and ve).
+            name (str): Name of interface. (4/6, VE name etc).
+            vrid (str): vrrpev3 ID.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, the VIP address is added and False if its to
+                be deleted (True, False). Default value will be False if not
+                specified.
+            vip (str): IPv4/IPv6 Virtual IP Address.
+            callback (function): A function executed upon completion of the
+                method.
+
+        Raises:
+            KeyError: if `int_type`, `name`, `vrid`, or `vip` is not passed.
+            ValueError: if `int_type`, `name`, `vrid`, or `vip` is invalid.
+
+        Returns:
+            Return True or list of VIPs.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.12.91']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output =dev.interface.vrrpe_vip(int_type='ve',
+            ...         name='89', vrid='11', vip='10.0.1.10')
+            ...         output = dev.interface.vrrpe_vip(get=True,
+            ...         int_type='ve', name='89')
+            ...         output =dev.interface.vrrpe_vip(delete=True,
+            ...         int_type='ve', name='89',vrid='1',
+            ...         vip='10.0.0.10')
+        """
+        int_type = kwargs.pop('int_type').lower()
+        version = kwargs.pop('version', 4)
+        name = kwargs.pop('name', )
+        get = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        valid_int_types = ['ve', 'ethernet']
+
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             repr(valid_int_types))
+
+        if get:
+            result = []
+            vip_list = []
+            vrid_match = r'VRID (\d+)'
+            if version == 4:
+                cli_cmd = 'show ip vrrp-extended ' + int_type + ' ' + name
+                vip_match = r'virtual ip address (.+)'
+            else:
+                cli_cmd = 'show ipv6 vrrp-extended ' + int_type + ' ' + name
+                vip_match = r'virtual ipv6 address (.+)'
+
+            output = callback(cli_cmd, handler='cli-get')
+
+            if(re.search(r'error', output)):
+                raise ValueError('VRRP-E is not configured or invalid input')
+
+            for line in output.split('\n'):
+                if(re.search(vrid_match, line)):
+                    vrid = re.search(vrid_match, line).group(1).strip()
+                elif(re.search(vip_match, line)):
+                    vips = re.search(vip_match, line).group(1).strip().split()
+                    for vip in vips:
+                        vip_list.append(vip)
+                elif(re.search(r'short-path-forwarding', line)):
+                    result.append({'vrid': vrid, 'vip': vip_list})
+                    del vip_list
+                    vip_list = []
+
+            return result
+
+        vrid = kwargs.pop('vrid')
+        vip = kwargs.pop('vip', '')
+        if vip != '':
+            ipaddress = ip_interface(unicode(vip))
+            version = ipaddress.version
+        else:
+            version = 4
+
+        cli_arr = []
+        cli_arr.append('interface ' + int_type + ' ' + name)
+        if version == 4:
+            if delete:
+                cli_arr.append('ip vrrp-extended vrid ' + str(vrid))
+                cli_arr.append('no activate')
+                cli_arr.append('no ip-address ' + vip)
+            else:
+                cli_arr.append('ip vrrp-extended vrid ' + str(vrid))
+                cli_arr.append('backup')
+                cli_arr.append('ip-address ' + vip)
+                cli_arr.append('activate')
+        else:
+            if delete:
+                cli_arr.append('ipv6 vrrp-extended vrid ' + str(vrid))
+                cli_arr.append('no activate')
+                cli_arr.append('no ipv6-address ' + vip)
+            else:
+                cli_arr.append('ipv6 vrrp-extended vrid ' + str(vrid))
+                cli_arr.append('backup')
+                cli_arr.append('ipv6-address ' + vip)
+                cli_arr.append('activate')
+        try:
+            cli_res = callback(cli_arr, handler='cli-set')
+            pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+            return True
+        except Exception as error:
+            reason = error.message
+            raise ValueError('failed to create/delete VRRP vip %s' % (reason))
+
+    def vrrpe_vmac(self, **kwargs):
+        """Set vrrpe virtual mac.
+
+        Args:
+            int_type (str): Type of interface. (ethernet and ve).
+            name (str): Name of interface. (1/1 , 10  etc).
+            vrid (str): vrrpev3 ID.
+            enable (bool): If vrrpe virtual MAC should be enabled
+                or disabled.Default:``True``.
+            get (bool): Get config instead of editing config. (True, False)
+            virtual_mac (str):Virtual mac-address in the format
+            HHHH.HHHH.HHHH
+            callback (function): A function executed upon completion
+            of the  method.
+
+        Returns:
+            Return True or virtual mac.
+        Raises:
+            KeyError: if `int_type`, `name`, `vrid`, or `vmac` is not passed.
+            ValueError: if `int_type`, `name`, `vrid`, or `vmac` is invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.12.91']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.services.vrrpe(enable=False)
+            ...         output = dev.interface.vrrpe_vip(int_type='ve',
+            ...         name='89',vrid='1',
+            ...         vip='2002:4818:f000:1ab:cafe:beef:1000:1/64')
+            ...         output = dev.services.vrrpe(enable=False)
+            ...         output = dev.interface.vrrpe_vmac(int_type='ve',
+            ...         name='89', vrid='1', virtual_mac='aaaa.bbbb.cccc')
+        """
+
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+        vrid = kwargs.pop('vrid')
+        enable = kwargs.pop('enable', True)
+        version = kwargs.pop('version', 4)
+        get = kwargs.pop('get', False)
+        virtual_mac = kwargs.pop('virtual_mac', False)
+
+        callback = kwargs.pop('callback', self._callback)
+        valid_int_types = ['ethernet', 've']
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             repr(valid_int_types))
+
+        if get:
+            vrid_match = r'VRID (\d+)'
+            vmac_match = r'virtual mac (.+)'
+            if version == 4:
+                cli_cmd = 'show ip vrrp-extended ' + int_type + ' ' + name
+            else:
+                cli_cmd = 'show ipv6 vrrp-extended ' + int_type + ' ' + name
+
+            output = callback(cli_cmd, handler='cli-get')
+
+            if(re.search(r'error', output)):
+                raise ValueError('VRRP-E is not configured or invalid input')
+
+            vmac_get = False
+            for line in output.split('\n'):
+                if(re.search(vrid_match, line)):
+                    node_vrid = re.search(vrid_match, line).group(1).strip()
+                    if(node_vrid == vrid):
+                        vmac_get = True
+                elif(re.search(vmac_match, line)) and vmac_get:
+                    vmac = re.search(vmac_match, line).group(1).strip()
+                    return vmac
+
+        if virtual_mac:
+            cli_arr = []
+            cli_arr.append('interface ' + int_type + ' ' + name)
+            if version == 4:
+                if not enable:
+                    cli_arr.append('ip vrrp-extended vrid ' + str(vrid))
+                    cli_arr.append('no virtual-mac ' + virtual_mac)
+                else:
+                    cli_arr.append('ip vrrp-extended vrid ' + str(vrid))
+                    cli_arr.append('virtual-mac ' + virtual_mac)
+            else:
+                if not enable:
+                    cli_arr.append('ipv6 vrrp-extended vrid ' + str(vrid))
+                    cli_arr.append('no virtual-mac ' + virtual_mac)
+                else:
+                    cli_arr.append('ipv6 vrrp-extended vrid ' + str(vrid))
+                    cli_arr.append('virtual-mac ' + virtual_mac)
+            try:
+                cli_res = callback(cli_arr, handler='cli-set')
+                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+                return True
+            except Exception as error:
+                reason = error.message
+                raise ValueError('failed to create/delete VRRP vip %s' % (reason))
+
+    def vrrpe_vrid(self, **kwargs):
+        """Set/get vrrpe vrid.
+
+        Args:
+            int_type (str): Type of interface. (ethernet and ve).
+            name (str): Name of interface. (4/6, VE name etc).
+            vrid (str): vrrpev3 ID.
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True, the VIP address is added and False if its to
+                be deleted (True, False). Default value will be False if not
+                specified.
+            callback (function): A function executed upon completion of the
+                method.
+
+        Raises:
+            KeyError: if `int_type`, `name`, `vrid`,  is not passed.
+            ValueError: if `int_type`, `name`, `vrid`,  is invalid.
+
+        Returns:
+            Return True or list of vrid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.12.91']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output =dev.interface.vrrpe_vrid(int_type='ve',
+            ...         name='89', vrid='11')
+            ...         output = dev.interface.vrrpe_vrid(get=True,
+            ...         int_type='ve', name='89')
+            ...         output =dev.interface.vrrpe_vrid(delete=True,
+            ...         int_type='ve', name='89',vrid='1')
+        """
+
+        int_type = kwargs.pop('int_type').lower()
+        version = kwargs.pop('version', 4)
+        name = kwargs.pop('name', )
+        get = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        valid_int_types = ['ve', 'ethernet']
+
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             repr(valid_int_types))
+
+        if get:
+            result = []
+            vrid_match = r'VRID (\d+)'
+            if version == 4:
+                cli_cmd = 'show ip vrrp-extended ' + int_type + ' ' + name
+            else:
+                cli_cmd = 'show ipv6 vrrp-extended ' + int_type + ' ' + name
+
+            output = callback(cli_cmd, handler='cli-get')
+
+            if(re.search(r'error', output)):
+                raise ValueError('VRRP-E is not configured or invalid input')
+
+            for line in output.split('\n'):
+                if(re.search(vrid_match, line)):
+                    vrid = re.search(vrid_match, line).group(1).strip()
+                    result.append(vrid)
+            return result
+
+        vrid = kwargs.pop('vrid')
+        cli_arr = []
+        cli_arr.append('interface ' + int_type + ' ' + name)
+        if version == 4:
+            if delete:
+                cli_arr.append('no ip vrrp-extended vrid ' + str(vrid))
+            else:
+                cli_arr.append('ip vrrp-extended vrid ' + str(vrid))
+        else:
+            if delete:
+                cli_arr.append('no ipv6 vrrp-extended vrid ' + str(vrid))
+            else:
+                cli_arr.append('ipv6 vrrp-extended vrid ' + str(vrid))
+        try:
+            cli_res = callback(cli_arr, handler='cli-set')
+            pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+            return True
+        except Exception as error:
+            reason = error.message
+            raise ValueError('failed to create/delete VRRP vrid group %s' % (reason))
+
+    def vrrpe_spf_basic(self, **kwargs):
+        """Set/get vrrpe short path forwarding.
+
+        Args:
+            int_type (str): Type of interface. (ethernet and ve).
+            name (str): Name of interface. (1/1 , 10  etc).
+            vrid (str): vrrpev3 ID.
+            enable (bool): If vrrpe short path forwarding should be enabled
+                or disabled.Default:``True``.
+            get (bool): Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion
+            of the  method.
+
+        Returns:
+            Return True or False
+        Raises:
+            KeyError: if `int_type`, `name`, `vrid`, is not passed.
+            ValueError: if `int_type`, `name`, `vrid`,  is invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.12.91']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.services.vrrpe(enable=False)
+            ...         output = dev.interface.vrrpe_vip(int_type='ve',
+            ...         name='89',vrid='1',
+            ...         vip='2002:4818:f000:1ab:cafe:beef:1000:1/64')
+            ...         output = dev.services.vrrpe(enable=False)
+            ...         output = dev.interface.vrrpe_spf_basic(int_type='ve',
+            ...         name='89', vrid='1')
+        """
+
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+        vrid = kwargs.pop('vrid')
+        enable = kwargs.pop('enable', True)
+        version = kwargs.pop('version', 4)
+        get = kwargs.pop('get', False)
+
+        callback = kwargs.pop('callback', self._callback)
+        valid_int_types = ['ethernet', 've']
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             repr(valid_int_types))
+
+        if get:
+            vrid_match = r'VRID (\d+)'
+            spf_match = r'short-path-forwarding (.+)'
+            if version == 4:
+                cli_cmd = 'show ip vrrp-extended ' + int_type + ' ' + name
+            else:
+                cli_cmd = 'show ipv6 vrrp-extended ' + int_type + ' ' + name
+
+            output = callback(cli_cmd, handler='cli-get')
+
+            if(re.search(r'error', output)):
+                raise ValueError('VRRP-E is not configured or invalid input')
+
+            spf_get = False
+            for line in output.split('\n'):
+                if(re.search(vrid_match, line)):
+                    node_vrid = re.search(vrid_match, line).group(1).strip()
+                    if(node_vrid == vrid):
+                        spf_get = True
+                elif(re.search(spf_match, line)) and spf_get:
+                    spf_status = re.search(spf_match, line).group(1).strip()
+                    if(spf_status == 'disabled'):
+                        return False
+                    else:
+                        return True
+
+        cli_arr = []
+        cli_arr.append('interface ' + int_type + ' ' + name)
+        if version == 4:
+            if not enable:
+                cli_arr.append('ip vrrp-extended vrid ' + str(vrid))
+                cli_arr.append('no short-path-forwarding')
+            else:
+                cli_arr.append('ip vrrp-extended vrid ' + str(vrid))
+                cli_arr.append('short-path-forwarding')
+        else:
+            if not enable:
+                cli_arr.append('ipv6 vrrp-extended vrid ' + str(vrid))
+                cli_arr.append('no short-path-forwarding')
+            else:
+                cli_arr.append('ipv6 vrrp-extended vrid ' + str(vrid))
+                cli_arr.append('short-path-forwarding')
+        try:
+            cli_res = callback(cli_arr, handler='cli-set')
+            pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+            return True
+        except Exception as error:
+            reason = error.message
+            raise ValueError('failed to create/delete VRRP vip %s' % (reason))
+
+    def get_eth_l3_interfaces(self, **kwargs):
+        """list[dict]: A list of dictionary items describing ethernet l3
+        interfaces
+
+        Args:
+            callback (function): A function executed upon completion of the
+                method
+        Returns:
+            Return list of dict containing ethernet l3 interface info
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.get_eth_l3_interfaces()
+        """
+        eth_l3_list = []
+        callback = kwargs.pop('callback', self._callback)
+        cli_arr = 'show ip interface | inc eth'
+        output = callback(cli_arr, handler='cli-get')
+        error = re.search(r'Error(.+)', output)
+        if error:
+            raise ValueError("%s" % error.group(0))
+        # Populate the VE interface list with default data and update later
+        for line in output.split('\n'):
+            if(re.search(r'eth ', line)):
+                info = re.split('\s+', line)
+                eth_id = info[1]
+                if_name = info[0] + ' ' + info[1]
+                eth_info = {'interface-type': 'ethernet',
+                            'interface-name': str(eth_id),
+                            'if-name': if_name,
+                            'interface-state': info[5],
+                            'interface-proto-state': info[6],
+                            'ip-address': info[2]}
+
+                eth_l3_list.append(eth_info)
+        return eth_l3_list
+
+    def vrrpe_supported_intf(self, **kwargs):
+        """
+        validate vrrpe supported interface type
+
+        Args:
+        intf_type(str): 've' or 'ethernet'
+        Returns:
+                   None
+        Raises:
+             valueError if intf type is not ve or ethernet
+
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.interface.vrrpe_supported_intf('ethernet')
+        """
+        valid_int_types = ['ethernet', 've']
+        int_type = kwargs.pop('intf_type').lower()
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             repr(valid_int_types))
+
     @property
     def get_vlans(self):
         """ Get the list of VLAN configured
@@ -2042,3 +2511,16 @@ class Interface(BaseInterface):
                 all_true = False
                 break
         return all_true
+
+    def mac_move_detect_enable(self, **kwargs):
+        """Enable mac move detect. Not supported on MLX platform
+        Args:
+            get (bool): Get config instead of editing config. (True, False)
+            delete (bool): True - delete mac move detection
+                           False - Enable mac move detection
+        Returns:
+            error
+        Raises:
+            NotImplementedError
+        """
+        raise NotImplementedError("Not supported for MLX platform")
