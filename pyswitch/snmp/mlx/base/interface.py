@@ -843,6 +843,10 @@ class Interface(BaseInterface):
         if not pyswitch.utilities.valid_vlan_id(vlan):
             raise InvalidVlanId("`name` must be between `1` and `4096`")
 
+        if int_type == 'port_channel':
+            name = self.get_lag_primary_port(name)
+            int_type = 'ethernet'
+
         cli_arr.append('vlan' + ' ' + str(vlan))
 
         if kwargs.pop('delete', False):
