@@ -305,13 +305,13 @@ class Acl(BaseAcl):
         Examples:
         """
 
-        supported_params = [ 'acl_name', 'seq_id', 'action', 'source',
-                             'src_mac_addr_mask', 'dst', 'dst_mac_addr_mask',
-                             'vlan', 'ethertype', 'arp_guard',
-                             'drop_precedence', 'drop_precedence_force',
-                             'log', 'mirror', 'priority_force', 'priority',
-                             'priority_mapping', 'copy_sflow', 'count',
-                             'delete']
+        supported_params = ['acl_name', 'seq_id', 'action', 'source',
+                            'src_mac_addr_mask', 'dst', 'dst_mac_addr_mask',
+                            'vlan', 'ethertype', 'arp_guard',
+                            'drop_precedence', 'drop_precedence_force',
+                            'log', 'mirror', 'priority_force', 'priority',
+                            'priority_mapping', 'copy_sflow', 'count',
+                            'delete']
         self._is_parameter_supported(supported_params, parameters)
 
         if 'copy_sflow' in parameters and ['copy_sflow'] != 'False':
@@ -414,8 +414,8 @@ class Acl(BaseAcl):
         Raises:
             Exception, ValueError for invalid seq_id.
         """
-        supported_params = [ 'acl_name', 'acl_direction', 'intf_type',
-                             'intf_name']
+        supported_params = ['acl_name', 'acl_direction', 'intf_type',
+                            'intf_name']
         self._is_parameter_supported(supported_params, parameters)
 
         cli_arr = []
@@ -469,8 +469,8 @@ class Acl(BaseAcl):
         Raises:
             Exception, ValueError for invalid seq_id.
         """
-        supported_params = [ 'acl_name', 'acl_direction', 'intf_type',
-                             'intf_name']
+        supported_params = ['acl_name', 'acl_direction', 'intf_type',
+                            'intf_name']
         self._is_parameter_supported(supported_params, parameters)
 
         cli_arr = []
@@ -647,8 +647,8 @@ class Acl(BaseAcl):
             Raises ValueError, Exception
         Examples:
         """
-        supported_params = [ 'acl_name', 'seq_id', 'action', 'source',
-                             'vlan_id', 'log' ]
+        supported_params = ['acl_name', 'seq_id', 'action', 'source',
+                            'vlan_id', 'log']
         self._is_parameter_supported(supported_params, parameters)
 
         user_data = {}
@@ -731,13 +731,13 @@ class Acl(BaseAcl):
             Raises ValueError, Exception
         Examples:
         """
-        supported_params = [ 'acl_name', 'seq_id', 'action', 'source',
-                             'dst', 'established', 'icmp_filter',
-                             'dscp_mapping', 'dscp_marking', 'fragment',
-                             'precedence', 'option', 'suppress_rpf_drop',
-                             'priority', 'priority_force', 'priority_mapping',
-                             'tos', 'drop_precedence', 'drop_precedence_force',
-                             'log', 'mirror']
+        supported_params = ['acl_name', 'seq_id', 'action', 'source',
+                            'dst', 'established', 'icmp_filter',
+                            'dscp_mapping', 'dscp_marking', 'fragment',
+                            'precedence', 'option', 'suppress_rpf_drop',
+                            'priority', 'priority_force', 'priority_mapping',
+                            'tos', 'drop_precedence', 'drop_precedence_force',
+                            'log', 'mirror']
         self._is_parameter_supported(supported_params, parameters)
 
         user_data = {}
@@ -805,7 +805,7 @@ class Acl(BaseAcl):
             ...     print dev.acl.delete_ipv4_acl_rule(acl_name='Acl_1',
             ...                                   seq_id=10)
         """
-        supported_params = [ 'acl_name', 'seq_id']
+        supported_params = ['acl_name', 'seq_id']
         self._is_parameter_supported(supported_params, parameters)
 
         acl_name = parameters['acl_name']
@@ -900,13 +900,13 @@ class Acl(BaseAcl):
         Raise:
             Raises ValueError, Exception
         """
-        supported_params = [ 'acl_name', 'seq_id', 'action', 'vlan',
-                             'protocol_type', 'source', 'dst', 'dscp_mapping',
-                             'fragment', 'tcp_operator', 'icmp_filter',
-                             'copy_sflow', 'drop_precedence',
-                             'drop_precedence_force', 'dscp_marking',
-                             'priority_force', 'priority_mapping',
-                             'suppress_rpf_drop', 'mirror', 'log']
+        supported_params = ['acl_name', 'seq_id', 'action', 'vlan',
+                            'protocol_type', 'source', 'dst', 'dscp_mapping',
+                            'fragment', 'tcp_operator', 'icmp_filter',
+                            'copy_sflow', 'drop_precedence',
+                            'drop_precedence_force', 'dscp_marking',
+                            'priority_force', 'priority_mapping',
+                            'suppress_rpf_drop', 'mirror', 'log']
         self._is_parameter_supported(supported_params, parameters)
 
         user_data = {}
@@ -972,7 +972,7 @@ class Acl(BaseAcl):
             ...     print dev.acl.delete_ipv6_acl_rule(acl_name='Acl_1',
             ...                                   seq_id=10)
         """
-        supported_params = [ 'acl_name', 'seq_id']
+        supported_params = ['acl_name', 'seq_id']
         self._is_parameter_supported(supported_params, parameters)
 
         acl_name = parameters['acl_name']
