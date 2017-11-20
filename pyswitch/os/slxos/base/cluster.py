@@ -544,6 +544,8 @@ class Cluster(object):
         principal_mac_node = self.get_key_with_namespace(root, namespace, 'principal-switch-mac')
         if principal_mac_node is not None:
             output['principal-switch-mac'] = principal_mac_node.text
+        else:
+            output['principal-switch-mac'] = ''
         num_node_node = self.get_key_with_namespace(root, namespace, 'total-nodes-in-cluster')
         if num_node_node is not None:
             output['num-nodes'] = num_node_node.text
