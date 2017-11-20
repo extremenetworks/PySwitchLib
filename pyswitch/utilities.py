@@ -384,7 +384,7 @@ def check_mlx_cli_set_error(cli_res):
     """
        check whether any error or invalid input during cli-set operation
     """
-    error = re.search(r'Error:(.+)', cli_res)
+    error = re.search(r'Error(.+)', cli_res)
     invalid_input = re.search(r'Invalid input', cli_res)
     if error:
         raise ValueError("%s" % error.group(0))

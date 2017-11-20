@@ -854,11 +854,14 @@ class Interface(BaseInterface):
         else:
             cli_arr.append('untagged' + ' ' + int_type + ' ' + name)
 
-        cli_res = callback(cli_arr, handler='cli-set')
-        error = re.search(r'Error:(.+)', cli_res)
-        if error:
-            raise ValueError("%s" % error.group(0))
-        return True
+        try:
+            cli_res = callback(cli_arr, handler='cli-set')
+            pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+            return True
+        except Exception as error:
+            reason = error.message
+            raise ValueError('Failed to add untagged member port to vlan %s'
+                          % (reason))
 
     def get_ip_addresses(self, **kwargs):
         """
