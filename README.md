@@ -23,18 +23,18 @@ Pyswitchlib-api-daemon Service Configuration:
 
 The pyswitchlib-api-daemon service is installed with a default configuration file. If a working configuration file does not exist, then the default configuration file will be copied over and setup as the initial working configuration file. If a working configuration file already exits during an upgrade/install, then the working configuration file is preserved and will be used to start/restart the api daemon(s).
 
-    - Default config file is installed at /etc/pyswitchlib/pyswitchlib.conf.default
-    - Working config file is at /etc/pyswitchlib/pyswitchlib.conf.  If a working config file does not exist then the default config file will be copied and used as the working.
-    - The config file specifies how many api daemons will be launched and which sys.prefixes should be associated to the daemon.  When multiple sys.prefixes or virtualenv prefixes are associated to the api daemon (delimited by a colon), then any pyswitchlib assets created under these virtualenvs will utilize this single api daemon.
-    - The default config specifies two api daemons:
-        1. api_daemon_bwc_topology:  The associated sys.prefix is the bwc-topology virtualenv path
-        2. api_deamon_virtualenv_packs:  The two associated sys.prefixes are the network_essenls and dcfabric virtualenv paths
+- Default config file is installed at /etc/pyswitchlib/pyswitchlib.conf.default
+- Working config file is at /etc/pyswitchlib/pyswitchlib.conf.  If a working config file does not exist then the default config file will be copied and used as the working.
+- The config file specifies how many api daemons will be launched and which sys.prefixes should be associated to the daemon.  When multiple sys.prefixes or virtualenv prefixes are associated to the api daemon (delimited by a colon), then any pyswitchlib assets created under these virtualenvs will utilize this single api daemon.
+- The default config specifies two api daemons:
+    1. api_daemon_bwc_topology:  The associated sys.prefix is the bwc-topology virtualenv path
+    2. api_deamon_virtualenv_packs:  The two associated sys.prefixes are the network_essenls and dcfabric virtualenv paths
 
-        NOTE: When multiple prefixes are specified for a single api daemon, the first listed prefix will the be virtualenv which the api daemon will start up under.  When an api daemon is 'restart'-ed, the config file is updated and the last restarted api daemon's prefix will be listed first.  The api deamon will be restarted during a pip install of a given virtualenv and which ever virtualenv is updated last we be the preferred virtualenv to service the rest of the configured virtualenvs. 
+    NOTE: When multiple prefixes are specified for a single api daemon, the first listed prefix will the be virtualenv which the api daemon will start up under.  When an api daemon is 'restart'-ed, the config file is updated and the last restarted api daemon's prefix will be listed first.  The api deamon will be restarted during a pip install of a given virtualenv and which ever virtualenv is updated last we be the preferred virtualenv to service the rest of the configured virtualenvs. 
 
-    - The 'ns_port = <tcp port #>' configuration is optional and no longer required.  If specified, then a pyswitchlib_ns_daemon will be luanched as well as the configured api daemons and pyswitchlib assets will use the name server daemon to lookup which api daemons to use.
-    - When the ns_port configuration is not specified, then a file is maintained to list which api daemons are running and how to connect to them.  Pyswitchlib assets will look up this file to connect to the proper api daemon.  The file is located at /tmp/.pswitchlib_ns_daemon.uri.
-    - Any python virtualenv that is not found in the config file will try to connect to the default API daemon that is started on the host's base python.
+- The 'ns_port = <tcp port #>' configuration is optional and no longer required.  If specified, then a pyswitchlib_ns_daemon will be luanched as well as the configured api daemons and pyswitchlib assets will use the name server daemon to lookup which api daemons to use.
+- When the ns_port configuration is not specified, then a file is maintained to list which api daemons are running and how to connect to them.  Pyswitchlib assets will look up this file to connect to the proper api daemon.  The file is located at /tmp/.pswitchlib_ns_daemon.uri.
+- Any python virtualenv that is not found in the config file will try to connect to the default API daemon that is started on the host's base python.
 
 ## 1.0.0
 * Pyswitchlib uses an API daemon to convert pyswitchlib APIs into REST requests.
