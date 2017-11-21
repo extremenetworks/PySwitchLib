@@ -158,6 +158,8 @@ class Interface(BaseInterface):
                 raise ValueError('Port-channel name should be 1-64 characters')
             if int(portchannel_num) < 1 or int(portchannel_num) > 256:
                 raise ValueError('Port-channel id should be between 1 and 256')
+            if int_type != 'ethernet':
+                raise ValueError('Not a valid interface type (%s) for MLX' % (int_type))
             # Check if a port-channel exists with same id TBD in action
             cli_arr.append('lag' + " " + '"' + desc + '"' + " " + str(mode) + " " + 'id' +
                     " " + str(portchannel_num))
