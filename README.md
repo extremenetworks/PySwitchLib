@@ -21,10 +21,10 @@ The pyswitchlib-api-daemon service is installed with a default configuration fil
 
 #### Pyswitchlib-api-daemon Default Configuration
 
-    1. api_daemon_bwc_topology:  The associated sys.prefix is the bwc-topology virtualenv path
-    2. api_deamon_virtualenv_packs:  The two associated sys.prefixes are the network_essenls and dcfabric virtualenv paths
+1. api_daemon_bwc_topology:  The associated sys.prefix is the bwc-topology virtualenv path
+2. api_deamon_virtualenv_packs:  The two associated sys.prefixes are the network_essenls and dcfabric virtualenv paths
 
-    When multiple prefixes are specified for a single api daemon, the first listed prefix will the be virtualenv which the api daemon will start up under.  When an api daemon is 'restart'-ed, the config file is updated and the last restarted api daemon's prefix will be listed first.  The api deamon will be restarted during a pip install of a given virtualenv and which ever virtualenv is updated last we be the preferred virtualenv to service the rest of the configured virtualenvs. 
+- When multiple prefixes are specified for a single api daemon, the first listed prefix will the be virtualenv which the api daemon will start up under.  When an api daemon is 'restart'-ed, the config file is updated and the last restarted api daemon's prefix will be listed first.  The api deamon will be restarted during a pip install of a given virtualenv and which ever virtualenv is updated last we be the preferred virtualenv to service the rest of the configured virtualenvs. 
 
 ### Install required packages
 ```
