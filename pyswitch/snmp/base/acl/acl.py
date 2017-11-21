@@ -375,3 +375,11 @@ class Acl(object):
                 ret = method + ' [ ' + config + ' ]: failed ' + line
 
         return ret
+
+    def _is_parameter_supported(self, supported_params, parameters):
+
+        received_params = [k for k, v in parameters.iteritems() if v]
+        unsupported_params = list(set(received_params) - set(supported_params))
+        if len(unsupported_params) > 0:
+            raise ValueError("unsupported parameters provided: {}"
+                             .format(unsupported_params))
