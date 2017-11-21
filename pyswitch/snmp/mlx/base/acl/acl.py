@@ -314,7 +314,7 @@ class Acl(BaseAcl):
                             'delete']
         self._is_parameter_supported(supported_params, parameters)
 
-        if 'copy_sflow' in parameters and parameters ['copy_sflow'] != 'False':
+        if 'copy_sflow' in parameters and parameters['copy_sflow'] != 'False':
             raise ValueError('\'copy_sflow\' is not supported by MLX')
 
         if 'count' in parameters and parameters['count'] != 'False':
