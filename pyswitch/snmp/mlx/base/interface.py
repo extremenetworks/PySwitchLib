@@ -843,7 +843,7 @@ class Interface(BaseInterface):
 
         vlan = kwargs.pop('vlan')
         if not pyswitch.utilities.valid_vlan_id(vlan):
-            raise InvalidVlanId("`name` must be between `1` and `4096`")
+            raise InvalidVlanId("`name` must be between `1` and `4090`")
 
         if int_type == 'port_channel':
             name = self.get_lag_primary_port(name)
