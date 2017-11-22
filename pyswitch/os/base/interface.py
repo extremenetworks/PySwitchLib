@@ -5244,7 +5244,7 @@ class Interface(object):
             else:
                 vni_args['ve'] = vni
                 if not pyswitch.utilities.valid_vlan_id(vni_args['ve']):
-                    raise InvalidVlanId("`ve` must be between `1` and `409`")
+                    raise InvalidVlanId("`ve` must be between `1` and `4096`")
                 config = ('vrf_evpn_irb_ve_update', vni_args)
 
             if delete:
