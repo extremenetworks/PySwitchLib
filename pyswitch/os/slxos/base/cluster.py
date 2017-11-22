@@ -68,13 +68,14 @@ class Cluster(object):
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
-            ...     response = device.cluster.cluster_create(cluster=('F47-F47','3'), client_isolation_mode='strict')
+            ...     response = device.cluster.cluster_create(cluster=('F47-F47','3'),
+            ...                                              client_isolation_mode='strict')
             #...     response1 = device.cluster.cluster_get(cluster=('F47-F48','3'))
             #...     response2 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
         """
         (clname, clid) = cluster_args.pop('cluster')
-        isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
+        # isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
         hold_time = cluster_args.pop('df_hold_time', 3)
         cldeploy = cluster_args.pop('deploy', False)
 
@@ -84,10 +85,7 @@ class Cluster(object):
         # set default status buffer
         status['status_code'] = 0
         status['status_message'] = "cluster created"
-        if isolation_mode is 'loose':
-            isolation_strict = False
-        else:
-            isolation_strict = True
+
         argument = {'cluster': (clname, clid),
                     'client_interfaces_shutdown': False,
                     'designated_forwarder_hold_time': hold_time,
@@ -102,7 +100,7 @@ class Cluster(object):
                 else:
                     status['status_code'] = -1
                     status['status_message'] = response.data
-            #elif isolation_mode is 'strict':
+            # elif isolation_mode is 'strict':
             #    self.cluster_client_isolation_mode_update(clname, clid, isolation_mode)
         except Exception, exc:
             status['status_code'] = -1
@@ -154,7 +152,7 @@ class Cluster(object):
             ...
         """
         (clname, clid) = cluster_args.pop('cluster')
-        isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
+        # isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
         hold_time = cluster_args.pop('df_hold_time', 3)
         cldeploy = cluster_args.pop('deploy', True)
 
@@ -175,7 +173,7 @@ class Cluster(object):
             if response.data != '':
                 status['status_code'] = -1
                 status['status_message'] = response.data
-            #else:
+            # else:
             #    self.cluster_client_isolation_mode_update(clname, clid, isolation_mode)
         except Exception, exc:
             status['status_code'] = -1
