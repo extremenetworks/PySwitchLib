@@ -12,40 +12,16 @@ limitations under the License.
 """
 
 import socket
+from aclparam_parser import AclParamParser
 
 
-class IpAcl(object):
+class IpAcl(AclParamParser):
     """
     The IpAcl class holds all the functions assocaiated with
     IP Access Control list.
     Attributes:
         None
     """
-
-    def parse_action(self, **parameters):
-        """
-        parse supported actions by MLX platform
-        Args:
-            parameters contains:
-                action (string): Allowed actions are 'permit' and 'deny'
-        Returns:
-            Return parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-
-        """
-        if 'action' not in parameters or not parameters['action']:
-            raise ValueError("\'action\' not present in parameters arg")
-
-        action = parameters['action']
-
-        if parameters['action'] in ['permit', 'deny']:
-            return parameters['action']
-
-        raise ValueError("The \'action\' value {} is invalid. Specify "
-                         "\'deny\' or \'permit\' supported "
-                         "values".format(action))
 
     def _validate_op_str(self, op_str):
         op_str = ' '.join(op_str.split()).split()
@@ -90,13 +66,7 @@ class IpAcl(object):
             return v4_str + ' ' + op_str
 
         if v4_str[0:4] == "host":
-            try:
-                self._validate_ipv4(v4_str[5:])
-            except:
-                # Ignore exception
-                # This may be a host string.
-                pass
-            return v4_str + ' ' + op_str
+            return v4_str[0:4] + ' ' + v4_str[5:] + ' ' + op_str
 
         if '/' in v4_str:
             ip, prefix_len = v4_str.split('/')
