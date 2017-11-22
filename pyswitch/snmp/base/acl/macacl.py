@@ -12,40 +12,16 @@ limitations under the License.
 """
 
 import re
+from aclparam_parser import AclParamParser
 
 
-class MacAcl(object):
+class MacAcl(AclParamParser):
     """
     The MacAcl class holds all the functions assocaiated with
     Mac Access Control list.
     Attributes:
         None
     """
-
-    def parse_action(self, **parameters):
-        """
-        parse supported actions by MLX platform
-        Args:
-            parameters contains:
-                action (string): Allowed actions are 'permit' and 'deny'
-        Returns:
-            Return parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-
-        """
-        if 'action' not in parameters:
-            raise ValueError("\'action\' not present in parameters arg")
-
-        action = parameters['action']
-
-        if parameters['action'] in ['permit', 'deny']:
-            return parameters['action']
-
-        raise ValueError("The \'action\' value {} is invalid. Specify "
-                         "\'deny\' or \'permit\' supported "
-                         "values".format(action))
 
     def is_valid_mac(self, mac_addr):
         """
@@ -174,13 +150,14 @@ class MacAcl(object):
             Raise ValueError exception
         Examples:
         """
-        if 'ethertype' not in parameters:
+        if 'ethertype' not in parameters or not parameters['ethertype']:
             return None
+
+        if 'vlan' not in parameters or not parameters['vlan']:
+            raise ValueError("vlan is required parameter to configure"
+                             " ethertype")
 
         ethertype = parameters['ethertype']
-
-        if not ethertype:
-            return None
 
         if ethertype in ['arp', 'fcoe', 'ipv4-15', 'ipv6', 'any']:
             return 'etype ' + ethertype
@@ -214,6 +191,10 @@ class MacAcl(object):
         if 'ethertype' not in parameters or parameters['ethertype'] != 'arp':
             raise ValueError("arp guard acl cannot be configured for etype "
                              "other than ARP !!")
+
+        if 'action' not in parameters or parameters['action'] != 'permit':
+            raise ValueError("arp guard cannot be configured for action {}"
+                             .format(parameters['action']))
 
         if 'log' in parameters and parameters['log'] == 'True':
             raise ValueError("\'arp_guard\' and \'log\' can not be configured "

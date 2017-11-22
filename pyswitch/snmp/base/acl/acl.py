@@ -371,7 +371,8 @@ class Acl(object):
 
         for line in output.split('\n'):
             if 'Invalid input ' in line or 'error' in line.lower() or \
-                    'Incomplete command' in line:
+                    'Incomplete command' in line or \
+                    'cannot be used as an ACL name' in line:
                 ret = method + ' [ ' + config + ' ]: failed ' + line
 
         return ret
