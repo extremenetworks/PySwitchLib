@@ -64,11 +64,11 @@ class Cluster(object):
 
         Example:
             >>> import pyswitch.device
-            >>> switch = '10.24.84.148'
+            >>> switch = '10.24.86.57'
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
-            ...     response = device.cluster.cluster_create(cluster=('F47-F47','3'))
+            ...     response = device.cluster.cluster_create(cluster=('F47-F47','3'), client_isolation_mode='strict')
             #...     response1 = device.cluster.cluster_get(cluster=('F47-F48','3'))
             #...     response2 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
@@ -90,7 +90,6 @@ class Cluster(object):
             isolation_strict = True
         argument = {'cluster': (clname, clid),
                     'client_interfaces_shutdown': False,
-                    'client_isolation_strict': isolation_strict,
                     'designated_forwarder_hold_time': hold_time,
                     'deploy': cldeploy
                     }
@@ -103,11 +102,28 @@ class Cluster(object):
                 else:
                     status['status_code'] = -1
                     status['status_message'] = response.data
+            #elif isolation_mode is 'strict':
+            #    self.cluster_client_isolation_mode_update(clname, clid, isolation_mode)
         except Exception, exc:
             status['status_code'] = -1
             status['status_message'] = 'Exception:' + exc.message
 
         return status
+
+    def cluster_client_isolation_mode_update(self, clname, clid, isolation_mode):
+        if isolation_mode is 'loose':
+            isolation_strict = False
+        else:
+            isolation_strict = True
+        argument = {'cluster': (clname, clid),
+                    'strict': isolation_strict
+                    }
+
+        config = ('cluster_client_isolation_strict_update', argument)
+        try:
+            self._callback(config, 'POST')
+        except Exception, exc:
+            raise ValueError('client isolation mode config failed' + exc.message)
 
     def cluster_update(self, **cluster_args):
         """
@@ -148,13 +164,8 @@ class Cluster(object):
         # set default status buffer
         status['status_code'] = 0
         status['status_message'] = "cluster updated"
-        if isolation_mode is 'loose':
-            isolation_strict = False
-        else:
-            isolation_strict = True
         argument = {'cluster': (clname, clid),
                     'client_interfaces_shutdown': False,
-                    'client_isolation_strict': isolation_strict,
                     'designated_forwarder_hold_time': hold_time,
                     'deploy': cldeploy
                     }
@@ -164,6 +175,8 @@ class Cluster(object):
             if response.data != '':
                 status['status_code'] = -1
                 status['status_message'] = response.data
+            #else:
+            #    self.cluster_client_isolation_mode_update(clname, clid, isolation_mode)
         except Exception, exc:
             status['status_code'] = -1
             status['status_message'] = 'Exception:' + exc.message
