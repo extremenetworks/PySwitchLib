@@ -1119,7 +1119,7 @@ class Interface(BaseInterface):
         cli_cmd = "show lag id" + ' ' + str(lag_id)
         cli_output = self._callback(cli_cmd, handler='cli-get')
         primary_match = re.search(r'Primary Port:  (.+)', cli_output)
-        if primary_match is None or primary_match.group(1) is None:
+        if primary_match is None or primary_match.group(1).strip() == 'none':
             raise ValueError('primary port is not found for lag %s' % lag_id)
         return primary_match.group(1).strip()
 
