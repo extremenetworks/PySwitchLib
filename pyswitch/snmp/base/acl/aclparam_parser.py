@@ -110,7 +110,7 @@ class AclParamParser(object):
 
         if 'mirror' in parameters and parameters['mirror'] != 'False':
             raise ValueError("Error: mirror and log keywords can not be "
-                         "used together")
+                             "used together")
 
         if parameters['log'] == 'True':
             return 'log'

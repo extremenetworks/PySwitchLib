@@ -177,6 +177,7 @@ class IpAcl(AclParamParser):
 
         raise ValueError("The \'vlan\' value {} is invalid."
                          " Specify \'1-4095\' supported values")
+
     def parse_protocol(self, **parameters):
         """
         parse the protocol param
