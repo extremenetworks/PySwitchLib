@@ -5192,7 +5192,8 @@ class Interface(object):
         Args:
             rbridge_id (str): rbridge-id.VDX only
             vrf_name (str): Name of the vrf (vrf101, vrf-1 etc).
-            l3vni (str): <NUMBER:1-16777215>   Layer 3 VNI.
+            l3vni (str): VDX: <NUMBER:1-16777215>   Layer 3 VNI.
+                         SLX: <NUMBER:1-4096>   Ve interface number
             get (bool): Get config instead of editing config. (True, False)
             delete (bool): False the L3 vni is configured and True if its to
                 be deleted (True, False). Default value will be False if not
@@ -5233,15 +5234,24 @@ class Interface(object):
         if not get_config:
             vrf_name = kwargs['vrf_name']
             vni = kwargs['l3vni']
-            vni_args = dict(vrf=vrf_name,
-                            vni=vni)
+            vni_args = dict(vrf=vrf_name)
             if self.has_rbridge_id:
                 vni_args['rbridge_id'] = rbridge_id
-
-            config = (self.method_prefix('vrf_vni_update'), vni_args)
+                vni_args['vni'] = vni
+                if vni_args['vni'] < 0 and vni_args['vni'] > 16777216:
+                    raise ValueError("`vni` must be between `1` and `16777215`")
+                config = ('rbridge_id_vrf_vni_update', vni_args)
+            else:
+                vni_args['ve'] = vni
+                if not pyswitch.utilities.valid_vlan_id(vni_args['ve']):
+                    raise InvalidVlanId("`ve` must be between `1` and `4096`")
+                config = ('vrf_evpn_irb_ve_update', vni_args)
 
             if delete:
-                config = (self.method_prefix('vrf_vni_delete'), vni_args)
+                if self.has_rbridge_id:
+                    config = ('rbridge_id_vrf_vni_delete', vni_args)
+                else:
+                    config = ('vrf_evpn_irb_ve_delete', vni_args)
 
             result = callback(config)
 
@@ -5250,19 +5260,19 @@ class Interface(object):
             vni_args = dict(vrf=vrf_name)
             if self.has_rbridge_id:
                 vni_args['rbridge_id'] = rbridge_id
-
-            config = (self.method_prefix('vrf_vni_get'), vni_args)
+                config = ('rbridge_id_vrf_vni_get', vni_args)
+            else:
+                config = ('vrf_evpn_irb_ve_get', vni_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
-
-            vrfname = util.find(util.root, './/vrf-name')
-            vni = util.findText(util.root, './/vni')
             if self.has_rbridge_id:
+                vrfname = util.find(util.root, './/vrf-name')
+                vni = util.findText(util.root, './/vni')
                 tmp = {'rbridge_id': rbridge_id, 'vrf_name': vrfname,
                        'l3vni': vni}
             else:
-                tmp = {'vrf_name': vrfname,
-                       'l3vni': vni}
+                vni = util.findText(util.root, './/ve')
+                tmp = {'l3vni': vni}
             result.append(tmp)
         return result
 
@@ -5316,7 +5326,9 @@ class Interface(object):
             ...         afi="ip", vrf_name="vrf2", get=True)
 
         """
-        rbridge_id = kwargs['rbridge_id']
+
+        if self.has_rbridge_id:
+            rbridge_id = kwargs['rbridge_id']
 
         get_config = kwargs.pop('get', False)
         delete_rt = kwargs.pop('delete_rt', False)
@@ -5330,35 +5342,41 @@ class Interface(object):
             vrf_name = kwargs['vrf_name']
             rt = kwargs['rt']
             rt_value = kwargs['rt_value']
-            rt_args = dict(rbridge_id=rbridge_id, vrf=vrf_name)
+            rt_args = dict(vrf=vrf_name)
+            if self.has_rbridge_id:
+                rt_args.update(rbridge_id=rbridge_id)
 
             if delete_afi is True:
-                method_name = 'rbridge_id_vrf_' \
-                              'address_family_%s_unicast_delete' % afi
+                method_name = self.method_prefix('vrf_'
+                              'address_family_%s_unicast_delete') % afi
                 config = (method_name, rt_args)
             elif delete_rt is True:
-                method_name = 'rbridge_id_vrf_address_family_%s_unicast_' \
-                              'route_target_delete' % afi
+                method_name = self.method_prefix('vrf_address_'
+                              'family_%s_unicast_route_target_delete') % afi
                 config = (method_name, rt_args)
             else:
-                method_name = 'rbridge_id_vrf_address_family_%s_unicast_' \
-                              'create' % afi
+
+                method_name = self.method_prefix('vrf_address_'
+                              'family_%s_unicast_create') % afi
                 config = (method_name, rt_args)
                 callback(config)
 
-                method_name = 'rbridge_id_vrf_address_family_%s_unicast_' \
-                              'route_target_create' % afi
+                method_name = self.method_prefix('vrf_address_'
+                              'family_%s_unicast_'
+                              'route_target_create') % afi
                 rt_args['route_target'] = (rt, rt_value)
+
                 config = (method_name, rt_args)
 
             result = callback(config)
-
         elif get_config:
             vrf_name = kwargs.pop('vrf_name', '')
 
-            rt_args = dict(rbridge_id=rbridge_id, vrf=vrf_name)
+            rt_args = dict(vrf=vrf_name)
+            if self.has_rbridge_id:
+                rt_args.update(rbridge_id=rbridge_id)
 
-            method_name = 'rbridge_id_vrf_get'
+            method_name = self.method_prefix('vrf_get')
             config = (method_name, rt_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
@@ -5370,7 +5388,7 @@ class Interface(object):
                 ipv4_rt = util.findall(ipv4, './/target-community')
 
                 if len(ipv4_action):
-                    tmp = {'rbridge_id': rbridge_id, 'vrf_name': vrf_name,
+                    tmp = {'vrf_name': vrf_name,
                            'afi': 'ip', 'rt': ipv4_action, 'rtvalue': ipv4_rt}
                     result.append(tmp)
 
@@ -5380,7 +5398,6 @@ class Interface(object):
 
                 if len(ipv6_action):
                     tmp = {
-                        'rbridge_id': rbridge_id,
                         'vrf_name': vrf_name,
                         'afi': 'ipv6',
                         'rt': ipv6_action,
