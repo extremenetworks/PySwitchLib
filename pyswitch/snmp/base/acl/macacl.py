@@ -142,7 +142,7 @@ class MacAcl(AclParamParser):
         Args:
             parameters contains:
                 ethertype(string): EtherType, can be 'arp',
-                    'fcoe', 'ipv4-15', 'ipv6' or
+                    'fcoe', 'ipv4-l5', 'ipv6' or
                     custom value between 1536 and 65535.
         Returns:
             Return None or parsed string on success
@@ -159,7 +159,7 @@ class MacAcl(AclParamParser):
 
         ethertype = parameters['ethertype']
 
-        if ethertype in ['arp', 'fcoe', 'ipv4-15', 'ipv6', 'any']:
+        if ethertype in ['arp', 'fcoe', 'ipv4-l5', 'ipv6', 'any']:
             return 'etype ' + ethertype
 
         if ethertype.isdigit():
@@ -168,7 +168,7 @@ class MacAcl(AclParamParser):
 
         raise ValueError("The ethertype value {} is invalid."
                          " Specify Integer or \'any\', \'arp\', "
-                         "\'fcoe\', \'ipv4-15\', \'ipv6\'".format(ethertype))
+                         "\'fcoe\', \'ipv4-l5\', \'ipv6\'".format(ethertype))
 
     def parse_arp_guard(self, **parameters):
         """
@@ -177,7 +177,7 @@ class MacAcl(AclParamParser):
             parameters contains:
                 arp_guard( string): Enables arp-guard for the rule
                 ethertype(string): EtherType, can be 'arp', 'fcoe',
-                    'ipv4-15', 'ipv6' or
+                    'ipv4-l5', 'ipv6' or
                     custom value between 1536 and 65535.
         Returns:
             Return None or parsed string on success
@@ -281,66 +281,6 @@ class MacAcl(AclParamParser):
         raise ValueError("The \'drop-precedence-force\' value {} is invalid."
                          " Supported range is 0 to 3"
                          .format(drop_precedence_force))
-
-    def parse_log(self, **parameters):
-        """
-        parse the log param
-        Args:
-            parameters contains:
-                log(string): Enables the logging
-                mirror(string): Enables mirror for the rule.
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'log' not in parameters:
-            return None
-
-        log = parameters['log']
-
-        if log == 'True':
-            if 'mirror' not in parameters:
-                return 'log'
-            mirror = parameters['mirror']
-            if mirror == 'False':
-                return 'log'
-        else:
-            return None
-
-        raise ValueError("Error: mirror and log keywords can not be "
-                         "used together")
-
-    def parse_mirror(self, **parameters):
-        """
-        parse the mirror param
-        Args:
-            parameters contains:
-                log(string): Enables the logging
-                mirror(string): Enables mirror for the rule.
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'mirror' not in parameters:
-            return None
-
-        mirror = parameters['mirror']
-
-        if mirror == 'True':
-            if 'log' not in parameters:
-                return 'mirror'
-            log = parameters['log']
-            if log == 'False':
-                return 'mirror'
-        else:
-            return None
-
-        raise ValueError("Error: mirror and log keywords can not be "
-                         "used together")
 
     def parse_priority(self, **parameters):
         """
