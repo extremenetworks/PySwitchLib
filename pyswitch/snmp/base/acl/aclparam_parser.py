@@ -65,3 +65,79 @@ class AclParamParser(object):
         raise ValueError("The \'action\' value {} is invalid. Specify "
                          "\'deny\' or \'permit\' supported "
                          "values".format(parameters['action']))
+
+    def parse_mirror(self, **parameters):
+        """
+        parse the mirror param
+        Args:
+            parameters contains:
+                log(string): Enables the logging
+                mirror(string): Enables mirror for the rule.
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'mirror' in parameters or not parameters['mirror']:
+            return None
+
+        if 'action' in parameters and parameters['action'] and \
+                parameters['action'] != 'permit':
+            raise ValueError(" Mirror keyword is applicable only for ACL"
+                             " permit clauses")
+
+        if 'log' in parameters or not parameters['log']:
+            return 'mirror'
+
+        raise ValueError("log and mirror keywords can not be used together")
+
+    def parse_log(self, **parameters):
+        """
+        parse the log param
+        Args:
+            parameters contains:
+                log(string): Enables the logging
+                mirror(string): Enables mirror for the rule.
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'log' in parameters or not parameters['log']:
+            return None
+
+        if 'mirror' in parameters and parameters['mirror'] != 'False':
+            raise ValueError("Error: mirror and log keywords can not be "
+                         "used together")
+
+        if parameters['log'] == 'True':
+            return 'log'
+
+        return None
+
+    def parse_acl_name(self, **parameters):
+        """
+        parse acl name by MLX platform
+        Args:
+            parameters contains:
+                acl_name(string): Allowed length of string is 255
+        Returns:
+            Return parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+
+        """
+        if 'acl_name' not in parameters or not parameters['acl_name']:
+            raise ValueError("\'acl_name\' can not be empty string")
+
+        if len(parameters['acl_name']) > 255:
+            raise ValueError("\'acl_name\' can't be more than 255 characters")
+
+        if parameters['acl_name'].lower() in ['all', 'test']:
+            raise ValueError("{} cannot be used as an ACL name".format(
+                             parameters['acl_name']))
+
+        return parameters['acl_name']

@@ -177,27 +177,6 @@ class IpAcl(AclParamParser):
 
         raise ValueError("The \'vlan\' value {} is invalid."
                          " Specify \'1-4095\' supported values")
-
-    def parse_log(self, **parameters):
-        """
-        parse the log param
-        Args:
-            parameters contains:
-                log(string): Enables the logging
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'log' in parameters or not parameters['log']:
-            return None
-
-        if 'mirror' in parameters or not parameters['mirror']:
-            return 'log'
-
-        raise ValueError("log and mirror keywords can not be used together")
-
     def parse_protocol(self, **parameters):
         """
         parse the protocol param
@@ -564,32 +543,6 @@ class IpAcl(AclParamParser):
         raise ValueError("Invalid tos {}. "
                          "Allowed value in decimal <0-15>."
                          .format(tos))
-
-    def parse_mirror(self, **parameters):
-        """
-        parse the mirror param
-        Args:
-            parameters contains:
-                log(string): Enables the logging
-                mirror(string): Enables mirror for the rule.
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'mirror' in parameters or not parameters['mirror']:
-            return None
-
-        if 'action' in parameters and parameters['action'] and \
-                parameters['action'] != 'permit':
-            raise ValueError(" Mirror keyword is applicable only for ACL"
-                             " permit clauses")
-
-        if 'log' in parameters or not parameters['log']:
-            return 'mirror'
-
-        raise ValueError("log and mirror keywords can not be used together")
 
     def parse_drop_precedence(self, **parameters):
         """
