@@ -332,6 +332,37 @@ class Bgp(object):
             os=self.os)
         return callback(config)
 
+    def neighbor_ipv4_address_add_deactivate(self, ip_addr=None):
+        """Add BGP neighbor.
+
+                Args:
+                    ip_addr (str): IP Address of BGP neighbor.
+
+                Returns:
+                    Return value of `callback`.
+
+                Raises:
+                    KeyError: if `remote_as` or `ip_addr` is not specified.
+
+                Examples:
+                    >>> import pyswitch.device
+                    >>> conn = ('10.24.86.57', '22')
+                    >>> auth = ('admin', 'password')
+                    >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+                    ...     output = dev.bgp.local_asn(local_as='65535')
+                    ...     output = dev.bgp.neighbor(ip_addr='10.10.10.10',
+                    ...     remote_as='65535')
+                    ...     output = dev.bgp.neighbor_ipv4_address_add_deactivate(ip_addr='10.10.10.10')
+        """
+        args = dict(af_ipv4_neighbor_address=ip_addr,
+                    activate=False)
+        api = self.method_prefix(
+            'router_bgp_address_family_ipv4_unicast_neighbor_af_ipv4_neighbor_address_update',
+            args)
+        config = (api, args)
+        return self._callback(config)
+
+
     def _neighbor_ipv6_address(self, afi='ipv6', n_addr=None,
                                rbridge_id=1, remote_as='1',
                                callback=None, op='create'):
