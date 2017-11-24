@@ -352,7 +352,8 @@ class Bgp(object):
                     ...     output = dev.bgp.local_asn(local_as='65535')
                     ...     output = dev.bgp.neighbor(ip_addr='10.10.10.10',
                     ...     remote_as='65535')
-                    ...     output = dev.bgp.neighbor_ipv4_address_add_deactivate(ip_addr='10.10.10.10')
+                    ...     output = dev.bgp.neighbor_ipv4_address_add_deactivate(
+                    ...                 ip_addr='10.10.10.10')
         """
         args = dict(af_ipv4_neighbor_address=ip_addr,
                     activate=False)
@@ -361,7 +362,6 @@ class Bgp(object):
             args)
         config = (api, args)
         return self._callback(config)
-
 
     def _neighbor_ipv6_address(self, afi='ipv6', n_addr=None,
                                rbridge_id=1, remote_as='1',
