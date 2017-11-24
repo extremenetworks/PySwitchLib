@@ -87,14 +87,10 @@ class Acl(BaseAcl):
 
         address_type = parameters['address_type']
         acl_type = parameters['acl_type']
-        acl_name = parameters['acl_name']
-
-        if acl_name.lower() in ['all', 'test']:
-            raise ValueError("{} cannot be used as an ACL name".format(
-                             acl_name))
+        acl_name = self.mac.parse_acl_name(**parameters)
 
         if address_type == 'mac':
-            return 'create_acl : Successful'
+            config = 'mac access-list ' + acl_name
         elif address_type == 'ip':
             config = 'ip access-list ' + acl_type + ' ' + acl_name
         elif address_type == 'ipv6':

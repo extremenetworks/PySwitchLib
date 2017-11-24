@@ -438,43 +438,6 @@ class Ipv6Acl(AclParamParser):
 
         return 'suppress-rpf-drop'
 
-    def parse_mirror(self, **parameters):
-        """
-        parse the mirror param
-        Args:
-            parameters contains:
-                log(string): Enables the logging
-                mirror(string): Enables mirror for the rule.
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'mirror' in parameters:
-            if parameters['mirror'] == 'True':
-                return 'mirror'
-
-        return None
-
-    def parse_log(self, **parameters):
-        """
-        parse the log param
-        Args:
-            parameters contains:
-                log(string): Enables the logging
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'log' in parameters:
-            if parameters['log'] == 'True':
-                return 'log'
-
-        return None
-
     def parse_icmp_filter(self, **parameters):
         """
         parse the icmp_type and icmp_code param
