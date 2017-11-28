@@ -926,13 +926,12 @@ class Interface(BaseInterface):
             else:
                 return False
         elif version == 6:
-            cli_cmd = 'show ipv6 inter' + ' ' + int_type + ' ' + name
+            cli_cmd = 'show runn interface ' + int_type + ' ' + name
             cli_output = callback(cli_cmd, handler='cli-get')
-            if re.search(r'IPv6 is enabled', cli_output):
-                ipv6_s = re.search(r'(.+) \[Preferred\],  subnet is (.+)',
+            if re.search(r'ipv6 address', cli_output):
+                ipv6_a = re.search(r'ipv6 address (.+)',
                         cli_output)
-                subnet_s = re.search(r'::/(.+)', ipv6_s.group(2))
-                ipv6_addr = ipv6_s.group(1).strip() + '/' + subnet_s.group(1)
+                ipv6_addr = ipv6_a.group(1).strip()
                 return ipv6_addr
             else:
                 return False
