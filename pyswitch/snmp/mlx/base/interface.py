@@ -640,6 +640,11 @@ class Interface(BaseInterface):
             enabled = None
         else:
             enabled = kwargs.pop('enabled')
+
+        if int_type == 'port_channel':
+            name = self.get_lag_primary_port(name)
+            int_type = 'ethernet'
+
         ifname_Ids = self.get_interface_name_id_mapping()
         port_id = ifname_Ids[int_type + name]
         callback = kwargs.pop('callback', self._callback)
@@ -716,6 +721,11 @@ class Interface(BaseInterface):
         int_type = kwargs.pop('int_type').lower()
         get = kwargs.pop('get', False)
         name = str(kwargs.pop('name'))
+
+        if int_type == 'port_channel':
+            name = self.get_lag_primary_port(name)
+            int_type = 'ethernet'
+
         ifname_Ids = self.get_interface_name_id_mapping()
         port_id = ifname_Ids[int_type + name]
         callback = kwargs.pop('callback', self._callback)
