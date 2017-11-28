@@ -87,10 +87,10 @@ class Acl(BaseAcl):
 
         address_type = parameters['address_type']
         acl_type = parameters['acl_type']
-        acl_name = parameters['acl_name']
+        acl_name = self.mac.parse_acl_name(**parameters)
 
         if address_type == 'mac':
-            return 'create_acl : Successful'
+            config = 'mac access-list ' + acl_name
         elif address_type == 'ip':
             config = 'ip access-list ' + acl_type + ' ' + acl_name
         elif address_type == 'ipv6':
@@ -322,8 +322,7 @@ class Acl(BaseAcl):
 
         user_data = {}
         user_data['acl_name_str'] = parameters['acl_name']
-        user_data['seq_id_str'] = parameters['seq_id']
-
+        user_data['seq_id_str'] = self.mac.parse_seq_id(**parameters)
         user_data['action_str'] = self.mac.parse_action(**parameters)
         user_data['source_str'] = self.mac.parse_source(**parameters)
         user_data['dst_str'] = self.mac.parse_dst(**parameters)
@@ -654,7 +653,7 @@ class Acl(BaseAcl):
         user_data = {}
 
         user_data['acl_name_str'] = parameters['acl_name']
-        user_data['seq_id_str'] = parameters['seq_id']
+        user_data['seq_id_str'] = self.ip.parse_seq_id(**parameters)
         user_data['action_str'] = self.ip.parse_action(**parameters)
         user_data['source_str'] = self.ip.parse_source(**parameters)
         user_data['vlan_str'] = self.ip.parse_vlan(**parameters)
@@ -732,17 +731,17 @@ class Acl(BaseAcl):
         Examples:
         """
         supported_params = ['acl_name', 'seq_id', 'action', 'source',
-                            'dst', 'established', 'icmp_filter',
-                            'dscp_mapping', 'dscp_marking', 'fragment',
-                            'precedence', 'option', 'suppress_rpf_drop',
-                            'priority', 'priority_force', 'priority_mapping',
-                            'tos', 'drop_precedence', 'drop_precedence_force',
-                            'log', 'mirror']
+                            'destination', 'protocol_type', 'established',
+                            'icmp_filter', 'dscp_mapping', 'dscp_marking',
+                            'fragment', 'precedence', 'option',
+                            'suppress_rpf_drop', 'priority', 'priority_force',
+                            'priority_mapping', 'tos', 'drop_precedence',
+                            'drop_precedence_force', 'log', 'mirror']
         self._is_parameter_supported(supported_params, parameters)
 
         user_data = {}
         user_data['acl_name_str'] = parameters['acl_name']
-        user_data['seq_id_str'] = parameters['seq_id']
+        user_data['seq_id_str'] = self.ip.parse_seq_id(**parameters)
         user_data['action_str'] = self.ip.parse_action(**parameters)
         user_data['protocol_str'] = self.ip.parse_protocol(**parameters)
         user_data['source_str'] = self.ip.parse_source(**parameters)
@@ -911,7 +910,7 @@ class Acl(BaseAcl):
 
         user_data = {}
         user_data['acl_name_str'] = parameters['acl_name']
-        user_data['seq_id_str'] = parameters['seq_id']
+        user_data['seq_id_str'] = self.ipv6.parse_seq_id(**parameters)
         user_data['action_str'] = self.ipv6.parse_action(**parameters)
         user_data['vlan_str'] = self.ipv6.parse_vlan(**parameters)
         user_data['protocol_str'] = self.ipv6.parse_protocol(**parameters)

@@ -12,38 +12,16 @@ limitations under the License.
 """
 
 import socket
+from aclparam_parser import AclParamParser
 
 
-class Ipv6Acl(object):
+class Ipv6Acl(AclParamParser):
     """
     The Ipv6Acl class holds all the functions assocaiated with
     IPv6 Access Control list.
     Attributes:
         None
     """
-
-    def parse_action(self, **parameters):
-        """
-        parse supported actions by MLX platform
-        Args:
-            parameters contains:
-                action (string): Allowed actions are 'permit' and 'deny'
-        Returns:
-            Return parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-
-        """
-        if 'action' not in parameters or not parameters['action']:
-            raise ValueError("\'action\' not present in parameters arg")
-
-        if parameters['action'] in ['permit', 'deny']:
-            return parameters['action']
-
-        raise ValueError("The \'action\' value {} is invalid. Specify "
-                         "\'deny\' or \'permit\' supported "
-                         "values".format(parameters['action']))
 
     def parse_vlan(self, **parameters):
         """
@@ -459,43 +437,6 @@ class Ipv6Acl(object):
             return None
 
         return 'suppress-rpf-drop'
-
-    def parse_mirror(self, **parameters):
-        """
-        parse the mirror param
-        Args:
-            parameters contains:
-                log(string): Enables the logging
-                mirror(string): Enables mirror for the rule.
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'mirror' in parameters:
-            if parameters['mirror'] == 'True':
-                return 'mirror'
-
-        return None
-
-    def parse_log(self, **parameters):
-        """
-        parse the log param
-        Args:
-            parameters contains:
-                log(string): Enables the logging
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'log' in parameters:
-            if parameters['log'] == 'True':
-                return 'log'
-
-        return None
 
     def parse_icmp_filter(self, **parameters):
         """

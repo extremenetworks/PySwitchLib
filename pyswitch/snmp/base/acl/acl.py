@@ -367,13 +367,19 @@ class Acl(object):
             ValueError, Exception
         """
 
-        ret = method + ' : Successful'
+        ret = None
 
         for line in output.split('\n'):
             if 'Invalid input ' in line or 'error' in line.lower() or \
-                    'Incomplete command' in line:
+                    'Incomplete command' in line or \
+                    'cannot be used as an ACL name' in line or \
+                    'name can\'t be more than 255 characters' in line:
                 ret = method + ' [ ' + config + ' ]: failed ' + line
 
+        if ret:
+            raise ValueError(ret)
+
+        ret = method + ' : Successful'
         return ret
 
     def _is_parameter_supported(self, supported_params, parameters):

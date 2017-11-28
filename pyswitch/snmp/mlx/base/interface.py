@@ -640,6 +640,11 @@ class Interface(BaseInterface):
             enabled = None
         else:
             enabled = kwargs.pop('enabled')
+
+        if int_type == 'port_channel':
+            name = self.get_lag_primary_port(name)
+            int_type = 'ethernet'
+
         ifname_Ids = self.get_interface_name_id_mapping()
         port_id = ifname_Ids[int_type + name]
         callback = kwargs.pop('callback', self._callback)
@@ -716,6 +721,11 @@ class Interface(BaseInterface):
         int_type = kwargs.pop('int_type').lower()
         get = kwargs.pop('get', False)
         name = str(kwargs.pop('name'))
+
+        if int_type == 'port_channel':
+            name = self.get_lag_primary_port(name)
+            int_type = 'ethernet'
+
         ifname_Ids = self.get_interface_name_id_mapping()
         port_id = ifname_Ids[int_type + name]
         callback = kwargs.pop('callback', self._callback)
@@ -843,7 +853,11 @@ class Interface(BaseInterface):
 
         vlan = kwargs.pop('vlan')
         if not pyswitch.utilities.valid_vlan_id(vlan):
-            raise InvalidVlanId("`name` must be between `1` and `4096`")
+            raise InvalidVlanId("`name` must be between `1` and `4090`")
+
+        if int_type == 'port_channel':
+            name = self.get_lag_primary_port(name)
+            int_type = 'ethernet'
 
         cli_arr.append('vlan' + ' ' + str(vlan))
 
@@ -852,11 +866,14 @@ class Interface(BaseInterface):
         else:
             cli_arr.append('untagged' + ' ' + int_type + ' ' + name)
 
-        cli_res = callback(cli_arr, handler='cli-set')
-        error = re.search(r'Error:(.+)', cli_res)
-        if error:
-            raise ValueError("%s" % error.group(0))
-        return True
+        try:
+            cli_res = callback(cli_arr, handler='cli-set')
+            pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+            return True
+        except Exception as error:
+            reason = error.message
+            raise ValueError('Failed to add untagged member port to vlan %s'
+                          % (reason))
 
     def get_ip_addresses(self, **kwargs):
         """
@@ -1112,7 +1129,7 @@ class Interface(BaseInterface):
         cli_cmd = "show lag id" + ' ' + str(lag_id)
         cli_output = self._callback(cli_cmd, handler='cli-get')
         primary_match = re.search(r'Primary Port:  (.+)', cli_output)
-        if primary_match is None or primary_match.group(1) is None:
+        if primary_match is None or primary_match.group(1).strip() == 'none':
             raise ValueError('primary port is not found for lag %s' % lag_id)
         return primary_match.group(1).strip()
 

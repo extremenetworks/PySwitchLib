@@ -12,40 +12,16 @@ limitations under the License.
 """
 
 import re
+from aclparam_parser import AclParamParser
 
 
-class MacAcl(object):
+class MacAcl(AclParamParser):
     """
     The MacAcl class holds all the functions assocaiated with
     Mac Access Control list.
     Attributes:
         None
     """
-
-    def parse_action(self, **parameters):
-        """
-        parse supported actions by MLX platform
-        Args:
-            parameters contains:
-                action (string): Allowed actions are 'permit' and 'deny'
-        Returns:
-            Return parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-
-        """
-        if 'action' not in parameters:
-            raise ValueError("\'action\' not present in parameters arg")
-
-        action = parameters['action']
-
-        if parameters['action'] in ['permit', 'deny']:
-            return parameters['action']
-
-        raise ValueError("The \'action\' value {} is invalid. Specify "
-                         "\'deny\' or \'permit\' supported "
-                         "values".format(action))
 
     def is_valid_mac(self, mac_addr):
         """
@@ -166,7 +142,7 @@ class MacAcl(object):
         Args:
             parameters contains:
                 ethertype(string): EtherType, can be 'arp',
-                    'fcoe', 'ipv4-15', 'ipv6' or
+                    'fcoe', 'ipv4-l5', 'ipv6' or
                     custom value between 1536 and 65535.
         Returns:
             Return None or parsed string on success
@@ -174,15 +150,16 @@ class MacAcl(object):
             Raise ValueError exception
         Examples:
         """
-        if 'ethertype' not in parameters:
+        if 'ethertype' not in parameters or not parameters['ethertype']:
             return None
+
+        if 'vlan' not in parameters or not parameters['vlan']:
+            raise ValueError("vlan is required parameter to configure"
+                             " ethertype")
 
         ethertype = parameters['ethertype']
 
-        if not ethertype:
-            return None
-
-        if ethertype in ['arp', 'fcoe', 'ipv4-15', 'ipv6', 'any']:
+        if ethertype in ['arp', 'fcoe', 'ipv4-l5', 'ipv6', 'any']:
             return 'etype ' + ethertype
 
         if ethertype.isdigit():
@@ -191,7 +168,7 @@ class MacAcl(object):
 
         raise ValueError("The ethertype value {} is invalid."
                          " Specify Integer or \'any\', \'arp\', "
-                         "\'fcoe\', \'ipv4-15\', \'ipv6\'".format(ethertype))
+                         "\'fcoe\', \'ipv4-l5\', \'ipv6\'".format(ethertype))
 
     def parse_arp_guard(self, **parameters):
         """
@@ -200,7 +177,7 @@ class MacAcl(object):
             parameters contains:
                 arp_guard( string): Enables arp-guard for the rule
                 ethertype(string): EtherType, can be 'arp', 'fcoe',
-                    'ipv4-15', 'ipv6' or
+                    'ipv4-l5', 'ipv6' or
                     custom value between 1536 and 65535.
         Returns:
             Return None or parsed string on success
@@ -214,6 +191,10 @@ class MacAcl(object):
         if 'ethertype' not in parameters or parameters['ethertype'] != 'arp':
             raise ValueError("arp guard acl cannot be configured for etype "
                              "other than ARP !!")
+
+        if 'action' not in parameters or parameters['action'] != 'permit':
+            raise ValueError("arp guard cannot be configured for action {}"
+                             .format(parameters['action']))
 
         if 'log' in parameters and parameters['log'] == 'True':
             raise ValueError("\'arp_guard\' and \'log\' can not be configured "
@@ -300,66 +281,6 @@ class MacAcl(object):
         raise ValueError("The \'drop-precedence-force\' value {} is invalid."
                          " Supported range is 0 to 3"
                          .format(drop_precedence_force))
-
-    def parse_log(self, **parameters):
-        """
-        parse the log param
-        Args:
-            parameters contains:
-                log(string): Enables the logging
-                mirror(string): Enables mirror for the rule.
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'log' not in parameters:
-            return None
-
-        log = parameters['log']
-
-        if log == 'True':
-            if 'mirror' not in parameters:
-                return 'log'
-            mirror = parameters['mirror']
-            if mirror == 'False':
-                return 'log'
-        else:
-            return None
-
-        raise ValueError("Error: mirror and log keywords can not be "
-                         "used together")
-
-    def parse_mirror(self, **parameters):
-        """
-        parse the mirror param
-        Args:
-            parameters contains:
-                log(string): Enables the logging
-                mirror(string): Enables mirror for the rule.
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'mirror' not in parameters:
-            return None
-
-        mirror = parameters['mirror']
-
-        if mirror == 'True':
-            if 'log' not in parameters:
-                return 'mirror'
-            log = parameters['log']
-            if log == 'False':
-                return 'mirror'
-        else:
-            return None
-
-        raise ValueError("Error: mirror and log keywords can not be "
-                         "used together")
 
     def parse_priority(self, **parameters):
         """
