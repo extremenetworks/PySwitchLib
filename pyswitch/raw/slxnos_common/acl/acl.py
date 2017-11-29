@@ -22,7 +22,7 @@ import pyswitch.utilities as utilities
 from pyswitch.raw.base.acl import Acl as BaseAcl
 from pyswitch.raw.slxnos_common.acl import acl_template
 from pyswitch.raw.slxnos_common.acl.macacl import MacAcl
-from pyswitch.raw.slxnos_common.acl.ipacl import IpAcl
+from pyswitch.raw.slxnos_common.acl.ipv46acl import IpAcl
 
 
 class SlxNosAcl(BaseAcl):
@@ -174,7 +174,7 @@ class SlxNosAcl(BaseAcl):
                          .format(kwargs['acl_name']))
         return True
 
-    def add_ipv4_rule_acl(self, **kwargs):
+    def add_ipv46_rule_acl(self, **kwargs):
         """
         Add ACL rule to an existing IPv4 ACL.
         Args:
@@ -228,10 +228,13 @@ class SlxNosAcl(BaseAcl):
         self.logger.info('Successfully identified the acl_type as ({}:{})'
                          .format(address_type, acl_type))
 
+        # This is required to distinguish between ipv4 or v6
+        kwargs['address_type'] = address_type
+
         if acl_type == 'standard':
-            user_data = self._parse_params_for_add_ipv4_standard(**kwargs)
+            user_data = self._parse_params_for_add_standard(**kwargs)
         elif acl_type == 'extended':
-            user_data = self._parse_params_for_add_ipv4_extended(**kwargs)
+            user_data = self._parse_params_for_add_extended(**kwargs)
         else:
             raise ValueError('{} not supported'.format(acl_type))
 
@@ -261,7 +264,7 @@ class SlxNosAcl(BaseAcl):
         self.logger.info('Successfully added rule ACL {}'.format(acl_name))
         return True
 
-    def _parse_params_for_add_ipv4_standard(self, **kwargs):
+    def _parse_params_for_add_standard(self, **kwargs):
         """
         Parses params for l2 Rule to be added to standard Access Control List.
         Args:
@@ -290,7 +293,7 @@ class SlxNosAcl(BaseAcl):
         # Check for supported and mandatory kwargs
         mandatory_params = ['acl_name', 'action', 'source']
         supported_params = ['acl_name', 'seq_id', 'action', 'source',
-                            'count', 'log']
+                            'count', 'log', 'address_type']
         utilities._validate_parameters(mandatory_params,
                                        supported_params, kwargs)
 
@@ -304,7 +307,7 @@ class SlxNosAcl(BaseAcl):
         self.ip.parse_boolean_params(user_data, bool_params, **kwargs)
         return user_data
 
-    def _parse_params_for_add_ipv4_extended(self, **kwargs):
+    def _parse_params_for_add_extended(self, **kwargs):
         """
         Parses params for l2 Rule to be added to standard Access Control List.
         Args:
@@ -351,7 +354,7 @@ class SlxNosAcl(BaseAcl):
         supported_params = ['acl_name', 'seq_id', 'action', 'protocol_type',
                             'source', 'destination', 'dscp', 'urg', 'ack',
                             'push', 'fin', 'rst', 'sync', 'vlan_id','count',
-                            'log']
+                            'log', 'address_type']
         utilities._validate_parameters(mandatory_params,
                                        supported_params, kwargs)
 
@@ -412,10 +415,14 @@ class SlxNosAcl(BaseAcl):
         self.logger.info('Successfully deleted rule ACL {}'.format(acl_name))
         return True
 
+    def add_ipv4_rule_acl(self, **kwargs):
+        self.add_ipv46_rule_acl(**kwargs)
+
     def add_ipv6_rule_acl(self, **kwargs):
-        pass
+        self.add_ipv46_rule_acl(**kwargs)
+
     def delete_ipv6_acl_rule(self, **kwargs):
-        pass
+        self.delete_ipv4_acl_rule(**kwargs)
 
     def add_l2_acl_rule(self, **kwargs):
         pass

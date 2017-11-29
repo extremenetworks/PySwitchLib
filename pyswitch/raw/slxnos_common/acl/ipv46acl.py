@@ -12,6 +12,7 @@ limitations under the License.
 """
 
 import socket
+import pyswitch.utilities as utilities
 from pyswitch.raw.slxnos_common.acl.aclparam_parser import AclParamParser
 
 
@@ -49,7 +50,8 @@ class IpAcl(AclParamParser):
         except socket.error:
             raise ValueError('Invalid address: ' + addr)
 
-    def _parse_source_destination(self, protocol_type, input_param):
+    def _parse_source_destination(self, protocol_type, input_param,
+                                  address_type):
 
         ret = {"host_any": None, "host_ip": None, "mask": None, 'xport': None}
 
@@ -71,22 +73,29 @@ class IpAcl(AclParamParser):
             self._parse_op_str(op_str, ret)
 
         if v4_str[0:3] == "any":
-            ret['host_any'] = "any" # op_str
+            ret['host_any'] = "any"
             return ret
 
         if v4_str[0:4] == "host":
+            utilities.validate_ip_address(v4_str[5:], address_type)
             ret['host_any'] = "host"
-            ret['host_ip'] = v4_str[5:] # op_str
+            ret['host_ip'] = v4_str[5:]
             return ret
 
         if '/' in v4_str:
             ip, mask = v4_str.split('/')
-            self._validate_ipv4(ip)
-            self._validate_ipv4(mask)
 
-            ret['host_any'] = ip
-            ret['mask'] = mask # op_str
-            return ret
+            utilities.validate_ip_address(ip, address_type)
+
+            if address_type == 'ipv6':
+                ret['host_any'] = v4_str
+                return ret
+
+            if address_type == 'ip':
+                utilities.validate_ip_address(mask, address_type)
+                ret['host_any'] = ip
+                ret['mask'] = mask
+                return ret
 
         raise ValueError("Invalid input param {}".format(input_param))
 
@@ -110,7 +119,8 @@ class IpAcl(AclParamParser):
         src = kwargs['source']
         src = ' '.join(src.split())
 
-        return self._parse_source_destination(kwargs['protocol_type'], src)
+        return self._parse_source_destination(kwargs['protocol_type'], src,
+                                              kwargs['address_type'])
 
     def parse_destination(self, **kwargs):
         """
@@ -134,8 +144,8 @@ class IpAcl(AclParamParser):
         dst = kwargs['destination']
         dst = ' '.join(dst.split())
 
-        return self._parse_source_destination(kwargs['protocol_type'], dst)
-
+        return self._parse_source_destination(kwargs['protocol_type'], dst,
+                                              kwargs['address_type'])
 
     def parse_protocol_type(self, **kwargs):
         """

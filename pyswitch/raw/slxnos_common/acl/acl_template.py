@@ -80,7 +80,9 @@ acl_rule_ip = """
       <access-list>
         <{{acl_type}}>
           <name>{{acl_name}}</name>
-          <hide-{{address_type}}-acl-{{acl_type[:3] }}>
+          {% if address_type == "ip" %}
+            <hide-{{address_type}}-acl-{{acl_type[:3] }}>
+          {% endif %}
               <seq>
                 <seq-id>{{seq_id}}</seq-id>
                 <action>{{action}}</action>
@@ -89,7 +91,7 @@ acl_rule_ip = """
                 {% if source.host_any != "any" %}
                   {% if source.host_any == "host" %}
                     <src-host-ip>{{source.host_ip}}</src-host-ip>
-                  {% else %}
+                  {% elif address_type == "ip" %}
                     <src-mask>{{source.mask}}</src-mask>
                   {% endif %}
                 {% endif %}
@@ -124,7 +126,7 @@ acl_rule_ip = """
                   {% if destination.host_any != "any" %}
                     {% if destination.host_any == "host" %}
                       <dst-host-ip>{{destination.host_ip}}</dst-host-ip>
-                    {% else %}
+                    {% elif address_type == "ip" %}
                       <dst-mask>{{destination.mask}}</dst-mask>
                     {% endif %}
                   {% endif %}
@@ -168,7 +170,9 @@ acl_rule_ip = """
                 {% if count is not none %} <count></count> {% endif %}
                 {% if log is not none %}<log></log> {% endif %}
               </seq>
-          </hide-{{address_type}}-acl-{{acl_type[:3] }}>
+          {% if address_type == "ip" %}
+            </hide-{{address_type}}-acl-{{acl_type[:3] }}>
+          {% endif %}
         </{{acl_type}}>
       </access-list>
     </{{address_type}}>
@@ -185,11 +189,15 @@ acl_rule_ip_delete = """
       <access-list>
         <{{acl_type}}>
           <name>{{acl_name}}</name>
-          <hide-{{address_type}}-acl-{{acl_type[:3] }}>
-            <seq operation="delete">
-              <seq-id>{{seq_id}}</seq-id>
-            </seq>
-          </hide-{{address_type}}-acl-{{acl_type[:3] }}>
+          {% if address_type == "ip" %}
+            <hide-{{address_type}}-acl-{{acl_type[:3] }}>
+          {% endif %}
+              <seq operation="delete">
+                <seq-id>{{seq_id}}</seq-id>
+              </seq>
+          {% if address_type == "ip" %}
+            </hide-{{address_type}}-acl-{{acl_type[:3] }}>
+          {% endif %}
         </{{acl_type}}>
       </access-list>
     </{{address_type}}>
@@ -264,25 +272,5 @@ acl_rule_mac = """
          </standard>
       </access-list>
    </mac>
-</config>
-"""
-
-tmp_acl_rule_ip = """
-<config>
-   <{{address_type}}-acl
-        xmlns="urn:brocade.com:mgmt:brocade-{{address_type}}-access-list">
-      <{{address_type}}>
-         <access-list>
-            <{{acl_type}}>
-               <name>{{acl_name}}</name>
-               {{sequences}}
-
-               <seq operation=\'delete\'> {{seq_id}} </seq>
-               sequences = "<hide-ip-acl-std>\n{}</hide-ip-acl-std>\n".format(sequences)
-
-            </{{acl_type}}>
-         </access-list>
-      </{{address_type}}>
-   </{{address_type}}-acl>
 </config>
 """

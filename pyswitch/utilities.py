@@ -574,3 +574,18 @@ def _validate_parameters(mandatory_params, supported_params, parameters):
     if len(unsupported_params) > 0:
         raise ValueError("unsupported parameters provided: {}"
                          .format(unsupported_params))
+
+def validate_ip_address(addr, address_type):
+    """
+    This will only validate the IPv4 and IPv6 addresses.
+    """
+    addr = ' '.join(addr.split())
+    try:
+        if address_type == 'ipv6':
+            socket.inet_pton(socket.AF_INET6, addr)
+        else:
+            socket.inet_pton(socket.AF_INET, addr)
+        return True
+    except socket.error:
+        raise ValueError("Invalid {} address: {}"
+                         .format(address_type, addr))
