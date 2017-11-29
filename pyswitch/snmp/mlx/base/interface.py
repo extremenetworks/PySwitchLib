@@ -175,7 +175,6 @@ class Interface(BaseInterface):
                 lag_member_dict = {}
                 lag_member_dict = self.get_port_channel_member_ports(desc)
                 member_cnt = len(lag_member_dict)
-            print "mbr cnt", member_cnt
             if member_cnt == 0:
                 # select primary port
                 cli_arr.append('primary-port' + " " + ports[0])
