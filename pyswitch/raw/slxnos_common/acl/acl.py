@@ -325,8 +325,6 @@ class SlxNosAcl(BaseAcl):
                 destination: (string) Destination address filters
                     { any | S_IPaddress/mask(0.0.0.255) |
                     host,S_IPaddress } [ source-operator [ S_port-numbers ] ]
-                drop_precedence_force(string): Matches the drop_precedence
-                    value of the packet. Allowed values are 0 through 2.
                 dscp(string): Matches the specified value against the DSCP
                     value of the packet to filter.  Allowed values 0 to 63.
                 urg(string): Enables urg for the rule
@@ -335,7 +333,6 @@ class SlxNosAcl(BaseAcl):
                 fin(string): Enables fin for the rule
                 rst(string): Enables rst for the rule
                 sync(string): Enables sync for the rule
-                mirror(string): Enables mirror for the rule
                 vlan_id(integer): VLAN interface to which the ACL is bound
                 count(string): Enables the packet count.
                 log: (string) Enables logging for the rule
@@ -352,9 +349,9 @@ class SlxNosAcl(BaseAcl):
         mandatory_params = ['acl_name', 'action', 'protocol_type',
                             'source', 'destination']
         supported_params = ['acl_name', 'seq_id', 'action', 'protocol_type',
-                            'source', 'destination', 'drop_precedence_force',
-                            'dscp', 'urg', 'ack', 'push', 'fin', 'rst', 'sync',
-                            'vlan_id', 'count', 'log', 'copy_sflow', 'mirror']
+                            'source', 'destination', 'dscp', 'urg', 'ack',
+                            'push', 'fin', 'rst', 'sync', 'vlan_id','count',
+                            'log']
         utilities._validate_parameters(mandatory_params,
                                        supported_params, kwargs)
 
@@ -366,11 +363,8 @@ class SlxNosAcl(BaseAcl):
         user_data['protocol_type'] = self.ip.parse_protocol_type(**kwargs)
         user_data['source'] = self.ip.parse_source(**kwargs)
         user_data['destination'] = self.ip.parse_destination(**kwargs)
-        user_data['drop_precedence_force'] = \
-            self.ip.parse_drop_precedence_force(**kwargs)
         user_data['dscp'] = self.ip.parse_dscp(**kwargs)
         user_data['vlan_id'] = self.ip.parse_vlan_id(**kwargs)
-        user_data['mirror'] = self.ip.parse_mirror(**kwargs)
 
         # All these params of same type. Parsing them together
         bool_params = ['urg', 'ack', 'push', 'fin', 'rst', 'sync',
@@ -420,9 +414,10 @@ class SlxNosAcl(BaseAcl):
 
     def add_ipv6_rule_acl(self, **kwargs):
         pass
-    def add_l2_acl_rule(self, **kwargs):
-        pass
     def delete_ipv6_acl_rule(self, **kwargs):
+        pass
+
+    def add_l2_acl_rule(self, **kwargs):
         pass
     def delete_l2_acl_rule(self, **kwargs):
         pass

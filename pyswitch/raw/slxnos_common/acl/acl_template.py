@@ -84,6 +84,7 @@ acl_rule_ip = """
               <seq>
                 <seq-id>{{seq_id}}</seq-id>
                 <action>{{action}}</action>
+
                 <src-host-any-sip>{{source.host_any}}</src-host-any-sip>
                 {% if source.host_any != "any" %}
                   {% if source.host_any == "host" %}
@@ -96,6 +97,29 @@ acl_rule_ip = """
                 {% if acl_type == "extended" %}
                   <protocol-type>{{protocol_type}}</protocol-type>
 
+
+                  {% if source.xport is not none %}
+                    <sport>{{source.xport.op}}</sport>
+
+                    {% if source.xport.op == "eq" or source.xport.op == "neq" %}
+                      <sport-number-eq-neq-{{protocol_type}}>
+                        {{source.xport.val[0]}}
+                      </sport-number-eq-neq-{{protocol_type}}>
+                    {% elif source.xport.op == "range" %}
+                      <sport-number-range-lower-{{protocol_type}}>
+                         {{source.xport.val[0]}}
+                      </sport-number-range-lower-{{protocol_type}}>
+                      <sport-number-range-higher-{{protocol_type}}>
+                         {{source.xport.val[1]}}
+                      </sport-number-range-higher-{{protocol_type}}>
+                    {% else %}
+                      <sport-number-{{source.xport.op}}-{{protocol_type}}>
+                         {{source.xport.val[0]}}
+                      </sport-number-{{source.xport.op}}-{{protocol_type}}>
+                    {% endif %}
+                  {% endif %}
+
+
                   <dst-host-any-dip>{{destination.host_any}}</dst-host-any-dip>
                   {% if destination.host_any != "any" %}
                     {% if destination.host_any == "host" %}
@@ -105,15 +129,32 @@ acl_rule_ip = """
                     {% endif %}
                   {% endif %}
 
-                  {% if drop_precedence_force is not none %}
-                    <drop-precedence-force>{{drop_precedence_force}}
-                    </drop-precedence-force>
+                  {% if destination.xport is not none %}
+                    <dport>{{destination.xport.op}}</dport>
+
+                    {% if destination.xport.op == "eq" or
+                          destination.xport.op == "neq" %}
+                      <dport-number-eq-neq-{{protocol_type}}>
+                        {{destination.xport.val[0]}}
+                      </dport-number-eq-neq-{{protocol_type}}>
+                    {% elif destination.xport.op == "range" %}
+                      <dport-number-range-lower-{{protocol_type}}>
+                         {{destination.xport.val[0]}}
+                      </dport-number-range-lower-{{protocol_type}}>
+                      <dport-number-range-higher-{{protocol_type}}>
+                         {{destination.xport.val[1]}}
+                      </dport-number-range-higher-{{protocol_type}}>
+                    {% else %}
+                      <dport-number-{{destination.xport.op}}-{{protocol_type}}>
+                         {{destination.xport.val[0]}}
+                      </dport-number-{{destination.xport.op}}-{{protocol_type}}>
+                    {% endif %}
                   {% endif %}
 
                   {% if dscp is not none %} <dscp>{{dscp}}</dscp> {% endif %}
 
                   {% if vlan_id is not none %}
-                    <vlan-id>{{vlan_id}}</vlan-id>
+                    <vlan>{{vlan_id}}</vlan>
                   {% endif %}
 
                   {% if urg is not none %} <urg></urg> {% endif %}
@@ -122,7 +163,6 @@ acl_rule_ip = """
                   {% if fin is not none %} <fin></fin> {% endif %}
                   {% if rst is not none %} <rst></rst> {% endif %}
                   {% if sync is not none %} <sync></sync> {% endif %}
-                  {% if mirror is not none %} <mirror></mirror> {% endif %}
                 {% endif %}
 
                 {% if count is not none %} <count></count> {% endif %}

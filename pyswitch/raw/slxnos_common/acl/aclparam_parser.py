@@ -135,32 +135,6 @@ class AclParamParser(object):
 
         return None
 
-    def parse_mirror(self, **kwargs):
-        """
-        parse the mirror param
-        Args:
-            kwargs contains:
-                log(string): Enables the logging
-                mirror(string): Enables mirror for the rule.
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'mirror' not in kwargs or not kwargs['mirror']:
-            return None
-
-        if 'action' in kwargs and kwargs['action'] and \
-                kwargs['action'] != 'permit':
-            raise ValueError(" Mirror keyword is applicable only for ACL"
-                             " permit clauses")
-
-        if 'log' in kwargs or not kwargs['log']:
-            return True
-
-        raise ValueError("log and mirror keywords can not be used together")
-
     def parse_acl_name(self, **kwargs):
         """
         parse acl name by platform
@@ -197,7 +171,6 @@ class AclParamParser(object):
                 fin(string): Enables fin for the rule
                 rst(string): Enables rst for the rule
                 sync(string): Enables sync for the rule
-                copy_sflow(string): Enables copy_sflow for the rule
         Returns:
             Return None or parsed string on success
         Raise:

@@ -23,15 +23,23 @@ class IpAcl(AclParamParser):
         None
     """
 
-    def _validate_op_str(self, op_str):
+    def _parse_op_str(self, op_str, ret):
+        xport = {}
+
         op_str = ' '.join(op_str.split()).split()
 
         if len(op_str) == 2:
             if (op_str[0] == 'neq' or op_str[0] == 'lt' or
                 op_str[0] == 'gt' or op_str[0] == 'eq') and \
                     op_str[1].isdigit():
+                xport['op'] = op_str[0]
+                xport['val'] = [op_str[1]]
+                ret['xport'] = xport
                 return True
         elif len(op_str) == 3 and op_str[0] == 'range':
+            xport['op'] = op_str[0]
+            xport['val'] = [op_str[1], op_str[2]]
+            ret['xport'] = xport
             return True
 
     def _validate_ipv4(self, addr):
@@ -43,7 +51,7 @@ class IpAcl(AclParamParser):
 
     def _parse_source_destination(self, protocol_type, input_param):
 
-        ret = {"host_any": None, "host_ip": None, "mask": None}
+        ret = {"host_any": None, "host_ip": None, "mask": None, 'xport': None}
 
         v4_str = input_param
         op_str = ''
@@ -60,7 +68,7 @@ class IpAcl(AclParamParser):
                              "protocol_type = tcp or udp")
 
         if op_str:
-            self._validate_op_str(op_str)
+            self._parse_op_str(op_str, ret)
 
         if v4_str[0:3] == "any":
             ret['host_any'] = "any" # op_str
@@ -158,32 +166,6 @@ class IpAcl(AclParamParser):
 
         raise ValueError("Invalid \'protocol_type\' {} in kwargs"
                          .format(protocol_type))
-
-    def parse_drop_precedence_force(self, **kwargs):
-        """
-        parse the drop_precedence_force type param.
-        Args:
-            kwargs contains:
-                drop_precedence_force(string): Matches the drop_precedence
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'drop_precedence_force' not in kwargs or \
-            not kwargs['drop_precedence_force']:
-            return None
-
-        dpf = kwargs['drop_precedence_force']
-        dpf = ' '.join(dpf.split())
-
-        if dpf.isdigit():
-            if int(dpf) >= 0 and int(dpf) <= 2:
-                return dpf
-
-        raise ValueError("Invalid \'drop_precedence_force\' {} in kwargs"
-                         .format(dpf))
 
     def parse_dscp(self, **kwargs):
         """
