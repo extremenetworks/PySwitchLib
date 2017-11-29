@@ -122,7 +122,7 @@ class Interface(BaseInterface):
             reason = error.message
             raise ValueError('Failed to create VLAN %s' % (reason))
 
-    def create_port_channel(self, ports, int_type, portchannel_num, mode, desc=None):
+    def create_port_channel(self, ports, int_type, portchannel_num, mode, po_exists, desc=None):
         """create port channel
 
         args:
@@ -165,14 +165,22 @@ class Interface(BaseInterface):
                     " " + str(portchannel_num))
             # Add ports to port-channel
             port_list = []
+            member_cnt = 0
             for port in ports:
                 port_list.append(int_type + " " + port)
             port_list_str = " ".join(port_list)
             cli_arr.append('ports' + " " + port_list_str)
-            # select primary port
-            cli_arr.append('primary-port' + " " + ports[0])
-            # deploy the port channel
-            cli_arr.append('deploy')
+            if po_exists:
+                # Determine if primary port election is required
+                lag_member_dict = {}
+                lag_member_dict = self.get_port_channel_member_ports(desc)
+                member_cnt = len(lag_member_dict)
+            print "mbr cnt", member_cnt
+            if member_cnt == 0:
+                # select primary port
+                cli_arr.append('primary-port' + " " + ports[0])
+                # deploy the port channel
+                cli_arr.append('deploy')
             # Enable the member ports
             cli_arr.append('enable' + " " + port_list_str)
             output = self._callback(cli_arr, handler='cli-set')
@@ -490,6 +498,9 @@ class Interface(BaseInterface):
         cli_arr = 'show lag | inc Deployed'
         po_list = []
         output = self._callback(cli_arr, handler='cli-get')
+        if output == '':
+            return po_list
+
         error = re.search(r'Error(.+)', output)
         if error:
             raise ValueError("%s" % error.group(0))
