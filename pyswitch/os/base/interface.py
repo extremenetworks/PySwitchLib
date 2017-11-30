@@ -5999,9 +5999,16 @@ class Interface(object):
             output = callback(config, handler='get_config')
             util = Util(output.data)
             if class_map is not None:
-                result = util.find(util.root, './/name')
+                if self.has_rbridge_id:
+                        result = util.find(util.root, './/name')
+                else:
+                        result = util.find(util.root, './/po-name')
             else:
-                result = util.findall(util.root, './/name')
+                if self.has_rbridge_id:
+                        result = util.findall(util.root, './/name')
+                else:
+                        result = util.findall(util.root, './/po-name')
+
         return result
 
     def class_map_get_details(self, **kwargs):
@@ -6290,9 +6297,15 @@ class Interface(object):
             output = callback(config, handler='get_config')
             util = Util(output.data)
             if policy_map is not None:
-                result = util.find(util.root, './/name')
+		if self._os_type == 'nos'
+                	result = util.find(util.root, './/po-name')
+		else:
+                	result = util.find(util.root, './/name')
             else:
-                result = util.findall(util.root, './/name')
+		if self._os_type == 'nos'
+                	result = util.findall(util.root, './/po-name')
+		else:
+                	result = util.findall(util.root, './/name')
         return result
 
     def policy_map_class_map_create(self, **kwargs):
