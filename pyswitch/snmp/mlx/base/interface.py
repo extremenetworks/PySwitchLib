@@ -130,6 +130,7 @@ class Interface(BaseInterface):
             ports(list): port numbers (1/1, 2/1 etc)
             portchannel_num (int): port-channel number (1, 2, 3, etc).
             mode (str): mode of port-channel (static, dynamic)
+            po_exists (bool): notifies is PO is already created
             desc: name of port-channel
 
         returns:
@@ -145,7 +146,7 @@ class Interface(BaseInterface):
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     ports = ['2/1', '2/2']
             ...     output = dev.interface.create_port_channel(ports, 'ethernet',
-            ...                         50, 'static', 'po50')
+            ...                         50, 'static', False, 'po50')
             ...     assert output == True
             ...     ifindex = dev.interface.get_port_channel_ifindex('po50')
             ...     assert len(str(ifindex)) >= 1
