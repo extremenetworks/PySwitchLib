@@ -81,7 +81,11 @@ acl_rule_ip = """
         <{{acl_type}}>
           <name>{{acl_name}}</name>
           {% if address_type == "ip" %}
-            <hide-{{address_type}}-acl-{{acl_type[:3] }}>
+            {% if acl_type == "extended" %}
+              <hide-{{address_type}}-acl-ext>
+            {% else %}
+              <hide-{{address_type}}-acl-std>
+            {% endif %}
           {% endif %}
               <seq>
                 <seq-id>{{seq_id}}</seq-id>
@@ -171,7 +175,11 @@ acl_rule_ip = """
                 {% if log is not none %}<log></log> {% endif %}
               </seq>
           {% if address_type == "ip" %}
-            </hide-{{address_type}}-acl-{{acl_type[:3] }}>
+            {% if acl_type == "extended" %}
+              </hide-{{address_type}}-acl-ext>
+            {% else %}
+              </hide-{{address_type}}-acl-std>
+            {% endif %}
           {% endif %}
         </{{acl_type}}>
       </access-list>
@@ -190,13 +198,21 @@ acl_rule_ip_delete = """
         <{{acl_type}}>
           <name>{{acl_name}}</name>
           {% if address_type == "ip" %}
-            <hide-{{address_type}}-acl-{{acl_type[:3] }}>
+            {% if acl_type == "extended" %}
+              <hide-{{address_type}}-acl-ext>
+            {% else %}
+              <hide-{{address_type}}-acl-std>
+            {% endif %}
           {% endif %}
               <seq operation="delete">
                 <seq-id>{{seq_id}}</seq-id>
               </seq>
           {% if address_type == "ip" %}
-            </hide-{{address_type}}-acl-{{acl_type[:3] }}>
+            {% if acl_type == "extended" %}
+              </hide-{{address_type}}-acl-ext>
+            {% else %}
+              </hide-{{address_type}}-acl-std>
+            {% endif %}
           {% endif %}
         </{{acl_type}}>
       </access-list>
@@ -204,6 +220,85 @@ acl_rule_ip_delete = """
   </{{address_type}}-acl>
 </config>
 """
+
+acl_rule_mac = """
+<config>
+  <mac xmlns="urn:brocade.com:mgmt:brocade-mac-access-list">
+    <access-list>
+      <{{acl_type}}>
+        <name>{{acl_name}}</name>
+        {% if acl_type == "extended" %}
+          <hide-mac-acl-ext>
+        {% else %}
+          <hide-mac-acl-std>
+        {% endif %}
+          <seq>
+            <seq-id>{{seq_id}}</seq-id>
+            <action>{{action}}</action>
+
+            <source>{{source.source}}</source>
+            {% if source.source != "any" %}
+              {% if source.source == "host" %}
+                <srchost>{{source.srchost}}</srchost>
+              {% else %}
+                <src-mac-addr-mask>{{source.mask}}</src-mac-addr-mask>
+              {% endif %}
+            {% endif %}
+
+            {% if acl_type == "extended" %}
+
+              <dst>{{dst.dst}}</dst>
+              {% if dst.dst != "any" %}
+                {% if dst.dst == "host" %}
+                  <dsthost>{{dst.dsthost}}</dsthost>
+                {% else %}
+                  <dst-mac-addr-mask>{{dst.mask}}</dst-mac-addr-mask>
+                {% endif %}
+              {% endif %}
+
+              <ethertype>{{ethertype}}</ethertype>
+              <vlan>{{vlan}}</vlan>
+            {% endif %}
+
+            {% if count is not none %} <count></count> {% endif %}
+            {% if log is not none %}<log></log> {% endif %}
+          </seq>
+        {% if acl_type == "extended" %}
+          </hide-mac-acl-ext>
+        {% else %}
+          </hide-mac-acl-std>
+        {% endif %}
+      </{{acl_type}}>
+    </access-list>
+  </mac>
+</config>
+"""
+
+acl_rule_mac_delete = """
+<config>
+  <mac xmlns="urn:brocade.com:mgmt:brocade-mac-access-list">
+    <access-list>
+      <{{acl_type}}>
+        <name>{{acl_name}}</name>
+        {% if acl_type == "extended" %}
+          <hide-mac-acl-ext>
+        {% else %}
+          <hide-mac-acl-std>
+        {% endif %}
+          <seq operation="delete">
+            <seq-id>{{seq_id}}</seq-id>
+          </seq>
+        {% if acl_type == "extended" %}
+          </hide-mac-acl-ext>
+        {% else %}
+          </hide-mac-acl-std>
+        {% endif %}
+      </{{acl_type}}>
+    </access-list>
+  </mac>
+</config>
+"""
+
 
 acl_apply_mac = """
    <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
@@ -258,19 +353,5 @@ rbridge_acl_apply = """
       <rbridge-id>{rbridge_id}</rbridge-id>
       {acl_apply}
   </rbridge-id>
-</config>
-"""
-
-
-acl_rule_mac = """
-<config>
-   <mac xmlns="urn:brocade.com:mgmt:brocade-mac-access-list">
-      <access-list>
-         <{acl_type}>
-            <name>{acl_name}</name>
-            {sequences}
-         </standard>
-      </access-list>
-   </mac>
 </config>
 """

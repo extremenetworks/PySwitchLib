@@ -43,13 +43,6 @@ class IpAcl(AclParamParser):
             ret['xport'] = xport
             return True
 
-    def _validate_ipv4(self, addr):
-        addr = ' '.join(addr.split())
-        try:
-            socket.inet_aton(addr)
-        except socket.error:
-            raise ValueError('Invalid address: ' + addr)
-
     def _parse_source_destination(self, protocol_type, input_param,
                                   address_type):
 

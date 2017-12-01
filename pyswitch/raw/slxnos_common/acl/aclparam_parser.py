@@ -180,7 +180,7 @@ class AclParamParser(object):
 
         for key in bool_params:
             if key in kwargs and kwargs[key]:
-                val = kwargs['urg']
+                val = kwargs[key]
                 val = ' '.join(val.split())
                 if val == 'True':
                     user_data[key] = True
@@ -188,4 +188,3 @@ class AclParamParser(object):
                 user_data[key] = None
 
         return True
-
