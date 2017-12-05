@@ -1414,10 +1414,12 @@ class Interface(BaseInterface):
         if get:
             enable = None
             ve_list = []
-            cli_arr = 'show running-config interface | inc ve'
+            cli_arr = 'show running-config interface | inc interface ve'
             output = self._callback(cli_arr, handler='cli-get')
             for line in output.split('\n'):
                 info = re.search(r'interface ve (.+)', line)
+                if info is None:
+                    continue
                 ve_id = info.group(1)
                 if ve_id:
                     ve_list.append(ve_id)
@@ -1458,7 +1460,7 @@ class Interface(BaseInterface):
         """
 
         ve_list = []
-        cli_arr = 'show running-config interface | inc ve'
+        cli_arr = 'show running-config interface | inc interface ve'
         output = self._callback(cli_arr, handler='cli-get')
         error = re.search(r'Error(.+)', output)
         if error:
@@ -1466,6 +1468,8 @@ class Interface(BaseInterface):
         # Populate the VE interface list with default data and update later
         for line in output.split('\n'):
             info = re.search(r'interface ve (.+)', line)
+            if info is None:
+                continue
             ve_id = info.group(1)
             if_name = 'Ve ' + ve_id
             ve_info = {'interface-type': 've',
