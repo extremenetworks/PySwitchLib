@@ -3178,3 +3178,75 @@ class Bgp(object):
             for peer in bgp.findall(bgp.root, './/remote-as'):
                 result.append(peer)
         return result
+
+    def fast_external_fallover(self, **kwargs):
+        """Configure fast external fallover
+
+        Args:
+            peer_group (bool): Name of the peer group
+            rbridge_id (str): The rbridge ID of the device on which BGP will be
+                configured in a VCS fabric.
+            delete (bool): Deletes the neighbor if `delete` is ``True``.
+            get (bool): Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+            remote_as (str): Values for remote_as.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> auth = ('admin', 'password')
+            >>> conn = ('10.24.39.225', '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.bgp.fast_external_fallover(rbridge_id='225')
+            ...     output = dev.bgp.fast_external_fallover(rbridge_id='225',get=True)
+            ...     output = dev.bgp.fast_external_fallover(rbridge_id='225',delete=True)
+            ...     output = dev.bgp.fast_external_fallover(rbridge_id='225',get=True)
+            >>> conn = ('10.24.81.180', '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.bgp.fast_external_fallover()
+            ...     output = dev.bgp.fast_external_fallover(get=True)
+            ...     output = dev.bgp.fast_external_fallover(delete=True)
+            ...     output = dev.bgp.fast_external_fallover(get=True)
+        """
+        rbridge_id = kwargs.pop('rbridge_id', '1')
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        if not get_config:
+            args = dict(rbridge_id=rbridge_id)
+            if not delete:
+                args['fast_external_fallover'] = True
+                method_name = [
+                    self.method_prefix(
+                        'router_bgp_fast_external_fallover_update')
+                ]
+            else:
+                method_name = [
+                    self.method_prefix(
+                        'router_bgp_fast_external_fallover_delete')
+                ]
+
+            method = method_name[0]
+            config = (method, args)
+            return callback(config)
+
+        elif get_config:
+            method_name = self.method_prefix(
+                'router_bgp_fast_external_fallover_get')
+
+            args = dict(
+                rbridge_id=rbridge_id,
+                resource_depth=2)
+
+            config = (method_name, args)
+            out = callback(config, handler='get_config')
+            bgp = Util(out.data)
+
+            return bgp.findText(bgp.root, './/fast-external-fallover')
