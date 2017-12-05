@@ -229,7 +229,7 @@ class SlxNosAcl(BaseAcl):
 
     def _get_seq_ids(self, acl_elem, ret):
 
-        #xml.etree.ElementTree.dump(acl_elem)
+        # xml.etree.ElementTree.dump(acl_elem)
         seq_ids = []
         for elem in acl_elem.iter():
             if 'seq-id' in elem.tag:
@@ -238,16 +238,16 @@ class SlxNosAcl(BaseAcl):
         ret['seq_ids'] = seq_ids
         return True
 
-    def _get_acl_info(self, acl_name, get_seqs=False):
+    def _get_acl_details(self, acl_name, cmd, get_seqs=False):
         """
         Return acl-type as dict 
             {'type':'standard'/'extended;, 'protocol':'mac'/'ip'/'ipv6'}.
         """
+        ret = None
         seq_element = None
 
         for address_type in ['mac', 'ip', 'ipv6']:
             for acl_type in ['standard', 'extended']:
-                cmd = acl_template.acl_get_config
 
                 t = jinja2.Template(cmd)
                 config = t.render(acl_type=acl_type,
@@ -257,7 +257,6 @@ class SlxNosAcl(BaseAcl):
 
                 rpc_response = self._callback(config, handler='get')
                 # xml.etree.ElementTree.dump(rpc_response)
-
 
                 parent = None
                 for elem in rpc_response.iter():
@@ -271,6 +270,21 @@ class SlxNosAcl(BaseAcl):
 
                         return ret
                     parent = elem
+
+        return ret
+
+    def _get_acl_info(self, acl_name, get_seqs=False):
+
+        cmd = acl_template.acl_get_config
+        ret = self._get_acl_details(acl_name, cmd, get_seqs)
+        if ret:
+            return ret
+
+        # Check for acl name with no rules created
+        cmd = acl_template.acl_get_config_name
+        ret = self._get_acl_details(acl_name, cmd, get_seqs)
+        if ret:
+            return ret
 
         raise ValueError('Failed to identify acl_type. '
                          'Check if the ACL {} exists'.format(acl_name))
