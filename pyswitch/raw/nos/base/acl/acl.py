@@ -19,8 +19,8 @@ import pyswitch.raw.slx_nos.acl.params_validator as params_validator
 import pyswitch.utilities as utilities
 from pyswitch.raw.nos.base.acl import acl_template
 from pyswitch.raw.slx_nos.acl.acl import SlxNosAcl
-from pyswitch.raw.nos.base.acl.macacl import MacAcl
-from pyswitch.raw.nos.base.acl.ipv46acl import IpAcl
+from pyswitch.raw.slx_nos.acl.macacl import MacAcl
+from pyswitch.raw.slx_nos.acl.ipv46acl import IpAcl
 
 
 class Acl(SlxNosAcl):
@@ -167,16 +167,7 @@ class Acl(SlxNosAcl):
             Raises ValueError, Exception
         Examples:
         """
-
-        # Check for supported and mandatory kwargs
-        mandatory_params = ['acl_name', 'action', 'source']
-        supported_params = ['acl_name', 'seq_id', 'action', 'source',
-                            'count', 'log', 'address_type']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
-
         user_data = {}
-
         user_data['acl_name'] = kwargs['acl_name']
         user_data['seq_id'] = self.ip.parse_seq_id(**kwargs)
         user_data['action'] = self.ip.parse_action(**kwargs)
