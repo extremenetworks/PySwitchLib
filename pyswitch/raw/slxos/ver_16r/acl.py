@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from pyswitch.raw.nos.base.acl import Acl as NosBaseAcl
+from pyswitch.raw.nos.base.acl.acl import Acl as NosBaseAcl
 
 
 class Acl(NosBaseAcl):

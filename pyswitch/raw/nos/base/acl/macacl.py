@@ -12,7 +12,7 @@ limitations under the License.
 """
 
 import pyswitch.utilities as utilities
-from pyswitch.raw.slxnos_common.acl.aclparam_parser import AclParamParser
+from pyswitch.raw.slx_nos.acl.aclparam_parser import AclParamParser
 
 
 class MacAcl(AclParamParser):
