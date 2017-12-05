@@ -589,3 +589,12 @@ def validate_ip_address(addr, address_type):
     except socket.error:
         raise ValueError("Invalid {} address: {}"
                          .format(address_type, addr))
+
+def validate_mac_address(mac):
+    """
+    This will only validate the HHHH.HHHH.HHHH MAC format.
+    """
+    if re.match('[0-9A-Fa-f]{4}[.][0-9A-Fa-f]{4}[.][0-9A-Fa-f]{4}$', mac):
+        return True
+    else:
+        raise ValueError("Invalid MAC {}".format(mac))

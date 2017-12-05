@@ -288,3 +288,20 @@ class SlxNosAcl(BaseAcl):
 
         raise ValueError('Failed to identify acl_type. '
                          'Check if the ACL {} exists'.format(acl_name))
+
+    def _get_next_seq_id(self, sequences, user_seq_id):
+
+        next_seq_id = 10
+
+        # Validate seq_id if user has specified
+        if user_seq_id:
+            if int(user_seq_id) in sequences:
+                raise ValueError("Access-list entry with sequence number {} "
+                                 "already exists.".format(user_seq_id))
+            next_seq_id = user_seq_id
+        else: # Generate a valid seq_id if user has not specified
+            if sequences:
+                last_seq_id = max(sequences)
+                next_seq_id = (last_seq_id + 10) // 10 * 10
+
+        return next_seq_id

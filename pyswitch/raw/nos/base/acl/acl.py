@@ -15,7 +15,7 @@ limitations under the License.
 """
 
 import jinja2
-import params_validator
+import pyswitch.raw.slx_nos.acl.params_validator as params_validator
 import pyswitch.utilities as utilities
 from pyswitch.raw.nos.base.acl import acl_template
 from pyswitch.raw.slx_nos.acl.acl import SlxNosAcl
@@ -125,17 +125,9 @@ class Acl(SlxNosAcl):
             raise ValueError('{} not supported'.format(acl_type))
 
         # Validate seq_id if user has specified 
-        if user_data['seq_id']:
-            if int(user_data['seq_id']) in acl['seq_ids']:
-                raise ValueError("Access-list entry with sequence number {} "
-                                 "already exists.".format(user_data['seq_id']))
-        else: # Generate a valid seq_id if user has not specified 
-            if acl['seq_ids']:
-                last_seq_id = max(acl['seq_ids'])
-                user_data['seq_id'] = (last_seq_id + 10) // 10 * 10
-            else:
-                user_data['seq_id'] = 10
+        next_seq = self._get_next_seq_id(acl['seq_ids'], user_data['seq_id'])
 
+        user_data['seq_id'] = next_seq
         user_data['acl_type'] = acl_type
         user_data['address_type'] = address_type
 
@@ -311,7 +303,8 @@ class Acl(SlxNosAcl):
                                                   action='permit',
                                                   source='host 192.168.0.3')
         """
-        params_validator.validate_params_add_or_remove_l2_acl_rule(**kwargs)
+        params_validator.validate_params_nos_add_or_remove_l2_acl_rule(
+            **kwargs)
 
         # Parse params
         acl_name = self.ip.parse_acl_name(**kwargs)
@@ -335,17 +328,9 @@ class Acl(SlxNosAcl):
             raise ValueError('{} not supported'.format(acl_type))
 
         # Validate seq_id if user has specified 
-        if user_data['seq_id']:
-            if int(user_data['seq_id']) in acl['seq_ids']:
-                raise ValueError("Access-list entry with sequence number {} "
-                                 "already exists.".format(user_data['seq_id']))
-        else: # Generate a valid seq_id if user has not specified 
-            if acl['seq_ids']:
-                last_seq_id = max(acl['seq_ids'])
-                user_data['seq_id'] = (last_seq_id + 10) // 10 * 10
-            else:
-                user_data['seq_id'] = 10
+        next_seq = self._get_next_seq_id(acl['seq_ids'], user_data['seq_id'])
 
+        user_data['seq_id'] = next_seq
         user_data['acl_name'] = acl_name
         user_data['acl_type'] = acl_type
         user_data['address_type'] = address_type
@@ -445,33 +430,6 @@ class Acl(SlxNosAcl):
             Raises ValueError, Exception
         Examples:
         """
-
-        # Check for supported and mandatory kwargs
-        if 'arp_guard' in kwargs['arp_guard'] and \
-            kwargs['arp_guard'] != 'False':
-            raise ValueError("\'arp_guard\' not supported")
-
-        if 'dst' in kwargs['dst'] and kwargs['dst'] != 'any':
-            raise ValueError("\'dst\' not supported")
-
-        if 'copy_sflow' in kwargs['copy_sflow'] and \
-            kwargs['copy_sflow'] != 'False':
-            raise ValueError("\'copy_sflow\' not supported")
-
-        if 'mirror' in kwargs['mirror'] and kwargs['mirror'] != 'False':
-            raise ValueError("\'mirror\' not supported")
-
-        mandatory_params = ['acl_name', 'action', 'source', 'dst']
-        supported_params = ['acl_name', 'seq_id', 'action', 'source', 'dst',
-                            'srchost', 'src_mac_addr_mask',
-                            'dsthost', 'dst_mac_addr_mask',
-                            'count', 'log', 'address_type',
-                            'arp_guard', 'copy_sflow', 'mirror',
-                            'vlan_tag_format', 'drop_precedence_force',
-                            'drop_precedence', 'ethertype', 'pcp', 'vlan']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
-
         user_data = {}
 
         user_data['acl_name'] = kwargs['acl_name']

@@ -49,18 +49,18 @@ class MacAcl(AclParamParser):
 
         ret = {"source": None, "srchost": None, "src_mac_addr_mask": None}
 
-        if src[0:3] == "any":
+        if src == "any":
             ret['source'] = "any"
             return ret
 
-        if src[0:4] == "host":
+        if src == "host":
             if 'srchost' not in kwargs or not kwargs['srchost']:
                 raise ValueError("Missing \'srchost\' in kwargs")
 
             srchost = kwargs['srchost']
             srchost = ' '.join(srchost.split())
 
-            utilities.is_valid_mac_address(srchost)
+            utilities.validate_mac_address(srchost)
             ret['source'] = "host"
             ret['srchost'] = srchost
             return ret
@@ -72,8 +72,8 @@ class MacAcl(AclParamParser):
         src_mac_addr_mask = kwargs['src_mac_addr_mask']
         src_mac_addr_mask = ' '.join(src_mac_addr_mask.split())
 
-        utilities.is_valid_mac_address(src)
-        utilities.is_valid_mac_address(src_mac_addr_mask)
+        utilities.validate_mac_address(src)
+        utilities.validate_mac_address(src_mac_addr_mask)
         ret['source'] = src
         ret['mask'] = src_mac_addr_mask
 
@@ -104,18 +104,18 @@ class MacAcl(AclParamParser):
 
         ret = {"dst": None, "dsthost": None, "dst_mac_addr_mask": None}
 
-        if dst[0:3] == "any":
+        if dst == "any":
             ret['dst'] = "any"
             return ret
 
-        if dst[0:4] == "host":
+        if dst == "host":
             if 'dsthost' not in kwargs or not kwargs['dsthost']:
                 raise ValueError("Missing \'dsthost\' in kwargs")
 
             dsthost = kwargs['dsthost']
             dsthost = ' '.join(dsthost.split())
 
-            utilities.is_valid_mac_address(dsthost)
+            utilities.validate_mac_address(dsthost)
             ret['dst'] = "host"
             ret['dsthost'] = dsthost
             return ret
@@ -127,8 +127,8 @@ class MacAcl(AclParamParser):
         dst_mac_addr_mask = kwargs['dst_mac_addr_mask']
         dst_mac_addr_mask = ' '.join(dst_mac_addr_mask.split())
 
-        utilities.is_valid_mac_address(dst)
-        utilities.is_valid_mac_address(dst_mac_addr_mask)
+        utilities.validate_mac_address(dst)
+        utilities.validate_mac_address(dst_mac_addr_mask)
         ret['dst'] = dst
         ret['mask'] = dst_mac_addr_mask
         return ret

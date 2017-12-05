@@ -182,7 +182,7 @@ class AclParamParser(object):
             if key in kwargs and kwargs[key]:
                 val = kwargs[key]
                 val = ' '.join(val.split())
-                if val == 'True':
+                if val.lower() == 'true':
                     user_data[key] = True
             else:
                 user_data[key] = None
