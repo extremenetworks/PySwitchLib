@@ -111,9 +111,9 @@ class SlxNosAcl(BaseAcl):
         # Check for supported and mandatory kwargs
 
         user_data = {}
-        user_data['acl_name'] = self.mac.parse_acl_name(**kwargs)
-        user_data['address_type'] = self.mac.parse_address_type(**kwargs)
-        user_data['acl_type'] = self.mac.parse_acl_type(**kwargs)
+        user_data['acl_name'] = self.ap.parse_acl_name(**kwargs)
+        user_data['address_type'] = self.ap.parse_address_type(**kwargs)
+        user_data['acl_type'] = self.ap.parse_acl_type(**kwargs)
 
         return user_data
 
@@ -142,7 +142,7 @@ class SlxNosAcl(BaseAcl):
         params_validator.validate_params_slx_nos_delete_acl(**kwargs)
 
         # Parse params
-        acl_name = self.mac.parse_acl_name(**kwargs)
+        acl_name = self.ap.parse_acl_name(**kwargs)
         callback = kwargs.pop('callback', self._callback)
         acl = self._get_acl_info(acl_name)
 
