@@ -3299,7 +3299,8 @@ class Bgp(object):
             ...      output = dev.bgp.evpn_afi_peergroup_activate(peer_group='test')
             ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test',)
             ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test', get=True)
-            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test',delete=True)
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test',
+            ...      delete=True)
             ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test', get=True)
         """
         rbridge_id = kwargs.pop('rbridge_id', '1')
