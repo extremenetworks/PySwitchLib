@@ -124,7 +124,7 @@ class IpAcl(AclParamParser):
         Examples:
         """
         if 'destination' not in parameters or not parameters['destination']:
-            raise ValueError("\'destination\' is required param for MLX")
+            raise ValueError("\'destination\' is required param")
 
         if 'protocol_type' not in parameters or \
                 not parameters['protocol_type']:
