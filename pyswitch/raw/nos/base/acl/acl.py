@@ -18,6 +18,7 @@ import jinja2
 import pyswitch.raw.slx_nos.acl.params_validator as params_validator
 import pyswitch.utilities as utilities
 from pyswitch.raw.nos.base.acl import acl_template
+from pyswitch.raw.slx_nos.acl import acl_template as slx_nos_acl_template
 from pyswitch.raw.slx_nos.acl.acl import SlxNosAcl
 from pyswitch.raw.slx_nos.acl.macacl import MacAcl
 from pyswitch.raw.slx_nos.acl.ipv46acl import IpAcl
@@ -405,103 +406,169 @@ class Acl(SlxNosAcl):
 
     def apply_acl(self, **kwargs):
         """
-        Apply an ACL to a physical port, port channel, VE or management
-        interface.
+        Apply an ACL to a physical port, port channel, VE or management interface.
         Args:
-            rbridge_id (str): RBridge ID of the VDX switch under which VE will
-                be configured
-            intf_type (str): Interface type, (physical, port channel, VE or
-                management interface).
+            rbridge_id (str): RBridge ID of the VDX switch under which VE will be configured
+            intf_type (str): Interface type, (physical, port channel, VE or management interface).
             intf_names (str[]): Array of the Interface Names.
             acl_name (str): Name of the access list.
-            acl_direction (str): Direction of ACL binding on the specified
-                interface [in/out].
-            traffic_type (str): Traffic type for the ACL being applied
-                [switched/routed].
-            callback (function): A function executed upon completion of method.
-                The only parameter passed to `callback` will be the
-                ``ElementTree`` `config`.
+            acl_direction (str): Direction of ACL binding on the specified interface [in/out].
+            traffic_type (str): Traffic type for the ACL being applied [switched/routed].
+            callback (function): A function executed upon completion of the method.
+               The only parameter passed to `callback` will be the ``ElementTree`` `config`.
         Returns:
             True, False or None for Success, failure and no-change respectively
             for each interfaces.
-
+        Raises:
+            Exception, ValueError for invalid seq_id.
         Examples:
             >>> from pyswitch.device import Device
-            >>> with Device(conn=conn, auth=auth,
-                    connection_type='NETCONF') as dev:
-            >>>     print dev.acl.create_acl(acl_name='Acl_1',
-                                             acl_type='standard',
+            >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
                                              address_type='mac')
-            >>>     print dev.acl.apply_acl(intf_type='ethernet',
-                                            intf_name='0/1,0/2',
-                                            acl_name='Acl_1',
-                                            acl_direction='in',
+            >>>     print dev.acl.apply_acl(intf_type='ethernet', intf_name='0/1,0/2',
+                                            acl_name='Acl_1', acl_direction='in',
                                             traffic_type='switched')
         """
-        pass
-        '''
-        mandatory_params = ['acl_name', 'intf_name', 'intf_type',
-                            'acl_direction']
-        supported_params = ['acl_name', 'intf_name', 'intf_type', 'source',
-                            'acl_direction', 'rbridge_id', 'traffic_type']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
+        
+        # Validate required and accepted parameters
+        params_validator.validate_params_nos_apply_acl(**kwargs)
+        
+        # Parse params
+        user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
 
-        intf_type = kwargs['intf_type'].lower()
-        intf_name = kwargs['intf_name']
-        acl_name =  kwargs['acl_name']
-        acl_direction = kwargs['acl_direction']
-
-        rbridge_id = kwargs.pop('rbridge_id', '')
-        traffic_type = kwargs.pop('traffic_type', '')
         callback = kwargs.pop('callback', self._callback)
-
-        def self._get_acl_info(acl_name)
-        acl_type = acl['type']
-        address_type = acl['protocol']
-
         result = {}
+        
+        for intf in user_data['interface_list']:
+            self.logger.info('Applying ACL {} on interface ({}:{})'.format(
+                              user_data['acl_name'], user_data['intf_type'], intf))
 
-        # Check is the user input for Interface Name is correct
-        for intf in intf_name:
-            if not utilities.validate_interface(intf_type, str(intf),
-                                                rbridge_id=rbridge_id,
-                                                os_type=self.os_type,
-                                                logger=self.logger):
-                raise ValueError("{} is not a valid Interface".format(intf))
+            user_data['intf'] = intf
+            cmd = slx_nos_acl_template.acl_apply
+            t = jinja2.Template(cmd)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
 
-        if address_type == 'mac':
-            acl_apply = template.acl_apply_mac
-        elif address_type == 'ip':
-            acl_apply = template.acl_apply_ipv4
-        else:
-            acl_apply = template.acl_apply_ipv6
-
-        for intf in intf_name:
-
-            self.logger.info('Applying ACL {} on interface ({}-{})',
-                             .format(acl_name, intf_type, intf))
-
-            acl_apply = acl_apply.format(address_type=address_type,
-                                         intf_type=intf_type.replace('_', '-'),
-                                         intf=intf, acl_name=acl_name,
-                                         acl_direction=acl_direction,
-                                         traffic_type='' if not traffic_type else
-                                         '<traffic-type>' + traffic_type + '</traffic-type>',
-                                         delete='')
-            if rbridge_id:
-                config = template.rbridge_acl_apply
-            else:
-                config = '<config> {acl_apply} </config>'
-
-            config = config.format(rbridge_id=rbridge_id, acl_apply=acl_apply)
+            self.logger.info(config)
             callback(config)
-            self.logger.info('Successfully applied ACL %s on interface %s %s (%s)',
-                             acl_name, intf_type, intf, acl_direction)
+
+            self.logger.info('Successfully applied ACL {} on interface {} {} ({})'
+                             .format(user_data['acl_name'], user_data['intf_type'],
+                                     intf, user_data['acl_direction']))
             result[intf] = True
         return result
-        '''
+
 
     def remove_acl(self, **kwargs):
-        pass
+        """
+        Remove ACL from a physical port, port channel, VE or management interface.
+        Args:
+            rbridge_id (str): RBridge ID of the VDX switch under which VE will be configured
+            intf_type (str): Interface type, (physical, port channel, VE or management interface).
+            intf_name (str[]): Array of the Interface Names.
+            acl_name (str): Name of the access list.
+            acl_direction (str): Direction of ACL binding on the specified interface [in/out].
+            traffic_type (str): Traffic type for the ACL being applied [switched/routed].
+            callback (function): A function executed upon completion of the method.
+               The only parameter passed to `callback` will be the ``ElementTree`` `config`.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each interfaces.
+        Raises:
+            Exception, ValueError for invalid seq_id.
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
+                                             address_type='mac')
+            >>>     print dev.acl.apply_acl(intf_type='ethernet', intf_name='0/1,0/2',
+                                            acl_name='Acl_1', acl_direction='in',
+                                            traffic_type='switched')
+            >>>     print dev.acl.remove_acl(intf_type='ethernet', intf_name='0/1,0/2',
+                                            acl_name='Acl_1', acl_direction='in',
+                                            traffic_type='switched')
+        """
+
+        # Validate required and accepted parameters
+        params_validator.validate_params_nos_remove_acl(**kwargs)
+        
+        # Parse params
+        user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
+
+        callback = kwargs.pop('callback', self._callback)
+        result = {}
+        
+        for intf in user_data['interface_list']:
+            self.logger.info('Removing ACL {} from interface ({}:{})'.format(
+                              user_data['acl_name'], user_data['intf_type'], intf))
+
+            user_data['intf'] = intf
+            cmd = slx_nos_acl_template.acl_remove
+            t = jinja2.Template(cmd)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+
+            self.logger.info(config)
+            try:
+                callback(config)
+                self.logger.info('Successfully removed ACL {} from interface {} {} ({})'
+                                 .format(user_data['acl_name'], user_data['intf_type'],
+                                         intf, user_data['acl_direction']))
+                result[intf] = True
+            except Exception as e:
+                if '<bad-element>access-group</bad-element>' in str(e):
+                    self.logger.warning('ACL {} not present in the interface {} {} ({})'
+                                        .format(user_data['acl_name'], user_data['intf_type'],
+                                                intf, user_data['acl_direction']))
+                    result[intf] = None
+                else:
+                    raise
+        return result
+
+    def _parse_params_for_apply_or_remove_acl(self, **kwargs):
+        """
+        Parses params for Apply or Remove ACL on Interfaces.
+        Args:
+            Parse below params if contained in kwargs.
+
+                rbridge_id: (string) rbridge_id of the interface,
+                    Valid range is 1 to 239
+                intf_type: (string) Allowed intf_type are,
+                          - gigabitethernet
+                          - tengigabitethernet
+                          - fortygigabitethernet
+                          - hundredgigabitethernet
+                          - port_channel
+                          - ve
+                          - loopback
+                          - ethernet
+                intf_name: (string array) Array of interface names
+                acl_name: (string) Name of the access list
+                acl_direction: (string) Action performed by ACL rule
+                    - in
+                    - out
+                traffic_type: (string) Action performed by ACL rule
+                    - switched
+                    - routed
+        Returns:
+            Return a dict cotaining the kwargs in string format
+            key name will be key name in the parameter followed by _str.
+        Raise:
+            Raises ValueError, Exception
+        Examples:
+        """
+        
+        user_data = {}
+        user_data['rbridge_id'] = self.ap.parse_rbridge_id(**kwargs)
+        user_data['intf_type'] = self.ap.parse_intf_type(**kwargs)
+        user_data['interface_list'] = self.ap.parse_intf_names(**kwargs)
+        user_data['acl_name'] = self.ap.parse_acl_name(**kwargs)
+        user_data['acl_direction'] = self.ap.parse_acl_direction(**kwargs)
+        user_data['traffic_type'] = self.ap.parse_traffic_type(**kwargs)
+
+        acl = self._get_acl_info(user_data['acl_name'], get_seqs=False)
+        user_data['address_type'] = acl['protocol']
+
+        return user_data
 
