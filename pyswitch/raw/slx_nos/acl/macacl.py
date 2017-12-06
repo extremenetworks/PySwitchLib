@@ -11,6 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import re
 import pyswitch.utilities as utilities
 from pyswitch.raw.slx_nos.acl.aclparam_parser import AclParamParser
 
@@ -149,10 +150,6 @@ class MacAcl(AclParamParser):
         if 'ethertype' not in kwargs or not kwargs['ethertype']:
             return None
 
-        if 'vlan' not in kwargs or not kwargs['vlan']:
-            raise ValueError("vlan is required parameter to configure"
-                             " ethertype")
-
         ethertype = kwargs['ethertype']
 
         if ethertype in ['arp', 'fcoe', 'ipv4']:
@@ -166,6 +163,84 @@ class MacAcl(AclParamParser):
                          " Specify Integer or \'arp\', " "\'fcoe\', \'ipv4\'"
                          .format(ethertype))
 
+    def parse_vlan_id(self, vlan):
+
+        if vlan == "any":
+            return vlan
+
+        if vlan.isdigit():
+            if int(vlan) >= 1 and int(vlan) <= 4095:
+                return str(vlan)
+
+        raise ValueError("Invalid \'vlan\' {} in kwargs"
+                         .format(vlan))
+
+    def parse_single_tagged_vlan(self, ret, **kwargs):
+        vlan = kwargs['vlan']
+
+        val = vlan.split()
+        len_val = len(val)
+
+        if len_val == 1:
+            ret['vlan_id'] = self.parse_vlan_id(val[0])
+            return ret
+
+        if len_val == 2:
+            ret['vlan_id'] = self.parse_vlan_id(val[0])
+            if ret['vlan_id'] == "any":
+                raise ValueError("Invalid mask for vlan = any")
+            if re.match("^0x([0-9a-fA-F]{3})$", val[1]):
+                ret['mask'] = str(val[1])
+                return ret
+
+        raise ValueError("Invalid \'vlan\' {} in kwargs"
+                         .format(vlan))
+
+    def parse_double_tagged_vlan(self, ret, **kwargs):
+        vlan = kwargs['vlan']
+
+        val = vlan.split()
+        len_val = len(val)
+
+        if len_val == 2: # outer and inner
+            ret['outervlan'] = self.parse_vlan_id(val[0])
+            ret['innervlan'] = self.parse_vlan_id(val[1])
+            return ret
+
+        if len_val == 3: # (outer+mask & inner) or (outer & inner+mask)
+            ret['outervlan'] = self.parse_vlan_id(val[0])
+
+            if re.match("^0x([0-9a-fA-F]{3})$", val[1]):
+                if ret['outervlan'] == "any":
+                    raise ValueError("Invalid mask for outervlan = any")
+                ret['outermask'] = val[1]
+                ret['innervlan'] = self.parse_vlan_id(val[2])
+                return ret
+            else:
+                ret['innervlan'] = self.parse_vlan_id(val[1])
+                if re.match("^0x([0-9a-fA-F]{3})$", val[2]):
+                    if ret['innervlan'] == "any":
+                        raise ValueError("Invalid mask for innervlan = any")
+                    ret['innermask'] = val[2]
+                    return ret
+
+        if len_val == 4: # outer+mask & inner+mask
+            ret['outervlan'] = self.parse_vlan_id(val[0])
+            if re.match("^0x([0-9a-fA-F]{3})$", val[1]):
+                if ret['outervlan'] == "any":
+                    raise ValueError("Invalid mask for outervlan = any")
+                ret['outermask'] = val[1]
+
+            ret['innervlan'] = self.parse_vlan_id(val[2])
+            if re.match("^0x([0-9a-fA-F]{3})$", val[3]):
+                if ret['innervlan'] == "any":
+                    raise ValueError("Invalid mask for innervlan = any")
+                ret['innermask'] = val[3]
+                return ret
+                
+        raise ValueError("Invalid \'vlan\' {} in kwargs"
+                         .format(vlan))
+
     def parse_vlan(self, **kwargs):
         """
         parse the protocol type param.
@@ -178,13 +253,183 @@ class MacAcl(AclParamParser):
             Raise ValueError exception
         Examples:
         """
+
+        vlan_tag_format = None
+        if 'vlan_tag_format' in kwargs and kwargs['vlan_tag_format']:
+            vlan_tag_format = kwargs['vlan_tag_format'].lower()
+            vlan_tag_format = ' '.join(vlan_tag_format.split()).lower()
+
         if 'vlan' not in kwargs or not kwargs['vlan']:
             return None
 
-        vlan = kwargs['vlan']
+        ret = {'vlan_id' : None,
+               'mask' : None,
+               'outervlan' : None,
+               'outermask' : None,
+               'innervlan' : None,
+               'innermask' : None}
 
-        if int(vlan) >= 1 and int(vlan) <= 4095:
-            return str(vlan)
+        if not vlan_tag_format:
+            ret['vlan_id'] = self.parse_vlan_id(kwargs['vlan'])
+            return ret
 
-        raise ValueError("Invalid \'vlan\' {} in kwargs"
+        if vlan_tag_format == 'untagged':
+            ret['vlan_id'] = self.parse_vlan_id(kwargs['vlan'])
+            return ret
+
+        if vlan_tag_format == 'single-tagged':
+            self.parse_single_tagged_vlan(ret, **kwargs)
+            return ret
+
+        if vlan_tag_format == 'double-tagged':
+            self.parse_double_tagged_vlan(ret, **kwargs)
+            return ret
+
+    def parse_vlan_tag_format(self, **kwargs):
+        """
+        parse the protocol type param.
+        Args:
+            kwargs contains:
+                vlan(integer): VLAN interface to which the ACL is bound
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+
+        if 'vlan_tag_format' not in kwargs or not kwargs['vlan_tag_format']:
+            return None
+
+        vlan_tag_format = kwargs['vlan_tag_format'].lower()
+        vlan_tag_format = ' '.join(vlan_tag_format.split())
+
+        if vlan_tag_format in ['untagged', 'single-tagged', 'double-tagged']:
+            return vlan_tag_format
+
+        raise ValueError("Invalid \'vlan_tag_format\' {} in kwargs"
                          .format(vlan))
+
+    def parse_pcp(self, **kwargs):
+        """
+        parse the protocol type param.
+        Args:
+            kwargs contains:
+                pcp(string): Matches the specified value against the pcp
+                    value of the packet to filter. Allowed 0 to 7.
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'pcp' not in kwargs or not kwargs['pcp']:
+            return None
+
+        pcp = kwargs['pcp']
+        pcp = ' '.join(pcp.split())
+
+        pcp = pcp.split(',')[0]
+
+        if pcp.isdigit():
+            if int(pcp) >= 0 and int(pcp) <= 7:
+                return pcp
+
+        raise ValueError("Invalid \'pcp\' {} in kwargs"
+                         .format(pcp))
+
+    def parse_pcp_force(self, **kwargs):
+        """
+        parse the protocol type param.
+        Args:
+            kwargs contains:
+                pcp(string): Matches the specified value against the pcp
+                    value of the packet to filter. Allowed 0 to 7.
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'pcp' not in kwargs or not kwargs['pcp']:
+            return None
+
+        pcp = kwargs['pcp']
+        pcp = ' '.join(pcp.split())
+
+        pcp = pcp.split(',')
+        if len(pcp) == 2:
+            pcp = pcp[1]
+        else:
+            return None
+
+        if pcp.isdigit():
+            if int(pcp) >= 0 and int(pcp) <= 7:
+                return pcp
+
+        raise ValueError("Invalid \'pcp\' {} in kwargs"
+                         .format(pcp))
+
+    def parse_drop_precedence_force(self, **parameters):
+        """
+        parse the drop_precedence_force mapping param.
+        Args:
+            parameters contains:
+                drop_precedence_force(string):
+                    drop_precedence_force value of the packet
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'drop_precedence_force' not in parameters or \
+                not parameters['drop_precedence_force']:
+            return None
+
+        drop_precedence_force = parameters['drop_precedence_force']
+        drop_precedence_force = ' '.join(drop_precedence_force.split())
+
+        if drop_precedence_force.isdigit():
+            if int(drop_precedence_force) >= 0 and \
+                    int(drop_precedence_force) <= 3:
+                return 'drop-precedence-force ' + drop_precedence_force
+
+        raise ValueError("drop-precedence-force value should be 0 - 3")
+
+
+    def parse_arp_guard(self, **parameters):
+        """
+        parse the arp_guard mapping param.
+        Args:
+            parameters contains:
+                arp_guard(string):
+                    arp_guard value of the packet
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'arp_guard' not in parameters or \
+                not parameters['arp_guard']:
+            return None
+
+
+        arp_guard = parameters['arp_guard']
+        arp_guard = ' '.join(arp_guard.split())
+
+        if arp_guard.lower() != 'true':
+            return None
+
+        if 'ethertype' not in kwargs or not kwargs['ethertype']:
+            raise ValueError("arp_guard is allowed only ethertype arp or 2054")
+
+        ethertype = kwargs['ethertype']
+        if ethertype == 'arp':
+            return True
+
+        if ethertype.isdigit() and int(ethertype) == 2054:
+            return True
+
+        raise ValueError("arp_guard is allowed only ethertype arp or 2054")

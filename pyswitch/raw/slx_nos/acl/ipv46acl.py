@@ -189,6 +189,40 @@ class IpAcl(AclParamParser):
         dscp = kwargs['dscp']
         dscp = ' '.join(dscp.split())
 
+        dscp = dscp.split(',')[0]
+
+        if dscp.isdigit():
+            if int(dscp) >= 0 and int(dscp) <= 63:
+                return dscp
+
+        raise ValueError("Invalid \'dscp\' {} in kwargs"
+                         .format(dscp))
+
+    def parse_dscp_force(self, **kwargs):
+        """
+        parse the protocol type param.
+        Args:
+            kwargs contains:
+                dscp(string): Matches the specified value against the DSCP
+                    value of the packet to filter. Allowed 0 to 63.
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'dscp' not in kwargs or not kwargs['dscp']:
+            return None
+
+        dscp = kwargs['dscp']
+        dscp = ' '.join(dscp.split())
+
+        dscp = dscp.split(',')
+        if len(dscp) == 2:
+            dscp = dscp[1]
+        else:
+            return None
+
         if dscp.isdigit():
             if int(dscp) >= 0 and int(dscp) <= 63:
                 return dscp
@@ -218,3 +252,44 @@ class IpAcl(AclParamParser):
 
         raise ValueError("Invalid \'vlan_id\' {} in kwargs"
                          .format(vlan_id))
+
+    def parse_tcp_specific_params(self, user_data, **kwargs):
+        """
+        parse the protocol type param.
+        Args:
+            kwargs contains:
+                urg(string): Enables urg for the rule
+                ack(string): Enables ack for the rule
+                push(string): Enables push for the rule
+                fin(string): Enables fin for the rule
+                rst(string): Enables rst for the rule
+                sync(string): Enables sync for the rule
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+
+        is_tcp = False
+        tcp_params = ['syn', 'rst', 'fin', 'push', 'ack', 'urg']
+        
+        if 'protocol_type' in kwargs and kwargs['protocol_type']:
+            protocol_type = kwargs['protocol_type'].lower()
+            if protocol_type == 'tcp' or protocol_type == 6:
+                is_tcp = True
+
+        for key in tcp_params:
+            if key in kwargs and kwargs[key]:
+                val = kwargs[key]
+                val = ' '.join(val.split())
+                if val.lower() == 'true':
+                    if is_tcp:
+                        user_data[key] = True
+                    else:
+                        raise ValueError("Config {} is only allowed for"
+                                         " protocol_type tcp".format(key))
+            else:
+                user_data[key] = None
+
+        return True

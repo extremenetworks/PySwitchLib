@@ -15,9 +15,12 @@ limitations under the License.
 """
 
 import jinja2
-import pyswitch.utilities as utilities
-from pyswitch.raw.nos.base.acl import acl_template
+import pyswitch.raw.slx_nos.acl.params_validator as params_validator
+from pyswitch.raw.slxos.base.acl import acl_template
+from pyswitch.raw.slx_nos.acl import acl_template as slx_nos_acl_template
 from pyswitch.raw.slx_nos.acl.acl import SlxNosAcl
+from pyswitch.raw.slx_nos.acl.macacl import MacAcl
+from pyswitch.raw.slx_nos.acl.ipv46acl import IpAcl
 
 
 class Acl(SlxNosAcl):
@@ -28,8 +31,6 @@ class Acl(SlxNosAcl):
     Attributes:
         None
     """
-
-    os_type = "slxos"
 
     def __init__(self, callback):
         """
@@ -45,6 +46,17 @@ class Acl(SlxNosAcl):
             ValueError
         """
         super(Acl, self).__init__(callback)
+
+        self._mac = MacAcl()
+        self._ip = IpAcl()
+
+    @property
+    def mac(self):
+        return self._mac
+
+    @property
+    def ip(self):
+        return self._ip
 
     def add_ipv46_rule_acl(self, **kwargs):
         """
@@ -89,6 +101,9 @@ class Acl(SlxNosAcl):
                                                   action='permit',
                                                   source='host 192.168.0.3')
         """
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_add_ipv4_rule_acl(**kwargs)
+
         # Parse params
         acl_name = self.ip.parse_acl_name(**kwargs)
         callback = kwargs.pop('callback', self._callback)
@@ -102,6 +117,7 @@ class Acl(SlxNosAcl):
 
         # This is required to distinguish between ipv4 or v6
         kwargs['address_type'] = address_type
+        kwargs['acl_type'] = acl_type
 
         if acl_type == 'standard':
             user_data = self._parse_params_for_add_standard(**kwargs)
@@ -111,17 +127,9 @@ class Acl(SlxNosAcl):
             raise ValueError('{} not supported'.format(acl_type))
 
         # Validate seq_id if user has specified 
-        if user_data['seq_id']:
-            if int(user_data['seq_id']) in acl['seq_ids']:
-                raise ValueError("Access-list entry with sequence number {} "
-                                 "already exists.".format(user_data['seq_id']))
-        else: # Generate a valid seq_id if user has not specified 
-            if acl['seq_ids']:
-                last_seq_id = max(acl['seq_ids'])
-                user_data['seq_id'] = (last_seq_id + 10) // 10 * 10
-            else:
-                user_data['seq_id'] = 10
+        next_seq = self._get_next_seq_id(acl['seq_ids'], user_data['seq_id'])
 
+        user_data['seq_id'] = next_seq
         user_data['acl_type'] = acl_type
         user_data['address_type'] = address_type
 
@@ -161,21 +169,12 @@ class Acl(SlxNosAcl):
             Raises ValueError, Exception
         Examples:
         """
-
-        # Check for supported and mandatory kwargs
-        mandatory_params = ['acl_name', 'action', 'source']
-        supported_params = ['acl_name', 'seq_id', 'action', 'source',
-                            'count', 'log', 'address_type']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
-
         user_data = {}
-
         user_data['acl_name'] = kwargs['acl_name']
         user_data['seq_id'] = self.ip.parse_seq_id(**kwargs)
         user_data['action'] = self.ip.parse_action(**kwargs)
         user_data['source'] = self.ip.parse_source(**kwargs)
-        bool_params = ['log', 'count']
+        bool_params = ['log', 'count', 'copy_sflow']
         self.ip.parse_boolean_params(user_data, bool_params, **kwargs)
         return user_data
 
@@ -219,17 +218,6 @@ class Acl(SlxNosAcl):
             Raises ValueError, Exception
         Examples:
         """
-
-        # Check for supported and mandatory kwargs
-        mandatory_params = ['acl_name', 'action', 'protocol_type',
-                            'source', 'destination']
-        supported_params = ['acl_name', 'seq_id', 'action', 'protocol_type',
-                            'source', 'destination', 'dscp', 'urg', 'ack',
-                            'push', 'fin', 'rst', 'sync', 'vlan_id','count',
-                            'log', 'address_type']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
-
         user_data = {}
 
         user_data['acl_name'] = kwargs['acl_name']
@@ -239,13 +227,19 @@ class Acl(SlxNosAcl):
         user_data['source'] = self.ip.parse_source(**kwargs)
         user_data['destination'] = self.ip.parse_destination(**kwargs)
         user_data['dscp'] = self.ip.parse_dscp(**kwargs)
+        user_data['dscp_force'] = self.ip.parse_dscp_force(**kwargs)
+        user_data['drop_precedence_force'] = \
+            self.ip.parse_drop_precedence_force(**kwargs)
+        user_data['mirror'] = self.mac.parse_mirror(**kwargs)
         user_data['vlan_id'] = self.ip.parse_vlan_id(**kwargs)
 
+        # Parse tcp specific parameters together
+        # ['urg', 'ack', 'push', 'fin', 'rst', 'sync']
+        self.ip.parse_tcp_specific_params(user_data, **kwargs)
+ 
         # All these params of same type. Parsing them together
-        bool_params = ['urg', 'ack', 'push', 'fin', 'rst', 'sync',
-                       'log', 'count']
+        bool_params = ['log', 'count', 'copy_sflow']
         self.ip.parse_boolean_params(user_data, bool_params, **kwargs)
-
         return user_data
 
     def add_ipv4_rule_acl(self, **kwargs):
@@ -297,6 +291,9 @@ class Acl(SlxNosAcl):
                                                   action='permit',
                                                   source='host 192.168.0.3')
         """
+        params_validator.validate_params_slx_add_or_remove_l2_acl_rule(
+            **kwargs)
+
         # Parse params
         acl_name = self.ip.parse_acl_name(**kwargs)
         callback = kwargs.pop('callback', self._callback)
@@ -310,6 +307,7 @@ class Acl(SlxNosAcl):
 
         # This is required to distinguish between ipv4 or v6
         kwargs['address_type'] = address_type
+        kwargs['acl_type'] = acl_type
 
         if acl_type == 'standard':
             user_data = self._parse_params_for_add_mac_standard(**kwargs)
@@ -319,17 +317,9 @@ class Acl(SlxNosAcl):
             raise ValueError('{} not supported'.format(acl_type))
 
         # Validate seq_id if user has specified 
-        if user_data['seq_id']:
-            if int(user_data['seq_id']) in acl['seq_ids']:
-                raise ValueError("Access-list entry with sequence number {} "
-                                 "already exists.".format(user_data['seq_id']))
-        else: # Generate a valid seq_id if user has not specified 
-            if acl['seq_ids']:
-                last_seq_id = max(acl['seq_ids'])
-                user_data['seq_id'] = (last_seq_id + 10) // 10 * 10
-            else:
-                user_data['seq_id'] = 10
+        next_seq = self._get_next_seq_id(acl['seq_ids'], user_data['seq_id'])
 
+        user_data['seq_id'] = next_seq
         user_data['acl_name'] = acl_name
         user_data['acl_type'] = acl_type
         user_data['address_type'] = address_type
@@ -341,7 +331,6 @@ class Acl(SlxNosAcl):
         self.logger.info(config)
 
         callback(config)
-
         self.logger.info('Successfully added rule ACL {}'.format(acl_name))
         return True
 
@@ -370,39 +359,14 @@ class Acl(SlxNosAcl):
             Raises ValueError, Exception
         Examples:
         """
-
-        # Check for supported and mandatory kwargs
-        if 'arp_guard' in kwargs['arp_guard'] and \
-            kwargs['arp_guard'] != 'False':
-            raise ValueError("\'arp_guard\' not supported")
-
-        if 'dst' in kwargs['dst'] and kwargs['dst'] != 'any':
-            raise ValueError("\'dst\' not supported")
-
-        if 'copy_sflow' in kwargs['copy_sflow'] and \
-            kwargs['copy_sflow'] != 'False':
-            raise ValueError("\'copy_sflow\' not supported")
-
-        if 'mirror' in kwargs['mirror'] and kwargs['mirror'] != 'False':
-            raise ValueError("\'mirror\' not supported")
-
-        mandatory_params = ['acl_name', 'action', 'source']
-        supported_params = ['acl_name', 'seq_id', 'action', 'source',
-                            'srchost', 'src_mac_addr_mask',
-                            'count', 'log', 'address_type',
-                            'arp_guard', 'dst', 'copy_sflow', 'mirror']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
-
         user_data = {}
 
         user_data['acl_name'] = kwargs['acl_name']
         user_data['seq_id'] = self.mac.parse_seq_id(**kwargs)
         user_data['action'] = self.mac.parse_action(**kwargs)
         user_data['source'] = self.mac.parse_source(**kwargs)
-        bool_params = ['log', 'count']
+        bool_params = ['log', 'count', 'copy_sflow']
         self.mac.parse_boolean_params(user_data, bool_params, **kwargs)
-        return user_data
 
     def _parse_params_for_add_mac_extended(self, **kwargs):
         """
@@ -429,33 +393,6 @@ class Acl(SlxNosAcl):
             Raises ValueError, Exception
         Examples:
         """
-
-        # Check for supported and mandatory kwargs
-        if 'arp_guard' in kwargs['arp_guard'] and \
-            kwargs['arp_guard'] != 'False':
-            raise ValueError("\'arp_guard\' not supported")
-
-        if 'dst' in kwargs['dst'] and kwargs['dst'] != 'any':
-            raise ValueError("\'dst\' not supported")
-
-        if 'copy_sflow' in kwargs['copy_sflow'] and \
-            kwargs['copy_sflow'] != 'False':
-            raise ValueError("\'copy_sflow\' not supported")
-
-        if 'mirror' in kwargs['mirror'] and kwargs['mirror'] != 'False':
-            raise ValueError("\'mirror\' not supported")
-
-        mandatory_params = ['acl_name', 'action', 'source', 'dst']
-        supported_params = ['acl_name', 'seq_id', 'action', 'source', 'dst',
-                            'srchost', 'src_mac_addr_mask',
-                            'dsthost', 'dst_mac_addr_mask',
-                            'count', 'log', 'address_type',
-                            'arp_guard', 'copy_sflow', 'mirror',
-                            'vlan_tag_format', 'drop_precedence_force',
-                            'drop_precedence', 'ethertype', 'pcp', 'vlan']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
-
         user_data = {}
 
         user_data['acl_name'] = kwargs['acl_name']
@@ -463,471 +400,178 @@ class Acl(SlxNosAcl):
         user_data['action'] = self.mac.parse_action(**kwargs)
         user_data['source'] = self.mac.parse_source(**kwargs)
         user_data['dst'] = self.mac.parse_dst(**kwargs)
+        user_data['vlan_tag_format'] = self.mac.parse_vlan_tag_format(**kwargs)
         user_data['ethertype'] = self.mac.parse_ethertype(**kwargs)
         user_data['vlan'] = self.mac.parse_vlan(**kwargs)
-        bool_params = ['log', 'count']
+        user_data['arp_guard'] = self.mac.parse_arp_guard(**kwargs)
+        user_data['pcp'] = self.mac.parse_pcp(**kwargs)
+        user_data['pcp_force'] = self.mac.parse_pcp_force(**kwargs)
+        user_data['drop_precedence_force'] = \
+            self.ip.parse_drop_precedence_force(**kwargs)
+        user_data['mirror'] = self.mac.parse_mirror(**kwargs)
+        bool_params = ['log', 'count', 'copy_sflow']
         self.mac.parse_boolean_params(user_data, bool_params, **kwargs)
 
         return user_data
 
     def apply_acl(self, **kwargs):
-        pass
-
-    def remove_acl(self, **kwargs):
-        pass
-
-
-
-
-
-
-
-
-
-
-'''
-class Acl(NosBaseAcl):
-    """
-    The Acl class holds all the actions assocaiated with the Access Control list
-    of a SLX device.
-
-    Attributes:
-        None
-    """
-
-    os_type = "slxos"
-
-    __seq_variables_ip_std = ('seq_id', 'action', 'src_host_any_sip', 'src_host_ip',
-                              'src_mask', 'count', 'log', 'copy-sflow')
-
-    __seq_variables_ip_ext = ('seq_id', 'action', 'protocol_type', 'src_host_any_sip',
-                              'src_host_ip', 'src_mask', 'sport', 'sport_number_eq_neq_tcp',
-                              'sport_number_lt_tcp', 'sport_number_gt_tcp',
-                              'sport_number_eq_neq_udp', 'sport_number_lt_udp',
-                              'sport_number_gt_udp', 'sport_number_range_lower_tcp',
-                              'sport_number_range_lower_udp', 'sport_number_range_higher_tcp',
-                              'sport_number_range_higher_udp', 'dst_host_any_dip', 'dst_host_ip',
-                              'dst_mask', 'dport', 'dport_number_eq_neq_tcp',
-                              'dport_number_lt_tcp', 'dport_number_gt_tcp',
-                              'dport_number_eq_neq_udp', 'dport_number_lt_udp',
-                              'dport_number_gt_udp', 'dport_number_range_lower_tcp',
-                              'dport_number_range_lower_udp', 'dport_number_range_higher_tcp',
-                              'dport_number_range_higher_udp', 'dscp', 'dscp-force',
-                              'drop-precedence-force', 'urg', 'ack', 'push', 'fin', 'rst',
-                              'sync', 'vlan', 'count', 'log', 'mirror', 'copy-sflow')
-
-    __seq_variables_mac_std = ('seq_id', 'action', 'source', 'srchost',
-                               'src_mac_addr_mask', 'count', 'log', 'copy-sflow')
-
-    __seq_variables_mac_ext = ('seq_id', 'action', 'source', 'srchost',
-                               'src_mac_addr_mask', 'dst', 'dsthost',
-                               'dst_mac_addr_mask', 'vlan-tag-format', 'vlan',
-                               'vlan-id-mask', 'outer-vlan', 'outer-vlan-id-mask',
-                               'inner-vlan', 'inner-vlan-id-mask', 'ethertype',
-                               'arp-guard', 'pcp', 'pcp-force', 'drop-precedence-force',
-                               'count', 'log', 'mirror', 'copy-sflow')
-
-    def __init__(self, callback):
         """
-        Interface init function.
-
+        Apply an ACL to a physical port, port channel, VE or management interface.
         Args:
-            callback: Callback function that will be called for each action.
-
-        Returns:
-            Interface Object
-
-        Raises:
-            None
-        """
-        super(Acl, self).__init__(callback)
-
-    def add_l2_acl_rule(self, **kwargs):
-        """
-        Add ACL rule to an existing L2 ACL.
-        Args:
+            intf_type (str): Interface type, (physical, port channel, VE or management interface).
+            intf_names (str[]): Array of the Interface Names.
             acl_name (str): Name of the access list.
-            acl_rules (array): List of ACL sequence rules.
-            seq_id (int): Sequence number of the rule.
-            action (str): Action to apply on the traffic (deny/permit/hard-drop).
-            source (str): Source filter, can be 'any' or 'host', or the actual MAC address.
-            srchost (str): Source MAC in HHHH.HHHH.HHHH format.
-            src_mac_addr_mask (str): Mask for the source MAC address.
-            dst (str): Destination filter, can be 'any' or 'host', or the actual MAC address.
-            dsthost (str): Destination MAC in HHHH.HHHH.HHHH format.
-            dst_mac_addr_mask (str): Mask for the destination MAC address.
-            vlan_tag_format (str): VLAN tag fromat, (untagged/single-tagged/double-tagged).
-            vlan (str): VLAN IDs (Vlan, OuterVlan, InnerVlan) - 'any' or 1-4096, Mask 0xHHH.
-            ethertype (str): EtherType, can be 'arp', 'fcoe', 'ipv4' or 1536-65535.
-            arp_guard (str): Enables arp-guard for the rule.
-            pcp (str): PCP values (pcp,pcp-force) between 0 and 7.
-            drop_precedence_force (str): Drop_precedence value of the packet to filter.
-            count (str): Enables the packet count.
-            log (str): Enables the logging.
-            mirror (str): Enables mirror for the rule.
-            copy_sflow (str): Enables copy-sflow for the rule.
+            acl_direction (str): Direction of ACL binding on the specified interface [in/out].
+            traffic_type (str): Traffic type for the ACL being applied [switched/routed].
             callback (function): A function executed upon completion of the method.
                The only parameter passed to `callback` will be the ``ElementTree`` `config`.
         Returns:
             True, False or None for Success, failure and no-change respectively
-            for each seq_ids.
-
+            for each interfaces.
+        Raises:
+            Exception, ValueError for invalid seq_id.
         Examples:
             >>> from pyswitch.device import Device
             >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
             >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
                                              address_type='mac')
-            True
-            >>>     print dev.acl.add_mac_acl_rule(acl_name='Acl_1', seq_id=20,
-                                                   action='permit', source='host',
-                                                   srchost='2222.2222.2222')
-            True
+            >>>     print dev.acl.apply_acl(intf_type='ethernet', intf_name='0/1,0/2',
+                                            acl_name='Acl_1', acl_direction='in',
+                                            traffic_type='switched')
         """
-        acl_name = kwargs.pop('acl_name', '')
-        acl_rules = kwargs.pop('acl_rules', [])
+        
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_apply_acl(**kwargs)
+        
+        # Parse params
+        user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
+
         callback = kwargs.pop('callback', self._callback)
-        seqs_list = []
-        seq_id_next = 10
-        seq_id_fetched = False
-
-        acl = self.get_acl_type(acl_name)
-        address_type = acl['protocol']
-        acl_type = acl['type']
-        self.logger.info('Successfully identified the acl_type as (%s:%s)',
-                         acl['protocol'], acl_type)
-        if acl_type == 'standard':
-            seq_variables = self.__seq_variables_mac_std
-        elif acl_type == 'extended':
-            seq_variables = self.__seq_variables_mac_ext
-
-        if address_type is not 'mac':
-            raise ValueError('ACL %s is not compatible for adding L2 acl rule', acl_name)
-
-        if 'source' in kwargs and kwargs['source'] is not None:
-            acl_rules.append(kwargs)
-        for rule in acl_rules:
-            seq_id = rule.pop('seq_id', None)
-            action = rule.pop('action', 'deny')
-            source = rule.pop('source', 'any')
-            srchost = rule.pop('srchost', None)
-            src_mac_addr_mask = rule.pop('src_mac_addr_mask', None)
-            dst = rule.pop('dst', 'any')
-            dsthost = rule.pop('dsthost', None)
-            dst_mac_addr_mask = rule.pop('dst_mac_addr_mask', None)
-            vlan_tag_format = rule.pop('vlan_tag_format', None)
-            vlan = rule.pop('vlan', None)
-            ethertype = rule.pop('ethertype', None)
-            arp_guard = rule.pop('arp_guard', False)
-            pcp = rule.pop('pcp', None)
-            drop_precedence_force = rule.pop('drop_precedence_force', None)
-            count = rule.pop('count', False)
-            log = rule.pop('log', False)
-            mirror = rule.pop('mirror', False)
-            copy_sflow = rule.pop('copy_sflow', False)
-
-            # Check is the user input for ACL rule is correct
-            if acl_type == 'extended' and not any([dst, dsthost, dst_mac_addr_mask]):
-                raise ValueError('Destination required in extended access list')
-            elif acl_type == 'standard' and any([dsthost, dst_mac_addr_mask]):
-                raise ValueError('Destination cannot be given for standard access list')
-            any([action, count, log, mirror])   # to keep lint happy.
-
-            # Creating sequence dict for ACL rules
-            try:
-                seq_dict = {key: None for key in seq_variables}
-            except:
-                raise ValueError('Cannot get seq_variables')
-
-            seq_dict['user_seq_id'] = seq_id
-            if seq_id is None:
-                if not seq_id_fetched:
-                    seq_id = self.get_seq_id(acl_name, acl_type, address_type)
-                    seq_id_fetched = True
-                if seq_id is None or seq_id < seq_id_next:
-                    seq_id = seq_id_next
-            if seq_id >= seq_id_next:
-                seq_id_next = (seq_id + 10) // 10 * 10
-            self.logger.info('seq_id for the rule is %s', seq_id)
-
-            valid_src = self.__validate_mac_address(source, srchost, src_mac_addr_mask, key='src')
-            if not valid_src:
-                raise ValueError("Invalid source parameters")
-
-            valid_dst = self.__validate_mac_address(dst, dsthost, dst_mac_addr_mask, key='dst')
-            if not valid_dst:
-                raise ValueError("Invalid dst parameters")
-
-            if ethertype and ethertype not in ["arp", "fcoe", "ipv4"]:
-                try:
-                    ethertype_id = (int(ethertype))
-                except ValueError as verr:
-                    raise ValueError("The ethertype value %s is invalid, could not convert to"
-                                     " integer due to %s" % (ethertype, verr.message))
-                if ethertype_id < 1536 or ethertype_id > 65535:
-                    raise ValueError("The ethertype value %s is invalid, "
-                                     "valid value is 1536-65535" % ethertype)
-            seq_dict['vlan'] = seq_dict['vlan-id-mask'] = None
-            seq_dict['outer-vlan'] = seq_dict['outer-vlan-id-mask'] = None
-            seq_dict['inner-vlan'] = seq_dict['inner-vlan-id-mask'] = None
-            seq_dict['pcp'] = seq_dict['pcp-force'] = None
-            for variable in seq_dict:
-                try:
-                    seq_dict[variable] = eval(variable)
-                except:
-                    pass
-            if vlan is not None and (' ' in vlan or ',' in vlan):
-                vlan_vals = re.split(' |,', vlan)
-                vlan_vals = map(lambda x: x.strip(",. \n-"), vlan_vals)
-                if vlan_tag_format == 'double-tagged':
-                    seq_dict['vlan'] = None
-                    seq_dict['outer-vlan'] = vlan_vals[0]
-                    seq_dict['outer-vlan-id-mask'] = \
-                        vlan_vals[1] if '0x' in vlan_vals[1].lower() else None
-                    seq_dict['inner-vlan'] = \
-                        vlan_vals[2] if len(vlan_vals) > 2 and \
-                        '0x' in vlan_vals[1].lower() else vlan_vals[1]
-                    if len(vlan_vals) > 2:
-                        seq_dict['inner-vlan-id-mask'] = \
-                            vlan_vals[3] if len(vlan_vals) > 3 else vlan_vals[2]
-                    if seq_dict['inner-vlan'] == seq_dict['inner-vlan-id-mask']:
-                        seq_dict['inner-vlan-id-mask'] = None
-                else:
-                    seq_dict['vlan'] = vlan_vals[0]
-                    seq_dict['vlan-id-mask'] = vlan_vals[1]
-
-            if pcp is not None and (' ' in pcp or ',' in pcp):
-                pcp_vals = re.split(' |,', pcp)
-                seq_dict['pcp'] = pcp_vals[0].strip()
-                seq_dict['pcp-force'] = pcp_vals[1].strip()
-            seq_dict['vlan-tag-format'] = vlan_tag_format
-            seq_dict['arp-guard'] = arp_guard
-            seq_dict['drop-precedence-force'] = drop_precedence_force
-            seq_dict['copy-sflow'] = copy_sflow
-            if seq_dict['vlan'] is not None and \
-                not re.match("^(any)|(([1-9][0-9]{0,2})|([1-3][0-9]{3})|" +
-                             "(40[0-8][0-9])|(409[0-4]))$", seq_dict['vlan']):
-                    raise ValueError("Invalid \'vlan\' value,"
-                                     " any or 1-4096 only supported")
-            if seq_dict['vlan-id-mask'] is not None and \
-               not re.match("^0x([0-9a-fA-F]{3})$", seq_dict['vlan-id-mask']):
-                    raise ValueError("Invalid \'vlan-id-mask\' value,"
-                                     " 0xHHH (3 digit hex value) only supported")
-            if seq_dict['outer-vlan'] is not None and \
-                not re.match("^(any)|(([1-9][0-9]{0,2})|([1-3][0-9]{3})|"
-                             "(40[0-8][0-9])|(409[0-4]))$", seq_dict['outer-vlan']):
-                    raise ValueError("Invalid \'outer-vlan\' value,"
-                                     " any or 1-4096 only supported")
-            if seq_dict['outer-vlan-id-mask'] is not None and \
-               not re.match("^0x([0-9a-fA-F]{3})$", seq_dict['outer-vlan-id-mask']):
-                    raise ValueError("Invalid \'outer-vlan-id-mask\' value,"
-                                     " 0xHHH (3 digit hex value) only supported")
-            if seq_dict['inner-vlan'] is not None and \
-                not re.match("^(any)|(([1-9][0-9]{0,2})|([1-3][0-9]{3})|"
-                             "(40[0-8][0-9])|(409[0-4]))$", seq_dict['inner-vlan']):
-                    raise ValueError("Invalid \'inner-vlan\' value,"
-                                     " any or 1-4096 only supported")
-            if seq_dict['inner-vlan-id-mask'] is not None and \
-               not re.match("^0x([0-9a-fA-F]{3})$", seq_dict['inner-vlan-id-mask']):
-                    raise ValueError("Invalid \'inner-vlan-id-mask\' value,"
-                                     " 0xHHH (3 digit hex value) only supported")
-            if seq_dict['pcp'] is not None and not re.match("^[0-7]$", seq_dict['pcp']):
-                    raise ValueError("Invalid \'pcp\' value, 0-7 only supported")
-            if seq_dict['pcp-force'] is not None and \
-               not re.match("^[0-7]$", seq_dict['pcp-force']):
-                    raise ValueError("Invalid \'pcp-force\' value, 0-7 only supported")
-            if seq_dict['drop-precedence-force'] is not None and \
-               not re.match("^[0-2]$", seq_dict['drop-precedence-force']):
-                    raise ValueError("Invalid \'drop-precedence-force\' value,"
-                                     " 0-2 only supported")
-            seqs_list.append(seq_dict)
-
         result = {}
-        for seq_dict in seqs_list:
-            self.logger.info('Adding rule on ACL %s at seq_id %s', acl_name,
-                             str(seq_dict['seq_id']))
-            config = self.__generate_acl_rule_xml(address_type, acl_type, acl_name, [seq_dict])
-            try:
-                callback(config)
-                self.logger.info('Successfully added rule on ACL %s', acl_name)
-                result['Seq-%s' % str(seq_dict['seq_id'])] = True
-            except Exception as e:
-                if 'Access-list entry already exists' in str(e) and \
-                        seq_dict['user_seq_id'] is None:
-                    self.logger.warning(str(e).split('%Error: ')[1])
-                    result['Seq-%s' % str(seq_dict['seq_id'])] = None
-                else:
-                    raise
+        
+        for intf in user_data['interface_list']:
+            self.logger.info('Applying ACL {} on interface ({}:{})'.format(
+                              user_data['acl_name'], user_data['intf_type'], intf))
+
+            user_data['intf'] = intf
+            cmd = slx_nos_acl_template.acl_apply
+            t = jinja2.Template(cmd)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+
+            self.logger.info(config)
+            callback(config)
+
+            self.logger.info('Successfully applied ACL {} on interface {} {} ({})'
+                             .format(user_data['acl_name'], user_data['intf_type'],
+                                     intf, user_data['acl_direction']))
+            result[intf] = True
         return result
 
-    def __add_ip_acl_rule(self, **kwargs):
+    def remove_acl(self, **kwargs):
         """
-        Add ACL rule to an existing ACL.
+        Remove ACL from a physical port, port channel, VE or management interface.
         Args:
+            intf_type (str): Interface type, (physical, port channel, VE or management interface).
+            intf_name (str[]): Array of the Interface Names.
             acl_name (str): Name of the access list.
-            address_type (str): ACL address type, ip or ipv6.
-            acl_rules (array): List of ACL sequence rules.
-            seq_id (int): Sequence number of the rule.
-            action (str): Action to apply on the traffic (deny/permit/hard-drop).
-            protocol_type (str): Type of IP packets to be filtered (<0-255>, tcp, udp, icmp or ip).
-            source (str): Source filter, can be 'any' or 'host', or the actual MAC address.
-            destination (str): Destination filter, can be 'any' or 'host', or the actual MAC.
-            dscp (str): DSCP and DSCP-Force values of the packet to filter.
-            drop_precedence_force (str): Drop_precedence value of the packet to filter.
-            urg (str): Enables urg for the rule.
-            ack (str): Enables ack for the rule.
-            push (str):Enables push for the rule.
-            fin (str): Enables fin for the rule.
-            rst (str): Enables rst for the rule.
-            sync (str): Enables sync for the rule.
-            vlan_id (str): VLAN ID for the rule.
-            count (str): Enables the packet count.
-            log (str): Enables the logging.
-            mirror (str): Enables mirror for the rule.
-            copy_sflow (str): Enables copy-sflow for the rule.
+            acl_direction (str): Direction of ACL binding on the specified interface [in/out].
+            traffic_type (str): Traffic type for the ACL being applied [switched/routed].
             callback (function): A function executed upon completion of the method.
                The only parameter passed to `callback` will be the ``ElementTree`` `config`.
         Returns:
             True, False or None for Success, failure and no-change respectively
-            for each seq_ids.
-
+            for each interfaces.
+        Raises:
+            Exception, ValueError for invalid seq_id.
         Examples:
             >>> from pyswitch.device import Device
             >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
             >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
-                                             address_type='ip')
-            True
-            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1', seq_id=10,
-                                                  action='permit',
-                                                  source='host 192.168.0.3')
-            True
+                                             address_type='mac')
+            >>>     print dev.acl.apply_acl(intf_type='ethernet', intf_name='0/1,0/2',
+                                            acl_name='Acl_1', acl_direction='in',
+                                            traffic_type='switched')
+            >>>     print dev.acl.remove_acl(intf_type='ethernet', intf_name='0/1,0/2',
+                                            acl_name='Acl_1', acl_direction='in',
+                                            traffic_type='switched')
         """
-        acl_name = kwargs.pop('acl_name', '')
-        address_type = kwargs.pop('address_type', '')
-        acl_rules = kwargs.pop('acl_rules', [])
+
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_remove_acl(**kwargs)
+        
+        # Parse params
+        user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
+
         callback = kwargs.pop('callback', self._callback)
-        seqs_list = []
-        seq_id_next = 10
-        seq_id_fetched = False
-
-        acl = self.get_acl_type(acl_name)
-        acl_type = acl['type']
-        self.logger.info('Successfully identified the acl_type as (%s:%s)',
-                         acl['protocol'], acl_type)
-        if acl_type == 'standard':
-            seq_variables = self.__seq_variables_ip_std
-        elif acl_type == 'extended':
-            seq_variables = self.__seq_variables_ip_ext
-
-        if address_type is 'ip' and acl['protocol'] is not 'ip':
-            raise ValueError('ACL %s is not compatible for adding IPV4 acl rule', acl_name)
-        elif address_type is 'ipv6' and acl['protocol'] is not 'ipv6':
-            raise ValueError('ACL %s is not compatible for adding IPV6 acl rule', acl_name)
-        elif acl['protocol'] is 'mac':
-            raise ValueError('Use L3 ACLs with this action')
-
-        if 'source' in kwargs and kwargs['source'] is not None:
-            acl_rules.append(kwargs)
-        for rule in acl_rules:
-            seq_id = rule.pop('seq_id', None)
-            action = rule.pop('action', 'permit')
-            protocol_type = rule.pop('protocol_type', None)
-            source = rule.pop('source', 'any')
-            destination = rule.pop('destination', None)
-            dscp = rule.pop('dscp', None)
-            drop_precedence_force = rule.pop('drop_precedence_force', None)
-            urg = rule.pop('urg', False)
-            ack = rule.pop('ack', False)
-            push = rule.pop('push', False)
-            fin = rule.pop('fin', False)
-            rst = rule.pop('rst', False)
-            sync = rule.pop('sync', False)
-            vlan = rule.pop('vlan_id', None)
-            count = rule.pop('count', False)
-            log = rule.pop('log', False)
-            mirror = rule.pop('mirror', False)
-            copy_sflow = rule.pop('copy_sflow', False)
-
-            # Check is the user input for ACL rule is correct
-            if acl_type == 'extended' and destination is None:
-                raise ValueError('Destination required in extended access list')
-            elif acl_type == 'extended' and protocol_type is None:
-                raise ValueError('protocol_type is required for extended access list')
-            elif acl_type == 'standard' and destination:
-                raise ValueError('Destination cannot be given for standard access list')
-            elif acl_type == 'standard' and protocol_type:
-                raise ValueError('protocol_type cannot be given for standard access list')
-            elif acl_type == 'standard' and vlan:
-                raise ValueError('vlan_id cannot be given for standard access list')
-            elif acl_type == 'standard' and dscp:
-                raise ValueError('dscp cannot be given for standard access list')
-            elif acl_type == 'standard' and drop_precedence_force:
-                raise ValueError('drop_precedence_force cannot be given for standard access list')
-            elif acl_type == 'standard' and any([urg, ack, push, fin, rst, sync, mirror]):
-                raise ValueError('Any of (urg, ack, push, fin, rst, sync, mirror) '
-                                 'cannot be given for standard access list')
-            any([action, count, log])   # to keep lint happy.
-
-            # Creating sequence dict for ACL rules
-            try:
-                seq_dict = {key: None for key in seq_variables}
-            except:
-                raise ValueError('Cannot get seq_variables')
-            seq_dict['user_seq_id'] = seq_id
-            if seq_id is None:
-                if not seq_id_fetched:
-                    seq_id = self.get_seq_id(acl_name, acl_type, address_type)
-                    seq_id_fetched = True
-                if seq_id is None or seq_id < seq_id_next:
-                    seq_id = seq_id_next
-            if seq_id >= seq_id_next:
-                seq_id_next = (seq_id + 10) // 10 * 10
-            self.logger.info('seq_id for the rule is %s', seq_id)
-            src_dict = self.__parse_ip_address(address_type, protocol_type, source, 'src')
-            if acl_type == 'extended':
-                dst_dict = self.__parse_ip_address(address_type, protocol_type, destination, 'dst')
-            for variable in seq_dict:
-                if 'src' in variable or 'sport' in variable:
-                    try:
-                        seq_dict[variable] = src_dict[variable]
-                    except:
-                        pass
-                elif 'dst' in variable or 'dport' in variable:
-                    try:
-                        seq_dict[variable] = dst_dict[variable]
-                    except:
-                        pass
-                else:
-                    try:
-                        seq_dict[variable] = eval(variable)
-                    except:
-                        pass
-            if dscp is not None and (' ' in dscp or ',' in dscp):
-                dscp_vals = re.split(' |,', dscp)
-                seq_dict['dscp'] = dscp_vals[0].strip()
-                seq_dict['dscp-force'] = dscp_vals[1].strip()
-            seq_dict['drop-precedence-force'] = drop_precedence_force
-            seq_dict['copy-sflow'] = copy_sflow
-            if seq_dict['drop-precedence-force'] is not None and \
-               not re.match("^[0-2]$", seq_dict['drop-precedence-force']):
-                        raise ValueError("Invalid \'drop-precedence-force\' value,"
-                                         " 0-2 only supported")
-            seqs_list.append(seq_dict)
-
         result = {}
-        for seq_dict in seqs_list:
-            self.logger.info('Adding rule on ACL %s at seq_id %s', acl_name,
-                             str(seq_dict['seq_id']))
-            config = self.__generate_acl_rule_xml(address_type, acl_type, acl_name, [seq_dict])
+        
+        for intf in user_data['interface_list']:
+            self.logger.info('Removing ACL {} from interface ({}:{})'.format(
+                              user_data['acl_name'], user_data['intf_type'], intf))
+
+            user_data['intf'] = intf
+            cmd = slx_nos_acl_template.acl_remove
+            t = jinja2.Template(cmd)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+
+            self.logger.info(config)
             try:
                 callback(config)
-                self.logger.info('Successfully added rule on ACL %s', acl_name)
-                result['Seq-%s' % str(seq_dict['seq_id'])] = True
+                self.logger.info('Successfully removed ACL {} from interface {} {} ({})'
+                                 .format(user_data['acl_name'], user_data['intf_type'],
+                                         intf, user_data['acl_direction']))
+                result[intf] = True
             except Exception as e:
-                if 'Access-list entry already exists' in str(e) and \
-                        seq_dict['user_seq_id'] is None:
-                    self.logger.warning(str(e).split('%Error: ')[1])
-                    result['Seq-%s' % str(seq_dict['seq_id'])] = None
+                if '<bad-element>access-group</bad-element>' in str(e):
+                    self.logger.warning('ACL {} not present in the interface {} {} ({})'
+                                        .format(user_data['acl_name'], user_data['intf_type'],
+                                                intf, user_data['acl_direction']))
+                    result[intf] = None
                 else:
                     raise
         return result
-'''
+
+    def _parse_params_for_apply_or_remove_acl(self, **kwargs):
+        """
+        Parses params for Apply or Remove ACL on Interfaces.
+        Args:
+            Parse below params if contained in kwargs.
+
+                intf_type: (string) Allowed intf_type are,
+                          - gigabitethernet
+                          - tengigabitethernet
+                          - fortygigabitethernet
+                          - hundredgigabitethernet
+                          - port_channel
+                          - ve
+                          - loopback
+                          - ethernet
+                intf_name: (string array) Array of interface names
+                acl_name: (string) Name of the access list
+                acl_direction: (string) Action performed by ACL rule
+                    - in
+                    - out
+                traffic_type: (string) Action performed by ACL rule
+                    - switched
+                    - routed
+        Returns:
+            Return a dict cotaining the kwargs in string format
+            key name will be key name in the parameter followed by _str.
+        Raise:
+            Raises ValueError, Exception
+        Examples:
+        """
+        
+        user_data = {}
+        user_data['intf_type'] = self.ap.parse_intf_type(**kwargs)
+        user_data['interface_list'] = self.ap.parse_intf_names(**kwargs)
+        user_data['acl_name'] = self.ap.parse_acl_name(**kwargs)
+        user_data['acl_direction'] = self.ap.parse_acl_direction(**kwargs)
+        user_data['traffic_type'] = self.ap.parse_traffic_type(**kwargs)
+
+        acl = self._get_acl_info(user_data['acl_name'], get_seqs=False)
+        user_data['address_type'] = acl['protocol']
+
+        return user_data

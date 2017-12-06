@@ -184,7 +184,190 @@ class AclParamParser(object):
                 val = ' '.join(val.split())
                 if val.lower() == 'true':
                     user_data[key] = True
+                else:
+                    user_data[key] = None
             else:
                 user_data[key] = None
 
         return True
+
+    def parse_mirror(self, **kwargs):
+        """
+        parse the protocol type param.
+        Args:
+            kwargs contains:
+                mirror(string): Enables mirror for the rule
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'mirror' not in kwargs or not kwargs['mirror']:
+            return None
+
+        if 'acl_type' not in kwargs or not kwargs['acl_type']:
+            raise ValueError("\'acl_type\' not defined. mirror is supported"
+                             "only for extended acl_type")
+
+        if kwargs['acl_type'] != 'extended':
+            raise ValueError("\'acl_type\' not defined. mirror is supported"
+                             "only for extended acl_type")
+
+        val = ' '.join(kwargs['mirror'].split())
+
+        if val.lower() == 'true':
+            return True
+
+        return None
+
+    def parse_drop_precedence_force(self, **parameters):
+        """
+        parse the drop_precedence_force mapping param.
+        Args:
+            parameters contains:
+                drop_precedence_force(string):
+                    drop_precedence_force value of the packet
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'drop_precedence_force' not in parameters or \
+                not parameters['drop_precedence_force']:
+            return None
+
+        drop_precedence_force = parameters['drop_precedence_force']
+        drop_precedence_force = ' '.join(drop_precedence_force.split())
+
+        if drop_precedence_force.isdigit():
+            if int(drop_precedence_force) >= 0 and \
+                    int(drop_precedence_force) <= 3:
+                return 'drop-precedence-force ' + drop_precedence_force
+
+        raise ValueError("drop-precedence-force value should be 0 - 3")
+
+    def parse_rbridge_id(self, **kwargs):
+        """
+        parse supported rbridge_id param
+        Args:
+            kwargs contains:
+                rbridge_id(string): Allowed rbridge_id is 1 to 239
+        Returns:
+            Return parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+
+        if 'rbridge_id' not in kwargs or not kwargs['rbridge_id']:
+            return None
+
+        if int(kwargs['rbridge_id']) >= 1 and int(kwargs['rbridge_id']) <= 239:
+            return kwargs['rbridge_id']
+
+        raise ValueError("The \'rbridge_id\' value {} is invalid. "
+                         "Valid range for rbridge_id is 1 to 239."
+                         .format(kwargs['rbridge_id']))
+
+    def parse_intf_type(self, **kwargs):
+        """
+        parse supported intf_type param
+        Args:
+            kwargs contains:
+                intf_type(string): Allowed intf_type are,
+                          - gigabitethernet
+                          - tengigabitethernet
+                          - fortygigabitethernet
+                          - hundredgigabitethernet
+                          - port_channel
+                          - ve
+                          - loopback
+                          - ethernet
+        Returns:
+            Return parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+
+        if 'intf_type' not in kwargs or not kwargs['intf_type']:
+            raise ValueError("\'intf_type\' not present in kwargs")
+
+        if kwargs['intf_type'] in ['gigabitethernet', 'tengigabitethernet',
+                                   'fortygigabitethernet', 'hundredgigabitethernet',
+                                   'port_channel', 've', 'loopback', 'ethernet']:
+            return kwargs['intf_type'].replace("_", "-")
+
+        raise ValueError("The \'intf_type\' value {} is invalid. "
+                         "Supported values are gigabitethernet, tengigabitethernet, "
+                         "fortygigabitethernet, hundredgigabitethernet, "
+                         "port_channel, ve, loopback and ethernet"
+                         .format(kwargs['intf_type']))
+
+    def parse_intf_names(self, **kwargs):
+        """
+        parse supported intf_name param
+        Args:
+            kwargs contains:
+                intf_name(array): Array of interface names
+        Returns:
+            Return parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+
+        if 'intf_name' not in kwargs or not kwargs['intf_name']:
+            raise ValueError("\'intf_name\' not present in kwargs")
+
+        return kwargs['intf_name']
+
+    def parse_acl_direction(self, **kwargs):
+        """
+        parse supported acl_direction param
+        Args:
+                acl_direction(string): Allowed acl_direction are in or out
+        Returns:
+            Return parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+
+        """
+
+        if 'acl_direction' not in kwargs or not kwargs['acl_direction']:
+            raise ValueError("\'acl_direction\' not present in kwargs")
+
+        if kwargs['acl_direction'] in ['in', 'out']:
+            return kwargs['acl_direction']
+
+        raise ValueError("The \'acl_direction\' value {} is invalid. Specify "
+                         "\'in\' or \'out\' supported values"
+                         .format(kwargs['acl_direction']))
+
+    def parse_traffic_type(self, **kwargs):
+        """
+        parse supported traffic_type param
+        Args:
+            kwargs contains:
+                traffic_type(string): Allowed traffic_type are switched or routed
+        Returns:
+            Return parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+
+        """
+
+        if 'traffic_type' not in kwargs or not kwargs['traffic_type']:
+            return None
+
+        if kwargs['traffic_type'] in ['switched', 'routed']:
+            return kwargs['traffic_type']
+
+        raise ValueError("The \'traffic_type\' value {} is invalid. Specify "
+                         "\'switched\' or \'routed\' supported values"
+                         .format(kwargs['traffic_type']))
+

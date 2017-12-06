@@ -85,6 +85,15 @@ acl_rule_ip = """
                   {% endif %}
 
                   {% if dscp is not none %} <dscp>{{dscp}}</dscp> {% endif %}
+                  {% if dscp_force is not none %}
+                    <dscp-force>{{dscp-force}}</dscp-force>
+                  {% endif %}
+
+                  {% if drop_precedence_force is not none %}
+                    <drop-precedence-force>
+                      {{drop_precedence_force}}
+                    </drop-precedence-force>
+                  {% endif %}
 
                   {% if vlan_id is not none %}
                     <vlan>{{vlan_id}}</vlan>
@@ -96,10 +105,14 @@ acl_rule_ip = """
                   {% if fin is not none %} <fin></fin> {% endif %}
                   {% if rst is not none %} <rst></rst> {% endif %}
                   {% if sync is not none %} <sync></sync> {% endif %}
+                  {% if mirror is not none %} <mirror></mirror> {% endif %}
                 {% endif %}
 
                 {% if count is not none %} <count></count> {% endif %}
                 {% if log is not none %}<log></log> {% endif %}
+                {% if copy_sflow is not none %}
+                  <copy-sflow></copy-sflow>
+                {% endif %}
               </seq>
           {% if address_type == "ip" %}
             {% if acl_type == "extended" %}
@@ -152,11 +165,65 @@ acl_rule_mac = """
               {% endif %}
 
               <ethertype>{{ethertype}}</ethertype>
-              <vlan>{{vlan}}</vlan>
+
+              {% if vlan_tag_format is not none %}
+                <vlan-tag-format>{{vlan_tag_format}}</vlan-tag-format>
+              {% endif %}
+
+              {% if vlan is not none %}
+
+                {% if vlan_tag_format is none %}
+                  <vlan>{{vlan.vlan_id}}</vlan>
+
+                {% elif vlan_tag_format == "untagged" %}
+                  <vlan>{{vlan.vlan_id}}</vlan>
+
+                {% elif vlan_tag_format == "single-tagged" %}
+
+                  <vlan>{{vlan.vlan_id}}</vlan>
+
+                  {% if vlan.mask is not none %}
+                    <vlan-id-mask>{{vlan.mask}}</vlan-id-mask>
+                  {% endif %}
+
+                {% elif vlan_tag_format == "double-tagged" %}
+
+                  <outer-vlan>{{vlan.outervlan}}</outer-vlan>
+                  {% if vlan.outermask is not none %}
+                    <outer-vlan-id-mask>{{vlan.outermask}}</outer-vlan-id-mask>
+                  {% endif %}
+
+                  <inner-vlan>{{vlan.innervlan}}</inner-vlan>
+                  {% if vlan.innermask is not none %}
+                    <inner-vlan-id-mask>{{vlan.innermask}}</inner-vlan-id-mask>
+                  {% endif %}
+
+                {% endif %}
+              {% endif %}
+
+              {% if arp_guard is not none %}
+                <arp-guard></arp-guard>
+              {% endif %}
+
+              {% if pcp is not none %} <pcp>{{pcp}}</pcp> {% endif %}
+              {% if pcp_force is not none %}
+                <pcp-force>{{pcp_force}}</pcp-force>
+              {% endif %}
+
+              {% if drop_precedence_force is not none %}
+                <drop-precedence-force>
+                  {{drop_precedence_force}}
+                </drop-precedence-force>
+              {% endif %}
+
+              {% if mirror is not none %} <mirror></mirror> {% endif %}
             {% endif %}
 
             {% if count is not none %} <count></count> {% endif %}
             {% if log is not none %}<log></log> {% endif %}
+            {% if copy_sflow is not none %}
+              <copy-sflow></copy-sflow>
+            {% endif %}
           </seq>
         {% if acl_type == "extended" %}
           </hide-mac-acl-ext>
