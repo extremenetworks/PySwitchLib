@@ -103,6 +103,9 @@ class Acl(SlxNosAcl):
                                                   action='permit',
                                                   source='host 192.168.0.3')
         """
+        # Validate required and accepted parameters
+        params_validator.validate_params_nos_add_ipv4_rule_acl(**kwargs)
+
         # Parse params
         acl_name = self.ip.parse_acl_name(**kwargs)
         callback = kwargs.pop('callback', self._callback)
@@ -216,17 +219,6 @@ class Acl(SlxNosAcl):
             Raises ValueError, Exception
         Examples:
         """
-
-        # Check for supported and mandatory kwargs
-        mandatory_params = ['acl_name', 'action', 'protocol_type',
-                            'source', 'destination']
-        supported_params = ['acl_name', 'seq_id', 'action', 'protocol_type',
-                            'source', 'destination', 'dscp', 'urg', 'ack',
-                            'push', 'fin', 'rst', 'sync', 'vlan_id','count',
-                            'log', 'address_type']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
-
         user_data = {}
 
         user_data['acl_name'] = kwargs['acl_name']
@@ -362,30 +354,6 @@ class Acl(SlxNosAcl):
             Raises ValueError, Exception
         Examples:
         """
-
-        # Check for supported and mandatory kwargs
-        if 'arp_guard' in kwargs['arp_guard'] and \
-            kwargs['arp_guard'] != 'False':
-            raise ValueError("\'arp_guard\' not supported")
-
-        if 'dst' in kwargs['dst'] and kwargs['dst'] != 'any':
-            raise ValueError("\'dst\' not supported")
-
-        if 'copy_sflow' in kwargs['copy_sflow'] and \
-            kwargs['copy_sflow'] != 'False':
-            raise ValueError("\'copy_sflow\' not supported")
-
-        if 'mirror' in kwargs['mirror'] and kwargs['mirror'] != 'False':
-            raise ValueError("\'mirror\' not supported")
-
-        mandatory_params = ['acl_name', 'action', 'source']
-        supported_params = ['acl_name', 'seq_id', 'action', 'source',
-                            'srchost', 'src_mac_addr_mask',
-                            'count', 'log', 'address_type',
-                            'arp_guard', 'dst', 'copy_sflow', 'mirror']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
-
         user_data = {}
 
         user_data['acl_name'] = kwargs['acl_name']

@@ -18,6 +18,7 @@ limitations under the License.
 import xml.etree.ElementTree
 import jinja2
 import math
+import pyswitch.raw.slx_nos.acl.params_validator as params_validator
 import pyswitch.utilities as utilities
 from pyswitch.raw.base.acl import Acl as BaseAcl
 from pyswitch.raw.slx_nos.acl import acl_template
@@ -81,6 +82,8 @@ class SlxNosAcl(BaseAcl):
                                              acl_type='extended',
                                              address_type='ipv6')
         """
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_nos_create_acl(**kwargs)
 
         # Parse params
         user_data = self._parse_params_for_create_acl(**kwargs)
@@ -106,10 +109,6 @@ class SlxNosAcl(BaseAcl):
 
     def _parse_params_for_create_acl(self, **kwargs):
         # Check for supported and mandatory kwargs
-        supported_params = ['address_type', 'acl_name', 'acl_type']
-        mandatory_params = ['address_type', 'acl_name', 'acl_type']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
 
         user_data = {}
         user_data['acl_name'] = self.mac.parse_acl_name(**kwargs)
@@ -139,11 +138,8 @@ class SlxNosAcl(BaseAcl):
             >>>     print dev.acl.delete_acl(acl_name='Acl_2')
             >>>     print dev.acl.delete_acl(acl_name='Acl_1')
         """
-        # Check for supported and mandatory kwargs
-        supported_params = ['acl_name']
-        mandatory_params = ['acl_name']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_nos_delete_acl(**kwargs)
 
         # Parse params
         acl_name = self.mac.parse_acl_name(**kwargs)
@@ -169,12 +165,8 @@ class SlxNosAcl(BaseAcl):
         return True
 
     def delete_acl_rule(self, **kwargs):
-        mandatory_params = ['acl_name', 'seq_id']
-        supported_params = ['acl_name', 'seq_id',
-                            'count', 'log', 'dst', 'arp_guard','source',
-                            'copy_sflow', 'mirror', 'action', 'delete']
-        utilities._validate_parameters(mandatory_params,
-                                       supported_params, kwargs)
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_nos_delete_acl_rule(**kwargs)
 
         # Parse params
         acl_name = self.ap.parse_acl_name(**kwargs)
@@ -222,7 +214,7 @@ class SlxNosAcl(BaseAcl):
         self.delete_acl_rule(**kwargs)
 
     def delete_ipv6_acl_rule(self, **kwargs):
-        self.delete_ipv4_acl_rule(**kwargs)
+        self.delete_acl_rule(**kwargs)
 
     def delete_l2_acl_rule(self, **kwargs):
         self.delete_acl_rule(**kwargs)
