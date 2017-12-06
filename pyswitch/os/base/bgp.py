@@ -3251,10 +3251,8 @@ class Bgp(object):
 
             return bgp.findText(bgp.root, './/fast-external-fallover')
 
-
     def evpn_afi_peergroup_peer_as_check(self, **kwargs):
         """Configure allowas_in for an EVPN peergroup.
-
         Args:
             peer_group (bool): Name of the peer group
             rbridge_id (str): The rbridge ID of the device on which BGP will be
@@ -3298,16 +3296,11 @@ class Bgp(object):
             ...      output = dev.bgp.neighbor_peer_group(
             ...      peer_group='test')
             ...      output = dev.bgp.evpn_afi()
-            ...      output = dev.bgp.evpn_afi_peergroup_activate(
-            ...      peer_group='test') 
-            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(
-            ...      peer_group='test',)
-            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(
-            ...      peer_group='test', get=True)
-            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(
-            ...      peer_group='test',delete=True)
-            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(
-            ...      peer_group='test', get=True)
+            ...      output = dev.bgp.evpn_afi_peergroup_activate(peer_group='test')
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test',)
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test', get=True)
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test',delete=True)
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test', get=True)
         """
         rbridge_id = kwargs.pop('rbridge_id', '1')
         get_config = kwargs.pop('get', False)
@@ -3350,5 +3343,5 @@ class Bgp(object):
             bgp = Util(out.data)
             for peer in bgp.findall(bgp.root, './/enable-peer-as-check'):
                 result.append(peer)
-           
+
         return result
