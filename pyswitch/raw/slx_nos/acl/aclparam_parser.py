@@ -243,12 +243,19 @@ class AclParamParser(object):
         drop_precedence_force = parameters['drop_precedence_force']
         drop_precedence_force = ' '.join(drop_precedence_force.split())
 
+        if 'action' not in kwargs or not kwargs['action']:
+            raise ValueError("\'action\' not present in kwargs arg")
+
+        if kwargs['action'] != 'permit':
+            raise ValueError("\'drop_precedence_force\' is configurable"
+                             " only for action = permit")
+
         if drop_precedence_force.isdigit():
             if int(drop_precedence_force) >= 0 and \
-                    int(drop_precedence_force) <= 3:
+                    int(drop_precedence_force) <= 2:
                 return 'drop-precedence-force ' + drop_precedence_force
 
-        raise ValueError("drop-precedence-force value should be 0 - 3")
+        raise ValueError("drop-precedence-force value should be 0 - 2")
 
     def parse_rbridge_id(self, **kwargs):
         """

@@ -57,11 +57,10 @@ class IpAcl(AclParamParser):
                 v4_str = input_param[0:op_index]
                 break
 
-        if protocol_type not in ['tcp', 'udp'] and op_str:
-            raise ValueError("tcp udp operator is supported only for."
-                             "protocol_type = tcp or udp")
-
-        if op_str:
+        if protocol_type and op_str:
+            if protocol_type not in ['tcp', 'udp']:
+                raise ValueError("tcp udp operator is supported only for."
+                                 "protocol_type = tcp or udp")
             self._parse_op_str(op_str, ret)
 
         if v4_str == "any":
@@ -108,10 +107,14 @@ class IpAcl(AclParamParser):
         if 'source' not in kwargs or not kwargs['source']:
             raise ValueError("Missing \'source\' in kwargs")
 
+        protocol_type = None
+        if 'protocol_type' in kwargs and kwargs['protocol_type']:
+            protocol_type = kwargs['protocol_type']
+
         src = kwargs['source']
         src = ' '.join(src.split())
 
-        return self._parse_source_destination(kwargs['protocol_type'], src,
+        return self._parse_source_destination(protocol_type, src,
                                               kwargs['address_type'])
 
     def parse_destination(self, **kwargs):
