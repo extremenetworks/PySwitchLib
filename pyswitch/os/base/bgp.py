@@ -3346,3 +3346,95 @@ class Bgp(object):
                 result.append(peer)
 
         return result
+
+    def neighbor_peergroup_description(self, **kwargs):
+        """Configure remote-as for an peer-group neighbor.
+        Args:
+            peer_group (bool): Name of the peer group
+            description (str): Description
+            rbridge_id (str): The rbridge ID of the device on which BGP will be
+                configured in a VCS fabric.
+            delete (bool): Deletes the neighbor if `delete` is ``True``.
+            get (bool): Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+            remote_as (str): Values for remote_as.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> auth = ('admin', 'password')
+            >>> conn = ('10.24.39.225', '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.bgp.local_asn(local_as='65000',
+            ...     rbridge_id='225')
+            ...     output = dev.bgp.neighbor_peer_group(
+            ...     rbridge_id='225', peer_group='test')
+            ...     output = dev.bgp.neighbor_peergroup_description(
+            ...     rbridge_id='225', peer_group='test', description='test-desc')
+            ...     output = dev.bgp.neighbor_peergroup_description(
+            ...     rbridge_id='225', peer_group='test', get=True)
+            ...     output = dev.bgp.neighbor_peergroup_description(
+            ...     rbridge_id='225', peer_group='test',delete=True)
+            ...     output = dev.bgp.neighbor_peergroup_description(
+            ...     rbridge_id='225', peer_group='test', get=True)
+            >>> conn = ('10.24.81.180', '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.bgp.local_asn(local_as='65000')
+            ...     output = dev.bgp.neighbor_peer_group(
+            ...     peer_group='test')
+            ...     output = dev.bgp.neighbor_peergroup_description(
+            ...     peer_group='test', description='test-desc')
+            ...     output = dev.bgp.neighbor_peergroup_description(
+            ...     peer_group='test', get=True)
+            ...     output = dev.bgp.neighbor_peergroup_description(
+            ...     peer_group='test',delete=True)
+            ...     output = dev.bgp.neighbor_peergroup_description(
+            ...     peer_group='test', get=True)
+        """
+        rbridge_id = kwargs.pop('rbridge_id', '1')
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        peer_group = kwargs.pop('peer_group')
+        callback = kwargs.pop('callback', self._callback)
+        result = []
+        if not get_config:
+            args = dict(rbridge_id=rbridge_id, neighbor_peer_grp=peer_group)
+            if not delete:
+                description = kwargs.pop('description', '')
+                args['description'] = description
+                method_name = [
+                    self.method_prefix(
+                        'router_bgp_neighbor_neighbor_peer_grp_description_update')
+                ]
+            else:
+                method_name = [
+                    self.method_prefix(
+                        'router_bgp_neighbor_neighbor_peer_grp_description_delete')
+                ]
+
+            method = method_name[0]
+            config = (method, args)
+            result = callback(config)
+
+        elif get_config:
+            method_name = self.method_prefix(
+                'router_bgp_neighbor_neighbor_peer_grp_description_get')
+            args = dict(
+                rbridge_id=rbridge_id,
+                resource_depth=2,
+                neighbor_peer_grp=peer_group)
+            if self.os != 'nos':
+                args.pop('rbridge_id', None)
+            config = (method_name, args)
+            out = callback(config, handler='get_config')
+            bgp = Util(out.data)
+            for peer in bgp.findall(bgp.root, './/description'):
+                result.append(peer)
+        return result
