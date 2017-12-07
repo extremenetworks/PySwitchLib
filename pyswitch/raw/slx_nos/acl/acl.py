@@ -15,11 +15,9 @@ limitations under the License.
 """
 
 
-import xml.etree.ElementTree
+# import xml.etree.ElementTree
 import jinja2
-import math
 import pyswitch.raw.slx_nos.acl.params_validator as params_validator
-import pyswitch.utilities as utilities
 from pyswitch.raw.base.acl import Acl as BaseAcl
 from pyswitch.raw.slx_nos.acl import acl_template
 from pyswitch.raw.slx_nos.acl.aclparam_parser import AclParamParser
@@ -91,8 +89,8 @@ class SlxNosAcl(BaseAcl):
         callback = kwargs.pop('callback', self._callback)
 
         self.logger.info('Creating ACL {} ({}:{})'.format(
-                          kwargs['acl_name'], kwargs['address_type'],
-                          kwargs['acl_type']))
+                         kwargs['acl_name'], kwargs['address_type'],
+                         kwargs['acl_type']))
 
         cmd = acl_template.acl_create
 
@@ -180,14 +178,15 @@ class SlxNosAcl(BaseAcl):
         self.logger.info('Successfully identified the acl_type as ({}:{})'
                          .format(address_type, acl_type))
 
-        # Validate seq_id if user has specified 
+        # Validate seq_id if user has specified
         if not seq_id:
             raise ValueError('seq_id is required to delete rule for {}'
                              .format(acl_name))
 
-        if int(seq_id) not in acl['seq_ids']:
+        sequences = acl['seq_ids']
+        if not sequences or int(seq_id) not in list(sequences):
             raise ValueError("seq_id {} does not exists."
-                              .format(seq_id))
+                             .format(seq_id))
 
         user_data = {}
         user_data['acl_type'] = acl_type
@@ -227,16 +226,14 @@ class SlxNosAcl(BaseAcl):
             if 'seq-id' in elem.tag:
                 seq_ids.append(int(elem.text))
 
-        ret['seq_ids'] = seq_ids
-        return True
+        return seq_ids
 
     def _get_acl_details(self, acl_name, cmd, get_seqs=False):
         """
-        Return acl-type as dict 
+        Return acl-type as dict
             {'type':'standard'/'extended;, 'protocol':'mac'/'ip'/'ipv6'}.
         """
         ret = None
-        seq_element = None
 
         for address_type in ['mac', 'ip', 'ipv6']:
             for acl_type in ['standard', 'extended']:
@@ -258,7 +255,7 @@ class SlxNosAcl(BaseAcl):
                                'protocol': address_type,
                                'seq_ids': None}
                         if get_seqs:
-                            self._get_seq_ids(parent, ret)
+                            ret['seq_ids'] = self._get_seq_ids(parent, ret)
 
                         return ret
                     parent = elem
@@ -291,7 +288,7 @@ class SlxNosAcl(BaseAcl):
                 raise ValueError("Access-list entry with sequence number {} "
                                  "already exists.".format(user_seq_id))
             next_seq_id = user_seq_id
-        else: # Generate a valid seq_id if user has not specified
+        else:  # Generate a valid seq_id if user has not specified
             if sequences:
                 last_seq_id = max(sequences)
                 next_seq_id = (last_seq_id + 10) // 10 * 10

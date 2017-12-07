@@ -24,7 +24,6 @@ class MacAcl(AclParamParser):
         None
     """
 
-
     def parse_source(self, **kwargs):
         """
         parse the source param.
@@ -67,7 +66,7 @@ class MacAcl(AclParamParser):
             return ret
 
         if 'src_mac_addr_mask' not in kwargs or \
-            not kwargs['src_mac_addr_mask']:
+                not kwargs['src_mac_addr_mask']:
             raise ValueError("Missing \'src_mac_addr_mask\' in kwargs")
 
         src_mac_addr_mask = kwargs['src_mac_addr_mask']
@@ -122,7 +121,7 @@ class MacAcl(AclParamParser):
             return ret
 
         if 'dst_mac_addr_mask' not in kwargs or \
-            not kwargs['dst_mac_addr_mask']:
+                not kwargs['dst_mac_addr_mask']:
             raise ValueError("Missing \'dst_mac_addr_mask\' in kwargs")
 
         dst_mac_addr_mask = kwargs['dst_mac_addr_mask']
@@ -202,12 +201,12 @@ class MacAcl(AclParamParser):
         val = vlan.split()
         len_val = len(val)
 
-        if len_val == 2: # outer and inner
+        if len_val == 2:  # outer and inner
             ret['outervlan'] = self.parse_vlan_id(val[0])
             ret['innervlan'] = self.parse_vlan_id(val[1])
             return ret
 
-        if len_val == 3: # (outer+mask & inner) or (outer & inner+mask)
+        if len_val == 3:  # (outer+mask & inner) or (outer & inner+mask)
             ret['outervlan'] = self.parse_vlan_id(val[0])
 
             if re.match("^0x([0-9a-fA-F]{3})$", val[1]):
@@ -224,7 +223,7 @@ class MacAcl(AclParamParser):
                     ret['innermask'] = val[2]
                     return ret
 
-        if len_val == 4: # outer+mask & inner+mask
+        if len_val == 4:  # outer+mask & inner+mask
             ret['outervlan'] = self.parse_vlan_id(val[0])
             if re.match("^0x([0-9a-fA-F]{3})$", val[1]):
                 if ret['outervlan'] == "any":
@@ -237,7 +236,7 @@ class MacAcl(AclParamParser):
                     raise ValueError("Invalid mask for innervlan = any")
                 ret['innermask'] = val[3]
                 return ret
-                
+
         raise ValueError("Invalid \'vlan\' {} in kwargs"
                          .format(vlan))
 
@@ -262,12 +261,12 @@ class MacAcl(AclParamParser):
         if 'vlan' not in kwargs or not kwargs['vlan']:
             return None
 
-        ret = {'vlan_id' : None,
-               'mask' : None,
-               'outervlan' : None,
-               'outermask' : None,
-               'innervlan' : None,
-               'innermask' : None}
+        ret = {'vlan_id': None,
+               'mask': None,
+               'outervlan': None,
+               'outermask': None,
+               'innervlan': None,
+               'innermask': None}
 
         if not vlan_tag_format:
             ret['vlan_id'] = self.parse_vlan_id(kwargs['vlan'])
@@ -286,7 +285,7 @@ class MacAcl(AclParamParser):
             return ret
 
         raise ValueError("Invalid \'vlan_tag_format\' {} in kwargs"
-                         .format(vlan))
+                         .format(vlan_tag_format))
 
     def parse_vlan_tag_format(self, **kwargs):
         """
@@ -311,7 +310,7 @@ class MacAcl(AclParamParser):
             return vlan_tag_format
 
         raise ValueError("Invalid \'vlan_tag_format\' {} in kwargs"
-                         .format(vlan))
+                         .format(vlan_tag_format))
 
     def parse_pcp(self, **kwargs):
         """
@@ -373,11 +372,11 @@ class MacAcl(AclParamParser):
         raise ValueError("Invalid \'pcp\' {} in kwargs"
                          .format(pcp))
 
-    def parse_drop_precedence_force(self, **parameters):
+    def parse_drop_precedence_force(self, **kwargs):
         """
         parse the drop_precedence_force mapping param.
         Args:
-            parameters contains:
+            kwargs contains:
                 drop_precedence_force(string):
                     drop_precedence_force value of the packet
         Returns:
@@ -386,11 +385,11 @@ class MacAcl(AclParamParser):
             Raise ValueError exception
         Examples:
         """
-        if 'drop_precedence_force' not in parameters or \
-                not parameters['drop_precedence_force']:
+        if 'drop_precedence_force' not in kwargs or \
+                not kwargs['drop_precedence_force']:
             return None
 
-        drop_precedence_force = parameters['drop_precedence_force']
+        drop_precedence_force = kwargs['drop_precedence_force']
         drop_precedence_force = ' '.join(drop_precedence_force.split())
 
         if drop_precedence_force.isdigit():
@@ -400,12 +399,11 @@ class MacAcl(AclParamParser):
 
         raise ValueError("drop-precedence-force value should be 0 - 3")
 
-
-    def parse_arp_guard(self, **parameters):
+    def parse_arp_guard(self, **kwargs):
         """
         parse the arp_guard mapping param.
         Args:
-            parameters contains:
+            kwargs contains:
                 arp_guard(string):
                     arp_guard value of the packet
         Returns:
@@ -414,12 +412,11 @@ class MacAcl(AclParamParser):
             Raise ValueError exception
         Examples:
         """
-        if 'arp_guard' not in parameters or \
-                not parameters['arp_guard']:
+        if 'arp_guard' not in kwargs or \
+                not kwargs['arp_guard']:
             return None
 
-
-        arp_guard = parameters['arp_guard']
+        arp_guard = kwargs['arp_guard']
         arp_guard = ' '.join(arp_guard.split())
 
         if arp_guard.lower() != 'true':

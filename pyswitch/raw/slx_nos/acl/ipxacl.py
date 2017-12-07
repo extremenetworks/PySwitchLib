@@ -11,7 +11,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import socket
 import pyswitch.utilities as utilities
 from pyswitch.raw.slx_nos.acl.aclparam_parser import AclParamParser
 
@@ -273,7 +272,7 @@ class IpAcl(AclParamParser):
 
         is_tcp = False
         tcp_params = ['syn', 'rst', 'fin', 'push', 'ack', 'urg']
-        
+
         if 'protocol_type' in kwargs and kwargs['protocol_type']:
             protocol_type = kwargs['protocol_type'].lower()
             if protocol_type == 'tcp' or protocol_type == 6:

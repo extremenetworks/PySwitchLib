@@ -127,7 +127,7 @@ class Acl(SlxNosAcl):
         else:
             raise ValueError('{} not supported'.format(acl_type))
 
-        # Validate seq_id if user has specified 
+        # Validate seq_id if user has specified
         next_seq = self._get_next_seq_id(acl['seq_ids'], user_data['seq_id'])
 
         user_data['seq_id'] = next_seq
@@ -310,7 +310,7 @@ class Acl(SlxNosAcl):
         else:
             raise ValueError('{} not supported'.format(acl_type))
 
-        # Validate seq_id if user has specified 
+        # Validate seq_id if user has specified
         next_seq = self._get_next_seq_id(acl['seq_ids'], user_data['seq_id'])
 
         user_data['seq_id'] = next_seq
@@ -429,19 +429,20 @@ class Acl(SlxNosAcl):
                                             acl_name='Acl_1', acl_direction='in',
                                             traffic_type='switched')
         """
-        
+
         # Validate required and accepted parameters
         params_validator.validate_params_nos_apply_acl(**kwargs)
-        
+
         # Parse params
         user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
 
         callback = kwargs.pop('callback', self._callback)
         result = {}
-        
+
         for intf in user_data['interface_list']:
-            self.logger.info('Applying ACL {} on interface ({}:{})'.format(
-                              user_data['acl_name'], user_data['intf_type'], intf))
+            self.logger.info('Applying ACL {} on interface ({}:{})'
+                             .format(user_data['acl_name'],
+                                     user_data['intf_type'], intf))
 
             user_data['intf'] = intf
             cmd = slx_nos_acl_template.acl_apply
@@ -457,7 +458,6 @@ class Acl(SlxNosAcl):
                                      intf, user_data['acl_direction']))
             result[intf] = True
         return result
-
 
     def remove_acl(self, **kwargs):
         """
@@ -491,16 +491,17 @@ class Acl(SlxNosAcl):
 
         # Validate required and accepted parameters
         params_validator.validate_params_nos_remove_acl(**kwargs)
-        
+
         # Parse params
         user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
 
         callback = kwargs.pop('callback', self._callback)
         result = {}
-        
+
         for intf in user_data['interface_list']:
-            self.logger.info('Removing ACL {} from interface ({}:{})'.format(
-                              user_data['acl_name'], user_data['intf_type'], intf))
+            self.logger.info('Removing ACL {} from interface ({}:{})'
+                             .format(user_data['acl_name'],
+                                     user_data['intf_type'], intf))
 
             user_data['intf'] = intf
             cmd = slx_nos_acl_template.acl_remove
@@ -557,7 +558,7 @@ class Acl(SlxNosAcl):
             Raises ValueError, Exception
         Examples:
         """
-        
+
         user_data = {}
         user_data['rbridge_id'] = self.ap.parse_rbridge_id(**kwargs)
         user_data['intf_type'] = self.ap.parse_intf_type(**kwargs)
@@ -570,4 +571,3 @@ class Acl(SlxNosAcl):
         user_data['address_type'] = acl['protocol']
 
         return user_data
-

@@ -13,6 +13,7 @@ limitations under the License.
 
 import pyswitch.utilities as utilities
 
+
 class AclParamParser(object):
     """
     The AclParamParser class parses parameters which are common for all the
@@ -82,7 +83,7 @@ class AclParamParser(object):
         Examples:
 
         """
-        if 'seq_id' not in kwargs or not kwargs ['seq_id']:
+        if 'seq_id' not in kwargs or not kwargs['seq_id']:
             return None
 
         if kwargs['seq_id'] >= 0 and kwargs['seq_id'] <= 4294967290:
@@ -141,7 +142,7 @@ class AclParamParser(object):
         parse acl name by platform
         Args:
             kwargs contains:
-                acl_name(string): Allowed length of string is 63 
+                acl_name(string): Allowed length of string is 63
         Returns:
             Return parsed string on success
         Raise:
@@ -297,12 +298,13 @@ class AclParamParser(object):
             raise ValueError("\'intf_type\' not present in kwargs")
 
         if kwargs['intf_type'] in ['gigabitethernet', 'tengigabitethernet',
-                                   'fortygigabitethernet', 'hundredgigabitethernet',
-                                   'port_channel', 've', 'loopback', 'ethernet']:
+                                   'fortygigabitethernet',
+                                   'hundredgigabitethernet', 'port_channel',
+                                   've', 'loopback', 'ethernet']:
             return kwargs['intf_type'].replace("_", "-")
 
         raise ValueError("The \'intf_type\' value {} is invalid. "
-                         "Supported values are gigabitethernet, tengigabitethernet, "
+                         "Supported - gigabitethernet, tengigabitethernet, "
                          "fortygigabitethernet, hundredgigabitethernet, "
                          "port_channel, ve, loopback and ethernet"
                          .format(kwargs['intf_type']))
@@ -360,7 +362,7 @@ class AclParamParser(object):
         parse supported traffic_type param
         Args:
             kwargs contains:
-                traffic_type(string): Allowed traffic_type are switched or routed
+                traffic_type(string): Allowed traffic_type are switched/routed
         Returns:
             Return parsed string on success
         Raise:
@@ -378,4 +380,3 @@ class AclParamParser(object):
         raise ValueError("The \'traffic_type\' value {} is invalid. Specify "
                          "\'switched\' or \'routed\' supported values"
                          .format(kwargs['traffic_type']))
-

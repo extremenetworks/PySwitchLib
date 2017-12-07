@@ -561,6 +561,7 @@ def convert_mac_colon_to_dot_format(mac_addr):
     mac_addr_dot = "".join(mac[0:2]) + "." + "".join(mac[2:4]) + "." + "".join(mac[4:6])
     return mac_addr_dot
 
+
 def _validate_parameters(mandatory_params, supported_params, parameters):
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -574,6 +575,7 @@ def _validate_parameters(mandatory_params, supported_params, parameters):
     if len(unsupported_params) > 0:
         raise ValueError("unsupported parameters provided: {}"
                          .format(unsupported_params))
+
 
 def validate_ip_address(addr, address_type):
     """
@@ -589,6 +591,7 @@ def validate_ip_address(addr, address_type):
     except socket.error:
         raise ValueError("Invalid {} address: {}"
                          .format(address_type, addr))
+
 
 def validate_mac_address(mac):
     """

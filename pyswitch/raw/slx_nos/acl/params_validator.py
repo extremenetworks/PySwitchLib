@@ -1,5 +1,6 @@
 # NOS validation code comes here
 
+
 def validate_params_nos_add_ipv4_rule_acl(**parameters):
 
     required_params = ['source', 'acl_name', 'action']
@@ -14,14 +15,13 @@ def validate_params_nos_add_ipv4_rule_acl(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
-    
+
 
 def validate_params_nos_add_or_remove_l2_acl_rule(**parameters):
 
@@ -37,13 +37,13 @@ def validate_params_nos_add_or_remove_l2_acl_rule(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
+
     if 'arp_guard' in received_params and parameters['arp_guard'] != 'False':
         raise ValueError("unaccepted parameters provided: arp_guard")
-      
+
     if 'copy_sflow' in received_params and parameters['copy_sflow'] != 'False':
         raise ValueError("unaccepted parameters provided: copy_sflow")
-      
+
     if 'mirror' in received_params and parameters['mirror'] != 'False':
         raise ValueError("unaccepted parameters provided: mirror")
 
@@ -52,6 +52,7 @@ def validate_params_nos_add_or_remove_l2_acl_rule(**parameters):
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
+
 
 def validate_params_nos_apply_acl(**parameters):
 
@@ -66,14 +67,13 @@ def validate_params_nos_apply_acl(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
-    
+
 
 def validate_params_slx_nos_create_acl(**parameters):
 
@@ -87,14 +87,13 @@ def validate_params_slx_nos_create_acl(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
-    
+
 
 def validate_params_slx_nos_delete_acl(**parameters):
 
@@ -108,14 +107,13 @@ def validate_params_slx_nos_delete_acl(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
-    
+
 
 def validate_params_slx_nos_delete_acl_rule(**parameters):
 
@@ -129,14 +127,13 @@ def validate_params_slx_nos_delete_acl_rule(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
-    
+
 
 def validate_params_nos_remove_acl(**parameters):
 
@@ -151,16 +148,14 @@ def validate_params_nos_remove_acl(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
-    
-# SLX validation code comes here
 
+# SLX validation code comes here
 
 
 def validate_params_slx_add_ipv4_rule_acl(**parameters):
@@ -178,14 +173,13 @@ def validate_params_slx_add_ipv4_rule_acl(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
-    
+
 
 def validate_params_slx_add_ipv6_rule_acl(**parameters):
 
@@ -202,14 +196,13 @@ def validate_params_slx_add_ipv6_rule_acl(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
-    
+
 
 def validate_params_slx_add_or_remove_l2_acl_rule(**parameters):
 
@@ -227,14 +220,13 @@ def validate_params_slx_add_or_remove_l2_acl_rule(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
-    
+
 
 def validate_params_slx_apply_acl(**parameters):
 
@@ -249,14 +241,14 @@ def validate_params_slx_apply_acl(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
-    
+
+
 def validate_params_slx_remove_acl(**parameters):
 
     required_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
@@ -270,7 +262,7 @@ def validate_params_slx_remove_acl(**parameters):
     if len(absent_required) > 0:
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
-    
+
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
         if set(unaccepted_params) != set(st2_specific_params):

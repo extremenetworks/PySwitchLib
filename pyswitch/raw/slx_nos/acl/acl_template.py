@@ -169,7 +169,8 @@ acl_apply = """
                      </access-group>
                   </mac>
                {% elif address_type == 'ip' %}
-                  <ip-acl-interface xmlns="urn:brocade.com:mgmt:brocade-ip-access-list">
+                  <ip-acl-interface
+                    xmlns="urn:brocade.com:mgmt:brocade-ip-access-list">
                      <ip>
                         <access-group>
                            <ip-access-list>{{acl_name}}</ip-access-list>
@@ -182,7 +183,8 @@ acl_apply = """
                   </ip-acl-interface>
                {% elif address_type == 'ipv6' %}
                   <ipv6>
-                     <access-group xmlns="urn:brocade.com:mgmt:brocade-ipv6-access-list">
+                     <access-group
+                        xmlns="urn:brocade.com:mgmt:brocade-ipv6-access-list">
                         <ipv6-access-list>{{acl_name}}</ipv6-access-list>
                         <ip-direction>{{acl_direction}}</ip-direction>
                         {% if traffic_type is not none %}
@@ -219,7 +221,8 @@ acl_remove = """
                      </access-group>
                   </mac>
                {% elif address_type == 'ip' %}
-                  <ip-acl-interface xmlns="urn:brocade.com:mgmt:brocade-ip-access-list">
+                  <ip-acl-interface
+                    xmlns="urn:brocade.com:mgmt:brocade-ip-access-list">
                      <ip>
                         <access-group operation="delete">
                            <ip-access-list>{{acl_name}}</ip-access-list>
@@ -232,7 +235,9 @@ acl_remove = """
                   </ip-acl-interface>
                {% elif address_type == 'ipv6' %}
                   <ipv6>
-                     <access-group xmlns="urn:brocade.com:mgmt:brocade-ipv6-access-list" operation="delete">
+                     <access-group
+                        xmlns="urn:brocade.com:mgmt:brocade-ipv6-access-list"
+                        operation="delete">
                         <ipv6-access-list>{{acl_name}}</ipv6-access-list>
                         <ip-direction>{{acl_direction}}</ip-direction>
                         {% if traffic_type is not none %}
@@ -248,4 +253,3 @@ acl_remove = """
    {% endif %}
 </config>
 """
-

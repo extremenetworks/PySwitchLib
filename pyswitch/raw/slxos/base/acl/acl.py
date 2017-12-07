@@ -126,7 +126,7 @@ class Acl(SlxNosAcl):
         else:
             raise ValueError('{} not supported'.format(acl_type))
 
-        # Validate seq_id if user has specified 
+        # Validate seq_id if user has specified
         next_seq = self._get_next_seq_id(acl['seq_ids'], user_data['seq_id'])
 
         user_data['seq_id'] = next_seq
@@ -236,7 +236,7 @@ class Acl(SlxNosAcl):
         # Parse tcp specific parameters together
         # ['urg', 'ack', 'push', 'fin', 'rst', 'sync']
         self.ip.parse_tcp_specific_params(user_data, **kwargs)
- 
+
         # All these params of same type. Parsing them together
         bool_params = ['log', 'count', 'copy_sflow']
         self.ip.parse_boolean_params(user_data, bool_params, **kwargs)
@@ -316,7 +316,7 @@ class Acl(SlxNosAcl):
         else:
             raise ValueError('{} not supported'.format(acl_type))
 
-        # Validate seq_id if user has specified 
+        # Validate seq_id if user has specified
         next_seq = self._get_next_seq_id(acl['seq_ids'], user_data['seq_id'])
 
         user_data['seq_id'] = next_seq
@@ -416,15 +416,20 @@ class Acl(SlxNosAcl):
 
     def apply_acl(self, **kwargs):
         """
-        Apply an ACL to a physical port, port channel, VE or management interface.
+        Apply an ACL to a physical port, port channel, VE or management
+        interface.
         Args:
-            intf_type (str): Interface type, (physical, port channel, VE or management interface).
+            intf_type (str): Interface type, (physical, port channel,
+                VE or management interface).
             intf_names (str[]): Array of the Interface Names.
             acl_name (str): Name of the access list.
-            acl_direction (str): Direction of ACL binding on the specified interface [in/out].
-            traffic_type (str): Traffic type for the ACL being applied [switched/routed].
-            callback (function): A function executed upon completion of the method.
-               The only parameter passed to `callback` will be the ``ElementTree`` `config`.
+            acl_direction (str): Direction of ACL binding on the
+                specified interface [in/out].
+            traffic_type (str): Traffic type for the ACL being applied
+                [switched/routed].
+            callback (function): A function executed upon completion of the
+                method. The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
         Returns:
             True, False or None for Success, failure and no-change respectively
             for each interfaces.
@@ -432,26 +437,31 @@ class Acl(SlxNosAcl):
             Exception, ValueError for invalid seq_id.
         Examples:
             >>> from pyswitch.device import Device
-            >>> with Device(conn=conn, auth=auth, connection_type='NETCONF') as dev:
-            >>>     print dev.acl.create_acl(acl_name='Acl_1', acl_type='standard',
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
                                              address_type='mac')
-            >>>     print dev.acl.apply_acl(intf_type='ethernet', intf_name='0/1,0/2',
-                                            acl_name='Acl_1', acl_direction='in',
+            >>>     print dev.acl.apply_acl(intf_type='ethernet',
+                                            intf_name='0/1,0/2',
+                                            acl_name='Acl_1',
+                                            acl_direction='in',
                                             traffic_type='switched')
         """
-        
+
         # Validate required and accepted parameters
         params_validator.validate_params_slx_apply_acl(**kwargs)
-        
+
         # Parse params
         user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
 
         callback = kwargs.pop('callback', self._callback)
         result = {}
-        
+
         for intf in user_data['interface_list']:
-            self.logger.info('Applying ACL {} on interface ({}:{})'.format(
-                              user_data['acl_name'], user_data['intf_type'], intf))
+            self.logger.info('Applying ACL {} on interface ({}:{})'
+                             .format(user_data['acl_name'],
+                                     user_data['intf_type'], intf))
 
             user_data['intf'] = intf
             cmd = slx_nos_acl_template.acl_apply
@@ -499,16 +509,17 @@ class Acl(SlxNosAcl):
 
         # Validate required and accepted parameters
         params_validator.validate_params_slx_remove_acl(**kwargs)
-        
+
         # Parse params
         user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
 
         callback = kwargs.pop('callback', self._callback)
         result = {}
-        
+
         for intf in user_data['interface_list']:
-            self.logger.info('Removing ACL {} from interface ({}:{})'.format(
-                              user_data['acl_name'], user_data['intf_type'], intf))
+            self.logger.info('Removing ACL {} from interface ({}:{})'
+                             .format(user_data['acl_name'],
+                                     user_data['intf_type'], intf))
 
             user_data['intf'] = intf
             cmd = slx_nos_acl_template.acl_remove
@@ -563,7 +574,7 @@ class Acl(SlxNosAcl):
             Raises ValueError, Exception
         Examples:
         """
-        
+
         user_data = {}
         user_data['intf_type'] = self.ap.parse_intf_type(**kwargs)
         user_data['interface_list'] = self.ap.parse_intf_names(**kwargs)
