@@ -151,7 +151,9 @@ acl_rule_mac = """
                 {% endif %}
               {% endif %}
 
-              <ethertype>{{ethertype}}</ethertype>
+              {% if ethertype is not none %}
+                <ethertype>{{ethertype}}</ethertype>
+              {% endif %}
               <vlan>{{vlan}}</vlan>
             {% endif %}
 
