@@ -115,7 +115,7 @@ class Cluster(object):
 
             argument = {'cluster': (clname, clid),
                        'cluster_control_vlan': cluster_control_vlan
-                       }
+                        }
             config = ('cluster_cluster_control_vlan_update', argument)
             self._callback(config, 'POST')
         except Exception, exc:
@@ -278,10 +278,10 @@ class Cluster(object):
             ...                                              control_vlan=4089)
             ...     response1 = device.cluster.cluster_peer_create(cluster=('F47-F48','3'),
             ...                                peer_info=('21.0.0.48', 'Ethernet', '0/47'))
-            ...     #response2 = device.cluster.cluster_get(cluster=('F47-F48','3'))
-            ...     #response3 = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
-            ...     #                                      peer_info=('21.0.0.47'))
-            ...     #response4 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
+            ...     response2 = device.cluster.cluster_get(cluster=('F47-F48','3'))
+            ...     response3 = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
+            ...                                           peer_info=('21.0.0.47'))
+            ...     response4 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
         """
         (clname, clid) = cluster_args.pop('cluster')
