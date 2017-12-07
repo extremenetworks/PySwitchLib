@@ -98,7 +98,7 @@ class MacAcl(AclParamParser):
         """
         dst_mac_addr_mask = None
         if 'dst' not in parameters or not parameters['dst']:
-            raise ValueError("\'dst\' is required param for MLX")
+            raise ValueError("\'dst\' is required param")
 
         if 'dst_mac_addr_mask' in parameters:
             dst_mac_addr_mask = parameters['dst_mac_addr_mask']

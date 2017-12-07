@@ -4359,7 +4359,7 @@ class Interface(object):
         return callback(config)
 
     def ipv6_link_local(self, **kwargs):
-        """Configure ipv6 link local address on interfaces on vdx switches
+        """Configure ipv6 link local address on interfaces
 
         Args:
             int_type: Interface type on which the ipv6 link local needs to be
@@ -4402,9 +4402,14 @@ class Interface(object):
         link_args = dict(rbridge_id=rbridge_id)
 
         link_args[int_type] = ve_name
-        method_name = 'rbridge_id_interface_%s_ipv6_address_' \
-                      'use_link_local_only_update' % int_type
-        get_method_name = 'rbridge_id_interface_%s_get' % int_type
+        if self.has_rbridge_id:
+            method_name = 'rbridge_id_interface_%s_ipv6_address_' \
+                          'use_link_local_only_update' % int_type
+            get_method_name = 'rbridge_id_interface_%s_get' % int_type
+        else:
+            method_name = 'interface_%s_ipv6_address_' \
+                          'use_link_local_only_update' % int_type
+            get_method_name = 'interface_%s_get' % int_type
 
         if kwargs.pop('get', False):
             config = (get_method_name, link_args)
@@ -4412,7 +4417,6 @@ class Interface(object):
             util = Util(output.data)
             item = util.find(util.root,
                              './/ipv6//address//use-link-local-only')
-
             if item:
                 return True
             else:
@@ -5143,9 +5147,9 @@ class Interface(object):
 
            """
 
-        get_config = kwargs.pop('get', False)
-        delete = kwargs.pop('delete', False)
-        callback = kwargs.pop('callback', self._callback)
+        get_config = kwargs.get('get', False)
+        delete = kwargs.get('delete', False)
+        callback = kwargs.get('callback', self._callback)
 
         if not get_config:
             afi = kwargs['afi']
@@ -5164,8 +5168,10 @@ class Interface(object):
                 method_name = self.method_prefix(
                     'vrf_address_family_%s_unicast_create' % afi)
                 config = (method_name, rt_args)
-
-            callback(config)
+                callback(config)
+                rd = kwargs.get('rd', None)
+                if rd:
+                    self.vrf_route_distiniguisher(**kwargs)
 
         elif get_config:
             vrf_name = kwargs.pop('vrf_name', '')
@@ -5594,11 +5600,10 @@ class Interface(object):
                 return True
             else:
                 return None
+        method_name = 'interface_vlan_suppress_arp_update'
         if not enable:
-            method_name = 'interface_vlan_suppress_arp_update'
             arp_args['suppress_arp_enable'] = False
         else:
-            method_name = 'interface_vlan_suppress_arp_update'
             arp_args['suppress_arp_enable'] = True
 
         config = (method_name, arp_args)
@@ -6186,9 +6191,15 @@ class Interface(object):
             output = callback(config, handler='get_config')
             util = Util(output.data)
             if class_map is not None:
-                result = util.find(util.root, './/name')
+                if self.has_rbridge_id:
+                        result = util.find(util.root, './/name')
+                else:
+                        result = util.find(util.root, './/po-name')
             else:
-                result = util.findall(util.root, './/name')
+                if self.has_rbridge_id:
+                        result = util.findall(util.root, './/name')
+                else:
+                        result = util.findall(util.root, './/po-name')
         return result
 
     def class_map_get_details(self, **kwargs):
@@ -6477,9 +6488,15 @@ class Interface(object):
             output = callback(config, handler='get_config')
             util = Util(output.data)
             if policy_map is not None:
-                result = util.find(util.root, './/name')
+                if self.has_rbridge_id:
+                        result = util.find(util.root, './/po-name')
+                else:
+                        result = util.find(util.root, './/name')
             else:
-                result = util.findall(util.root, './/name')
+                if self.has_rbridge_id:
+                        result = util.findall(util.root, './/po-name')
+                else:
+                        result = util.findall(util.root, './/name')
         return result
 
     def policy_map_class_map_create(self, **kwargs):

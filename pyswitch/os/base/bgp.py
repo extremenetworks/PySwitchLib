@@ -332,6 +332,37 @@ class Bgp(object):
             os=self.os)
         return callback(config)
 
+    def neighbor_ipv4_address_add_deactivate(self, ip_addr=None):
+        """Add BGP neighbor.
+
+                Args:
+                    ip_addr (str): IP Address of BGP neighbor.
+
+                Returns:
+                    Return value of `callback`.
+
+                Raises:
+                    KeyError: if `remote_as` or `ip_addr` is not specified.
+
+                Examples:
+                    >>> import pyswitch.device
+                    >>> conn = ('10.24.86.57', '22')
+                    >>> auth = ('admin', 'password')
+                    >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+                    ...     output = dev.bgp.local_asn(local_as='65535')
+                    ...     output = dev.bgp.neighbor(ip_addr='10.10.10.10',
+                    ...     remote_as='65535')
+                    ...     output = dev.bgp.neighbor_ipv4_address_add_deactivate(
+                    ...                 ip_addr='10.10.10.10')
+        """
+        args = dict(af_ipv4_neighbor_address=ip_addr,
+                    activate=False)
+        api = self.method_prefix(
+            'router_bgp_address_family_ipv4_unicast_neighbor_af_ipv4_neighbor_address_update',
+            args)
+        config = (api, args)
+        return self._callback(config)
+
     def _neighbor_ipv6_address(self, afi='ipv6', n_addr=None,
                                rbridge_id=1, remote_as='1',
                                callback=None, op='create'):
@@ -3146,4 +3177,172 @@ class Bgp(object):
             bgp = Util(out.data)
             for peer in bgp.findall(bgp.root, './/remote-as'):
                 result.append(peer)
+        return result
+
+    def fast_external_fallover(self, **kwargs):
+        """Configure fast external fallover
+
+        Args:
+            peer_group (bool): Name of the peer group
+            rbridge_id (str): The rbridge ID of the device on which BGP will be
+                configured in a VCS fabric.
+            delete (bool): Deletes the neighbor if `delete` is ``True``.
+            get (bool): Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+            remote_as (str): Values for remote_as.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> auth = ('admin', 'password')
+            >>> conn = ('10.24.39.225', '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.bgp.fast_external_fallover(rbridge_id='225')
+            ...     output = dev.bgp.fast_external_fallover(rbridge_id='225',get=True)
+            ...     output = dev.bgp.fast_external_fallover(rbridge_id='225',delete=True)
+            ...     output = dev.bgp.fast_external_fallover(rbridge_id='225',get=True)
+            >>> conn = ('10.24.81.180', '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     output = dev.bgp.fast_external_fallover()
+            ...     output = dev.bgp.fast_external_fallover(get=True)
+            ...     output = dev.bgp.fast_external_fallover(delete=True)
+            ...     output = dev.bgp.fast_external_fallover(get=True)
+        """
+        rbridge_id = kwargs.pop('rbridge_id', '1')
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        callback = kwargs.pop('callback', self._callback)
+        if not get_config:
+            args = dict(rbridge_id=rbridge_id)
+            if not delete:
+                args['fast_external_fallover'] = True
+                method_name = [
+                    self.method_prefix(
+                        'router_bgp_fast_external_fallover_update')
+                ]
+            else:
+                method_name = [
+                    self.method_prefix(
+                        'router_bgp_fast_external_fallover_delete')
+                ]
+
+            method = method_name[0]
+            config = (method, args)
+            return callback(config)
+
+        elif get_config:
+            method_name = self.method_prefix(
+                'router_bgp_fast_external_fallover_get')
+
+            args = dict(
+                rbridge_id=rbridge_id,
+                resource_depth=2)
+
+            config = (method_name, args)
+            out = callback(config, handler='get_config')
+            bgp = Util(out.data)
+
+            return bgp.findText(bgp.root, './/fast-external-fallover')
+
+    def evpn_afi_peergroup_peer_as_check(self, **kwargs):
+        """Configure allowas_in for an EVPN peergroup.
+        Args:
+            peer_group (bool): Name of the peer group
+            rbridge_id (str): The rbridge ID of the device on which BGP will be
+                configured in a VCS fabric.
+            delete (bool): Deletes the neighbor if `delete` is ``True``.
+            get (bool): Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+            allowas_in (str): Values for allowas_in (default: 5).
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            None
+
+        Examples:
+            >>> import pyswitch.device
+            >>> auth = ('admin', 'password')
+            >>> conn = ('10.24.39.225', '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...      output = dev.bgp.local_asn(local_as='65000',
+            ...      rbridge_id='225')
+            ...      output = dev.bgp.neighbor_peer_group(
+            ...      rbridge_id='225', peer_group='test')
+            ...      output = dev.bgp.evpn_afi(rbridge_id='225')
+            ...      output = dev.bgp.evpn_afi_peergroup_activate(rbridge_id='225',
+            ...      peer_group='test')
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(
+            ...      rbridge_id='225', peer_group='test',)
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(
+            ...      rbridge_id='225', peer_group='test', get=True)
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(
+            ...      rbridge_id='225', peer_group='test',delete=True)
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(
+            ...      rbridge_id='225', peer_group='test', get=True)
+            >>> conn = ('10.24.81.180', '22')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...      output = dev.bgp.local_asn(local_as='65000')
+            ...      output = dev.bgp.neighbor_peer_group(
+            ...      peer_group='test')
+            ...      output = dev.bgp.evpn_afi()
+            ...      output = dev.bgp.evpn_afi_peergroup_activate(peer_group='test')
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test',)
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test', get=True)
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test',
+            ...      delete=True)
+            ...      output = dev.bgp.evpn_afi_peergroup_peer_as_check(peer_group='test', get=True)
+        """
+        rbridge_id = kwargs.pop('rbridge_id', '1')
+        get_config = kwargs.pop('get', False)
+        delete = kwargs.pop('delete', False)
+        peer_group = kwargs.pop('peer_group')
+        callback = kwargs.pop('callback', self._callback)
+        result = []
+        if not get_config:
+            args = dict(rbridge_id=rbridge_id, evpn_peer_group=peer_group)
+            if not delete:
+
+                args['enable_peer_as_check'] = True
+                method_name = [
+                    self.method_prefix(
+                        'router_bgp_address_family_l2vpn_evpn_neighbor_'
+                        'evpn_peer_group_enable_peer_as_check_update')
+                ]
+            else:
+                method_name = [
+                    self.method_prefix(
+                        'router_bgp_address_family_l2vpn_evpn_neighbor_'
+                        'evpn_peer_group_enable_peer_as_check_delete')
+                ]
+
+            method = method_name[0]
+            config = (method, args)
+            result = callback(config)
+
+        elif get_config:
+            method_name = self.method_prefix('router_bgp_address_family_l2vpn_evpn_neighbor_'
+                                             'evpn_peer_group_enable_peer_as_check_get')
+            args = dict(
+                rbridge_id=rbridge_id,
+                resource_depth=2,
+                evpn_peer_group=peer_group)
+            if self.os != 'nos':
+                args.pop('rbridge_id', None)
+            config = (method_name, args)
+            out = callback(config, handler='get_config')
+            bgp = Util(out.data)
+            for peer in bgp.findall(bgp.root, './/enable-peer-as-check'):
+                result.append(peer)
+
         return result
