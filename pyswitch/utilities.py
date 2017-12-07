@@ -560,3 +560,44 @@ def convert_mac_colon_to_dot_format(mac_addr):
     mac = mac_addr.split(":")
     mac_addr_dot = "".join(mac[0:2]) + "." + "".join(mac[2:4]) + "." + "".join(mac[4:6])
     return mac_addr_dot
+
+
+def _validate_parameters(mandatory_params, supported_params, parameters):
+
+    received_params = [k for k, v in parameters.iteritems() if v]
+
+    absent_mandatory = list(set(mandatory_params) - set(received_params))
+    if len(absent_mandatory) > 0:
+        raise ValueError("mandatory parameters missing: {}"
+                         .format(absent_mandatory))
+
+    unsupported_params = list(set(received_params) - set(supported_params))
+    if len(unsupported_params) > 0:
+        raise ValueError("unsupported parameters provided: {}"
+                         .format(unsupported_params))
+
+
+def validate_ip_address(addr, address_type):
+    """
+    This will only validate the IPv4 and IPv6 addresses.
+    """
+    addr = ' '.join(addr.split())
+    try:
+        if address_type == 'ipv6':
+            socket.inet_pton(socket.AF_INET6, addr)
+        else:
+            socket.inet_pton(socket.AF_INET, addr)
+        return True
+    except socket.error:
+        raise ValueError("Invalid {} address: {}"
+                         .format(address_type, addr))
+
+
+def validate_mac_address(mac):
+    """
+    This will only validate the HHHH.HHHH.HHHH MAC format.
+    """
+    if re.match('[0-9A-Fa-f]{4}[.][0-9A-Fa-f]{4}[.][0-9A-Fa-f]{4}$', mac):
+        return True
+    else:
+        raise ValueError("Invalid MAC {}".format(mac))
