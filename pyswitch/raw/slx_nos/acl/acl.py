@@ -100,7 +100,7 @@ class SlxNosAcl(BaseAcl):
         config = t.render(**user_data)
         config = ' '.join(config.split())
 
-        self.logger.info(config)
+        self.logger.debug(config)
         callback(config)
 
         self.logger.info('Successfully created ACL {}'
@@ -157,7 +157,7 @@ class SlxNosAcl(BaseAcl):
         config = t.render(**user_data)
         config = ' '.join(config.split())
 
-        self.logger.info(config)
+        self.logger.debug(config)
         callback(config)
 
         self.logger.info('Successfully deleted ACL {}'
@@ -198,12 +198,12 @@ class SlxNosAcl(BaseAcl):
         if address_type == 'mac':
             t = jinja2.Template(acl_template.acl_rule_mac_delete)
         else:
-            t = jinja2.Template(acl_template.acl_rule_ipv46_delete)
+            t = jinja2.Template(acl_template.acl_rule_ipx_delete)
 
         config = t.render(**user_data)
         config = ' '.join(config.split())
 
-        self.logger.info(config)
+        self.logger.debug(config)
 
         callback(config)
 

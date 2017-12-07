@@ -16,12 +16,11 @@ limitations under the License.
 
 import jinja2
 import pyswitch.raw.slx_nos.acl.params_validator as params_validator
-import pyswitch.utilities as utilities
 from pyswitch.raw.nos.base.acl import acl_template
 from pyswitch.raw.slx_nos.acl import acl_template as slx_nos_acl_template
 from pyswitch.raw.slx_nos.acl.acl import SlxNosAcl
 from pyswitch.raw.slx_nos.acl.macacl import MacAcl
-from pyswitch.raw.slx_nos.acl.ipv46acl import IpAcl
+from pyswitch.raw.slx_nos.acl.ipxacl import IpAcl
 
 
 class Acl(SlxNosAcl):
@@ -61,7 +60,7 @@ class Acl(SlxNosAcl):
     def ip(self):
         return self._ip
 
-    def add_ipv46_rule_acl(self, **kwargs):
+    def add_ipx_rule_acl(self, **kwargs):
         """
         Add ACL rule to an existing IPv4 ACL.
         Args:
@@ -139,7 +138,7 @@ class Acl(SlxNosAcl):
         config = t.render(**user_data)
         config = ' '.join(config.split())
 
-        self.logger.info(config)
+        self.logger.debug(config)
 
         callback(config)
 
@@ -239,10 +238,10 @@ class Acl(SlxNosAcl):
         return user_data
 
     def add_ipv4_rule_acl(self, **kwargs):
-        return self.add_ipv46_rule_acl(**kwargs)
+        return self.add_ipx_rule_acl(**kwargs)
 
     def add_ipv6_rule_acl(self, **kwargs):
-        return self.add_ipv46_rule_acl(**kwargs)
+        return self.add_ipx_rule_acl(**kwargs)
 
     def add_l2_acl_rule(self, **kwargs):
         """
@@ -323,7 +322,7 @@ class Acl(SlxNosAcl):
         config = t.render(**user_data)
         config = ' '.join(config.split())
 
-        self.logger.info(config)
+        self.logger.debug(config)
 
         callback(config)
 
@@ -450,7 +449,7 @@ class Acl(SlxNosAcl):
             config = t.render(**user_data)
             config = ' '.join(config.split())
 
-            self.logger.info(config)
+            self.logger.debug(config)
             callback(config)
 
             self.logger.info('Successfully applied ACL {} on interface {} {} ({})'
@@ -509,7 +508,7 @@ class Acl(SlxNosAcl):
             config = t.render(**user_data)
             config = ' '.join(config.split())
 
-            self.logger.info(config)
+            self.logger.debug(config)
             try:
                 callback(config)
                 self.logger.info('Successfully removed ACL {} from interface {} {} ({})'

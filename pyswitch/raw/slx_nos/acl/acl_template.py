@@ -92,7 +92,7 @@ access-list/{{acl_type}}[name=\"{{acl_name}}\"]'>
 </get-config>
 """
 
-acl_rule_ipv46_delete = """
+acl_rule_ipx_delete = """
 <config>
   <{{address_type}}-acl
     xmlns="urn:brocade.com:mgmt:brocade-{{address_type}}-access-list">

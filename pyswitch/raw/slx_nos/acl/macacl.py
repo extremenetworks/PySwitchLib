@@ -285,6 +285,9 @@ class MacAcl(AclParamParser):
             self.parse_double_tagged_vlan(ret, **kwargs)
             return ret
 
+        raise ValueError("Invalid \'vlan_tag_format\' {} in kwargs"
+                         .format(vlan))
+
     def parse_vlan_tag_format(self, **kwargs):
         """
         parse the protocol type param.

@@ -11,6 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import pyswitch.utilities as utilities
 
 class AclParamParser(object):
     """
@@ -321,6 +322,13 @@ class AclParamParser(object):
 
         if 'intf_name' not in kwargs or not kwargs['intf_name']:
             raise ValueError("\'intf_name\' not present in kwargs")
+
+        if 'intf_type' not in kwargs or not kwargs['intf_type']:
+            raise ValueError("\'intf_type\' not present in kwargs")
+
+        for intf in kwargs['intf_name']:
+            if not utilities.valid_interface(kwargs['intf_type'], intf):
+                raise ValueError("Invalid \'intf_name\' {}".format(intf))
 
         return kwargs['intf_name']
 

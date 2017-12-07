@@ -65,11 +65,11 @@ class IpAcl(AclParamParser):
         if op_str:
             self._parse_op_str(op_str, ret)
 
-        if v4_str[0:3] == "any":
+        if v4_str == "any":
             ret['host_any'] = "any"
             return ret
 
-        if v4_str[0:4] == "host":
+        if v4_str == "host":
             utilities.validate_ip_address(v4_str[5:], address_type)
             ret['host_any'] = "host"
             ret['host_ip'] = v4_str[5:]
