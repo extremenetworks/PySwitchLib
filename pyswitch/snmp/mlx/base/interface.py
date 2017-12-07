@@ -122,7 +122,7 @@ class Interface(BaseInterface):
             reason = error.message
             raise ValueError('Failed to create VLAN %s' % (reason))
 
-    def create_port_channel(self, ports, int_type, portchannel_num, mode, desc=None):
+    def create_port_channel(self, ports, int_type, portchannel_num, mode, po_exists, desc=None):
         """create port channel
 
         args:
@@ -130,6 +130,7 @@ class Interface(BaseInterface):
             ports(list): port numbers (1/1, 2/1 etc)
             portchannel_num (int): port-channel number (1, 2, 3, etc).
             mode (str): mode of port-channel (static, dynamic)
+            po_exists (bool): notifies is PO is already created
             desc: name of port-channel
 
         returns:
@@ -145,7 +146,7 @@ class Interface(BaseInterface):
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     ports = ['2/1', '2/2']
             ...     output = dev.interface.create_port_channel(ports, 'ethernet',
-            ...                         50, 'static', 'po50')
+            ...                         50, 'static', False, 'po50')
             ...     assert output == True
             ...     ifindex = dev.interface.get_port_channel_ifindex('po50')
             ...     assert len(str(ifindex)) >= 1
@@ -165,14 +166,21 @@ class Interface(BaseInterface):
                     " " + str(portchannel_num))
             # Add ports to port-channel
             port_list = []
+            member_cnt = 0
             for port in ports:
                 port_list.append(int_type + " " + port)
             port_list_str = " ".join(port_list)
             cli_arr.append('ports' + " " + port_list_str)
-            # select primary port
-            cli_arr.append('primary-port' + " " + ports[0])
-            # deploy the port channel
-            cli_arr.append('deploy')
+            if po_exists:
+                # Determine if primary port election is required
+                lag_member_dict = {}
+                lag_member_dict = self.get_port_channel_member_ports(desc)
+                member_cnt = len(lag_member_dict)
+            if member_cnt == 0:
+                # select primary port
+                cli_arr.append('primary-port' + " " + ports[0])
+                # deploy the port channel
+                cli_arr.append('deploy')
             # Enable the member ports
             cli_arr.append('enable' + " " + port_list_str)
             output = self._callback(cli_arr, handler='cli-set')
@@ -490,6 +498,9 @@ class Interface(BaseInterface):
         cli_arr = 'show lag | inc Deployed'
         po_list = []
         output = self._callback(cli_arr, handler='cli-get')
+        if output == '':
+            return po_list
+
         error = re.search(r'Error(.+)', output)
         if error:
             raise ValueError("%s" % error.group(0))
@@ -926,13 +937,12 @@ class Interface(BaseInterface):
             else:
                 return False
         elif version == 6:
-            cli_cmd = 'show ipv6 inter' + ' ' + int_type + ' ' + name
+            cli_cmd = 'show runn interface ' + int_type + ' ' + name
             cli_output = callback(cli_cmd, handler='cli-get')
-            if re.search(r'IPv6 is enabled', cli_output):
-                ipv6_s = re.search(r'(.+) \[Preferred\],  subnet is (.+)',
+            if re.search(r'ipv6 address', cli_output):
+                ipv6_a = re.search(r'ipv6 address (.+)',
                         cli_output)
-                subnet_s = re.search(r'::/(.+)', ipv6_s.group(2))
-                ipv6_addr = ipv6_s.group(1).strip() + '/' + subnet_s.group(1)
+                ipv6_addr = ipv6_a.group(1).strip()
                 return ipv6_addr
             else:
                 return False
@@ -1404,10 +1414,12 @@ class Interface(BaseInterface):
         if get:
             enable = None
             ve_list = []
-            cli_arr = 'show running-config interface | inc ve'
+            cli_arr = 'show running-config interface | inc interface ve'
             output = self._callback(cli_arr, handler='cli-get')
             for line in output.split('\n'):
                 info = re.search(r'interface ve (.+)', line)
+                if info is None:
+                    continue
                 ve_id = info.group(1)
                 if ve_id:
                     ve_list.append(ve_id)
@@ -1448,7 +1460,7 @@ class Interface(BaseInterface):
         """
 
         ve_list = []
-        cli_arr = 'show running-config interface | inc ve'
+        cli_arr = 'show running-config interface | inc interface ve'
         output = self._callback(cli_arr, handler='cli-get')
         error = re.search(r'Error(.+)', output)
         if error:
@@ -1456,6 +1468,8 @@ class Interface(BaseInterface):
         # Populate the VE interface list with default data and update later
         for line in output.split('\n'):
             info = re.search(r'interface ve (.+)', line)
+            if info is None:
+                continue
             ve_id = info.group(1)
             if_name = 'Ve ' + ve_id
             ve_info = {'interface-type': 've',

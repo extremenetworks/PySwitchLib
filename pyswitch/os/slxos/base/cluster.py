@@ -69,7 +69,9 @@ class Cluster(object):
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
             ...     response = device.cluster.cluster_create(cluster=('F47-F47','3'),
-            ...                                              client_isolation_mode='strict')
+            ...                                              client_isolation_mode='strict',
+            ...                                              df_load_balance=True,
+            ...                                              control_vlan=4090)
             #...     response1 = device.cluster.cluster_get(cluster=('F47-F48','3'))
             #...     response2 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
@@ -78,6 +80,8 @@ class Cluster(object):
         # isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
         hold_time = cluster_args.pop('df_hold_time', 3)
         cldeploy = cluster_args.pop('deploy', False)
+        df_load_balance = cluster_args.pop('df_load_balance', True)
+        cluster_control_vlan = cluster_args.pop('control_vlan', 4090)
 
         self.cluster_validate(clname, int(clid))
 
@@ -102,6 +106,18 @@ class Cluster(object):
                     status['status_message'] = response.data
             # elif isolation_mode is 'strict':
             #    self.cluster_client_isolation_mode_update(clname, clid, isolation_mode)
+            if df_load_balance is True:
+                argument = {'cluster': (clname, clid),
+                            'df_load_balance': df_load_balance
+                            }
+                config = ('cluster_df_load_balance_update', argument)
+                self._callback(config, 'POST')
+
+            argument = {'cluster': (clname, clid),
+                       'cluster_control_vlan': cluster_control_vlan
+                        }
+            config = ('cluster_cluster_control_vlan_update', argument)
+            self._callback(config, 'POST')
         except Exception, exc:
             status['status_code'] = -1
             status['status_message'] = 'Exception:' + exc.message
@@ -146,7 +162,9 @@ class Cluster(object):
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
             ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
-            ...     response1 = device.cluster.cluster_update(cluster=('F47-F48','3'), deploy=True)
+            ...     response1 = device.cluster.cluster_update(cluster=('F47-F48','3'),
+            ...                                               deploy=True,
+            ...                                               df_load_balance=False)
             ...     response2 = device.cluster.cluster_get(cluster=('F47-F48','3'))
             ...     response3 = device.cluster.cluster_delete(cluster=('F47-F48','3'))
             ...
@@ -155,6 +173,7 @@ class Cluster(object):
         # isolation_mode = cluster_args.pop('client_isolation_mode', 'loose')
         hold_time = cluster_args.pop('df_hold_time', 3)
         cldeploy = cluster_args.pop('deploy', True)
+        df_load_balance = cluster_args.pop('df_load_balance', None)
 
         self.cluster_validate(clname, int(clid))
 
@@ -175,6 +194,12 @@ class Cluster(object):
                 status['status_message'] = response.data
             # else:
             #    self.cluster_client_isolation_mode_update(clname, clid, isolation_mode)
+            if df_load_balance is not None:
+                argument = {'cluster': (clname, clid),
+                            'df_load_balance': df_load_balance
+                            }
+                config = ('cluster_df_load_balance_update', argument)
+                self._callback(config, 'POST')
         except Exception, exc:
             status['status_code'] = -1
             status['status_message'] = 'Exception:' + exc.message
@@ -247,9 +272,12 @@ class Cluster(object):
             >>> auth = ('admin', 'password')
             >>> conn = (switch, '22')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as device:
-            ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'))
+            ...     response = device.cluster.cluster_create(cluster=('F47-F48','3'),
+            ...                                              client_isolation_mode='strict',
+            ...                                              df_load_balance=True,
+            ...                                              control_vlan=4089)
             ...     response1 = device.cluster.cluster_peer_create(cluster=('F47-F48','3'),
-            ...                                peer_info=('21.0.0.47', 'Ethernet', '0/1'))
+            ...                                peer_info=('21.0.0.48', 'Ethernet', '0/47'))
             ...     response2 = device.cluster.cluster_get(cluster=('F47-F48','3'))
             ...     response3 = device.cluster.cluster_peer_delete(cluster=('F47-F48','3'),
             ...                                           peer_info=('21.0.0.47'))
@@ -279,9 +307,12 @@ class Cluster(object):
         try:
             response = self._callback(config, 'POST')
             if response.data != '':
-                status['status_code'] = -1
-                status['status_message'] = response.data
-                return status
+                if "object already exists" in response.data:
+                    pass
+                else:
+                    status['status_code'] = -1
+                    status['status_message'] = response.data
+                    return status
         except Exception, exc:
             status['status_code'] = -1
             status['status_message'] = 'Exception:' + exc.message
@@ -293,8 +324,11 @@ class Cluster(object):
         try:
             response = self._callback(config, 'POST')
             if response.data != '':
-                status['status_code'] = -1
-                status['status_message'] = response.data
+                if "object already exists" in response.data:
+                    pass
+                else:
+                    status['status_code'] = -1
+                    status['status_message'] = response.data
         except Exception, exc:
             status['status_code'] = -1
             status['status_message'] = 'Exception:' + exc.message
@@ -349,8 +383,11 @@ class Cluster(object):
         try:
             response = self._callback(config, 'POST')
             if response.data != '':
-                status['status_code'] = -1
-                status['status_message'] = response.data
+                if "object already exists" in response.data:
+                    pass
+                else:
+                    status['status_code'] = -1
+                    status['status_message'] = response.data
         except Exception, exc:
             status['status_code'] = -1
             status['status_message'] = 'Exception:' + exc.message
