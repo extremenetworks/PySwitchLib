@@ -114,6 +114,10 @@ class Acl(SlxNosAcl):
         acl_type = acl['type']
         address_type = acl['protocol']
 
+        if address_type not in ['ip', 'ipv6']:
+            raise ValueError('Rule can not be configured as {} type is {}'
+                             .format(acl_name, address_type))
+
         self.logger.info('Successfully identified the acl_type as ({}:{})'
                          .format(address_type, acl_type))
 
@@ -296,6 +300,11 @@ class Acl(SlxNosAcl):
 
         acl_type = acl['type']
         address_type = acl['protocol']
+
+        if address_type != 'mac':
+            raise ValueError('Rule can not be configured as {} type is {}'
+                             .format(acl_name, address_type))
+
 
         self.logger.info('Successfully identified the acl_type as ({}:{})'
                          .format(address_type, acl_type))
