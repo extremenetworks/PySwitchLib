@@ -305,7 +305,6 @@ class Acl(SlxNosAcl):
             raise ValueError('Rule can not be configured as {} type is {}'
                              .format(acl_name, address_type))
 
-
         self.logger.info('Successfully identified the acl_type as ({}:{})'
                          .format(address_type, acl_type))
 
