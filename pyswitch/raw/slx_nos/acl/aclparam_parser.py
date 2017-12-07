@@ -253,7 +253,7 @@ class AclParamParser(object):
         if drop_precedence_force.isdigit():
             if int(drop_precedence_force) >= 0 and \
                     int(drop_precedence_force) <= 2:
-                return 'drop-precedence-force ' + drop_precedence_force
+                return str(drop_precedence_force)
 
         raise ValueError("drop-precedence-force value should be 0 - 2")
 

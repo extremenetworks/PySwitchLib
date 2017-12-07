@@ -230,7 +230,7 @@ class Acl(SlxNosAcl):
         user_data['dscp_force'] = self.ip.parse_dscp_force(**kwargs)
         user_data['drop_precedence_force'] = \
             self.ip.parse_drop_precedence_force(**kwargs)
-        user_data['mirror'] = self.mac.parse_mirror(**kwargs)
+        user_data['mirror'] = self.ip.parse_mirror(**kwargs)
         user_data['vlan_id'] = self.ip.parse_vlan_id(**kwargs)
 
         # Parse tcp specific parameters together
