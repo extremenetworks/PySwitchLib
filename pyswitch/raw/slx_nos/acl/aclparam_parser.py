@@ -16,7 +16,7 @@ import pyswitch.utilities as utilities
 
 class AclParamParser(object):
     """
-    The AclParamParser class parses parameters which are common for all the
+    The AclParamParser class parses kwargs which are common for all the
     three ACL Types.
     Attributes:
         None
@@ -223,11 +223,11 @@ class AclParamParser(object):
 
         return None
 
-    def parse_drop_precedence_force(self, **parameters):
+    def parse_drop_precedence_force(self, **kwargs):
         """
         parse the drop_precedence_force mapping param.
         Args:
-            parameters contains:
+            kwargs contains:
                 drop_precedence_force(string):
                     drop_precedence_force value of the packet
         Returns:
@@ -236,11 +236,11 @@ class AclParamParser(object):
             Raise ValueError exception
         Examples:
         """
-        if 'drop_precedence_force' not in parameters or \
-                not parameters['drop_precedence_force']:
+        if 'drop_precedence_force' not in kwargs or \
+                not kwargs['drop_precedence_force']:
             return None
 
-        drop_precedence_force = parameters['drop_precedence_force']
+        drop_precedence_force = kwargs['drop_precedence_force']
         drop_precedence_force = ' '.join(drop_precedence_force.split())
 
         if 'action' not in kwargs or not kwargs['action']:
@@ -328,7 +328,6 @@ class AclParamParser(object):
             Raise ValueError exception
         Examples:
         """
-
         if 'intf_name' not in kwargs or not kwargs['intf_name']:
             raise ValueError("\'intf_name\' not present in kwargs")
 
