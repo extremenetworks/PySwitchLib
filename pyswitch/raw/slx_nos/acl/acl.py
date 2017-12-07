@@ -163,9 +163,6 @@ class SlxNosAcl(BaseAcl):
         return True
 
     def delete_acl_rule(self, **kwargs):
-        # Validate required and accepted parameters
-        params_validator.validate_params_slx_nos_delete_acl_rule(**kwargs)
-
         # Parse params
         acl_name = self.ap.parse_acl_name(**kwargs)
         seq_id = self.ap.parse_seq_id(**kwargs)
@@ -210,12 +207,22 @@ class SlxNosAcl(BaseAcl):
         return True
 
     def delete_ipv4_acl_rule(self, **kwargs):
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_nos_delete_acl_rule(**kwargs)
+
         self.delete_acl_rule(**kwargs)
 
     def delete_ipv6_acl_rule(self, **kwargs):
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_nos_delete_acl_rule(**kwargs)
+
         self.delete_acl_rule(**kwargs)
 
     def delete_l2_acl_rule(self, **kwargs):
+        # Validate required and accepted parameters
+        params_validator. \
+            validate_params_nos_delete_add_or_remove_l2_acl_rule(**kwargs)
+
         self.delete_acl_rule(**kwargs)
 
     def _get_seq_ids(self, acl_elem, ret):
