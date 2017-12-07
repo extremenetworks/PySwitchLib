@@ -397,7 +397,7 @@ class Acl(SlxNosAcl):
         user_data['source'] = self.mac.parse_source(**kwargs)
         user_data['dst'] = self.mac.parse_dst(**kwargs)
         user_data['ethertype'] = self.mac.parse_ethertype(**kwargs)
-        user_data['vlan'] = self.mac.parse_vlan(**kwargs)
+        user_data['vlan'] = self.mac.parse_vlan(**kwargs)['vlan_id']
         bool_params = ['log', 'count']
         self.mac.parse_boolean_params(user_data, bool_params, **kwargs)
 
