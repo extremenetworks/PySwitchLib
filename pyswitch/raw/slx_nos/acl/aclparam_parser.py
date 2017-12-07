@@ -335,7 +335,7 @@ class AclParamParser(object):
             raise ValueError("\'intf_type\' not present in kwargs")
 
         for intf in kwargs['intf_name']:
-            if not utilities.valid_interface(kwargs['intf_type'], intf):
+            if not utilities.valid_interface(kwargs['intf_type'], str(intf)):
                 raise ValueError("Invalid \'intf_name\' {}".format(intf))
 
         return kwargs['intf_name']
