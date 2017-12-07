@@ -5147,9 +5147,9 @@ class Interface(object):
 
            """
 
-        get_config = kwargs.pop('get', False)
-        delete = kwargs.pop('delete', False)
-        callback = kwargs.pop('callback', self._callback)
+        get_config = kwargs.get('get', False)
+        delete = kwargs.get('delete', False)
+        callback = kwargs.get('callback', self._callback)
 
         if not get_config:
             afi = kwargs['afi']
@@ -5168,8 +5168,10 @@ class Interface(object):
                 method_name = self.method_prefix(
                     'vrf_address_family_%s_unicast_create' % afi)
                 config = (method_name, rt_args)
-
-            callback(config)
+                callback(config)
+                rd = kwargs.get('rd', None)
+                if rd:
+                    self.vrf_route_distiniguisher(**kwargs)
 
         elif get_config:
             vrf_name = kwargs.pop('vrf_name', '')

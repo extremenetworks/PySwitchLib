@@ -185,7 +185,7 @@ class Ipv6Acl(AclParamParser):
         Examples:
         """
         if 'destination' not in parameters or not parameters['destination']:
-            raise ValueError("Missing \'destination\' is parameters")
+            raise ValueError("\'destination\' is required param")
 
         if 'protocol_type' not in parameters or \
                 not parameters['protocol_type']:
