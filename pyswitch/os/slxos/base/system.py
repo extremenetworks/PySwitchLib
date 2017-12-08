@@ -170,17 +170,60 @@ class System(BaseSystem):
 
             Examples:
                 >>> import pyswitch.device
-                >>> switches = ['10.24.39.211', '10.24.39.203']
+                >>> switches = ['10.24.86.57']
                 >>> auth = ('admin', 'password')
                 >>> for switch in switches:
                 ...  conn = (switch, '22')
                 ...  with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-                ...         output = dev.interface.system_mtu(mtu='1666')
-                Traceback (most recent call last):
-                KeyError
+                ...         output = dev.system.system_ip_mtu(mtu='1666')
+                ...         output = dev.system.system_ip_mtu(get=True)
+                ...         assert output == '1666'
+                ...         output = dev.system.system_ip_mtu(mtu='1667',version=6)
+                ...         output = dev.system.system_ip_mtu(get=True,version=6)
+                ...         assert output == '1667'
         """
 
-        raise ValueError('Not available on this Platform')
+        callback = kwargs.pop('callback', self._callback)
+        version = kwargs.pop('version', 4)
+        if version is 4:
+            ip_prefix = 'ip'
+            # ns = '{urn:brocade.com:mgmt:brocade-ip-access-list}'
+        if version is 6:
+            ip_prefix = 'ipv6'
+            # ns = '{urn:brocade.com:mgmt:brocade-mld-snooping}'
+
+        if kwargs.pop('get', False):
+            method_name = '%s_mtu_get' % ip_prefix
+            config = (method_name, {})
+            op = callback(config, handler='get_config')
+
+            util = Util(op.data)
+            return util.find(util.root, './/mtu')
+
+        mtu = kwargs.pop('mtu')
+
+        if version is 4:
+            minimum_mtu = 1300
+            maximum_mtu = 9194
+            if int(mtu) < minimum_mtu or int(mtu) > maximum_mtu:
+                raise ValueError(
+                    "Incorrect mtu value, Valid Range %s-%s" %
+                    (minimum_mtu, maximum_mtu))
+        if version is 6:
+            minimum_mtu = 1300
+            maximum_mtu = 9194
+            if int(mtu) < minimum_mtu or int(mtu) > maximum_mtu:
+                raise ValueError(
+                    "Incorrect mtu value, Valid Range %s-%s" %
+                    (minimum_mtu, maximum_mtu))
+
+        mtu_name = 'global_%s_mtu' % ip_prefix
+        mtu_args = {mtu_name: mtu}
+
+        method_name = '%s_mtu_update' % ip_prefix
+
+        config = (method_name, mtu_args)
+        return callback(config)
 
     def system_l2_mtu(self, **kwargs):
         """Set system mtu.
@@ -201,14 +244,39 @@ class System(BaseSystem):
 
             Examples:
                 >>> import pyswitch.device
-                >>> switches = ['10.24.39.211', '10.24.39.203']
+                >>> switches = ['10.24.86.57']
                 >>> auth = ('admin', 'password')
                 >>> for switch in switches:
                 ...  conn = (switch, '22')
                 ...  with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-                ...         output = dev.interface.system_l2_mtu(mtu='1666')
-                Traceback (most recent call last):
-                KeyError
-        """
+                ...         output = dev.system.system_l2_mtu(mtu='1666')
+                ...         output = dev.system.system_l2_mtu(get=True)
+                ...         assert output == '1666'
+            """
 
-        raise ValueError('Not available on this Platform')
+        callback = kwargs.pop('callback', self._callback)
+
+        if kwargs.pop('get', False):
+            method_name = 'mtu_get'
+            config = (method_name, {})
+            op = callback(config, handler='get_config')
+
+            util = Util(op.data)
+            return util.find(util.root, './/mtu')
+
+        mtu = kwargs.pop('mtu')
+
+        minimum_mtu = 1548
+        maximum_mtu = 9216
+        if int(mtu) < minimum_mtu or int(mtu) > maximum_mtu:
+            raise ValueError(
+                "Incorrect mtu value, Valid Range %s-%s" %
+                (minimum_mtu, maximum_mtu))
+
+        mtu_name = 'global_l2_mtu'
+        mtu_args = {mtu_name: mtu}
+
+        method_name = 'mtu_update'
+
+        config = (method_name, mtu_args)
+        return callback(config)
