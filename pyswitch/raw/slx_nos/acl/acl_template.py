@@ -58,18 +58,20 @@ acl_get_config = """
 <get-config>
   <source> <running/> </source>
 
-  {% if address_type != "mac" -%}
+  {% if acl_type == "standard" -%}
 
     <nc:filter type='xpath' select='/{{address_type}}-acl/{{address_type}}/\
-access-list/{{acl_type}}[name=\"{{acl_name}}\"]'>
+access-list/{{acl_type}}[name=\"{{acl_name}}\"]/\
+hide-{{address_type}}-acl-std/seq/seq-id'></nc:filter>
 
   {% else -%}
 
-    <nc:filter type='xpath' select='/{{address_type}}/access-list/\
-{{acl_type}}[name=\"{{acl_name}}\"]/hide-mac-acl-ext/seq/seq-id'>
+    <nc:filter type='xpath' select='/{{address_type}}-acl/{{address_type}}/\
+access-list/{{acl_type}}[name=\"{{acl_name}}\"]/\
+hide-{{address_type}}-acl-ext/seq/seq-id'></nc:filter>
 
   {% endif %}
-    </nc:filter>
+
 </get-config>
 """
 
@@ -252,4 +254,11 @@ acl_remove = """
       </rbridge-id>
    {% endif %}
 </config>
+"""
+
+get_interface_by_name = """
+<get-config>
+  <source> <running/> </source>
+  <nc:filter type='xpath' select='/interface/{{intf_type}}[name=\"{{intf_name}}\"]'> </nc:filter>
+</get-config>
 """

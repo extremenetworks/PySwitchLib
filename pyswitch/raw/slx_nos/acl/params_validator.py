@@ -170,7 +170,7 @@ def validate_params_nos_remove_acl(**parameters):
 
     required_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
     accepted_params = ['intf_type', 'rbridge_id', 'acl_name', 'intf_name',
-                       'traffic_type', 'acl_direction']
+                       'acl_direction']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -283,8 +283,7 @@ def validate_params_slx_apply_acl(**parameters):
 def validate_params_slx_remove_acl(**parameters):
 
     required_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
-    accepted_params = ['intf_type', 'acl_name', 'intf_name', 'traffic_type',
-                       'acl_direction']
+    accepted_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
