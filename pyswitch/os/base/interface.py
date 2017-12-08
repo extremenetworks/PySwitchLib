@@ -4878,6 +4878,62 @@ class Interface(object):
             config = (method_name, arguments)
         return callback(config)
 
+    def ipv6_anycast_mac(self, **kwargs):
+        """Configure an anycast MAC address.
+
+        Args:
+             mac (str): MAC address to configure
+                 (example: '0011.2233.4455').
+            delete (bool): True is the IP address is added and False if its to
+                be deleted (True, False). Default value will be False if not
+                specified.
+            get (bool): Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+                 method.  The only parameter passed to `callback` will be the
+                 ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            KeyError: if `mac` is not passed.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.91.185']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...    conn = (switch, '22')
+            ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...        output = dev.interface.ipv6_anycast_mac(rbridge_id='1',
+            ...        mac='0011.2233.4455')
+            ...        output = dev.interface.ipv6_anycast_mac(rbridge_id='1',
+            ...        mac='0011.2233.4455', get=True)
+            ...        output = dev.interface.ipv6_anycast_mac(rbridge_id='1',
+            ...        mac='0011.2233.4455', delete=True)
+        """
+        callback = kwargs.pop('callback', self._callback)
+        rbridge_id = kwargs['rbridge_id']
+
+        arguments = {'rbridge_id': rbridge_id}
+        if kwargs.pop('get', False):
+            method_name = 'rbridge_id_ipv6_anycast_gateway_mac_get'
+            config = (method_name, arguments)
+            op = callback(config, handler="get_config")
+            util = Util(op.data)
+            return util.find(util.root, './/ipv6-anycast-gateway-mac')
+
+        if kwargs.pop('delete', False):
+            method_name = 'rbridge_id_ipv6_anycast_gateway_mac_delete'
+            config = (method_name, arguments)
+        else:
+            arguments = {'rbridge_id': rbridge_id,
+                         'ipv6_anycast_gateway_mac': kwargs.pop('mac')
+                         }
+            method_name = 'rbridge_id_ipv6_anycast_gateway_mac_update'
+            config = (method_name, arguments)
+        return callback(config)
+
     def bfd(self, **kwargs):
         """Configure BFD for Interface.
 
