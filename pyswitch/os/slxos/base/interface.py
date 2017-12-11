@@ -1871,5 +1871,3 @@ class Interface(BaseInterface):
 
     def switchport_access_mac_create(self, **kwargs):
         raise ValueError('MAC GROUP Feature is not available on this Platform')
-
-
