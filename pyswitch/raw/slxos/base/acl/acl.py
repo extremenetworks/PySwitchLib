@@ -593,4 +593,14 @@ class Acl(SlxNosAcl):
         acl = self._get_acl_info(user_data['acl_name'], get_seqs=False)
         user_data['address_type'] = acl['protocol']
 
+        if user_data['intf_type'] in ['management', 've'] \
+           and user_data['address_type'] not in ['ip', 'ipv6']:
+            raise ValueError("{} ACL configuration not allowed for interface type: {}"
+                             .format(user_data['address_type'], user_data['intf_type']))
+
+        if user_data['intf_type'] == 'vlan' \
+           and user_data['address_type'] != 'mac':
+            raise ValueError("{} ACL configuration not allowed for interface type: {}"
+                             .format(user_data['address_type'], user_data['intf_type']))
+
         return user_data

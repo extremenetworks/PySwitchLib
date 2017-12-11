@@ -294,6 +294,8 @@ class AclParamParser(object):
                           - ve
                           - loopback
                           - ethernet
+                          - management
+                          - vlan
         Returns:
             Return parsed string on success
         Raise:
@@ -307,13 +309,14 @@ class AclParamParser(object):
         if kwargs['intf_type'] in ['gigabitethernet', 'tengigabitethernet',
                                    'fortygigabitethernet',
                                    'hundredgigabitethernet', 'port_channel',
-                                   've', 'loopback', 'ethernet']:
+                                   've', 'loopback', 'ethernet',
+                                   'management', 'vlan']:
             return kwargs['intf_type'].replace("_", "-")
 
         raise ValueError("The \'intf_type\' value {} is invalid. "
                          "Supported - gigabitethernet, tengigabitethernet, "
                          "fortygigabitethernet, hundredgigabitethernet, "
-                         "port_channel, ve, loopback and ethernet"
+                         "port_channel, ve, loopback, ethernet, management and vlan"
                          .format(kwargs['intf_type']))
 
     def parse_intf_names(self, **kwargs):
@@ -356,6 +359,10 @@ class AclParamParser(object):
         if 'acl_direction' not in kwargs or not kwargs['acl_direction']:
             raise ValueError("\'acl_direction\' not present in kwargs")
 
+        if 'intf_type' in kwargs and kwargs['intf_type'] == 'management' \
+           and kwargs['acl_direction'] != 'in':
+            raise ValueError("Management interface supports only \'acl_direction\': in")
+
         if kwargs['acl_direction'] in ['in', 'out']:
             return kwargs['acl_direction']
 
@@ -379,6 +386,11 @@ class AclParamParser(object):
 
         if 'traffic_type' not in kwargs or not kwargs['traffic_type']:
             return None
+
+        if 'intf_type' in kwargs \
+           and (kwargs['intf_type'] == 've' or kwargs['intf_type'] == 'management'):
+            raise ValueError("\'traffic_type\' not supported with {} interface"
+                             .format(kwargs['intf_type']))
 
         if kwargs['traffic_type'] in ['switched', 'routed']:
             return kwargs['traffic_type']

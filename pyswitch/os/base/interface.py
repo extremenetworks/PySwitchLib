@@ -4032,6 +4032,119 @@ class Interface(object):
         config = (method_name, ageout_args)
         return callback(config)
 
+    def int_ipv6_nd_cache_expire(self, **kwargs):
+        """
+        Add "ipv6 nd cachec expire<>".
+
+        Args:
+            int_type:L3 Interface type on which the ageout time needs to be
+            configured.
+            name:L3 Interface name on which the ageout time needs to be
+            configured.
+            enable (bool): If ND Cache expire time needs to be enabled
+            or disabled.Default:``True``.
+            nd_cache_expire_time: ND Cache expire time <0..240>
+            get (bool) : Get config instead of editing config. (True, False)
+            rbridge_id (str): rbridge-id for device.
+             Only required when type is 've' and os type is nos.
+            callback (function): A function executed upon completion of the
+               method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.37.18.136']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         int_type='tengigabitethernet',
+            ...         name='2/0/2',
+            ...         nd_cache_expire_time='500',
+            ...         rbridge_id='2')
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         int_type='ve',
+            ...         name='4080',
+            ...         rbridge_id='2',
+            ...         nd_cache_expire_time='500')
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         get=True,int_type='tengigabitethernet',
+            ...         name='2/0/2',
+            ...         rbridge_id='2')
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         enable=False,int_type='tengigabitethernet',
+            ...         name='2/0/2',
+            ...         rbridge_id='2')
+            >>> switches = ['10.24.81.180']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         int_type='ethernet',
+            ...         name='0/2',
+            ...         nd_cache_expire_time='500',
+            ...         )
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         int_type='ve',
+            ...         name='4080',
+            ...         nd_cache_expire_time='500')
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         get=True,int_type='ethernet',
+            ...         name='0/2',
+            ...         )
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         enable=False,int_type='ethernet',
+            ...         name='0/2',
+            ...         )
+         """
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+        nd_cache_expire_time = kwargs.pop('nd_cache_expire_time', '')
+        enable = kwargs.pop('enable', True)
+        get = kwargs.pop('get', False)
+        rbridge_id = kwargs.pop('rbridge_id', None)
+        callback = kwargs.pop('callback', self._callback)
+
+        valid_int_types = self.valid_int_types
+        valid_int_types.append('ve')
+
+        ageout_args = dict()
+        ageout_args[int_type] = name
+
+        method_name = 'interface_%s_ipv6_nd_cache_expire_' % int_type
+        if int_type == 've':
+            if rbridge_id is not None and self.has_rbridge_id:
+                method_name = 'rbridge_id_%s' % method_name
+                ageout_args['rbridge_id'] = rbridge_id
+            if not pyswitch.utilities.valid_vlan_id(name):
+                raise InvalidVlanId("`name` must be between `1` and `8191`")
+        elif not pyswitch.utilities.valid_interface(int_type, name):
+            raise ValueError('`name` must be in the format of x/y/z for '
+                             'physical interfaces or x for port channel.')
+        if get:
+            method_name = '%sget' % method_name
+            config = (method_name, ageout_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            return util.find(util.root, './/expire')
+
+        if not enable:
+            method_name = '%sdelete' % method_name
+
+        else:
+            if (int(nd_cache_expire_time) < 30) or (int(nd_cache_expire_time) > 14400):
+                raise ValueError('nd_cache_expire_time must be within 30-14400')
+            if int_type not in valid_int_types:
+                raise ValueError('`int_type` must be one of: %s' %
+                                 repr(valid_int_types))
+
+            ageout_args['expire'] = nd_cache_expire_time
+            method_name = '%supdate' % method_name
+
+        config = (method_name, ageout_args)
+        return callback(config)
+
     def overlay_gateway_name(self, **kwargs):
         """Configure Name of Overlay Gateway on vdx switches
 
@@ -4875,6 +4988,62 @@ class Interface(object):
                          'ip_anycast_gateway_mac': kwargs.pop('mac')
                          }
             method_name = 'rbridge_id_ip_anycast_gateway_mac_update'
+            config = (method_name, arguments)
+        return callback(config)
+
+    def ipv6_anycast_mac(self, **kwargs):
+        """Configure an anycast MAC address.
+
+        Args:
+             mac (str): MAC address to configure
+                 (example: '0011.2233.4455').
+            delete (bool): True is the IP address is added and False if its to
+                be deleted (True, False). Default value will be False if not
+                specified.
+            get (bool): Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+                 method.  The only parameter passed to `callback` will be the
+                 ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            KeyError: if `mac` is not passed.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.91.185']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...    conn = (switch, '22')
+            ...    with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...        output = dev.interface.ipv6_anycast_mac(rbridge_id='1',
+            ...        mac='0011.2233.4455')
+            ...        output = dev.interface.ipv6_anycast_mac(rbridge_id='1',
+            ...        mac='0011.2233.4455', get=True)
+            ...        output = dev.interface.ipv6_anycast_mac(rbridge_id='1',
+            ...        mac='0011.2233.4455', delete=True)
+        """
+        callback = kwargs.pop('callback', self._callback)
+        rbridge_id = kwargs['rbridge_id']
+
+        arguments = {'rbridge_id': rbridge_id}
+        if kwargs.pop('get', False):
+            method_name = 'rbridge_id_ipv6_anycast_gateway_mac_get'
+            config = (method_name, arguments)
+            op = callback(config, handler="get_config")
+            util = Util(op.data)
+            return util.find(util.root, './/ipv6-anycast-gateway-mac')
+
+        if kwargs.pop('delete', False):
+            method_name = 'rbridge_id_ipv6_anycast_gateway_mac_delete'
+            config = (method_name, arguments)
+        else:
+            arguments = {'rbridge_id': rbridge_id,
+                         'ipv6_anycast_gateway_mac': kwargs.pop('mac')
+                         }
+            method_name = 'rbridge_id_ipv6_anycast_gateway_mac_update'
             config = (method_name, arguments)
         return callback(config)
 
@@ -6752,331 +6921,6 @@ class Interface(object):
                 result = None
         return result
 
-    def mac_group_create(self, **kwargs):
-        """Config/get/delete mac-group
-
-        Args:
-            mac_group_id(int): Mac Group Id. Valid Range [1,500]
-            get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the service policy on the interface.
-        Returns:
-            Return value of `callback`.
-        Raises:
-            KeyError: if `mac_group_id` is not specified.
-        Examples:
-            >>> import pyswitch.device
-            >>> switches = ['10.24.39.211', '10.24.39.203']
-            >>> auth = ('admin', 'password')
-            >>> for switch in switches:
-            ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output_all = dev.interface.mac_group_create(
-            ...         get=True, mac_group_id=10)
-            ...         output_all = dev.interface.mac_group_create(
-            ...         delete=True, mac_group_id=10)
-            ...         output_all = dev.interface.mac_group_create(
-            ...         mac_group_id=10)
-        """
-        mac_group_id = kwargs.pop('mac_group_id', None)
-        if mac_group_id is not None and mac_group_id not in range(1, 501):
-            raise ValueError('`mac_group_id` not in range[1,500]', mac_group_id)
-
-        get_config = kwargs.pop('get', False)
-        delete = kwargs.pop('delete', False)
-        callback = kwargs.pop('callback', self._callback)
-
-        if delete:
-            map_args = dict(mac_group=mac_group_id)
-            method_name = 'mac_group_delete'
-            config = (method_name, map_args)
-            return callback(config)
-        if not get_config:
-            map_args = dict(mac_group=mac_group_id)
-            method_name = 'mac_group_create'
-            config = (method_name, map_args)
-            return callback(config)
-        elif get_config:
-            if mac_group_id is not None:
-                map_args = dict(mac_group=mac_group_id)
-            else:
-                map_args = {}
-            method_name = 'mac_group_get'
-            config = (method_name, map_args)
-            output = callback(config, handler='get_config')
-            util = Util(output.data)
-            if output.data != '<output></output>':
-                if mac_group_id is not None:
-                    result = util.find(util.root, './/mac-group-id')
-                else:
-                    result = util.findall(util.root, './/mac-group-id')
-            else:
-                result = None
-        return result
-
-    def mac_group_mac_create(self, **kwargs):
-        """Config/get/delete mac-group entry mac-addresses
-
-        Args:
-            mac_group_id(int): Mac Group Id. Valid Range [1,500]
-            mac_address (str): Entry Mac Address. HHHH.HHHH.HHHH format
-            get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the service policy on the interface.
-        Returns:
-            Return value of `callback`.
-        Raises:
-            KeyError: if `mac_group_id` and mac_address are not specified.
-        Examples:
-            >>> import pyswitch.device
-            >>> switches = ['10.24.39.211', '10.24.39.203']
-            >>> auth = ('admin', 'password')
-            >>> for switch in switches:
-            ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output_all = dev.interface.mac_group_mac_create(
-            ...         get=True, mac_group_id=10)
-            ...         output_all = dev.interface.mac_group_mac_create(
-            ...         delete=True, mac_group_id=10)
-            ...         output_all = dev.interface.mac_group_mac_create(
-            ...         mac_group_id=10, mac_address='0011.1111.0a23')
-        """
-
-        mac_group_id = kwargs.pop('mac_group_id')
-        mac_group_entry = kwargs.pop('mac_address', None)
-
-        if int(mac_group_id) not in range(1, 501):
-            raise ValueError('`mac_group_id` not in range[1,500]')
-
-        get_config = kwargs.pop('get', False)
-        delete = kwargs.pop('delete', False)
-        callback = kwargs.pop('callback', self._callback)
-
-        map_args = dict(mac_group=mac_group_id)
-        if delete:
-            if mac_group_entry is None:
-                map_args.update(mac_group_entry=(mac_group_entry,))
-            method_name = 'mac_group_mac_delete'
-            config = (method_name, map_args)
-            return callback(config)
-        if not get_config:
-            map_args.update(mac_group_entry=(mac_group_entry,))
-            method_name = 'mac_group_mac_create'
-            config = (method_name, map_args)
-            return callback(config)
-        elif get_config:
-            if mac_group_entry is not None:
-                map_args.update(mac_group_entry=(mac_group_entry,))
-            method_name = 'mac_group_mac_get'
-            config = (method_name, map_args)
-            output = callback(config, handler='get_config')
-            util = Util(output.data)
-            if output.data != '<output></output>':
-                if mac_group_entry is None:
-                    result = util.findall(util.root, './/entry-address')
-                else:
-                    result = util.find(util.root, './/entry-address')
-            else:
-                result = None
-        return result
-
-    def switchport_access_mac_group_create(self, **kwargs):
-        """Config/get/delete switchport access with the mac-group
-
-        Args:
-            intf_type (str): Interface Type.('ethernet',
-                             'port_channel', gigabitethernet,
-                              tengigabitethernet etc).
-            intf_name (str): Interface Name
-            access_vlan_id (int): Access vlan id.
-                                 <1-4090/8191 when VFAB disabled/enabled>
-            mac_group_id(int): Mac Group Id. Valid Range [1,500]
-            get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the service policy on the interface.
-        Returns:
-            Return value of `callback`.
-        Raises:
-            KeyError: if `mac_group_id`, `access_vlan_id` and intf_name
-                      are not specified.
-        Examples:
-            >>> import pyswitch.device
-            >>> switches = ['10.24.39.211', '10.24.39.203']
-            >>> auth = ('admin', 'password')
-            >>> for switch in switches:
-            ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output_all = dev.interface.
-            ...             switchport_access_mac_group_create(
-            ...             get=True, intf_type='tengigabitethernet',
-            ...             intf_name='235/0/35')
-            ...         dev.interface.switchport_access_mac_group_create(
-            ...             delete=True, intf_type='tengigabitethernet',
-            ...             intf_name='235/0/35',  access_vlan_id='100',
-            ...             mac_group_id='11')
-            ...         dev.interface.switchport_access_mac_group_create(
-            ...             intf_type='tengigabitethernet',
-            ...             intf_name='235/0/35',
-            ...             access_vlan_id='100', mac_group_id='11')
-        """
-
-        intf_type = kwargs.pop('intf_type', 'ethernet')
-        intf_name = kwargs.pop('intf_name')
-        mac_group_id = kwargs.pop('mac_group_id', None)
-        access_vlan_id = kwargs.pop('access_vlan_id', None)
-
-        valid_int_types = self.valid_int_types + ['ethernet']
-        if intf_type not in valid_int_types:
-            raise ValueError('intf_type must be one of: %s' %
-                             repr(valid_int_types))
-
-        get_config = kwargs.pop('get', False)
-        delete = kwargs.pop('delete', False)
-        callback = kwargs.pop('callback', self._callback)
-
-        if intf_type == 'ethernet':
-            map_args = dict(ethernet=intf_name)
-        elif intf_type == 'gigabitethernet':
-            map_args = dict(gigabitethernet=intf_name)
-        elif intf_type == 'tengigabitethernet':
-            map_args = dict(tengigabitethernet=intf_name)
-        elif intf_type == 'fortygigabitethernet':
-            map_args = dict(fortygigabitethernet=intf_name)
-        else:
-            map_args = dict(port_channel=intf_name)
-
-        if delete:
-            if access_vlan_id is not None and mac_group_id is not None:
-                map_args.update(vlan=(access_vlan_id, mac_group_id))
-            method_name = 'interface_%s_switchport_access_vlan_delete' % intf_type
-            config = (method_name, map_args)
-            return callback(config)
-        if not get_config:
-            map_args.update(vlan=(access_vlan_id, mac_group_id))
-            if int(mac_group_id) not in range(1, 501):
-                raise ValueError('`mac_group_id` not in range[1,500]')
-            if not pyswitch.utilities.valid_vlan_id(access_vlan_id):
-                raise InvalidVlanId("`name` must be between `1` and `8191`")
-
-            method_name = 'interface_%s_switchport_access_vlan_create' % intf_type
-            config = (method_name, map_args)
-            return callback(config)
-        elif get_config:
-            if access_vlan_id is not None and mac_group_id is not None:
-                map_args.update(vlan=(access_vlan_id, mac_group_id))
-
-            method_name = 'interface_%s_switchport_access_vlan_get' % intf_type
-            config = (method_name, map_args)
-            output = callback(config, handler='get_config')
-            util = Util(output.data)
-            result = []
-            if output.data != '<output></output>':
-                if mac_group_id is None and access_vlan_id is None:
-                    vlans = util.findall(util.root, './/access-vlan-id')
-                    macs = util.findall(util.root, './/mac-group')
-                    for each_vlan, each_mac in zip(vlans, macs):
-                        result.append((each_vlan, each_mac))
-                else:
-                    result = util.find(util.root, './/mac-group')
-        return result
-
-    def switchport_access_mac_create(self, **kwargs):
-        """Config/get/delete switchport access with the mac
-
-        Args:
-            intf_type (str): Interface Type.('ethernet',
-                             'port_channel', gigabitethernet,
-                              tengigabitethernet etc).
-            intf_name (str): Interface Name
-            access_vlan_id (int): Access vlan id.
-                                 <1-4090/8191 when VFAB disabled/enabled>
-            mac_address (str): Mac address. HHHH.HHHH.HHHH format
-            get (bool): Get config instead of editing config. (True, False)
-            delete (bool): True, delete the service policy on the interface.
-        Returns:
-            Return value of `callback`.
-        Raises:
-            KeyError: if `mac_address`, `access_vlan_id` and intf_name
-                      are not specified.
-        Examples:
-            >>> import pyswitch.device
-            >>> switches = ['10.24.39.211', '10.24.39.203']
-            >>> auth = ('admin', 'password')
-            >>> for switch in switches:
-            ...     conn = (switch, '22')
-            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output_all = dev.interface.
-            ...             switchport_access_mac_create
-            ...             get=True, intf_type='tengigabitethernet',
-            ...             intf_name='235/0/35')
-            ...         dev.interface.switchport_access_mac_create
-            ...             delete=True, intf_type='tengigabitethernet',
-            ...             intf_name='235/0/35',  access_vlan_id='100',
-            ...             mac_address='0011.2233.4455')
-            ...         dev.interface.switchport_access_mac_create
-            ...             intf_type='tengigabitethernet',
-            ...             intf_name='235/0/35',
-            ...             access_vlan_id='100', mac_address='0011.2233.4455')
-        """
-
-        intf_type = kwargs.pop('intf_type', 'ethernet')
-        intf_name = kwargs.pop('intf_name')
-        mac_address = kwargs.pop('mac_address', None)
-        access_vlan_id = kwargs.pop('access_vlan_id', None)
-
-        valid_int_types = self.valid_int_types + ['ethernet']
-        if intf_type not in valid_int_types:
-            raise ValueError('intf_type must be one of: %s' %
-                             repr(valid_int_types))
-
-        get_config = kwargs.pop('get', False)
-        delete = kwargs.pop('delete', False)
-        callback = kwargs.pop('callback', self._callback)
-
-        if intf_type == 'ethernet':
-            map_args = dict(ethernet=intf_name)
-        elif intf_type == 'gigabitethernet':
-            map_args = dict(gigabitethernet=intf_name)
-        elif intf_type == 'tengigabitethernet':
-            map_args = dict(tengigabitethernet=intf_name)
-        elif intf_type == 'fortygigabitethernet':
-            map_args = dict(fortygigabitethernet=intf_name)
-        else:
-            map_args = dict(port_channel=intf_name)
-
-        if delete:
-            if access_vlan_id is not None and mac_address is not None:
-                map_args.update(vlan=(access_vlan_id, mac_address))
-            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_' \
-                          'classification_delete' % intf_type
-            config = (method_name, map_args)
-            return callback(config)
-        if not get_config:
-            map_args.update(vlan=(access_vlan_id, mac_address))
-            if not pyswitch.utilities.valid_vlan_id(access_vlan_id):
-                raise InvalidVlanId("`name` must be between `1` and `8191`")
-
-            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_' \
-                          'classification_create' % intf_type
-            config = (method_name, map_args)
-            return callback(config)
-        elif get_config:
-            if access_vlan_id is not None and mac_address is not None:
-                map_args.update(vlan=(access_vlan_id, mac_address))
-
-            method_name = 'interface_%s_switchport_access_vlan_access_mac_vlan_' \
-                          'classification_get' % intf_type
-            config = (method_name, map_args)
-            output = callback(config, handler='get_config')
-            util = Util(output.data)
-            result = []
-            if output.data != '<output></output>':
-                if mac_address is None and access_vlan_id is None:
-                    vlans = util.findall(util.root, './/access-vlan-id')
-                    macs = util.findall(util.root, './/mac')
-                    for each_vlan, each_mac in zip(vlans, macs):
-                        result.append((each_vlan, each_mac))
-                else:
-                    result = util.find(util.root, './/mac')
-        return result
-
     def switchport_trunk_allowed_ctag(self, **kwargs):
         """Config/get/delete switchport trunk add/remove ctag
 
@@ -7352,3 +7196,15 @@ class Interface(object):
             if is_vlan_interface_present and not is_intf_name_present:
                 all_true = False
         return all_true
+
+    def mac_group_create(self, **kwargs):
+        raise ValueError('MAC GROUP Feature is not available on this Platform')
+
+    def mac_group_mac_create(self, **kwargs):
+        raise ValueError('MAC GROUP Feature is not available on this Platform')
+
+    def switchport_access_mac_group_create(self, **kwargs):
+        raise ValueError('MAC GROUP Feature is not available on this Platform')
+
+    def switchport_access_mac_create(self, **kwargs):
+        raise ValueError('MAC GROUP Feature is not available on this Platform')
