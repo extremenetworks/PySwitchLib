@@ -252,6 +252,10 @@ def valid_interface(int_type, name):
         return valid_port_channel_name(name)
     if int_type == 've':
         return valid_vlan_id(name)
+    if int_type == 'vlan':
+        return re.search(r'^[0-9]{1,4}$', name) is not None
+    if int_type == 'management':
+        return re.search(r'^[0-9]$', name) is not None
     if int_type == 'loopback':
         return valid_lopback_number(name)
     else:
