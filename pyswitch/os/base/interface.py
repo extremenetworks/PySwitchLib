@@ -4032,6 +4032,119 @@ class Interface(object):
         config = (method_name, ageout_args)
         return callback(config)
 
+    def int_ipv6_nd_cache_expire(self, **kwargs):
+        """
+        Add "ipv6 nd cachec expire<>".
+
+        Args:
+            int_type:L3 Interface type on which the ageout time needs to be
+            configured.
+            name:L3 Interface name on which the ageout time needs to be
+            configured.
+            enable (bool): If ND Cache expire time needs to be enabled
+            or disabled.Default:``True``.
+            nd_cache_expire_time: ND Cache expire time <0..240>
+            get (bool) : Get config instead of editing config. (True, False)
+            rbridge_id (str): rbridge-id for device.
+             Only required when type is 've' and os type is nos.
+            callback (function): A function executed upon completion of the
+               method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.37.18.136']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         int_type='tengigabitethernet',
+            ...         name='2/0/2',
+            ...         nd_cache_expire_time='500',
+            ...         rbridge_id='2')
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         int_type='ve',
+            ...         name='4080',
+            ...         rbridge_id='2',
+            ...         nd_cache_expire_time='500')
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         get=True,int_type='tengigabitethernet',
+            ...         name='2/0/2',
+            ...         rbridge_id='2')
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         enable=False,int_type='tengigabitethernet',
+            ...         name='2/0/2',
+            ...         rbridge_id='2')
+            >>> switches = ['10.24.81.180']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         int_type='ethernet',
+            ...         name='0/2',
+            ...         nd_cache_expire_time='500',
+            ...         )
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         int_type='ve',
+            ...         name='4080',
+            ...         nd_cache_expire_time='500')
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         get=True,int_type='ethernet',
+            ...         name='0/2',
+            ...         )
+            ...         output = dev.interface.int_ipv6_nd_cache_expire(
+            ...         enable=False,int_type='ethernet',
+            ...         name='0/2',
+            ...         )
+         """
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+        nd_cache_expire_time = kwargs.pop('nd_cache_expire_time', '')
+        enable = kwargs.pop('enable', True)
+        get = kwargs.pop('get', False)
+        rbridge_id = kwargs.pop('rbridge_id', None)
+        callback = kwargs.pop('callback', self._callback)
+
+        valid_int_types = self.valid_int_types
+        valid_int_types.append('ve')
+
+        ageout_args = dict()
+        ageout_args[int_type] = name
+
+        method_name = 'interface_%s_ipv6_nd_cache_expire_' % int_type
+        if int_type == 've':
+            if rbridge_id is not None and self.has_rbridge_id:
+                method_name = 'rbridge_id_%s' % method_name
+                ageout_args['rbridge_id'] = rbridge_id
+            if not pyswitch.utilities.valid_vlan_id(name):
+                raise InvalidVlanId("`name` must be between `1` and `8191`")
+        elif not pyswitch.utilities.valid_interface(int_type, name):
+            raise ValueError('`name` must be in the format of x/y/z for '
+                             'physical interfaces or x for port channel.')
+        if get:
+            method_name = '%sget' % method_name
+            config = (method_name, ageout_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            return util.find(util.root, './/expire')
+
+        if not enable:
+            method_name = '%sdelete' % method_name
+
+        else:
+            if (int(nd_cache_expire_time) < 30) or (int(nd_cache_expire_time) > 14400):
+                raise ValueError('nd_cache_expire_time must be within 30-14400')
+            if int_type not in valid_int_types:
+                raise ValueError('`int_type` must be one of: %s' %
+                                 repr(valid_int_types))
+
+            ageout_args['expire'] = nd_cache_expire_time
+            method_name = '%supdate' % method_name
+
+        config = (method_name, ageout_args)
+        return callback(config)
+
     def overlay_gateway_name(self, **kwargs):
         """Configure Name of Overlay Gateway on vdx switches
 
