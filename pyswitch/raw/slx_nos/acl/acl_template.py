@@ -156,11 +156,23 @@ acl_apply = """
    {% if rbridge_id is defined and rbridge_id is not none %}
       <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
          <rbridge-id>{{rbridge_id}}</rbridge-id>
+   {% elif intf_type == 've' %}
+      <routing-system xmlns="urn:brocade.com:mgmt:brocade-common-def">
+   {% elif intf_type == 'vlan' %}
+      <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
    {% endif %}
          <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
             <{{intf_type}}>
                <name>{{intf}}</name>
-               {% if address_type == 'mac' %}
+               {% if intf_type == 'management' %}
+                  <{{address_type}}>
+                     <access-group
+                        xmlns="urn:brocade.com:mgmt:brocade-{{address_type}}-access-list">
+                        <mgmt-{{address_type}}-access-list>{{acl_name}}</mgmt-{{address_type}}-access-list>
+                        <mgmt-ip-direction>{{acl_direction}}</mgmt-ip-direction>
+                     </access-group>
+                  </{{address_type}}>
+               {% elif address_type == 'mac' %}
                   <mac xmlns="urn:brocade.com:mgmt:brocade-mac-access-list">
                      <access-group>
                         <mac-access-list>{{acl_name}}</mac-access-list>
@@ -184,7 +196,11 @@ acl_apply = """
                      </ip>
                   </ip-acl-interface>
                {% elif address_type == 'ipv6' %}
-                  <ipv6>
+                  {% if intf_type == 've' %}
+                   <ipv6 xmlns="urn:brocade.com:mgmt:brocade-ipv6-config">
+                  {% else %}
+                   <ipv6>
+                  {% endif %}
                      <access-group
                         xmlns="urn:brocade.com:mgmt:brocade-ipv6-access-list">
                         <ipv6-access-list>{{acl_name}}</ipv6-access-list>
@@ -199,6 +215,10 @@ acl_apply = """
          </interface>
    {% if rbridge_id is defined and rbridge_id is not none %}
       </rbridge-id>
+   {% elif intf_type == 've' %}
+      </routing-system>
+   {% elif intf_type == 'vlan' %}
+      </interface-vlan>
    {% endif %}
 </config>
 """
@@ -208,11 +228,24 @@ acl_remove = """
    {% if rbridge_id is defined and rbridge_id is not none %}
       <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
          <rbridge-id>{{rbridge_id}}</rbridge-id>
+   {% elif intf_type == 've' %}
+      <routing-system xmlns="urn:brocade.com:mgmt:brocade-common-def">
+   {% elif intf_type == 'vlan' %}
+      <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
    {% endif %}
          <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
             <{{intf_type}}>
                <name>{{intf}}</name>
-               {% if address_type == 'mac' %}
+               {% if intf_type == 'management' %}
+                  <{{address_type}}>
+                     <access-group
+                        xmlns="urn:brocade.com:mgmt:brocade-{{address_type}}-access-list"
+                        operation="delete">
+                        <mgmt-{{address_type}}-access-list>{{acl_name}}</mgmt-{{address_type}}-access-list>
+                        <mgmt-ip-direction>{{acl_direction}}</mgmt-ip-direction>
+                     </access-group>
+                  </{{address_type}}>
+               {% elif address_type == 'mac' %}
                   <mac xmlns="urn:brocade.com:mgmt:brocade-mac-access-list">
                      <access-group operation="delete">
                         <mac-access-list>{{acl_name}}</mac-access-list>
@@ -236,7 +269,11 @@ acl_remove = """
                      </ip>
                   </ip-acl-interface>
                {% elif address_type == 'ipv6' %}
-                  <ipv6>
+                  {% if intf_type == 've' %}
+                   <ipv6 xmlns="urn:brocade.com:mgmt:brocade-ipv6-config">
+                  {% else %}
+                   <ipv6>
+                  {% endif %}
                      <access-group
                         xmlns="urn:brocade.com:mgmt:brocade-ipv6-access-list"
                         operation="delete">
@@ -252,6 +289,10 @@ acl_remove = """
          </interface>
    {% if rbridge_id is defined and rbridge_id is not none %}
       </rbridge-id>
+   {% elif intf_type == 've' %}
+      </routing-system>
+   {% elif intf_type == 'vlan' %}
+      </interface-vlan>
    {% endif %}
 </config>
 """
