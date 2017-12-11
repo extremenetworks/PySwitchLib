@@ -1859,15 +1859,3 @@ class Interface(BaseInterface):
         util = Util(output.data)
         result = util.findall(util.root, './/bridge-domain-id')
         return result
-
-    def mac_group_create(self, **kwargs):
-        raise ValueError('MAC GROUP Feature is not available on this Platform')
-
-    def mac_group_mac_create(self, **kwargs):
-        raise ValueError('MAC GROUP Feature is not available on this Platform')
-
-    def switchport_access_mac_group_create(self, **kwargs):
-        raise ValueError('MAC GROUP Feature is not available on this Platform')
-
-    def switchport_access_mac_create(self, **kwargs):
-        raise ValueError('MAC GROUP Feature is not available on this Platform')

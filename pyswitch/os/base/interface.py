@@ -7196,3 +7196,15 @@ class Interface(object):
             if is_vlan_interface_present and not is_intf_name_present:
                 all_true = False
         return all_true
+
+    def mac_group_create(self, **kwargs):
+        raise ValueError('MAC GROUP Feature is not available on this Platform')
+
+    def mac_group_mac_create(self, **kwargs):
+        raise ValueError('MAC GROUP Feature is not available on this Platform')
+
+    def switchport_access_mac_group_create(self, **kwargs):
+        raise ValueError('MAC GROUP Feature is not available on this Platform')
+
+    def switchport_access_mac_create(self, **kwargs):
+        raise ValueError('MAC GROUP Feature is not available on this Platform')
