@@ -85,13 +85,18 @@ class Acl(BaseAcl):
             ...                              address_type='ip')
         """
 
+        if 'address_type' not in parameters:
+            raise ValueError("address_type is required param")
+
         address_type = parameters['address_type']
-        acl_type = parameters['acl_type']
+        acl_type = parameters.get('acl_type', None)
         acl_name = self.mac.parse_acl_name(**parameters)
 
         if address_type == 'mac':
             config = 'mac access-list ' + acl_name
         elif address_type == 'ip':
+            if not acl_type:
+                raise ValueError("acl_type is required param for ip ACL")
             config = 'ip access-list ' + acl_type + ' ' + acl_name
         elif address_type == 'ipv6':
             config = 'ipv6 access-list ' + acl_name
