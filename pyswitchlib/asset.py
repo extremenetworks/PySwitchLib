@@ -27,7 +27,7 @@ class Asset(object):
     Asset provides connection information for PySwitchLib APIs.
     """
 
-    def __init__(self, ip_addr='', auth=('admin', 'password'), rest_proto='', ca_cert='', fw_ver='', timeout='', api_port=None):
+    def __init__(self, ip_addr='', auth=('admin', 'password'), rest_proto='', cacert='', cacert_verify='True', fw_ver='', timeout='', api_port=None):
         def on_deletion (killed_ref):
             self._cleanup_timer_handle()
             self._session.close()
@@ -50,22 +50,6 @@ class Asset(object):
         self._overall_success = True
         self._overall_status = []
 
-        if rest_proto:
-            if rest_proto.lower() == 'http' or rest_proto.lower() == 'https':
-                self._rest_protocol = rest_proto.lower()
-            else:
-                raise RestProtocolTypeError("Rest protocol type must be 'http' or 'https'.  '" + rest_proto + "' was specified.")
-
-        if ca_cert:
-            if os.path.isfile(ca_cert):
-                self._session.verify = ca_cert
-                self._rest_protocol = 'https'
-            else:
-                raise CACertificateNotFoundError("The CA certificate file '" + ca_cert + "' could not be found.")
-
-        if timeout != '':
-            self._session_timeout = timeout
-
         self._rest_session_auth_max_retries = 1
         self._rest_session_auth_token_expiration = 160
         self._rest_session_auth_token_expired = '_EXPIRED_'
@@ -82,7 +66,7 @@ class Asset(object):
         self._update_uri_prefix_paths()
         self._update_fw_version()
         self._supported_module_name = self._get_supported_module()
-        #self._load_module(supported_module_name=self._supported_module_name)
+
         self._pyro_ns_port = None
         self._pyro_proxy_name = ''
         self._pyro_daemon_id = 'default'
@@ -99,6 +83,10 @@ class Asset(object):
             elif 'api_daemon_' in key:
                 if sys.prefix in self._pyswitchlib_conf[key]:
                     self._pyro_daemon_id = key
+            elif 'cacert' == key:
+                if cacert == '':
+                    cacert = self._pyswitchlib_conf[key]
+                    
 
         if api_port:
             self._pyro_ns_port = api_port
@@ -112,6 +100,29 @@ class Asset(object):
             if self._pyswitchlib_ns_daemon:
                 if self._pyro_daemon_id in self._pyswitchlib_ns_daemon:
                     self._pyro_proxy_name = self._pyswitchlib_ns_daemon[self._pyro_daemon_id]
+
+        if rest_proto:
+            if rest_proto.lower() == 'http' or rest_proto.lower() == 'https':
+                self._rest_protocol = rest_proto.lower()
+            else:
+                raise RestProtocolTypeError("Rest protocol type must be 'http' or 'https'.  '" + rest_proto + "' was specified.")
+
+        if cacert_verify:
+            if self._rest_protocol == 'https':
+                if cacert:
+                    if os.path.isfile(cacert):
+                        self._session.verify = cacert
+                    else:
+                        raise CACertificateNotFoundError("The CA certificate file '" + cacert + "' could not be found.")
+                else:
+                    raise CACertificateNotSpecifiedError("The path to the CA certificate file is not specified.")
+            else:
+                self._session.verify = False
+        else:
+            self._session.verify = False
+
+        if timeout != '':
+            self._session_timeout = timeout
 
         with Pyro4.Proxy(self._pyro_proxy_name) as pyro_proxy:
             for n in range(self._pyro_bind_max_retries):

@@ -26,3 +26,6 @@ class RestProtocolTypeError(PyswitchlibException):
 
 class CACertificateNotFoundError(PyswitchlibException):
     """If provided path to the CA certificate cannot be found."""
+
+class CACertificateNotSpecifiedError(PyswitchlibException):
+    """If the CA certificate path is not specified."""
