@@ -612,7 +612,7 @@ if __name__ == "__main__":
                 with open(pid_file, 'r') as pid:
                     if os.path.isdir(os.path.join(os.sep, 'proc', pid.readline().rstrip())):
                         print(sys.argv[0].split('/')[-1] + ' is already started.')
-                        sys.exit(1)
+                        sys.exit(0)
         elif sys.argv[1] == 'restart':
             if not os.path.exists(pid_file):
                 print(sys.argv[0].split('/')[-1] + ' is not started.')
