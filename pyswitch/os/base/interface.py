@@ -1123,6 +1123,10 @@ class Interface(object):
         ctag = kwargs.pop('ctag', None)
         vlan = kwargs.pop('vlan', None)
 
+        # user wanted to set just port mode to trunk
+        if action is None and vlan == []:
+            return
+
         if action not in valid_actions:
             raise ValueError('%s must be one of: %s' %
                              (action, valid_actions))
