@@ -40,12 +40,14 @@ NI_VERSIONS = {
         'system': pyswitch.snmp.mlx.base.system.System,
         'utils': pyswitch.snmp.mlx.base.utils.Utils,
         'services': pyswitch.snmp.mlx.base.services.Services,
+        'acl': pyswitch.snmp.mlx.base.acl.acl.Acl,
     },
     '5.9': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
         'utils': pyswitch.snmp.mlx.base.utils.Utils,
         'services': pyswitch.snmp.mlx.base.services.Services,
+        'acl': pyswitch.snmp.mlx.base.acl.acl.Acl,
     },
     '6.0': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
@@ -59,12 +61,14 @@ NI_VERSIONS = {
         'system': pyswitch.snmp.mlx.base.system.System,
         'utils': pyswitch.snmp.base.utils.Utils,
         'services': pyswitch.snmp.mlx.base.services.Services,
+        'acl': pyswitch.snmp.mlx.base.acl.acl.Acl,
     },
     '6.2': {
         'interface': pyswitch.snmp.mlx.base.interface.Interface,
         'system': pyswitch.snmp.mlx.base.system.System,
         'utils': pyswitch.snmp.mlx.base.utils.Utils,
         'services': pyswitch.snmp.mlx.base.services.Services,
+        'acl': pyswitch.snmp.mlx.base.acl.acl.Acl,
     },
 }
 
