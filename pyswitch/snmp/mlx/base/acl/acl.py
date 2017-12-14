@@ -435,8 +435,9 @@ class Acl(BaseAcl):
         if address_type not in ['mac', 'ip', 'ipv6']:
             raise ValueError('{} not supported'.format(address_type))
 
-        if intf_type not in ['ethernet', 'management', 'loopback', 've']:
-            raise ValueError('intf type:{} not supported'
+        if address_type == 'mac':
+            if intf_type != 'ethernet':
+                raise ValueError('intf type:{} not supported'
                                  .format(intf_type))
 
         for intf in intf_name:
@@ -489,8 +490,9 @@ class Acl(BaseAcl):
         if address_type not in ['mac', 'ip', 'ipv6']:
             raise ValueError('{} not supported'.format(address_type))
 
-        if intf_type not in ['ethernet', 'management', 'loopback', 've']:
-            raise ValueError('intf type:{} not supported'
+        if address_type == 'mac':
+            if intf_type != 'ethernet':
+                raise ValueError('intf type:{} not supported'
                                  .format(intf_type))
 
         for intf in intf_name:
