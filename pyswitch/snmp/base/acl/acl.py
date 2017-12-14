@@ -377,7 +377,7 @@ class Acl(object):
                     'cannot be used as an ACL name' in line or \
                     'name can\'t be more than 255 characters' in line:
                 ret = method + ' [ ' + config + ' ]: failed ' + line
-                break;
+                break
 
         if ret:
             raise ValueError(ret)
