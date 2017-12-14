@@ -3651,7 +3651,7 @@ class Interface(object):
 
         Examples:
             >>> import pyswitch.device
-            >>> conn = ('10.24.39.211', '22')
+            >>> conn = ('10.37.18.136', '22')
             >>> auth = ('admin', 'password')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     output = dev.interface.ve_interfaces()
@@ -3674,7 +3674,7 @@ class Interface(object):
             int_type = util.find(interface, './/interface-type')
             int_name = util.find(interface, './/interface-name')
             int_state = util.find(interface, './/if-state')
-            int_proto_state = util.findNode(interface, './/line-protocol-state')
+            int_proto_state = util.find(interface, './/line-protocol-state')
             ip_address = util.find(interface, './/ipv4')
             if_name = util.find(interface, './/if-name')
             results = {'interface-type': int_type,
