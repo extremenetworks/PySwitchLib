@@ -20,6 +20,12 @@ NAME=pyswitchlib-api-daemon
 SCRIPTNAME=/etc/init.d/$NAME
 PYSWITCHLIB_CONF_PATH="/etc/pyswitchlib/pyswitchlib.conf"
 
+if [ -f /lib/lsb/init-functions ]; then
+    source /lib/lsb/init-functions
+elif [ -f /etc/init.d/functions ]; then
+    source /etc/init.d/functions
+fi
+
 typeset -A PYSWITCHLIB_CONF
 
 read_pyswitchlib_conf()
