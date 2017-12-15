@@ -623,13 +623,13 @@ if __name__ == "__main__":
                     proc_pid = pid.readline().rstrip()
 
                     if os.path.isdir(os.path.join(os.sep, 'proc', proc_pid)):
-                        print(sys.argv[0].split('/')[-1] + ' (pid ' + proc_pid + ', sys.prefix ' + sys.prefix + ') is running...')
+                        print(sys.argv[0].split('/')[-1] + ' (pid ' + proc_pid + ', ' + daemon_id + ', ' + sys.prefix + ') is running...')
                         sys.exit(0)
                     else:
-                        print(sys.argv[0].split('/')[-1] + ' (sys.prefix ' + sys.prefix + ') is stopped.')
+                        print(sys.argv[0].split('/')[-1] + ' (' + daemon_id + ', ' + sys.prefix + ') is stopped.')
                         sys.exit(3)
             else:
-                print(sys.argv[0].split('/')[-1] + ' is stopped.')
+                print(sys.argv[0].split('/')[-1] + ' (' + daemon_id + ', ' + sys.prefix + ') is stopped.')
                 sys.exit(3)
 
     pyswitchlib_runner = PySwitchLibApiDaemonRunner(pyswitchlib_conf=pyswitchlib_conf, daemon_id=daemon_id)
