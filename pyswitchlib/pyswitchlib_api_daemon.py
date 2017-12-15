@@ -623,7 +623,7 @@ if __name__ == "__main__":
                     proc_pid = pid.readline().rstrip()
 
                     if os.path.isdir(os.path.join(os.sep, 'proc', proc_pid)):
-                        print(sys.argv[0].split('/')[-1] + ' (pid ' + proc_pid + ') is running...')
+                        print(sys.argv[0].split('/')[-1] + ' (pid ' + proc_pid + ', sys.prefix ' + sys.prefix + ') is running...')
                         sys.exit(0)
                     else:
                         print(sys.argv[0].split('/')[-1] + ' is stopped.')
