@@ -10,7 +10,7 @@ from daemon.runner import (DaemonRunner, DaemonRunnerStopFailureError)
 from lockfile import LockTimeout
 
 pyswitchlib_conf_file = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
-pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns.pid')
+pid_file = os.path.join(os.sep, 'etc', 'pyswitchlib', '.pyswitchlib_ns.pid')
 
 
 class PySwitchLibNsDaemon(DaemonRunner):

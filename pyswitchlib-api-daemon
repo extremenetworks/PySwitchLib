@@ -125,7 +125,7 @@ get_api_deamon_path_from_pyswitchlib_conf()
 
 stop_stale_pyswitchlib_pids()
 {
-    local PYSWITCHLIB_PID_FILES=(`ls -1 /tmp/.pyswitchlib*pid 2>/dev/null`)
+    local PYSWITCHLIB_PID_FILES=(`ls -1 /etc/pyswitchlib/.pyswitchlib*pid 2>/dev/null`)
 
     if [ ${#PYSWITCHLIB_PID_FILES[@]} -ge 1 ]; then
         for pid_file in "${PYSWITCHLIB_PID_FILES[@]}"; do

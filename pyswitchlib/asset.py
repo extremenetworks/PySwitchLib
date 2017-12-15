@@ -62,16 +62,11 @@ class Asset(object):
         self._yang_list = None
         self._module_obj = None
 
-        self._create_timer_handle()
-        self._update_uri_prefix_paths()
-        self._update_fw_version()
-        self._supported_module_name = self._get_supported_module()
-
         self._pyro_ns_port = None
         self._pyro_proxy_name = ''
         self._pyro_daemon_id = 'default'
         self._pyro_bind_max_retries = 30
-        self._ns_pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns.pid')
+        self._ns_pid_file = os.path.join(os.sep, 'etc', 'pyswitchlib', '.pyswitchlib_ns.pid')
         self._pyswitchlib_conf_filename = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
         self._pyswitchlib_ns_daemon_filename = os.path.join(os.sep, 'etc', 'pyswitchlib', '.pyswitchlib_ns_daemon.uri')
         self._pyswitchlib_conf = ConfigFileUtil().read(filename=self._pyswitchlib_conf_filename)
@@ -86,7 +81,6 @@ class Asset(object):
             elif 'cacert' == key:
                 if cacert == '':
                     cacert = self._pyswitchlib_conf[key]
-                    
 
         if api_port:
             self._pyro_ns_port = api_port
@@ -123,6 +117,11 @@ class Asset(object):
 
         if timeout != '':
             self._session_timeout = timeout
+
+        self._create_timer_handle()
+        self._update_uri_prefix_paths()
+        self._update_fw_version()
+        self._supported_module_name = self._get_supported_module()
 
         with Pyro4.Proxy(self._pyro_proxy_name) as pyro_proxy:
             for n in range(self._pyro_bind_max_retries):
