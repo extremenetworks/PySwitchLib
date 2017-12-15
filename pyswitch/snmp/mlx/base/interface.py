@@ -1041,7 +1041,7 @@ class Interface(BaseInterface):
 
         callback = kwargs.pop('callback', self._callback)
 
-        int_types = self.valid_int_types
+        int_types = ['ethernet', 'port_channel']
         valid_actions = ['add', 'remove']
 
         if int_type not in int_types:
@@ -1050,6 +1050,9 @@ class Interface(BaseInterface):
 
         action = kwargs.pop('action')
         vlan = kwargs.pop('vlan', None)
+
+        if action is None and vlan == []:
+            raise ValueError("vlan id must be passed for MLX")
 
         if action not in valid_actions:
             raise ValueError('%s must be one of: %s' %
