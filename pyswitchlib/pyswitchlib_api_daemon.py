@@ -626,7 +626,7 @@ if __name__ == "__main__":
                         print(sys.argv[0].split('/')[-1] + ' (pid ' + proc_pid + ', sys.prefix ' + sys.prefix + ') is running...')
                         sys.exit(0)
                     else:
-                        print(sys.argv[0].split('/')[-1] + ' is stopped.')
+                        print(sys.argv[0].split('/')[-1] + ' (sys.prefix ' + sys.prefix + ') is stopped.')
                         sys.exit(3)
             else:
                 print(sys.argv[0].split('/')[-1] + ' is stopped.')
