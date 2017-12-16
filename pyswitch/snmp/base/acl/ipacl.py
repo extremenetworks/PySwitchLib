@@ -204,8 +204,7 @@ class IpAcl(AclParamParser):
                 raise ValueError("The \'protocol\' value {} is invalid."
                                  " Specify \'0-255\' supported values"
                                  .format(protocol_type))
-
-        if protocol_type not in ['a_n', 'ahp', 'argus', 'aris', 'ax25',
+        elif protocol_type not in ['a_n', 'ahp', 'argus', 'aris', 'ax25',
                                  'bbn-rcc', 'bna', 'br-sat-mon', 'cbt',
                                  'cftp', 'chaos', 'compaq-peer', 'cphb',
                                  'cpnx', 'crdup', 'crtp', 'dcn', 'ddp', 'ddx',
