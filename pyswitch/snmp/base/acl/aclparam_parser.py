@@ -154,4 +154,9 @@ class AclParamParser(object):
             raise ValueError("{} cannot be used as an ACL name".format(
                              parameters['acl_name']))
 
-        return parameters['acl_name']
+        acl_name = parameters['acl_name'].strip()
+
+        if " " in acl_name:
+            acl_name = "\"" + acl_name + "\""
+
+        return acl_name
