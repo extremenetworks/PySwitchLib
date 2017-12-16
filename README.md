@@ -15,6 +15,7 @@ The pyswitchlib-api-daemon service is installed with a default configuration fil
 - Default config file is installed at /etc/pyswitchlib/pyswitchlib.conf.default
 - Working config file is at /etc/pyswitchlib/pyswitchlib.conf.  If a working config file does not exist then the default config file will be copied and used as the working.
 - The config file specifies how many api daemons will be launched and which sys.prefixes should be associated to the daemon.  When multiple sys.prefixes or virtualenv prefixes are associated to the api daemon (delimited by a colon), then any pyswitchlib assets created under these virtualenvs will utilize this single api daemon.
+- The 'cacert = <Path to trusted CA certificate file>' is optional.  If ca certificate file is populated then it will be used when https protocol is specified when assets are constructed.
 - The 'ns_port = <tcp port #>' configuration is optional.  If specified, then a pyswitchlib_ns_daemon will be luanched as well as the configured api daemons and pyswitchlib assets will use the name server daemon to lookup which api daemons to use.
 - When the ns_port configuration is not specified, then a file is maintained to list which api daemons are running and how to connect to them.  Pyswitchlib assets will look up this file to connect to the proper api daemon.  The file is located at /tmp/.pswitchlib_ns_daemon.uri.
 - Any python virtualenv that is not found in the config file will try to connect to the default API daemon that is started on the host's base python.
@@ -28,12 +29,16 @@ The pyswitchlib-api-daemon service is installed with a default configuration fil
 
 ### Install required packages
 ```
-    sudo -H pip install pyswitchlib
+    Standard PyPI Package Installation:
+        sudo -H pip install pyswitchlib
+
+    GitHub Repo Installation:
+        sudo -H [<virtualenv prefix>/bin/]pip install -U git+https://github.com/StackStorm/PySwitchLib[@branch_name]
 ```
 
 ### Inside a python program do this
 ```
-    import pyswitchlib.asset
+    import pyswitch.device
 ```
 
 # pySwitchLib Version History
