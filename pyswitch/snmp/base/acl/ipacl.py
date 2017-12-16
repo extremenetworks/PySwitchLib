@@ -102,10 +102,14 @@ class IpAcl(AclParamParser):
         if 'source' not in parameters or not parameters['source']:
             raise ValueError("Missing \'source\' in parameters")
 
+        protocol_type = None
+        if 'protocol_type' in parameters and parameters['protocol_type']:
+            protocol_type = parameters['protocol_type']
+
         src = parameters['source']
         src = ' '.join(src.split())
 
-        return self._parse_source_destination(parameters['protocol_type'], src)
+        return self._parse_source_destination(protocol_type, src)
 
     def parse_destination(self, **parameters):
         """
