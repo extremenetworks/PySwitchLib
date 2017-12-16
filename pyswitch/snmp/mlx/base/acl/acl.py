@@ -732,6 +732,7 @@ class Acl(BaseAcl):
         user_data['protocol_str'] = self.ip.parse_protocol(**parameters)
         user_data['source_str'] = self.ip.parse_source(**parameters)
         user_data['dst_str'] = self.ip.parse_destination(**parameters)
+        user_data['copy_sflow'] = self.ip.parse_copy_sflow(**parameters)
         user_data['established_str'] = self.ip.parse_established(**parameters)
         user_data['icmp_filter_str'] = \
             self.ip.parse_icmp_filter(**parameters)

@@ -254,26 +254,6 @@ class Ipv6Acl(AclParamParser):
 
         return None
 
-    def parse_copy_sflow(self, **parameters):
-        """
-        parse the copy_sflow mapping param.
-        Args:
-            parameters contains:
-                copy_sflow: (string) Enables copy-sflow for the rule
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'copy_sflow' not in parameters:
-            return None
-
-        if parameters['copy_sflow']:
-            return 'copy_sflow'
-
-        return None
-
     def parse_drop_precedence(self, **parameters):
         """
         parse the drop_precedence param

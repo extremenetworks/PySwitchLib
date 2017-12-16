@@ -2,13 +2,14 @@
 def validate_params_mlx_add_ipv4_rule_acl(**parameters):
 
     required_params = ['source', 'acl_name', 'action']
-    accepted_params = ['precedence', 'dscp_marking', 'mirror',
+    accepted_params = ['precedence', 'dscp_marking', 'copy_sflow', 'mirror',
                        'drop_precedence_force', 'vlan_id', 'established',
                        'log', 'priority_mapping', 'seq_id', 'destination',
                        'suppress_rpf_drop', 'priority', 'source',
                        'priority_force', 'option', 'acl_name',
                        'drop_precedence', 'fragment', 'dscp', 'protocol_type',
                        'tos', 'action', 'icmp_filter']
+
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -29,10 +30,11 @@ def validate_params_mlx_add_ipv6_rule_acl(**parameters):
 
     required_params = ['acl_name', 'source', 'action']
     accepted_params = ['tcp_operator', 'acl_name', 'fragment', 'dscp',
-                       'dscp_marking', 'mirror', 'drop_precedence_force',
-                       'vlan_id', 'drop_precedence', 'log', 'seq_id',
-                       'destination', 'source', 'protocol_type', 'action',
-                       'icmp_filter']
+                       'dscp_marking', 'copy_sflow', 'mirror',
+                       'drop_precedence_force', 'vlan_id', 'drop_precedence',
+                       'log', 'seq_id', 'destination', 'source',
+                       'protocol_type', 'action', 'icmp_filter']
+
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
