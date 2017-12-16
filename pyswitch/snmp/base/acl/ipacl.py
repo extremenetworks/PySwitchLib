@@ -28,7 +28,7 @@ class IpAcl(AclParamParser):
 
         if len(op_str) == 2:
             if (op_str[0] == 'neq' or op_str[0] == 'lt' or
-                op_str[0] == 'gt' or op_str[0] == 'eq'):
+                    op_str[0] == 'gt' or op_str[0] == 'eq'):
                 return True
         elif len(op_str) == 3 and op_str[0] == 'range':
             return True
@@ -209,35 +209,36 @@ class IpAcl(AclParamParser):
                                  " Specify \'0-255\' supported values"
                                  .format(protocol_type))
         elif protocol_type not in ['a_n', 'ahp', 'argus', 'aris', 'ax25',
-                                 'bbn-rcc', 'bna', 'br-sat-mon', 'cbt',
-                                 'cftp', 'chaos', 'compaq-peer', 'cphb',
-                                 'cpnx', 'crdup', 'crtp', 'dcn', 'ddp', 'ddx',
-                                 'dgp', 'divert', 'egp', 'emcon', 'encap',
-                                 'esp', 'etherip', 'fc', 'fire', 'ggp', 'gmtp',
-                                 'gre', 'hip', 'hmp', 'i-nlsp', 'iatp', 'icmp',
-                                 'idpr', 'idpr-cmtp', 'idrp', 'ifmp', 'igmp',
-                                 'igp', 'igrp', 'il', 'ip', 'ipcomp', 'ipcv',
-                                 'ipencap', 'ipip', 'iplt', 'ippc', 'ipv6',
-                                 'ipv6-frag', 'ipv6-icmp', 'ipv6-nonxt',
-                                 'ipv6-opts', 'ipv6-route', 'ipx-in-ip',
-                                 'irtp', 'isis', 'iso-ip', 'iso-tp4',
-                                 'kryptolan', 'l2tp', 'larp', 'leaf-1',
-                                 'leaf-2', 'manet', 'merit-inp', 'mfe-nsp',
-                                 'mhrp', 'micp', 'mobile', 'mobility-header',
-                                 'mpls-in-ip', 'mtp', 'mux', 'narp', 'netblt',
-                                 'nsfnet-igp', 'nvp', 'ospf', 'pgm', 'pim',
-                                 'pipe', 'pnni', 'prm', 'ptp', 'pup', 'pvp',
-                                 'qnx', 'rdp', 'rsvp', 'rsvp-e2e-ignore',
-                                 'rvd', 'sat-expak', 'sat-mon', 'scc-sp',
-                                 'scps', 'sctp', 'sdrp', 'secure-vmtp', 'sep',
-                                 'shim6', 'skip', 'sm', 'smp', 'snp',
-                                 'sprite-rpc', 'sps', 'srp', 'sscopmce', 'st',
-                                 'st2', 'sun-nd', 'swipe', 'tcf', 'tcp',
-                                 'third-pc', 'tlsp', 'tp++', 'trunk-1',
-                                 'trunk-2', 'ttp', 'udp', 'udplite', 'uti',
-                                 'vines', 'visa', 'vlan', 'vmtp', 'vrrp',
-                                 'wb-expak', 'wb-mon', 'wsn', 'xnet',
-                                 'xns-idp', 'xtp']:
+                                   'bbn-rcc', 'bna', 'br-sat-mon', 'cbt',
+                                   'cftp', 'chaos', 'compaq-peer', 'cphb',
+                                   'cpnx', 'crdup', 'crtp', 'dcn', 'ddp',
+                                   'ddx', 'dgp', 'divert', 'egp', 'emcon',
+                                   'encap', 'esp', 'etherip', 'fc', 'fire',
+                                   'ggp', 'gmtp', 'gre', 'hip', 'hmp',
+                                   'i-nlsp', 'iatp', 'icmp', 'idpr',
+                                   'idpr-cmtp', 'idrp', 'ifmp', 'igmp', 'igp',
+                                   'igrp', 'il', 'ip', 'ipcomp', 'ipcv',
+                                   'ipencap', 'ipip', 'iplt', 'ippc', 'ipv6',
+                                   'ipv6-frag', 'ipv6-icmp', 'ipv6-nonxt',
+                                   'ipv6-opts', 'ipv6-route', 'ipx-in-ip',
+                                   'irtp', 'isis', 'iso-ip', 'iso-tp4',
+                                   'kryptolan', 'l2tp', 'larp', 'leaf-1',
+                                   'leaf-2', 'manet', 'merit-inp', 'mfe-nsp',
+                                   'mhrp', 'micp', 'mobile', 'mobility-header',
+                                   'mpls-in-ip', 'mtp', 'mux', 'narp',
+                                   'netblt', 'nsfnet-igp', 'nvp', 'ospf',
+                                   'pgm', 'pim', 'pipe', 'pnni', 'prm', 'ptp',
+                                   'pup', 'pvp', 'qnx', 'rdp', 'rsvp',
+                                   'rsvp-e2e-ignore', 'rvd', 'sat-expak',
+                                   'sat-mon', 'scc-sp', 'scps', 'sctp', 'sdrp',
+                                   'secure-vmtp', 'sep', 'shim6', 'skip', 'sm',
+                                   'smp', 'snp', 'sprite-rpc', 'sps', 'srp',
+                                   'sscopmce', 'st', 'st2', 'sun-nd', 'swipe',
+                                   'tcf', 'tcp', 'third-pc', 'tlsp', 'tp++',
+                                   'trunk-1', 'trunk-2', 'ttp', 'udp',
+                                   'udplite', 'uti', 'vines', 'visa', 'vlan',
+                                   'vmtp', 'vrrp', 'wb-expak', 'wb-mon', 'wsn',
+                                   'xnet', 'xns-idp', 'xtp']:
             raise ValueError("invalid \'protocol_type\' value {}."
                              .format(protocol_type))
 
