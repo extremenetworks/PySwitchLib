@@ -28,8 +28,7 @@ class IpAcl(AclParamParser):
 
         if len(op_str) == 2:
             if (op_str[0] == 'neq' or op_str[0] == 'lt' or
-                op_str[0] == 'gt' or op_str[0] == 'eq') and \
-                    op_str[1].isdigit():
+                    op_str[0] == 'gt' or op_str[0] == 'eq'):
                 return True
         elif len(op_str) == 3 and op_str[0] == 'range':
             return True
@@ -103,10 +102,14 @@ class IpAcl(AclParamParser):
         if 'source' not in parameters or not parameters['source']:
             raise ValueError("Missing \'source\' in parameters")
 
+        protocol_type = None
+        if 'protocol_type' in parameters and parameters['protocol_type']:
+            protocol_type = parameters['protocol_type']
+
         src = parameters['source']
         src = ' '.join(src.split())
 
-        return self._parse_source_destination(parameters['protocol_type'], src)
+        return self._parse_source_destination(protocol_type, src)
 
     def parse_destination(self, **parameters):
         """
@@ -205,37 +208,37 @@ class IpAcl(AclParamParser):
                 raise ValueError("The \'protocol\' value {} is invalid."
                                  " Specify \'0-255\' supported values"
                                  .format(protocol_type))
-
-        if protocol_type not in ['a_n', 'ahp', 'argus', 'aris', 'ax25',
-                                 'bbn-rcc', 'bna', 'br-sat-mon', 'cbt',
-                                 'cftp', 'chaos', 'compaq-peer', 'cphb',
-                                 'cpnx', 'crdup', 'crtp', 'dcn', 'ddp', 'ddx',
-                                 'dgp', 'divert', 'egp', 'emcon', 'encap',
-                                 'esp', 'etherip', 'fc', 'fire', 'ggp', 'gmtp',
-                                 'gre', 'hip', 'hmp', 'i-nlsp', 'iatp', 'icmp',
-                                 'idpr', 'idpr-cmtp', 'idrp', 'ifmp', 'igmp',
-                                 'igp', 'igrp', 'il', 'ip', 'ipcomp', 'ipcv',
-                                 'ipencap', 'ipip', 'iplt', 'ippc', 'ipv6',
-                                 'ipv6-frag', 'ipv6-icmp', 'ipv6-nonxt',
-                                 'ipv6-opts', 'ipv6-route', 'ipx-in-ip',
-                                 'irtp', 'isis', 'iso-ip', 'iso-tp4',
-                                 'kryptolan', 'l2tp', 'larp', 'leaf-1',
-                                 'leaf-2', 'manet', 'merit-inp', 'mfe-nsp',
-                                 'mhrp', 'micp', 'mobile', 'mobility-header',
-                                 'mpls-in-ip', 'mtp', 'mux', 'narp', 'netblt',
-                                 'nsfnet-igp', 'nvp', 'ospf', 'pgm', 'pim',
-                                 'pipe', 'pnni', 'prm', 'ptp', 'pup', 'pvp',
-                                 'qnx', 'rdp', 'rsvp', 'rsvp-e2e-ignore',
-                                 'rvd', 'sat-expak', 'sat-mon', 'scc-sp',
-                                 'scps', 'sctp', 'sdrp', 'secure-vmtp', 'sep',
-                                 'shim6', 'skip', 'sm', 'smp', 'snp',
-                                 'sprite-rpc', 'sps', 'srp', 'sscopmce', 'st',
-                                 'st2', 'sun-nd', 'swipe', 'tcf', 'tcp',
-                                 'third-pc', 'tlsp', 'tp++', 'trunk-1',
-                                 'trunk-2', 'ttp', 'udp', 'udplite', 'uti',
-                                 'vines', 'visa', 'vlan', 'vmtp', 'vrrp',
-                                 'wb-expak', 'wb-mon', 'wsn', 'xnet',
-                                 'xns-idp', 'xtp']:
+        elif protocol_type not in ['a_n', 'ahp', 'argus', 'aris', 'ax25',
+                                   'bbn-rcc', 'bna', 'br-sat-mon', 'cbt',
+                                   'cftp', 'chaos', 'compaq-peer', 'cphb',
+                                   'cpnx', 'crdup', 'crtp', 'dcn', 'ddp',
+                                   'ddx', 'dgp', 'divert', 'egp', 'emcon',
+                                   'encap', 'esp', 'etherip', 'fc', 'fire',
+                                   'ggp', 'gmtp', 'gre', 'hip', 'hmp',
+                                   'i-nlsp', 'iatp', 'icmp', 'idpr',
+                                   'idpr-cmtp', 'idrp', 'ifmp', 'igmp', 'igp',
+                                   'igrp', 'il', 'ip', 'ipcomp', 'ipcv',
+                                   'ipencap', 'ipip', 'iplt', 'ippc', 'ipv6',
+                                   'ipv6-frag', 'ipv6-icmp', 'ipv6-nonxt',
+                                   'ipv6-opts', 'ipv6-route', 'ipx-in-ip',
+                                   'irtp', 'isis', 'iso-ip', 'iso-tp4',
+                                   'kryptolan', 'l2tp', 'larp', 'leaf-1',
+                                   'leaf-2', 'manet', 'merit-inp', 'mfe-nsp',
+                                   'mhrp', 'micp', 'mobile', 'mobility-header',
+                                   'mpls-in-ip', 'mtp', 'mux', 'narp',
+                                   'netblt', 'nsfnet-igp', 'nvp', 'ospf',
+                                   'pgm', 'pim', 'pipe', 'pnni', 'prm', 'ptp',
+                                   'pup', 'pvp', 'qnx', 'rdp', 'rsvp',
+                                   'rsvp-e2e-ignore', 'rvd', 'sat-expak',
+                                   'sat-mon', 'scc-sp', 'scps', 'sctp', 'sdrp',
+                                   'secure-vmtp', 'sep', 'shim6', 'skip', 'sm',
+                                   'smp', 'snp', 'sprite-rpc', 'sps', 'srp',
+                                   'sscopmce', 'st', 'st2', 'sun-nd', 'swipe',
+                                   'tcf', 'tcp', 'third-pc', 'tlsp', 'tp++',
+                                   'trunk-1', 'trunk-2', 'ttp', 'udp',
+                                   'udplite', 'uti', 'vines', 'visa', 'vlan',
+                                   'vmtp', 'vrrp', 'wb-expak', 'wb-mon', 'wsn',
+                                   'xnet', 'xns-idp', 'xtp']:
             raise ValueError("invalid \'protocol_type\' value {}."
                              .format(protocol_type))
 
@@ -347,7 +350,7 @@ class IpAcl(AclParamParser):
         if precedence.isdigit():
             if int(precedence) >= 0 and int(precedence) <= 7:
                 return 'precedence ' + precedence
-        if precedence in ['critical' 'flash', 'flash-override',
+        if precedence in ['critical', 'flash', 'flash-override',
                           'immediate', 'internet', 'network',
                           'priority', 'routine']:
                 return 'precedence ' + precedence
