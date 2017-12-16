@@ -19,7 +19,7 @@ from pyswitch.snmp.base.acl.acl import Acl as BaseAcl
 from pyswitch.snmp.base.acl.macacl import MacAcl
 from pyswitch.snmp.base.acl.ipacl import IpAcl
 from pyswitch.snmp.base.acl.ipv6acl import Ipv6Acl
-import pyswitch.raw.slx_nos.acl.params_validator as params_validator
+import pyswitch.snmp.base.acl.params_validator as params_validator
 
 
 class Acl(BaseAcl):
