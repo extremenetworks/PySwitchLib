@@ -729,6 +729,7 @@ class Acl(BaseAcl):
         user_data['acl_name_str'] = parameters['acl_name']
         user_data['seq_id_str'] = self.ip.parse_seq_id(**parameters)
         user_data['action_str'] = self.ip.parse_action(**parameters)
+        user_data['vlan_str'] = self.ip.parse_vlan(**parameters)
         user_data['protocol_str'] = self.ip.parse_protocol(**parameters)
         user_data['source_str'] = self.ip.parse_source(**parameters)
         user_data['dst_str'] = self.ip.parse_destination(**parameters)

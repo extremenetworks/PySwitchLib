@@ -86,6 +86,7 @@ add_ip_standard_acl_rule_template = '''
 add_ip_extended_acl_rule_template = '''
     {% if seq_id_str is not none %} sequence {{ seq_id_str }} {% endif %}
     {% if action_str is not none %} {{ action_str }} {% endif %}
+    {% if vlan_str is not none %} vlan {{ vlan_str }} {% endif %}
     {% if protocol_str is not none %} {{ protocol_str }} {% endif %}
     {% if source_str is not none %} {{ source_str }} {% endif %}
     {% if dst_str is not none %} {{ dst_str }} {% endif %}
