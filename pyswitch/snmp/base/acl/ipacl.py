@@ -346,7 +346,7 @@ class IpAcl(AclParamParser):
         if precedence.isdigit():
             if int(precedence) >= 0 and int(precedence) <= 7:
                 return 'precedence ' + precedence
-        if precedence in ['critical' 'flash', 'flash-override',
+        if precedence in ['critical', 'flash', 'flash-override',
                           'immediate', 'internet', 'network',
                           'priority', 'routine']:
                 return 'precedence ' + precedence
