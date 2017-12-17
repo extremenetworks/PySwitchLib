@@ -164,7 +164,8 @@ class MacAcl(AclParamParser):
 
         if ethertype.isdigit():
             if int(ethertype) >= 1536 or int(ethertype) <= 65535:
-                return 'etype ' + ethertype
+                return 'etype ' + str(hex(int(ethertype)))[2:]
+
 
         raise ValueError("The ethertype value {} is invalid."
                          " Specify Integer or \'any\', \'arp\', "
