@@ -71,13 +71,13 @@ class IpAcl(AclParamParser):
             ip, prefix_len = v4_str.split('/')
             self._validate_ipv4(ip)
 
-            if not prefix_len.isdigit():
-                raise ValueError('Invalid address: ' + v4_str)
-
-            if int(prefix_len) < 0 and int(prefix_len) > 32:
-                raise ValueError('Invalid address: ' + v4_str)
-
-            return v4_str + ' ' + op_str
+            if prefix_len.isdigit():
+                if int(prefix_len) < 0 and int(prefix_len) > 32:
+                    raise ValueError('Invalid address: ' + v4_str)
+                return v4_str + ' ' + op_str
+            else:
+                self._validate_ipv4(prefix_len)
+                return ip + ' ' + prefix_len + ' ' + op_str
 
         ip, mask = v4_str.split()
         self._validate_ipv4(ip)
