@@ -12,6 +12,7 @@ limitations under the License.
 """
 
 import abc
+import logging
 
 
 class Acl(object):
@@ -33,6 +34,10 @@ class Acl(object):
         Raises:
             ValueError
         """
+        logging.basicConfig(format='pyswitch.snmp.base.acl.Acl:'
+                                   ' %(levelname)s  %(message)s')
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
         self._callback = callback
 
     @abc.abstractmethod
