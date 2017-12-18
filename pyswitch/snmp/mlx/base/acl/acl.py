@@ -412,7 +412,6 @@ class Acl(BaseAcl):
         """
         params_validator.validate_params_mlx_apply_acl(**parameters)
 
-        cli_arr = []
         acl_name = parameters['acl_name']
         intf_type = parameters['intf_type']
         intf_name = parameters.pop('intf_name', None)
@@ -446,6 +445,8 @@ class Acl(BaseAcl):
             self._process_cli_output(inspect.stack()[0][3], config, output)
 
         for intf in intf_name:
+            cli_arr = []
+
             cmd = acl_template.interface_submode_template
             t = jinja2.Template(cmd)
             config = t.render(intf_name=intf, **parameters)
@@ -460,8 +461,14 @@ class Acl(BaseAcl):
 
             cli_arr.append('exit')
 
-        output = self._callback(cli_arr, handler='cli-set')
-        return self._process_cli_output(inspect.stack()[0][3], config, output)
+            output = self._callback(cli_arr, handler='cli-set')
+            if 'Error: ' in output and acl_name in output:
+                self.logger.info('{} pre-existing on intf {}'
+                         .format(acl_name, intf))
+                continue
+            self._process_cli_output(inspect.stack()[0][3], config, output)
+
+        return 'apply_acl: Successful'
 
     def remove_acl(self, **parameters):
         """
