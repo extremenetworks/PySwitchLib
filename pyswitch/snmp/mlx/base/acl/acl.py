@@ -430,6 +430,21 @@ class Acl(BaseAcl):
                 raise ValueError('intf type:{} not supported'
                                  .format(intf_type))
 
+        if intf_type == 'port_channel':
+            raise ValueError("MLX does not allow ACL configuration on "
+                             " port channel interface. Configure ACL on "
+                             " ports part of port channel")
+
+        # This iteration will validate that interface exists
+        # It will also validate for interfaces part of lag
+        for intf in intf_name:
+            cmd = acl_template.interface_submode_template
+            t = jinja2.Template(cmd)
+            config = t.render(intf_name=intf, **parameters)
+            config = ' '.join(config.split())
+            output = self._callback([config], handler='cli-set')
+            self._process_cli_output(inspect.stack()[0][3], config, output)
+
         for intf in intf_name:
             cmd = acl_template.interface_submode_template
             t = jinja2.Template(cmd)
@@ -482,6 +497,21 @@ class Acl(BaseAcl):
             if intf_type != 'ethernet':
                 raise ValueError('intf type:{} not supported'
                                  .format(intf_type))
+
+        if intf_type == 'port_channel':
+            raise ValueError("MLX does not allow ACL configuration on "
+                             " port channel interface. Configure ACL on "
+                             " ports part of port channel")
+
+        # This iteration will validate that interface exists
+        # It will also validate for interfaces part of lag
+        for intf in intf_name:
+            cmd = acl_template.interface_submode_template
+            t = jinja2.Template(cmd)
+            config = t.render(intf_name=intf, **parameters)
+            config = ' '.join(config.split())
+            output = self._callback([config], handler='cli-set')
+            self._process_cli_output(inspect.stack()[0][3], config, output)
 
         for intf in intf_name:
             cmd = acl_template.interface_submode_template
