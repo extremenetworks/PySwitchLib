@@ -7212,3 +7212,36 @@ class Interface(object):
 
     def switchport_access_mac_create(self, **kwargs):
         raise ValueError('MAC GROUP Feature is not available on this Platform')
+
+    @property
+    def get_media_details_request(self):
+        """ get media details
+        Returns:
+            Return value of `callback`.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.81.183']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.get_media_details_request
+        """
+        result = []
+        method_name = 'get_media_detail_rpc'
+        config = (method_name, {})
+        interface_result = self._callback(config, 'get')
+        util = Util(interface_result.data)
+        for interface in util.findlist(util.root, './/interface'):
+            int_type = util.find(interface, './/interface-type')
+            int_name = util.find(interface, './/interface-name')
+            speed = util.find(interface, './/speed')
+            connector = util.find(interface, './/connector')
+            vendor_name = util.find(interface, './/vendor_name')
+
+            item_results = {'interface-type': int_type,
+                            'interface-name': int_name,
+                            'sfp_speed': speed,
+                            'connector': connector,
+                            'vendor_name': vendor_name}
+            result.append(item_results)
