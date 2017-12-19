@@ -92,7 +92,7 @@ class AclParamParser(object):
                 raise ValueError(" Mirror keyword is applicable only for ACL"
                                  " permit clauses")
 
-            if 'log' in parameters and \
+            if 'log' in parameters and parameters['log'] and \
                     parameters['log'].lower() == 'true':
                 raise ValueError("Error: mirror and log keywords can not be "
                                  "used together")
@@ -122,7 +122,7 @@ class AclParamParser(object):
 
         if parameters['log'].lower() == 'true':
 
-            if 'mirror' in parameters and \
+            if 'mirror' in parameters and parameters['mirror'] and \
                     parameters['mirror'].lower() == 'true':
                 raise ValueError("Error: mirror and log keywords can not be "
                                  "used together")
