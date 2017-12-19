@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+# import xml.etree.ElementTree
 import jinja2
 import pyswitch.raw.slx_nos.acl.params_validator as params_validator
 from pyswitch.raw.nos.base.acl import acl_template
@@ -451,8 +452,10 @@ class Acl(SlxNosAcl):
         user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
 
         callback = kwargs.pop('callback', self._callback)
-        result = {}
 
+        self.validate_interfaces(callback, user_data)
+
+        result = {}
         for intf in user_data['interface_list']:
             self.logger.info('Applying ACL {} on interface ({}:{})'
                              .format(user_data['acl_name'],
@@ -510,8 +513,10 @@ class Acl(SlxNosAcl):
         user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
 
         callback = kwargs.pop('callback', self._callback)
-        result = {}
 
+        self.validate_interfaces(callback, user_data)
+
+        result = {}
         for intf in user_data['interface_list']:
             self.logger.info('Removing ACL {} from interface ({}:{})'
                              .format(user_data['acl_name'],
