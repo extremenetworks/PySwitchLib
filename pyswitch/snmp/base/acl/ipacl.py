@@ -652,7 +652,7 @@ class IpAcl(AclParamParser):
                             'destination-network-unknown', 'echo',
                             'echo-reply', 'general-parameter-problem',
                             'host-precedence-violation', 'host-redirect',
-                            'host-tos-redirec', 'host-tos-unreachable',
+                            'host-tos-redirect', 'host-tos-unreachable',
                             'host-unreachable', 'information-reply',
                             'information-request', 'mask-reply',
                             'mask-request', 'net-redirect', 'net-tos-redirect',
