@@ -29,3 +29,6 @@ class CACertificateNotFoundError(PyswitchlibException):
 
 class CACertificateNotSpecifiedError(PyswitchlibException):
     """If the CA certificate path is not specified."""
+
+class InvalidAuthenticationCredentialsError(PyswitchlibException):
+    """If the provided authentication credentials are invalid."""
