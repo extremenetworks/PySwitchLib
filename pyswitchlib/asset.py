@@ -441,7 +441,7 @@ class Asset(object):
             elif result[0][self._ip_addr]['response']['status_code'] == 404:
                 raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
         else:
-            raise RestInterfaceError('Could not connect to ' + self._ip_addr + ' using ' + self._enabled_rest_protocols)
+            raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr)
 
     def _update_max_keep_alive_requests(self, max_requests=0):
         return self.run_command(command="unhide foscmd;fibranne;foscmd sed \\'s/MaxKeepAliveRequests [0-9]*/MaxKeepAliveRequests " + str(max_requests) + "/\\' /fabos/webtools/bin/httpd.conf > /fabos/webtools/bin/httpd.conf.temp&&mv /fabos/webtools/bin/httpd.conf.temp /fabos/webtools/bin/httpd.conf&&/usr/apache/bin/apachectl -k restart &")
