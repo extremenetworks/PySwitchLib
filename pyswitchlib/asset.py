@@ -40,6 +40,7 @@ class Asset(object):
         self._auth = auth
         self._rest_proto_input = ''
         self._rest_protocol = 'http'
+        self._attempted_rest_protocols = []
         self._enabled_rest_protocols = []
         self._cacert_input = ''
         self._os_type = 'unknown'
@@ -381,6 +382,8 @@ class Asset(object):
         overall_result = None
 
         if rest_proto_input == 'auto':
+            self._attempted_rest_protocols.append('http')
+
             try:
                 self._rest_operation(rest_command, rest_proto='http', timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
             except:
@@ -390,6 +393,8 @@ class Asset(object):
 
                 if (overall_status == True):
                     self._enabled_rest_protocols.append('http')
+
+            self._attempted_rest_protocols.append('https')
 
             try:
                 self._rest_operation(rest_command, rest_proto='https', cacert=False, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
@@ -444,8 +449,8 @@ class Asset(object):
             elif result[0][self._ip_addr]['response']['status_code'] == 404:
                 raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
         else:
-            if self._enabled_rest_protocols:
-                raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr + ' using ' + str(self._enabled_rest_protocols))
+            if self._attempted_rest_protocols:
+                raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr + ' using ' + str(self._attempted_rest_protocols))
             else:
                 raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr)
 
