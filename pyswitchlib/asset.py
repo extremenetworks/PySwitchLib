@@ -40,7 +40,7 @@ class Asset(object):
         self._auth = auth
         self._rest_proto_input = ''
         self._rest_protocol = 'http'
-        self._supported_rest_protocols = []
+        self._enabled_rest_protocols = []
         self._cacert_input = ''
         self._os_type = 'unknown'
         self._os_ver = fw_ver
@@ -300,10 +300,13 @@ class Asset(object):
     def _get_results(self):
         self._overall_success = True
 
-        for status in self._overall_status:
-            for key in status:
-                if (status[key]['response']['status_code'] < 200) or (status[key]['response']['status_code'] > 299):
-                    self._overall_success = False
+        if self._overall_status:
+            for status in self._overall_status:
+                for key in status:
+                    if (status[key]['response']['status_code'] < 200) or (status[key]['response']['status_code'] > 299):
+                        self._overall_success = False
+        else:
+            self._overall_success = False
 
         return self._overall_success, self._overall_status
 
@@ -385,8 +388,8 @@ class Asset(object):
             finally:
                 overall_status, overall_result = self._get_results()
 
-                if (status == True):
-                    self._supported_rest_protocols.append('http')
+                if (overall_status == True):
+                    self._enabled_rest_protocols.append('http')
 
             try:
                 self._rest_operation(rest_command, rest_proto='https', cacert=False, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
@@ -396,7 +399,13 @@ class Asset(object):
                 status, result = self._get_results()
 
                 if (status == True):
-                    self._supported_rest_protocols.append('https')
+                    self._session.close()
+                    self._session = requests.Session()
+                    self._session.verify = self._default_session_verify
+
+                    self._enabled_rest_protocols.append('https')
+                    self._rest_protocol = 'https'
+
                     overall_status = status
                     overall_result = result
         else:
@@ -405,7 +414,7 @@ class Asset(object):
             overall_status, overall_result = self._get_results()
 
             if (overall_status == True):
-                self._supported_rest_protocols.append(self._rest_protocol)
+                self._enabled_rest_protocols.append(self._rest_protocol)
 
         return overall_status, overall_result
 
@@ -426,10 +435,13 @@ class Asset(object):
             pass
 
     def _raise_rest_validation_exception(self, result):
-        if result[0][self._ip_addr]['response']['status_code'] == 401:
-            raise InvalidAuthenticationCredentialsError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Invalid Authentication Credentials.')
-        elif result[0][self._ip_addr]['response']['status_code'] == 404:
-            raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
+        if result:
+            if result[0][self._ip_addr]['response']['status_code'] == 401:
+                raise InvalidAuthenticationCredentialsError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Invalid Authentication Credentials.')
+            elif result[0][self._ip_addr]['response']['status_code'] == 404:
+                raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
+        else:
+            raise RestInterfaceError('Could not connect to ' + self._ip_addr + ' using ' + self._enabled_rest_protocols)
 
     def _update_max_keep_alive_requests(self, max_requests=0):
         return self.run_command(command="unhide foscmd;fibranne;foscmd sed \\'s/MaxKeepAliveRequests [0-9]*/MaxKeepAliveRequests " + str(max_requests) + "/\\' /fabos/webtools/bin/httpd.conf > /fabos/webtools/bin/httpd.conf.temp&&mv /fabos/webtools/bin/httpd.conf.temp /fabos/webtools/bin/httpd.conf&&/usr/apache/bin/apachectl -k restart &")
@@ -619,14 +631,14 @@ class Asset(object):
         """
         return self._supported_module_name
 
-    def get_supported_rest_protocols(self):
+    def get_enabled_rest_protocols(self):
         """
         This is an auto-generated method for the PySwitchLib.
 
         :rtype: *list*
-        :returns: Returns the supported rest protocols for the asset.
+        :returns: Returns the enabled rest protocols for the asset.
         """
-        return self._supported_rest_protocols
+        return self._enabled_rest_protocols
         
 
     def run_command(self, command=''):
