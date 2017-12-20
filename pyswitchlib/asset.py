@@ -121,7 +121,7 @@ class Asset(object):
                     self._default_session_verify = False
             elif cacert == False:
                 self._default_session_verify = False
-            else
+            else:
                 raise CACertificateNotSpecifiedError("The path to the CA certificate file is not specified.")
         else:
             self._default_session_verify = False
