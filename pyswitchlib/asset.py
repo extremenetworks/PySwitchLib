@@ -409,12 +409,15 @@ class Asset(object):
                     overall_status = status
                     overall_result = result
         else:
-            self._rest_operation(rest_command, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
+            try:
+                self._rest_operation(rest_command, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
+            except:
+                pass
+            finally:
+                overall_status, overall_result = self._get_results()
 
-            overall_status, overall_result = self._get_results()
-
-            if (overall_status == True):
-                self._enabled_rest_protocols.append(self._rest_protocol)
+                if (overall_status == True):
+                    self._enabled_rest_protocols.append(self._rest_protocol)
 
         return overall_status, overall_result
 
@@ -441,7 +444,10 @@ class Asset(object):
             elif result[0][self._ip_addr]['response']['status_code'] == 404:
                 raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
         else:
-            raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr)
+            if self._enabled_rest_protocols:
+                raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr + ' using ' + str(self._enabled_rest_protocols))
+            else:
+                raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr)
 
     def _update_max_keep_alive_requests(self, max_requests=0):
         return self.run_command(command="unhide foscmd;fibranne;foscmd sed \\'s/MaxKeepAliveRequests [0-9]*/MaxKeepAliveRequests " + str(max_requests) + "/\\' /fabos/webtools/bin/httpd.conf > /fabos/webtools/bin/httpd.conf.temp&&mv /fabos/webtools/bin/httpd.conf.temp /fabos/webtools/bin/httpd.conf&&/usr/apache/bin/apachectl -k restart &")
