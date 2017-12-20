@@ -69,11 +69,17 @@ class System(BaseSystem):
         cli_res = callback(cli_cmd, handler='cli-get')
         mtu_match = re.search(r'Default max frame size for ETH : (.+)', cli_res)
 
-        if kwargs.pop('get', False):
-            return mtu_match.group(1)
+        # default system mtu
+        system_mtu = 1548
 
-        if int(mtu) == int(mtu_match.group(1)):
-            raise ValueError("system MTU:%s is already configured" % mtu)
+        if mtu_match:
+            system_mtu = mtu_match.group(1)
+
+        if kwargs.pop('get', False):
+            return int(system_mtu)
+
+        if int(mtu) == int(system_mtu):
+            raise UserWarning("system MTU:%s is already configured" % mtu)
 
         cli_arr = []
         cli_arr.append('default-max-frame-size' + ' ' + str(mtu))
@@ -84,7 +90,8 @@ class System(BaseSystem):
         else:
             success_msg = re.search(r'Reload required.(.+)', cli_res)
 
-        return success_msg.group(0)
+        if success_msg:
+            raise UserWarning("successfully set system l2 mtu: %s" % success_msg.group(0))
 
     def system_ip_mtu(self, **kwargs):
         """Set system mtu.
