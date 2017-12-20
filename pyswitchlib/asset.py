@@ -84,7 +84,7 @@ class Asset(object):
                 if sys.prefix in self._pyswitchlib_conf[key]:
                     self._pyro_daemon_id = key
             elif 'cacert' == key:
-                if cacert == None:
+                if cacert is None:
                     cacert = self._pyswitchlib_conf[key]
 
         if api_port:
@@ -100,7 +100,7 @@ class Asset(object):
                 if self._pyro_daemon_id in self._pyswitchlib_ns_daemon:
                     self._pyro_proxy_name = self._pyswitchlib_ns_daemon[self._pyro_daemon_id]
 
-        if rest_proto != None:
+        if rest_proto is not None:
             if rest_proto.lower() == 'http' or rest_proto.lower() == 'https' or rest_proto.lower() == 'auto':
                 self._rest_proto_input = rest_proto.lower()
 
@@ -109,7 +109,7 @@ class Asset(object):
             else:
                 raise RestProtocolTypeError("Rest protocol type must be 'http', 'https', or 'auto'.  '" + rest_proto + "' was specified.")
 
-        if cacert != None:
+        if cacert is not None:
             self._cacert_input = cacert
 
             if cacert:
@@ -120,7 +120,7 @@ class Asset(object):
                         raise CACertificateNotFoundError("The CA certificate file '" + cacert + "' could not be found.")
                 else:
                     self._default_session_verify = False
-            elif cacert == False:
+            elif cacert is False:
                 self._default_session_verify = False
             else:
                 raise CACertificateNotSpecifiedError("The path to the CA certificate file is not specified.")
@@ -190,12 +190,12 @@ class Asset(object):
         rest_protocol = None
         del self._overall_status[:]
     
-        if rest_proto:
+        if rest_proto is not None:
             rest_protocol = rest_proto
         else:
             rest_protocol = self._rest_protocol
 
-        if cacert != None:
+        if cacert is not None:
             self._session.verify = cacert
         else:
             self._session.verify = self._default_session_verify

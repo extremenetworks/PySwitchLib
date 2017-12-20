@@ -18,12 +18,12 @@ class XMLAsset(Asset):
         rest_protocol = None
         del self._overall_status[:]
 
-        if rest_proto:
+        if rest_proto is not None:
             rest_protocol = rest_proto
         else:
             rest_protocol = self._rest_protocol
 
-        if cacert != None:
+        if cacert is not None:
             self._session.verify = cacert
         else:
             self._session.verify = self._default_session_verify
