@@ -414,6 +414,8 @@ class Asset(object):
                     overall_status = status
                     overall_result = result
         else:
+            self._attempted_rest_protocols.append(self._rest_protocol)
+
             try:
                 self._rest_operation(rest_command, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
             except:
