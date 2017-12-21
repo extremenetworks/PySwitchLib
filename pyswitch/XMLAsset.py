@@ -5,14 +5,28 @@ from pyswitchlib.asset import Asset
 
 
 class XMLAsset(Asset):
-    def __init__(self, ip_addr='', auth=('admin', 'password'), fw_ver='', timeout=''):
-        super(XMLAsset, self).__init__(ip_addr=ip_addr, auth=auth, fw_ver=fw_ver, timeout=timeout)
+    def __init__(self, ip_addr='', auth=('admin', 'password'),
+                 rest_proto=None, cacert=None, fw_ver='', timeout=''):
+        super(XMLAsset, self).__init__(ip_addr=ip_addr, auth=auth,
+              rest_proto=rest_proto, cacert=cacert, fw_ver=fw_ver, timeout=timeout)
 
-    def _rest_operation(self, rest_commands=None, yang_list=None, timeout=None):
+    def _rest_operation(self, rest_commands=None, yang_list=None,
+                        rest_proto=None, cacert=None, timeout=None):
         auth = self._auth
         auth_retries = 0
         index = 0
+        rest_protocol = None
         del self._overall_status[:]
+
+        if rest_proto is not None:
+            rest_protocol = rest_proto
+        else:
+            rest_protocol = self._rest_protocol
+
+        if cacert is not None:
+            self._session.verify = cacert
+        else:
+            self._session.verify = self._default_session_verify
 
         if isinstance(timeout, basestring):
             if timeout == '':
@@ -37,7 +51,7 @@ class XMLAsset(Asset):
                 uri_prefix_path = self._rest_discover_path
 
             header = {"Resource-Depth": str(rest_cmd[4])}
-            url = "http://" + self._ip_addr + uri_prefix_path
+            url = rest_protocol + "://" + self._ip_addr + uri_prefix_path
 
             self._session.headers.update(
                 {'Content-type': 'application/x-www-form-urlencoded'})

@@ -20,6 +20,12 @@ NAME=pyswitchlib-api-daemon
 SCRIPTNAME=/etc/init.d/$NAME
 PYSWITCHLIB_CONF_PATH="/etc/pyswitchlib/pyswitchlib.conf"
 
+if [ -f /lib/lsb/init-functions ]; then
+    source /lib/lsb/init-functions
+elif [ -f /etc/init.d/functions ]; then
+    source /etc/init.d/functions
+fi
+
 typeset -A PYSWITCHLIB_CONF
 
 read_pyswitchlib_conf()
@@ -125,7 +131,7 @@ get_api_deamon_path_from_pyswitchlib_conf()
 
 stop_stale_pyswitchlib_pids()
 {
-    local PYSWITCHLIB_PID_FILES=(`ls -1 /tmp/.pyswitchlib*pid 2>/dev/null`)
+    local PYSWITCHLIB_PID_FILES=(`ls -1 /etc/pyswitchlib/.pyswitchlib*pid 2>/dev/null`)
 
     if [ ${#PYSWITCHLIB_PID_FILES[@]} -ge 1 ]; then
         for pid_file in "${PYSWITCHLIB_PID_FILES[@]}"; do

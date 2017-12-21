@@ -27,7 +27,7 @@ class Asset(object):
     Asset provides connection information for PySwitchLib APIs.
     """
 
-    def __init__(self, ip_addr='', auth=('admin', 'password'), fw_ver='', timeout='', api_port=None):
+    def __init__(self, ip_addr='', auth=('admin', 'password'), rest_proto=None, cacert=None, fw_ver='', timeout='', api_port=None):
         def on_deletion (killed_ref):
             self._cleanup_timer_handle()
             self._session.close()
@@ -38,19 +38,22 @@ class Asset(object):
 
         self._ip_addr = ip_addr
         self._auth = auth
+        self._rest_proto_input = ''
+        self._rest_protocol = 'http'
+        self._attempted_rest_protocols = []
+        self._enabled_rest_protocols = []
+        self._cacert_input = ''
         self._os_type = 'unknown'
         self._os_ver = fw_ver
         self._os_full_ver = fw_ver
         self._default_connection_timeout = 60
         self._default_response_timeout = 1800
+        self._default_session_verify = False
         self._session_timeout = (self._default_connection_timeout, self._default_response_timeout)
         self._session = requests.Session()
         self._response = requests.Response()
         self._overall_success = True
         self._overall_status = []
-
-        if timeout != '':
-            self._session_timeout = timeout
 
         self._rest_session_auth_max_retries = 1
         self._rest_session_auth_token_expiration = 160
@@ -64,16 +67,11 @@ class Asset(object):
         self._yang_list = None
         self._module_obj = None
 
-        self._create_timer_handle()
-        self._update_uri_prefix_paths()
-        self._update_fw_version()
-        self._supported_module_name = self._get_supported_module()
-        #self._load_module(supported_module_name=self._supported_module_name)
         self._pyro_ns_port = None
         self._pyro_proxy_name = ''
         self._pyro_daemon_id = 'default'
         self._pyro_bind_max_retries = 30
-        self._ns_pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns.pid')
+        self._ns_pid_file = os.path.join(os.sep, 'etc', 'pyswitchlib', '.pyswitchlib_ns.pid')
         self._pyswitchlib_conf_filename = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
         self._pyswitchlib_ns_daemon_filename = os.path.join(os.sep, 'etc', 'pyswitchlib', '.pyswitchlib_ns_daemon.uri')
         self._pyswitchlib_conf = ConfigFileUtil().read(filename=self._pyswitchlib_conf_filename)
@@ -85,6 +83,9 @@ class Asset(object):
             elif 'api_daemon_' in key:
                 if sys.prefix in self._pyswitchlib_conf[key]:
                     self._pyro_daemon_id = key
+            elif 'cacert' == key:
+                if cacert is None:
+                    cacert = self._pyswitchlib_conf[key]
 
         if api_port:
             self._pyro_ns_port = api_port
@@ -98,6 +99,41 @@ class Asset(object):
             if self._pyswitchlib_ns_daemon:
                 if self._pyro_daemon_id in self._pyswitchlib_ns_daemon:
                     self._pyro_proxy_name = self._pyswitchlib_ns_daemon[self._pyro_daemon_id]
+
+        if rest_proto is not None:
+            if rest_proto.lower() == 'http' or rest_proto.lower() == 'https' or rest_proto.lower() == 'auto':
+                self._rest_proto_input = rest_proto.lower()
+
+                if self._rest_proto_input == 'http' or self._rest_proto_input == 'https':
+                    self._rest_protocol = self._rest_proto_input
+            else:
+                raise RestProtocolTypeError("Rest protocol type must be 'http', 'https', or 'auto'.  '" + rest_proto + "' was specified.")
+
+        if cacert is not None:
+            self._cacert_input = cacert
+
+            if cacert:
+                if self._rest_protocol == 'https' or self._rest_proto_input == 'auto':
+                    if os.path.isfile(cacert):
+                        self._default_session_verify = cacert
+                    else:
+                        raise CACertificateNotFoundError("The CA certificate file '" + cacert + "' could not be found.")
+                else:
+                    self._default_session_verify = False
+            elif cacert is False:
+                self._default_session_verify = False
+            else:
+                raise CACertificateNotSpecifiedError("The path to the CA certificate file is not specified.")
+        else:
+            self._default_session_verify = False
+
+        if timeout != '':
+            self._session_timeout = timeout
+
+        self._create_timer_handle()
+        self._discover_rest_protocol_and_paths()
+        self._update_fw_version()
+        self._supported_module_name = self._get_supported_module()
 
         with Pyro4.Proxy(self._pyro_proxy_name) as pyro_proxy:
             for n in range(self._pyro_bind_max_retries):
@@ -147,12 +183,23 @@ class Asset(object):
         else:
             raise AttributeError(name)
 
-    def _rest_operation(self, rest_commands=None, yang_list=None, timeout=None):
+    def _rest_operation(self, rest_commands=None, yang_list=None, rest_proto=None, cacert=None, timeout=None):
         auth = self._auth
         auth_retries = 0
         index = 0
+        rest_protocol = None
         del self._overall_status[:]
     
+        if rest_proto is not None:
+            rest_protocol = rest_proto
+        else:
+            rest_protocol = self._rest_protocol
+
+        if cacert is not None:
+            self._session.verify = cacert
+        else:
+            self._session.verify = self._default_session_verify
+            
         if isinstance(timeout, basestring):
             if timeout == '':
                 timeout = self._session_timeout
@@ -176,7 +223,7 @@ class Asset(object):
                 uri_prefix_path = self._rest_discover_path
 
             header = {"Resource-Depth" : str(rest_cmd[4])}
-            url = "http://"+self._ip_addr+uri_prefix_path
+            url = rest_protocol+"://"+self._ip_addr+uri_prefix_path
 
             self._session.headers.update({'Content-Type': 'application/x-www-form-urlencoded'})
 
@@ -254,12 +301,23 @@ class Asset(object):
     def _get_results(self):
         self._overall_success = True
 
-        for status in self._overall_status:
-            for key in status:
-                if (status[key]['response']['status_code'] < 200) or (status[key]['response']['status_code'] > 299):
-                    self._overall_success = False
+        if self._overall_status:
+            for status in self._overall_status:
+                for key in status:
+                    if (status[key]['response']['status_code'] < 200) or (status[key]['response']['status_code'] > 299):
+                        self._overall_success = False
+        else:
+            self._overall_success = False
 
         return self._overall_success, self._overall_status
+
+    def _discover_rest_protocol_and_paths(self):
+        status, result = self._do_rest_protocol_discovery(self._rest_proto_input)
+
+        if status == False:
+            self._raise_rest_validation_exception(result)
+            
+        self._update_uri_prefix_paths(result)
 
     def _update_fw_version(self):
         rest_command = (
@@ -271,8 +329,7 @@ class Asset(object):
         status, result = self._get_results()
 
         if status == False:                                                                                                                                                         
-            if result[0][self._ip_addr]['response']['status_code'] == 404:                                                                                                          
-                raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
+            self._raise_rest_validation_exception(result)
 
         try:
             rest_root = ElementTree.fromstring(re.sub(' xmlns[^ \t\n\r\f\v>]+', '', result[0][self._ip_addr]['response']['text']))
@@ -316,19 +373,62 @@ class Asset(object):
         except:
             pass
 
-    def _update_uri_prefix_paths(self):
+    def _do_rest_protocol_discovery(self, rest_proto_input):
         rest_command = (
             ["GET", "", "", "discover", 1],
         )
 
-        self._rest_operation(rest_command, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
+        overall_status = None
+        overall_result = None
 
-        status, result = self._get_results()
+        if rest_proto_input == 'auto':
+            self._attempted_rest_protocols.append('http')
 
-        if status == False:                                                                                                                                                         
-            if result[0][self._ip_addr]['response']['status_code'] == 404:                                                                                                          
-                raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
+            try:
+                self._rest_operation(rest_command, rest_proto='http', timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
+            except:
+                pass
+            finally:
+                overall_status, overall_result = self._get_results()
 
+                if (overall_status == True):
+                    self._enabled_rest_protocols.append('http')
+
+            self._attempted_rest_protocols.append('https')
+
+            try:
+                self._rest_operation(rest_command, rest_proto='https', cacert=False, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
+            except:
+                pass
+            finally:
+                status, result = self._get_results()
+
+                if (status == True):
+                    self._session.close()
+                    self._session = requests.Session()
+                    self._session.verify = self._default_session_verify
+
+                    self._enabled_rest_protocols.append('https')
+                    self._rest_protocol = 'https'
+
+                    overall_status = status
+                    overall_result = result
+        else:
+            self._attempted_rest_protocols.append(self._rest_protocol)
+
+            try:
+                self._rest_operation(rest_command, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
+            except:
+                pass
+            finally:
+                overall_status, overall_result = self._get_results()
+
+                if (overall_status == True):
+                    self._enabled_rest_protocols.append(self._rest_protocol)
+
+        return overall_status, overall_result
+
+    def _update_uri_prefix_paths(self, result):
         try:
             rest_root = ElementTree.fromstring(re.sub(' xmlns[^ \t\n\r\f\v>]+|y:', '', result[0][self._ip_addr]['response']['text']))
 
@@ -343,6 +443,18 @@ class Asset(object):
                 self._rest_rpc_path = rest_root.find('operations').get('self')
         except:
             pass
+
+    def _raise_rest_validation_exception(self, result):
+        if result:
+            if result[0][self._ip_addr]['response']['status_code'] == 401:
+                raise InvalidAuthenticationCredentialsError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Invalid Authentication Credentials.')
+            elif result[0][self._ip_addr]['response']['status_code'] == 404:
+                raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
+        else:
+            if self._attempted_rest_protocols:
+                raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr + ' using ' + str(self._attempted_rest_protocols))
+            else:
+                raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr)
 
     def _update_max_keep_alive_requests(self, max_requests=0):
         return self.run_command(command="unhide foscmd;fibranne;foscmd sed \\'s/MaxKeepAliveRequests [0-9]*/MaxKeepAliveRequests " + str(max_requests) + "/\\' /fabos/webtools/bin/httpd.conf > /fabos/webtools/bin/httpd.conf.temp&&mv /fabos/webtools/bin/httpd.conf.temp /fabos/webtools/bin/httpd.conf&&/usr/apache/bin/apachectl -k restart &")
@@ -531,6 +643,16 @@ class Asset(object):
         :returns: Returns the path name of the selected pybind module.
         """
         return self._supported_module_name
+
+    def get_enabled_rest_protocols(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+
+        :rtype: *list*
+        :returns: Returns the enabled rest protocols for the asset.
+        """
+        return self._enabled_rest_protocols
+        
 
     def run_command(self, command=''):
         """
