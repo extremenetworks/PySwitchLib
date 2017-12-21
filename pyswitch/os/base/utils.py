@@ -175,9 +175,9 @@ class Utils(object):
         targets = kwargs.pop('targets', None)
         vrf = kwargs.pop('vrf', 'default-vrf')
         count = kwargs.pop('count', 4)
-        timeout_value = kwargs.pop('timeout_value', 1)
+        timeout_value = kwargs.pop('timeout_value', 10)
         if not timeout_value:
-            timeout_value = 1
+            timeout_value = 10
         size = kwargs.pop('size', 56)
         cli_list = self._create_ping_cmd(targets, vrf, count, timeout_value, size)
 
