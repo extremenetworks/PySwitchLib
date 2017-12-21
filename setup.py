@@ -24,8 +24,10 @@ class PostInstallCommand(install):
             pyswitchlib_daemon_scriptname = 'pyswitchlib_api_daemon.py'
             pyswitchlib_default_conf_filename = 'pyswitchlib.conf.default'
             pyswitchlib_conf_filename = 'pyswitchlib.conf'
+            pyswitchlib_default_cacert_filename = 'cacert.pem'
             pyswitchlib_default_conf_path = os.path.join(os.sep, 'etc', 'pyswitchlib', pyswitchlib_default_conf_filename)
             pyswitchlib_conf_path = os.path.join(os.sep, 'etc', 'pyswitchlib', pyswitchlib_conf_filename)
+            pyswitchlib_default_cacert_path = os.path.join(os.sep, 'etc', 'pyswitchlib', pyswitchlib_default_cacert_filename)
 
             ubuntu_init_script_cmd = 'update-rc.d ' + pyswitchlib_init_scriptname + ' defaults 95 05'
             centos_init_script_cmd = 'chkconfig --add ' + pyswitchlib_init_scriptname
@@ -44,10 +46,13 @@ class PostInstallCommand(install):
             if not os.path.exists(pyswitchlib_conf_path):
                 os.system('cp ' + pyswitchlib_default_conf_path + ' ' + pyswitchlib_conf_path)
 
+            if not os.path.exists(pyswitchlib_default_cacert_path):
+                os.system('touch ' + pyswitchlib_default_cacert_path)
+
             rc = os.WEXITSTATUS(os.system(python_prefix + ' ' + pyswitchlib_api_daemon + ' status'))
 
             if rc == 3:
-                subprocess.Popen([python_prefix, pyswitchlib_api_daemon, 'start'], close_fds=True)
+                subprocess.Popen(['service', pyswitchlib_init_scriptname, 'start'], close_fds=True)
             else:
                 subprocess.Popen([python_prefix, pyswitchlib_api_daemon, 'restart'], close_fds=True)
 

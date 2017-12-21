@@ -19,6 +19,7 @@ from pyswitch.snmp.base.acl.acl import Acl as BaseAcl
 from pyswitch.snmp.base.acl.macacl import MacAcl
 from pyswitch.snmp.base.acl.ipacl import IpAcl
 from pyswitch.snmp.base.acl.ipv6acl import Ipv6Acl
+import pyswitch.snmp.base.acl.params_validator as params_validator
 
 
 class Acl(BaseAcl):
@@ -84,9 +85,7 @@ class Acl(BaseAcl):
             ...                              acl_type='extended',
             ...                              address_type='ip')
         """
-
-        if 'address_type' not in parameters:
-            raise ValueError("address_type is required param")
+        params_validator.validate_params_mlx_create_acl(**parameters)
 
         address_type = parameters['address_type']
         acl_type = parameters.get('acl_type', None)
@@ -129,6 +128,7 @@ class Acl(BaseAcl):
             ...                              address_type='mac')
             ...     print dev.acl.delete_acl(acl_name='Acl_1')
         """
+        params_validator.validate_params_mlx_delete_acl(**parameters)
 
         acl_name = parameters['acl_name']
 
@@ -208,6 +208,8 @@ class Acl(BaseAcl):
             ...                                   dst='any',
             ...                                   vlan=10)
         """
+        params_validator.\
+            validate_params_mlx_add_or_remove_l2_acl_rule(**parameters)
 
         cli_arr = []
         user_data = self.parse_params_for_add_l2_acl_rule(**parameters)
@@ -260,7 +262,13 @@ class Acl(BaseAcl):
             ...                                   vlan=10)
         """
 
-        acl_name = parameters['acl_name']
+        if 'seq_id' not in parameters or not parameters['seq_id']:
+            raise ValueError("missing required parameters: ['seq_id']")
+
+        if 'acl_name' not in parameters or not parameters['acl_name']:
+            raise ValueError("missing required parameters: ['acl_name']")
+
+        acl_name = self.mac.parse_acl_name(**parameters)
         seq_id = parameters['seq_id']
 
         self.is_valid_seq_id(seq_id, acl_name)
@@ -309,24 +317,8 @@ class Acl(BaseAcl):
             Raises ValueError, Exception
         Examples:
         """
-
-        supported_params = ['acl_name', 'seq_id', 'action', 'source',
-                            'src_mac_addr_mask', 'dst', 'dst_mac_addr_mask',
-                            'vlan', 'ethertype', 'arp_guard',
-                            'drop_precedence', 'drop_precedence_force',
-                            'log', 'mirror', 'priority_force', 'priority',
-                            'priority_mapping', 'copy_sflow', 'count',
-                            'delete']
-        self._is_parameter_supported(supported_params, parameters)
-
-        if 'copy_sflow' in parameters and parameters['copy_sflow'] != 'False':
-            raise ValueError('\'copy_sflow\' is not supported by MLX')
-
-        if 'count' in parameters and parameters['count'] != 'False':
-            raise ValueError('\'count\' is not supported by MLX')
-
         user_data = {}
-        user_data['acl_name_str'] = parameters['acl_name']
+        user_data['acl_name_str'] = self.mac.parse_acl_name(**parameters)
         user_data['seq_id_str'] = self.mac.parse_seq_id(**parameters)
         user_data['action_str'] = self.mac.parse_action(**parameters)
         user_data['source_str'] = self.mac.parse_source(**parameters)
@@ -418,11 +410,8 @@ class Acl(BaseAcl):
         Raises:
             Exception, ValueError for invalid seq_id.
         """
-        supported_params = ['acl_name', 'acl_direction', 'intf_type',
-                            'intf_name']
-        self._is_parameter_supported(supported_params, parameters)
+        params_validator.validate_params_mlx_apply_acl(**parameters)
 
-        cli_arr = []
         acl_name = parameters['acl_name']
         intf_type = parameters['intf_type']
         intf_name = parameters.pop('intf_name', None)
@@ -440,7 +429,24 @@ class Acl(BaseAcl):
                 raise ValueError('intf type:{} not supported'
                                  .format(intf_type))
 
+        if intf_type == 'port_channel':
+            raise ValueError("MLX does not allow ACL configuration on "
+                             " port channel interface. Configure ACL on "
+                             " ports part of port channel")
+
+        # This iteration will validate that interface exists
+        # It will also validate for interfaces part of lag
         for intf in intf_name:
+            cmd = acl_template.interface_submode_template
+            t = jinja2.Template(cmd)
+            config = t.render(intf_name=intf, **parameters)
+            config = ' '.join(config.split())
+            output = self._callback([config], handler='cli-set')
+            self._process_cli_output(inspect.stack()[0][3], config, output)
+
+        for intf in intf_name:
+            cli_arr = []
+
             cmd = acl_template.interface_submode_template
             t = jinja2.Template(cmd)
             config = t.render(intf_name=intf, **parameters)
@@ -455,8 +461,14 @@ class Acl(BaseAcl):
 
             cli_arr.append('exit')
 
-        output = self._callback(cli_arr, handler='cli-set')
-        return self._process_cli_output(inspect.stack()[0][3], config, output)
+            output = self._callback(cli_arr, handler='cli-set')
+            if 'Error: ' in output and acl_name in output:
+                self.logger.info('{} pre-existing on intf {}'
+                         .format(acl_name, intf))
+                continue
+            self._process_cli_output(inspect.stack()[0][3], config, output)
+
+        return 'apply_acl: Successful'
 
     def remove_acl(self, **parameters):
         """
@@ -473,9 +485,7 @@ class Acl(BaseAcl):
         Raises:
             Exception, ValueError for invalid seq_id.
         """
-        supported_params = ['acl_name', 'acl_direction', 'intf_type',
-                            'intf_name']
-        self._is_parameter_supported(supported_params, parameters)
+        params_validator.validate_params_mlx_remove_acl(**parameters)
 
         cli_arr = []
         acl_name = parameters['acl_name']
@@ -494,6 +504,21 @@ class Acl(BaseAcl):
             if intf_type != 'ethernet':
                 raise ValueError('intf type:{} not supported'
                                  .format(intf_type))
+
+        if intf_type == 'port_channel':
+            raise ValueError("MLX does not allow ACL configuration on "
+                             " port channel interface. Configure ACL on "
+                             " ports part of port channel")
+
+        # This iteration will validate that interface exists
+        # It will also validate for interfaces part of lag
+        for intf in intf_name:
+            cmd = acl_template.interface_submode_template
+            t = jinja2.Template(cmd)
+            config = t.render(intf_name=intf, **parameters)
+            config = ' '.join(config.split())
+            output = self._callback([config], handler='cli-set')
+            self._process_cli_output(inspect.stack()[0][3], config, output)
 
         for intf in intf_name:
             cmd = acl_template.interface_submode_template
@@ -593,6 +618,8 @@ class Acl(BaseAcl):
             ...                                   dst='any',
             ...                                   vlan=10)
         """
+        params_validator.validate_params_mlx_add_ipv4_rule_acl(**parameters)
+
         acl_name = parameters['acl_name']
         ret = self.get_acl_address_and_acl_type(acl_name)
         acl_type = ret['type']
@@ -735,22 +762,15 @@ class Acl(BaseAcl):
             Raises ValueError, Exception
         Examples:
         """
-        supported_params = ['acl_name', 'seq_id', 'action', 'source',
-                            'destination', 'protocol_type', 'established',
-                            'icmp_filter', 'dscp_mapping', 'dscp_marking',
-                            'fragment', 'precedence', 'option',
-                            'suppress_rpf_drop', 'priority', 'priority_force',
-                            'priority_mapping', 'tos', 'drop_precedence',
-                            'drop_precedence_force', 'log', 'mirror']
-        self._is_parameter_supported(supported_params, parameters)
-
         user_data = {}
         user_data['acl_name_str'] = parameters['acl_name']
         user_data['seq_id_str'] = self.ip.parse_seq_id(**parameters)
         user_data['action_str'] = self.ip.parse_action(**parameters)
+        user_data['vlan_str'] = self.ip.parse_vlan(**parameters)
         user_data['protocol_str'] = self.ip.parse_protocol(**parameters)
         user_data['source_str'] = self.ip.parse_source(**parameters)
         user_data['dst_str'] = self.ip.parse_destination(**parameters)
+        user_data['copy_sflow'] = self.ip.parse_copy_sflow(**parameters)
         user_data['established_str'] = self.ip.parse_established(**parameters)
         user_data['icmp_filter_str'] = \
             self.ip.parse_icmp_filter(**parameters)
@@ -809,8 +829,7 @@ class Acl(BaseAcl):
             ...     print dev.acl.delete_ipv4_acl_rule(acl_name='Acl_1',
             ...                                   seq_id=10)
         """
-        supported_params = ['acl_name', 'seq_id']
-        self._is_parameter_supported(supported_params, parameters)
+        params_validator.validate_params_mlx_delete_ipv4_rule_acl(**parameters)
 
         acl_name = parameters['acl_name']
         seq_id = parameters['seq_id']
@@ -871,6 +890,7 @@ class Acl(BaseAcl):
         Raises:
             Exception, ValueError for invalid seq_id.
         """
+        params_validator.validate_params_mlx_add_ipv6_rule_acl(**parameters)
 
         acl_name = parameters['acl_name']
         ret = self.get_acl_address_and_acl_type(acl_name)
@@ -904,15 +924,6 @@ class Acl(BaseAcl):
         Raise:
             Raises ValueError, Exception
         """
-        supported_params = ['acl_name', 'seq_id', 'action', 'vlan',
-                            'protocol_type', 'source', 'dst', 'dscp_mapping',
-                            'fragment', 'tcp_operator', 'icmp_filter',
-                            'copy_sflow', 'drop_precedence',
-                            'drop_precedence_force', 'dscp_marking',
-                            'priority_force', 'priority_mapping',
-                            'suppress_rpf_drop', 'mirror', 'log']
-        self._is_parameter_supported(supported_params, parameters)
-
         user_data = {}
         user_data['acl_name_str'] = parameters['acl_name']
         user_data['seq_id_str'] = self.ipv6.parse_seq_id(**parameters)
@@ -976,8 +987,7 @@ class Acl(BaseAcl):
             ...     print dev.acl.delete_ipv6_acl_rule(acl_name='Acl_1',
             ...                                   seq_id=10)
         """
-        supported_params = ['acl_name', 'seq_id']
-        self._is_parameter_supported(supported_params, parameters)
+        params_validator.validate_params_mlx_delete_ipv6_rule_acl(**parameters)
 
         acl_name = parameters['acl_name']
         seq_id = parameters['seq_id']

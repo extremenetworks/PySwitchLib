@@ -68,7 +68,7 @@ class ConfigUtil(object):
         if not pidfilename:
             pidfilename = '.pyswitchlib_default.pid'
 
-        pidfilename = os.path.join(os.sep, 'tmp', pidfilename)
+        pidfilename = os.path.join(os.sep, 'etc', 'pyswitchlib', pidfilename)
 
         return pidfilename
 

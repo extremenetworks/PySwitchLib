@@ -2,7 +2,7 @@ import os
 import re
 import fasteners
 
-lock_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_config_file.lock')
+lock_file = os.path.join(os.sep, 'etc', 'pyswitchlib', '.pyswitchlib_config_file.lock')
 
 class ConfigFileUtil(object):
     """

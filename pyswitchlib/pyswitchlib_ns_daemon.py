@@ -10,7 +10,7 @@ from daemon.runner import (DaemonRunner, DaemonRunnerStopFailureError)
 from lockfile import LockTimeout
 
 pyswitchlib_conf_file = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
-pid_file = os.path.join(os.sep, 'tmp', '.pyswitchlib_ns.pid')
+pid_file = os.path.join(os.sep, 'etc', 'pyswitchlib', '.pyswitchlib_ns.pid')
 
 
 class PySwitchLibNsDaemon(DaemonRunner):
@@ -115,11 +115,7 @@ if __name__ == "__main__":
                 with open(pid_file, 'r') as pid:
                     if os.path.isdir(os.path.join(os.sep, 'proc', pid.readline().rstrip())):
                         print(sys.argv[0].split('/')[-1] + ' is already started.')
-                        sys.exit(1)
-        elif sys.argv[1] == 'restart':
-            if not os.path.exists(pid_file):
-                print(sys.argv[0].split('/')[-1] + ' is not started.')
-                sys.exit(2)
+                        sys.exit(0)
         elif sys.argv[1] == 'status':
             if os.path.exists(pid_file):
                 with open(pid_file, 'r') as pid:

@@ -92,7 +92,7 @@ class AclParamParser(object):
                 raise ValueError(" Mirror keyword is applicable only for ACL"
                                  " permit clauses")
 
-            if 'log' in parameters and \
+            if 'log' in parameters and parameters['log'] and \
                     parameters['log'].lower() == 'true':
                 raise ValueError("Error: mirror and log keywords can not be "
                                  "used together")
@@ -122,7 +122,7 @@ class AclParamParser(object):
 
         if parameters['log'].lower() == 'true':
 
-            if 'mirror' in parameters and \
+            if 'mirror' in parameters and parameters['mirror'] and \
                     parameters['mirror'].lower() == 'true':
                 raise ValueError("Error: mirror and log keywords can not be "
                                  "used together")
@@ -154,4 +154,35 @@ class AclParamParser(object):
             raise ValueError("{} cannot be used as an ACL name".format(
                              parameters['acl_name']))
 
-        return parameters['acl_name']
+        acl_name = parameters['acl_name'].strip()
+
+        if " " in acl_name:
+            acl_name = "\"" + acl_name + "\""
+
+        return acl_name
+
+    def parse_copy_sflow(self, **parameters):
+        """
+        parse copy-sflow for MLX platform
+        Args:
+            parameters contains:
+                copy_sflow(string): Enables copy-sflow for the rule
+        Returns:
+            Return parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+
+        """
+        if 'copy_sflow' not in parameters or not parameters['copy_sflow']:
+            return None
+
+        copy_sflow = parameters['copy_sflow'].strip().lower()
+
+        if copy_sflow == 'true':
+            return 'copy-sflow'
+
+        if copy_sflow == 'false':
+            return None
+
+        raise ValueError("\'copy_sflow\' can be \'true\' or \'false'\ only.")

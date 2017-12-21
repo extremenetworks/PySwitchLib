@@ -300,6 +300,7 @@ acl_remove = """
 get_interface_by_name = """
 <get-config>
   <source> <running/> </source>
-  <nc:filter type='xpath' select='/interface/{{intf_type}}[name=\"{{intf_name}}\"]'> </nc:filter>
+    <nc:filter type="xpath" select="/interface/{{intf_type}}/\
+name[text()=\'{{intf}}\']"></nc:filter>
 </get-config>
 """

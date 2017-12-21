@@ -612,24 +612,20 @@ if __name__ == "__main__":
                 with open(pid_file, 'r') as pid:
                     if os.path.isdir(os.path.join(os.sep, 'proc', pid.readline().rstrip())):
                         print(sys.argv[0].split('/')[-1] + ' is already started.')
-                        sys.exit(1)
-        elif sys.argv[1] == 'restart':
-            if not os.path.exists(pid_file):
-                print(sys.argv[0].split('/')[-1] + ' is not started.')
-                sys.exit(2)
+                        sys.exit(0)
         elif sys.argv[1] == 'status':
             if os.path.exists(pid_file):
                 with open(pid_file, 'r') as pid:
                     proc_pid = pid.readline().rstrip()
 
                     if os.path.isdir(os.path.join(os.sep, 'proc', proc_pid)):
-                        print(sys.argv[0].split('/')[-1] + ' (pid ' + proc_pid + ') is running...')
+                        print(sys.argv[0].split('/')[-1] + ' (pid ' + proc_pid + ', ' + daemon_id + ', ' + sys.prefix + ') is running...')
                         sys.exit(0)
                     else:
-                        print(sys.argv[0].split('/')[-1] + ' is stopped.')
+                        print(sys.argv[0].split('/')[-1] + ' (' + daemon_id + ', ' + sys.prefix + ') is stopped.')
                         sys.exit(3)
             else:
-                print(sys.argv[0].split('/')[-1] + ' is stopped.')
+                print(sys.argv[0].split('/')[-1] + ' (' + daemon_id + ', ' + sys.prefix + ') is stopped.')
                 sys.exit(3)
 
     pyswitchlib_runner = PySwitchLibApiDaemonRunner(pyswitchlib_conf=pyswitchlib_conf, daemon_id=daemon_id)
