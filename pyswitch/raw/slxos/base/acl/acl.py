@@ -610,29 +610,6 @@ class Acl(SlxNosAcl):
 
         return user_data
 
-    def add_ipv4_rule_acl_bulk(self, **kwargs):
-        """
-        Add ACL rule to an existing IPv4 ACL.
-        Args:
-            acl_name (str): Name of the access list.
-            acl_rules (array): List of ACL sequence rules.
-        Returns:
-            True, False or None for Success, failure and no-change respectively
-            for each seq_ids.
-
-        Examples:
-            >>> from pyswitch.device import Device
-            >>> with Device(conn=conn, auth=auth,
-                            connection_type='NETCONF') as dev:
-            >>>     print dev.acl.create_acl(acl_name='Acl_1',
-                                             acl_type='standard',
-                                             address_type='ip')
-            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1',
-                        acl_rules = [{"seq_id": 10, "action": "permit",
-                                      "source": "host 192.168.0.3")
-        """
-        raise ValueError("To be implemented")
-
     def validate_std_rules(self, acl_name, acl_rules):
         user_data_list = []
         for rule in acl_rules:
