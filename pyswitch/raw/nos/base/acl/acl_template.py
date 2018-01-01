@@ -248,3 +248,121 @@ rbridge_acl_apply = """
   </rbridge-id>
 </config>
 """
+
+acl_rule_ip_bulk = """
+<config>
+  <{{address_type}}-acl
+    xmlns="urn:brocade.com:mgmt:brocade-{{address_type}}-access-list">
+    <{{address_type}}>
+      <access-list>
+        <{{acl_type}}>
+          <name>{{acl_name}}</name>
+          {% if address_type == "ip" %}
+            {% if acl_type == "extended" %}
+              <hide-{{address_type}}-acl-ext>
+            {% else %}
+              <hide-{{address_type}}-acl-std>
+            {% endif %}
+          {% endif %}
+          {% for ud in user_data_list %}
+              <seq>
+                <seq-id>{{ud.seq_id}}</seq-id>
+                <action>{{ud.action}}</action>
+
+                <src-host-any-sip>{{ud.source.host_any}}</src-host-any-sip>
+                {% if ud.source.host_any != "any" %}
+                  {% if ud.source.host_any == "host" %}
+                    <src-host-ip>{{ud.source.host_ip}}</src-host-ip>
+                  {% elif address_type == "ip" %}
+                    <src-mask>{{ud.source.mask}}</src-mask>
+                  {% endif %}
+                {% endif %}
+
+                {% if acl_type == "extended" %}
+                  <protocol-type>{{ud.protocol_type}}</protocol-type>
+
+
+                  {% if ud.source.xport is not none %}
+                    <sport>{{ud.source.xport.op}}</sport>
+
+                    {% if ud.source.xport.op == "eq" or ud.source.xport.op == "neq" %}
+                      <sport-number-eq-neq-{{ud.protocol_type}}>
+                        {{ud.source.xport.val[0]}}
+                      </sport-number-eq-neq-{{ud.protocol_type}}>
+                    {% elif ud.source.xport.op == "range" %}
+                      <sport-number-range-lower-{{ud.protocol_type}}>
+                         {{ud.source.xport.val[0]}}
+                      </sport-number-range-lower-{{ud.protocol_type}}>
+                      <sport-number-range-higher-{{ud.protocol_type}}>
+                         {{ud.source.xport.val[1]}}
+                      </sport-number-range-higher-{{ud.protocol_type}}>
+                    {% else %}
+                      <sport-number-{{ud.source.xport.op}}-{{ud.protocol_type}}>
+                         {{ud.source.xport.val[0]}}
+                      </sport-number-{{ud.source.xport.op}}-{{ud.protocol_type}}>
+                    {% endif %}
+                  {% endif %}
+
+
+                  <dst-host-any-dip>{{ud.destination.host_any}}</dst-host-any-dip>
+                  {% if ud.destination.host_any != "any" %}
+                    {% if ud.destination.host_any == "host" %}
+                      <dst-host-ip>{{ud.destination.host_ip}}</dst-host-ip>
+                    {% elif address_type == "ip" %}
+                      <dst-mask>{{ud.destination.mask}}</dst-mask>
+                    {% endif %}
+                  {% endif %}
+
+                  {% if ud.destination.xport is not none %}
+                    <dport>{{ud.destination.xport.op}}</dport>
+
+                    {% if ud.destination.xport.op == "eq" or
+                          ud.destination.xport.op == "neq" %}
+                      <dport-number-eq-neq-{{ud.protocol_type}}>
+                        {{ud.destination.xport.val[0]}}
+                      </dport-number-eq-neq-{{ud.protocol_type}}>
+                    {% elif ud.destination.xport.op == "range" %}
+                      <dport-number-range-lower-{{ud.protocol_type}}>
+                         {{ud.destination.xport.val[0]}}
+                      </dport-number-range-lower-{{ud.protocol_type}}>
+                      <dport-number-range-higher-{{ud.protocol_type}}>
+                         {{ud.destination.xport.val[1]}}
+                      </dport-number-range-higher-{{ud.protocol_type}}>
+                    {% else %}
+                      <dport-number-{{ud.destination.xport.op}}-{{ud.protocol_type}}>
+                         {{ud.destination.xport.val[0]}}
+                      </dport-number-{{ud.destination.xport.op}}-{{ud.protocol_type}}>
+                    {% endif %}
+                  {% endif %}
+
+                  {% if dscp is not none %} <dscp>{{ud.dscp}}</dscp> {% endif %}
+
+                  {% if vlan_id is not none %}
+                    <vlan>{{ud.vlan_id}}</vlan>
+                  {% endif %}
+
+                  {% if ud.urg is not none %} <urg></urg> {% endif %}
+                  {% if ud.ack is not none %} <ack></ack> {% endif %}
+                  {% if ud.push is not none %} <push></push> {% endif %}
+                  {% if ud.fin is not none %} <fin></fin> {% endif %}
+                  {% if ud.rst is not none %} <rst></rst> {% endif %}
+                  {% if ud.sync is not none %} <sync></sync> {% endif %}
+                {% endif %}
+
+                {% if ud.count is not none %} <count></count> {% endif %}
+                {% if ud.log is not none %}<log></log> {% endif %}
+              </seq>
+          {% endfor %}
+          {% if address_type == "ip" %}
+            {% if acl_type == "extended" %}
+              </hide-{{address_type}}-acl-ext>
+            {% else %}
+              </hide-{{address_type}}-acl-std>
+            {% endif %}
+          {% endif %}
+        </{{acl_type}}>
+      </access-list>
+    </{{address_type}}>
+  </{{address_type}}-acl>
+</config>
+"""
