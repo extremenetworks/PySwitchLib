@@ -435,7 +435,7 @@ class AclParamParser(object):
                             ranged_values[1].isdigit():
                         ranged_values = sorted(ranged_values)
                         for val in range(int(ranged_values[0]),
-                                         int(ranged_values[1])+1):
+                                         int(ranged_values[1]) + 1):
                             if val in configured_seq_ids:
                                 seq_id_list.append(int(val))
                     else:
