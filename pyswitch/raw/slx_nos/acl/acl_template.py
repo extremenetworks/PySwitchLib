@@ -304,3 +304,39 @@ get_interface_by_name = """
 name[text()=\'{{intf}}\']"></nc:filter>
 </get-config>
 """
+
+acl_rule_ipx_delete_bulk = """
+<config>
+  <{{address_type}}-acl
+    xmlns="urn:brocade.com:mgmt:brocade-{{address_type}}-access-list">
+    <{{address_type}}>
+      <access-list>
+        <{{acl_type}}>
+          <name>{{acl_name}}</name>
+          {% if address_type == "ip" %}
+            {% if acl_type == "extended" %}
+              <hide-{{address_type}}-acl-ext>
+            {% else %}
+              <hide-{{address_type}}-acl-std>
+            {% endif %}
+          {% endif %}
+
+          {% for ud in user_data_list %}
+              <seq operation="delete">
+                <seq-id>{{ud.seq_id}}</seq-id>
+              </seq>
+          {% endfor %}
+
+          {% if address_type == "ip" %}
+            {% if acl_type == "extended" %}
+              </hide-{{address_type}}-acl-ext>
+            {% else %}
+              </hide-{{address_type}}-acl-std>
+            {% endif %}
+          {% endif %}
+        </{{acl_type}}>
+      </access-list>
+    </{{address_type}}>
+  </{{address_type}}-acl>
+</config>
+"""

@@ -364,3 +364,27 @@ class Acl(object):
                                       "source": "host 192.168.0.3")
         """
         return
+
+    @abc.abstractmethod
+    def delete_ipv4_acl_rule_bulk(self, **kwargs):
+        """
+        Delete ACL rules from IPv4 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            acl_rules (string): Range of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='ip')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1',
+                        acl_rules = [{"seq_id": 10, "action": "permit",
+                                      "source": "host 192.168.0.3")
+        """
+        return

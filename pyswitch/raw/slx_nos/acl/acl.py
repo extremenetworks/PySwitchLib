@@ -32,6 +32,7 @@ class SlxNosAcl(BaseAcl):
     Attributes:
         None
     """
+    RULE_CHUNK_SIZE = 200
 
     def __init__(self, callback):
         """
@@ -400,5 +401,69 @@ class SlxNosAcl(BaseAcl):
                               " seq_id could not be configured"
                               .format(conflicting_seq_ids[0]))
             raise ValueError(rpc_err)
+        elif "error" in rpc_err.lower():
+            raise ValueError(rpc_err)
 
+        return True
+
+    def delete_ipv4_acl_rule_bulk(self, **kwargs):
+        """
+        Delete ACL rules from IPv4 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            seq_ids(string): Range of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='ip')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1',
+                        acl_rules = [{"seq_id": 10, "action": "permit",
+                                      "source": "host 192.168.0.3")
+        """
+        # Parse params
+        acl_name = self.ap.parse_acl_name(**kwargs)
+        callback = kwargs.pop('callback', self._callback)
+
+        acl = self._get_acl_info(acl_name, get_seqs=True)
+        acl_type = acl['type']
+        address_type = acl['protocol']
+
+        if address_type != 'ip':
+            raise ValueError("IPv4 Rule can not be added to non-ip ACL."
+                             "ACL {} is of type {}"
+                             .format(acl_name, address_type))
+
+        self.logger.info('Successfully identified the acl_type as ({}:{})'
+                         .format(address_type, acl_type))
+
+        seq_range = self.ap.parse_seq_id_by_range(acl['seq_ids'], **kwargs)
+        user_data_list = [{'seq_id': seq_id} for seq_id in seq_range]
+
+        # send the rules in a chunk of Acl.RULE_CHUNK_SIZE
+        chunks = [user_data_list[i:i + SlxNosAcl.RULE_CHUNK_SIZE]
+                  for i in
+                  xrange(0, len(user_data_list), SlxNosAcl.RULE_CHUNK_SIZE)]
+
+        for chunk in chunks:
+            t = jinja2.Template(acl_template.acl_rule_ipx_delete_bulk)
+            config = t.render(address_type=address_type,
+                              acl_type=acl_type,
+                              acl_name=acl_name,
+                              user_data_list=chunk)
+            config = ' '.join(config.split())
+            self.logger.debug(config)
+
+            try:
+                callback(config)
+            except Exception as rpc_err:
+                raise ValueError(rpc_err)
+
+        self.logger.info('Successfully deleted rule ACL {}'.format(acl_name))
         return True

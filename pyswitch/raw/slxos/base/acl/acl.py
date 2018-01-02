@@ -31,7 +31,6 @@ class Acl(SlxNosAcl):
     Attributes:
         None
     """
-    RULE_CHUNK_SIZE = 200
 
     def __init__(self, callback):
         """

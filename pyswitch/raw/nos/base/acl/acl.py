@@ -32,7 +32,6 @@ class Acl(SlxNosAcl):
     Attributes:
         None
     """
-    RULE_CHUNK_SIZE = 200
 
     os_type = "nos"
 
