@@ -23,6 +23,27 @@ def validate_params_nos_add_ipv4_rule_acl(**parameters):
                              .format(unaccepted_params))
 
 
+def validate_params_nos_add_std_ipv4_rule_acl(**parameters):
+
+    required_params = ['source', 'acl_name', 'action']
+    accepted_params = ['log', 'seq_id', 'source', 'acl_name', 'count',
+                       'action']
+    st2_specific_params = []
+
+    received_params = [k for k, v in parameters.iteritems() if v]
+
+    absent_required = list(set(required_params) - set(received_params))
+    if len(absent_required) > 0:
+        raise ValueError("missing required parameters: {}"
+                         .format(absent_required))
+
+    unaccepted_params = list(set(received_params) - set(accepted_params))
+    if len(unaccepted_params) > 0:
+        if set(unaccepted_params) != set(st2_specific_params):
+            raise ValueError("unaccepted parameters provided: {}"
+                             .format(unaccepted_params))
+
+
 def validate_params_nos_add_or_remove_l2_acl_rule(**parameters):
 
     required_params = ['acl_name', 'source', 'action']
@@ -196,6 +217,27 @@ def validate_params_slx_add_ipv4_rule_acl(**parameters):
                        'vlan_id', 'log', 'seq_id', 'destination', 'source',
                        'fin', 'acl_name', 'dscp', 'push', 'rst',
                        'protocol_type', 'count', 'urg', 'ack', 'action']
+    st2_specific_params = []
+
+    received_params = [k for k, v in parameters.iteritems() if v]
+
+    absent_required = list(set(required_params) - set(received_params))
+    if len(absent_required) > 0:
+        raise ValueError("missing required parameters: {}"
+                         .format(absent_required))
+
+    unaccepted_params = list(set(received_params) - set(accepted_params))
+    if len(unaccepted_params) > 0:
+        if set(unaccepted_params) != set(st2_specific_params):
+            raise ValueError("unaccepted parameters provided: {}"
+                             .format(unaccepted_params))
+
+
+def validate_params_slx_add_std_ipv4_rule_acl(**parameters):
+
+    required_params = ['source', 'acl_name', 'action']
+    accepted_params = ['log', 'seq_id', 'source', 'acl_name', 'count',
+                       'action']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
