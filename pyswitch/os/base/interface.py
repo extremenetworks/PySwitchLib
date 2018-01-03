@@ -7245,3 +7245,4 @@ class Interface(object):
                             'connector': connector,
                             'vendor_name': vendor_name}
             result.append(item_results)
+        return result
