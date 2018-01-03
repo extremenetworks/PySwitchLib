@@ -22,14 +22,17 @@ import pyswitch.snmp.mlx.base.system
 import pyswitch.snmp.mlx.base.utils
 import pyswitch.snmp.mlx.base.acl.acl
 import pyswitch.snmp.mlx.base.services
+import Pyro4
 
 from pyswitch.snmp.snmpconnector import SnmpConnector as SNMPDevice
 from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
 from pyswitch.snmp.snmpconnector import SnmpUtils as SNMPUtils
 from pyswitch.AbstractDevice import AbstractDevice
-from netmiko import ConnectHandler
-from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
-from paramiko.ssh_exception import SSHException
+from pyswitchlib.util.configFile import ConfigFileUtil
+
+
+pyswitchlib_ns_daemon_file = '/etc/pyswitchlib/.pyswitchlib_ns_daemon.uri'
+pyswitchlib_daemon = 'api_daemon_virtualenv_packs'
 
 ROUTER_ATTRS = ['interface', 'system', 'acl', 'services', 'utils']
 
@@ -115,6 +118,14 @@ class SnmpCliDevice(AbstractDevice):
         self._authpass = snmpconfig['authpass']
         self._privpass = snmpconfig['privpass']
         self._sysobj = sysobj
+        self._proxied = None
+        ns_daemon_dict = ConfigFileUtil().read(filename=pyswitchlib_ns_daemon_file)
+
+        if pyswitchlib_daemon in ns_daemon_dict:
+            uri = ns_daemon_dict['api_daemon_virtualenv_packs']
+            with Pyro4.Proxy(uri) as pyro_proxy:
+                pyro_proxy._pyroBind()
+                self._proxied = pyro_proxy
 
         if self._callback is None:
             self._callback = self._callback_main
@@ -280,11 +291,12 @@ class SnmpCliDevice(AbstractDevice):
                     value = self._mgr['snmp'].set(call[0], call[1])
             elif handler == 'snmp-set-multiple':
                 value = self._mgr['snmp'].set_multiple(call)
-            elif handler == "cli-set":
-                self._mgr['cli'].enable()
-                value = self._mgr['cli'].send_config_set(call)
-            elif handler == "cli-get":
-                value = self._mgr['cli'].send_command(call)
+            elif handler == 'cli-set' or handler == 'cli-get':
+                self._proxied.netmiko_acquire()
+                try:
+                    value = self._proxied.cli_execution(handler, self.host, call)
+                finally:
+                    self._proxied.netmiko_release()
         except (SNMPError) as error:
             raise DeviceCommError(error)
         except Exception:
@@ -315,30 +327,24 @@ class SnmpCliDevice(AbstractDevice):
                                            privproto=self._v3priv,
                                            privkey=self._privpass)
         if 'cli' not in self._mgr:
-            #  FIXME: Revisit this logic
-            opt = {'device_type': 'brocade_netiron'}
-            opt['ip'] = self.host
-            opt['username'] = self._auth[0]
-            opt['password'] = self._auth[1]
-            opt['global_delay_factor'] = 0.5
-            if self._enablepass:
-                opt['secret'] = self._enablepass
-            #  FIXME: Do we need to catch error??
-            net_connect = None
+            self._proxied.netmiko_acquire()
             try:
-                net_connect = ConnectHandler(**opt)
-            except (NetMikoTimeoutException, NetMikoAuthenticationException,) as error:
-                reason = error.message
-                raise ValueError('Failed to execute valueerror cli on due to %s', reason)
-            except SSHException as error:
-                reason = error.message
-                raise ValueError('Failed to execute cli on due to %s', reason)
+                opt = {'device_type': 'brocade_netiron'}
+                opt['ip'] = self.host
+                opt['username'] = self._auth[0]
+                opt['password'] = self._auth[1]
+                opt['global_delay_factor'] = 0.5
+                if self._enablepass:
+                    opt['secret'] = self._enablepass
+                self._proxied.create_netmiko_connection(opt)
+                self._mgr['cli'] = True
+            except ValueError:
+                raise
             except Exception as error:
                 reason = error.message
-                raise ValueError('Failed to execute due to %s', reason)
-
-            if net_connect is not None:
-                self._mgr['cli'] = net_connect
+                raise ValueError("Connection object failed %s" % reason)
+            finally:
+                self._proxied.netmiko_release()
 
         return True
 
@@ -349,7 +355,6 @@ class SnmpCliDevice(AbstractDevice):
         if 'snmp' in self._mgr:
             del self._mgr['snmp']
         if 'cli' in self._mgr:
-            self._mgr['cli'].disconnect()
             del self._mgr['cli']
 
 
