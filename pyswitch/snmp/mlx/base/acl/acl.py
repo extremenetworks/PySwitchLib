@@ -1278,3 +1278,56 @@ class Acl(BaseAcl):
 
         self.logger.info('Successfully added rule ACL {}'.format(acl_name))
         return True
+
+    def delete_ipv4_acl_rule_bulk(self, **kwargs):
+        """
+        Delete ACL rules from IPv4 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            acl_rules (string): Range of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='ip')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1',
+                        acl_rules = [{"seq_id": 10, "action": "permit",
+                                      "source": "host 192.168.0.3")
+        """
+        # Validate required and accepted kwargs
+        params_validator.validate_params_mlx_delete_ipv4_rule_acl(**kwargs)
+
+        acl_name = self.mac.parse_acl_name(**kwargs)
+
+        ret = self.get_acl_address_and_acl_type(acl_name)
+        acl_type = ret['type']
+        address_type = ret['protocol']
+
+        if address_type != 'ip':
+            raise ValueError("IPv4 Rule can not be added to non-ip ACL."
+                             "ACL {} is of type {}"
+                             .format(acl_name, address_type))
+
+        self.logger.info('Successfully identified the acl_type as ({}:{})'
+                         .format(address_type, acl_type))
+
+        # Get already configured seq_ids
+        configured_seq_ids = self.get_configured_seq_ids(acl_name,
+                                                         address_type)
+        seq_range = self.mac.parse_seq_id_by_range(configured_seq_ids,
+                                                   **kwargs)
+
+        cli_arr = ['ip access-list ' + ' ' + acl_type + ' ' + acl_name]
+
+        for seq_id in seq_range:
+            cli_arr.append('no sequence ' + str(seq_id))
+
+        output = self._callback(cli_arr, handler='cli-set')
+        return self._process_cli_output(inspect.stack()[0][3],
+                                        str(cli_arr), output)

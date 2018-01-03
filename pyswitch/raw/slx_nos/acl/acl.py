@@ -427,6 +427,9 @@ class SlxNosAcl(BaseAcl):
                         acl_rules = [{"seq_id": 10, "action": "permit",
                                       "source": "host 192.168.0.3")
         """
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_nos_delete_acl_rule(**kwargs)
+
         # Parse params
         acl_name = self.ap.parse_acl_name(**kwargs)
         callback = kwargs.pop('callback', self._callback)

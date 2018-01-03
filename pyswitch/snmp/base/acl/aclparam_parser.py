@@ -186,3 +186,85 @@ class AclParamParser(object):
             return None
 
         raise ValueError("\'copy_sflow\' can be \'true\' or \'false'\ only.")
+
+    def parse_seq_id_by_range(self, configured_seq_ids, **parameters):
+        """
+        parse supported actions by platform
+        Args:
+            parameters contains:
+                seq_id (string): Allowed seq_id is 1 to 214748364.
+                                 Example:- { 10 | all | 1,2,3-10,20 }
+        Returns:
+            Return list of parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+
+        """
+        if 'seq_id' not in parameters or not parameters['seq_id']:
+            raise ValueError('seq_id is required to delete rule for {}'
+                             .format(parameters['acl_name']))
+
+        if parameters['seq_id'].lower() == 'all':
+            return configured_seq_ids
+
+        sequences = parameters['seq_id'].split(',')
+
+        invalid_input = False
+        seq_id_list = []
+
+        for x in sequences:
+            if x.isdigit():
+                seq_id_list.append(int(x))
+
+            elif x[-1] == '-':
+                if x[:-1].isdigit():
+                    start_val = int(x[:-1])
+                    # Assuming netconf response will is sorted
+                    end_val = configured_seq_ids[-1]
+
+                    for val in range(start_val, end_val + 1):
+                        if val in configured_seq_ids:
+                            seq_id_list.append(int(val))
+                else:
+                    invalid_input = True
+                    break
+
+            elif '-' in x:
+                ranged_values = x.split('-')
+
+                if len(ranged_values) == 2:
+                    if ranged_values[0].isdigit() and \
+                            ranged_values[1].isdigit():
+                        start_val = int(ranged_values[0])
+                        end_val = int(ranged_values[1])
+
+                        if start_val > end_val:
+                            start_val, end_val = end_val, start_val
+
+                        for val in range(start_val, end_val + 1):
+                            if val in configured_seq_ids:
+                                seq_id_list.append(int(val))
+                    else:
+                        invalid_input = True
+                        break
+                else:
+                    invalid_input = True
+                    break
+            else:
+                invalid_input = True
+                break
+
+        if invalid_input:
+            raise ValueError("Invalid seq_id received: {} Supported"
+                             " format is {{ 10 | all | 1,2,3-10,20 }}"
+                             .format(parameters['seq_id']))
+
+        # if any requested seq-id doesn't exist raise exception.
+        invalid_seq_ids = list(set(seq_id_list) - set(configured_seq_ids))
+
+        if len(invalid_seq_ids) > 0:
+            raise ValueError("Error: Invalid seq_ids received: {}."
+                             .format(invalid_seq_ids))
+
+        return sorted(list(set(seq_id_list)), reverse=True)
