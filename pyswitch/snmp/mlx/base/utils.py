@@ -64,7 +64,7 @@ class Utils(BaseUtils):
                             numips, count, size, timeout_value)
                 elif valid_address.version == 6:
                     if vrf != 'default-vrf':
-                        cli = "ping vrf {} ipv6 {} count {} datagram-size {} timeout {}".format(
+                        cli = "ping ipv6 vrf {} {} count {} datagram-size {} timeout {}".format(
                             vrf, numips, count, size, timeout_value)
                     else:
                         cli = "ping ipv6 {} count {} datagram-size {} timeout {}".format(
@@ -199,6 +199,9 @@ class Utils(BaseUtils):
                     p_tx = tx_rx[0]
                     p_rx = tx_rx[1]
                     p_loss = 100 - int(success_rate)
+                elif line.startswith('Ping self done.'):
+                    p_loss = 0
+                    success_rate = 100
 
             if int(success_rate) != 100:
                 output_dict['ip_address'] = str(ip)
