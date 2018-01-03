@@ -400,11 +400,8 @@ class SlxNosAcl(BaseAcl):
             self.logger.error("rules with seq_id equal to and above {}"
                               " seq_id could not be configured"
                               .format(conflicting_seq_ids[0]))
-            raise ValueError(rpc_err)
-        elif "error" in rpc_err.lower():
-            raise ValueError(rpc_err)
 
-        return True
+        raise ValueError(rpc_err)
 
     def delete_ipv4_acl_rule_bulk(self, **kwargs):
         """
