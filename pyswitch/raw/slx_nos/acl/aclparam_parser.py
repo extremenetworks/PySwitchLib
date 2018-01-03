@@ -424,18 +424,37 @@ class AclParamParser(object):
 
         invalid_input = False
         seq_id_list = []
+
         for x in sequences:
             if x.isdigit():
                 seq_id_list.append(int(x))
 
+            elif x[-1] == '-':
+                if x[:-1].isdigit():
+                    start_val = int(x[:-1])
+                    # Assuming netconf response will is sorted
+                    end_val = configured_seq_ids[-1]
+
+                    for val in range(start_val, end_val + 1):
+                        if val in configured_seq_ids:
+                            seq_id_list.append(int(val))
+                else:
+                    invalid_input = True
+                    break
+
             elif '-' in x:
                 ranged_values = x.split('-')
+
                 if len(ranged_values) == 2:
                     if ranged_values[0].isdigit() and \
                             ranged_values[1].isdigit():
-                        ranged_values = sorted(ranged_values)
-                        for val in range(int(ranged_values[0]),
-                                         int(ranged_values[1]) + 1):
+                        start_val = int(ranged_values[0])
+                        end_val = int(ranged_values[1])
+
+                        if start_val > end_val:
+                            start_val, end_val = end_val, start_val
+
+                        for val in range(start_val, end_val + 1):
                             if val in configured_seq_ids:
                                 seq_id_list.append(int(val))
                     else:
