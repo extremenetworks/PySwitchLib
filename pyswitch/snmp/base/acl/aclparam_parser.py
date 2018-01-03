@@ -79,18 +79,27 @@ class AclParamParser(object):
             Raise ValueError exception
         Examples:
         """
-        if 'mirror' in parameters or not parameters['mirror']:
+        if 'mirror' not in parameters or not parameters['mirror']:
             return None
 
-        if 'action' in parameters and parameters['action'] and \
-                parameters['action'] != 'permit':
-            raise ValueError(" Mirror keyword is applicable only for ACL"
-                             " permit clauses")
+        if parameters['mirror'].lower() == 'false':
+            return None
 
-        if 'log' in parameters or not parameters['log']:
+        if parameters['mirror'].lower() == 'true':
+
+            if 'action' in parameters and parameters['action'] and \
+                    parameters['action'] != 'permit':
+                raise ValueError(" Mirror keyword is applicable only for ACL"
+                                 " permit clauses")
+
+            if 'log' in parameters and parameters['log'] and \
+                    parameters['log'].lower() == 'true':
+                raise ValueError("Error: mirror and log keywords can not be "
+                                 "used together")
             return 'mirror'
 
-        raise ValueError("log and mirror keywords can not be used together")
+        raise ValueError("Invalid \'mirror\' value: {}"
+                         .format(parameters['mirror']))
 
     def parse_log(self, **parameters):
         """
@@ -105,17 +114,22 @@ class AclParamParser(object):
             Raise ValueError exception
         Examples:
         """
-        if 'log' in parameters or not parameters['log']:
+        if 'log' not in parameters or not parameters['log']:
             return None
 
-        if 'mirror' in parameters and parameters['mirror'] != 'False':
-            raise ValueError("Error: mirror and log keywords can not be "
-                             "used together")
+        if parameters['log'].lower() == 'false':
+            return None
 
-        if parameters['log'] == 'True':
+        if parameters['log'].lower() == 'true':
+
+            if 'mirror' in parameters and parameters['mirror'] and \
+                    parameters['mirror'].lower() == 'true':
+                raise ValueError("Error: mirror and log keywords can not be "
+                                 "used together")
             return 'log'
 
-        return None
+        raise ValueError("Invalid \'log\' value: {}"
+                         .format(parameters['log']))
 
     def parse_acl_name(self, **parameters):
         """
@@ -140,4 +154,35 @@ class AclParamParser(object):
             raise ValueError("{} cannot be used as an ACL name".format(
                              parameters['acl_name']))
 
-        return parameters['acl_name']
+        acl_name = parameters['acl_name'].strip()
+
+        if " " in acl_name:
+            acl_name = "\"" + acl_name + "\""
+
+        return acl_name
+
+    def parse_copy_sflow(self, **parameters):
+        """
+        parse copy-sflow for MLX platform
+        Args:
+            parameters contains:
+                copy_sflow(string): Enables copy-sflow for the rule
+        Returns:
+            Return parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+
+        """
+        if 'copy_sflow' not in parameters or not parameters['copy_sflow']:
+            return None
+
+        copy_sflow = parameters['copy_sflow'].strip().lower()
+
+        if copy_sflow == 'true':
+            return 'copy-sflow'
+
+        if copy_sflow == 'false':
+            return None
+
+        raise ValueError("\'copy_sflow\' can be \'true\' or \'false'\ only.")

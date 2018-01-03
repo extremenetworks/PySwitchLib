@@ -464,8 +464,10 @@ class Acl(SlxNosAcl):
         user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
 
         callback = kwargs.pop('callback', self._callback)
-        result = {}
 
+        self.validate_interfaces(callback, user_data)
+
+        result = {}
         for intf in user_data['interface_list']:
             self.logger.info('Applying ACL {} on interface ({}:{})'
                              .format(user_data['acl_name'],
@@ -522,8 +524,10 @@ class Acl(SlxNosAcl):
         user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
 
         callback = kwargs.pop('callback', self._callback)
-        result = {}
 
+        self.validate_interfaces(callback, user_data)
+
+        result = {}
         for intf in user_data['interface_list']:
             self.logger.info('Removing ACL {} from interface ({}:{})'
                              .format(user_data['acl_name'],
