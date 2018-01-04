@@ -206,15 +206,15 @@ class Utils(BaseUtils):
             if int(success_rate) != 100:
                 output_dict['ip_address'] = str(ip)
                 output_dict['result'] = 'fail'
-                output_dict['packets transmitted'] = p_tx
-                output_dict['packets received'] = p_rx
+                output_dict['packets transmitted'] = int(p_tx)
+                output_dict['packets received'] = int(p_rx)
                 output_dict['packet loss'] = str(p_loss) + "%"
                 status = False
             else:
                 output_dict['ip_address'] = ip
                 output_dict['result'] = 'pass'
-                output_dict['packets transmitted'] = p_tx
-                output_dict['packets received'] = p_rx
+                output_dict['packets transmitted'] = int(p_tx)
+                output_dict['packets received'] = int(p_rx)
                 output_dict['packet loss'] = str(p_loss) + "%"
             final_output.append(output_dict)
         json_outputformat = json.dumps(

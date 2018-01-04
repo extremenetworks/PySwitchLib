@@ -214,16 +214,16 @@ class Utils(object):
                 failed_ips_list.append(str(ip))
                 output_dict['ip_address'] = str(ip)
                 output_dict['result'] = 'fail'
-                output_dict['packets transmitted'] = p_tx
-                output_dict['packets received'] = p_rx
+                output_dict['packets transmitted'] = int(p_tx)
+                output_dict['packets received'] = int(p_rx)
                 output_dict['packet loss'] = p_loss + "%"
                 status = False
             elif int(p_loss) == 0:
                 success_ips_list.append(str(ip))
                 output_dict['ip_address'] = ip
                 output_dict['result'] = 'pass'
-                output_dict['packets transmitted'] = p_tx
-                output_dict['packets received'] = p_rx
+                output_dict['packets transmitted'] = int(p_tx)
+                output_dict['packets received'] = int(p_rx)
                 output_dict['packet loss'] = p_loss + "%"
             final_output.append(output_dict)
         json_outputformat = json.dumps(
