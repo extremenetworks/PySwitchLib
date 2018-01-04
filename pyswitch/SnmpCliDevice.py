@@ -122,7 +122,7 @@ class SnmpCliDevice(AbstractDevice):
         ns_daemon_dict = ConfigFileUtil().read(filename=pyswitchlib_ns_daemon_file)
 
         if pyswitchlib_daemon in ns_daemon_dict:
-            uri = ns_daemon_dict['api_daemon_virtualenv_packs']
+            uri = ns_daemon_dict[pyswitchlib_daemon]
             with Pyro4.Proxy(uri) as pyro_proxy:
                 pyro_proxy._pyroBind()
                 self._proxied = pyro_proxy

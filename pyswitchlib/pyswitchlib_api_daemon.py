@@ -83,7 +83,7 @@ class PySwitchLibApiDaemon(object):
             else:
                 # case 3: Assume user value is new so delete existing
                 # and add new connection object for this
-                conn_obj = self.get_netmiko_connection(key)
+                conn_obj = self._get_netmiko_connection(key)
                 conn_obj.disconnect()
                 del net_connect_dict[key]
                 try:
@@ -114,7 +114,7 @@ class PySwitchLibApiDaemon(object):
             raise ValueError('Failed to connect to switch %s' % reason)
         return net_connect
 
-    def get_netmiko_connection(self, key):
+    def _get_netmiko_connection(self, key):
         if key in self._netmiko_connection:
             return self._netmiko_connection[key][0]
         else:
@@ -122,7 +122,7 @@ class PySwitchLibApiDaemon(object):
 
     def cli_execution(self, handler, host, call):
         value = ''
-        conn_obj = self.get_netmiko_connection(host)
+        conn_obj = self._get_netmiko_connection(host)
         if not conn_obj:
             return value
         try:
