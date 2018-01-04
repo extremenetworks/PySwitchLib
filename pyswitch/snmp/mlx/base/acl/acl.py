@@ -464,7 +464,7 @@ class Acl(BaseAcl):
             output = self._callback(cli_arr, handler='cli-set')
             if 'Error: ' in output and acl_name in output:
                 self.logger.info('{} pre-existing on intf {}'
-                         .format(acl_name, intf))
+                                 .format(acl_name, intf))
                 continue
             self._process_cli_output(inspect.stack()[0][3], config, output)
 
@@ -1078,3 +1078,256 @@ class Acl(BaseAcl):
 
         raise ValueError("Failed to identify acl_type."
                          " Check if the ACL {} exists".format(acl_name))
+
+    def get_configured_seq_ids(self, acl_name, address_type):
+        """
+        get_configured_seq_ids get existing seq_ids.
+        Args:
+            acl_name (str): Name of the access list.
+        Returns:
+            Return True
+        Raises:
+            Exception
+        Examples:
+        """
+        if not acl_name:
+            raise ValueError('Acl Name is manadatory parameter')
+
+        if not address_type:
+            raise ValueError('Address type is manadatory parameter')
+
+        if address_type == 'mac':
+            cmd = acl_template.show_l2_access_list
+        elif address_type == 'ip':
+            cmd = acl_template.show_ip_access_list
+        elif address_type == 'ipv6':
+            cmd = acl_template.show_ipv6_access_list
+        else:
+            raise ValueError('{} not supported'.format(address_type))
+
+        t = jinja2.Template(cmd)
+        config = t.render(acl_name_str=acl_name)
+        config = ' '.join(config.split())
+
+        output = self._callback(config, handler='cli-get')
+
+        # Check if there is any error
+        self._process_cli_output(inspect.stack()[0][3], config, output)
+
+        re_cmp = re.compile(r'\d+:')
+        configured_seq_ids = re_cmp.findall(output)
+        configured_seq_ids = [int(x[:-1]) for x in configured_seq_ids]
+        return configured_seq_ids
+
+    def set_seq_id_for_bulk_rules(self, existing_seq_ids, acl_rules):
+
+        user_seq_ids = [rule['seq_id'] for rule in acl_rules
+                        if 'seq_id' in rule and rule['seq_id']]
+
+        # There are configured rules and user has requested rules with seq_ids
+        if existing_seq_ids and user_seq_ids:
+
+            # Validate if user has provided all or none seq_id
+            if len(user_seq_ids) != len(acl_rules):
+                raise ValueError("User should provide seq_id for all or none "
+                                 "of the rules")
+
+            # Validate if user provided ids are not overlapping
+            overlapping_ids = set(user_seq_ids).intersection(existing_seq_ids)
+            if overlapping_ids:
+                    raise ValueError("These sequence ids are already "
+                                     "configured: {}".format(overlapping_ids))
+
+            acl_rules = sorted(acl_rules, key=lambda k: k['seq_id'])
+
+        elif user_seq_ids:
+            # Validate if user has provided all or none seq_id
+            if len(user_seq_ids) != len(acl_rules):
+                raise ValueError("User should provide seq_id for all or none "
+                                 "of the rules")
+
+            acl_rules = sorted(acl_rules, key=lambda k: k['seq_id'])
+
+        elif existing_seq_ids:
+            next_seq_id = (max(existing_seq_ids) + 10) // 10 * 10
+
+            # Assign seq_id to all the rules.
+            for rule in acl_rules:
+                rule['seq_id'] = next_seq_id
+                next_seq_id = next_seq_id + 10
+        else:
+            next_seq_id = 10
+
+            # Assign seq_id to all the rules.
+            for rule in acl_rules:
+                rule['seq_id'] = next_seq_id
+                next_seq_id = next_seq_id + 10
+
+        return True
+
+    def validate_std_rules(self, acl_name, acl_rules):
+        user_data_list = []
+        for rule in acl_rules:
+            rule['acl_name'] = acl_name
+            params_validator.validate_params_mlx_add_std_ipv4_rule_acl(**rule)
+            user_data = self.parse_params_for_add_ipv4_standard(**rule)
+            rule['address_type'] = 'ip'
+            user_data_list.append(user_data)
+        return user_data_list
+
+    def validate_ext_rules(self, acl_name, acl_rules):
+        user_data_list = []
+        for rule in acl_rules:
+            rule['acl_name'] = acl_name
+            params_validator.validate_params_mlx_add_ipv4_rule_acl(**rule)
+            rule['address_type'] = 'ip'
+            user_data = self.parse_params_for_add_ipv4_extended(**rule)
+            user_data_list.append(user_data)
+        return user_data_list
+
+    def add_ipv4_rule_acl_bulk(self, **kwargs):
+        """
+        Add ACL rule to an existing IPv4 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            acl_rules (array): List of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='ip')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1',
+                        acl_rules = [{"seq_id": 10, "action": "permit",
+                                      "source": "host 192.168.0.3")
+        """
+        if 'acl_rules' not in kwargs or not kwargs['acl_rules']:
+            self.logger.info("Empty ACL Rules. Nothing to configure.")
+            return True
+
+        acl_rules = kwargs['acl_rules']
+
+        # Parse params
+        acl_name = self.ip.parse_acl_name(**kwargs)
+        ret = self.get_acl_address_and_acl_type(acl_name)
+        acl_type = ret['type']
+        address_type = ret['protocol']
+
+        if address_type != 'ip':
+            raise ValueError("IPv4 Rule can not be added to non-ip ACL."
+                             "ACL {} is of type {}"
+                             .format(acl_name, address_type))
+
+        self.logger.info('Successfully identified the acl_type as ({}:{})'
+                         .format(address_type, acl_type))
+
+        # Get already configured seq_ids
+        configured_seq_ids = self.get_configured_seq_ids(acl_name,
+                                                         address_type)
+
+        # if there are already configured rules. Make sure that they are
+        # not overlapping with new rules to be configured
+        self.set_seq_id_for_bulk_rules(configured_seq_ids, acl_rules)
+
+        # Parse parameters
+        if acl_type == 'standard':
+            user_data_list = self.validate_std_rules(acl_name, acl_rules)
+            cmd = acl_template.add_ip_standard_acl_rule_template
+        elif acl_type == 'extended':
+            user_data_list = self.validate_ext_rules(acl_name, acl_rules)
+            cmd = acl_template.add_ip_extended_acl_rule_template
+        else:
+            raise ValueError('{} not supported'.format(acl_type))
+
+        configured_count = 0
+
+        cli_arr = ['ip access-list ' + ' ' + acl_type + ' ' + acl_name]
+        for user_data in user_data_list:
+            t = jinja2.Template(cmd)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+            cli_arr.append(config)
+            self.logger.debug(config)
+
+            try:
+                output = self._callback(cli_arr, handler='cli-set')
+                if 'Failed to initialize dns request' in output:
+                    raise ValueError('ACL DNS: Errno(5) Failed '
+                                     'to initialize dns request')
+                if 'are undefined' in output:
+                    raise ValueError('Invlaid icmp filter: {}'
+                                     .format(user_data['icmp_filter']))
+                self._process_cli_output(inspect.stack()[0][3], config, output)
+                configured_count = configured_count + 1
+                cli_arr.pop()
+            except Exception as err:
+                unconfigured_count = len(acl_rules) - configured_count
+                self.logger.info("{} rules configured successfully"
+                                 .format(configured_count))
+                self.logger.error("{} rules could not be configured"
+                                  .format(unconfigured_count))
+                self.logger.error("rules with seq_id equal to and above {}"
+                                  " seq_id could not be configured"
+                                  .format(user_data['seq_id_str']))
+                raise ValueError(err)
+
+        self.logger.info('Successfully added rule ACL {}'.format(acl_name))
+        return True
+
+    def delete_ipv4_acl_rule_bulk(self, **kwargs):
+        """
+        Delete ACL rules from IPv4 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            acl_rules (string): Range of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='ip')
+            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1',
+                        acl_rules = [{"seq_id": 10, "action": "permit",
+                                      "source": "host 192.168.0.3")
+        """
+        # Validate required and accepted kwargs
+        params_validator.validate_params_mlx_delete_ipv4_rule_acl(**kwargs)
+
+        acl_name = self.mac.parse_acl_name(**kwargs)
+
+        ret = self.get_acl_address_and_acl_type(acl_name)
+        acl_type = ret['type']
+        address_type = ret['protocol']
+
+        if address_type != 'ip':
+            raise ValueError("IPv4 Rule can not be added to non-ip ACL."
+                             "ACL {} is of type {}"
+                             .format(acl_name, address_type))
+
+        self.logger.info('Successfully identified the acl_type as ({}:{})'
+                         .format(address_type, acl_type))
+
+        # Get already configured seq_ids
+        configured_seq_ids = self.get_configured_seq_ids(acl_name,
+                                                         address_type)
+        seq_range = self.mac.parse_seq_id_by_range(configured_seq_ids,
+                                                   **kwargs)
+
+        cli_arr = ['ip access-list ' + ' ' + acl_type + ' ' + acl_name]
+
+        for seq_id in seq_range:
+            cli_arr.append('no sequence ' + str(seq_id))
+
+        output = self._callback(cli_arr, handler='cli-set')
+        return self._process_cli_output(inspect.stack()[0][3],
+                                        str(cli_arr), output)

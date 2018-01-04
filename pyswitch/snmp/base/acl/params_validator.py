@@ -26,6 +26,27 @@ def validate_params_mlx_add_ipv4_rule_acl(**parameters):
                              .format(unaccepted_params))
 
 
+def validate_params_mlx_add_std_ipv4_rule_acl(**parameters):
+
+    required_params = ['source', 'acl_name', 'action']
+    accepted_params = ['acl_name', 'seq_id', 'action', 'source',
+                       'vlan_id', 'log']
+    st2_specific_params = []
+
+    received_params = [k for k, v in parameters.iteritems() if v]
+
+    absent_required = list(set(required_params) - set(received_params))
+    if len(absent_required) > 0:
+        raise ValueError("missing required parameters: {}"
+                         .format(absent_required))
+
+    unaccepted_params = list(set(received_params) - set(accepted_params))
+    if len(unaccepted_params) > 0:
+        if set(unaccepted_params) != set(st2_specific_params):
+            raise ValueError("unaccepted parameters provided: {}"
+                             .format(unaccepted_params))
+
+
 def validate_params_mlx_add_ipv6_rule_acl(**parameters):
 
     required_params = ['acl_name', 'source', 'action']
