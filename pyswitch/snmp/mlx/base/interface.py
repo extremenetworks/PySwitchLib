@@ -1272,6 +1272,7 @@ class Interface(BaseInterface):
 
         if not get_config:
             vrf_name = kwargs['vrf_name']
+            vrf_name = '"' + vrf_name + '"'
             cli_arr = []
             if delete:
                 cli_arr.append('no vrf ' + vrf_name)
@@ -1343,6 +1344,7 @@ class Interface(BaseInterface):
             afi = kwargs['afi']
             afi = 'ipv4' if (afi == 'ip') else afi
             vrf_name = kwargs['vrf_name']
+            vrf_name = '"' + vrf_name + '"'
             cli_arr.append('vrf ' + vrf_name)
 
             if delete is True:
@@ -1363,6 +1365,7 @@ class Interface(BaseInterface):
 
         elif get_config:
             vrf_name = kwargs.pop('vrf_name', '')
+            vrf_name = '"' + vrf_name + '"'
 
             cli_cmd = 'show vrf ' + vrf_name
             cli_output = callback(cli_cmd, handler='cli-get')
