@@ -193,6 +193,7 @@ class Utils(object):
         failed_ips_list = []
         success_ips_list = []
         final_output = []
+        status = True
         for key, value in cli_output.iteritems():
             output_dict = {}
             if ipv4_address.search(key):
@@ -209,21 +210,23 @@ class Utils(object):
                                      str(value_list[i + 1])).group(1)
                     p_loss = re.search(r'(\d+)(\%)(\spacket\sloss)',
                                        str(value_list[i + 1])).group(1)
-                    if 100 >= int(p_loss) > 0:
-                        failed_ips_list.append(str(ip))
-                        output_dict['ip_address'] = str(ip)
-                        output_dict['result'] = 'fail'
-                        output_dict['packets transmitted'] = p_tx
-                        output_dict['packets received'] = p_rx
-                        output_dict['packet loss'] = p_loss + "%"
-                    elif int(p_loss) == 0:
-                        success_ips_list.append(str(ip))
-                        output_dict['ip_address'] = ip
-                        output_dict['result'] = 'pass'
-                        output_dict['packets transmitted'] = p_tx
-                        output_dict['packets received'] = p_rx
-                        output_dict['packet loss'] = p_loss + "%"
+            if 100 >= int(p_loss) > 0:
+                failed_ips_list.append(str(ip))
+                output_dict['ip_address'] = str(ip)
+                output_dict['result'] = 'fail'
+                output_dict['packets transmitted'] = p_tx
+                output_dict['packets received'] = p_rx
+                output_dict['packet loss'] = p_loss + "%"
+                status = False
+            elif int(p_loss) == 0:
+                success_ips_list.append(str(ip))
+                output_dict['ip_address'] = ip
+                output_dict['result'] = 'pass'
+                output_dict['packets transmitted'] = p_tx
+                output_dict['packets received'] = p_rx
+                output_dict['packet loss'] = p_loss + "%"
             final_output.append(output_dict)
         json_outputformat = json.dumps(
             final_output, sort_keys=True, indent=4, separators=(',', ': '))
-        return json_outputformat
+        json_outputformat = json.loads(json_outputformat)
+        return (status, json_outputformat)

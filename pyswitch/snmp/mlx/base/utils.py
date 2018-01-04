@@ -83,7 +83,6 @@ class Utils(BaseUtils):
         try:
             for cmd in cli_list:
                 cmd = cmd.strip()
-                print cmd
                 cli_output[cmd] = self._callback(cmd, handler='cli-get')
         except Exception as error:
             reason = error.message
@@ -182,6 +181,7 @@ class Utils(BaseUtils):
         cli_output = self._execute_cli(cli_list)
 
         final_output = []
+        status = True
         for key, value in cli_output.iteritems():
             output_dict = {}
             if ipv4_address.search(key):
@@ -209,6 +209,7 @@ class Utils(BaseUtils):
                 output_dict['packets transmitted'] = p_tx
                 output_dict['packets received'] = p_rx
                 output_dict['packet loss'] = str(p_loss) + "%"
+                status = False
             else:
                 output_dict['ip_address'] = ip
                 output_dict['result'] = 'pass'
@@ -218,4 +219,5 @@ class Utils(BaseUtils):
             final_output.append(output_dict)
         json_outputformat = json.dumps(
             final_output, sort_keys=True, indent=4, separators=(',', ': '))
-        return json_outputformat
+        json_outputformat = json.loads(json_outputformat)
+        return (status, json_outputformat)
