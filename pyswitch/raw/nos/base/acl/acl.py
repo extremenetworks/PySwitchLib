@@ -697,3 +697,102 @@ class Acl(SlxNosAcl):
 
         self.logger.info('Successfully added rule ACL {}'.format(acl_name))
         return True
+
+    def validate_ipv6_std_rules(self, acl_name, acl_rules):
+        user_data_list = []
+        for rule in acl_rules:
+            rule['acl_name'] = acl_name
+            params_validator.validate_params_nos_add_ipv6_std_rule_acl(**rule)
+            rule['address_type'] = 'ipv6'
+            user_data = self._parse_params_for_add_standard(**rule)
+            user_data_list.append(user_data)
+        return user_data_list
+
+    def validate_ipv6_ext_rules(self, acl_name, acl_rules):
+        user_data_list = []
+        for rule in acl_rules:
+            rule['acl_name'] = acl_name
+            params_validator.validate_params_nos_add_ipv6_rule_acl(**rule)
+            rule['address_type'] = 'ipv6'
+            user_data = self._parse_params_for_add_extended(**rule)
+            user_data_list.append(user_data)
+        return user_data_list
+
+    def add_ipv6_rule_acl_bulk(self, **kwargs):
+        """
+        Add ACL rule to an existing IPv6 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            acl_rules (array): List of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='ipv6')
+            >>>     print dev.acl.add_ipv6_acl_rule(acl_name='Acl_1',
+                                                    seq_id=10,
+                                                    action='permit',
+                                                    source='2:2::2:2')
+        """
+        if 'acl_rules' not in kwargs or not kwargs['acl_rules']:
+            self.logger.info("Empty ACL Rules. Nothing to configure.")
+            return True
+
+        acl_rules = kwargs['acl_rules']
+
+        # Parse params
+        acl_name = self.ip.parse_acl_name(**kwargs)
+        callback = kwargs.pop('callback', self._callback)
+        acl = self._get_acl_info(acl_name, get_seqs=True)
+        acl_type = acl['type']
+        address_type = acl['protocol']
+
+        if address_type != 'ipv6':
+            raise ValueError("IPv6 Rule can not be added to non-ipv6 ACL."
+                             "ACL {} is of type {}"
+                             .format(acl_name, address_type))
+
+        self.logger.info('Successfully identified the acl_type as ({}:{})'
+                         .format(address_type, acl_type))
+
+        # if there are already configured rules. Make sure that they are
+        # not overlapping with new rules to be configured
+        self.set_seq_id_for_bulk_rules(acl['seq_ids'], acl_rules)
+
+        # Parse parameters
+        if acl_type == 'standard':
+            user_data_list = self.validate_ipv6_std_rules(acl_name, acl_rules)
+        elif acl_type == 'extended':
+            user_data_list = self.validate_ipv6_ext_rules(acl_name, acl_rules)
+        else:
+            raise ValueError('{} not supported'.format(acl_type))
+
+        # send the rules in a chunk of Acl.IPV6_RULE_CHUNK_SIZE
+        chunks = [user_data_list[i:i + Acl.IPV6_RULE_CHUNK_SIZE]
+                  for i in
+                  xrange(0, len(user_data_list), Acl.IPV6_RULE_CHUNK_SIZE)]
+
+        for chunk in chunks:
+            t = jinja2.Template(acl_template.acl_rule_ip_bulk)
+            config = t.render(address_type=address_type,
+                              acl_type=acl_type,
+                              acl_name=acl_name,
+                              user_data_list=chunk)
+
+            config = ' '.join(config.split())
+            self.logger.debug(config)
+
+            try:
+                callback(config)
+            except Exception as err:
+                self.process_response_ipv6_rule_bulk_req(err, acl_rules,
+                                                         chunk[0]['seq_id'])
+
+        self.logger.info('Successfully added rule ACL {}'.format(acl_name))
+        return True
