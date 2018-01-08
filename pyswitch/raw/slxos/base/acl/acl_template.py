@@ -380,7 +380,7 @@ acl_rule_ip_bulk = """
                     {% endif %}
                   {% endif %}
 
-                  {% if ud.dscp is not none %} <dscp>{{ud.dscp}}</ud.dscp> {% endif %}
+                  {% if ud.dscp is not none %} <dscp>{{ud.dscp}}</dscp> {% endif %}
 
                   {% if ud.vlan_id is not none %}
                     <vlan>{{ud.vlan_id}}</vlan>

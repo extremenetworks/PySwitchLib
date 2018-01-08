@@ -407,10 +407,11 @@ class Acl(object):
             >>>     print dev.acl.create_acl(acl_name='Acl_1',
                                              acl_type='standard',
                                              address_type='ipv6')
-            >>>     print dev.acl.add_ipv6_acl_rule(acl_name='Acl_1',
-                                                    seq_id=10,
-                                                    action='permit',
-                                                    source='2:2::2:2')
+            >>>     print dev.acl.add_ipv6_rule_acl_bulk(acl_name='Acl_1',
+                                                         acl_rules='[
+                                                         seq_id=10,
+                                                         action="permit",
+                                                         source="2:2::2:2"]')
         """
         return
 
@@ -432,8 +433,7 @@ class Acl(object):
             >>>     print dev.acl.create_acl(acl_name='Acl_1',
                                              acl_type='standard',
                                              address_type='ip')
-            >>>     print dev.acl.add_ip_acl_rule(acl_name='Acl_1',
-                        acl_rules = [{"seq_id": 10, "action": "permit",
-                                      "source": "host 192.168.0.3")
+            >>>     print dev.acl.delete_ipv6_acl_rule_bulk(acl_name='Acl_1',
+                                                            seq_id="10,30-40")
         """
         return
