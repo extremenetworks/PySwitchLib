@@ -6,6 +6,8 @@ import json
 import re
 import Pyro4
 import Pyro4.naming
+import uuid
+import hashlib
 import pyangbind.lib.pybindJSON as pybindJSON
 from pyswitchlib.util.configFile import ConfigFileUtil
 from pyswitchlib.util.config import ConfigUtil
@@ -14,6 +16,9 @@ from collections import OrderedDict
 from dicttoxml import dicttoxml
 from daemon.runner import (DaemonRunner, DaemonRunnerStopFailureError)
 from lockfile import LockTimeout
+from netmiko import ConnectHandler
+from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
+from paramiko.ssh_exception import SSHException
 
 pyswitchlib_conf_file = os.path.join(os.sep, 'etc', 'pyswitchlib', 'pyswitchlib.conf')
 pyswitchlib_ns_daemon_file = os.path.join(os.sep, 'etc', 'pyswitchlib', '.pyswitchlib_ns_daemon.uri')
@@ -34,6 +39,102 @@ class PySwitchLibApiDaemon(object):
         self._module_obj = module_obj
         self._api_lock = threading.Lock()
         self._pyro_daemon = pyro_daemon
+        self._netmiko_lock = threading.Lock()
+        self._netmiko_connection = {}
+
+    def _hash_auth_string(self, auth_str):
+        salt = uuid.uuid4().hex
+        user = auth_str[0]
+        passwd = auth_str[1]
+        encode_str = hashlib.sha256(salt.encode() + user.encode() + passwd.encode()).hexdigest()
+        return encode_str + ':' + salt
+
+    def _check_auth_string(self, hashed_str, new_auth):
+        auth_str, salt = hashed_str.split(':')
+        user = new_auth[0]
+        passwd = new_auth[1]
+        new_hash = hashlib.sha256(salt.encode() + user.encode() + passwd.encode()).hexdigest()
+        return auth_str == new_hash
+
+    def create_netmiko_connection(self, opt):
+        key = opt['ip']
+        conn_list = ['None', 'None']
+        net_connect_dict = self._netmiko_connection
+        auth = (opt['username'], opt['password'])
+        if key not in net_connect_dict:
+            # case 1: No key create a connection
+            try:
+                net_connect = self._establish_netmiko_handler(opt, net_connect_dict)
+                if net_connect:
+                    hashed_auth = self._hash_auth_string(auth)
+                    conn_list[0] = net_connect
+                    conn_list[1] = hashed_auth
+                    net_connect_dict[key] = conn_list
+            except ValueError as err:
+                raise
+            except Exception as err:
+                raise
+
+        else:
+            existing_hash = net_connect_dict[key][1]
+            if self._check_auth_string(existing_hash, auth):
+                # case 2: Validation success do nothing
+                return
+            else:
+                # case 3: Assume user value is new so delete existing
+                # and add new connection object for this
+                conn_obj = self._get_netmiko_connection(key)
+                conn_obj.disconnect()
+                del net_connect_dict[key]
+                try:
+                    net_connect = self._establish_netmiko_handler(opt, net_connect_dict)
+                    if net_connect:
+                        new_hash = self._hash_auth_string(auth)
+                        conn_list[0] = net_connect
+                        conn_list[1] = new_hash
+                        net_connect_dict[key] = conn_list
+                except ValueError as error:
+                    raise
+                except Exception:
+                    raise Exception
+
+    def _establish_netmiko_handler(self, opt, net_connect_dict):
+        key = opt['ip']
+        try:
+            net_connect = ConnectHandler(**opt)
+            net_connect_dict[key] = net_connect
+        except (NetMikoTimeoutException, NetMikoAuthenticationException,) as error:
+            reason = error.message
+            raise ValueError('[Netmiko Exception:] %s' % reason)
+        except SSHException as error:
+            reason = error.message
+            raise ValueError('[SSH Exception:] %s' % reason)
+        except Exception as error:
+            reason = error.message
+            raise ValueError('Failed to connect to switch %s' % reason)
+        return net_connect
+
+    def _get_netmiko_connection(self, key):
+        if key in self._netmiko_connection:
+            return self._netmiko_connection[key][0]
+        else:
+            return None
+
+    def cli_execution(self, handler, host, call):
+        value = ''
+        conn_obj = self._get_netmiko_connection(host)
+        if not conn_obj:
+            return value
+        try:
+            if handler == 'cli-set':
+                conn_obj.enable()
+                value = conn_obj.send_config_set(call)
+            elif handler == 'cli-get':
+                value = conn_obj.send_command(call)
+        except Exception:
+            raise Exception
+
+        return value
 
     def shutdown(self):
         """
@@ -49,6 +150,20 @@ class PySwitchLibApiDaemon(object):
         """
 
         self._module_name = module_name
+
+    def netmiko_acquire(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        self._netmiko_lock.acquire()
+
+    def netmiko_release(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        self._netmiko_lock.release()
 
     def api_acquire(self):
         """
