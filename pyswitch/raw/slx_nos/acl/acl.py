@@ -33,6 +33,7 @@ class SlxNosAcl(BaseAcl):
         None
     """
     RULE_CHUNK_SIZE = 200
+    IPV6_RULE_CHUNK_SIZE = 1
 
     def __init__(self, callback):
         """
@@ -400,6 +401,29 @@ class SlxNosAcl(BaseAcl):
             self.logger.error("rules with seq_id equal to and above {}"
                               " seq_id could not be configured"
                               .format(conflicting_seq_ids[0]))
+
+        raise ValueError(rpc_err)
+
+    def process_response_ipv6_rule_bulk_req(self, rpc_err, acl_rules,
+                                            failed_seq_id):
+        rpc_err = str(rpc_err)
+        if "Error: Access-list entry already exists" in rpc_err:
+
+            configured_count = 0
+            unconfigured_count = 0
+
+            for rule in acl_rules:
+                if rule['seq_id'] < int(failed_seq_id):
+                    configured_count = configured_count + 1
+                else:
+                    unconfigured_count = unconfigured_count + 1
+
+            self.logger.info("{} rules configured successfully"
+                             .format(configured_count))
+            self.logger.error("{} rules could not be configured"
+                              .format(unconfigured_count))
+            self.logger.error("rules with seq_id equal to and above {} could"
+                              " not be configured".format(failed_seq_id))
 
         raise ValueError(rpc_err)
 
