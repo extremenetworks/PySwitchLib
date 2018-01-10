@@ -306,6 +306,11 @@ class AclParamParser(object):
         if 'intf_type' not in kwargs or not kwargs['intf_type']:
             raise ValueError("\'intf_type\' not present in kwargs")
 
+        if kwargs['intf_type'] not in ['ve', 'loopback']:
+            if 'rbridge_id' in kwargs and kwargs['rbridge_id']:
+                raise ValueError("\'rbridge_id\' not supported for intf_type: "
+                                 "{}".format(kwargs['intf_type']))
+
         if kwargs['intf_type'] in ['gigabitethernet', 'tengigabitethernet',
                                    'fortygigabitethernet',
                                    'hundredgigabitethernet', 'port_channel',
