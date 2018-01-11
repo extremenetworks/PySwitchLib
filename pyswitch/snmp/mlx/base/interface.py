@@ -44,6 +44,14 @@ class Interface(BaseInterface):
         ]
 
     @property
+    def valid_l2_int_types(self):
+
+        return [
+            'ethernet',
+            'port_channel'
+        ]
+
+    @property
     def valid_intp_types(self):
         return [
             'ethernet'
@@ -800,13 +808,13 @@ class Interface(BaseInterface):
         """
         int_type = kwargs.pop('int_type').lower()
         name = kwargs.pop('name')
-        int_types = self.valid_int_types
+        int_types = self.valid_l2_int_types
 
         if int_type not in int_types:
             raise ValueError("`int_type` must be one of: %s"
                              % str(int_types))
         if not pyswitch.utilities.valid_interface(int_type, name):
-            raise ValueError('`name` must be in the format of x/y/z for '
+            raise ValueError('`name` must be in the format of y/z for '
                              'physical interfaces or x for port channel.')
 
         if kwargs.pop('get', False):
@@ -852,7 +860,7 @@ class Interface(BaseInterface):
         name = kwargs.pop('name')
 
         callback = kwargs.pop('callback', self._callback)
-        int_types = self.valid_int_types
+        int_types = self.valid_l2_int_types
         cli_arr = []
 
         if int_type not in int_types:
