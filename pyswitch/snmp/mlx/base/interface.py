@@ -694,6 +694,56 @@ class Interface(BaseInterface):
             raise ValueError('Failed to set interface admin status to %s' % (reason))
         return None
 
+    def get_oper_state(self, **kwargs):
+        """Get interface operational state.
+
+        Args:
+            int_type (str): Type of interface. (ethernet, etc).
+            name (str): Name of interface. (1/1, etc).
+
+        Returns:
+            oper state - up/down
+
+        Raises:
+            KeyError: if `int_type`, `name` is not passed
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         oper_state = dev.interface.get_oper_state(
+            ...                         int_type='ethernet', name='1/1')
+        """
+
+        int_type = kwargs.pop('int_type').lower()
+        name = str(kwargs.pop('name'))
+
+        ifname = int_type + name
+        if int_type == 'port-channel':
+            int_type = 'port_channel'
+            ifname = 'LAG' + name
+        ifname_Ids = self.get_interface_name_id_mapping()
+        if_id = ifname_Ids[ifname]
+        if if_id is None:
+            raise ValueError('Invalid if_id')
+        oid = SnmpMib.mib_oid_map['ifOperStatus']
+        operState_oid = oid + '.' + str(if_id)
+
+        valid_int_types = self.valid_int_types
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             str(valid_int_types))
+        oper_state = self._callback(operState_oid, handler='snmp-get')
+        if oper_state == 1:
+            return 'up'
+        elif oper_state == 2:
+            return 'down'
+        else:
+            return 'invalid'
+
     def description(self, **kwargs):
         """Set interface description.
 
