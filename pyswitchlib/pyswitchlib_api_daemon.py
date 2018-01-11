@@ -77,26 +77,31 @@ class PySwitchLibApiDaemon(object):
 
         else:
             existing_hash = net_connect_dict[key][1]
+            conn_obj = self._get_netmiko_connection(key)
             if self._check_auth_string(existing_hash, auth):
-                # case 2: Validation success do nothing
-                return
+                # case 2: check if connection object is alive
+                if conn_obj.is_alive() is True:
+                    return
+            # case 3: Assume user value is new so delete existing
+            # and add new connection object for this
             else:
-                # case 3: Assume user value is new so delete existing
-                # and add new connection object for this
-                conn_obj = self._get_netmiko_connection(key)
+                #disconnect stale object
                 conn_obj.disconnect()
-                del net_connect_dict[key]
-                try:
-                    net_connect = self._establish_netmiko_handler(opt, net_connect_dict)
-                    if net_connect:
-                        new_hash = self._hash_auth_string(auth)
-                        conn_list[0] = net_connect
-                        conn_list[1] = new_hash
-                        net_connect_dict[key] = conn_list
-                except ValueError as error:
-                    raise
-                except Exception:
-                    raise Exception
+
+            # Existing object is not valid so clear and create new
+            # connection
+            del net_connect_dict[key]
+            try:
+                net_connect = self._establish_netmiko_handler(opt, net_connect_dict)
+                if net_connect:
+                    new_hash = self._hash_auth_string(auth)
+                    conn_list[0] = net_connect
+                    conn_list[1] = new_hash
+                    net_connect_dict[key] = conn_list
+            except ValueError as error:
+                raise
+            except Exception:
+                raise Exception
 
     def _establish_netmiko_handler(self, opt, net_connect_dict):
         key = opt['ip']
