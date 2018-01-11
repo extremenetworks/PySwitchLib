@@ -702,7 +702,7 @@ class Interface(BaseInterface):
             name (str): Name of interface. (1/1, etc).
 
         Returns:
-            oper state - up/down 
+            oper state - up/down
 
         Raises:
             KeyError: if `int_type`, `name` is not passed
@@ -743,7 +743,6 @@ class Interface(BaseInterface):
             return 'down'
         else:
             return 'invalid'
-
 
     def description(self, **kwargs):
         """Set interface description.
