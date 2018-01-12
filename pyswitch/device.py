@@ -79,7 +79,7 @@ class Device(object):
             try:
                 snmpdev = SNMPDevice(host=host, port=snmpport, version=snmpver, community=snmpv2c,
                                      username=v3user, authproto=v3auth, authkey=authpass,
-                                     privproto=v3priv, privkey=privpass)
+                                     privproto=v3priv, privkey=privpass, timeout=0.5, retries=1)
                 sysobj = str(snmpdev.get(MIB.mib_oid_map['sysObjectId']))
             except SNMPError:
                 """
