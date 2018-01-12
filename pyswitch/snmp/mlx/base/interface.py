@@ -44,6 +44,14 @@ class Interface(BaseInterface):
         ]
 
     @property
+    def valid_l2_int_types(self):
+
+        return [
+            'ethernet',
+            'port_channel'
+        ]
+
+    @property
     def valid_intp_types(self):
         return [
             'ethernet'
@@ -850,13 +858,13 @@ class Interface(BaseInterface):
         """
         int_type = kwargs.pop('int_type').lower()
         name = kwargs.pop('name')
-        int_types = self.valid_int_types
+        int_types = self.valid_l2_int_types
 
         if int_type not in int_types:
             raise ValueError("`int_type` must be one of: %s"
                              % str(int_types))
         if not pyswitch.utilities.valid_interface(int_type, name):
-            raise ValueError('`name` must be in the format of x/y/z for '
+            raise ValueError('`name` must be in the format of y/z for '
                              'physical interfaces or x for port channel.')
 
         if kwargs.pop('get', False):
@@ -867,15 +875,12 @@ class Interface(BaseInterface):
     def acc_vlan(self, **kwargs):
         """Set access VLAN on a port.
         Args:
-            int_type (str): Type of interface. (gigabitethernet,
-                tengigabitethernet, etc)
+            int_type (str): Type of interface. (ethernet, port_channel)
             name (str): Name of interface. (1/1, 1/2, etc)
             vlan (str): VLAN ID to set as the access VLAN.
             callback (function): A function executed upon completion of the
-                method.  The only parameter passed to `callback` will be the
-                ``ElementTree`` `config`.
-
-        Returns:
+                method.
+            Returns:
             Return True on success or raises ValueError on failure
 
         Raises:
@@ -902,7 +907,7 @@ class Interface(BaseInterface):
         name = kwargs.pop('name')
 
         callback = kwargs.pop('callback', self._callback)
-        int_types = self.valid_int_types
+        int_types = self.valid_l2_int_types
         cli_arr = []
 
         if int_type not in int_types:
@@ -926,7 +931,12 @@ class Interface(BaseInterface):
             cli_arr.append('no untagged' + ' ' + int_type + ' ' + name)
         else:
             cli_arr.append('untagged' + ' ' + int_type + ' ' + name)
-
+            cli_cmd = 'show interface ' + ' ' + int_type + ' ' + name
+            pre_config_pat = r'Member of VLAN ' + vlan + ' ' + '\(untagged\)'
+            cli_output = callback(cli_cmd, handler='cli-get')
+            if re.search(pre_config_pat, cli_output):
+                raise UserWarning('interface %s, already untagged'
+                                'memberport of vlan %s' % (name, vlan))
         try:
             cli_res = callback(cli_arr, handler='cli-set')
             pyswitch.utilities.check_mlx_cli_set_error(cli_res)
