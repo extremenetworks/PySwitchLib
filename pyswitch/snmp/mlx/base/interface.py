@@ -825,15 +825,12 @@ class Interface(BaseInterface):
     def acc_vlan(self, **kwargs):
         """Set access VLAN on a port.
         Args:
-            int_type (str): Type of interface. (gigabitethernet,
-                tengigabitethernet, etc)
+            int_type (str): Type of interface. (ethernet, port_channel)
             name (str): Name of interface. (1/1, 1/2, etc)
             vlan (str): VLAN ID to set as the access VLAN.
             callback (function): A function executed upon completion of the
-                method.  The only parameter passed to `callback` will be the
-                ``ElementTree`` `config`.
-
-        Returns:
+                method.
+            Returns:
             Return True on success or raises ValueError on failure
 
         Raises:
@@ -884,7 +881,12 @@ class Interface(BaseInterface):
             cli_arr.append('no untagged' + ' ' + int_type + ' ' + name)
         else:
             cli_arr.append('untagged' + ' ' + int_type + ' ' + name)
-
+            cli_cmd = 'show interface ' + ' ' + int_type + ' ' + name
+            pre_config_pat = r'Member of VLAN ' + vlan + ' ' + '\(untagged\)'
+            cli_output = callback(cli_cmd, handler='cli-get')
+            if re.search(pre_config_pat, cli_output):
+                raise UserWarning('interface %s, already untagged'
+                                'memberport of vlan %s' % (name, vlan))
         try:
             cli_res = callback(cli_arr, handler='cli-set')
             pyswitch.utilities.check_mlx_cli_set_error(cli_res)
