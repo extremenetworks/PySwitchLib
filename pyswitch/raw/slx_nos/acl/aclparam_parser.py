@@ -320,8 +320,8 @@ class AclParamParser(object):
 
         raise ValueError("The \'intf_type\' value {} is invalid. "
                          "Supported - gigabitethernet, tengigabitethernet, "
-                         "fortygigabitethernet, hundredgigabitethernet, "
-                         "port_channel, ve, loopback, ethernet, management and vlan"
+                         "fortygigabitethernet, hundredgigabitethernet, ve, "
+                         "port_channel, loopback, ethernet, management, vlan"
                          .format(kwargs['intf_type']))
 
     def parse_intf_names(self, **kwargs):
@@ -348,7 +348,6 @@ class AclParamParser(object):
 
         return kwargs['intf_name']
 
-
     def parse_acl_direction(self, **kwargs):
         """
         parse supported acl_direction param
@@ -367,7 +366,8 @@ class AclParamParser(object):
 
         if 'intf_type' in kwargs and kwargs['intf_type'] == 'management' \
            and kwargs['acl_direction'] != 'in':
-            raise ValueError("Management interface supports only \'acl_direction\': in")
+            raise ValueError("Management interface supports only "
+                             "\'acl_direction\': in")
 
         if kwargs['acl_direction'] in ['in', 'out']:
             return kwargs['acl_direction']
