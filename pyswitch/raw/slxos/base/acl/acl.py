@@ -424,6 +424,30 @@ class Acl(SlxNosAcl):
 
         return user_data
 
+    def validate_interfaces(self, callback, user_data):
+
+        for intf in user_data['interface_list']:
+            self.logger.info('Validating interface ({}:{})'
+                             .format(user_data['intf_type'], intf))
+            invalid_intf = True
+
+            user_data['intf'] = intf
+            cmd = acl_template.get_interface_by_name
+            t = jinja2.Template(cmd)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+
+            self.logger.debug(config)
+            rpc_response = callback(config, handler='get')
+            # xml.etree.ElementTree.dump(rpc_response)
+            for elem in rpc_response.iter():
+                if elem.text == intf:
+                    invalid_intf = False
+                    break
+            if invalid_intf:
+                raise ValueError("{} interface {} does not exist."
+                                 .format(user_data['intf_type'], intf))
+
     def apply_acl(self, **kwargs):
         """
         Apply an ACL to a physical port, port channel, VE or management
@@ -476,7 +500,7 @@ class Acl(SlxNosAcl):
                                      user_data['intf_type'], intf))
 
             user_data['intf'] = intf
-            cmd = slx_nos_acl_template.acl_apply
+            cmd = acl_template.acl_apply
             t = jinja2.Template(cmd)
             config = t.render(**user_data)
             config = ' '.join(config.split())
@@ -536,7 +560,7 @@ class Acl(SlxNosAcl):
                                      user_data['intf_type'], intf))
 
             user_data['intf'] = intf
-            cmd = slx_nos_acl_template.acl_remove
+            cmd = acl_template.acl_remove
             t = jinja2.Template(cmd)
             config = t.render(**user_data)
             config = ' '.join(config.split())
@@ -594,7 +618,7 @@ class Acl(SlxNosAcl):
         user_data['interface_list'] = self.ap.parse_intf_names(**kwargs)
         user_data['acl_name'] = self.ap.parse_acl_name(**kwargs)
         user_data['acl_direction'] = self.ap.parse_acl_direction(**kwargs)
-        user_data['traffic_type'] = self.ap.parse_traffic_type(**kwargs)
+        user_data['traffic_type'] = self.ap.parse_slx_traffic_type(**kwargs)
 
         acl = self._get_acl_info(user_data['acl_name'], get_seqs=False)
         user_data['address_type'] = acl['protocol']

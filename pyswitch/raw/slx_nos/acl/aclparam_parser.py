@@ -348,6 +348,7 @@ class AclParamParser(object):
 
         return kwargs['intf_name']
 
+
     def parse_acl_direction(self, **kwargs):
         """
         parse supported acl_direction param
@@ -392,8 +393,39 @@ class AclParamParser(object):
         if 'traffic_type' not in kwargs or not kwargs['traffic_type']:
             return None
 
-        if 'intf_type' in kwargs \
-           and (kwargs['intf_type'] == 've' or kwargs['intf_type'] == 'management'):
+        if 'intf_type' in kwargs and kwargs['intf_type'] == 'management':
+            raise ValueError("\'traffic_type\' not supported with {} interface"
+                             .format(kwargs['intf_type']))
+
+        if kwargs['traffic_type'] in ['switched', 'routed']:
+            return kwargs['traffic_type']
+
+        raise ValueError("The \'traffic_type\' value {} is invalid. Specify "
+                         "\'switched\' or \'routed\' supported values"
+                         .format(kwargs['traffic_type']))
+
+    def parse_slx_traffic_type(self, **kwargs):
+        """
+        parse supported traffic_type param
+        Args:
+            kwargs contains:
+                traffic_type(string): Allowed traffic_type are switched/routed
+        Returns:
+            Return parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+
+        """
+
+        if 'traffic_type' not in kwargs or not kwargs['traffic_type']:
+            return None
+
+        if 'intf_type' in kwargs and kwargs['intf_type'] == 'management':
+            raise ValueError("\'traffic_type\' not supported with {} interface"
+                             .format(kwargs['intf_type']))
+
+        if 'intf_type' in kwargs and kwargs['intf_type'] == 've':
             raise ValueError("\'traffic_type\' not supported with {} interface"
                              .format(kwargs['intf_type']))
 
