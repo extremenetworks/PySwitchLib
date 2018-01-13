@@ -17,7 +17,6 @@ limitations under the License.
 import jinja2
 import pyswitch.raw.slx_nos.acl.params_validator as params_validator
 from pyswitch.raw.slxos.base.acl import acl_template
-from pyswitch.raw.slx_nos.acl import acl_template as slx_nos_acl_template
 from pyswitch.raw.slx_nos.acl.acl import SlxNosAcl
 from pyswitch.raw.slx_nos.acl.macacl import MacAcl
 from pyswitch.raw.slx_nos.acl.ipxacl import IpAcl
