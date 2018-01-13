@@ -11,8 +11,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import pyswitch.utilities as utilities
-
 
 class AclParamParser(object):
     """
@@ -21,7 +19,6 @@ class AclParamParser(object):
     Attributes:
         None
     """
-
 
     def parse_intf_type(self, **kwargs):
         """
