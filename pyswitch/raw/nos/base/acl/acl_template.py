@@ -374,8 +374,14 @@ acl_apply = """
          <rbridge-id>{{rbridge_id}}</rbridge-id>
    {% elif intf_type == 'vlan' %}
       <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
+        <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+   {% elif intf_type == 'port_channel' %}
+      <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+        <port-channel>
+   {% else %}
+      <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
    {% endif %}
-         <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+
             <{{intf_type}}>
                <name>{{intf}}</name>
                {% if intf_type == 'management' %}
@@ -426,11 +432,17 @@ acl_apply = """
                   </ipv6>
                {% endif %}
             </{{intf_type}}>
-         </interface>
+
    {% if rbridge_id is defined and rbridge_id is not none %}
       </rbridge-id>
    {% elif intf_type == 'vlan' %}
+        </interface>
       </interface-vlan>
+   {% elif intf_type == 'port_channel' %}
+        </port-channel>
+      </interface>
+   {% else %}
+      </interface>
    {% endif %}
 </config>
 """
@@ -442,8 +454,15 @@ acl_remove = """
          <rbridge-id>{{rbridge_id}}</rbridge-id>
    {% elif intf_type == 'vlan' %}
       <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
+        <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+   {% elif intf_type == 'port_channel' %}
+      <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+        <port-channel>
+   {% else %}
+      <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
    {% endif %}
-         <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+
+
             <{{intf_type}}>
                <name>{{intf}}</name>
                {% if intf_type == 'management' %}
@@ -496,11 +515,18 @@ acl_remove = """
                   </ipv6>
                {% endif %}
             </{{intf_type}}>
-         </interface>
+
+
    {% if rbridge_id is defined and rbridge_id is not none %}
       </rbridge-id>
    {% elif intf_type == 'vlan' %}
+        </interface>
       </interface-vlan>
+   {% elif intf_type == 'port_channel' %}
+        </port-channel>
+      </interface>
+   {% else %}
+      </interface>
    {% endif %}
 </config>
 """
