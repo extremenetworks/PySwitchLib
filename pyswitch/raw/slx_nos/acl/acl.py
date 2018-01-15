@@ -305,30 +305,6 @@ class SlxNosAcl(BaseAcl):
 
         return next_seq_id
 
-    def validate_interfaces(self, callback, user_data):
-
-        for intf in user_data['interface_list']:
-            self.logger.info('Validating interface ({}:{})'
-                             .format(user_data['intf_type'], intf))
-            invalid_intf = True
-
-            user_data['intf'] = intf
-            cmd = acl_template.get_interface_by_name
-            t = jinja2.Template(cmd)
-            config = t.render(**user_data)
-            config = ' '.join(config.split())
-
-            self.logger.debug(config)
-            rpc_response = callback(config, handler='get')
-            # xml.etree.ElementTree.dump(rpc_response)
-            for elem in rpc_response.iter():
-                if elem.text == intf:
-                    invalid_intf = False
-                    break
-            if invalid_intf:
-                raise ValueError("{} interface {} does not exist."
-                                 .format(user_data['intf_type'], intf))
-
     def set_seq_id_for_bulk_rules(self, existing_seq_ids, acl_rules):
 
         user_seq_ids = [rule['seq_id'] for rule in acl_rules

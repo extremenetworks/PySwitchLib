@@ -411,3 +411,161 @@ acl_rule_ip_bulk = """
   </{{address_type}}-acl>
 </config>
 """
+
+acl_apply = """
+<config>
+   {% if intf_type == 've' %}
+      <routing-system xmlns="urn:brocade.com:mgmt:brocade-common-def">
+   {% elif intf_type == 'vlan' %}
+      <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
+   {% else %}
+         <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+   {% endif %}
+            <{{intf_type}}>
+               <name>{{intf}}</name>
+               {% if intf_type == 'management' %}
+                  <{{address_type}}>
+                     <access-group
+                        xmlns="urn:brocade.com:mgmt:brocade-{{address_type}}-access-list">
+                        <mgmt-{{address_type}}-access-list>{{acl_name}}</mgmt-{{address_type}}-access-list>
+                        <mgmt-ip-direction>{{acl_direction}}</mgmt-ip-direction>
+                     </access-group>
+                  </{{address_type}}>
+               {% elif address_type == 'mac' %}
+                  <mac xmlns="urn:brocade.com:mgmt:brocade-mac-access-list">
+                     <access-group>
+                        <mac-access-list>{{acl_name}}</mac-access-list>
+                        <mac-direction>{{acl_direction}}</mac-direction>
+                        {% if traffic_type is not none %}
+                           <traffic-type>{{traffic_type}}</traffic-type>
+                        {% endif %}
+                     </access-group>
+                  </mac>
+               {% elif address_type == 'ip' %}
+                  <ip-acl-interface
+                    xmlns="urn:brocade.com:mgmt:brocade-ip-access-list">
+                     <ip>
+                        <access-group>
+                           <ip-access-list>{{acl_name}}</ip-access-list>
+                           <ip-direction>{{acl_direction}}</ip-direction>
+                           {% if traffic_type is not none %}
+                              <traffic-type>{{traffic_type}}</traffic-type>
+                           {% endif %}
+                        </access-group>
+                     </ip>
+                  </ip-acl-interface>
+               {% elif address_type == 'ipv6' %}
+                  {% if intf_type == 've' %}
+                   <ipv6 xmlns="urn:brocade.com:mgmt:brocade-ipv6-config">
+                  {% else %}
+                   <ipv6>
+                  {% endif %}
+                     <access-group
+                        xmlns="urn:brocade.com:mgmt:brocade-ipv6-access-list">
+                        <ipv6-access-list>{{acl_name}}</ipv6-access-list>
+                        <ip-direction>{{acl_direction}}</ip-direction>
+                        {% if traffic_type is not none %}
+                           <traffic-type>{{traffic_type}}</traffic-type>
+                        {% endif %}
+                     </access-group>
+                  </ipv6>
+               {% endif %}
+            </{{intf_type}}>
+
+   {% if intf_type == 've' %}
+      </routing-system>
+   {% elif intf_type == 'vlan' %}
+      </interface-vlan>
+   {% else %}
+      </interface>
+   {% endif %}
+</config>
+"""
+
+acl_remove = """
+<config>
+   {% if intf_type == 've' %}
+      <routing-system xmlns="urn:brocade.com:mgmt:brocade-common-def">
+   {% elif intf_type == 'vlan' %}
+      <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
+   {% else %}
+         <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+   {% endif %}
+            <{{intf_type}}>
+               <name>{{intf}}</name>
+               {% if intf_type == 'management' %}
+                  <{{address_type}}>
+                     <access-group
+                        xmlns="urn:brocade.com:mgmt:brocade-{{address_type}}-access-list"
+                        operation="delete">
+                        <mgmt-{{address_type}}-access-list>{{acl_name}}</mgmt-{{address_type}}-access-list>
+                        <mgmt-ip-direction>{{acl_direction}}</mgmt-ip-direction>
+                     </access-group>
+                  </{{address_type}}>
+               {% elif address_type == 'mac' %}
+                  <mac xmlns="urn:brocade.com:mgmt:brocade-mac-access-list">
+                     <access-group operation="delete">
+                        <mac-access-list>{{acl_name}}</mac-access-list>
+                        <mac-direction>{{acl_direction}}</mac-direction>
+                        {% if traffic_type is not none %}
+                           <traffic-type>{{traffic_type}}</traffic-type>
+                        {% endif %}
+                     </access-group>
+                  </mac>
+               {% elif address_type == 'ip' %}
+                  <ip-acl-interface
+                    xmlns="urn:brocade.com:mgmt:brocade-ip-access-list">
+                     <ip>
+                        <access-group operation="delete">
+                           <ip-access-list>{{acl_name}}</ip-access-list>
+                           <ip-direction>{{acl_direction}}</ip-direction>
+                           {% if traffic_type is not none %}
+                              <traffic-type>{{traffic_type}}</traffic-type>
+                           {% endif %}
+                        </access-group>
+                     </ip>
+                  </ip-acl-interface>
+               {% elif address_type == 'ipv6' %}
+                  {% if intf_type == 've' %}
+                   <ipv6 xmlns="urn:brocade.com:mgmt:brocade-ipv6-config">
+                  {% else %}
+                   <ipv6>
+                  {% endif %}
+                     <access-group
+                        xmlns="urn:brocade.com:mgmt:brocade-ipv6-access-list"
+                        operation="delete">
+                        <ipv6-access-list>{{acl_name}}</ipv6-access-list>
+                        <ip-direction>{{acl_direction}}</ip-direction>
+                        {% if traffic_type is not none %}
+                           <traffic-type>{{traffic_type}}</traffic-type>
+                        {% endif %}
+                     </access-group>
+                  </ipv6>
+               {% endif %}
+            </{{intf_type}}>
+
+   {% if intf_type == 've' %}
+      </routing-system>
+   {% elif intf_type == 'vlan' %}
+      </interface-vlan>
+   {% else %}
+      </interface>
+   {% endif %}
+</config>
+"""
+
+get_interface_by_name = """
+<get-config>
+  <source> <running/> </source>
+    {% if intf_type == "ve" %}
+        <nc:filter type="xpath" select="/routing-system/interface/\
+{{intf_type}}/name[text()=\'{{intf}}\']"></nc:filter>
+      {% elif intf_type == "vlan" %}
+          <nc:filter type="xpath" select="/interface-vlan/\
+  {{intf_type}}/name[text()=\'{{intf}}\']"></nc:filter>
+    {% else %}
+        <nc:filter type="xpath" select="/interface/{{intf_type}}/\
+name[text()=\'{{intf}}\']"></nc:filter>
+    {% endif %}
+</get-config>
+"""

@@ -357,6 +357,26 @@ def validate_params_slx_add_or_remove_l2_acl_rule(**parameters):
 def validate_params_slx_apply_acl(**parameters):
 
     required_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
+    accepted_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
+    st2_specific_params = []
+
+    received_params = [k for k, v in parameters.iteritems() if v]
+
+    absent_required = list(set(required_params) - set(received_params))
+    if len(absent_required) > 0:
+        raise ValueError("missing required parameters: {}"
+                         .format(absent_required))
+
+    unaccepted_params = list(set(received_params) - set(accepted_params))
+    if len(unaccepted_params) > 0:
+        if set(unaccepted_params) != set(st2_specific_params):
+            raise ValueError("unaccepted parameters provided: {}"
+                             .format(unaccepted_params))
+
+
+def validate_params_slx_ver17s_apply_acl(**parameters):
+
+    required_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
     accepted_params = ['intf_type', 'acl_name', 'intf_name', 'traffic_type',
                        'acl_direction']
     st2_specific_params = []
