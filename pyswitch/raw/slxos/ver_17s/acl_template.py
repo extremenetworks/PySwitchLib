@@ -66,6 +66,7 @@ acl_apply = """
 <config>
    {% if intf_type == 've' %}
       <routing-system xmlns="urn:brocade.com:mgmt:brocade-common-def">
+       <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
    {% elif intf_type == 'vlan' %}
       <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
    {% else %}
@@ -123,6 +124,7 @@ acl_apply = """
             </{{intf_type}}>
 
    {% if intf_type == 've' %}
+       </interface>
       </routing-system>
    {% elif intf_type == 'vlan' %}
       </interface-vlan>
@@ -136,6 +138,7 @@ acl_remove = """
 <config>
    {% if intf_type == 've' %}
       <routing-system xmlns="urn:brocade.com:mgmt:brocade-common-def">
+       <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
    {% elif intf_type == 'vlan' %}
       <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
    {% else %}
@@ -195,6 +198,7 @@ acl_remove = """
             </{{intf_type}}>
 
    {% if intf_type == 've' %}
+       </interface>
       </routing-system>
    {% elif intf_type == 'vlan' %}
       </interface-vlan>
