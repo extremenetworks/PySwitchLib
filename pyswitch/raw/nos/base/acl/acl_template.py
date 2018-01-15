@@ -372,6 +372,7 @@ acl_apply = """
    {% if rbridge_id is defined and rbridge_id is not none %}
       <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
          <rbridge-id>{{rbridge_id}}</rbridge-id>
+         <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
    {% elif intf_type == 'vlan' %}
       <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
         <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
@@ -434,6 +435,7 @@ acl_apply = """
             </{{intf_type}}>
 
    {% if rbridge_id is defined and rbridge_id is not none %}
+      </interface>
       </rbridge-id>
    {% elif intf_type == 'vlan' %}
         </interface>
@@ -452,6 +454,7 @@ acl_remove = """
    {% if rbridge_id is defined and rbridge_id is not none %}
       <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
          <rbridge-id>{{rbridge_id}}</rbridge-id>
+         <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
    {% elif intf_type == 'vlan' %}
       <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
         <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
@@ -518,6 +521,7 @@ acl_remove = """
 
 
    {% if rbridge_id is defined and rbridge_id is not none %}
+      </interface>
       </rbridge-id>
    {% elif intf_type == 'vlan' %}
         </interface>
