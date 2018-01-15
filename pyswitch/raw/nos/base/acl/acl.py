@@ -308,6 +308,10 @@ class Acl(SlxNosAcl):
         self.logger.info('Successfully identified the acl_type as ({}:{})'
                          .format(address_type, acl_type))
 
+        if acl_type == 'standard':
+            params_validator.validate_params_slx_std_add_or_remove_l2_acl_rule(
+                **kwargs)
+
         # This is required to distinguish between ipv4 or v6
         kwargs['address_type'] = address_type
 
