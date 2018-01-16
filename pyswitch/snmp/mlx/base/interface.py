@@ -873,11 +873,13 @@ class Interface(BaseInterface):
             return True
 
     def acc_vlan(self, **kwargs):
-        """Set access VLAN on a port.
+        """Set/get/delete access VLAN on a port.
         Args:
             int_type (str): Type of interface. (ethernet, port_channel)
+            get (bool): Get config instead of editing config. (True, False)
             name (str): Name of interface. (1/1, 1/2, etc)
             vlan (str): VLAN ID to set as the access VLAN.
+            delete (bool):  True to remove a untagged port from a vlan
             callback (function): A function executed upon completion of the
                 method.
             Returns:
@@ -917,13 +919,29 @@ class Interface(BaseInterface):
             raise ValueError('`name` must be in the format of y/z for '
                              'physical interfaces or x for port channel.')
 
-        vlan = kwargs.pop('vlan')
-        if not pyswitch.utilities.valid_vlan_id(vlan):
-            raise InvalidVlanId("`name` must be between `1` and `4090`")
-
         if int_type == 'port_channel':
             name = self.get_lag_primary_port(name)
             int_type = 'ethernet'
+
+        cli_cmd = 'show interface ' + ' ' + int_type + ' ' + name
+
+        pre_config_pat = r'Member of VLAN (\d+) \(untagged\)'
+        get_vlan = 0
+        try:
+            cli_output = callback(cli_cmd, handler='cli-get')
+            get_vlan_config = re.search(pre_config_pat, cli_output)
+            if get_vlan_config:
+                get_vlan = get_vlan_config.group(1).strip()
+        except Exception as error:
+            reason = error.message
+            raise ValueError('Failed to get vlan %s' % (reason))
+
+        if kwargs.pop('get', False):
+            return get_vlan
+
+        vlan = kwargs.pop('vlan')
+        if not pyswitch.utilities.valid_vlan_id(vlan):
+            raise InvalidVlanId("`name` must be between `1` and `4090`")
 
         cli_arr.append('vlan' + ' ' + str(vlan))
 
@@ -931,10 +949,7 @@ class Interface(BaseInterface):
             cli_arr.append('no untagged' + ' ' + int_type + ' ' + name)
         else:
             cli_arr.append('untagged' + ' ' + int_type + ' ' + name)
-            cli_cmd = 'show interface ' + ' ' + int_type + ' ' + name
-            pre_config_pat = r'Member of VLAN ' + vlan + ' ' + '\(untagged\)'
-            cli_output = callback(cli_cmd, handler='cli-get')
-            if re.search(pre_config_pat, cli_output):
+            if get_vlan == vlan:
                 raise UserWarning('interface %s, already untagged'
                                 'memberport of vlan %s' % (name, vlan))
         try:
