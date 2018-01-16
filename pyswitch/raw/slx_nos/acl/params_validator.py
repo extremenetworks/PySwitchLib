@@ -358,7 +358,8 @@ def validate_params_slx_std_add_or_remove_l2_acl_rule(**parameters):
 
     required_params = ['acl_name', 'source', 'action']
     accepted_params = ['acl_name', 'srchost', 'count', 'log', 'seq_id',
-                       'source', 'src_mac_addr_mask', 'action']
+                       'source', 'src_mac_addr_mask', 'action', 'arp_guard',
+                       'dst', 'mirror', 'copy_sflow']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
