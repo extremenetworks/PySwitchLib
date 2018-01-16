@@ -27,6 +27,7 @@ class SnmpMib:
         'ifXTable': '1.3.6.1.2.1.31.1.1',
         'ifXEntry': '1.3.6.1.2.1.31.1.1.1',
         'ifAdminStatus': '1.3.6.1.2.1.2.2.1.7',
+        'ifOperStatus': '1.3.6.1.2.1.2.2.1.8',
         'ifAlias': '1.3.6.1.2.1.31.1.1.1.18',
         'snRtIpPortIfMtu': '1.3.6.1.4.1.1991.1.2.2.20.1.2',
         'ipv6IfEffectiveMtu': '1.3.6.1.2.1.55.1.5.1.4',

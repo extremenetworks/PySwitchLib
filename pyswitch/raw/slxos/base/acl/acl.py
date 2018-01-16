@@ -376,6 +376,8 @@ class Acl(SlxNosAcl):
         bool_params = ['log', 'count', 'copy_sflow']
         self.mac.parse_boolean_params(user_data, bool_params, **kwargs)
 
+        return user_data
+
     def _parse_params_for_add_mac_extended(self, **kwargs):
         """
         Parses params for l2 Rule to be added to standard Access Control List.
