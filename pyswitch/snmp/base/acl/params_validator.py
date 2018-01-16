@@ -9,7 +9,6 @@ def validate_params_mlx_add_ipv4_rule_acl(**parameters):
                        'priority_force', 'option', 'acl_name',
                        'drop_precedence', 'fragment', 'dscp', 'protocol_type',
                        'tos', 'action', 'icmp_filter']
-
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -19,11 +18,11 @@ def validate_params_mlx_add_ipv4_rule_acl(**parameters):
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
 
+    received_params = list(set(received_params) - set(st2_specific_params))
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
-        if set(unaccepted_params) != set(st2_specific_params):
-            raise ValueError("unaccepted parameters provided: {}"
-                             .format(unaccepted_params))
+        raise ValueError("unaccepted parameters provided: {}"
+                         .format(unaccepted_params))
 
 
 def validate_params_mlx_add_std_ipv4_rule_acl(**parameters):
@@ -40,11 +39,11 @@ def validate_params_mlx_add_std_ipv4_rule_acl(**parameters):
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
 
+    received_params = list(set(received_params) - set(st2_specific_params))
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
-        if set(unaccepted_params) != set(st2_specific_params):
-            raise ValueError("unaccepted parameters provided: {}"
-                             .format(unaccepted_params))
+        raise ValueError("unaccepted parameters provided: {}"
+                         .format(unaccepted_params))
 
 
 def validate_params_mlx_add_ipv6_rule_acl(**parameters):
@@ -55,7 +54,6 @@ def validate_params_mlx_add_ipv6_rule_acl(**parameters):
                        'drop_precedence_force', 'vlan_id', 'drop_precedence',
                        'log', 'seq_id', 'destination', 'source',
                        'protocol_type', 'action', 'icmp_filter']
-
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -65,11 +63,11 @@ def validate_params_mlx_add_ipv6_rule_acl(**parameters):
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
 
+    received_params = list(set(received_params) - set(st2_specific_params))
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
-        if set(unaccepted_params) != set(st2_specific_params):
-            raise ValueError("unaccepted parameters provided: {}"
-                             .format(unaccepted_params))
+        raise ValueError("unaccepted parameters provided: {}"
+                         .format(unaccepted_params))
 
 
 def validate_params_mlx_add_or_remove_l2_acl_rule(**parameters):
@@ -93,11 +91,11 @@ def validate_params_mlx_add_or_remove_l2_acl_rule(**parameters):
     if 'copy_sflow' in received_params and parameters['copy_sflow'] != 'False':
         raise ValueError("unaccepted parameters provided: copy_sflow")
 
+    received_params = list(set(received_params) - set(st2_specific_params))
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
-        if set(unaccepted_params) != set(st2_specific_params):
-            raise ValueError("unaccepted parameters provided: {}"
-                             .format(unaccepted_params))
+        raise ValueError("unaccepted parameters provided: {}"
+                         .format(unaccepted_params))
 
 
 def validate_params_mlx_apply_acl(**parameters):
@@ -113,11 +111,11 @@ def validate_params_mlx_apply_acl(**parameters):
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
 
+    received_params = list(set(received_params) - set(st2_specific_params))
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
-        if set(unaccepted_params) != set(st2_specific_params):
-            raise ValueError("unaccepted parameters provided: {}"
-                             .format(unaccepted_params))
+        raise ValueError("unaccepted parameters provided: {}"
+                         .format(unaccepted_params))
 
 
 def validate_params_mlx_create_acl(**parameters):
@@ -133,11 +131,11 @@ def validate_params_mlx_create_acl(**parameters):
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
 
+    received_params = list(set(received_params) - set(st2_specific_params))
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
-        if set(unaccepted_params) != set(st2_specific_params):
-            raise ValueError("unaccepted parameters provided: {}"
-                             .format(unaccepted_params))
+        raise ValueError("unaccepted parameters provided: {}"
+                         .format(unaccepted_params))
 
 
 def validate_params_mlx_delete_acl(**parameters):
@@ -153,11 +151,11 @@ def validate_params_mlx_delete_acl(**parameters):
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
 
+    received_params = list(set(received_params) - set(st2_specific_params))
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
-        if set(unaccepted_params) != set(st2_specific_params):
-            raise ValueError("unaccepted parameters provided: {}"
-                             .format(unaccepted_params))
+        raise ValueError("unaccepted parameters provided: {}"
+                         .format(unaccepted_params))
 
 
 def validate_params_mlx_delete_ipv4_rule_acl(**parameters):
@@ -173,11 +171,11 @@ def validate_params_mlx_delete_ipv4_rule_acl(**parameters):
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
 
+    received_params = list(set(received_params) - set(st2_specific_params))
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
-        if set(unaccepted_params) != set(st2_specific_params):
-            raise ValueError("unaccepted parameters provided: {}"
-                             .format(unaccepted_params))
+        raise ValueError("unaccepted parameters provided: {}"
+                         .format(unaccepted_params))
 
 
 def validate_params_mlx_delete_ipv6_rule_acl(**parameters):
@@ -193,11 +191,11 @@ def validate_params_mlx_delete_ipv6_rule_acl(**parameters):
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
 
+    received_params = list(set(received_params) - set(st2_specific_params))
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
-        if set(unaccepted_params) != set(st2_specific_params):
-            raise ValueError("unaccepted parameters provided: {}"
-                             .format(unaccepted_params))
+        raise ValueError("unaccepted parameters provided: {}"
+                         .format(unaccepted_params))
 
 
 def validate_params_mlx_remove_acl(**parameters):
@@ -213,8 +211,8 @@ def validate_params_mlx_remove_acl(**parameters):
         raise ValueError("missing required parameters: {}"
                          .format(absent_required))
 
+    received_params = list(set(received_params) - set(st2_specific_params))
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:
-        if set(unaccepted_params) != set(st2_specific_params):
-            raise ValueError("unaccepted parameters provided: {}"
-                             .format(unaccepted_params))
+        raise ValueError("unaccepted parameters provided: {}"
+                         .format(unaccepted_params))
