@@ -201,7 +201,7 @@ class Acl(NosBaseAcl):
             rpc_response = callback(config, handler='get')
             # xml.etree.ElementTree.dump(rpc_response)
             for elem in rpc_response.iter():
-                if elem.text == intf:
+                if elem.text == str(intf):
                     invalid_intf = False
                     break
             if invalid_intf:
