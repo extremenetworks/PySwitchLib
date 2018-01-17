@@ -312,10 +312,13 @@ class Acl(SlxNosAcl):
         self.logger.info('Successfully identified the acl_type as ({}:{})'
                          .format(address_type, acl_type))
 
+        if acl_type == 'standard':
+            params_validator.validate_params_slx_std_add_or_remove_l2_acl_rule(
+                **kwargs)
+
         # This is required to distinguish between ipv4 or v6
         kwargs['address_type'] = address_type
         kwargs['acl_type'] = acl_type
-
         if acl_type == 'standard':
             user_data = self._parse_params_for_add_mac_standard(**kwargs)
         elif acl_type == 'extended':
@@ -440,7 +443,7 @@ class Acl(SlxNosAcl):
             rpc_response = callback(config, handler='get')
             # xml.etree.ElementTree.dump(rpc_response)
             for elem in rpc_response.iter():
-                if elem.text == intf:
+                if elem.text == str(intf):
                     invalid_intf = False
                     break
             if invalid_intf:
