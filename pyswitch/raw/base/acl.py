@@ -15,7 +15,6 @@ limitations under the License.
 """
 
 import abc
-import logging
 
 
 class Acl(object):
@@ -40,9 +39,6 @@ class Acl(object):
         Returns:
             ACL Object
         """
-        logging.basicConfig(format='pyswitch.raw.base.acl.Acl: %(levelname)s  %(message)s')
-        self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(logging.INFO)
         self._callback = callback
 
     @abc.abstractmethod
