@@ -925,7 +925,7 @@ class Interface(BaseInterface):
 
         cli_cmd = 'show interface ' + ' ' + int_type + ' ' + name
 
-        pre_config_pat = r'Member of VLAN (\d+) \(untagged\)'
+        pre_config_pat = r'VLAN (\d+) \(untagged\)'
         get_vlan = 0
         try:
             cli_output = callback(cli_cmd, handler='cli-get')

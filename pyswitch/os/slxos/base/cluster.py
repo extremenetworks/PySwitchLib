@@ -113,11 +113,13 @@ class Cluster(object):
                 config = ('cluster_df_load_balance_update', argument)
                 self._callback(config, 'POST')
 
-            argument = {'cluster': (clname, clid),
-                       'cluster_control_vlan': cluster_control_vlan
-                        }
-            config = ('cluster_cluster_control_vlan_update', argument)
-            self._callback(config, 'POST')
+            # Do not program default cluster control vlan because of idempotency issue
+            if cluster_control_vlan != 4090:
+                argument = {'cluster': (clname, clid),
+                           'cluster_control_vlan': cluster_control_vlan
+                            }
+                config = ('cluster_cluster_control_vlan_update', argument)
+                self._callback(config, 'POST')
         except Exception, exc:
             status['status_code'] = -1
             status['status_message'] = 'Exception:' + exc.message
