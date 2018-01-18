@@ -463,8 +463,6 @@ class Acl(BaseAcl):
 
             output = self._callback(cli_arr, handler='cli-set')
             if 'Error: ' in output and acl_name in output:
-                self.logger.info('{} pre-existing on intf {}'
-                                 .format(acl_name, intf))
                 continue
             self._process_cli_output(inspect.stack()[0][3], config, output)
 
@@ -1207,7 +1205,6 @@ class Acl(BaseAcl):
                                       "source": "host 192.168.0.3")
         """
         if 'acl_rules' not in kwargs or not kwargs['acl_rules']:
-            self.logger.info("Empty ACL Rules. Nothing to configure.")
             return True
 
         acl_rules = kwargs['acl_rules']
@@ -1222,9 +1219,6 @@ class Acl(BaseAcl):
             raise ValueError("IPv4 Rule can not be added to non-ip ACL."
                              "ACL {} is of type {}"
                              .format(acl_name, address_type))
-
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
 
         # Get already configured seq_ids
         configured_seq_ids = self.get_configured_seq_ids(acl_name,
@@ -1252,8 +1246,6 @@ class Acl(BaseAcl):
             config = t.render(**user_data)
             config = ' '.join(config.split())
             cli_arr.append(config)
-            self.logger.debug(config)
-
             try:
                 output = self._callback(cli_arr, handler='cli-set')
                 if 'Failed to initialize dns request' in output:
@@ -1267,16 +1259,7 @@ class Acl(BaseAcl):
                 cli_arr.pop()
             except Exception as err:
                 unconfigured_count = len(acl_rules) - configured_count
-                self.logger.info("{} rules configured successfully"
-                                 .format(configured_count))
-                self.logger.error("{} rules could not be configured"
-                                  .format(unconfigured_count))
-                self.logger.error("rules with seq_id equal to and above {}"
-                                  " seq_id could not be configured"
-                                  .format(user_data['seq_id_str']))
                 raise ValueError(err)
-
-        self.logger.info('Successfully added rule ACL {}'.format(acl_name))
         return True
 
     def delete_ipv4_acl_rule_bulk(self, **kwargs):
@@ -1313,9 +1296,6 @@ class Acl(BaseAcl):
             raise ValueError("IPv4 Rule can not be added to non-ip ACL."
                              "ACL {} is of type {}"
                              .format(acl_name, address_type))
-
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
 
         # Get already configured seq_ids
         configured_seq_ids = self.get_configured_seq_ids(acl_name,
