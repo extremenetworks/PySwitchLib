@@ -148,9 +148,6 @@ class Acl(NosBaseAcl):
             raise ValueError('Rule can not be configured as {} type is {}'
                              .format(acl_name, address_type))
 
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
-
         if acl_type == 'standard':
             params_validator.validate_params_slx_std_add_or_remove_l2_acl_rule(
                 **kwargs)
@@ -177,18 +174,13 @@ class Acl(NosBaseAcl):
         config = t.render(**user_data)
         config = ' '.join(config.split())
 
-        self.logger.debug(config)
-
         callback(config)
 
-        self.logger.info('Successfully added rule ACL {}'.format(acl_name))
         return True
 
     def validate_interfaces(self, callback, user_data):
 
         for intf in user_data['interface_list']:
-            self.logger.info('Validating interface ({}:{})'
-                             .format(user_data['intf_type'], intf))
             invalid_intf = True
 
             user_data['intf'] = intf
@@ -196,8 +188,6 @@ class Acl(NosBaseAcl):
             t = jinja2.Template(cmd)
             config = t.render(**user_data)
             config = ' '.join(config.split())
-
-            self.logger.debug(config)
             rpc_response = callback(config, handler='get')
             # xml.etree.ElementTree.dump(rpc_response)
             for elem in rpc_response.iter():
@@ -254,9 +244,6 @@ class Acl(NosBaseAcl):
         acl_type = acl['type']
         address_type = acl['protocol']
 
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
-
         kwargs['address_type'] = address_type
         # Parse params
         user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
@@ -265,22 +252,12 @@ class Acl(NosBaseAcl):
 
         result = {}
         for intf in user_data['interface_list']:
-            self.logger.info('Applying ACL {} on interface ({}:{})'
-                             .format(user_data['acl_name'],
-                                     user_data['intf_type'], intf))
-
             user_data['intf'] = intf
             t = jinja2.Template(acl_template.acl_apply)
             config = t.render(**user_data)
             config = ' '.join(config.split())
-
-            self.logger.debug(config)
             callback(config)
 
-            self.logger.info('Successfully applied ACL {} on interface '
-                             '{} {} ({})'.format(user_data['acl_name'],
-                                                 user_data['intf_type'], intf,
-                                                 user_data['acl_direction']))
             result[intf] = True
         return result
 
@@ -334,9 +311,6 @@ class Acl(NosBaseAcl):
         acl_type = acl['type']
         address_type = acl['protocol']
 
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
-
         kwargs['address_type'] = address_type
         # Parse params
         user_data = self._parse_params_for_apply_or_remove_acl(**kwargs)
@@ -345,31 +319,15 @@ class Acl(NosBaseAcl):
 
         result = {}
         for intf in user_data['interface_list']:
-            self.logger.info('Removing ACL {} from interface ({}:{})'
-                             .format(user_data['acl_name'],
-                                     user_data['intf_type'], intf))
-
             user_data['intf'] = intf
             t = jinja2.Template(acl_template.acl_remove)
             config = t.render(**user_data)
             config = ' '.join(config.split())
-
-            self.logger.debug(config)
             try:
                 callback(config)
-                self.logger.info('Successfully removed ACL {} from '
-                                 'interface {} {} ({})'
-                                 .format(user_data['acl_name'],
-                                         user_data['intf_type'],
-                                         intf, user_data['acl_direction']))
                 result[intf] = True
             except Exception as e:
                 if '<bad-element>access-group</bad-element>' in str(e):
-                    self.logger.warning('ACL {} not present in the interface '
-                                        '{} {} ({})'
-                                        .format(user_data['acl_name'],
-                                                user_data['intf_type'], intf,
-                                                user_data['acl_direction']))
                     result[intf] = None
                 else:
                     raise
