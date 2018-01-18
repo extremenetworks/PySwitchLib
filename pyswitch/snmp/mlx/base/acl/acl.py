@@ -1258,7 +1258,6 @@ class Acl(BaseAcl):
                 configured_count = configured_count + 1
                 cli_arr.pop()
             except Exception as err:
-                unconfigured_count = len(acl_rules) - configured_count
                 raise ValueError(err)
         return True
 
