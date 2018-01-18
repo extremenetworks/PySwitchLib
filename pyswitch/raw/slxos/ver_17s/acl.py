@@ -241,7 +241,6 @@ class Acl(NosBaseAcl):
         acl_name = self.ip.parse_acl_name(**kwargs)
         callback = kwargs.pop('callback', self._callback)
         acl = self._get_acl_info(acl_name, get_seqs=False)
-        acl_type = acl['type']
         address_type = acl['protocol']
 
         kwargs['address_type'] = address_type
@@ -308,7 +307,6 @@ class Acl(NosBaseAcl):
         acl_name = self.ip.parse_acl_name(**kwargs)
         callback = kwargs.pop('callback', self._callback)
         acl = self._get_acl_info(acl_name, get_seqs=False)
-        acl_type = acl['type']
         address_type = acl['protocol']
 
         kwargs['address_type'] = address_type
