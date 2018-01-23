@@ -99,7 +99,7 @@ class System(BaseSystem):
             Args:
 
                 mtu (str): Value between 576  and 9198 for ipv4
-                           Value between 1280 - 8982 for ipv6
+                           Value between 1280 - 9198 for ipv6
                 version (int) : 4 or 6
                 callback (function): A function executed upon completion of
                     the method.
@@ -139,7 +139,7 @@ class System(BaseSystem):
 
         if version is 6:
             minimum_mtu = 1280
-            maximum_mtu = 8982
+            maximum_mtu = 9198
             if int(mtu) < minimum_mtu or int(mtu) > maximum_mtu:
                 raise ValueError(
                     "Incorrect mtu value, Valid Range %s-%s" %
@@ -149,7 +149,7 @@ class System(BaseSystem):
 
         try:
             cli_res = callback(cli_arr, handler='cli-set')
-            error = re.search(r'Error:(.+)', cli_res)
+            error = re.search(r'Error (.+)', cli_res)
             invalid_input = re.search(r'Invalid input', cli_res)
             if error:
                 raise ValueError("%s" % error.group(0))
