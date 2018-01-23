@@ -809,18 +809,24 @@ class Interface(BaseInterface):
                              str(valid_int_types))
 
         try:
+            if_desc = callback(ifAlias_oid)
+
             if get:
-                if_desc = callback(ifAlias_oid)
                 return if_desc
             else:
                 desc = str(kwargs.pop('desc'))
+                if if_desc == desc:
+                    raise UserWarning('Interface description %s is already'
+                                      ' configured' % desc)
                 ifdescr_args = (ifAlias_oid, desc)
                 return callback(ifdescr_args, handler='snmp-set')
         except AttributeError:
             return None
+        except UserWarning as e:
+            raise UserWarning('%s' % str(e.message))
         except Exception as error:
             reason = error.message
-            raise ValueError('Failed to set interface admin status to %s' % (reason))
+            raise ValueError('Failed to set interface description to %s' % (reason))
         return None
 
     def switchport(self, **kwargs):
