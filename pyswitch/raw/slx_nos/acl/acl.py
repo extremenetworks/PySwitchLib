@@ -91,21 +91,13 @@ class SlxNosAcl(BaseAcl):
 
         callback = kwargs.pop('callback', self._callback)
 
-        self.logger.info('Creating ACL {} ({}:{})'.format(
-                         kwargs['acl_name'], kwargs['address_type'],
-                         kwargs['acl_type']))
-
         cmd = acl_template.acl_create
 
         t = jinja2.Template(cmd)
         config = t.render(**user_data)
         config = ' '.join(config.split())
 
-        self.logger.debug(config)
         callback(config)
-
-        self.logger.info('Successfully created ACL {}'
-                         .format(kwargs['acl_name']))
         return True
 
     def _parse_params_for_create_acl(self, **kwargs):
@@ -151,18 +143,11 @@ class SlxNosAcl(BaseAcl):
                      'address_type': acl['protocol'],
                      'acl_type': acl['type']}
 
-        self.logger.info('Deleting ACL {}'
-                         .format(user_data))
-
         t = jinja2.Template(acl_template.acl_delete)
         config = t.render(**user_data)
         config = ' '.join(config.split())
 
-        self.logger.debug(config)
         callback(config)
-
-        self.logger.info('Successfully deleted ACL {}'
-                         .format(kwargs['acl_name']))
         return True
 
     def delete_acl_rule(self, **kwargs):
@@ -174,9 +159,6 @@ class SlxNosAcl(BaseAcl):
         acl = self._get_acl_info(acl_name, get_seqs=True)
         acl_type = acl['type']
         address_type = acl['protocol']
-
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
 
         # Validate seq_id if user has specified
         if not seq_id:
@@ -202,11 +184,7 @@ class SlxNosAcl(BaseAcl):
         config = t.render(**user_data)
         config = ' '.join(config.split())
 
-        self.logger.debug(config)
-
         callback(config)
-
-        self.logger.info('Successfully deleted rule ACL {}'.format(acl_name))
         return True
 
     def delete_ipv4_acl_rule(self, **kwargs):
@@ -305,30 +283,6 @@ class SlxNosAcl(BaseAcl):
 
         return next_seq_id
 
-    def validate_interfaces(self, callback, user_data):
-
-        for intf in user_data['interface_list']:
-            self.logger.info('Validating interface ({}:{})'
-                             .format(user_data['intf_type'], intf))
-            invalid_intf = True
-
-            user_data['intf'] = intf
-            cmd = acl_template.get_interface_by_name
-            t = jinja2.Template(cmd)
-            config = t.render(**user_data)
-            config = ' '.join(config.split())
-
-            self.logger.debug(config)
-            rpc_response = callback(config, handler='get')
-            # xml.etree.ElementTree.dump(rpc_response)
-            for elem in rpc_response.iter():
-                if elem.text == intf:
-                    invalid_intf = False
-                    break
-            if invalid_intf:
-                raise ValueError("{} interface {} does not exist."
-                                 .format(user_data['intf_type'], intf))
-
     def set_seq_id_for_bulk_rules(self, existing_seq_ids, acl_rules):
 
         user_seq_ids = [rule['seq_id'] for rule in acl_rules
@@ -394,14 +348,6 @@ class SlxNosAcl(BaseAcl):
                     unconfigured.append(rule)
                     unconfigured_count = unconfigured_count + 1
 
-            self.logger.info("{} rules configured successfully"
-                             .format(configured_count))
-            self.logger.error("{} rules could not be configured"
-                              .format(unconfigured_count))
-            self.logger.error("rules with seq_id equal to and above {}"
-                              " seq_id could not be configured"
-                              .format(conflicting_seq_ids[0]))
-
         raise ValueError(rpc_err)
 
     def process_response_ipv6_rule_bulk_req(self, rpc_err, acl_rules,
@@ -417,14 +363,6 @@ class SlxNosAcl(BaseAcl):
                     configured_count = configured_count + 1
                 else:
                     unconfigured_count = unconfigured_count + 1
-
-            self.logger.info("{} rules configured successfully"
-                             .format(configured_count))
-            self.logger.error("{} rules could not be configured"
-                              .format(unconfigured_count))
-            self.logger.error("rules with seq_id equal to and above {} could"
-                              " not be configured".format(failed_seq_id))
-
         raise ValueError(rpc_err)
 
     def delete_ipv4_acl_rule_bulk(self, **kwargs):
@@ -464,9 +402,6 @@ class SlxNosAcl(BaseAcl):
                              "ACL {} is of type {}"
                              .format(acl_name, address_type))
 
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
-
         seq_range = self.ap.parse_seq_id_by_range(acl['seq_ids'], **kwargs)
         user_data_list = [{'seq_id': seq_id} for seq_id in seq_range]
 
@@ -482,14 +417,12 @@ class SlxNosAcl(BaseAcl):
                               acl_name=acl_name,
                               user_data_list=chunk)
             config = ' '.join(config.split())
-            self.logger.debug(config)
 
             try:
                 callback(config)
             except Exception as rpc_err:
                 raise ValueError(rpc_err)
 
-        self.logger.info('Successfully deleted rule ACL {}'.format(acl_name))
         return True
 
     def delete_ipv6_acl_rule_bulk(self, **kwargs):
@@ -523,10 +456,6 @@ class SlxNosAcl(BaseAcl):
         acl = self._get_acl_info(acl_name, get_seqs=True)
         acl_type = acl['type']
         address_type = acl['protocol']
-
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
-
         seq_range = self.ap.parse_seq_id_by_range(acl['seq_ids'], **kwargs)
         user_data_list = [{'seq_id': seq_id} for seq_id in seq_range]
 
@@ -542,12 +471,9 @@ class SlxNosAcl(BaseAcl):
                               acl_name=acl_name,
                               user_data_list=chunk)
             config = ' '.join(config.split())
-            self.logger.debug(config)
 
             try:
                 callback(config)
             except Exception as rpc_err:
                 raise ValueError(rpc_err)
-
-        self.logger.info('Successfully deleted rule ACL {}'.format(acl_name))
         return True

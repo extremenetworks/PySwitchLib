@@ -18,7 +18,6 @@ limitations under the License.
 import jinja2
 import pyswitch.raw.slx_nos.acl.params_validator as params_validator
 from pyswitch.raw.nos.base.acl import acl_template
-from pyswitch.raw.slx_nos.acl import acl_template as slx_nos_acl_template
 from pyswitch.raw.slx_nos.acl.acl import SlxNosAcl
 from pyswitch.raw.slx_nos.acl.macacl import MacAcl
 from pyswitch.raw.slx_nos.acl.ipxacl import IpAcl
@@ -119,9 +118,6 @@ class Acl(SlxNosAcl):
             raise ValueError('Rule can not be configured as {} type is {}'
                              .format(acl_name, address_type))
 
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
-
         # This is required to distinguish between ipv4 or v6
         kwargs['address_type'] = address_type
 
@@ -143,11 +139,7 @@ class Acl(SlxNosAcl):
         config = t.render(**user_data)
         config = ' '.join(config.split())
 
-        self.logger.debug(config)
-
         callback(config)
-
-        self.logger.info('Successfully added rule ACL {}'.format(acl_name))
         return True
 
     def _parse_params_for_add_standard(self, **kwargs):
@@ -306,8 +298,9 @@ class Acl(SlxNosAcl):
             raise ValueError('Rule can not be configured as {} type is {}'
                              .format(acl_name, address_type))
 
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
+        if acl_type == 'standard':
+            params_validator.validate_params_slx_std_add_or_remove_l2_acl_rule(
+                **kwargs)
 
         # This is required to distinguish between ipv4 or v6
         kwargs['address_type'] = address_type
@@ -330,12 +323,7 @@ class Acl(SlxNosAcl):
         t = jinja2.Template(acl_template.acl_rule_mac)
         config = t.render(**user_data)
         config = ' '.join(config.split())
-
-        self.logger.debug(config)
-
         callback(config)
-
-        self.logger.info('Successfully added rule ACL {}'.format(acl_name))
         return True
 
     def _parse_params_for_add_mac_standard(self, **kwargs):
@@ -418,6 +406,27 @@ class Acl(SlxNosAcl):
 
         return user_data
 
+    def validate_interfaces(self, callback, user_data):
+
+        for intf in user_data['interface_list']:
+            invalid_intf = True
+
+            user_data['intf'] = intf
+            cmd = acl_template.get_interface_by_name
+            t = jinja2.Template(cmd)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+
+            rpc_response = callback(config, handler='get')
+            # xml.etree.ElementTree.dump(rpc_response)
+            for elem in rpc_response.iter():
+                if elem.text == str(intf):
+                    invalid_intf = False
+                    break
+            if invalid_intf:
+                raise ValueError("{} interface {} does not exist."
+                                 .format(user_data['intf_type'], intf))
+
     def apply_acl(self, **kwargs):
         """
         Apply an ACL to a physical port, port channel, VE or management interface.
@@ -457,22 +466,12 @@ class Acl(SlxNosAcl):
 
         result = {}
         for intf in user_data['interface_list']:
-            self.logger.info('Applying ACL {} on interface ({}:{})'
-                             .format(user_data['acl_name'],
-                                     user_data['intf_type'], intf))
-
             user_data['intf'] = intf
-            cmd = slx_nos_acl_template.acl_apply
+            cmd = acl_template.acl_apply
             t = jinja2.Template(cmd)
             config = t.render(**user_data)
             config = ' '.join(config.split())
-
-            self.logger.debug(config)
             callback(config)
-
-            self.logger.info('Successfully applied ACL {} on interface {} {} ({})'
-                             .format(user_data['acl_name'], user_data['intf_type'],
-                                     intf, user_data['acl_direction']))
             result[intf] = True
         return result
 
@@ -518,28 +517,17 @@ class Acl(SlxNosAcl):
 
         result = {}
         for intf in user_data['interface_list']:
-            self.logger.info('Removing ACL {} from interface ({}:{})'
-                             .format(user_data['acl_name'],
-                                     user_data['intf_type'], intf))
 
             user_data['intf'] = intf
-            cmd = slx_nos_acl_template.acl_remove
+            cmd = acl_template.acl_remove
             t = jinja2.Template(cmd)
             config = t.render(**user_data)
             config = ' '.join(config.split())
-
-            self.logger.debug(config)
             try:
                 callback(config)
-                self.logger.info('Successfully removed ACL {} from interface {} {} ({})'
-                                 .format(user_data['acl_name'], user_data['intf_type'],
-                                         intf, user_data['acl_direction']))
                 result[intf] = True
             except Exception as e:
                 if '<bad-element>access-group</bad-element>' in str(e):
-                    self.logger.warning('ACL {} not present in the interface {} {} ({})'
-                                        .format(user_data['acl_name'], user_data['intf_type'],
-                                                intf, user_data['acl_direction']))
                     result[intf] = None
                 else:
                     raise
@@ -643,7 +631,6 @@ class Acl(SlxNosAcl):
                                       "source": "host 192.168.0.3")
         """
         if 'acl_rules' not in kwargs or not kwargs['acl_rules']:
-            self.logger.info("Empty ACL Rules. Nothing to configure.")
             return True
 
         acl_rules = kwargs['acl_rules']
@@ -659,10 +646,6 @@ class Acl(SlxNosAcl):
             raise ValueError("IPv4 Rule can not be added to non-ip ACL."
                              "ACL {} is of type {}"
                              .format(acl_name, address_type))
-
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
-
         # if there are already configured rules. Make sure that they are
         # not overlapping with new rules to be configured
         self.set_seq_id_for_bulk_rules(acl['seq_ids'], acl_rules)
@@ -688,14 +671,11 @@ class Acl(SlxNosAcl):
                               user_data_list=chunk)
 
             config = ' '.join(config.split())
-            self.logger.debug(config)
 
             try:
                 callback(config)
             except Exception as err:
                 self.process_bulk_rpc_error_msg(err, acl_rules)
-
-        self.logger.info('Successfully added rule ACL {}'.format(acl_name))
         return True
 
     def validate_ipv6_std_rules(self, acl_name, acl_rules):
@@ -741,7 +721,6 @@ class Acl(SlxNosAcl):
                                                     source='2:2::2:2')
         """
         if 'acl_rules' not in kwargs or not kwargs['acl_rules']:
-            self.logger.info("Empty ACL Rules. Nothing to configure.")
             return True
 
         acl_rules = kwargs['acl_rules']
@@ -757,9 +736,6 @@ class Acl(SlxNosAcl):
             raise ValueError("IPv6 Rule can not be added to non-ipv6 ACL."
                              "ACL {} is of type {}"
                              .format(acl_name, address_type))
-
-        self.logger.info('Successfully identified the acl_type as ({}:{})'
-                         .format(address_type, acl_type))
 
         # if there are already configured rules. Make sure that they are
         # not overlapping with new rules to be configured
@@ -786,13 +762,9 @@ class Acl(SlxNosAcl):
                               user_data_list=chunk)
 
             config = ' '.join(config.split())
-            self.logger.debug(config)
-
             try:
                 callback(config)
             except Exception as err:
                 self.process_response_ipv6_rule_bulk_req(err, acl_rules,
                                                          chunk[0]['seq_id'])
-
-        self.logger.info('Successfully added rule ACL {}'.format(acl_name))
         return True

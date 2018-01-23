@@ -879,11 +879,13 @@ class Interface(BaseInterface):
             return True
 
     def acc_vlan(self, **kwargs):
-        """Set access VLAN on a port.
+        """Set/get/delete access VLAN on a port.
         Args:
             int_type (str): Type of interface. (ethernet, port_channel)
+            get (bool): Get config instead of editing config. (True, False)
             name (str): Name of interface. (1/1, 1/2, etc)
             vlan (str): VLAN ID to set as the access VLAN.
+            delete (bool):  True to remove a untagged port from a vlan
             callback (function): A function executed upon completion of the
                 method.
             Returns:
@@ -923,13 +925,29 @@ class Interface(BaseInterface):
             raise ValueError('`name` must be in the format of y/z for '
                              'physical interfaces or x for port channel.')
 
-        vlan = kwargs.pop('vlan')
-        if not pyswitch.utilities.valid_vlan_id(vlan):
-            raise InvalidVlanId("`name` must be between `1` and `4090`")
-
         if int_type == 'port_channel':
             name = self.get_lag_primary_port(name)
             int_type = 'ethernet'
+
+        cli_cmd = 'show interface ' + ' ' + int_type + ' ' + name
+
+        pre_config_pat = r'VLAN (\d+) \(untagged\)'
+        get_vlan = 0
+        try:
+            cli_output = callback(cli_cmd, handler='cli-get')
+            get_vlan_config = re.search(pre_config_pat, cli_output)
+            if get_vlan_config:
+                get_vlan = get_vlan_config.group(1).strip()
+        except Exception as error:
+            reason = error.message
+            raise ValueError('Failed to get vlan %s' % (reason))
+
+        if kwargs.pop('get', False):
+            return get_vlan
+
+        vlan = kwargs.pop('vlan')
+        if not pyswitch.utilities.valid_vlan_id(vlan):
+            raise InvalidVlanId("`name` must be between `1` and `4090`")
 
         cli_arr.append('vlan' + ' ' + str(vlan))
 
@@ -937,10 +955,7 @@ class Interface(BaseInterface):
             cli_arr.append('no untagged' + ' ' + int_type + ' ' + name)
         else:
             cli_arr.append('untagged' + ' ' + int_type + ' ' + name)
-            cli_cmd = 'show interface ' + ' ' + int_type + ' ' + name
-            pre_config_pat = r'Member of VLAN ' + vlan + ' ' + '\(untagged\)'
-            cli_output = callback(cli_cmd, handler='cli-get')
-            if re.search(pre_config_pat, cli_output):
+            if get_vlan == vlan:
                 raise UserWarning('interface %s, already untagged'
                                 'memberport of vlan %s' % (name, vlan))
         try:
@@ -2481,15 +2496,17 @@ class Interface(BaseInterface):
             list.append(vlan)
         return list
 
-    @property
-    def get_vlan_port_map(self):
+    def get_vlan_port_map(self, untagged_ports):
         """ Get the list of ports associated with vlan
             Each element in the list is a dict containing vlan and list of interfaces
             [{'vlan':10, 'interfaces':[1/1, 2/1]}, {'vlan': 20, 'interfaces':[4/1]}]
         Args:
             None
+            untagged_ports (bool) - True/False
         Returns:
             List of dictionary of vlan->port mappings
+            if untagged_ports is True get the list of vlan->untagged port mappings
+            else get the list of vlan->tagged+untagged port mappings
         Examples:
             >>> import pyswitch.device
             >>> switches = ['10.24.85.107']
@@ -2503,12 +2520,16 @@ class Interface(BaseInterface):
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth_snmp=auth_snmp) as dev:
-            ...         output = dev.interface.get_vlan_port_map
+            ...         output = dev.interface.get_vlan_port_map(untagged_ports=False)
+            ...         output = dev.interface.get_vlan_port_map(untagged_ports=True)
         """
         vlan_oid = SnmpMib.mib_oid_map['dot1qVlanStaticEntry']
         config = {}
         config['oid'] = vlan_oid
-        config['columns'] = {2: 'ports'}
+        if untagged_ports:
+            config['columns'] = {4: 'ports'}
+        else:
+            config['columns'] = {2: 'ports'}
         config['fetch_all'] = False
         vlan_table = self._callback(config, handler='snmp-walk')
         vlan_list = []
@@ -2578,12 +2599,14 @@ class Interface(BaseInterface):
         vlan_list = kwargs.pop('vlan_list')
         intf_name = kwargs.pop('intf_name')
         intf_type = kwargs.pop('intf_type')
-        # intf_mode = kwargs.pop('intf_mode', None)
+        intf_mode = kwargs.pop('intf_mode', None)
         all_true = True
         if not (intf_type == 'ethernet' or intf_type == 'port_channel'):
             raise ValueError('Invalid interface type for MLX')
         if intf_type == 'port_channel':
             lag_name = self.get_lag_id_name_map(str(intf_name))
+            if lag_name is None:
+                raise ValueError('Invalid interface name')
             # get the member ports of LAG
             ifid_name = self.get_port_channel_member_ports(lag_name)
             # pick a member of port-channel
@@ -2593,11 +2616,26 @@ class Interface(BaseInterface):
             else:
                 # Port-channel doesn't have any member ports
                 return False
-        vlan_port = self.get_vlan_port_map
+        vlan_port = self.get_vlan_port_map(untagged_ports=False)
+        untag_port = self.get_vlan_port_map(untagged_ports=True)
+        entry3 = {}
+        tagged_port = []
+        tagged_list = []
+        for entry1, entry2 in zip(vlan_port, untag_port):
+            s = set(entry2['interfaces'])
+            tagged_list = [x for x in entry1['interfaces'] if x not in s]
+            entry3 = {'vlan': entry1['vlan'],
+                      'interfaces': tagged_list}
+            tagged_port.append(entry3)
+        if intf_mode == 'access':
+            temp_vlan_port = untag_port
+        elif intf_mode == 'trunk':
+            temp_vlan_port = tagged_port
+
         for vlan_id in vlan_list:
             is_vlan_present = False
             is_intf_name_present = False
-            for entry in vlan_port:
+            for entry in temp_vlan_port:
                 if str(entry['vlan']) == str(vlan_id):
                     is_vlan_present = True
                     if intf_name in entry['interfaces']:
@@ -2615,6 +2653,7 @@ class Interface(BaseInterface):
             if is_vlan_present and not is_intf_name_present:
                 all_true = False
                 break
+
         return all_true
 
     def mac_move_detect_enable(self, **kwargs):
