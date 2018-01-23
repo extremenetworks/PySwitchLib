@@ -69,14 +69,14 @@ class Interface(BaseInterface):
     def l3_mtu_const(self):
         # TBD change below defaults
         minimum_mtu = 576
-        maximum_mtu = 8982
+        maximum_mtu = 9198
         return (minimum_mtu, maximum_mtu)
 
     @property
     def l3_ipv6_mtu_const(self):
         # TBD change below defaults
         minimum_mtu = 1280
-        maximum_mtu = 8982
+        maximum_mtu = 9198
         return (minimum_mtu, maximum_mtu)
 
     @property
@@ -1298,20 +1298,20 @@ class Interface(BaseInterface):
             raise ValueError(
                 "Incorrect mtu value %s-%s" %
                 (minimum_mtu, maximum_mtu))
+        cli_arr = []
+        cli_arr.append('interface ' + int_type + ' ' + name)
         if version == 4:
-            mtu_config = (mtu_oid, mtu)
-            callback(mtu_config, 'snmp-set')
+            cli_arr.append('ip mtu ' + str(mtu))
         else:
-            cli_arr = []
-            cli_arr.append('interface ' + int_type + ' ' + name)
             cli_arr.append('ipv6 mtu ' + str(mtu))
-            try:
-                cli_res = callback(cli_arr, handler='cli-set')
-                pyswitch.utilities.check_mlx_cli_set_error(cli_res)
-                return True
-            except Exception as error:
-                reason = error.message
-                raise ValueError('Failed to set IPv6 MTU %s' % (reason))
+
+        try:
+            cli_res = callback(cli_arr, handler='cli-set')
+            pyswitch.utilities.check_mlx_cli_set_error(cli_res)
+            return True
+        except Exception as error:
+            reason = error.message
+            raise ValueError('Failed to set IPv%s MTU %s' % (version, reason))
 
     def vrf(self, **kwargs):
         """Create a vrf.
