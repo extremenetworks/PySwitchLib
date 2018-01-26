@@ -81,11 +81,6 @@ class AclParamParser(object):
         intf_type = kwargs['intf_type']
         address_type = kwargs['address_type']
 
-        if intf_type == 'ethernet':
-            if acl_direction != 'in':
-                raise ValueError("direction can be \'in\' for ethernet "
-                                 "interface")
-
         if address_type == 'mac':
 
             if intf_type == 'port_channel':
@@ -93,6 +88,11 @@ class AclParamParser(object):
                 if acl_direction != 'in':
                     raise ValueError("direction can be \'in\' for "
                                      "port channel")
+
+            elif intf_type == 'ethernet':
+                if acl_direction != 'in':
+                    raise ValueError("direction can be \'in\' for ethernet "
+                                     "interface")
             elif intf_type == 'vlan':
                 pass
 
