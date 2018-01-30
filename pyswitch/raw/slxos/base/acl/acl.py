@@ -397,7 +397,7 @@ class Acl(SlxNosAcl):
         user_data['source'] = self.mac.parse_source(**kwargs)
         user_data['dst'] = self.mac.parse_dst(**kwargs)
         user_data['vlan_tag_format'] = self.mac.parse_vlan_tag_format(**kwargs)
-        user_data['ethertype'] = self.mac.parse_ethertype(**kwargs)
+        user_data['ethertype'] = self.mac.parse_slx_ethertype(**kwargs)
         user_data['vlan'] = self.mac.parse_vlan(**kwargs)
         user_data['arp_guard'] = self.mac.parse_arp_guard(**kwargs)
         user_data['pcp'] = self.mac.parse_pcp(**kwargs)

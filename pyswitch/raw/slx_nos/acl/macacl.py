@@ -162,6 +162,35 @@ class MacAcl(AclParamParser):
                          " Specify Integer or \'arp\', " "\'fcoe\', \'ipv4\'"
                          .format(ethertype))
 
+    def parse_slx_ethertype(self, **kwargs):
+        """
+        parse the ethertype param
+        Args:
+            kwargs contains:
+                ethertype(string): EtherType, can be 'arp', 'fcoe', 'ipv4' or
+                    custom value between 1536 and 65535.
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'ethertype' not in kwargs or not kwargs['ethertype']:
+            return None
+
+        ethertype = kwargs['ethertype']
+
+        if ethertype in ['arp', 'fcoe', 'ipv4', 'ipv6']:
+            return ethertype
+
+        if ethertype.isdigit():
+            if int(ethertype) >= 1536 or int(ethertype) <= 65535:
+                return ethertype
+
+        raise ValueError("The ethertype value {} is invalid."
+                         " Specify Integer or \'arp\', " "\'fcoe\', \'ipv4\'"
+                         " \'ipv6\'".format(ethertype))
+
     def parse_vlan_id(self, vlan):
 
         if vlan == "any":
