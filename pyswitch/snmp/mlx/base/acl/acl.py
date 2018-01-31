@@ -538,9 +538,9 @@ class Acl(BaseAcl):
             regex = re.compile('no.*bound acl', re.IGNORECASE)
             m = regex.search(output)
             if m:
-                raise ValueError("remove_acl failed for interface {}. "
-                                 "acl removed successfully from interfaces {}"
-                                 .format(intf, str(processed_interfaces)))
+                raise ValueError("Acl removed from interfaces {}, "
+                                 "but failed remove_acl for interface {}"
+                                 .format(str(processed_interfaces), intf))
             self._process_cli_output(inspect.stack()[0][3], config, output)
             processed_interfaces.append(intf)
 
