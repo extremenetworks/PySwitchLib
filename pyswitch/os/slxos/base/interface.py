@@ -748,6 +748,7 @@ class Interface(BaseInterface):
             intf_type (str): Type of interface. ['ethernet', 'port_channel']
             intf_name (str): Intername name.
             lif_name  (str): Logical Interface name.
+            firmware_version(str): OS version number.
             get (bool): Get config instead of editing config. (True, False)
             delete (bool): True, delete single/all lifs on intf.(True, False)
             callback (function): A function executed upon completion of the
@@ -779,10 +780,10 @@ class Interface(BaseInterface):
             Traceback (most recent call last):
             KeyError
         """
-
         intf_type = kwargs.pop('intf_type', 'ethernet')
         intf_name = kwargs.pop('intf_name', None)
         lif_name = kwargs.pop('lif_name', None)
+        firmware = kwargs.pop('firmware_version', None)
 
         get_config = kwargs.pop('get', False)
         delete = kwargs.pop('delete', False)
@@ -816,15 +817,31 @@ class Interface(BaseInterface):
             config = (method_name, lg_args)
             result = callback(config)
         elif get_config:
+            result = []
+            re_pat1 = '\d+s'
+            inner_vlan = []
+            lg_args.update(resource_depth=3)
             method_name = 'interface_%s_logical_interface_%s_get' % \
                           (intf_type, intf_type)
             config = (method_name, lg_args)
             output = callback(config, handler='get_config')
             util = Util(output.data)
-            if intf_type == 'port_channel':
-                result = util.findall(util.root, './/pc-instance-id')
-            else:
-                result = util.findall(util.root, './/instance-id')
+            for each in util.findlist(util.root, './/port-channel'):
+                int_name = util.find(each, './/pc-instance-id')
+                outer_vlan = util.find(each, './/outer-tagged-vlan-id')
+                if not re.match(re_pat1, firmware):
+                    inner_vlan = util.find(each, './/inner-vlan')
+                else:
+                    inner_vlan = None
+                if not re.match(re_pat1, firmware):
+                    untag = util.find(each, './/untagged-vlan-id')
+                else:
+                    untag = util.find(each, './/untagged-flag')
+                item_results = {'intf_name': int_name,
+                                'outer_vlan': outer_vlan,
+                                'inner_vlan': inner_vlan,
+                                'untag': untag}
+                result.append(item_results)
         return result
 
     def logical_interface_tag_vlan(self, **kwargs):
