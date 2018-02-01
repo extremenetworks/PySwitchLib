@@ -527,10 +527,11 @@ class Acl(SlxNosAcl):
             try:
                 callback(config)
                 result[intf] = True
-            except Exception as e:
+            except Exception as err:
                 raise ValueError("Acl removed from interfaces {}, "
-                                 "but failed remove_acl for interface {}"
-                                 .format(str(result.keys()), intf))
+                                 "but failed remove_acl for interface {} "
+                                 "Error: {}"
+                                 .format(str(result.keys()), intf, err))
         return result
 
     def _parse_params_for_apply_or_remove_acl(self, **kwargs):
