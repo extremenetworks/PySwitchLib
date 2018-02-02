@@ -523,14 +523,15 @@ class Acl(SlxNosAcl):
             t = jinja2.Template(cmd)
             config = t.render(**user_data)
             config = ' '.join(config.split())
+
             try:
                 callback(config)
                 result[intf] = True
-            except Exception as e:
-                if '<bad-element>access-group</bad-element>' in str(e):
-                    result[intf] = None
-                else:
-                    raise
+            except Exception as err:
+                raise ValueError("Acl removed from interfaces {}, "
+                                 "but failed remove_acl for interface {} "
+                                 "Error: {}"
+                                 .format(str(result.keys()), intf, err))
         return result
 
     def _parse_params_for_apply_or_remove_acl(self, **kwargs):
