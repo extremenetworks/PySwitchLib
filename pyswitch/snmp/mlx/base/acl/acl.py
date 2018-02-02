@@ -485,7 +485,6 @@ class Acl(BaseAcl):
         """
         params_validator.validate_params_mlx_remove_acl(**parameters)
 
-        cli_arr = []
         acl_name = parameters['acl_name']
         intf_type = parameters['intf_type']
         intf_name = parameters.pop('intf_name', None)
@@ -518,7 +517,9 @@ class Acl(BaseAcl):
             output = self._callback([config], handler='cli-set')
             self._process_cli_output(inspect.stack()[0][3], config, output)
 
+        processed_interfaces = []
         for intf in intf_name:
+            cli_arr = []
             cmd = acl_template.interface_submode_template
             t = jinja2.Template(cmd)
             config = t.render(intf_name=intf, **parameters)
@@ -533,8 +534,17 @@ class Acl(BaseAcl):
 
             cli_arr.append('exit')
 
-        output = self._callback(cli_arr, handler='cli-set')
-        return self._process_cli_output(inspect.stack()[0][3], config, output)
+            output = self._callback(cli_arr, handler='cli-set')
+            regex = re.compile('no.*bound acl', re.IGNORECASE)
+            m = regex.search(output)
+            if m:
+                raise ValueError("Acl removed from interfaces {}, "
+                                 "but failed remove_acl for interface {}"
+                                 .format(str(processed_interfaces), intf))
+            self._process_cli_output(inspect.stack()[0][3], config, output)
+            processed_interfaces.append(intf)
+
+        return 'remove_acl : Successful'
 
     def add_ipv4_rule_acl(self, **parameters):
         """
