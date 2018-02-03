@@ -297,10 +297,10 @@ class SnmpCliDevice(AbstractDevice):
                     value = self._proxied.cli_execution(handler, self.host, call)
                 finally:
                     self._proxied.netmiko_release()
-        except (SNMPError) as error:
-            raise DeviceCommError(error)
+        except SNMPError:
+            raise
         except Exception:
-            raise DeviceCommError
+            raise
 
         return value
 
