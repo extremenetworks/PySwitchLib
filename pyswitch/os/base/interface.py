@@ -5762,18 +5762,23 @@ class Interface(object):
                 raise InvalidVlanId("`name` must be between `1` and `8191`")
 
         if get:
-            method_name = 'vlan_get'
+            if self.has_rbridge_id:
+                method_name = 'interface_vlan_suppress_arp_get'
+            else:
+                method_name = 'vlan_suppress_arp_get'
             config = (method_name, arp_args)
-
             output = callback(config, handler='get_config')
             util = Util(output.data)
             enable_item = util.find(util.root, './/enable')
 
-            if enable_item is not None:
+            if enable_item is not None and enable_item == 'true':
                 return True
             else:
                 return None
-        method_name = 'interface_vlan_suppress_arp_update'
+        if self.has_rbridge_id:
+            method_name = 'interface_vlan_suppress_arp_update'
+        else:
+            method_name = 'vlan_suppress_arp_update'
         if not enable:
             arp_args['suppress_arp_enable'] = False
         else:
