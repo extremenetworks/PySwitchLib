@@ -1321,6 +1321,17 @@ class Acl(BaseAcl):
         return self._process_cli_output(inspect.stack()[0][3],
                                         str(cli_arr), output)
 
+    def validate_l2_acl_rules(self, acl_name, acl_rules):
+        user_data_list = []
+        for rule in acl_rules:
+            rule['acl_name'] = acl_name
+            params_validator.\
+                validate_params_mlx_add_or_remove_l2_acl_rule(**rule)
+            user_data = self.parse_params_for_add_l2_acl_rule(**rule)
+            rule['address_type'] = 'mac'
+            user_data_list.append(user_data)
+        return user_data_list
+
     def add_l2_acl_rule_bulk(self, **kwargs):
         """
         Add ACL rule to an existing L2 ACL.
@@ -1343,4 +1354,108 @@ class Acl(BaseAcl):
                                                    source='host',
                                                    srchost='2222.2222.2222')
         """
-        raise ValueError('add_l2_acl_rule_bulk not supported on mlx yet')
+        if 'acl_rules' not in kwargs or not kwargs['acl_rules']:
+            return True
+
+        acl_rules = kwargs['acl_rules']
+
+        # Parse params
+        acl_name = self.mac.parse_acl_name(**kwargs)
+
+        try:
+            ret = self.get_acl_address_and_acl_type(acl_name)
+            address_type = ret['protocol']
+
+            if address_type != 'mac':
+                raise ValueError("l2 Rule can not be added to non-l2 ACL."
+                                 "ACL {} is of type {}"
+                                 .format(acl_name, address_type))
+        except Exception:
+            address_type = 'mac'
+
+        # Get already configured seq_ids
+        configured_seq_ids = self.get_configured_seq_ids(acl_name,
+                                                         address_type)
+
+        # if there are already configured rules. Make sure that they are
+        # not overlapping with new rules to be configured
+        self.set_seq_id_for_bulk_rules(configured_seq_ids, acl_rules)
+
+        # Parse parameters
+        user_data_list = self.validate_l2_acl_rules(acl_name, acl_rules)
+        cmd = acl_template.add_l2_acl_rule_template
+
+        configured_count = 0
+
+        cli_arr = ['mac access-list ' + acl_name]
+        for user_data in user_data_list:
+
+            t = jinja2.Template(cmd)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+            cli_arr.append(config)
+            try:
+                output = self._callback(cli_arr, handler='cli-set')
+                self._process_cli_output(inspect.stack()[0][3], config, output)
+                configured_count = configured_count + 1
+                cli_arr.pop()
+            except Exception as err:
+                raise ValueError(err)
+        return True
+
+    def delete_l2_acl_rule_bulk(self, **parameters):
+        """
+        Delete Rule from Access Control List.
+        Args:
+            parameters contains:
+                acl_name: Name of the access list.
+                seq_id: Sequence number of the rule. For add operation,
+                    if not specified, the rule is added at the end of the list.
+        Returns:
+            Return value of `string` message.
+        Raise:
+            Raises ValueError, Exception
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> conn=('10.37.73.148', 22)
+            >>> auth=('admin', 'admin')
+            >>> with Device(conn=conn, auth=auth,
+            ...             connection_type='NETCONF') as dev:
+            ...     print dev.firmware_version
+            ...     print dev.os_type
+            ...     print dev.acl.create_acl(acl_name='Acl_1',
+            ...                              acl_type='extended',
+            ...                              address_type='mac')
+            ...     print dev.acl.add_l2_acl_rule(acl_name='Acl_1',
+            ...                                   action='permit',
+            ...                                   source='any',
+            ...                                   dst='any',
+            ...                                   vlan=10)
+            ...     print dev.acl.delete_l2_acl_rule(acl_name='Acl_1',
+            ...                                   vlan=10)
+        """
+        # Validate required and accepted kwargs
+        params_validator.validate_params_mlx_delete_l2_acl_rule(**parameters)
+        acl_name = self.mac.parse_acl_name(**parameters)
+
+        ret = self.get_acl_address_and_acl_type(acl_name)
+        address_type = ret['protocol']
+
+        if address_type != 'mac':
+            raise ValueError("L2 Rule can not be added to non-l2 ACL."
+                             "ACL {} is of type {}"
+                             .format(acl_name, address_type))
+
+        # Get already configured seq_ids
+        configured_seq_ids = self.get_configured_seq_ids(acl_name, 'mac')
+        seq_range = self.mac.parse_seq_id_by_range(configured_seq_ids,
+                                                   **parameters)
+
+        cli_arr = ['mac access-list ' + acl_name]
+
+        for seq_id in seq_range:
+            cli_arr.append('no sequence ' + str(seq_id))
+
+        output = self._callback(cli_arr, handler='cli-set')
+        return self._process_cli_output(inspect.stack()[0][3],
+                                        str(cli_arr), output)
