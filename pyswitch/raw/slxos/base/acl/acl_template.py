@@ -573,3 +573,116 @@ name[text()=\'{{intf}}\']"></nc:filter>
     {% endif %}
 </get-config>
 """
+
+acl_rule_mac_bulk = """
+<config>
+  <mac xmlns="urn:brocade.com:mgmt:brocade-mac-access-list">
+    <access-list>
+      <{{acl_type}}>
+        <name>{{acl_name}}</name>
+        {% if acl_type == "extended" %}
+          <hide-mac-acl-ext>
+        {% else %}
+          <hide-mac-acl-std>
+        {% endif %}
+
+        {% for ud in user_data_list %}
+            <seq>
+              <seq-id>{{ud.seq_id}}</seq-id>
+              <action>{{ud.action}}</action>
+
+              <source>{{ud.source.source}}</source>
+              {% if ud.source.source != "any" %}
+                {% if ud.source.source == "host" %}
+                  <srchost>{{ud.source.srchost}}</srchost>
+                {% else %}
+                  <src-mac-addr-mask>{{ud.source.mask}}</src-mac-addr-mask>
+                {% endif %}
+              {% endif %}
+
+              {% if acl_type == "extended" %}
+
+                <dst>{{ud.dst.dst}}</dst>
+                {% if ud.dst.dst != "any" %}
+                  {% if ud.dst.dst == "host" %}
+                    <dsthost>{{ud.dst.dsthost}}</dsthost>
+                  {% else %}
+                    <dst-mac-addr-mask>{{ud.dst.mask}}</dst-mac-addr-mask>
+                  {% endif %}
+                {% endif %}
+
+                {% if ud.ethertype is not none %}
+                  <ethertype>{{ud.ethertype}}</ethertype>
+                {% endif %}
+
+                {% if ud.vlan_tag_format is not none %}
+                  <vlan-tag-format>{{ud.vlan_tag_format}}</vlan-tag-format>
+                {% endif %}
+
+                {% if ud.vlan is not none %}
+
+                  {% if ud.vlan_tag_format is none %}
+                    <vlan>{{ud.vlan.vlan_id}}</vlan>
+
+                  {% elif ud.vlan_tag_format == "untagged" %}
+                    <vlan>{{ud.vlan.vlan_id}}</vlan>
+
+                  {% elif ud.vlan_tag_format == "single-tagged" %}
+
+                    <vlan>{{ud.vlan.vlan_id}}</vlan>
+
+                    {% if ud.vlan.mask is not none %}
+                      <vlan-id-mask>{{ud.vlan.mask}}</vlan-id-mask>
+                    {% endif %}
+
+                  {% elif ud.vlan_tag_format == "double-tagged" %}
+
+                    <outer-vlan>{{ud.vlan.outervlan}}</outer-vlan>
+                    {% if ud.vlan.outermask is not none %}
+                      <outer-vlan-id-mask>{{ud.vlan.outermask}}</outer-vlan-id-mask>
+                    {% endif %}
+
+                    <inner-vlan>{{ud.vlan.innervlan}}</inner-vlan>
+                    {% if ud.vlan.innermask is not none %}
+                      <inner-vlan-id-mask>{{ud.vlan.innermask}}</inner-vlan-id-mask>
+                    {% endif %}
+
+                  {% endif %}
+                {% endif %}
+
+                {% if ud.arp_guard is not none %}
+                  <arp-guard></arp-guard>
+                {% endif %}
+
+                {% if ud.pcp is not none %} <pcp>{{ud.pcp}}</pcp> {% endif %}
+                {% if ud.pcp_force is not none %}
+                  <pcp-force>{{ud.pcp_force}}</pcp-force>
+                {% endif %}
+
+                {% if ud.drop_precedence_force is not none %}
+                  <drop-precedence-force>
+                    {{ud.drop_precedence_force}}
+                  </drop-precedence-force>
+                {% endif %}
+
+                {% if ud.mirror is not none %} <mirror></mirror> {% endif %}
+              {% endif %}
+
+              {% if ud.count is not none %} <count></count> {% endif %}
+              {% if ud.log is not none %}<log></log> {% endif %}
+              {% if ud.copy_sflow is not none %}
+                <copy-sflow></copy-sflow>
+              {% endif %}
+            </seq>
+        {% endfor %}
+
+        {% if acl_type == "extended" %}
+          </hide-mac-acl-ext>
+        {% else %}
+          </hide-mac-acl-std>
+        {% endif %}
+      </{{acl_type}}>
+    </access-list>
+  </mac>
+</config>
+"""
