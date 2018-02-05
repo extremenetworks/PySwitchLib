@@ -187,3 +187,32 @@ acl_rule_ipx_delete_bulk = """
   </{{address_type}}-acl>
 </config>
 """
+
+acl_rule_mac_delete_bulk = """
+<config>
+  <mac xmlns="urn:brocade.com:mgmt:brocade-mac-access-list">
+    <access-list>
+      <{{acl_type}}>
+        <name>{{acl_name}}</name>
+        {% if acl_type == "extended" %}
+          <hide-mac-acl-ext>
+        {% else %}
+          <hide-mac-acl-std>
+        {% endif %}
+
+        {% for ud in user_data_list %}
+          <seq operation="delete">
+            <seq-id>{{ud.seq_id}}</seq-id>
+          </seq>
+        {% endfor %}
+
+        {% if acl_type == "extended" %}
+          </hide-mac-acl-ext>
+        {% else %}
+          </hide-mac-acl-std>
+        {% endif %}
+      </{{acl_type}}>
+    </access-list>
+  </mac>
+</config>
+"""
