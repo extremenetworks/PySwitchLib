@@ -373,3 +373,27 @@ class Acl(NosBaseAcl):
         user_data['traffic_type'] = self._app.parse_traffic_type(**kwargs)
 
         return user_data
+
+    def add_l2_acl_rule_bulk(self, **kwargs):
+        """
+        Add ACL rule to an existing L2 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            acl_rules (array): List of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='mac')
+            >>>     print dev.acl.add_mac_acl_rule(acl_name='Acl_1', seq_id=20,
+                                                   action='permit',
+                                                   source='host',
+                                                   srchost='2222.2222.2222')
+        """
+        raise ValueError('add_l2_acl_rule_bulk not supported on slx 17s yet')

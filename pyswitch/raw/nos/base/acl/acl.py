@@ -769,3 +769,111 @@ class Acl(SlxNosAcl):
                 self.process_response_ipv6_rule_bulk_req(err, acl_rules,
                                                          chunk[0]['seq_id'])
         return True
+
+    def validate_mac_std_rules(self, acl_name, acl_rules):
+        user_data_list = []
+        for rule in acl_rules:
+            rule['acl_name'] = acl_name
+            params_validator. \
+                validate_params_nos_add_or_remove_l2_acl_std_rule(**rule)
+            rule['address_type'] = 'mac'
+            user_data = self._parse_params_for_add_mac_standard(**rule)
+            user_data_list.append(user_data)
+        return user_data_list
+
+    def validate_mac_ext_rules(self, acl_name, acl_rules):
+        user_data_list = []
+        for rule in acl_rules:
+            rule['acl_name'] = acl_name
+            params_validator. \
+                validate_params_nos_add_or_remove_l2_acl_rule(**rule)
+            rule['address_type'] = 'mac'
+            user_data = self._parse_params_for_add_mac_extended(**rule)
+            user_data_list.append(user_data)
+        return user_data_list
+
+    def process_response_mac_rule_bulk_req(self, rpc_err, acl_rules,
+                                           failed_seq_id):
+        rpc_err = str(rpc_err)
+        if "Error: Access-list entry already exists" in rpc_err:
+
+            configured_count = 0
+            unconfigured_count = 0
+
+            for rule in acl_rules:
+                if rule['seq_id'] < int(failed_seq_id):
+                    configured_count = configured_count + 1
+                else:
+                    unconfigured_count = unconfigured_count + 1
+        raise ValueError(rpc_err)
+
+    def add_l2_acl_rule_bulk(self, **kwargs):
+        """
+        Add ACL rule to an existing L2 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            acl_rules (array): List of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='mac')
+            >>>     print dev.acl.add_mac_acl_rule(acl_name='Acl_1', seq_id=20,
+                                                   action='permit',
+                                                   source='host',
+                                                   srchost='2222.2222.2222')
+        """
+        if 'acl_rules' not in kwargs or not kwargs['acl_rules']:
+            return True
+
+        acl_rules = kwargs['acl_rules']
+
+        # Parse params
+        acl_name = self.mac.parse_acl_name(**kwargs)
+        callback = kwargs.pop('callback', self._callback)
+        acl = self._get_acl_info(acl_name, get_seqs=True)
+        acl_type = acl['type']
+        address_type = acl['protocol']
+
+        if address_type != 'mac':
+            raise ValueError("l2 Rule can not be added to non-l2 ACL."
+                             "ACL {} is of type {}"
+                             .format(acl_name, address_type))
+
+        # if there are already configured rules. Make sure that they are
+        # not overlapping with new rules to be configured
+        self.set_seq_id_for_bulk_rules(acl['seq_ids'], acl_rules)
+
+        # Parse parameters
+        if acl_type == 'standard':
+            user_data_list = self.validate_mac_std_rules(acl_name, acl_rules)
+        elif acl_type == 'extended':
+            user_data_list = self.validate_mac_ext_rules(acl_name, acl_rules)
+        else:
+            raise ValueError('{} not supported'.format(acl_type))
+
+        # send the rules in a chunk of Acl.MAC_RULE_CHUNK_SIZE
+        chunks = [user_data_list[i:i + Acl.MAC_RULE_CHUNK_SIZE]
+                  for i in
+                  xrange(0, len(user_data_list), Acl.MAC_RULE_CHUNK_SIZE)]
+
+        for chunk in chunks:
+            t = jinja2.Template(acl_template.acl_rule_mac_bulk)
+            config = t.render(address_type=address_type,
+                              acl_type=acl_type,
+                              acl_name=acl_name,
+                              user_data_list=chunk)
+
+            config = ' '.join(config.split())
+            try:
+                callback(config)
+            except Exception as err:
+                self.process_response_mac_rule_bulk_req(err, acl_rules,
+                                                        chunk[0]['seq_id'])
+        return True

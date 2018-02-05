@@ -438,3 +438,51 @@ class Acl(object):
         if len(unsupported_params) > 0:
             raise ValueError("unsupported parameters provided: {}"
                              .format(unsupported_params))
+
+    @abc.abstractmethod
+    def add_l2_acl_rule_bulk(self, **kwargs):
+        """
+        Add ACL rule to an existing L2 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            acl_rules (array): List of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='mac')
+            >>>     print dev.acl.add_mac_acl_rule(acl_name='Acl_1', seq_id=20,
+                                                   action='permit',
+                                                   source='host',
+                                                   srchost='2222.2222.2222')
+        """
+        return
+
+    @abc.abstractmethod
+    def delete_l2_acl_rule_bulk(self, **kwargs):
+        """
+        Delete ACL rules from MAC ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            seq_id(string): Range of ACL sequences seq_id="10,30-40"
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='ip')
+            >>>     print dev.acl.delete_l2_acl_rule_bulk(acl_name='Acl_1',
+                                                          seq_id="10,30-40")
+        """
+        return

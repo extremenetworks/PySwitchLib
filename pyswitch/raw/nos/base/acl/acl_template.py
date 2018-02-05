@@ -550,3 +550,66 @@ get_interface_by_name = """
       {% endif %}
   </get-config>
 """
+
+acl_rule_mac_bulk = """
+<config>
+  <mac xmlns="urn:brocade.com:mgmt:brocade-mac-access-list">
+    <access-list>
+      <{{acl_type}}>
+        <name>{{acl_name}}</name>
+        {% if acl_type == "extended" %}
+          <hide-mac-acl-ext>
+        {% else %}
+          <hide-mac-acl-std>
+        {% endif %}
+
+        {% for ud in user_data_list %}
+          <seq>
+            <seq-id>{{ud.seq_id}}</seq-id>
+            <action>{{ud.action}}</action>
+
+            <source>{{ud.source.source}}</source>
+            {% if ud.source.source != "any" %}
+              {% if ud.source.source == "host" %}
+                <srchost>{{ud.source.srchost}}</srchost>
+              {% else %}
+                <src-mac-addr-mask>{{ud.source.mask}}</src-mac-addr-mask>
+              {% endif %}
+            {% endif %}
+
+            {% if acl_type == "extended" %}
+
+              <dst>{{ud.dst.dst}}</dst>
+              {% if ud.dst.dst != "any" %}
+                {% if ud.dst.dst == "host" %}
+                  <dsthost>{{ud.dst.dsthost}}</dsthost>
+                {% else %}
+                  <dst-mac-addr-mask>{{ud.dst.mask}}</dst-mac-addr-mask>
+                {% endif %}
+              {% endif %}
+
+              {% if ud.ethertype is not none %}
+                <ethertype>{{ud.ethertype}}</ethertype>
+              {% endif %}
+
+              {% if ud.vlan is not none %}
+                <vlan>{{ud.vlan}}</vlan>
+              {% endif %}
+
+            {% endif %}
+
+            {% if ud.count is not none %} <count></count> {% endif %}
+            {% if ud.log is not none %}<log></log> {% endif %}
+          </seq>
+        {% endfor %}
+
+        {% if acl_type == "extended" %}
+          </hide-mac-acl-ext>
+        {% else %}
+          </hide-mac-acl-std>
+        {% endif %}
+      </{{acl_type}}>
+    </access-list>
+  </mac>
+</config>
+"""
