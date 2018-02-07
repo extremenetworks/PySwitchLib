@@ -1122,9 +1122,9 @@ class Acl(BaseAcl):
         # Check if there is any error
         self._process_cli_output(inspect.stack()[0][3], config, output)
 
-        re_cmp = re.compile(r'\d+:')
+        re_cmp = re.compile(r'\d+: ')
         configured_seq_ids = re_cmp.findall(output)
-        configured_seq_ids = [int(x[:-1]) for x in configured_seq_ids]
+        configured_seq_ids = [int(x[:-2]) for x in configured_seq_ids]
         return configured_seq_ids
 
     def set_seq_id_for_bulk_rules(self, existing_seq_ids, acl_rules):
@@ -1452,6 +1452,131 @@ class Acl(BaseAcl):
                                                    **parameters)
 
         cli_arr = ['mac access-list ' + acl_name]
+
+        for seq_id in seq_range:
+            cli_arr.append('no sequence ' + str(seq_id))
+
+        output = self._callback(cli_arr, handler='cli-set')
+        return self._process_cli_output(inspect.stack()[0][3],
+                                        str(cli_arr), output)
+
+    def validate_ipv6_rules(self, acl_name, acl_rules):
+        user_data_list = []
+        for rule in acl_rules:
+            rule['acl_name'] = acl_name
+            params_validator.validate_params_mlx_add_ipv6_rule_acl(**rule)
+            user_data = self.parse_params_for_add_ipv6_extended(**rule)
+            rule['address_type'] = 'ipv6'
+            user_data_list.append(user_data)
+        return user_data_list
+
+    def add_ipv6_rule_acl_bulk(self, **kwargs):
+        """
+        Add ACL rule to an existing IPv6 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            acl_rules (array): List of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='ip')
+            >>>     print dev.acl.add_ipv6_acl_rule(acl_name='Acl_1',
+                        acl_rules = [{"seq_id": 10, "action": "permit",
+                                      "source": "host 192.168.0.3")
+        """
+        if 'acl_rules' not in kwargs or not kwargs['acl_rules']:
+            return True
+
+        acl_rules = kwargs['acl_rules']
+
+        # Parse params
+        acl_name = self.ip.parse_acl_name(**kwargs)
+        ret = self.get_acl_address_and_acl_type(acl_name)
+        address_type = ret['protocol']
+
+        if address_type != 'ipv6':
+            raise ValueError("IPv6 Rule can not be added to non-ip ACL."
+                             "ACL {} is of type {}"
+                             .format(acl_name, address_type))
+
+        # Get already configured seq_ids
+        configured_seq_ids = self.get_configured_seq_ids(acl_name,
+                                                         address_type)
+
+        # if there are already configured rules. Make sure that they are
+        # not overlapping with new rules to be configured
+        self.set_seq_id_for_bulk_rules(configured_seq_ids, acl_rules)
+
+        # Parse parameters
+        user_data_list = self.validate_ipv6_rules(acl_name, acl_rules)
+
+        configured_count = 0
+        cli_arr = ['ipv6 access-list ' + acl_name]
+
+        for user_data in user_data_list:
+
+            cmd = acl_template.add_ipv6_standard_acl_rule_template
+            t = jinja2.Template(cmd)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+            cli_arr.append(config)
+            try:
+                output = self._callback(cli_arr, handler='cli-set')
+                self._process_cli_output(inspect.stack()[0][3], config, output)
+                configured_count = configured_count + 1
+                cli_arr.pop()
+            except Exception as err:
+                raise ValueError(err)
+        return True
+
+    def delete_ipv6_acl_rule_bulk(self, **kwargs):
+        """
+        Delete ACL rules from IPv6 ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            acl_rules (string): Range of ACL sequence rules.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='ip')
+            >>>     print dev.acl.add_ipv6_acl_rule(acl_name='Acl_1',
+                        acl_rules = [{"seq_id": 10, "action": "permit",
+                                      "source": "host 192.168.0.3")
+        """
+        # Validate required and accepted kwargs
+        params_validator.validate_params_mlx_delete_ipv6_rule_acl(**kwargs)
+
+        acl_name = self.mac.parse_acl_name(**kwargs)
+
+        ret = self.get_acl_address_and_acl_type(acl_name)
+        address_type = ret['protocol']
+
+        if address_type != 'ipv6':
+            raise ValueError("IPv6 Rule can not be deleted from non-ipv6 ACL."
+                             "ACL {} is of type {}"
+                             .format(acl_name, address_type))
+
+        # Get already configured seq_ids
+        configured_seq_ids = self.get_configured_seq_ids(acl_name,
+                                                         address_type)
+        seq_range = self.mac.parse_seq_id_by_range(configured_seq_ids,
+                                                   **kwargs)
+
+        cli_arr = ['ipv6 access-list ' + acl_name]
 
         for seq_id in seq_range:
             cli_arr.append('no sequence ' + str(seq_id))
