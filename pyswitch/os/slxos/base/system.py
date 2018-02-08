@@ -305,7 +305,6 @@ class System(BaseSystem):
         """
         src = kwargs.pop('src_name')
         dst = kwargs.pop('dst_name', 'startup-config')
-        callback = kwargs.pop('callback', self._callback)
 
         if src not in ['running-config', 'default-config']:
             raise ValueError('`src_name` must be running-config/default-config')
