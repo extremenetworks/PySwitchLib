@@ -664,8 +664,13 @@ class Interface(BaseInterface):
             name = self.get_lag_primary_port(name)
             int_type = 'ethernet'
 
-        ifname_Ids = self.get_interface_name_id_mapping()
-        port_id = ifname_Ids[int_type + name]
+        try:
+            ifname_Ids = self.get_interface_name_id_mapping()
+            port_id = ifname_Ids[int_type + name]
+        except KeyError:
+            raise ValueError('Interface %s %s is not found on device' %
+                (int_type, name))
+
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = self.valid_int_types
         ifAdminStatus_oid = SnmpMib.mib_oid_map['ifAdminStatus']
@@ -733,8 +738,12 @@ class Interface(BaseInterface):
         if int_type == 'port-channel':
             int_type = 'port_channel'
             ifname = 'LAG' + name
-        ifname_Ids = self.get_interface_name_id_mapping()
-        if_id = ifname_Ids[ifname]
+        try:
+            ifname_Ids = self.get_interface_name_id_mapping()
+            if_id = ifname_Ids[ifname]
+        except KeyError:
+            raise ValueError('Interface %s %s is not found on device' %
+                (int_type, name))
         if if_id is None:
             raise ValueError('Invalid if_id')
         oid = SnmpMib.mib_oid_map['ifOperStatus']
@@ -795,8 +804,12 @@ class Interface(BaseInterface):
             name = self.get_lag_primary_port(name)
             int_type = 'ethernet'
 
-        ifname_Ids = self.get_interface_name_id_mapping()
-        port_id = ifname_Ids[int_type + name]
+        try:
+            ifname_Ids = self.get_interface_name_id_mapping()
+            port_id = ifname_Ids[int_type + name]
+        except KeyError:
+            raise ValueError('Interface %s %s is not found on device' %
+                (int_type, name))
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = self.valid_int_types
         ifAlias = SnmpMib.mib_oid_map['ifAlias']
@@ -1209,8 +1222,12 @@ class Interface(BaseInterface):
             raise ValueError('int_type must be one of: %s' %
                              repr(valid_int_types))
 
-        ifname_Ids = self.get_interface_name_id_mapping()
-        lag_name = self.get_lag_id_name_map(str(name))
+        try:
+            ifname_Ids = self.get_interface_name_id_mapping()
+            lag_name = self.get_lag_id_name_map(str(name))
+        except KeyError:
+            raise ValueError('Interface %s %s is not found on device' %
+                (int_type, name))
         if int_type + name in ifname_Ids or lag_name is not None:
             return True
         else:
@@ -1276,9 +1293,12 @@ class Interface(BaseInterface):
             name = self.get_lag_primary_port(name)
             int_type = 'ethernet'
 
-        ifname_Ids = self.get_interface_name_id_mapping()
-        port_id = ifname_Ids[int_type + name]
-
+        try:
+            ifname_Ids = self.get_interface_name_id_mapping()
+            port_id = ifname_Ids[int_type + name]
+        except KeyError:
+            raise ValueError('Interface %s %s is not found on device' %
+                (int_type, name))
         if port_id is None:
             raise ValueError('pass valid port-id')
 
