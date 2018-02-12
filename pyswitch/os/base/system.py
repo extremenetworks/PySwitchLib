@@ -42,3 +42,12 @@ class System(object):
                              minutes=util.find(util.root, './/minutes'),
                              seconds=util.find(util.root, './/seconds'))
         return system_uptime
+
+    def persist_config(self, **kwargs):
+        raise ValueError('Persist configuration is not supported on this platform')
+
+    def parse_persist_config_response(self, **kwargs):
+        raise ValueError('Persist configuration is not supported on this platform')
+
+    def persist_config_status(self, **kwargs):
+        raise ValueError('Persist configuration is not supported on this platform')

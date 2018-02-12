@@ -1,5 +1,6 @@
 from pyswitch.utilities import Util
 from pyswitch.os.base.system import System as BaseSystem
+import xml.etree.ElementTree as ET
 
 
 class System(BaseSystem):
@@ -280,3 +281,76 @@ class System(BaseSystem):
 
         config = (method_name, mtu_args)
         return callback(config)
+
+    def persist_config(self, **kwargs):
+        """ save the configurations on the device.
+        Args:
+            src_name (str): 'running-config/default-config'
+            dst_name (str): 'startup-config'
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return session_id value.
+        Raises:
+            ValueError when `src_name` is not passed
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         dev.system.persist_config(src_name='running-config')
+        """
+        src = kwargs.pop('src_name')
+        dst = kwargs.pop('dst_name', 'startup-config')
+
+        if src not in ['running-config', 'default-config']:
+            raise ValueError('`src_name` must be running-config/default-config')
+        if dst != 'startup-config':
+            raise ValueError('`dst_name` must be startup-config')
+
+        save_args = dict(src=src, dest=dst)
+        config = ('bna_config_cmd_rpc', save_args)
+        response = self._callback(config, 'get')
+        return self.parse_persist_config_response(response)
+
+    def parse_persist_config_response(self, response):
+
+        session_id = ''
+        if response.data != '<output></output>':
+            root = ET.fromstring(response.data)
+            session_status = root.find('status').text
+            if session_status == 'in-progress':
+                session_id = root.find('session-id').text
+                return session_id
+        return session_id
+
+    def persist_config_status(self, session_id):
+        """
+        Method to check save operation status
+
+        args:
+            None
+
+        Returns:
+            Returns save config status message
+        Example:
+                >>> import pyswitch.device
+                >>> switches = ['10.24.86.60']
+                >>> auth = ('admin', 'password')
+                >>> for switch in switches:
+                ...     conn = (switch, '22')
+                ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+                ...     status = dev.system.persist_config_status(session_id=2)
+                ...     print(status)
+        """
+        save_res_args = dict(session_id=session_id)
+        re_config = ('bna_config_cmd_status_rpc', save_res_args)
+        res_response = self._callback(re_config, 'get')
+        save_result = ''
+        if res_response.data != '<output></output>':
+            root = ET.fromstring(res_response.data)
+            save_result = root.find('status').text
+        return save_result

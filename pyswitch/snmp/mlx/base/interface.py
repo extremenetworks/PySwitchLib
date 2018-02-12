@@ -119,7 +119,6 @@ class Interface(BaseInterface):
         try:
             cli_arr = []
             for vlan in vlan_id_list:
-                self._callback(cli_arr, handler='cli-set')
                 if desc is None:
                     cli_arr.append('vlan' + " " + str(vlan))
                 else:
