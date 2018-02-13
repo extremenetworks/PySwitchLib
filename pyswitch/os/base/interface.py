@@ -6195,7 +6195,7 @@ class Interface(object):
             output = callback((method_name, {}), handler='get_config')
             util = Util(output.data)
             item = util.find(util.root, './/detect')
-            if item is not None:
+            if item == 'true':
                 return True
             else:
                 return None
