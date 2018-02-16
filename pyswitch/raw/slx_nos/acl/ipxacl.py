@@ -162,7 +162,7 @@ class IpAcl(AclParamParser):
         protocol_type = kwargs['protocol_type']
         protocol_type = ' '.join(protocol_type.split())
 
-        if protocol_type in ['tcp', 'udp', 'icmp', 'ip']:
+        if protocol_type in ['tcp', 'udp', 'icmp', 'ip', 'ipv6', 'ipv6-icmp']:
             return protocol_type
 
         if protocol_type.isdigit():
