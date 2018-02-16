@@ -292,11 +292,7 @@ class SnmpCliDevice(AbstractDevice):
             elif handler == 'snmp-set-multiple':
                 value = self._mgr['snmp'].set_multiple(call)
             elif handler == 'cli-set' or handler == 'cli-get':
-                self._proxied.netmiko_acquire()
-                try:
-                    value = self._proxied.cli_execution(handler, self.host, call)
-                finally:
-                    self._proxied.netmiko_release()
+                value = self._proxied.cli_execution(handler, self.host, call)
         except SNMPError:
             raise
         except Exception:
@@ -333,7 +329,7 @@ class SnmpCliDevice(AbstractDevice):
                 opt['ip'] = self.host
                 opt['username'] = self._auth[0]
                 opt['password'] = self._auth[1]
-                opt['global_delay_factor'] = 0.5
+                opt['global_delay_factor'] = 0.25
                 if self._enablepass:
                     opt['secret'] = self._enablepass
                 self._proxied.create_netmiko_connection(opt)
