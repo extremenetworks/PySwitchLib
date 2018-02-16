@@ -731,16 +731,16 @@ class Interface(BaseInterface):
         if int_type == 'port-channel':
             int_type = 'port_channel'
             if_type = 'LAG'
+        valid_int_types = self.valid_int_types
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             str(valid_int_types))
         if_id = self.get_snmp_port_id_by_intf_name(if_type, name)
         if if_id is None:
             raise ValueError('Invalid if_id')
         oid = SnmpMib.mib_oid_map['ifOperStatus']
         operState_oid = oid + '.' + str(if_id)
 
-        valid_int_types = self.valid_int_types
-        if int_type not in valid_int_types:
-            raise ValueError('`int_type` must be one of: %s' %
-                             str(valid_int_types))
         oper_state = self._callback(operState_oid, handler='snmp-get')
         if oper_state == 1:
             return 'up'
