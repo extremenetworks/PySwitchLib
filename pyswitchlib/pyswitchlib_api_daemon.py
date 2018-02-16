@@ -41,7 +41,6 @@ class PySwitchLibApiDaemon(object):
         self._pyro_daemon = pyro_daemon
         self._netmiko_lock = threading.Lock()
         self._netmiko_connection = {}
-        self._timer = None
 
     def _hash_auth_string(self, auth_str):
         salt = uuid.uuid4().hex
