@@ -31,3 +31,15 @@ class System(object):
         """
 
         self._callback = callback
+
+    def persist_config(self, **kwargs):
+        raise ValueError('Use execute_cli action to perform persist configuration'
+                         ' on this platform')
+
+    def parse_persist_config_response(self, **kwargs):
+        raise ValueError('Use execute_cli action to perform persist configuration'
+                         ' on this platform')
+
+    def persist_config_status(self, **kwargs):
+        raise ValueError('Use execute_cli action to perform persist configuration'
+                         ' on this platform')

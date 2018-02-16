@@ -21,6 +21,12 @@ class System(BaseSystem):
 
     def chassis_name(self, **kwargs):
         """Get device's chassis name/Model.
+        Args:
+            rbridge_id (str): The rbridge ID of the device.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `rbridge_id` is not specified.
         Examples:
         >>> import pyswitch.device
         >>> switches = ['10.24.39.231']
@@ -28,9 +34,12 @@ class System(BaseSystem):
         >>> for switch in switches:
         ...     conn = (switch, '22')
         ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-        ...         output = dev.system.chassis_name()
+        ...         output = dev.system.chassis_name(rbridge_id='1')
         """
-        config = ('rbridge_id_get', {'resource_depth': 2})
+
+        rbridge_id = kwargs.pop('rbridge_id')
+        chname_args = dict(rbridge_id=rbridge_id, resource_depth=2)
+        config = ('rbridge_id_get', chname_args)
 
         output = self._callback(config, handler='get_config')
 

@@ -663,8 +663,7 @@ class Interface(BaseInterface):
             name = self.get_lag_primary_port(name)
             int_type = 'ethernet'
 
-        ifname_Ids = self.get_interface_name_id_mapping()
-        port_id = ifname_Ids[int_type + name]
+        port_id = self.get_snmp_port_id_by_intf_name(int_type, name)
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = self.valid_int_types
         ifAdminStatus_oid = SnmpMib.mib_oid_map['ifAdminStatus']
@@ -728,12 +727,11 @@ class Interface(BaseInterface):
         int_type = kwargs.pop('int_type').lower()
         name = str(kwargs.pop('name'))
 
-        ifname = int_type + name
+        if_type = int_type
         if int_type == 'port-channel':
             int_type = 'port_channel'
-            ifname = 'LAG' + name
-        ifname_Ids = self.get_interface_name_id_mapping()
-        if_id = ifname_Ids[ifname]
+            if_type = 'LAG'
+        if_id = self.get_snmp_port_id_by_intf_name(if_type, name)
         if if_id is None:
             raise ValueError('Invalid if_id')
         oid = SnmpMib.mib_oid_map['ifOperStatus']
@@ -794,8 +792,7 @@ class Interface(BaseInterface):
             name = self.get_lag_primary_port(name)
             int_type = 'ethernet'
 
-        ifname_Ids = self.get_interface_name_id_mapping()
-        port_id = ifname_Ids[int_type + name]
+        port_id = self.get_snmp_port_id_by_intf_name(int_type, name)
         callback = kwargs.pop('callback', self._callback)
         valid_int_types = self.valid_int_types
         ifAlias = SnmpMib.mib_oid_map['ifAlias']
@@ -1208,8 +1205,12 @@ class Interface(BaseInterface):
             raise ValueError('int_type must be one of: %s' %
                              repr(valid_int_types))
 
-        ifname_Ids = self.get_interface_name_id_mapping()
-        lag_name = self.get_lag_id_name_map(str(name))
+        try:
+            ifname_Ids = self.get_interface_name_id_mapping()
+            lag_name = self.get_lag_id_name_map(str(name))
+        except KeyError:
+            raise ValueError('Interface %s %s is not found on device' %
+                (int_type, name))
         if int_type + name in ifname_Ids or lag_name is not None:
             return True
         else:
@@ -1275,12 +1276,7 @@ class Interface(BaseInterface):
             name = self.get_lag_primary_port(name)
             int_type = 'ethernet'
 
-        ifname_Ids = self.get_interface_name_id_mapping()
-        port_id = ifname_Ids[int_type + name]
-
-        if port_id is None:
-            raise ValueError('pass valid port-id')
-
+        port_id = self.get_snmp_port_id_by_intf_name(int_type, name)
         mtu_oid = SnmpMib.mib_oid_map['snRtIpPortIfMtu'] + '.' + str(port_id)
         mtu_v6_oid = SnmpMib.mib_oid_map['ipv6IfEffectiveMtu'] + '.' + str(port_id)
 
@@ -2667,3 +2663,22 @@ class Interface(BaseInterface):
             NotImplementedError
         """
         raise NotImplementedError("Not supported for MLX platform")
+
+    def get_snmp_port_id_by_intf_name(self, int_type, int_name):
+        """ Get SNMP port-id using interface type and name
+        Args:
+           int_type(str): interface type
+           int_name(str): interface name e.g 0/1, 2/1/1, 1, 2
+        Returns:
+            snmp port-id
+        Raises:
+            ValueError - invalid intf type and name
+        """
+
+        try:
+            ifname_Ids = self.get_interface_name_id_mapping()
+            port_id = ifname_Ids[int_type + int_name]
+        except KeyError:
+            raise ValueError('Interface %s %s is not found on device' %
+                (int_type, int_name))
+        return port_id

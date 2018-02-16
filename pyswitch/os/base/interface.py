@@ -6195,7 +6195,7 @@ class Interface(object):
             output = callback((method_name, {}), handler='get_config')
             util = Util(output.data)
             item = util.find(util.root, './/detect')
-            if item is not None:
+            if item == 'true':
                 return True
             else:
                 return None
@@ -7217,6 +7217,9 @@ class Interface(object):
 
     def switchport_access_mac_create(self, **kwargs):
         raise ValueError('MAC GROUP Feature is not available on this Platform')
+
+    def overlay_gateway_map_bd_vni(self, **kwargs):
+        raise ValueError('Bridge-Domain Feature is not available on this Platform')
 
     @property
     def get_media_details_request(self):

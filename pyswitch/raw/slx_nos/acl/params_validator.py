@@ -6,7 +6,8 @@ def validate_params_nos_add_ipv4_rule_acl(**parameters):
     required_params = ['source', 'acl_name', 'action']
     accepted_params = ['sync', 'vlan_id', 'log', 'seq_id', 'destination',
                        'source', 'fin', 'acl_name', 'dscp', 'push', 'rst',
-                       'protocol_type', 'count', 'urg', 'ack', 'action']
+                       'protocol_type', 'count', 'urg', 'ack', 'action',
+                       'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -27,7 +28,7 @@ def validate_params_nos_add_std_ipv4_rule_acl(**parameters):
 
     required_params = ['source', 'acl_name', 'action']
     accepted_params = ['log', 'seq_id', 'source', 'acl_name', 'count',
-                       'action']
+                       'action', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -49,7 +50,8 @@ def validate_params_nos_add_or_remove_l2_acl_rule(**parameters):
     required_params = ['acl_name', 'source', 'action']
     accepted_params = ['dsthost', 'acl_name', 'srchost', 'vlan',
                        'dst_mac_addr_mask', 'count', 'log', 'seq_id', 'dst',
-                       'source', 'src_mac_addr_mask', 'ethertype', 'action']
+                       'source', 'src_mac_addr_mask', 'ethertype', 'action',
+                       'device']
     st2_specific_params = ['arp_guard', 'copy_sflow', 'mirror']
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -81,7 +83,7 @@ def validate_params_slxos_17s_add_or_remove_l2_acl_rule(**parameters):
     accepted_params = ['dsthost', 'acl_name', 'srchost', 'vlan',
                        'dst_mac_addr_mask', 'count', 'log', 'seq_id', 'dst',
                        'source', 'src_mac_addr_mask', 'ethertype', 'action',
-                       'pcp']
+                       'pcp', 'device']
     st2_specific_params = ['arp_guard', 'copy_sflow', 'mirror']
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -112,7 +114,8 @@ def validate_params_nos_delete_add_or_remove_l2_acl_rule(**parameters):
     required_params = ['acl_name', 'seq_id', 'delete']
     accepted_params = ['dsthost', 'acl_name', 'srchost', 'vlan',
                        'dst_mac_addr_mask', 'count', 'log', 'seq_id', 'dst',
-                       'source', 'src_mac_addr_mask', 'ethertype', 'action']
+                       'source', 'src_mac_addr_mask', 'ethertype', 'action',
+                       'device']
     st2_specific_params = ['arp_guard', 'copy_sflow', 'mirror', 'delete']
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -142,7 +145,7 @@ def validate_params_nos_apply_acl(**parameters):
 
     required_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
     accepted_params = ['intf_type', 'rbridge_id', 'acl_name', 'intf_name',
-                       'traffic_type', 'acl_direction']
+                       'traffic_type', 'acl_direction', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -162,7 +165,7 @@ def validate_params_nos_apply_acl(**parameters):
 def validate_params_slx_nos_create_acl(**parameters):
 
     required_params = ['address_type', 'acl_type', 'acl_name']
-    accepted_params = ['address_type', 'acl_type', 'acl_name']
+    accepted_params = ['address_type', 'acl_type', 'acl_name', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -182,7 +185,7 @@ def validate_params_slx_nos_create_acl(**parameters):
 def validate_params_slx_nos_delete_acl(**parameters):
 
     required_params = ['acl_name']
-    accepted_params = ['acl_name']
+    accepted_params = ['acl_name', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -202,7 +205,7 @@ def validate_params_slx_nos_delete_acl(**parameters):
 def validate_params_slx_nos_delete_acl_rule(**parameters):
 
     required_params = ['seq_id', 'acl_name']
-    accepted_params = ['seq_id', 'acl_name']
+    accepted_params = ['seq_id', 'acl_name', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -223,7 +226,7 @@ def validate_params_nos_remove_acl(**parameters):
 
     required_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
     accepted_params = ['intf_type', 'rbridge_id', 'acl_name', 'intf_name',
-                       'traffic_type', 'acl_direction']
+                       'traffic_type', 'acl_direction', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -248,7 +251,8 @@ def validate_params_slx_add_ipv4_rule_acl(**parameters):
     accepted_params = ['sync', 'copy_sflow', 'mirror', 'drop_precedence_force',
                        'vlan_id', 'log', 'seq_id', 'destination', 'source',
                        'fin', 'acl_name', 'dscp', 'push', 'rst',
-                       'protocol_type', 'count', 'urg', 'ack', 'action']
+                       'protocol_type', 'count', 'urg', 'ack', 'action',
+                       'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -269,7 +273,7 @@ def validate_params_slx_add_std_ipv4_rule_acl(**parameters):
 
     required_params = ['source', 'acl_name', 'action']
     accepted_params = ['log', 'seq_id', 'source', 'acl_name', 'count',
-                       'action']
+                       'action', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -292,7 +296,8 @@ def validate_params_slx_add_ipv6_rule_acl(**parameters):
     accepted_params = ['acl_name', 'sync', 'dscp', 'push', 'copy_sflow',
                        'mirror', 'rst', 'drop_precedence_force', 'vlan_id',
                        'count', 'log', 'ack', 'seq_id', 'destination',
-                       'source', 'protocol_type', 'action', 'fin', 'urg']
+                       'source', 'protocol_type', 'action', 'fin', 'urg',
+                       'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -313,7 +318,7 @@ def validate_params_slx_add_ipv6_std_rule_acl(**parameters):
 
     required_params = ['acl_name', 'source', 'action']
     accepted_params = ['acl_name', 'count', 'log', 'seq_id', 'source',
-                       'action']
+                       'action', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -337,7 +342,8 @@ def validate_params_slx_add_or_remove_l2_acl_rule(**parameters):
                        'vlan', 'dst_mac_addr_mask', 'arp_guard', 'copy_sflow',
                        'mirror', 'drop_precedence_force', 'count',
                        'drop_precedence', 'log', 'seq_id', 'dst', 'source',
-                       'src_mac_addr_mask', 'ethertype', 'action', 'pcp']
+                       'src_mac_addr_mask', 'ethertype', 'action', 'pcp',
+                       'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -359,7 +365,7 @@ def validate_params_slx_std_add_or_remove_l2_acl_rule(**parameters):
     required_params = ['acl_name', 'source', 'action']
     accepted_params = ['acl_name', 'srchost', 'count', 'log', 'seq_id',
                        'source', 'src_mac_addr_mask', 'action', 'arp_guard',
-                       'dst', 'mirror', 'copy_sflow']
+                       'dst', 'mirror', 'copy_sflow', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -379,7 +385,8 @@ def validate_params_slx_std_add_or_remove_l2_acl_rule(**parameters):
 def validate_params_slx_apply_acl(**parameters):
 
     required_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
-    accepted_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
+    accepted_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction',
+                       'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -400,7 +407,7 @@ def validate_params_slx_ver17s_apply_acl(**parameters):
 
     required_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
     accepted_params = ['intf_type', 'acl_name', 'intf_name', 'traffic_type',
-                       'acl_direction']
+                       'acl_direction', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -421,7 +428,7 @@ def validate_params_slx_remove_acl(**parameters):
 
     required_params = ['intf_type', 'acl_name', 'intf_name', 'acl_direction']
     accepted_params = ['intf_type', 'acl_name', 'intf_name', 'traffic_type',
-                       'acl_direction']
+                       'acl_direction', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -443,7 +450,8 @@ def validate_params_nos_add_ipv6_rule_acl(**parameters):
     required_params = ['acl_name', 'source', 'action']
     accepted_params = ['acl_name', 'sync', 'dscp', 'push', 'rst', 'vlan_id',
                        'count', 'log', 'ack', 'seq_id', 'destination',
-                       'source', 'protocol_type', 'action', 'fin', 'urg']
+                       'source', 'protocol_type', 'action', 'fin', 'urg',
+                       'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -464,7 +472,7 @@ def validate_params_nos_add_ipv6_std_rule_acl(**parameters):
 
     required_params = ['acl_name', 'source', 'action']
     accepted_params = ['acl_name', 'count', 'log', 'seq_id', 'source',
-                       'action']
+                       'action', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -485,7 +493,7 @@ def validate_params_nos_add_or_remove_l2_acl_std_rule(**parameters):
 
     required_params = ['acl_name', 'source', 'action']
     accepted_params = ['acl_name', 'srchost', 'count', 'log', 'seq_id',
-                       'source', 'src_mac_addr_mask', 'action']
+                       'source', 'src_mac_addr_mask', 'action', 'device']
     st2_specific_params = ['arp_guard', 'copy_sflow', 'mirror']
 
     received_params = [k for k, v in parameters.iteritems() if v]

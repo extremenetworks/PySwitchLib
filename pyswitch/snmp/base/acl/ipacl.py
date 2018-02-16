@@ -541,8 +541,12 @@ class IpAcl(AclParamParser):
 
         tos = parameters['tos']
 
-        if tos >= 0 and tos <= 15:
-            return 'tos ' + str(tos)
+        if tos.isdigit():
+            if int(tos) >= 0 and int(tos) <= 15:
+                return 'tos ' + tos
+        elif tos in ['max-reliability', 'max-throughput', 'min-delay',
+                     'normal']:
+            return 'tos ' + tos
 
         raise ValueError("Invalid tos {}. "
                          "Allowed value in decimal <0-15>."
