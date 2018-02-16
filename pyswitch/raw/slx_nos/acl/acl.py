@@ -18,6 +18,7 @@ limitations under the License.
 # import xml.etree.ElementTree
 import jinja2
 import re
+from pyswitch.utilities import Util
 import pyswitch.raw.slx_nos.acl.params_validator as params_validator
 from pyswitch.raw.base.acl import Acl as BaseAcl
 from pyswitch.raw.slx_nos.acl import acl_template
@@ -263,6 +264,41 @@ class SlxNosAcl(BaseAcl):
         ret = self._get_acl_details(acl_name, cmd, get_seqs)
         if ret:
             return ret
+
+        raise ValueError('Failed to identify acl_type. '
+                         'Check if the ACL {} exists'.format(acl_name))
+
+    def _get_acl_info_rest(self, rest_device, acl_name, get_seqs=False):
+        """
+        Return acl-type as dict
+            {'type':'standard'/'extended;, 'protocol':'mac'/'ip'/'ipv6'}.
+        """
+        ret = None
+        seq_ids = []
+
+        config = ''
+        for address_type in ['mac', 'ip', 'ipv6']:
+            for acl_type in ['standard', 'extended']:
+
+                method = address_type + '_access_list_' + acl_type
+                config = (method + '_get', {})
+                output = rest_device._callback(config, handler='get_config')
+                util = Util(output.data)
+                for rcvd_name in util.root.findall(".//name"):
+                    if rcvd_name.text == acl_name:
+                        ret = {'type': acl_type, 'protocol': address_type,
+                               'seq_ids': None}
+
+                        if get_seqs:
+                            config = (method + '_seq_get',
+                                      {acl_type: acl_name})
+                            output = rest_device. \
+                                _callback(config, handler='get_config')
+                            util = Util(output.data)
+                            for rcvd_seqs in util.root.findall(".//seq-id"):
+                                seq_ids.append(int(rcvd_seqs.text))
+                            ret['seq_ids'] = seq_ids
+                        return ret
 
         raise ValueError('Failed to identify acl_type. '
                          'Check if the ACL {} exists'.format(acl_name))
