@@ -58,7 +58,7 @@ class PySwitchLibApiDaemon(object):
 
     def create_netmiko_connection(self, opt):
         key = opt['ip']
-        conn_list = ['None', 'None']
+        conn_list = ['None', 'None', 'None']
         net_connect_dict = self._netmiko_connection
         auth = (opt['username'], opt['password'])
         if key not in net_connect_dict:
@@ -69,6 +69,7 @@ class PySwitchLibApiDaemon(object):
                     hashed_auth = self._hash_auth_string(auth)
                     conn_list[0] = net_connect
                     conn_list[1] = hashed_auth
+                    conn_list[2] = threading.Lock()
                     net_connect_dict[key] = conn_list
             except ValueError as err:
                 raise
@@ -77,7 +78,8 @@ class PySwitchLibApiDaemon(object):
 
         else:
             existing_hash = net_connect_dict[key][1]
-            conn_obj = self._get_netmiko_connection(key)
+            conn_list = self._get_netmiko_connection(key)
+            conn_obj = conn_list[0]
             if self._check_auth_string(existing_hash, auth):
                 # case 2: check if connection object is alive
                 if conn_obj.is_alive() is True:
@@ -86,7 +88,9 @@ class PySwitchLibApiDaemon(object):
             # and add new connection object for this
             else:
                 #disconnect stale object
+                conn_list[2].acquire()
                 conn_obj.disconnect()
+                conn_list[2].release()
 
             # Existing object is not valid so clear and create new
             # connection
@@ -97,6 +101,7 @@ class PySwitchLibApiDaemon(object):
                     new_hash = self._hash_auth_string(auth)
                     conn_list[0] = net_connect
                     conn_list[1] = new_hash
+                    conn_list[2] = threading.Lock()
                     net_connect_dict[key] = conn_list
             except ValueError as error:
                 raise
@@ -107,7 +112,6 @@ class PySwitchLibApiDaemon(object):
         key = opt['ip']
         try:
             net_connect = ConnectHandler(**opt)
-            net_connect_dict[key] = net_connect
         except (NetMikoTimeoutException, NetMikoAuthenticationException,) as error:
             reason = error.message
             raise ValueError('[Netmiko Exception:] %s' % reason)
@@ -121,23 +125,28 @@ class PySwitchLibApiDaemon(object):
 
     def _get_netmiko_connection(self, key):
         if key in self._netmiko_connection:
-            return self._netmiko_connection[key][0]
+            return self._netmiko_connection[key]
         else:
             return None
 
+
     def cli_execution(self, handler, host, call):
         value = ''
-        conn_obj = self._get_netmiko_connection(host)
-        if not conn_obj:
+        conn_list = self._get_netmiko_connection(host)
+        if not conn_list:
             return value
+        conn_obj = conn_list[0]
+        conn_list[2].acquire()
         try:
             if handler == 'cli-set':
                 conn_obj.enable()
-                value = conn_obj.send_config_set(call)
+                value = conn_obj.send_config_set(config_commands=call, delay_factor=0.25)
             elif handler == 'cli-get':
                 value = conn_obj.send_command(call)
         except Exception:
             raise Exception
+        finally:
+            conn_list[2].release()
 
         return value
 
