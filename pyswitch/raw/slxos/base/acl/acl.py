@@ -16,10 +16,12 @@ limitations under the License.
 
 import jinja2
 import pyswitch.raw.slx_nos.acl.params_validator as params_validator
+from pyswitch.raw.slx_nos.acl import acl_template as slx_nos_template
 from pyswitch.raw.slxos.base.acl import acl_template
 from pyswitch.raw.slx_nos.acl.acl import SlxNosAcl
 from pyswitch.raw.slx_nos.acl.macacl import MacAcl
 from pyswitch.raw.slx_nos.acl.ipxacl import IpAcl
+import pyswitch
 
 
 class Acl(SlxNosAcl):
@@ -291,42 +293,53 @@ class Acl(SlxNosAcl):
         # Parse params
         acl_name = self.ip.parse_acl_name(**kwargs)
         callback = kwargs.pop('callback', self._callback)
-        acl = self._get_acl_info(acl_name, get_seqs=True)
 
-        acl_type = acl['type']
-        address_type = acl['protocol']
+        if 'device' not in kwargs or not kwargs['device']:
+            raise ValueError('Need device object to proceed')
 
-        if address_type != 'mac':
-            raise ValueError('Rule can not be configured as {} type is {}'
-                             .format(acl_name, address_type))
+        netc_device = kwargs['device'].device_type
+        with pyswitch.device.Device(conn=netc_device._conn,
+                                    auth=netc_device._auth,
+                                    connection_type='REST') as rest_device:
 
-        if acl_type == 'standard':
-            params_validator.validate_params_slx_std_add_or_remove_l2_acl_rule(
-                **kwargs)
+            acl = self._get_acl_info_rest(rest_device.device_type,
+                                          acl_name, get_seqs=True)
+            acl_type = acl['type']
+            address_type = acl['protocol']
 
-        # This is required to distinguish between ipv4 or v6
-        kwargs['address_type'] = address_type
-        kwargs['acl_type'] = acl_type
-        if acl_type == 'standard':
-            user_data = self._parse_params_for_add_mac_standard(**kwargs)
-        elif acl_type == 'extended':
-            user_data = self._parse_params_for_add_mac_extended(**kwargs)
-        else:
-            raise ValueError('{} not supported'.format(acl_type))
+            if address_type != 'mac':
+                raise ValueError('Rule can not be configured as {} type is {}'
+                                 .format(acl_name, address_type))
 
-        # Validate seq_id if user has specified
-        next_seq = self._get_next_seq_id(acl['seq_ids'], user_data['seq_id'])
+            if acl_type == 'standard':
+                params_validator.validate_params_slx_std_add_or_remove_l2_acl_rule(
+                    **kwargs)
 
-        user_data['seq_id'] = next_seq
-        user_data['acl_name'] = acl_name
-        user_data['acl_type'] = acl_type
-        user_data['address_type'] = address_type
+            # This is required to distinguish between ipv4 or v6
+            kwargs['address_type'] = address_type
+            kwargs['acl_type'] = acl_type
+            if acl_type == 'standard':
+                user_data = self._parse_params_for_add_mac_standard(**kwargs)
+            elif acl_type == 'extended':
+                user_data = self._parse_params_for_add_mac_extended(**kwargs)
+            else:
+                raise ValueError('{} not supported'.format(acl_type))
 
-        t = jinja2.Template(acl_template.acl_rule_mac)
-        config = t.render(**user_data)
-        config = ' '.join(config.split())
-        callback(config)
-        return True
+            # Validate seq_id if user has specified
+            next_seq = self._get_next_seq_id(acl['seq_ids'], user_data['seq_id'])
+
+            user_data['seq_id'] = next_seq
+            user_data['acl_name'] = acl_name
+            user_data['acl_type'] = acl_type
+            user_data['address_type'] = address_type
+
+            t = jinja2.Template(acl_template.acl_rule_mac)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+            callback(config)
+            return True
+
+        raise ValueError('Could not establish REST connection')
 
     def _parse_params_for_add_mac_standard(self, **kwargs):
         """
@@ -584,20 +597,31 @@ class Acl(SlxNosAcl):
         user_data['acl_direction'] = self.ap.parse_acl_direction(**kwargs)
         user_data['traffic_type'] = self.ap.parse_slx_traffic_type(**kwargs)
 
-        acl = self._get_acl_info(user_data['acl_name'], get_seqs=False)
-        user_data['address_type'] = acl['protocol']
+        if 'device' not in kwargs or not kwargs['device']:
+            raise ValueError('Need device object to proceed')
 
-        if user_data['intf_type'] in ['management', 've'] \
-           and user_data['address_type'] not in ['ip', 'ipv6']:
-            raise ValueError("{} ACL configuration not allowed for interface type: {}"
-                             .format(user_data['address_type'], user_data['intf_type']))
+        netc_device = kwargs['device'].device_type
+        with pyswitch.device.Device(conn=netc_device._conn,
+                                    auth=netc_device._auth,
+                                    connection_type='REST') as rest_device:
 
-        if user_data['intf_type'] == 'vlan' \
-           and user_data['address_type'] != 'mac':
-            raise ValueError("{} ACL configuration not allowed for interface type: {}"
-                             .format(user_data['address_type'], user_data['intf_type']))
+            acl = self._get_acl_info_rest(rest_device.device_type,
+                                          user_data['acl_name'])
+            user_data['address_type'] = acl['protocol']
 
-        return user_data
+            if user_data['intf_type'] in ['management', 've'] \
+               and user_data['address_type'] not in ['ip', 'ipv6']:
+                raise ValueError("{} ACL configuration not allowed for interface type: {}"
+                                 .format(user_data['address_type'], user_data['intf_type']))
+
+            if user_data['intf_type'] == 'vlan' \
+               and user_data['address_type'] != 'mac':
+                raise ValueError("{} ACL configuration not allowed for interface type: {}"
+                                 .format(user_data['address_type'], user_data['intf_type']))
+
+            return user_data
+
+        raise ValueError('Could not establish REST connection')
 
     def validate_std_rules(self, acl_name, acl_rules):
         user_data_list = []
@@ -846,44 +870,217 @@ class Acl(SlxNosAcl):
         # Parse params
         acl_name = self.mac.parse_acl_name(**kwargs)
         callback = kwargs.pop('callback', self._callback)
-        acl = self._get_acl_info(acl_name, get_seqs=True)
-        acl_type = acl['type']
-        address_type = acl['protocol']
 
-        if address_type != 'mac':
-            raise ValueError("mac Rule can not be added to non-mac ACL."
-                             "ACL {} is of type {}"
-                             .format(acl_name, address_type))
+        if 'device' not in kwargs or not kwargs['device']:
+            raise ValueError('Need device object to proceed')
 
-        # if there are already configured rules. Make sure that they are
-        # not overlapping with new rules to be configured
-        self.set_seq_id_for_bulk_rules(acl['seq_ids'], acl_rules)
+        netc_device = kwargs['device'].device_type
+        with pyswitch.device.Device(conn=netc_device._conn,
+                                    auth=netc_device._auth,
+                                    connection_type='REST') as rest_device:
+            acl = self._get_acl_info_rest(rest_device.device_type,
+                                          acl_name, get_seqs=True)
+            acl_type = acl['type']
+            address_type = acl['protocol']
 
-        # Parse parameters
-        if acl_type == 'standard':
-            user_data_list = self.validate_mac_std_rules(acl_name, acl_rules)
-        elif acl_type == 'extended':
-            user_data_list = self.validate_mac_ext_rules(acl_name, acl_rules)
-        else:
-            raise ValueError('{} not supported'.format(acl_type))
+            if address_type != 'mac':
+                raise ValueError("mac Rule can not be added to non-mac ACL."
+                                 "ACL {} is of type {}"
+                                 .format(acl_name, address_type))
 
-        # send the rules in a chunk of Acl.MAC_RULE_CHUNK_SIZE
-        chunks = [user_data_list[i:i + Acl.MAC_RULE_CHUNK_SIZE]
-                  for i in
-                  xrange(0, len(user_data_list), Acl.MAC_RULE_CHUNK_SIZE)]
+            # if there are already configured rules. Make sure that they are
+            # not overlapping with new rules to be configured
+            self.set_seq_id_for_bulk_rules(acl['seq_ids'], acl_rules)
 
-        for chunk in chunks:
-            t = jinja2.Template(acl_template.acl_rule_mac_bulk)
-            config = t.render(address_type=address_type,
-                              acl_type=acl_type,
-                              acl_name=acl_name,
-                              user_data_list=chunk)
+            # Parse parameters
+            if acl_type == 'standard':
+                user_data_list = self.validate_mac_std_rules(acl_name, acl_rules)
+            elif acl_type == 'extended':
+                user_data_list = self.validate_mac_ext_rules(acl_name, acl_rules)
+            else:
+                raise ValueError('{} not supported'.format(acl_type))
 
+            # send the rules in a chunk of Acl.MAC_RULE_CHUNK_SIZE
+            chunks = [user_data_list[i:i + Acl.MAC_RULE_CHUNK_SIZE]
+                      for i in
+                      xrange(0, len(user_data_list), Acl.MAC_RULE_CHUNK_SIZE)]
+
+            for chunk in chunks:
+                t = jinja2.Template(acl_template.acl_rule_mac_bulk)
+                config = t.render(address_type=address_type,
+                                  acl_type=acl_type,
+                                  acl_name=acl_name,
+                                  user_data_list=chunk)
+
+                config = ' '.join(config.split())
+                try:
+                    callback(config)
+                except Exception as err:
+                    self.process_response_mac_rule_bulk_req(err, acl_rules,
+                                                            chunk[0]['seq_id'])
+
+            return True
+
+        raise ValueError('Could not establish REST connection')
+
+    def delete_acl(self, **kwargs):
+        """
+        Delete Access Control List.
+        Args:
+            acl_name (str): Name of the access list.
+            callback (function): A function executed upon completion
+                of the method.  The only parameter passed to `callback`
+                will be the ``ElementTree`` `config`.
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='mac')
+            >>>     print dev.acl.delete_acl(acl_name='Acl_2')
+            >>>     print dev.acl.delete_acl(acl_name='Acl_1')
+        """
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_nos_delete_acl(**kwargs)
+
+        if 'device' not in kwargs or not kwargs['device']:
+            raise ValueError('Need device object to proceed')
+
+        netc_device = kwargs['device'].device_type
+        with pyswitch.device.Device(conn=netc_device._conn,
+                                    auth=netc_device._auth,
+                                    connection_type='REST') as rest_device:
+
+            # Parse params
+            acl_name = self.ap.parse_acl_name(**kwargs)
+            callback = kwargs.pop('callback', self._callback)
+            acl = self._get_acl_info_rest(rest_device.device_type, acl_name)
+
+            user_data = {'acl_name': acl_name,
+                         'address_type': acl['protocol'],
+                         'acl_type': acl['type']}
+
+            t = jinja2.Template(slx_nos_template.acl_delete)
+            config = t.render(**user_data)
             config = ' '.join(config.split())
-            try:
-                callback(config)
-            except Exception as err:
-                self.process_response_mac_rule_bulk_req(err, acl_rules,
-                                                        chunk[0]['seq_id'])
 
-        return True
+            callback(config)
+            return True
+
+        raise ValueError('Could not establish REST connection')
+
+    def delete_l2_acl_rule(self, **kwargs):
+        # Validate required and accepted parameters
+        params_validator. \
+            validate_params_nos_delete_add_or_remove_l2_acl_rule(**kwargs)
+
+        # Parse params
+        acl_name = self.ap.parse_acl_name(**kwargs)
+        seq_id = self.ap.parse_seq_id(**kwargs)
+        callback = kwargs.pop('callback', self._callback)
+
+        if 'device' not in kwargs or not kwargs['device']:
+            raise ValueError('Need device object to proceed')
+
+        netc_device = kwargs['device'].device_type
+        with pyswitch.device.Device(conn=netc_device._conn,
+                                    auth=netc_device._auth,
+                                    connection_type='REST') as rest_device:
+
+            acl = self._get_acl_info_rest(rest_device.device_type,
+                                          acl_name, get_seqs=True)
+            acl_type = acl['type']
+            address_type = acl['protocol']
+
+            # Validate seq_id if user has specified
+            if not seq_id:
+                raise ValueError('seq_id is required to delete rule for {}'
+                                 .format(acl_name))
+
+            sequences = acl['seq_ids']
+            if not sequences or int(seq_id) not in list(sequences):
+                raise ValueError("seq_id {} does not exists."
+                                 .format(seq_id))
+
+            user_data = {}
+            user_data['acl_type'] = acl_type
+            user_data['address_type'] = address_type
+            user_data['seq_id'] = seq_id
+            user_data['acl_name'] = acl_name
+
+            t = jinja2.Template(slx_nos_template.acl_rule_mac_delete)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+
+            callback(config)
+            return True
+
+        raise ValueError('Could not establish REST connection')
+
+    def delete_l2_acl_rule_bulk(self, **kwargs):
+        """
+        Delete ACL rules from MAC ACL.
+        Args:
+            acl_name (str): Name of the access list.
+            seq_id(string): Range of ACL sequences seq_id="10,30-40"
+        Returns:
+            True, False or None for Success, failure and no-change respectively
+            for each seq_ids.
+
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.create_acl(acl_name='Acl_1',
+                                             acl_type='standard',
+                                             address_type='ip')
+            >>>     print dev.acl.delete_l2_acl_rule_bulk(acl_name='Acl_1',
+                                                          seq_id="10,30-40")
+        """
+        # Validate required and accepted parameters
+        params_validator. \
+            validate_params_nos_delete_add_or_remove_l2_acl_rule(**kwargs)
+
+        # Parse params
+        acl_name = self.ap.parse_acl_name(**kwargs)
+        callback = kwargs.pop('callback', self._callback)
+
+        if 'device' not in kwargs or not kwargs['device']:
+            raise ValueError('Need device object to proceed')
+
+        netc_device = kwargs['device'].device_type
+        with pyswitch.device.Device(conn=netc_device._conn,
+                                    auth=netc_device._auth,
+                                    connection_type='REST') as rest_device:
+
+            acl = self._get_acl_info_rest(rest_device.device_type,
+                                          acl_name, get_seqs=True)
+            acl_type = acl['type']
+            address_type = acl['protocol']
+            seq_range = self.ap.parse_seq_id_by_range(acl['seq_ids'], **kwargs)
+            user_data_list = [{'seq_id': seq_id} for seq_id in seq_range]
+
+            # send the rules in a chunk of Acl.MAC_RULE_CHUNK_SIZE
+            chunks = [user_data_list[i:i + SlxNosAcl.MAC_RULE_CHUNK_SIZE]
+                      for i in xrange(0, len(user_data_list),
+                                      SlxNosAcl.MAC_RULE_CHUNK_SIZE)]
+
+            for chunk in chunks:
+                t = jinja2.Template(slx_nos_template.acl_rule_mac_delete_bulk)
+                config = t.render(address_type=address_type,
+                                  acl_type=acl_type,
+                                  acl_name=acl_name,
+                                  user_data_list=chunk)
+                config = ' '.join(config.split())
+
+                try:
+                    callback(config)
+                except Exception as rpc_err:
+                    raise ValueError(rpc_err)
+            return True
+
+        raise ValueError('Could not establish REST connection')
