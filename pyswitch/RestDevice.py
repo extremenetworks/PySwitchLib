@@ -206,6 +206,10 @@ class RestDevice(AbstractDevice):
             self._auth = (auth_snmp[0], auth_snmp[1])
         self._callback = kwargs.pop('callback', None)
         self.os_type_val = None
+        self._rest_proto = None
+
+        if len(self._conn) >= 3:
+            self._rest_proto = self._conn[2]
 
         if self._callback is None:
             self._callback = self._callback_main
@@ -374,7 +378,7 @@ class RestDevice(AbstractDevice):
             None
         """
 
-        self._mgr = XMLAsset(ip_addr=self._conn[0], auth=self._auth)
+        self._mgr = XMLAsset(ip_addr=self._conn[0], auth=self._auth, rest_proto=self._rest_proto)
         return True
 
     def close(self):
@@ -387,7 +391,7 @@ class RestDevice(AbstractDevice):
             None
         Examples:
             >>> import pyswitch.device
-            >>> conn = ('10.24.39.211', '22')
+            >>> conn = ('10.24.39.211', '22', 'http')
             >>> auth = ('admin', 'password')
             >>> dev = pyswitch.device.Device(conn=conn, auth=auth)
             >>> dev.connection
@@ -406,7 +410,7 @@ if __name__ == '__main__':
 
     start = time.time()
 
-    conn = ('10.26.8.156', '22')
+    conn = ('10.26.8.156', '22', 'http')
     # conn = ('10.24.84.173', '22')
     auth = ('admin', 'password')
 
