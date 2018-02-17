@@ -93,9 +93,9 @@ class Interface(BaseInterface):
             self._callback(config)
             return True
 
-        except Exception:
-            # TODO throw back exception
-            return False
+        except Exception as e:
+            reason = e.message
+            raise ValueError(reason)
 
     def overlay_gateway(self, **kwargs):
         """
