@@ -196,6 +196,48 @@ class IpAcl(AclParamParser):
         if dscp.isdigit():
             if int(dscp) >= 0 and int(dscp) <= 63:
                 return dscp
+        elif dscp.lower() == 'af11':
+            return 10  # AF11 dscp (001010)
+        elif dscp.lower() == 'af12':
+            return 12  # AF12 dscp (001100)
+        elif dscp.lower() == 'af13':
+            return 14  # AF13 dscp (001110)
+        elif dscp.lower() == 'af21':
+            return 18  # AF13 dscp (010010)
+        elif dscp.lower() == 'af22':
+            return 20  # AF13 dscp (010100)
+        elif dscp.lower() == 'af23':
+            return 22  # AF13 dscp (010110)
+        elif dscp.lower() == 'af31':
+            return 26  # AF13 dscp (011010)
+        elif dscp.lower() == 'af32':
+            return 28  # AF13 dscp (011100)
+        elif dscp.lower() == 'af33':
+            return 30  # AF13 dscp (011110)
+        elif dscp.lower() == 'af41':
+            return 34  # AF13 dscp (100010)
+        elif dscp.lower() == 'af42':
+            return 36  # AF13 dscp (100100)
+        elif dscp.lower() == 'af43':
+            return 38  # AF13 dscp (100110)
+        elif dscp.lower() == 'cs1':
+            return 8   # AF13 dscp (001000)
+        elif dscp.lower() == 'cs2':
+            return 16  # AF13 dscp (010000)
+        elif dscp.lower() == 'cs3':
+            return 24  # AF13 dscp (011000)
+        elif dscp.lower() == 'cs4':
+            return 32  # AF13 dscp (100000)
+        elif dscp.lower() == 'cs5':
+            return 40  # AF13 dscp (101000)
+        elif dscp.lower() == 'cs6':
+            return 48  # AF13 dscp (110000)
+        elif dscp.lower() == 'cs7':
+            return 56  # AF13 dscp (111000)
+        elif dscp.lower() == 'default':
+            return 0   # AF13 dscp (000000)
+        elif dscp.lower() == 'ef':
+            return 46  # AF13 dscp (101110)
 
         raise ValueError("Invalid \'dscp\' {} in kwargs"
                          .format(dscp))
