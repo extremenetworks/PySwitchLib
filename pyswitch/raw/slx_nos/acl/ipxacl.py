@@ -274,7 +274,7 @@ class IpAcl(AclParamParser):
         """
 
         is_tcp = False
-        tcp_params = ['syn', 'rst', 'fin', 'push', 'ack', 'urg']
+        tcp_params = ['sync', 'rst', 'fin', 'push', 'ack', 'urg']
 
         if 'protocol_type' in kwargs and kwargs['protocol_type']:
             protocol_type = kwargs['protocol_type'].lower()
