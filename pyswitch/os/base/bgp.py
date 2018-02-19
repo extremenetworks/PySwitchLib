@@ -536,6 +536,10 @@ class Bgp(object):
                 if ip_addr and remote_as and ip_addr == peer_ip and \
                         peer_remote_as == remote_as:
                     return item_results
+                elif ip_addr and remote_as and ip_addr == peer_ip and \
+                        peer_remote_as != remote_as:
+                    item_results = {'update_asn': True}
+                    return item_results
                 result.append(item_results)
 
             ns = bgp.findlist(bgp.root, './/neighbor-ipv6-addr')
@@ -552,6 +556,10 @@ class Bgp(object):
                                 'remote-as': peer_remote_as}
                 if ip_addr and remote_as and ip_addr == peer_ip and \
                         peer_remote_as == remote_as:
+                    return item_results
+                elif ip_addr and remote_as and ip_addr == peer_ip and \
+                        peer_remote_as != remote_as:
+                    item_results = {'update_asn': True}
                     return item_results
                 result.append(item_results)
             if ip_addr and remote_as:
@@ -584,6 +592,10 @@ class Bgp(object):
             if ip_addr and remote_as and ip_addr == peer_ip and \
                     peer_remote_as == remote_as:
                 return item_results
+            elif ip_addr and remote_as and ip_addr == peer_ip and \
+                    peer_remote_as != remote_as:
+                item_results = {'update_asn': True}
+                return item_results
             result.append(item_results)
 
         feature = '_neighbor_af_ipv6_neighbor_addr'
@@ -613,8 +625,11 @@ class Bgp(object):
             if ip_addr and remote_as and ip_addr == peer_ip and \
                     peer_remote_as == remote_as:
                 return item_results
+            elif ip_addr and remote_as and ip_addr == peer_ip and \
+                    peer_remote_as != remote_as:
+                item_results = {'update_asn': True}
+                return item_results
             result.append(item_results)
-
         return result
 
     def redistribute(self, **kwargs):
