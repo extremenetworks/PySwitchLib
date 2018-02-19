@@ -95,8 +95,7 @@ class Ipv6Acl(AclParamParser):
 
         if len(op_str) == 2:
             if (op_str[0] == 'neq' or op_str[0] == 'lt' or
-                op_str[0] == 'gt' or op_str[0] == 'eq') and \
-                    op_str[1].isdigit():
+                op_str[0] == 'gt' or op_str[0] == 'eq'):
                 return True
         elif len(op_str) == 3 and op_str[0] == 'range':
             return True
