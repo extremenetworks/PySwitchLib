@@ -158,8 +158,8 @@ class AclParamParser(object):
 
         if not acl_name[0].isalpha():
             raise ValueError("The unique name for the ACL which must "
-                             "begin with a-z, A-Z. {}".format(
-                             parameters['acl_name']))
+                             "begin with a-z, A-Z. {}"
+                             .format(parameters['acl_name']))
 
         if " " in acl_name:
             acl_name = "\"" + acl_name + "\""
