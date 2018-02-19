@@ -23,24 +23,63 @@ class IpAcl(AclParamParser):
         None
     """
 
+    def _parse_xport_val(self, xport_val):
+        if xport_val.isdigit():
+            return xport_val
+
+        xport_val = xport_val.lower()
+        if xport_val == 'bgp':
+            return 179  # Border Gateway Protocol (179)
+        elif xport_val == 'daytime':
+            return 13  # Daytime (13)
+        elif xport_val == 'domain':
+            return 53  # Domain Name Service (53)
+        elif xport_val == 'echo':
+            return 7  # Echo (7)
+        elif xport_val == 'ftp':
+            return 21  # File Transfer Protocol (21)
+        elif xport_val == 'ftp-data':
+            return 20  # FTP data connections (20)
+        elif xport_val == 'hostname':
+            return 101  # NIC hostname server (101)
+        elif xport_val == 'login':
+            return 513  # Login (rlogin, 513)
+        elif xport_val == 'pim-auto-rp':
+            return 496  # PIM Auto-RP (496)
+        elif xport_val == 'smtp':
+            return 25  # Simple Mail Transport Protocol (25)
+        elif xport_val == 'syslog':
+            return 514  # System Logger (514)
+        elif xport_val == 'tacacs':
+            return 49  # TAC Access Control System (49)
+        elif xport_val == 'talk':
+            return 517  # Talk (517)
+        elif xport_val == 'telnet':
+            return 23  # Telnet (23)
+        elif xport_val == 'time':
+            return 37  # Time (37)
+        elif xport_val == 'www':
+            return 80  # World Wide Web (HTTP, 80)
+
     def _parse_op_str(self, op_str, ret):
         xport = {}
 
         op_str = ' '.join(op_str.split()).split()
 
         if len(op_str) == 2:
-            if (op_str[0] == 'neq' or op_str[0] == 'lt' or
-                op_str[0] == 'gt' or op_str[0] == 'eq') and \
-                    op_str[1].isdigit():
+            if op_str[0] in ['neq', 'lt', 'gt', 'eq']:
                 xport['op'] = op_str[0]
-                xport['val'] = [op_str[1]]
+                xport['val'] = [self._parse_xport_val(op_str[1])]
                 ret['xport'] = xport
                 return True
         elif len(op_str) == 3 and op_str[0] == 'range':
             xport['op'] = op_str[0]
-            xport['val'] = [op_str[1], op_str[2]]
+            xport['val'] = [self._parse_xport_val(op_str[1]),
+                            self._parse_xport_val(op_str[2])]
             ret['xport'] = xport
             return True
+
+        raise ValueError("Unsupported operator {}".format(op_str))
 
     def _parse_source_destination(self, protocol_type, input_param,
                                   address_type):
