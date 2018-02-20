@@ -263,6 +263,7 @@ class Bgp(object):
         rbridge_id = kwargs.get('rbridge_id', '1')
         delete = kwargs.get('delete', False)
         get = kwargs.get('get', False)
+        update = kwargs.get('update', False)
         callback = kwargs.get('callback', self._callback)
         ip_addr = ip_interface(unicode(ip_addr))
         afi = 'ipv4' if ip_addr.version == 4 else 'ipv6'
@@ -286,16 +287,16 @@ class Bgp(object):
                 'When configuring a neighbor, '
                 'you must specify its remote-as.')
         ret = self._neighbor_ip_address(
-            afi, n_addr, rbridge_id, remote_as, vrf, callback, 'create')
+            afi, n_addr, rbridge_id, remote_as, vrf, update, callback, 'create')
         return ret
 
     def _neighbor_ip_address(self, afi='ipv4', n_addr=None, rbridge_id=1,
-                             remote_as='1', vrf='default',
+                             remote_as='1', vrf='default', update=False,
                              callback=None, op='create'):
         if afi == 'ipv4':
             if vrf == 'default':
                 self._neighbor_ipv4_address(
-                    afi, n_addr, rbridge_id, remote_as, callback, op)
+                    afi, n_addr, rbridge_id, remote_as, update, callback, op)
             else:
                 self._neighbor_ipv4_vrf_address(
                     afi, n_addr, rbridge_id, remote_as, vrf, callback, op)
@@ -308,12 +309,18 @@ class Bgp(object):
                     afi, n_addr, rbridge_id, remote_as, vrf, callback, op)
 
     def _neighbor_ipv4_address(self, afi='ipv4', n_addr=None,
-                               rbridge_id=1, remote_as='1',
+                               rbridge_id=1, remote_as='1', update=False,
                                callback=None, op='create'):
         args = dict(rbridge_id=rbridge_id, neighbor_addr=n_addr,
                     remote_as=remote_as)
-        api = self.method_prefix('router_bgp_neighbor_neighbor_addr_create',
-                                 args)
+
+        if update:
+            api = self.method_prefix('router_bgp_neighbor_neighbor_addr_remote_as_update',
+                                     args)
+        else:
+            api = self.method_prefix('router_bgp_neighbor_neighbor_addr_create',
+                                     args)
+
         config = (api, args)
         callback(config)
         args = dict(rbridge_id=rbridge_id, af_ipv4_neighbor_address=n_addr)
@@ -529,6 +536,10 @@ class Bgp(object):
                 if ip_addr and remote_as and ip_addr == peer_ip and \
                         peer_remote_as == remote_as:
                     return item_results
+                elif ip_addr and remote_as and ip_addr == peer_ip and \
+                        peer_remote_as != remote_as:
+                    item_results = {'update_asn': True}
+                    return item_results
                 result.append(item_results)
 
             ns = bgp.findlist(bgp.root, './/neighbor-ipv6-addr')
@@ -545,6 +556,10 @@ class Bgp(object):
                                 'remote-as': peer_remote_as}
                 if ip_addr and remote_as and ip_addr == peer_ip and \
                         peer_remote_as == remote_as:
+                    return item_results
+                elif ip_addr and remote_as and ip_addr == peer_ip and \
+                        peer_remote_as != remote_as:
+                    item_results = {'update_asn': True}
                     return item_results
                 result.append(item_results)
             if ip_addr and remote_as:
@@ -577,6 +592,10 @@ class Bgp(object):
             if ip_addr and remote_as and ip_addr == peer_ip and \
                     peer_remote_as == remote_as:
                 return item_results
+            elif ip_addr and remote_as and ip_addr == peer_ip and \
+                    peer_remote_as != remote_as:
+                item_results = {'update_asn': True}
+                return item_results
             result.append(item_results)
 
         feature = '_neighbor_af_ipv6_neighbor_addr'
@@ -606,8 +625,11 @@ class Bgp(object):
             if ip_addr and remote_as and ip_addr == peer_ip and \
                     peer_remote_as == remote_as:
                 return item_results
+            elif ip_addr and remote_as and ip_addr == peer_ip and \
+                    peer_remote_as != remote_as:
+                item_results = {'update_asn': True}
+                return item_results
             result.append(item_results)
-
         return result
 
     def redistribute(self, **kwargs):

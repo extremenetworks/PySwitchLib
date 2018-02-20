@@ -23,24 +23,63 @@ class IpAcl(AclParamParser):
         None
     """
 
+    def _parse_xport_val(self, xport_val):
+        if xport_val.isdigit():
+            return xport_val
+
+        xport_val = xport_val.lower()
+        if xport_val == 'bgp':
+            return 179  # Border Gateway Protocol (179)
+        elif xport_val == 'daytime':
+            return 13  # Daytime (13)
+        elif xport_val == 'domain':
+            return 53  # Domain Name Service (53)
+        elif xport_val == 'echo':
+            return 7  # Echo (7)
+        elif xport_val == 'ftp':
+            return 21  # File Transfer Protocol (21)
+        elif xport_val == 'ftp-data':
+            return 20  # FTP data connections (20)
+        elif xport_val == 'hostname':
+            return 101  # NIC hostname server (101)
+        elif xport_val == 'login':
+            return 513  # Login (rlogin, 513)
+        elif xport_val == 'pim-auto-rp':
+            return 496  # PIM Auto-RP (496)
+        elif xport_val == 'smtp':
+            return 25  # Simple Mail Transport Protocol (25)
+        elif xport_val == 'syslog':
+            return 514  # System Logger (514)
+        elif xport_val == 'tacacs':
+            return 49  # TAC Access Control System (49)
+        elif xport_val == 'talk':
+            return 517  # Talk (517)
+        elif xport_val == 'telnet':
+            return 23  # Telnet (23)
+        elif xport_val == 'time':
+            return 37  # Time (37)
+        elif xport_val == 'www':
+            return 80  # World Wide Web (HTTP, 80)
+
     def _parse_op_str(self, op_str, ret):
         xport = {}
 
         op_str = ' '.join(op_str.split()).split()
 
         if len(op_str) == 2:
-            if (op_str[0] == 'neq' or op_str[0] == 'lt' or
-                op_str[0] == 'gt' or op_str[0] == 'eq') and \
-                    op_str[1].isdigit():
+            if op_str[0] in ['neq', 'lt', 'gt', 'eq']:
                 xport['op'] = op_str[0]
-                xport['val'] = [op_str[1]]
+                xport['val'] = [self._parse_xport_val(op_str[1])]
                 ret['xport'] = xport
                 return True
         elif len(op_str) == 3 and op_str[0] == 'range':
             xport['op'] = op_str[0]
-            xport['val'] = [op_str[1], op_str[2]]
+            xport['val'] = [self._parse_xport_val(op_str[1]),
+                            self._parse_xport_val(op_str[2])]
             ret['xport'] = xport
             return True
+
+        raise ValueError("Unsupported operator {}".format(op_str))
 
     def _parse_source_destination(self, protocol_type, input_param,
                                   address_type):
@@ -196,6 +235,48 @@ class IpAcl(AclParamParser):
         if dscp.isdigit():
             if int(dscp) >= 0 and int(dscp) <= 63:
                 return dscp
+        elif dscp.lower() == 'af11':
+            return 10  # AF11 dscp (001010)
+        elif dscp.lower() == 'af12':
+            return 12  # AF12 dscp (001100)
+        elif dscp.lower() == 'af13':
+            return 14  # AF13 dscp (001110)
+        elif dscp.lower() == 'af21':
+            return 18  # AF13 dscp (010010)
+        elif dscp.lower() == 'af22':
+            return 20  # AF13 dscp (010100)
+        elif dscp.lower() == 'af23':
+            return 22  # AF13 dscp (010110)
+        elif dscp.lower() == 'af31':
+            return 26  # AF13 dscp (011010)
+        elif dscp.lower() == 'af32':
+            return 28  # AF13 dscp (011100)
+        elif dscp.lower() == 'af33':
+            return 30  # AF13 dscp (011110)
+        elif dscp.lower() == 'af41':
+            return 34  # AF13 dscp (100010)
+        elif dscp.lower() == 'af42':
+            return 36  # AF13 dscp (100100)
+        elif dscp.lower() == 'af43':
+            return 38  # AF13 dscp (100110)
+        elif dscp.lower() == 'cs1':
+            return 8   # AF13 dscp (001000)
+        elif dscp.lower() == 'cs2':
+            return 16  # AF13 dscp (010000)
+        elif dscp.lower() == 'cs3':
+            return 24  # AF13 dscp (011000)
+        elif dscp.lower() == 'cs4':
+            return 32  # AF13 dscp (100000)
+        elif dscp.lower() == 'cs5':
+            return 40  # AF13 dscp (101000)
+        elif dscp.lower() == 'cs6':
+            return 48  # AF13 dscp (110000)
+        elif dscp.lower() == 'cs7':
+            return 56  # AF13 dscp (111000)
+        elif dscp.lower() == 'default':
+            return 0   # AF13 dscp (000000)
+        elif dscp.lower() == 'ef':
+            return 46  # AF13 dscp (101110)
 
         raise ValueError("Invalid \'dscp\' {} in kwargs"
                          .format(dscp))
@@ -274,7 +355,7 @@ class IpAcl(AclParamParser):
         """
 
         is_tcp = False
-        tcp_params = ['syn', 'rst', 'fin', 'push', 'ack', 'urg']
+        tcp_params = ['sync', 'rst', 'fin', 'push', 'ack', 'urg']
 
         if 'protocol_type' in kwargs and kwargs['protocol_type']:
             protocol_type = kwargs['protocol_type'].lower()

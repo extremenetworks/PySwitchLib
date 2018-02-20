@@ -70,17 +70,16 @@ class Ipv6Acl(AclParamParser):
         protocol_type = parameters['protocol_type']
 
         if protocol_type.isdigit():
-            if int(protocol_type) < 0 or int(protocol_type) > 255:
-                raise ValueError("The \'protocol\' value {} is invalid."
-                                 " Specify \'0-255\' supported values"
-                                 .format(protocol_type))
+            if int(protocol_type) >= 0 and int(protocol_type) <= 255:
+                return protocol_type
 
         if protocol_type in ['ahp', 'esp', 'icmp', 'ipv6',
                              'sctp', 'tcp', 'udp']:
-            return str(protocol_type)
+            return protocol_type
 
         raise ValueError("The \'protocol\' value {} is invalid. Specify one "
-                         "of these - ahp, esp, icmp, ipv6, sctp, tcp, udp"
+                         "of these - ahp, esp, icmp, ipv6, sctp, tcp, udp "
+                         "or a number between 0 and 255"
                          .format(protocol_type))
 
     def _validate_ipv6(self, addr):
@@ -94,9 +93,7 @@ class Ipv6Acl(AclParamParser):
         op_str = ' '.join(op_str.split()).split()
 
         if len(op_str) == 2:
-            if (op_str[0] == 'neq' or op_str[0] == 'lt' or
-                op_str[0] == 'gt' or op_str[0] == 'eq') and \
-                    op_str[1].isdigit():
+            if op_str[0] in ['neq', 'lt', 'gt', 'eq']:
                 return True
         elif len(op_str) == 3 and op_str[0] == 'range':
             return True
