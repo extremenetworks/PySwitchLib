@@ -129,7 +129,6 @@ class PySwitchLibApiDaemon(object):
         else:
             return None
 
-
     def cli_execution(self, handler, host, call):
         value = ''
         conn_list = self._get_netmiko_connection(host)

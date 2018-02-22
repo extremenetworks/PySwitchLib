@@ -32,3 +32,4 @@ class CACertificateNotSpecifiedError(PyswitchlibException):
 
 class InvalidAuthenticationCredentialsError(PyswitchlibException):
     """If the provided authentication credentials are invalid."""
+
