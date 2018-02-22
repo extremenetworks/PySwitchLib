@@ -251,6 +251,74 @@ class Interface(BaseInterface):
             reason = str(error.message)
             raise ValueError('Failed to delete Port-channel!! %s' % (reason))
 
+    def remove_intf_from_port_channel(self, ports, int_type, portchannel_num,
+                                  mode, desc=None):
+        """removes interface(s) from port channel
+
+        args:
+            int_type (str): type of interface. (ethernet, , etc)
+            ports(list): port numbers (1/1, 2/1 etc)
+            portchannel_num (int): port-channel number (1, 2, 3, etc).
+            mode (str): mode of port-channel (static, dynamic)
+            desc: name of port-channel
+        returns:
+            return True for success and False for failure.
+
+        raises:
+            keyerror: if `int_type`, `name`, or `description` is not specified.
+            valueerror: if `name` or `int_type` are not valid values.
+        Examples:
+            >>> import pyswitch.device
+            >>> conn = ('10.24.85.107', '22')
+            >>> auth = ('admin', 'admin')
+            >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...     ports = ['2/1', '2/2']
+            ...     output = dev.interface.remove_intf_from_port_channel(ports, 
+            ...                         'ethernet', 50, 'static', 'po50')
+            ...     assert output == True
+        """
+        try:
+            cli_arr = []
+            if desc is None:
+                raise ValueError('Description is NULL for PO %s'%(portchannel_num))
+            if len(desc) < 1 or len(desc) > 64:
+                raise ValueError('Port-channel name should be 1-64 characters')
+            if int(portchannel_num) < 1 or int(portchannel_num) > 256:
+                raise ValueError('Port-channel id should be between 1 and 256')
+            if int_type != 'ethernet':
+                raise ValueError('Not a valid interface type (%s) for MLX' % (int_type))
+
+            intf_desc = self.get_lag_id_name_map(str(portchannel_num))
+            if intf_desc is not None and desc != intf_desc:
+                raise ValueError('Description mismatch for port-channel %s'%(portchannel_num))
+
+            lag_member_dict = {}
+            lag_member_dict = self.get_port_channel_member_ports(desc)
+            member_cnt = len(lag_member_dict)
+
+            cli_arr.append('lag' + " " + '"' + desc + '"' + " " + str(mode) + " " + 'id' +
+                    " " + str(portchannel_num))
+            # Delete ports from port-channel
+            port_list = []
+            for port in ports:
+                port_list.append(int_type + " " + port)
+            port_list_str = " ".join(port_list)
+            # disable the interfaces first
+            cli_arr.append('disable' + " " + port_list_str)
+            if member_cnt == len(ports):
+                # undeploy the port-channel 
+                cli_arr.append('no deploy')
+            # Remove the interfaces from port-channel
+            cli_arr.append('no ports' + " " + port_list_str)
+            output = self._callback(cli_arr, handler='cli-set')
+            for line in output.split('\n'):
+                if 'Error' in line:
+                    raise ValueError(str(line))
+            return True
+        except Exception as error:
+            reason = str(error.message)
+            raise ValueError(reason)
+
     @property
     def port_channels(self):
         """

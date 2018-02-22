@@ -2276,7 +2276,7 @@ class Interface(object):
 
         delete = kwargs.pop('delete', False)
         if delete is True:
-            method_name = 'interface_%s_channel_group_mode_delete' % int_type
+            method_name = 'interface_%s_channel_group_delete' % int_type
             arguments = {int_type: name}
             config = (method_name, arguments)
             return callback(config)
