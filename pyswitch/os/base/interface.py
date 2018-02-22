@@ -2275,7 +2275,6 @@ class Interface(object):
                 'mode': mode}
 
         mode = kwargs.pop('mode', None)
-        print(mode)
         delete = kwargs.pop('delete', False)
         if delete is True:
             if mode is None:
