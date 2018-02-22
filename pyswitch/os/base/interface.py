@@ -2274,16 +2274,20 @@ class Interface(object):
                 'channel_type': channel_type,
                 'mode': mode}
 
+        mode = kwargs.pop('mode', None)
+        print(mode)
         delete = kwargs.pop('delete', False)
         if delete is True:
-            method_name = 'interface_%s_channel_group_delete' % int_type
+            if mode is None:
+                method_name = 'interface_%s_channel_group_delete' % int_type
+            else:
+                method_name = 'interface_%s_channel_group_mode_delete' % int_type
             arguments = {int_type: name}
             config = (method_name, arguments)
             return callback(config)
 
         channel_type = kwargs.pop('channel_type')
         port_int = kwargs.pop('port_int')
-        mode = kwargs.pop('mode')
 
         valid_modes = ['active', 'on', 'passive']
 

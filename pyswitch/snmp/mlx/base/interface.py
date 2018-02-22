@@ -273,14 +273,14 @@ class Interface(BaseInterface):
             >>> auth = ('admin', 'admin')
             >>> with pyswitch.device.Device(conn=conn, auth=auth) as dev:
             ...     ports = ['2/1', '2/2']
-            ...     output = dev.interface.remove_intf_from_port_channel(ports, 
+            ...     output = dev.interface.remove_intf_from_port_channel(ports,
             ...                         'ethernet', 50, 'static', 'po50')
             ...     assert output == True
         """
         try:
             cli_arr = []
             if desc is None:
-                raise ValueError('Description is NULL for PO %s'%(portchannel_num))
+                raise ValueError('Description is NULL for PO %s' % (portchannel_num))
             if len(desc) < 1 or len(desc) > 64:
                 raise ValueError('Port-channel name should be 1-64 characters')
             if int(portchannel_num) < 1 or int(portchannel_num) > 256:
@@ -290,7 +290,7 @@ class Interface(BaseInterface):
 
             intf_desc = self.get_lag_id_name_map(str(portchannel_num))
             if intf_desc is not None and desc != intf_desc:
-                raise ValueError('Description mismatch for port-channel %s'%(portchannel_num))
+                raise ValueError('Description mismatch for port-channel %s' % (portchannel_num))
 
             lag_member_dict = {}
             lag_member_dict = self.get_port_channel_member_ports(desc)
@@ -306,7 +306,7 @@ class Interface(BaseInterface):
             # disable the interfaces first
             cli_arr.append('disable' + " " + port_list_str)
             if member_cnt == len(ports):
-                # undeploy the port-channel 
+                # undeploy the port-channel
                 cli_arr.append('no deploy')
             # Remove the interfaces from port-channel
             cli_arr.append('no ports' + " " + port_list_str)
