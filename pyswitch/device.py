@@ -24,13 +24,6 @@ from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
 from pyswitch.snmp.SnmpMib import SnmpMib as MIB
 
 
-class DeviceCommError(Exception):
-    """
-    Error with device communication.
-    """
-    pass
-
-
 class Reply:
 
     def __init__(self, xml):
