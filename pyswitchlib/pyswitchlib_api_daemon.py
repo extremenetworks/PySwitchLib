@@ -112,9 +112,12 @@ class PySwitchLibApiDaemon(object):
         key = opt['ip']
         try:
             net_connect = ConnectHandler(**opt)
-        except (NetMikoTimeoutException, NetMikoAuthenticationException,) as error:
+        except NetMikoTimeoutException as error:
             reason = error.message
-            raise ValueError('[Netmiko Exception:] %s' % reason)
+            raise ValueError('[Netmiko Timeout Exception:] %s' % reason)
+        except NetMikoAuthenticationException as error:
+            reason = error.message
+            raise ValueError('[Netmiko Authentication Exception:] %s' % reason)
         except SSHException as error:
             reason = error.message
             raise ValueError('[SSH Exception:] %s' % reason)
