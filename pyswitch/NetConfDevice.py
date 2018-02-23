@@ -118,6 +118,7 @@ class NetConfDevice(AbstractDevice):
 
         self.reconnect()
         self._fetch_firmware_version()
+        self.platform_type_val = None
 
         self.fullver = self.firmware_version
 
@@ -190,6 +191,10 @@ class NetConfDevice(AbstractDevice):
         self._mgr.timeout = 600
 
         return True
+
+    @property
+    def platform_type(self):
+        return self.platform_type_val
 
     def _callback_main(self, call, handler='edit_config', target='running',
                        source='startup'):
