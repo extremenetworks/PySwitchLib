@@ -1372,8 +1372,9 @@ class Interface(BaseInterface):
                 raise ValueError('Failed to get vrf details %s' % (reason))
 
             for line in cli_output.split('\n'):
-                if(re.search(', default', line)):
-                    vrf_name = re.split('[\s,]', line)[1]
+                vrf_pattern = re.search(r'VRF (.+), default (.+)', line)
+                if vrf_pattern:
+                    vrf_name = vrf_pattern.group(1)
                     result.append({'vrf_name': vrf_name})
             return result
 
@@ -1656,7 +1657,7 @@ class Interface(BaseInterface):
             if int_type == 've':
                 cli_arr = []
                 cli_arr.append('interface ve ' + name)
-                cli_arr.append('no vrf forwarding ' + in_vrf_name)
+                cli_arr.append('no vrf forwarding ' + '"' + in_vrf_name + '"')
                 cli_res = self._callback(cli_arr, handler='cli-set')
                 error = re.search(r'Error(.+)', cli_res)
                 if error:
@@ -1665,7 +1666,7 @@ class Interface(BaseInterface):
         if int_type == 've':
             cli_arr = []
             cli_arr.append('interface ve ' + name)
-            cli_arr.append('vrf forwarding ' + in_vrf_name)
+            cli_arr.append('vrf forwarding ' + '"' + in_vrf_name + '"')
             cli_res = self._callback(cli_arr, handler='cli-set')
             error = re.search(r'Error(.+)', cli_res)
             if error:
