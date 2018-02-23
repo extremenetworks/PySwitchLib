@@ -168,13 +168,6 @@ SLXOS_VERSIONS = {
 }
 
 
-class DeviceCommError(Exception):
-    """
-    Error with device communication.
-    """
-    pass
-
-
 class Reply:
     def __init__(self, xml):
         self.data = xml

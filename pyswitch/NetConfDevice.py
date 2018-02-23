@@ -15,16 +15,10 @@ import pyswitch.raw.nos.base.interface
 import pyswitch.raw.slxos.base.interface
 import pyswitch.utilities as util
 from pyswitch.AbstractDevice import AbstractDevice
+from pyswitch.AbstractDevice import DeviceCommError
 
 NOS_ATTRS = ['snmp', 'interface', 'bgp', 'lldp', 'system', 'services',
              'fabric_service', 'vcs', 'acl']
-
-
-class DeviceCommError(Exception):
-    """
-    Error with device communication.
-    """
-    pass
 
 
 NOS_VERSIONS = {
