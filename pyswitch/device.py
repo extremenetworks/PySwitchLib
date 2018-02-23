@@ -58,7 +58,6 @@ class Device(object):
         snmpver = 0
         sysobj = ''
 
-
         if snmpconfig:
             snmpport = snmpconfig['snmpport']
             snmpver = snmpconfig['version']
@@ -80,7 +79,6 @@ class Device(object):
                    if SNMP is not supported then fallback to other connection type
                 """
                 pass
-
 
         if sysobj in SNMPUtils.SNMP_DEVICE_MAP:
             self.connection_type = 'SNMPCLI'
