@@ -25,6 +25,10 @@ class AbstractDevice:
         pass
 
     @abc.abstractproperty
+    def platform_type(self):
+        pass
+
+    @abc.abstractproperty
     def firmware_version(self):
         pass
 
