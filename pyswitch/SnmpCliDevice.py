@@ -29,6 +29,9 @@ from pyswitch.snmp.snmpconnector import SNMPError as SNMPError
 from pyswitch.snmp.snmpconnector import SnmpUtils as SNMPUtils
 from pyswitch.AbstractDevice import AbstractDevice
 from pyswitchlib.util.configFile import ConfigFileUtil
+from pyswitchlib.exceptions import (InvalidAuthenticationCredentialsError)
+import re
+from pyswitch.AbstractDevice import DeviceCommError
 
 
 pyswitchlib_ns_daemon_file = '/etc/pyswitchlib/.pyswitchlib_ns_daemon.uri'
@@ -74,13 +77,6 @@ NI_VERSIONS = {
         'services': pyswitch.snmp.mlx.base.services.Services,
     },
 }
-
-
-class DeviceCommError(Exception):
-    """
-    Error with device communication.
-    """
-    pass
 
 
 class SnmpCliDevice(AbstractDevice):
@@ -334,11 +330,16 @@ class SnmpCliDevice(AbstractDevice):
                     opt['secret'] = self._enablepass
                 self._proxied.create_netmiko_connection(opt)
                 self._mgr['cli'] = True
-            except ValueError:
-                raise
+            except ValueError as error:
+                msg = error.message
+                print msg
+                if re.search(r'Netmiko Authentication Exception', msg):
+                    raise InvalidAuthenticationCredentialsError(msg)
+                else:
+                    raise DeviceCommError(msg)
             except Exception as error:
                 reason = error.message
-                raise ValueError("Connection object failed %s" % reason)
+                raise DeviceCommError("Connection object failed %s" % reason)
             finally:
                 self._proxied.netmiko_release()
 

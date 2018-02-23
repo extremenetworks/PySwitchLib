@@ -40,3 +40,10 @@ class AbstractDevice:
     @abc.abstractmethod
     def close(self):
         pass
+
+
+class DeviceCommError(Exception):
+    """
+    Error with device communication.
+    """
+    pass
