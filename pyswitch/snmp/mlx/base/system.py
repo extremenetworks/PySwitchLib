@@ -177,7 +177,7 @@ class System(BaseSystem):
                 >>> for switch in switches:
                 ...  conn = (switch, '22')
                 ...  with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-                ...         output = dev.system.persist_config
+                ...         output = dev.system.persist_config()
             """
         callback = kwargs.pop('callback', self._callback)
         try:
