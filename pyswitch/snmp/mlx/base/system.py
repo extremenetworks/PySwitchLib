@@ -159,3 +159,36 @@ class System(BaseSystem):
         except Exception as error:
             reason = error.message
             raise ValueError('Failed to set system l3 mtu %s' % (reason))
+
+    def persist_config(self, **kwargs):
+        """Perform write memory operation.
+
+            Args:
+                callback (function): A function executed upon completion of
+                    the method.
+            Returns:
+                Return 'completed' or 'failed'.
+            Raises:
+                ValueError: If the CLI operation fails on the device.
+            Examples:
+                >>> import pyswitch.device
+                >>> switches = ['10.24.85.107']
+                >>> auth = ('admin', 'admin')
+                >>> for switch in switches:
+                ...  conn = (switch, '22')
+                ...  with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+                ...         output = dev.system.persist_config
+            """
+        callback = kwargs.pop('callback', self._callback)
+        try:
+            cli_res = callback('write memory', handler='cli-get')
+            success_msg = re.search(r'Write startup-config done', cli_res)
+            if not success_msg:
+                response = 'failed'
+            else:
+                response = 'completed'
+            return response
+        except Exception as error:
+            reason = error.message
+            raise ValueError('Failed to perform persist operation due to %s',
+                             (reason))
