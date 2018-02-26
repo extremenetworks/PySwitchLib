@@ -23,6 +23,7 @@ import pyswitch.raw.slx_nos.acl.params_validator as params_validator
 from pyswitch.raw.base.acl import Acl as BaseAcl
 from pyswitch.raw.slx_nos.acl import acl_template
 from pyswitch.raw.slx_nos.acl.aclparam_parser import AclParamParser
+from xmljson import parker
 
 
 class SlxNosAcl(BaseAcl):
@@ -302,6 +303,27 @@ class SlxNosAcl(BaseAcl):
 
         raise ValueError('Failed to identify acl_type. '
                          'Check if the ACL {} exists'.format(acl_name))
+
+    def _get_acl_rules(self, rest_device, address_type, acl_type,
+                       acl_name, sequences):
+        """
+        Return list of rules configured for acl_name
+        """
+        rules_list = []
+        method = address_type + '_access_list_' + acl_type + '_seq_get'
+        config = (method, {acl_type: acl_name, 'resource_depth': 2})
+        output = rest_device._callback(config, handler='get_config')
+        util = Util(output.data)
+
+        for rcvd_seq in util.root.findall(".//seq"):
+            if rcvd_seq is not None:
+                seq_id = int(rcvd_seq.find('seq-id').text)
+                if seq_id in sequences:
+                    sequences.remove(seq_id)
+                    pd = parker.data(rcvd_seq)
+                    rules_list.append(pd)
+
+        return rules_list
 
     def _get_next_seq_id(self, sequences, user_seq_id):
 
