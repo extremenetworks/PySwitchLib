@@ -16,6 +16,7 @@ limitations under the License.
 """
 import re
 import sys
+import json
 
 import pyswitch.os.base.fabric_service
 import pyswitch.os.base.lldp
@@ -200,6 +201,7 @@ class RestDevice(AbstractDevice):
         self._callback = kwargs.pop('callback', None)
         self.os_type_val = None
         self._rest_proto = None
+        self.platform_type_val = None
 
         if len(self._conn) >= 3:
             self._rest_proto = self._conn[2]
@@ -271,6 +273,20 @@ class RestDevice(AbstractDevice):
             return self._mgr.connected
         else:
             return False
+
+    @property
+    def platform_type(self):
+        """
+          currently this code works for SLX and NOS.
+          In future if new OS gets added then the rest request
+          will vary
+        """
+        if self.platform_type_val is None:
+            response = self._mgr.run_command(command="show chassis \| inc Chassis")
+            output = response[1][0][self.host]['response']['text']
+            dict_output = json.loads(output)
+            self.platform_type_val = dict_output['output'][0].split(":")[1].strip()
+        return self.platform_type_val
 
     @property
     def os_type(self):

@@ -110,6 +110,10 @@ class Device(object):
         return self.device_type.suports_rbridge
 
     @property
+    def platform_type(self):
+        return self.device_type.platform_type
+
+    @property
     def firmware_version(self):
         return self.device_type.firmware_version
 
