@@ -336,7 +336,6 @@ class SnmpCliDevice(AbstractDevice):
                 self._mgr['cli'] = True
             except ValueError as error:
                 msg = error.message
-                print msg
                 if re.search(r'Netmiko Authentication Exception', msg):
                     raise InvalidAuthenticationCredentialsError(msg)
                 else:
