@@ -101,3 +101,25 @@ overlay_gateway_get = """
 evpn_instance_get = """
 /routing-system/evpn-config/evpn/evpn-instance
 """
+
+enable_intf_admin_state = """
+         <{int_type}>
+            <name>{name}</name>
+            <shutdown operation = "delete"> </shutdown>
+         </{int_type}>
+"""
+
+disable_intf_admin_state = """
+         <{int_type}>
+            <name>{name}</name>
+            <shutdown></shutdown>
+         </{int_type}>
+"""
+
+set_intf_admin_state = """
+<config>
+    <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+          {intf_list}
+      </interface>
+</config>
+"""
