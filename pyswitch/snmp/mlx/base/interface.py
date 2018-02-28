@@ -124,10 +124,20 @@ class Interface(BaseInterface):
                 else:
                     cli_arr.append('vlan' + " " + str(vlan) + " " + 'name' + " " + '"' + desc + '"')
             self._callback(cli_arr, handler='cli-set')
+            output = self._callback(cli_arr, handler='cli-set')
+            prev = None
+            for line in output.split('\n'):
+                temp = line
+                if 'Error' in line:
+                    vlan_error = re.search(r'#vlan (.+)', prev)
+                    if vlan_error:
+                        failed_vlan = vlan_error.group(1)
+                    raise ValueError("Failed to create VLAN " + failed_vlan + " " + str(line))
+                prev = temp
             return True
         except Exception as error:
             reason = error.message
-            raise ValueError('Failed to create VLAN %s' % (reason))
+            raise ValueError(reason)
 
     def create_port_channel(self, ports, int_type, portchannel_num, mode, po_exists, desc=None):
         """create port channel
