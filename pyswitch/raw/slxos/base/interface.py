@@ -189,7 +189,6 @@ class Interface(BaseInterface):
                     'max_count': max_count
                     }
 
-
     def admin_state(self, **kwargs):
         """Set interface administrative state.
 
@@ -232,17 +231,17 @@ class Interface(BaseInterface):
             raise ValueError('`int_type` must be one of: %s' %
                              repr(valid_int_types))
 
-        if not isinstance(enabled, bool) and not get:
+        if not isinstance(enabled, bool):
             raise ValueError('`enabled` must be `True` or `False`.')
 
         try:
             data_list = []
             for intf_name in name:
                 if enabled:
-                    data_list.append(getattr(template, 'enable_intf_admin_state').format(\
+                    data_list.append(getattr(template, 'enable_intf_admin_state').format(
                         int_type=int_type, name=intf_name))
                 else:
-                    data_list.append(getattr(template, 'disable_intf_admin_state').format(\
+                    data_list.append(getattr(template, 'disable_intf_admin_state').format(
                         int_type=int_type, name=intf_name))
             sstr = "".join(data_list)
 
@@ -252,3 +251,4 @@ class Interface(BaseInterface):
 
         except Exception as e:
             reason = e.message
+            raise ValueError(reason)
