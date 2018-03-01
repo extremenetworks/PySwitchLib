@@ -4512,7 +4512,7 @@ class Interface(object):
         ve_name = kwargs.pop('name')
         rbridge_id = kwargs.pop('rbridge_id', '1')
         callback = kwargs.pop('callback', self._callback)
-        valid_int_types = ['loopback', 've']
+        valid_int_types = self.valid_int_types
         if int_type not in valid_int_types:
             raise ValueError('`int_type` must be one of: %s' %
                              repr(valid_int_types))

@@ -1602,8 +1602,7 @@ class Interface(BaseInterface):
 
     def add_int_vrf(self, **kwargs):
         """
-        Add L3 Interface in Vrf. Currently supports VE interface.
-        TBD for other ethernet and loopback interfaces
+        Add L3 Interface in Vrf. Currently supports VE and ethernet interfaces
 
         Args:
             int_type(str): L3 interface type on which the vrf needs to be configured.
@@ -1654,8 +1653,8 @@ class Interface(BaseInterface):
             raise ValueError('`int_type` must be one of: %s' %
                     repr(valid_int_types))
         if get:
-            if int_type == 've':
-                cli_arr = 'show ip interface ve ' + name
+            if int_type == 've' or int_type == 'ethernet':
+                cli_arr = 'show ip interface ' + int_type + ' ' + name
                 cli_res = self._callback(cli_arr, handler='cli-get')
                 error = re.search(r'Error(.+)', cli_res)
                 if error:
@@ -1664,18 +1663,18 @@ class Interface(BaseInterface):
                 vrf_name = result.group(1).strip()
                 return vrf_name
         if not enable:
-            if int_type == 've':
+            if int_type == 've' or int_type == 'ethernet':
                 cli_arr = []
-                cli_arr.append('interface ve ' + name)
+                cli_arr.append('interface ' + int_type + ' ' + name)
                 cli_arr.append('no vrf forwarding ' + '"' + in_vrf_name + '"')
                 cli_res = self._callback(cli_arr, handler='cli-set')
                 error = re.search(r'Error(.+)', cli_res)
                 if error:
                     raise ValueError("%s" % error.group(0))
                 return True
-        if int_type == 've':
+        if int_type == 've' or int_type == 'ethernet':
             cli_arr = []
-            cli_arr.append('interface ve ' + name)
+            cli_arr.append('interface ' + int_type + ' ' + name)
             cli_arr.append('vrf forwarding ' + '"' + in_vrf_name + '"')
             cli_res = self._callback(cli_arr, handler='cli-set')
             error = re.search(r'Error(.+)', cli_res)
