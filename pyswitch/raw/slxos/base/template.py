@@ -105,7 +105,7 @@ evpn_instance_get = """
 enable_intf_admin_state = """
          <{int_type}>
             <name>{name}</name>
-            <shutdown operation = "delete"> </shutdown>
+            <shutdown operation = "remove"> </shutdown>
          </{int_type}>
 """
 
