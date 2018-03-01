@@ -123,7 +123,6 @@ class Interface(BaseInterface):
                     cli_arr.append('vlan' + " " + str(vlan))
                 else:
                     cli_arr.append('vlan' + " " + str(vlan) + " " + 'name' + " " + '"' + desc + '"')
-            self._callback(cli_arr, handler='cli-set')
             output = self._callback(cli_arr, handler='cli-set')
             prev = None
             for line in output.split('\n'):
