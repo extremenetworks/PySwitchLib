@@ -224,9 +224,11 @@ class PySwitchLibApiDaemon(object):
         """
 
         pybind_obj = None
+        is_module_name_found = False
 
         for index, value in enumerate(bindings_list):
             if self._module_name in value[2]:
+                is_module_name_found = True
                 class_name = value[1].replace(value[2] + '.', '', 1)  
                 pybind_module_path = value[0].replace(value[2] + '.', '', 1)  
                 pybind_paths = pybind_module_path.split('.')
@@ -358,6 +360,9 @@ class PySwitchLibApiDaemon(object):
                                 pybind_update_key_assignment(kwargs[kwarg])
 
                 break
+
+        if not is_module_name_found:
+            raise AttributeError("This API is unsupported for the given OS binding version: " + str(self._module_name))
 
         return pybind_obj
 
