@@ -39,7 +39,7 @@ class PySwitchLibApiDaemon(object):
         self._module_obj = module_obj
         self._api_lock = threading.Lock()
         self._api_timer = None
-        self._api_timer_expiration = 5
+        self._api_timer_expiration = 10
         self._pyro_daemon = pyro_daemon
         self._netmiko_lock = threading.Lock()
         self._netmiko_connection = {}
