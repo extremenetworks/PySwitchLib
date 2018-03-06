@@ -79,12 +79,12 @@ class Interface(object):
         """
         pass
 
-    def del_vlan_int(self, vlan_id):
+    def del_vlan_int(self, vlan_id_list):
         """
         Delete VLAN Interface.
 
         Args:
-            vlan_id (int): ID for the VLAN interface being deleted. Value of 2-4096.
+            vlan_id_list: List of VLAN interfaces being deleted. Value of 1-4090.
 
         Returns:
             True if command completes successfully or False if not.
@@ -101,20 +101,20 @@ class Interface(object):
             ...     output = dev.interface.add_vlan_int(vlan_list, 'vlan_300')
             ...     output = dev.interface.get_vlan_int(300)
             ...     assert output == True
-            ...     ret = dev.interface.del_vlan_int(300)
+            ...     ret = dev.interface.del_vlan_int(vlan_list)
             ...     assert ret == True
         """
         try:
-            if vlan_id < 1 and vlan_id > 4090:
-                raise InvalidVlanId("VLAN id must be between 1-4090")
-            row_status = SnmpMib.mib_oid_map['dot1qVlanStaticRowStatus']
-            oid = row_status + "." + str(vlan_id)
-            config = (oid, 6)
-            ret_value = self._callback(config, handler='snmp-set')
-            if ret_value:
-                return True
-            else:
-                return False
+            for vlan_id in vlan_id_list:
+                if vlan_id < 1 and vlan_id > 4090:
+                    raise InvalidVlanId("VLAN id must be between 1-4090")
+                row_status = SnmpMib.mib_oid_map['dot1qVlanStaticRowStatus']
+                oid = row_status + "." + str(vlan_id)
+                config = (oid, 6)
+                ret_value = self._callback(config, handler='snmp-set')
+                if not ret_value:
+                    return False
+            return True
 
         except Exception as error:
             reason = error.message

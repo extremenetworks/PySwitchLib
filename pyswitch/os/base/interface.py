@@ -155,8 +155,9 @@ class Interface(object):
             self._callback(config)
             return True
 
-        except Exception:
-            return False
+        except Exception as e:
+            reason = e.message
+            raise ValueError(reason)
 
     def enable_switchport(self, inter_type, inter):
         """
