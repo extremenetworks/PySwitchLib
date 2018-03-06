@@ -1219,6 +1219,10 @@ class Acl(BaseAcl):
 
         acl_rules = kwargs['acl_rules']
 
+        if len(acl_rules) > 64:
+            raise ValueError("On MLX device maximum 64 rules can be bulked "
+                             "while rule creation")
+
         # Parse params
         acl_name = self.ip.parse_acl_name(**kwargs)
         ret = self.get_acl_address_and_acl_type(acl_name)
@@ -1359,6 +1363,10 @@ class Acl(BaseAcl):
 
         acl_rules = kwargs['acl_rules']
 
+        if len(acl_rules) > 64:
+            raise ValueError("On MLX device maximum 64 rules can be bulked "
+                             "while rule creation")
+
         # Parse params
         acl_name = self.mac.parse_acl_name(**kwargs)
 
@@ -1495,6 +1503,10 @@ class Acl(BaseAcl):
             return True
 
         acl_rules = kwargs['acl_rules']
+
+        if len(acl_rules) > 64:
+            raise ValueError("On MLX device maximum 64 rules can be bulked "
+                             "while rule creation")
 
         # Parse params
         acl_name = self.ip.parse_acl_name(**kwargs)
