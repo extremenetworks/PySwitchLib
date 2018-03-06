@@ -302,7 +302,7 @@ class MacAcl(AclParamParser):
             return ret
 
         if vlan_tag_format == 'untagged':
-            ret['vlan_id'] = self.parse_vlan_id(kwargs['vlan'])
+            self.parse_single_tagged_vlan(ret, **kwargs)
             return ret
 
         if vlan_tag_format == 'single-tagged':
