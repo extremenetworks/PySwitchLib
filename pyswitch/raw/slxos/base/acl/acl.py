@@ -549,14 +549,8 @@ class Acl(SlxNosAcl):
             config = t.render(**user_data)
             config = ' '.join(config.split())
 
-            try:
-                callback(config)
-                result[intf] = True
-            except Exception as e:
-                if '<bad-element>access-group</bad-element>' in str(e):
-                    result[intf] = None
-                else:
-                    raise
+            callback(config)
+            result[intf] = True
         return result
 
     def _parse_params_for_apply_or_remove_acl(self, **kwargs):
