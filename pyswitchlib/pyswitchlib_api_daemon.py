@@ -38,9 +38,17 @@ class PySwitchLibApiDaemon(object):
         self._module_name = module_name
         self._module_obj = module_obj
         self._api_lock = threading.Lock()
+        self._api_timer = None
+        self._api_timer_expiration = 10
         self._pyro_daemon = pyro_daemon
         self._netmiko_lock = threading.Lock()
         self._netmiko_connection = {}
+
+    def _api_timer_expiration_handler(self):
+        try:
+            self._api_lock.release()
+        except:
+            pass
 
     def _hash_auth_string(self, auth_str):
         salt = uuid.uuid4().hex
@@ -187,14 +195,27 @@ class PySwitchLibApiDaemon(object):
         This is an auto-generated method for the PySwitchLib.
         """
 
-        self._api_lock.acquire()
+        self._api_acquire_lock_with_timer()
 
     def api_release(self):
         """
         This is an auto-generated method for the PySwitchLib.
         """
 
-        self._api_lock.release()
+        self._api_release_lock_with_timer()
+       
+    def _api_acquire_lock_with_timer(self):
+        self._api_lock.acquire()
+
+        self._apt_timer = threading.Timer(self._api_timer_expiration, self._api_timer_expiration_handler)
+        self._apt_timer.start()
+
+    def _api_release_lock_with_timer(self):
+        if self._apt_timer.is_alive():
+            self._apt_timer.cancel()
+
+        if self._api_lock.locked():
+            self._api_lock.release()
 
     def _api_validation(self, choices_kwargs_map=None, leaf_os_support_map=None, **kwargs):
         """

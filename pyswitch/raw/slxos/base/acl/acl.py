@@ -821,6 +821,7 @@ class Acl(SlxNosAcl):
             params_validator.validate_params_slx_add_or_remove_l2_acl_rule(
                 **rule)
             rule['address_type'] = 'mac'
+            rule['acl_type'] = 'extended'
             user_data = self._parse_params_for_add_mac_extended(**rule)
             user_data_list.append(user_data)
         return user_data_list
