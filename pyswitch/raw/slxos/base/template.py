@@ -17,6 +17,12 @@ vlan_id = """
             </vlan>
 """
 
+vlan_delete = """
+            <vlan operation="remove">
+               <name>{vlan_id}</name>
+            </vlan>
+"""
+
 vlan_id_desc = """
             <vlan>
                <name>{vlan_id}</name>
@@ -25,6 +31,14 @@ vlan_id_desc = """
 """
 
 vlan_create = """
+<config>
+    <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
+            {vlan_list}
+    </interface-vlan>
+</config>
+"""
+
+vlan_bulk_delete = """
 <config>
     <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
             {vlan_list}
