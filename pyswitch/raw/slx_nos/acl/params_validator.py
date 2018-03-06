@@ -341,7 +341,7 @@ def validate_params_slx_add_or_remove_l2_acl_rule(**parameters):
     accepted_params = ['dsthost', 'vlan_tag_format', 'acl_name', 'srchost',
                        'vlan', 'dst_mac_addr_mask', 'arp_guard', 'copy_sflow',
                        'mirror', 'drop_precedence_force', 'count',
-                       'drop_precedence', 'log', 'seq_id', 'dst', 'source',
+                       'log', 'seq_id', 'dst', 'source',
                        'src_mac_addr_mask', 'ethertype', 'action', 'pcp',
                        'device']
     st2_specific_params = []
