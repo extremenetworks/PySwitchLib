@@ -133,7 +133,7 @@ class Interface(BaseInterface):
             method_name = 'interface_%s_ipv6_vrrp_extended_group_virtual' \
                           '_mac_' % int_type
             vrid_name = 'vrrpv3e_group'
-            vmac_name = 'vmac'
+            vmac_name = 'virtual_mac'
 
         if int_type == 've':
             if self.has_rbridge_id:
@@ -147,8 +147,6 @@ class Interface(BaseInterface):
         if not enable:
             method_name = "%sdelete" % method_name
         else:
-            if version == 6:
-                virtual_mac = True
             arguments[vmac_name] = virtual_mac
             method_name = "%supdate" % method_name
         config = (method_name, arguments)

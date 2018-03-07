@@ -37,6 +37,8 @@ import pyswitch.os.slxos.base.mct
 import pyswitch.os.slxos.base.services
 import pyswitch.os.slxos.base.system
 import pyswitch.os.slxos.base.cluster
+import pyswitch.os.slxos.slxr.interface
+import pyswitch.os.slxos.slxs.interface
 import pyswitch.utilities as util
 from pyswitch.AbstractDevice import AbstractDevice
 from pyswitch.XMLAsset import XMLAsset
