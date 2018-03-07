@@ -1,9 +1,4 @@
-import pyswitch.utilities
-from pyswitch.exceptions import InvalidVlanId
 from pyswitch.os.slxos.base.interface import Interface as BaseInterface
-from pyswitch.utilities import Util
-import re
-from ipaddress import ip_interface
 
 
 class Interface(BaseInterface):
@@ -151,4 +146,3 @@ class Interface(BaseInterface):
             method_name = "%supdate" % method_name
         config = (method_name, arguments)
         return callback(config)
-
