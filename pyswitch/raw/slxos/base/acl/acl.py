@@ -549,14 +549,8 @@ class Acl(SlxNosAcl):
             config = t.render(**user_data)
             config = ' '.join(config.split())
 
-            try:
-                callback(config)
-                result[intf] = True
-            except Exception as e:
-                if '<bad-element>access-group</bad-element>' in str(e):
-                    result[intf] = None
-                else:
-                    raise
+            callback(config)
+            result[intf] = True
         return result
 
     def _parse_params_for_apply_or_remove_acl(self, **kwargs):
@@ -821,6 +815,7 @@ class Acl(SlxNosAcl):
             params_validator.validate_params_slx_add_or_remove_l2_acl_rule(
                 **rule)
             rule['address_type'] = 'mac'
+            rule['acl_type'] = 'extended'
             user_data = self._parse_params_for_add_mac_extended(**rule)
             user_data_list.append(user_data)
         return user_data_list

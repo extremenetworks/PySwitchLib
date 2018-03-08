@@ -230,7 +230,7 @@ class PySwitchLibApiDaemon(object):
         """
 
         self._api_release_lock_with_timer()
-
+       
     def _api_acquire_lock_with_timer(self):
         """
         This is an auto-generated method for the PySwitchLib.

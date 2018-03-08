@@ -180,6 +180,10 @@ acl_rule_mac = """
                 {% elif vlan_tag_format == "untagged" %}
                   <vlan>{{vlan.vlan_id}}</vlan>
 
+                  {% if vlan.mask is not none %}
+                    <vlan-id-mask>{{vlan.mask}}</vlan-id-mask>
+                  {% endif %}
+
                 {% elif vlan_tag_format == "single-tagged" %}
 
                   <vlan>{{vlan.vlan_id}}</vlan>

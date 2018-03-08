@@ -123,11 +123,20 @@ class Interface(BaseInterface):
                     cli_arr.append('vlan' + " " + str(vlan))
                 else:
                     cli_arr.append('vlan' + " " + str(vlan) + " " + 'name' + " " + '"' + desc + '"')
-            self._callback(cli_arr, handler='cli-set')
+            output = self._callback(cli_arr, handler='cli-set')
+            prev = None
+            for line in output.split('\n'):
+                temp = line
+                if 'Error' in line:
+                    vlan_error = re.search(r'#vlan (.+)', prev)
+                    if vlan_error:
+                        failed_vlan = vlan_error.group(1)
+                    raise ValueError("Failed to create VLAN " + failed_vlan + " " + str(line))
+                prev = temp
             return True
         except Exception as error:
             reason = error.message
-            raise ValueError('Failed to create VLAN %s' % (reason))
+            raise ValueError(reason)
 
     def create_port_channel(self, ports, int_type, portchannel_num, mode, po_exists, desc=None):
         """create port channel
@@ -164,8 +173,6 @@ class Interface(BaseInterface):
                 raise ValueError('Port channel description is NULL for PO %d', portchannel_num)
             if len(desc) < 1 or len(desc) > 64:
                 raise ValueError('Port-channel name should be 1-64 characters')
-            if int(portchannel_num) < 1 or int(portchannel_num) > 256:
-                raise ValueError('Port-channel id should be between 1 and 256')
             if int_type != 'ethernet':
                 raise ValueError('Not a valid interface type (%s) for MLX' % (int_type))
             # Check if a port-channel exists with same id TBD in action
@@ -515,6 +522,8 @@ class Interface(BaseInterface):
             if 'keep-alive' in line:
                 continue
             po_name = re.search(r'LAG \"(.+)\" ID (.+) \((.+) Deployed\)', line)
+            if po_name is None:
+                continue
             lag_name = po_name.group(1)
             lag_id = po_name.group(2)
             type = po_name.group(3)
