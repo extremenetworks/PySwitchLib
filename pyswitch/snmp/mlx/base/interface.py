@@ -173,8 +173,6 @@ class Interface(BaseInterface):
                 raise ValueError('Port channel description is NULL for PO %d', portchannel_num)
             if len(desc) < 1 or len(desc) > 64:
                 raise ValueError('Port-channel name should be 1-64 characters')
-            if int(portchannel_num) < 1 or int(portchannel_num) > 256:
-                raise ValueError('Port-channel id should be between 1 and 256')
             if int_type != 'ethernet':
                 raise ValueError('Not a valid interface type (%s) for MLX' % (int_type))
             # Check if a port-channel exists with same id TBD in action
@@ -524,6 +522,8 @@ class Interface(BaseInterface):
             if 'keep-alive' in line:
                 continue
             po_name = re.search(r'LAG \"(.+)\" ID (.+) \((.+) Deployed\)', line)
+            if po_name is None:
+                continue
             lag_name = po_name.group(1)
             lag_id = po_name.group(2)
             type = po_name.group(3)
