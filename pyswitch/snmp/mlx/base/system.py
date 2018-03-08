@@ -192,3 +192,56 @@ class System(BaseSystem):
             reason = error.message
             raise ValueError('Failed to perform persist operation due to %s',
                              (reason))
+
+    def clock_timezone(self, **kwargs):
+        """ Add/Get clock timezone of the device
+        Args:
+            timezone(str): time-zone for the device
+            summer_time(bool): boolean to indicate summer-time is enabled or not
+        Returns:
+            Return value of the callback
+        Raises:
+            KeyError: if `host_name` is not passed.
+            ValueError: if `host_name` is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.system.clock_timezone(timezone='us/alaska', summer_time=True)
+            ...         output = dev.system.clock_timezone(timezone='us/alaska')
+            ...         output = dev.system.clock_timezone(get=True)
+        """
+        cli_arr = []
+        summer_time = kwargs.pop('summer_time', False)
+
+        if kwargs.pop('get', False):
+            result = dict()
+            cli_arr = 'show clock detail'
+            cli_res = self._callback(cli_arr, handler='cli-get')
+            summer_time = re.search(r'Summer time(.+)', cli_res)
+            zone = cli_res.split(" ")
+            result['zone'] = zone[1]
+            if summer_time:
+                result['summer_time'] = True
+            else:
+                result['summer_time'] = False
+            return (result)
+
+        if kwargs.pop('delete', False):
+            if summer_time:
+                cli_arr.append('no clock summer-time')
+            cli_arr.append('no clock timezone')
+            self._callback(cli_arr, handler='cli-set')
+            return True
+        else:
+            timezone = kwargs.pop('time_zone')
+            zone, value = timezone.split("/")
+            cli_arr.append('clock timezone' + ' ' + zone + ' ' + value)
+            if summer_time:
+                cli_arr.append('clock summer-time')
+            else:
+                cli_arr.append('no clock summer-time')
+            return self._callback(cli_arr, handler='cli-set')
