@@ -605,3 +605,57 @@ def validate_mac_address(mac):
         return True
     else:
         raise ValueError("Invalid MAC {}".format(mac))
+
+
+def validate_port_channel_id(plat_type, po_id):
+    """
+    This will check if the user entered port-channel id is
+    within the supported range of each platform
+
+    Args:
+        plat_type: Like MLX4, CES2048F, BR-VDX6740, etc
+        po_id: port channel id
+
+    Returns:
+        True/False, reason for failure
+
+    """
+    min_lag = 0
+    max_lag = 0
+    if plat_type == 'MLX4' or plat_type == 'MLX8' or \
+       plat_type == 'MLX16' or plat_type == 'MLX32' or \
+       plat_type == 'MLXXMR4' or plat_type == 'MLXXMR8' or \
+       plat_type == 'MLXXMR16' or plat_type == 'MLXXMR32':
+        min_lag = 1
+        max_lag = 256
+    elif plat_type == 'CES2024F' or plat_type == 'CES2024C' or \
+            plat_type == 'CES2048F' or plat_type == 'CES2048C' or \
+            plat_type == 'CES2048FX' or plat_type == 'CES2048CX' or \
+            plat_type == 'CES2024F4X' or plat_type == 'CES2024C4X' or \
+            plat_type == 'CER2024F' or plat_type == 'CER2024C' or \
+            plat_type == 'CER2048F' or plat_type == 'CER2048C' or \
+            plat_type == 'CER2048FX' or plat_type == 'CER2048CX' or \
+            plat_type == 'CER2024F4X' or plat_type == 'CER2024C4X':
+        min_lag = 1
+        max_lag = 64
+    elif plat_type == 'BR-VDX6740' or plat_type == 'VDX6740T-1G' or \
+            plat_type == 'BR-VDX8770-4' or plat_type == 'BR-VDX8770-8' or \
+            plat_type == 'BR-VDX6940-144S':
+        min_lag = 1
+        max_lag = 6144
+    elif plat_type == 'BR-SLX9240' or plat_type == 'BR-SLX9140':
+        min_lag = 1
+        max_lag = 1024
+    elif plat_type == 'BR-SLX9540':
+        min_lag = 1
+        max_lag = 64
+    elif plat_type == 'BR-SLX9850-8':
+        min_lag = 1
+        max_lag = 512
+    else:
+        return False, "Not a valid/supported platform type"
+    if int(po_id) < min_lag or int(po_id) > max_lag:
+        reason = "Invalid Port-channel id should be between " + str(min_lag) +\
+            " and " + str(max_lag)
+        return False, reason
+    return True, "Success"
