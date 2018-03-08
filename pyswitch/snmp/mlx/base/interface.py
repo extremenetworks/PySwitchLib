@@ -2692,3 +2692,48 @@ class Interface(BaseInterface):
             raise ValueError('Interface %s %s is not found on device' %
                 (int_type, int_name))
         return port_id
+
+    def ip_default_route(self, **kwargs):
+        """ Add/Get clock timezone of the device
+        Args:
+            timezone(str): time-zone for the device
+            summer_time(bool): boolean to indicate summer-time is enabled or not
+        Returns:
+            Return value of the callback
+        Raises:
+            KeyError: if `host_name` is not passed.
+            ValueError: if `host_name` is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.system.clock_timezone(timezone='us/alaska', summer_time=True)
+            ...         output = dev.system.clock_timezone(timezone='us/alaska')
+            ...         output = dev.system.clock_timezone(get=True)
+        """
+        cli_arr = []
+
+        if kwargs.pop('get', False):
+            result = dict()
+            address = []
+            cli_arr = 'show running | include default-network'
+            cli_res = self._callback(cli_arr, handler='cli-get')
+            network = cli_res.split('\n')
+            for each_item in network:
+                ip_addr = re.search(r'([0-9]{1,3}\.?){4}/([0-9]{1,2})', each_item)
+                if ip_addr is not None:
+                    address.append(ip_addr.group())
+            result['ip_address'] = address
+            return (result)
+
+        ip_address = kwargs.pop('ip_address')
+        if kwargs.pop('delete', False):
+            cli_arr.append('no ip default-network ' + ip_address)
+        else:
+            cli_arr.append('ip default-network ' + ip_address)
+
+        self._callback(cli_arr, handler='cli-set')
+        return True
