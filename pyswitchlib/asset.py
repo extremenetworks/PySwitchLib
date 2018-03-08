@@ -14,6 +14,9 @@ import Pyro4.errors
 from distutils.sysconfig import get_python_lib
 import time
 
+from requests.packages.urllib3.exceptions import SubjectAltNameWarning
+requests.packages.urllib3.disable_warnings(SubjectAltNameWarning)
+
 from pyswitchlib.util.configFile import ConfigFileUtil
 import pyswitchlib.exceptions
 locals().update(pyswitchlib.exceptions.__dict__)
@@ -54,6 +57,7 @@ class Asset(object):
         self._response = requests.Response()
         self._overall_success = True
         self._overall_status = []
+        self._exc_info = None
 
         self._rest_session_auth_max_retries = 1
         self._rest_session_auth_token_expiration = 160
@@ -199,7 +203,7 @@ class Asset(object):
             self._session.verify = cacert
         else:
             self._session.verify = self._default_session_verify
-    
+
         if isinstance(timeout, basestring):
             if timeout == '':
                 timeout = self._session_timeout
@@ -419,7 +423,7 @@ class Asset(object):
             try:
                 self._rest_operation(rest_command, timeout=(self._default_connection_timeout, self._default_connection_timeout*2))
             except:
-                pass
+                self._exc_info = sys.exc_info()
             finally:
                 overall_status, overall_result = self._get_results()
 
@@ -451,10 +455,11 @@ class Asset(object):
             elif result[0][self._ip_addr]['response']['status_code'] == 404:
                 raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.')
         else:
-            if self._attempted_rest_protocols:
-                raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr + ' using ' + str(self._attempted_rest_protocols))
-            else:
-                raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr)
+            try:
+                if self._exc_info:
+                    raise self._exc_info[0], self._exc_info[1], self._exc_info[2]
+            except Exception as e:
+                raise RestInterfaceError('Could not establish a connection to ' + self._ip_addr + ' using ' + str(self._attempted_rest_protocols) + '. Reason: ' + str(e))
 
     def _update_max_keep_alive_requests(self, max_requests=0):
         return self.run_command(command="unhide foscmd;fibranne;foscmd sed \\'s/MaxKeepAliveRequests [0-9]*/MaxKeepAliveRequests " + str(max_requests) + "/\\' /fabos/webtools/bin/httpd.conf > /fabos/webtools/bin/httpd.conf.temp&&mv /fabos/webtools/bin/httpd.conf.temp /fabos/webtools/bin/httpd.conf&&/usr/apache/bin/apachectl -k restart &")

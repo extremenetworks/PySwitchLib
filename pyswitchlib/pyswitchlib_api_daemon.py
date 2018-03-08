@@ -38,11 +38,27 @@ class PySwitchLibApiDaemon(object):
         self._module_name = module_name
         self._module_obj = module_obj
         self._api_lock = threading.Lock()
+        self._api_timer = None
+        self._api_timer_expiration = 10
         self._pyro_daemon = pyro_daemon
         self._netmiko_lock = threading.Lock()
         self._netmiko_connection = {}
 
+    def _api_timer_expiration_handler(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        try:
+            self._api_lock.release()
+        except:
+            pass
+
     def _hash_auth_string(self, auth_str):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         salt = uuid.uuid4().hex
         user = auth_str[0]
         passwd = auth_str[1]
@@ -50,6 +66,10 @@ class PySwitchLibApiDaemon(object):
         return encode_str + ':' + salt
 
     def _check_auth_string(self, hashed_str, new_auth):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         auth_str, salt = hashed_str.split(':')
         user = new_auth[0]
         passwd = new_auth[1]
@@ -57,6 +77,10 @@ class PySwitchLibApiDaemon(object):
         return auth_str == new_hash
 
     def create_netmiko_connection(self, opt):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         key = opt['ip']
         conn_list = ['None', 'None', 'None']
         net_connect_dict = self._netmiko_connection
@@ -109,6 +133,10 @@ class PySwitchLibApiDaemon(object):
                 raise Exception
 
     def _establish_netmiko_handler(self, opt, net_connect_dict):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         key = opt['ip']
         try:
             net_connect = ConnectHandler(**opt)
@@ -127,12 +155,20 @@ class PySwitchLibApiDaemon(object):
         return net_connect
 
     def _get_netmiko_connection(self, key):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         if key in self._netmiko_connection:
             return self._netmiko_connection[key]
         else:
             return None
 
     def cli_execution(self, handler, host, call):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
         value = ''
         conn_list = self._get_netmiko_connection(host)
         if not conn_list:
@@ -186,14 +222,35 @@ class PySwitchLibApiDaemon(object):
         This is an auto-generated method for the PySwitchLib.
         """
 
-        self._api_lock.acquire()
+        self._api_acquire_lock_with_timer()
 
     def api_release(self):
         """
         This is an auto-generated method for the PySwitchLib.
         """
 
-        self._api_lock.release()
+        self._api_release_lock_with_timer()
+
+    def _api_acquire_lock_with_timer(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        self._api_lock.acquire()
+
+        self._apt_timer = threading.Timer(self._api_timer_expiration, self._api_timer_expiration_handler)
+        self._apt_timer.start()
+
+    def _api_release_lock_with_timer(self):
+        """
+        This is an auto-generated method for the PySwitchLib.
+        """
+
+        if self._apt_timer.is_alive():
+            self._apt_timer.cancel()
+
+        if self._api_lock.locked():
+            self._api_lock.release()
 
     def _api_validation(self, choices_kwargs_map=None, leaf_os_support_map=None, **kwargs):
         """
@@ -362,7 +419,7 @@ class PySwitchLibApiDaemon(object):
                 break
 
         if not is_module_name_found:
-            raise AttributeError("This API is unsupported for the given OS binding version: " + str(self._module_name))
+            raise AttributeError("API is unsupported for OS binding version: " + str(self._module_name))
 
         return pybind_obj
 
