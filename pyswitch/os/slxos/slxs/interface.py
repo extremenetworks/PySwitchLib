@@ -3,8 +3,8 @@ from pyswitch.os.slxos.base.interface import Interface as BaseInterface
 
 class Interface(BaseInterface):
     """
-      The Interface class holds all the actions assocaiated with the Interfaces
-      of a NOS device.
+      The Interface class holds all the actions associated with the Interfaces
+      of an SLX device.
 
       Attributes:
           None
@@ -30,17 +30,15 @@ class Interface(BaseInterface):
         """Set vrrpe virtual mac.
 
         Args:
-            int_type (str): Type of interface. (gigabitethernet,
-                tengigabitethernet, etc).
-            name (str): Name of interface. (1/0/5, 1/0/10, etc).
+            int_type (str): Type of interface. (ethernet,
+                ve, etc).
+            name (str): Name of interface. (1/5, 0/10, etc).
             vrid (str): vrrpev3 ID.
             enable (bool): If vrrpe virtual MAC should be enabled
                 or disabled.Default:``True``.
             get (bool): Get config instead of editing config. (True, False)
             virtual_mac (str):Virtual mac-address in the format
             02e0.5200.00xx.
-            rbridge_id (str): rbridge-id for device. Only required
-            when type is 've'.
             callback (function): A function executed upon completion
             of the  method.  The only parameter passed to `callback`
             will be the ``ElementTree`` `config`.
@@ -65,17 +63,13 @@ class Interface(BaseInterface):
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output = dev.services.vrrpe(enable=False,
-            ...         rbridge_id='225')
+            ...         output = dev.services.vrrpe(enable=False)
             ...         output = dev.interface.vrrpe_vip(int_type='ve',
             ...         name='89',vrid='1',
-            ...         vip='2002:4818:f000:1ab:cafe:beef:1000:1/64',
-            ...         rbridge_id='225')
-            ...         output = dev.services.vrrpe(enable=False,
-            ...         rbridge_id='225')
+            ...         vip='2002:4818:f000:1ab:cafe:beef:1000:1/64')
+            ...         output = dev.services.vrrpe(enable=False)
             ...         output = dev.interface.vrrpe_vmac(int_type='ve',
-            ...         name='89', vrid='1', rbridge_id='1',
-            ...         virtual_mac='aaaa.bbbb.cccc')
+            ...         name='89', vrid='1', virtual_mac='aaaa.bbbb.cccc')
         """
 
         int_type = kwargs.pop('int_type').lower()
@@ -84,12 +78,11 @@ class Interface(BaseInterface):
         enable = kwargs.pop('enable', True)
         version = kwargs.pop('version', 4)
         get = kwargs.pop('get', False)
-        virtual_mac = kwargs.pop('virtual_mac', '02e0.5200.00xx')
+        virtual_mac = kwargs.pop('virtual_mac', True)
 
         callback = kwargs.pop('callback', self._callback)
-        valid_int_types = ['gigabitethernet', 'tengigabitethernet',
-                           'fortygigabitethernet', 'hundredgigabitethernet',
-                           'port_channel', 've']
+        valid_int_types = ['ve']
+
         if int_type not in valid_int_types:
             raise ValueError('`int_type` must be one of: %s' %
                              repr(valid_int_types))
@@ -103,14 +96,8 @@ class Interface(BaseInterface):
             else:
                 method_name = 'interface_%s_ipv6_vrrp_extended_group_' \
                               'get' % int_type
-                vrid_name = 'vrrpv3e_group'
+                vrid_name = 'vrrpv3e'
 
-            if int_type == 've':
-                if self.has_rbridge_id:
-                    method_name = "rbridge_id_%s" % method_name
-                    arguments['rbridge_id'] = kwargs.pop('rbridge_id', 1)
-                if version == 6:
-                    vrid_name = 'vrrpv3e'
             arguments[vrid_name] = vrid
             config = (method_name, arguments)
             x = callback(config, handler='get_config')
@@ -120,30 +107,21 @@ class Interface(BaseInterface):
                 return None
 
         if version == 4:
-            method_name = 'interface_%s_vrrp_extended_group_virtual_mac_' \
-                          % int_type
+            method_name = 'interface_%s_vrrp_extended_group_virtual' \
+                          '_mac_' % int_type
             vrid_name = 'vrrpe'
             vmac_name = 'virtual_mac'
         else:
             method_name = 'interface_%s_ipv6_vrrp_extended_group_virtual' \
                           '_mac_02e0_5200_00xx_' % int_type
-            vrid_name = 'vrrpv3e_group'
+            vrid_name = 'vrrpv3e'
             vmac_name = 'vmac'
-
-        if int_type == 've':
-            if self.has_rbridge_id:
-                method_name = "rbridge_id_%s" % method_name
-                arguments['rbridge_id'] = kwargs.pop('rbridge_id', 1)
-            if version == 6:
-                vrid_name = 'vrrpv3e'
 
         arguments[vrid_name] = vrid
 
         if not enable:
             method_name = "%sdelete" % method_name
         else:
-            if version == 6:
-                virtual_mac = True
             arguments[vmac_name] = virtual_mac
             method_name = "%supdate" % method_name
         config = (method_name, arguments)
