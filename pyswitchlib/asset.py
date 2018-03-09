@@ -193,7 +193,7 @@ class Asset(object):
         index = 0
         rest_protocol = None
         del self._overall_status[:]
-    
+
         if rest_proto is not None:
             rest_protocol = rest_proto
         else:
@@ -203,7 +203,7 @@ class Asset(object):
             self._session.verify = cacert
         else:
             self._session.verify = self._default_session_verify
-            
+
         if isinstance(timeout, basestring):
             if timeout == '':
                 timeout = self._session_timeout
@@ -320,7 +320,7 @@ class Asset(object):
 
         if status == False:
             self._raise_rest_validation_exception(result)
-            
+
         self._update_uri_prefix_paths(result)
 
     def _update_fw_version(self):
@@ -453,7 +453,7 @@ class Asset(object):
             if result[0][self._ip_addr]['response']['status_code'] == 401:
                 raise InvalidAuthenticationCredentialsError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Invalid Authentication Credentials.')
             elif result[0][self._ip_addr]['response']['status_code'] == 404:
-                raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.') 
+                raise RestInterfaceError('Status Code: ' + str(result[0][self._ip_addr]['response']['status_code']) + ', Error: Not Found.')
         else:
             try:
                 if self._exc_info:
@@ -657,7 +657,6 @@ class Asset(object):
         :returns: Returns the enabled rest protocols for the asset.
         """
         return self._enabled_rest_protocols
-        
 
     def run_command(self, command=''):
         """
