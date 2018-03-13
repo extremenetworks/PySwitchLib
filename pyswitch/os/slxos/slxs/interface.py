@@ -101,7 +101,8 @@ class Interface(BaseInterface):
             arguments[vrid_name] = vrid
             config = (method_name, arguments)
             x = callback(config, handler='get_config')
-            if '<02e0.5200.00xx>true</02e0.5200.00xx>' in x.data or '<virtual-mac>02e0.5200.00xx</virtual-mac>' in x.data:
+            if '<02e0.5200.00xx>true</02e0.5200.00xx>' in x.data or \
+               '<virtual-mac>02e0.5200.00xx</virtual-mac>' in x.data:
                 return '02e0.5200.00xx'
             else:
                 return None
