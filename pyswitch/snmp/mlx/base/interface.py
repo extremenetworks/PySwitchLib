@@ -138,7 +138,8 @@ class Interface(BaseInterface):
             reason = error.message
             raise ValueError(reason)
 
-    def create_port_channel(self, ports, int_type, portchannel_num, mode, po_exists, desc=None):
+    def create_port_channel(self, ports, int_type, portchannel_num, mode, po_exists,
+                        po_deployed, desc=None):
         """create port channel
 
         args:
@@ -147,6 +148,7 @@ class Interface(BaseInterface):
             portchannel_num (int): port-channel number (1, 2, 3, etc).
             mode (str): mode of port-channel (static, dynamic)
             po_exists (bool): notifies is PO is already created
+            po_deployed (bool): Is PO already deployed
             desc: name of port-channel
 
         returns:
@@ -190,17 +192,23 @@ class Interface(BaseInterface):
                 lag_member_dict = {}
                 lag_member_dict = self.get_port_channel_member_ports(desc)
                 member_cnt = len(lag_member_dict)
-            if member_cnt == 0:
+            if member_cnt == 0 or not po_deployed:
                 # select primary port
                 cli_arr.append('primary-port' + " " + ports[0])
-                # deploy the port channel
+            # deploy the port channel
+            if not po_deployed:
                 cli_arr.append('deploy')
             # Enable the member ports
             cli_arr.append('enable' + " " + port_list_str)
             output = self._callback(cli_arr, handler='cli-set')
             for line in output.split('\n'):
                 if 'Error' in line:
-                    raise ValueError(str(line))
+                    # Skip the error if PO exists
+                    skip_str = 'ports already exist in LAG'
+                    if po_exists and skip_str in line:
+                        continue
+                    else:
+                        raise ValueError(str(line))
             return True
         except Exception as error:
             reason = str(error.message)
@@ -377,7 +385,8 @@ class Interface(BaseInterface):
                        'rx-link-count': rx_link_count,
                        'tx-link-count': tx_link_count,
                        'individual-agg': individual_agg,
-                       'ready-agg': ready_agg}
+                       'ready-agg': ready_agg,
+                       'deployed': deploy}
             # print "result", results
             result.append(results)
         return result
