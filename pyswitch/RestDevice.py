@@ -37,6 +37,8 @@ import pyswitch.os.slxos.base.mct
 import pyswitch.os.slxos.base.services
 import pyswitch.os.slxos.base.system
 import pyswitch.os.slxos.base.cluster
+import pyswitch.os.slxos.slxr.interface
+import pyswitch.os.slxos.slxs.interface
 import pyswitch.utilities as util
 from pyswitch.AbstractDevice import AbstractDevice
 from pyswitch.XMLAsset import XMLAsset
@@ -111,7 +113,7 @@ NOS_VERSIONS = {
 SLXOS_VERSIONS = {
     '16r.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
-        'interface': pyswitch.os.slxos.base.interface.Interface,
+        'interface': pyswitch.os.slxos.slxr.interface.Interface,
         'bgp': pyswitch.os.slxos.base.bgp.Bgp,
         'lldp': pyswitch.os.base.lldp.LLDP,
         'system': pyswitch.os.slxos.base.system.System,
@@ -125,7 +127,7 @@ SLXOS_VERSIONS = {
     },
     '17r.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
-        'interface': pyswitch.os.slxos.base.interface.Interface,
+        'interface': pyswitch.os.slxos.slxr.interface.Interface,
         'bgp': pyswitch.os.slxos.base.bgp.Bgp,
         'lldp': pyswitch.os.base.lldp.LLDP,
         'system': pyswitch.os.slxos.base.system.System,
@@ -139,7 +141,7 @@ SLXOS_VERSIONS = {
     },
     '17r.2': {
         'snmp': pyswitch.os.base.snmp.SNMP,
-        'interface': pyswitch.os.slxos.base.interface.Interface,
+        'interface': pyswitch.os.slxos.slxr.interface.Interface,
         'bgp': pyswitch.os.slxos.base.bgp.Bgp,
         'lldp': pyswitch.os.base.lldp.LLDP,
         'system': pyswitch.os.slxos.base.system.System,
@@ -153,7 +155,7 @@ SLXOS_VERSIONS = {
     },
     '17s.1': {
         'snmp': pyswitch.os.base.snmp.SNMP,
-        'interface': pyswitch.os.slxos.base.interface.Interface,
+        'interface': pyswitch.os.slxos.slxs.interface.Interface,
         'bgp': pyswitch.os.slxos.base.bgp.Bgp,
         'lldp': pyswitch.os.base.lldp.LLDP,
         'system': pyswitch.os.slxos.base.system.System,
