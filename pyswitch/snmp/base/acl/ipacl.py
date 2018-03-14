@@ -139,23 +139,6 @@ class IpAcl(AclParamParser):
 
         return self._parse_source_destination(parameters['protocol_type'], dst)
 
-    def parse_established(self, **parameters):
-        """
-        parse the established param
-        Args:
-            parameters contains:
-                established(boolean): true/false
-        Returns:
-            Return None or parsed string on success
-        Raise:
-            Raise ValueError exception
-        Examples:
-        """
-        if 'established' not in parameters or not parameters['established']:
-            return None
-
-        return 'established'
-
     def parse_vlan(self, **parameters):
         """
         parse the vlan param
@@ -710,3 +693,36 @@ class IpAcl(AclParamParser):
             return self._parse_icmp_message(icmp_filter[0])
 
         raise ValueError("invalid icmp filter string")
+
+    def parse_tcp_operator(self, **parameters):
+        """
+        parse the icmp_message param
+        Args:
+            parameters contains:
+                tcp_operator(string): Validate comparison operator for TCP port
+                    This parameter works only for tcp protocol.
+                    Allowed values are : established and/or syn
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'tcp_operator' in parameters and parameters['tcp_operator']:
+            tcp_operator = parameters['tcp_operator']
+
+            if 'protocol_type' not in parameters or \
+                    not parameters['protocol_type'] or \
+                    parameters['protocol_type'] != 'tcp':
+
+                raise ValueError("{} tcp operator is supported only for."
+                                 "protocol_type = tcp"
+                                 .format(tcp_operator))
+
+            if tcp_operator in ['established', 'syn', 'established syn',
+                                'syn established']:
+                return tcp_operator
+
+            raise ValueError("Only supported tcp operator are: "
+                             "established and/or syn")
+        return None
