@@ -67,12 +67,13 @@ class IpAcl(AclParamParser):
         if v4_str[0:4] == "host":
             return v4_str[0:4] + ' ' + v4_str[5:] + ' ' + op_str
 
+        v4_str = ' '.join(v4_str.split())
         if '/' in v4_str:
             ip, prefix_len = v4_str.split('/')
             self._validate_ipv4(ip)
 
             if prefix_len.isdigit():
-                if int(prefix_len) < 0 and int(prefix_len) > 32:
+                if int(prefix_len) < 0 or int(prefix_len) > 32:
                     raise ValueError('Invalid address: ' + v4_str)
                 return v4_str + ' ' + op_str
             else:
