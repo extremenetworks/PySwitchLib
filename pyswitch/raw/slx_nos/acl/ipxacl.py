@@ -112,6 +112,7 @@ class IpAcl(AclParamParser):
             ret['host_ip'] = v4_str[5:]
             return ret
 
+        v4_str = ' '.join(v4_str.split())
         if '/' in v4_str:
             ip, mask = v4_str.split('/')
 
@@ -122,9 +123,15 @@ class IpAcl(AclParamParser):
                 return ret
 
             if address_type == 'ip':
-                utilities.validate_ip_address(mask, address_type)
-                ret['host_any'] = ip
-                ret['mask'] = mask
+                if mask.isdigit():
+                    if int(mask) < 0 or int(mask) > 32:
+                        raise ValueError("Invalid Prefix: {}. Valid Range "
+                                         "0 to 32".format(mask))
+                    ret['host_any'] = v4_str
+                else:
+                    utilities.validate_ip_address(mask, address_type)
+                    ret['host_any'] = ip
+                    ret['mask'] = mask
                 return ret
 
         raise ValueError("Invalid input param {}".format(input_param))

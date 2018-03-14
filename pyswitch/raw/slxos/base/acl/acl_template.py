@@ -22,7 +22,7 @@ acl_rule_ip = """
                 {% if source.host_any != "any" %}
                   {% if source.host_any == "host" %}
                     <src-host-ip>{{source.host_ip}}</src-host-ip>
-                  {% elif address_type == "ip" %}
+                  {% elif source.mask is not none %}
                     <src-mask>{{source.mask}}</src-mask>
                   {% endif %}
                 {% endif %}
@@ -57,7 +57,7 @@ acl_rule_ip = """
                   {% if destination.host_any != "any" %}
                     {% if destination.host_any == "host" %}
                       <dst-host-ip>{{destination.host_ip}}</dst-host-ip>
-                    {% elif address_type == "ip" %}
+                    {% elif destination.mask is not none %}
                       <dst-mask>{{destination.mask}}</dst-mask>
                     {% endif %}
                   {% endif %}
@@ -322,7 +322,7 @@ acl_rule_ip_bulk = """
                 {% if ud.source.host_any != "any" %}
                   {% if ud.source.host_any == "host" %}
                     <src-host-ip>{{ud.source.host_ip}}</src-host-ip>
-                  {% elif address_type == "ip" %}
+                  {% elif ud.source.mask is not none %}
                     <src-mask>{{ud.source.mask}}</src-mask>
                   {% endif %}
                 {% endif %}
@@ -357,7 +357,7 @@ acl_rule_ip_bulk = """
                   {% if ud.destination.host_any != "any" %}
                     {% if ud.destination.host_any == "host" %}
                       <dst-host-ip>{{ud.destination.host_ip}}</dst-host-ip>
-                    {% elif address_type == "ip" %}
+                    {% elif ud.destination.mask is not none %}
                       <dst-mask>{{ud.destination.mask}}</dst-mask>
                     {% endif %}
                   {% endif %}
