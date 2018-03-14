@@ -640,7 +640,7 @@ def validate_port_channel_id(plat_type, po_id):
         max_lag = 64
     elif plat_type == 'BR-VDX6740' or plat_type == 'VDX6740T-1G' or \
             plat_type == 'BR-VDX8770-4' or plat_type == 'BR-VDX8770-8' or \
-            plat_type == 'BR-VDX6940-144S':
+            plat_type == 'BR-VDX6940-144S' or plat_type == 'BR-VDX6740T':
         min_lag = 1
         max_lag = 6144
     elif plat_type == 'BR-SLX9240' or plat_type == 'BR-SLX9140':
