@@ -462,8 +462,6 @@ class Acl(BaseAcl):
             cli_arr.append('exit')
 
             output = self._callback(cli_arr, handler='cli-set')
-            if 'Error: ' in output and acl_name in output:
-                continue
             self._process_cli_output(inspect.stack()[0][3], config, output)
 
         return 'apply_acl: Successful'
@@ -779,7 +777,8 @@ class Acl(BaseAcl):
         user_data['source_str'] = self.ip.parse_source(**parameters)
         user_data['dst_str'] = self.ip.parse_destination(**parameters)
         user_data['copy_sflow'] = self.ip.parse_copy_sflow(**parameters)
-        user_data['established_str'] = self.ip.parse_established(**parameters)
+        user_data['tcp_operator_str'] = \
+            self.ip.parse_tcp_operator(**parameters)
         user_data['icmp_filter_str'] = \
             self.ip.parse_icmp_filter(**parameters)
         user_data['dscp_mapping_str'] = \

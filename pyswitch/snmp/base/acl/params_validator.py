@@ -3,12 +3,12 @@ def validate_params_mlx_add_ipv4_rule_acl(**parameters):
 
     required_params = ['source', 'acl_name', 'action']
     accepted_params = ['precedence', 'dscp_marking', 'copy_sflow', 'mirror',
-                       'drop_precedence_force', 'vlan_id', 'established',
+                       'drop_precedence_force', 'vlan_id',
                        'log', 'priority_mapping', 'seq_id', 'destination',
                        'suppress_rpf_drop', 'priority', 'source',
                        'priority_force', 'option', 'acl_name',
                        'drop_precedence', 'fragment', 'dscp', 'protocol_type',
-                       'tos', 'action', 'icmp_filter']
+                       'tos', 'action', 'icmp_filter', 'tcp_operator']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]

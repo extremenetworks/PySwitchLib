@@ -91,7 +91,7 @@ add_ip_extended_acl_rule_template = '''
     {% if source_str is not none %} {{ source_str }} {% endif %}
     {% if dst_str is not none %} {{ dst_str }} {% endif %}
     {% if copy_sflow is not none %} {{copy_sflow}} {% endif %}
-    {% if established_str is not none %} {{ established_str }} {% endif %}
+    {% if tcp_operator_str is not none %} {{ tcp_operator_str }} {% endif %}
     {% if icmp_filter_str is not none %} {{ icmp_filter_str }} {% endif %}
     {% if drop_precedence_str is not none %}
         {{ drop_precedence_str }} {% endif %}

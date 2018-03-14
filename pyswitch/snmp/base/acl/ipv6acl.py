@@ -528,9 +528,10 @@ class Ipv6Acl(AclParamParser):
                                  "protocol_type = tcp"
                                  .format(tcp_operator))
 
-            if tcp_operator in ['established', 'syn']:
+            if tcp_operator in ['established', 'syn', 'established syn',
+                                'syn established']:
                 return tcp_operator
 
             raise ValueError("Only supported tcp operator are: "
-                             "established or syn")
+                             "established and/or syn")
         return None
