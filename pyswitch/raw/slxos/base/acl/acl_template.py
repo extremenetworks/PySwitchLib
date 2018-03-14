@@ -86,7 +86,7 @@ acl_rule_ip = """
 
                   {% if dscp is not none %} <dscp>{{dscp}}</dscp> {% endif %}
                   {% if dscp_force is not none %}
-                    <dscp-force>{{dscp-force}}</dscp-force>
+                    <dscp-force>{{dscp_force}}</dscp-force>
                   {% endif %}
 
                   {% if drop_precedence_force is not none %}
