@@ -462,8 +462,6 @@ class Acl(BaseAcl):
             cli_arr.append('exit')
 
             output = self._callback(cli_arr, handler='cli-set')
-            if 'Error: ' in output and acl_name in output:
-                continue
             self._process_cli_output(inspect.stack()[0][3], config, output)
 
         return 'apply_acl: Successful'
