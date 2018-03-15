@@ -181,7 +181,7 @@ class System(BaseSystem):
             """
         callback = kwargs.pop('callback', self._callback)
         try:
-            cli_res = callback('write memory', handler='cli-get')
+            cli_res = callback('write memory', handler='cli-set')
             success_msg = re.search(r'Write startup-config done', cli_res)
             if not success_msg:
                 response = 'failed'
