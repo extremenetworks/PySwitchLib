@@ -7254,3 +7254,91 @@ class Interface(object):
                             'vendor_name': vendor_name}
             result.append(item_results)
         return result
+
+    def ip_default_route(self, **kwargs):
+        """ Add/Delete/Get ip default route on the device
+        Args:
+            ip_address(str): time-zone for the device
+            rbridge_id(str): rbridge-id for device.
+            vrf_name(str): Name of the VRF where the default route should be
+                            deleted.
+            delete(bool): True is the IP address is added and False if its to
+                be deleted (True, False). Default value will be False if not
+                specified.
+            get (bool): Get Ipv4 address. (True, False)
+        Returns:
+            Return value of the callback
+        Raises:
+            KeyError: if `ip_address` is not passed.
+            ValueError: if `ip_address` is invalid.
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.85.107']
+            >>> auth = ('admin', 'admin')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.system.ip_default_route(ip_address='10.10.10.1/32')
+            ...         output = dev.system.ip_default_route(ip_address='10.10.10.1/32',
+            ...                                              vrf_name='red')
+            ...         output = dev.system.ip_default_route(ip_address='10.10.10.1/32',
+            ...                                              rbridge_id='111',
+            ...                                              vrf_name='red')
+            ...         output = dev.system.ip_default_route(ip_address='10.10.10.1/32',
+            ...                                              rbridge_id='111')
+            ...         output = dev.system.ip_default_route(delete=True,
+            ...                                              ip_address='10.10.10.1/32')
+            ...         output = dev.system.ip_default_route(delete=True,
+            ...                                              ip_address='10.10.10.1/32',
+            ...                                              vrf_name='blue')
+            ...         output = dev.system.ip_default_route(delete=True,
+            ...                                              ip_address='10.10.10.1/32',
+            ...                                              rbridge_id='111',
+            ...                                              vrf_name='blue')
+            ...         output = dev.system.ip_default_route(delete=True,
+            ...                                              ip_address='10.10.10.1/32',
+            ...                                              rbridge_id='111')
+            ...         output = dev.system.ip_default_route(get=True)
+            ...         output = dev.system.ip_default_route(get=True, vrf_name='green')
+            ...         output = dev.system.ip_default_route(get=True, rbridge_id='111',
+            ...                                              vrf_name='green')
+            ...         output = dev.system.ip_default_route(get=True, rbridge_id='111')
+
+        """
+        args = dict()
+        ip_address = kwargs.pop('ip_address', None)
+        vrf_name = kwargs.pop('vrf_name', None)
+        rbridge_id = kwargs.pop('rbridge_id', None)
+
+        if vrf_name is not None:
+            method_name = 'vrf_address_family_ipv4_unicast_ip_route_static_route_nh'
+            static_route_nh = ('0.0.0.0/0', ip_address)
+            args['vrf'] = vrf_name
+            args['static_route_nh'] = static_route_nh
+        else:
+            method_name = 'ip_route_static_route_nh'
+            static_route_nh = ('0.0.0.0/0', ip_address)
+            args['static_route_nh'] = static_route_nh
+
+        if rbridge_id is not None:
+            method_name = 'rbridge_id_' + method_name
+            args['rbridge_id'] = rbridge_id
+
+        if kwargs.pop('get', False):
+            method_name = method_name + '_get'
+            config = (method_name, args)
+            output = self._callback(config, handler='get_config')
+            util = Util(output.data)
+            nexthop = util.find(util.root, './/static-route-next-hop')
+            if nexthop is None:
+                return False
+            else:
+                return True
+
+        if kwargs.pop('delete', False):
+            method_name = method_name + '_delete'
+        else:
+            method_name = method_name + '_create'
+
+        config = (method_name, args)
+        return self._callback(config)

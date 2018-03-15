@@ -2694,15 +2694,21 @@ class Interface(BaseInterface):
         return port_id
 
     def ip_default_route(self, **kwargs):
-        """ Add/Get clock timezone of the device
+        """ Add/Remove/Get ip default-route on the device
         Args:
-            timezone(str): time-zone for the device
-            summer_time(bool): boolean to indicate summer-time is enabled or not
+            ip_addr (str): IPv4 IP Address..
+                Ex: 10.10.10.1/32 or 10.10.10.0/24
+            vrf_name (str): Name of the VRF where the default route should be
+                            deleted.
+            delete (bool): True is the IP address is added and False if its to
+                be deleted (True, False). Default value will be False if not
+                specified.
+            get (bool): Get Ipv4 address. (True, False)
         Returns:
             Return value of the callback
         Raises:
-            KeyError: if `host_name` is not passed.
-            ValueError: if `host_name` is invalid.
+            KeyError: if `ip_address` is not passed.
+            ValueError: if `ip_address` is invalid.
         Examples:
             >>> import pyswitch.device
             >>> switches = ['10.24.85.107']
@@ -2710,30 +2716,44 @@ class Interface(BaseInterface):
             >>> for switch in switches:
             ...     conn = (switch, '22')
             ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
-            ...         output = dev.system.clock_timezone(timezone='us/alaska', summer_time=True)
-            ...         output = dev.system.clock_timezone(timezone='us/alaska')
-            ...         output = dev.system.clock_timezone(get=True)
+            ...         output = dev.system.ip_default_route(ip_address='10.10.10.1/32')
+            ...         output = dev.system.ip_default_route(ip_address='10.10.10.1/32',
+            ...                                              vrf_name='red')
+            ...         output = dev.system.ip_default_route(delete=True,
+            ...                                              ip_address='10.10.10.1/32')
+            ...         output = dev.system.ip_default_route(delete=True,
+            ...                                              ip_address='10.10.10.1/32',
+            ...                                              vrf_name='blue')
+            ...         output = dev.system.ip_default_route(get=True)
+            ...         output = dev.system.ip_default_route(get=True, vrf_name='green')
         """
         cli_arr = []
+        vrf_name = kwargs.pop('vrf_name', None)
 
         if kwargs.pop('get', False):
             result = dict()
             address = []
-            cli_arr = 'show running | include default-network'
+            cli_arr = 'show ip static route'
+            if vrf_name is not None:
+                cli_arr.append(' vrf ' + vrf_name)
             cli_res = self._callback(cli_arr, handler='cli-get')
             network = cli_res.split('\n')
             for each_item in network:
-                ip_addr = re.search(r'([0-9]{1,3}\.?){4}/([0-9]{1,2})', each_item)
+                ip_addr = re.search(r'0.0.0.0/0\s+(([0-9]{1,3}\.?){4}).*', each_item)
                 if ip_addr is not None:
-                    address.append(ip_addr.group())
+                    address.append(ip_addr.group(1))
             result['ip_address'] = address
             return (result)
 
+        if vrf_name is not None:
+            cli_arr.append('vrf ' + vrf_name)
+            cli_arr.append('address-family ipv4')
+
         ip_address = kwargs.pop('ip_address')
         if kwargs.pop('delete', False):
-            cli_arr.append('no ip default-network ' + ip_address)
+            cli_arr.append('no ip route 0.0.0.0/0 ' + ip_address)
         else:
-            cli_arr.append('ip default-network ' + ip_address)
+            cli_arr.append('ip route 0.0.0.0/0 ' + ip_address)
 
         self._callback(cli_arr, handler='cli-set')
         return True
