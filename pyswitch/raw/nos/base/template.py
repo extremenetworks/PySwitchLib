@@ -34,6 +34,22 @@ vlan_create = """
 </config>
 """
 
+vlan_delete = """
+            <vlan operation="remove">
+               <name>{vlan_id}</name>
+            </vlan>
+"""
+
+vlan_bulk_delete = """
+<config>
+    <interface-vlan xmlns="urn:brocade.com:mgmt:brocade-interface">
+        <interface>
+            {vlan_list}
+        </interface>
+    </interface-vlan>
+</config>
+"""
+
 rbridge_id_interface_loopback_get = """
   /rbridge-id/interface/loopback
 """

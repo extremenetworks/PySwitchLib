@@ -72,8 +72,8 @@ class Utils(BaseUtils):
 
                 cli_cmd.append(cli)
             return cli_cmd
-        except ValueError:
-            raise ValueError('Invalid IP: %s', numips)
+        except ValueError as e:
+            raise AttributeError(e.message)
 
     def _execute_cli(self, cli_list):
         """
@@ -85,8 +85,8 @@ class Utils(BaseUtils):
                 cmd = cmd.strip()
                 cli_output[cmd] = self._callback(cmd, handler='cli-get')
         except Exception as error:
-            reason = error.message
-            raise ValueError("ping execution failed due to %s" % reason)
+            reason = "ping execution failed due to  " + error.message
+            raise ValueError(reason)
         return cli_output
 
     def ping(self, **kwargs):
@@ -176,9 +176,11 @@ class Utils(BaseUtils):
         if not timeout_value:
             timeout_value = 50
         size = kwargs.pop('size', 56)
-        cli_list = self._create_ping_cmd(targets, vrf, count, timeout_value, size)
-
-        cli_output = self._execute_cli(cli_list)
+        try:
+            cli_list = self._create_ping_cmd(targets, vrf, count, timeout_value, size)
+            cli_output = self._execute_cli(cli_list)
+        except Exception:
+            raise
 
         final_output = []
         status = True

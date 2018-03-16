@@ -39,7 +39,7 @@ acl_rule_mac = """
               {% endif %}
 
               {% if vlan is not none %}
-                <vlan>{{vlan}}</vlan>
+                <vlan>{{vlan.vlan_id}}</vlan>
               {% endif %}
 
               {% if pcp is not none %}

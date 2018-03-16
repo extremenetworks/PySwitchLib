@@ -97,6 +97,33 @@ class Interface(BaseInterface):
             reason = e.message
             raise ValueError(reason)
 
+    def del_vlan_int(self, vlan_id_list):
+        """
+        Delete VLAN Interfaces.
+
+        Args:
+            vlan_id_list: List of VLAN interfaces being deleted. Value of 2-4096.
+
+        Returns:
+            True if command completes successfully or False if not.
+
+        Raises:
+            ValueError
+        """
+        try:
+            data_list = []
+            for vlan_id in vlan_id_list:
+                data_list.append(getattr(template, 'vlan_delete').format(vlan_id=vlan_id))
+            str = "".join(data_list)
+
+            config = getattr(template, 'vlan_bulk_delete').format(vlan_list=str)
+            self._callback(config)
+            return True
+
+        except Exception as e:
+            reason = e.message
+            raise ValueError(reason)
+
     def overlay_gateway(self, **kwargs):
         """
 

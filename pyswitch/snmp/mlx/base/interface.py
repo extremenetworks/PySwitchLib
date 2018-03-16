@@ -123,13 +123,23 @@ class Interface(BaseInterface):
                     cli_arr.append('vlan' + " " + str(vlan))
                 else:
                     cli_arr.append('vlan' + " " + str(vlan) + " " + 'name' + " " + '"' + desc + '"')
-            self._callback(cli_arr, handler='cli-set')
+            output = self._callback(cli_arr, handler='cli-set')
+            prev = None
+            for line in output.split('\n'):
+                temp = line
+                if 'Error' in line:
+                    vlan_error = re.search(r'#vlan (.+)', prev)
+                    if vlan_error:
+                        failed_vlan = vlan_error.group(1)
+                    raise ValueError("Failed to create VLAN " + failed_vlan + " " + str(line))
+                prev = temp
             return True
         except Exception as error:
             reason = error.message
-            raise ValueError('Failed to create VLAN %s' % (reason))
+            raise ValueError(reason)
 
-    def create_port_channel(self, ports, int_type, portchannel_num, mode, po_exists, desc=None):
+    def create_port_channel(self, ports, int_type, portchannel_num, mode, po_exists,
+                        po_deployed, desc=None):
         """create port channel
 
         args:
@@ -138,6 +148,7 @@ class Interface(BaseInterface):
             portchannel_num (int): port-channel number (1, 2, 3, etc).
             mode (str): mode of port-channel (static, dynamic)
             po_exists (bool): notifies is PO is already created
+            po_deployed (bool): Is PO already deployed
             desc: name of port-channel
 
         returns:
@@ -164,8 +175,6 @@ class Interface(BaseInterface):
                 raise ValueError('Port channel description is NULL for PO %d', portchannel_num)
             if len(desc) < 1 or len(desc) > 64:
                 raise ValueError('Port-channel name should be 1-64 characters')
-            if int(portchannel_num) < 1 or int(portchannel_num) > 256:
-                raise ValueError('Port-channel id should be between 1 and 256')
             if int_type != 'ethernet':
                 raise ValueError('Not a valid interface type (%s) for MLX' % (int_type))
             # Check if a port-channel exists with same id TBD in action
@@ -183,17 +192,23 @@ class Interface(BaseInterface):
                 lag_member_dict = {}
                 lag_member_dict = self.get_port_channel_member_ports(desc)
                 member_cnt = len(lag_member_dict)
-            if member_cnt == 0:
+            if member_cnt == 0 or not po_deployed:
                 # select primary port
                 cli_arr.append('primary-port' + " " + ports[0])
-                # deploy the port channel
+            # deploy the port channel
+            if not po_deployed:
                 cli_arr.append('deploy')
             # Enable the member ports
             cli_arr.append('enable' + " " + port_list_str)
             output = self._callback(cli_arr, handler='cli-set')
             for line in output.split('\n'):
                 if 'Error' in line:
-                    raise ValueError(str(line))
+                    # Skip the error if PO exists
+                    skip_str = 'ports already exist in LAG'
+                    if po_exists and skip_str in line:
+                        continue
+                    else:
+                        raise ValueError(str(line))
             return True
         except Exception as error:
             reason = str(error.message)
@@ -370,7 +385,8 @@ class Interface(BaseInterface):
                        'rx-link-count': rx_link_count,
                        'tx-link-count': tx_link_count,
                        'individual-agg': individual_agg,
-                       'ready-agg': ready_agg}
+                       'ready-agg': ready_agg,
+                       'deployed': deploy}
             # print "result", results
             result.append(results)
         return result
@@ -515,6 +531,8 @@ class Interface(BaseInterface):
             if 'keep-alive' in line:
                 continue
             po_name = re.search(r'LAG \"(.+)\" ID (.+) \((.+) Deployed\)', line)
+            if po_name is None:
+                continue
             lag_name = po_name.group(1)
             lag_id = po_name.group(2)
             type = po_name.group(3)

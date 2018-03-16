@@ -68,8 +68,8 @@ class Utils(object):
                         numips, vrf, count, size, timeout_value)
                 cli_cmd.append(cli)
             return cli_cmd
-        except ValueError:
-            raise ValueError('Invalid IP: %s', numips)
+        except ValueError as e:
+            raise AttributeError(e.message)
 
     def _execute_cli(self, opt, cli_list):
         """
@@ -179,16 +179,18 @@ class Utils(object):
         if not timeout_value:
             timeout_value = 10
         size = kwargs.pop('size', 56)
-        cli_list = self._create_ping_cmd(targets, vrf, count, timeout_value, size)
 
         opt = {'device_type': 'brocade_vdx'}
         opt['ip'] = self._host
         opt['username'] = self._auth[0]
         opt['password'] = self._auth[1]
-        opt['verbose'] = True
         opt['global_delay_factor'] = 0.5
 
-        cli_output = self._execute_cli(opt, cli_list)
+        try:
+            cli_list = self._create_ping_cmd(targets, vrf, count, timeout_value, size)
+            cli_output = self._execute_cli(opt, cli_list)
+        except Exception:
+            raise
 
         failed_ips_list = []
         success_ips_list = []
@@ -201,6 +203,8 @@ class Utils(object):
             elif ipv6_address.search(key):
                 ip = ipv6_address.search(key).group()
             value_list = value.splitlines()
+            p_tx = p_rx = 0
+            p_loss = '100'
             for i, line in enumerate(value_list):
                 if line.startswith('--- ' + ip):
 

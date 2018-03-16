@@ -19,7 +19,7 @@ class ExistingApiPortBound(PyswitchlibException):
     """If defined API port is different that existing bound port. The existing bound port should be used."""
 
 class ApiDaemonConnectionError(PyswitchlibException):
-    """If connecion to the API daemon fails or API deamon cannot be found."""
+    """If connection to the API daemon fails or API daemon cannot be found."""
 
 class RestProtocolTypeError(PyswitchlibException):
     """If provided rest protocol type specified is invalid."""
@@ -32,3 +32,4 @@ class CACertificateNotSpecifiedError(PyswitchlibException):
 
 class InvalidAuthenticationCredentialsError(PyswitchlibException):
     """If the provided authentication credentials are invalid."""
+
