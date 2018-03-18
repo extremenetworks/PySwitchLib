@@ -18,6 +18,9 @@ limitations under the License.
 # import xml.etree.ElementTree
 import jinja2
 import re
+from xmljson import parker
+import json
+import pyswitch
 from pyswitch.utilities import Util
 import pyswitch.raw.slx_nos.acl.params_validator as params_validator
 from pyswitch.raw.base.acl import Acl as BaseAcl
@@ -567,3 +570,65 @@ class SlxNosAcl(BaseAcl):
             except Exception as rpc_err:
                 raise ValueError(rpc_err)
         return True
+
+    def _get_acl_rules(self, rest_device, address_type, acl_type,
+                       acl_name, sequences):
+        """
+        Return list of rules configured for acl_name
+        """
+        rules_list = []
+        method = address_type + '_access_list_' + acl_type + '_seq_get'
+        config = (method, {acl_type: acl_name, 'resource_depth': 2})
+        output = rest_device._callback(config, handler='get_config')
+        util = Util(output.data)
+
+        for rcvd_seq in util.root.findall(".//seq"):
+            if rcvd_seq is not None:
+                seq_id = int(rcvd_seq.find('seq-id').text)
+                if seq_id in sequences:
+                    sequences.remove(seq_id)
+                    pd = parker.data(rcvd_seq)
+                    rules_list.append(pd)
+
+        return rules_list
+
+    def get_acl_rules(self, **kwargs):
+        """
+        Returns the number of congiured rules
+        Args:
+            acl_name (str): Name of the access list.
+        Returns:
+            Number of rules configured,
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.get_acl_rules(acl_name='Acl_1',
+                                                seq_id='all')
+        """
+
+        # Validate required and accepted parameters
+        params_validator.validate_params_get_acl_rules(**kwargs)
+
+        # Parse params
+        acl_name = self.ip.parse_acl_name(**kwargs)
+
+        if 'device' not in kwargs or not kwargs['device']:
+            raise ValueError('Need device object to proceed')
+
+        netc_device = kwargs['device'].device_type
+        with pyswitch.device.Device(conn=netc_device._conn,
+                                    auth=netc_device._auth,
+                                    connection_type='REST') as rest_device:
+
+            acl = self._get_acl_info_rest(rest_device.device_type,
+                                          acl_name, get_seqs=True)
+            acl_type = acl['type']
+            address_type = acl['protocol']
+            seq_range = self.ap.parse_seq_id_by_range(acl['seq_ids'], **kwargs)
+
+            rules_list = self._get_acl_rules(rest_device.device_type,
+                                             address_type, acl_type,
+                                             acl_name, seq_range)
+            resp_body = json.dumps(rules_list)
+            return resp_body
