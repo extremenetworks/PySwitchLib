@@ -10,6 +10,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+import json
 import inspect
 import jinja2
 import re
@@ -1595,3 +1596,323 @@ class Acl(BaseAcl):
         output = self._callback(cli_arr, handler='cli-set')
         return self._process_cli_output(inspect.stack()[0][3],
                                         str(cli_arr), output)
+
+    def _get_acl_rules(self, address_type, acl_type, acl_name, seq_range):
+        """
+        Return list of rules configured for acl_name
+        """
+        rules_list = []
+
+        if address_type == 'mac':
+            cmd = acl_template.show_l2_access_list
+        elif address_type == 'ip':
+            cmd = acl_template.show_ip_access_list
+        elif address_type == 'ipv6':
+            cmd = acl_template.show_ipv6_access_list
+        else:
+            raise ValueError('{} not supported'.format(address_type))
+
+        t = jinja2.Template(cmd)
+        config = t.render(acl_name_str=acl_name)
+        config = ' '.join(config.split())
+
+        output = self._callback(config, handler='cli-get')
+
+        # Check if there is any error
+        self._process_cli_output(inspect.stack()[0][3], config, output)
+
+        if address_type == 'mac':
+            rules_list = self._parse_l2_rule(output, seq_range)
+        elif address_type == 'ip':
+            if acl_type == 'standard':
+                rules_list = self._parse_std_ip_rule(output, seq_range)
+            elif acl_type == 'extended':
+                rules_list = self._parse_ext_ip_rule(output, seq_range)
+        elif address_type == 'ipv6':
+            pass
+
+        return rules_list
+
+    def _parse_l2_rule(self, output, seq_range):
+
+        rules_list = []
+        for line in output.split('\n'):
+            if line:
+                rule = line.split()
+
+                index = 0
+                if rule[index][:-1].isdigit():
+
+                    if int(rule[index][:-1]) in seq_range:
+                        config = {}
+
+                        config['seq_id'] = rule[index][:-1]
+                        index += 1
+
+                        config['action'] = rule[index]
+                        index += 1
+
+                        config['source'] = rule[index]
+                        index += 1
+
+                        if config['source'] != 'any':
+                            config['src_mac_addr_mask'] = rule[index]
+                            index += 1
+
+                        config['dst'] = rule[index]
+                        index += 1
+
+                        if config['dst'] != 'any':
+                            config['dst_mac_addr_mask'] = rule[index]
+                            index += 1
+
+                        config['vlan'] = rule[index]
+                        index += 1
+
+                        for j, val in enumerate(rule[index:]):
+                            i = index + j
+                            if val == 'etype':
+                                config['ethertype'] = rule[i + 1]
+                            elif val == 'priority':
+                                config['priority'] = rule[i + 1]
+                            elif val == 'priority-force':
+                                config['priority_force'] = rule[i + 1]
+                            elif val == 'priority-mapping':
+                                config['priority_mapping'] = rule[i + 1]
+                            elif val == 'drop-precedence-force':
+                                config['drop_precedence_force'] = rule[i + 1]
+                            elif val == 'drop-precedence':
+                                config['drop_precedence'] = rule[i + 1]
+                            elif val == 'mirror':
+                                config['mirror'] = "True"
+                            elif val == 'log':
+                                config['log'] = "True"
+                            elif val == 'arp-guard':
+                                config['arp_guard'] = "True"
+
+                        rules_list.append(config)
+
+        return rules_list
+
+    def _parse_std_ip_rule(self, output, seq_range):
+
+        rules_list = []
+        for line in output.split('\n'):
+            if line:
+                rule = line.split()
+
+                index = 0
+                if rule[index][:-1].isdigit():
+
+                    if int(rule[index][:-1]) in seq_range:
+                        config = {}
+
+                        config['seq_id'] = rule[index][:-1]
+                        index += 1
+
+                        config['action'] = rule[index]
+                        index += 1
+
+                        config['source'] = rule[index]
+                        index += 1
+
+                        if config['source'] != 'any':
+                            config['source'] += '/' + rule[index]
+                            index += 1
+
+                        if 'log' in rule:
+                            config['log'] = "True"
+
+                        rules_list.append(config)
+        return rules_list
+
+    def _parse_ext_ip_rule(self, output, seq_range):
+
+        rules_list = []
+        for line in output.split('\n'):
+            if line:
+                rule = line.split()
+
+                index = 0
+                if rule[index][:-1].isdigit():
+
+                    if int(rule[index][:-1]) in seq_range:
+                        config = {}
+
+                        config['seq_id'] = rule[index][:-1]
+                        index += 1
+
+                        config['action'] = rule[index]
+                        index += 1
+
+                        if rule[index] == 'vlan':
+                            config['vlan_id'] = rule[index + 1]
+                            index += 2
+
+                        config['protocol_type'] = rule[index]
+                        index += 1
+
+                        config['source'] = rule[index]
+                        index += 1
+
+                        if config['source'] == 'host':
+                            config['source'] += ',' + rule[index]
+                            index += 1
+                        elif config['source'] != 'any':
+                            config['source'] += '/' + rule[index]
+                            index += 1
+
+                        if rule[index] in ['eq', 'lt', 'gt', 'neq']:
+                            config['source'] += ' ' + rule[index] + \
+                                ' ' + rule[index + 1]
+                            index += 2
+
+                        elif rule[index] == 'range':
+                            config['source'] += ' ' + rule[index] + \
+                                ' ' + rule[index + 1] + ' ' + rule[index + 2]
+                            index += 3
+
+                        config['destination'] = rule[index]
+                        index += 1
+
+                        if config['destination'] == 'host':
+                            config['destination'] += ',' + rule[index]
+                            index += 1
+                        elif config['destination'] != 'any':
+                            config['destination'] += '/' + rule[index]
+                            index += 1
+
+                        if len(rule) == index:
+                            rules_list.append(config)
+                            continue
+
+                        if rule[index] in ['eq', 'lt', 'gt', 'neq']:
+                            config['destination'] += ' ' + rule[index] + \
+                                ' ' + rule[index + 1]
+                            index += 2
+                        elif rule[index] == 'range':
+                            config['destination'] += ' ' + rule[index] + \
+                                ' ' + rule[index + 1] + ' ' + rule[index + 2]
+                            index += 3
+
+                        if len(rule) == index:
+                            rules_list.append(config)
+                            continue
+
+                        for j, val in enumerate(rule[index:]):
+                            i = index + j
+                            if val == 'priority':
+                                config['priority'] = rule[i + 1]
+                            elif val == 'priority-force':
+                                config['priority_force'] = rule[i + 1]
+                            elif val == 'priority-mapping':
+                                config['priority_mapping'] = rule[i + 1]
+                            elif val == 'drop-precedence-force':
+                                config['drop_precedence_force'] = rule[i + 1]
+                            elif val == 'drop-precedence':
+                                config['drop_precedence'] = rule[i + 1]
+                            elif val == 'precedence':
+                                config['precedence'] = rule[i + 1]
+                            elif val == 'dscp-marking':
+                                config['dscp_marking'] = rule[i + 1]
+                            elif val == 'dscp-mapping':
+                                config['dscp'] = rule[i + 1]
+                            elif val == 'option':
+                                config['option'] = rule[i + 1]
+                            elif val == 'tos':
+                                config['tos'] = rule[i + 1]
+                            elif val == 'mirror':
+                                config['mirror'] = "True"
+                            elif val == 'log':
+                                config['log'] = "True"
+                            elif val == 'suppress-rpf-drop':
+                                config['suppress_rpf_drop'] = "true"
+                            elif val == 'fragment':
+                                config['fragment'] = "True"
+                            elif val == 'copy-sflow':
+                                config['copy_sflow'] = "True"
+                            elif val == 'established':
+                                if 'tcp_operator' in config:
+                                    config['tcp_operator'] = 'established syn'
+                                else:
+                                    config['tcp_operator'] = 'established'
+                            elif val == 'syn':
+                                if 'tcp_operator' in config:
+                                    config['tcp_operator'] = 'established syn'
+                                else:
+                                    config['tcp_operator'] = 'syn'
+                            elif val in ['administratively-prohibited',
+                                         'any-icmp-type',
+                                         'destination-host-prohibited',
+                                         'destination-host-unknown',
+                                         'destination-net-prohibited',
+                                         'destination-network-unknown',
+                                         'echo',
+                                         'echo-reply',
+                                         'general-parameter-problem',
+                                         'host-precedence-violation',
+                                         'host-redirect',
+                                         'host-tos-redirect',
+                                         'host-tos-unreachable',
+                                         'host-unreachable',
+                                         'information-reply',
+                                         'information-request',
+                                         'mask-reply',
+                                         'mask-request',
+                                         'net-redirect',
+                                         'net-tos-redirect',
+                                         'net-tos-unreachable',
+                                         'net-unreachable',
+                                         'packet-too-big',
+                                         'parameter-problem',
+                                         'port-unreachable',
+                                         'precedence-cutoff',
+                                         'protocol-unreachable',
+                                         'reassembly-timeout',
+                                         'redirect',
+                                         'router-advertisement',
+                                         'router-solicitation',
+                                         'source-host-isolated',
+                                         'source-quench',
+                                         'source-route-failed',
+                                         'time-exceeded',
+                                         'timestamp-reply',
+                                         'timestamp-request',
+                                         'ttl-exceeded',
+                                         'unreachable']:
+                                config['icmp_filter'] = val
+                        rules_list.append(config)
+        return rules_list
+
+    def get_acl_rules(self, **kwargs):
+        """
+        Returns the number of congiured rules
+        Args:
+            acl_name (str): Name of the access list.
+        Returns:
+            Number of rules configured,
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.get_acl_rules(acl_name='Acl_1',
+                                                seq_id='all')
+        """
+
+        # Validate required and accepted parameters
+        params_validator.validate_params_mlx_get_acl_rules(**kwargs)
+
+        # Parse params
+        acl_name = self.mac.parse_acl_name(**kwargs)
+
+        acl = self.get_acl_address_and_acl_type(acl_name)
+        acl_type = acl['type']
+        address_type = acl['protocol']
+
+        seq_range = self.mac.parse_seq_id_by_range(range(20480), **kwargs)
+
+        rules_list = self._get_acl_rules(address_type, acl_type, acl_name,
+                                         seq_range)
+
+        resp_body = json.dumps(rules_list)
+        return resp_body
