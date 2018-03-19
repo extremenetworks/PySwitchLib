@@ -611,7 +611,7 @@ class SlxNosAcl(BaseAcl):
         params_validator.validate_params_get_acl_rules(**kwargs)
 
         # Parse params
-        acl_name = self.ip.parse_acl_name(**kwargs)
+        acl_name = self.ap.parse_acl_name(**kwargs)
 
         if 'device' not in kwargs or not kwargs['device']:
             raise ValueError('Need device object to proceed')
