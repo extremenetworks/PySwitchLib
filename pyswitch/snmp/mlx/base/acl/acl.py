@@ -1672,17 +1672,17 @@ class Acl(BaseAcl):
                         for j, val in enumerate(rule[index:]):
                             i = index + j
                             if val == 'etype':
-                                config['ethertype'] = rule[i+1]
+                                config['ethertype'] = rule[i + 1]
                             elif val == 'priority':
-                                config['priority'] = rule[i+1]
+                                config['priority'] = rule[i + 1]
                             elif val == 'priority-force':
-                                config['priority_force'] = rule[i+1]
+                                config['priority_force'] = rule[i + 1]
                             elif val == 'priority-mapping':
-                                config['priority_mapping'] = rule[i+1]
+                                config['priority_mapping'] = rule[i + 1]
                             elif val == 'drop-precedence-force':
-                                config['drop_precedence_force'] = rule[i+1]
+                                config['drop_precedence_force'] = rule[i + 1]
                             elif val == 'drop-precedence':
-                                config['drop_precedence'] = rule[i+1]
+                                config['drop_precedence'] = rule[i + 1]
                             elif val == 'mirror':
                                 config['mirror'] = "True"
                             elif val == 'log':
@@ -1746,7 +1746,7 @@ class Acl(BaseAcl):
                         index += 1
 
                         if rule[index] == 'vlan':
-                            config['vlan_id'] = rule[index+1]
+                            config['vlan_id'] = rule[index + 1]
                             index += 2
 
                         config['protocol_type'] = rule[index]
@@ -1764,12 +1764,12 @@ class Acl(BaseAcl):
 
                         if rule[index] in ['eq', 'lt', 'gt', 'neq']:
                             config['source'] += ' ' + rule[index] + \
-                                ' ' + rule[index+1]
+                                ' ' + rule[index + 1]
                             index += 2
 
                         elif rule[index] == 'range':
                             config['source'] += ' ' + rule[index] + \
-                                ' ' + rule[index+1] + ' ' + rule[index+2]
+                                ' ' + rule[index + 1] + ' ' + rule[index + 2]
                             index += 3
 
                         config['destination'] = rule[index]
@@ -1788,11 +1788,11 @@ class Acl(BaseAcl):
 
                         if rule[index] in ['eq', 'lt', 'gt', 'neq']:
                             config['destination'] += ' ' + rule[index] + \
-                                ' ' + rule[index+1]
+                                ' ' + rule[index + 1]
                             index += 2
                         elif rule[index] == 'range':
                             config['destination'] += ' ' + rule[index] + \
-                                ' ' + rule[index+1] + ' ' + rule[index+2]
+                                ' ' + rule[index + 1] + ' ' + rule[index + 2]
                             index += 3
 
                         if len(rule) == index:
@@ -1802,25 +1802,25 @@ class Acl(BaseAcl):
                         for j, val in enumerate(rule[index:]):
                             i = index + j
                             if val == 'priority':
-                                config['priority'] = rule[i+1]
+                                config['priority'] = rule[i + 1]
                             elif val == 'priority-force':
-                                config['priority_force'] = rule[i+1]
+                                config['priority_force'] = rule[i + 1]
                             elif val == 'priority-mapping':
-                                config['priority_mapping'] = rule[i+1]
+                                config['priority_mapping'] = rule[i + 1]
                             elif val == 'drop-precedence-force':
-                                config['drop_precedence_force'] = rule[i+1]
+                                config['drop_precedence_force'] = rule[i + 1]
                             elif val == 'drop-precedence':
-                                config['drop_precedence'] = rule[i+1]
+                                config['drop_precedence'] = rule[i + 1]
                             elif val == 'precedence':
-                                config['precedence'] = rule[i+1]
+                                config['precedence'] = rule[i + 1]
                             elif val == 'dscp-marking':
-                                config['dscp_marking'] = rule[i+1]
+                                config['dscp_marking'] = rule[i + 1]
                             elif val == 'dscp-mapping':
-                                config['dscp'] = rule[i+1]
+                                config['dscp'] = rule[i + 1]
                             elif val == 'option':
-                                config['option'] = rule[i+1]
+                                config['option'] = rule[i + 1]
                             elif val == 'tos':
-                                config['tos'] = rule[i+1]
+                                config['tos'] = rule[i + 1]
                             elif val == 'mirror':
                                 config['mirror'] = "True"
                             elif val == 'log':
