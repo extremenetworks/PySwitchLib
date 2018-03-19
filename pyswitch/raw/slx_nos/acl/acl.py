@@ -628,7 +628,7 @@ class SlxNosAcl(BaseAcl):
             seq_range = self.ap.parse_seq_id_by_range(acl['seq_ids'], **kwargs)
 
             rules_list = self._get_acl_rules(rest_device.device_type,
-                                             address_type, acl_type,
-                                             acl_name, seq_range)
+                                             address_type, acl_type, acl_name,
+                                             seq_range)
             resp_body = json.dumps(rules_list)
             return resp_body
