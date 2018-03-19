@@ -215,3 +215,67 @@ class Interface(BaseInterface):
                     "duplicate_mac_timer": duplicate_mac_timer,
                     'max_count': max_count
                     }
+
+    def admin_state(self, **kwargs):
+        """Set interface administrative state.
+
+        Args:
+            int_type (str): Type of interface. (gigabitethernet,
+                tengigabitethernet, etc).
+            name (str): Name of interface. (1/0/5, 1/0/10, etc).
+            enabled (bool): Is the interface enabled? (True, False)
+            callback (function): A function executed upon completion of the
+                method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+
+        Returns:
+            Return value of `callback`.
+
+        Raises:
+            KeyError: if `int_type`, `name`, or `enabled` is not passed and
+                `get` is not ``True``.
+            ValueError: if `int_type`, `name`, or `enabled` are invalid.
+
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.44.91']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth,
+            ...             connection_type='NETCONF') as dev:
+            ...         dev.interface.admin_state(
+            ...         int_type='ethernet', name=['0/10', '0/11']
+            ...         enabled=True)
+
+        """
+        int_type = kwargs.pop('int_type').lower()
+        name = kwargs.pop('name')
+        enabled = kwargs.pop('enabled')
+        valid_int_types = self.valid_int_types
+
+        if int_type not in valid_int_types:
+            raise ValueError('`int_type` must be one of: %s' %
+                             repr(valid_int_types))
+
+        if not isinstance(enabled, bool):
+            raise ValueError('`enabled` must be `True` or `False`.')
+
+        try:
+            data_list = []
+            for intf_name in name:
+                if enabled:
+                    data_list.append(getattr(template, 'enable_intf_admin_state').format(
+                        int_type=int_type, name=intf_name))
+                else:
+                    data_list.append(getattr(template, 'disable_intf_admin_state').format(
+                        int_type=int_type, name=intf_name))
+            sstr = "".join(data_list)
+
+            config = getattr(template, 'set_intf_admin_state').format(intf_list=sstr)
+            self._callback(config)
+            return True
+
+        except Exception as e:
+            reason = e.message
+            raise ValueError(reason)
