@@ -60,6 +60,20 @@ class IpAcl(AclParamParser):
             return 37  # Time (37)
         elif xport_val == 'www':
             return 80  # World Wide Web (HTTP, 80)
+        elif xport_val == 'bootpc':
+            return 68  # Bootstrap Protocol (BOOTP) clien (68)
+        elif xport_val == 'bootps':
+            return 67  # Bootstrap Protocol (BOOTP) server (67)
+        elif xport_val == 'ntp':
+            return 123  # Network Time Protocol (123)
+        elif xport_val == 'rip':
+            return 520  # Routing Information Protocol (router, in.routed, 520)
+        elif xport_val == 'snmp':
+            return 161  # Simple Network Management Protocol (161)
+        elif xport_val == 'tftp':
+            return 69  # Trivial File Transfer Protocol (69)
+
+        raise ValueError('{} operator not supported')
 
     def _parse_op_str(self, op_str, ret):
         xport = {}

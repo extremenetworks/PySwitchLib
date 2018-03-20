@@ -385,6 +385,11 @@ acl_rule_ip_bulk = """
                   {% endif %}
 
                   {% if ud.dscp is not none %} <dscp>{{ud.dscp}}</dscp> {% endif %}
+                  {% if ud.drop_precedence_force is not none %}
+                    <drop-precedence-force>
+                      {{ud.drop_precedence_force}}
+                    </drop-precedence-force>
+                  {% endif %}
 
                   {% if ud.vlan_id is not none %}
                     <vlan>{{ud.vlan_id}}</vlan>
