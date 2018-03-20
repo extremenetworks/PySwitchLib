@@ -273,7 +273,7 @@ def validate_params_slx_add_std_ipv4_rule_acl(**parameters):
 
     required_params = ['source', 'acl_name', 'action']
     accepted_params = ['log', 'seq_id', 'source', 'acl_name', 'count',
-                       'action', 'device']
+                       'action', 'device', 'copy_sflow']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]

@@ -400,6 +400,9 @@ acl_rule_ip_bulk = """
 
                 {% if ud.count is not none %} <count></count> {% endif %}
                 {% if ud.log is not none %}<log></log> {% endif %}
+                {% if ud.copy_sflow is not none %}
+                  <copy-sflow></copy-sflow>
+                {% endif %}
               </seq>
           {% endfor %}
           {% if address_type == "ip" %}
