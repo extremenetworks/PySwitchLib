@@ -633,6 +633,7 @@ class Acl(SlxNosAcl):
             rule['acl_name'] = acl_name
             params_validator.validate_params_slx_add_ipv4_rule_acl(**rule)
             rule['address_type'] = 'ip'
+            rule['acl_type'] = 'extended'
             user_data = self._parse_params_for_add_extended(**rule)
             user_data_list.append(user_data)
         return user_data_list
