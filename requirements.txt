@@ -12,3 +12,4 @@ pyangbind-brcd>=0.6.14
 requests==2.18.4
 xmltodict==0.11.0
 fasteners==0.14.1
+xmljson==0.1.9
