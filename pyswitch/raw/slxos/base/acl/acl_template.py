@@ -396,6 +396,7 @@ acl_rule_ip_bulk = """
                   {% if ud.fin is not none %} <fin></fin> {% endif %}
                   {% if ud.rst is not none %} <rst></rst> {% endif %}
                   {% if ud.sync is not none %} <sync></sync> {% endif %}
+                  {% if ud.mirror is not none %} <mirror></mirror> {% endif %}
                 {% endif %}
 
                 {% if ud.count is not none %} <count></count> {% endif %}
