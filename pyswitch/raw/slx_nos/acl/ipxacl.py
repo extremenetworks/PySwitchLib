@@ -65,11 +65,11 @@ class IpAcl(AclParamParser):
         elif xport_val == 'bootps':
             return 67  # Bootstrap Protocol (BOOTP) server (67)
         elif xport_val == 'ntp':
-            return 123 # Network Time Protocol (123)
+            return 123  # Network Time Protocol (123)
         elif xport_val == 'rip':
-            return 520 # Routing Information Protocol (router, in.routed, 520)
+            return 520  # Routing Information Protocol (router, in.routed, 520)
         elif xport_val == 'snmp':
-            return 161 # Simple Network Management Protocol (161)
+            return 161  # Simple Network Management Protocol (161)
         elif xport_val == 'tftp':
             return 69  # Trivial File Transfer Protocol (69)
 
