@@ -273,7 +273,7 @@ def validate_params_slx_add_std_ipv4_rule_acl(**parameters):
 
     required_params = ['source', 'acl_name', 'action']
     accepted_params = ['log', 'seq_id', 'source', 'acl_name', 'count',
-                       'action', 'device']
+                       'action', 'device', 'copy_sflow']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
@@ -511,6 +511,25 @@ def validate_params_nos_add_or_remove_l2_acl_std_rule(**parameters):
 
     if 'mirror' in received_params and parameters['mirror'] != 'False':
         raise ValueError("unaccepted parameters provided: mirror")
+
+    unaccepted_params = list(set(received_params) - set(accepted_params))
+    if len(unaccepted_params) > 0:
+        if set(unaccepted_params) != set(st2_specific_params):
+            raise ValueError("unaccepted parameters provided: {}"
+                             .format(unaccepted_params))
+
+
+def validate_params_get_acl_rules(**parameters):
+    required_params = ['acl_name']
+    accepted_params = ['acl_name', 'seq_id']
+    st2_specific_params = []
+
+    received_params = [k for k, v in parameters.iteritems() if v]
+
+    absent_required = list(set(required_params) - set(received_params))
+    if len(absent_required) > 0:
+        raise ValueError("missing required parameters: {}"
+                         .format(absent_required))
 
     unaccepted_params = list(set(received_params) - set(accepted_params))
     if len(unaccepted_params) > 0:

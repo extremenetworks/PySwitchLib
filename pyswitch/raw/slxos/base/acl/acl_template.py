@@ -385,6 +385,11 @@ acl_rule_ip_bulk = """
                   {% endif %}
 
                   {% if ud.dscp is not none %} <dscp>{{ud.dscp}}</dscp> {% endif %}
+                  {% if ud.drop_precedence_force is not none %}
+                    <drop-precedence-force>
+                      {{ud.drop_precedence_force}}
+                    </drop-precedence-force>
+                  {% endif %}
 
                   {% if ud.vlan_id is not none %}
                     <vlan>{{ud.vlan_id}}</vlan>
@@ -396,10 +401,14 @@ acl_rule_ip_bulk = """
                   {% if ud.fin is not none %} <fin></fin> {% endif %}
                   {% if ud.rst is not none %} <rst></rst> {% endif %}
                   {% if ud.sync is not none %} <sync></sync> {% endif %}
+                  {% if ud.mirror is not none %} <mirror></mirror> {% endif %}
                 {% endif %}
 
                 {% if ud.count is not none %} <count></count> {% endif %}
                 {% if ud.log is not none %}<log></log> {% endif %}
+                {% if ud.copy_sflow is not none %}
+                  <copy-sflow></copy-sflow>
+                {% endif %}
               </seq>
           {% endfor %}
           {% if address_type == "ip" %}
