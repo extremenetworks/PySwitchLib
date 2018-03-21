@@ -266,3 +266,57 @@ acl_rule_ip = """
    </{address_type}-acl>
 </config>
 """
+
+
+interfaces_config_get = """
+<get-config> <source> <running/> </source>
+  <nc:filter type="xpath" select="//{{intf_type}}[{{interface_names}}]"></nc:filter>
+</get-config>
+"""
+
+
+interfaces_config_set = """
+<config>
+  <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+
+    <{{intf_type}}>
+      <name>{{port}}</name>
+      <bfd>
+          <interval>
+            <min-tx>{{bfd_tx}}</min-tx>
+            <min-rx>{{bfd_rx}}</min-rx>
+            <multiplier>{{bfd_multiplier}}</multiplier>
+          </interval>
+      </bfd>
+
+      <fabric xmlns="urn:brocade.com:mgmt:brocade-fcoe">
+          <fabric-isl>
+            <fabric-isl-enable operation="remove"></fabric-isl-enable>
+          </fabric-isl>
+
+          <neighbor-discovery> <disable></disable> </neighbor-discovery>
+
+          <fabric-trunk>
+            <fabric-trunk-enable operation="remove"></fabric-trunk-enable>
+          </fabric-trunk>
+      </fabric>
+
+      <ip>
+          <ip-config xmlns="urn:brocade.com:mgmt:brocade-ip-config">
+            <address>
+              <address>{{ip}}</address>
+            </address>
+            <mtu>{{ip_mtu}}</mtu>
+            <proxy-arp></proxy-arp>
+          </ip-config>
+      </ip>
+
+      <mtu>{{mtu}}</mtu>
+      <switchport operation="remove"></switchport>
+
+      <shutdown operation="remove"></shutdown>
+    </{{intf_type}}>
+
+  </interface>
+</config>
+"""

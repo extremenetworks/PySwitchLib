@@ -1,5 +1,8 @@
 from jinja2 import Template
 
+import re
+from xmljson import parker
+import json
 import template
 from pyswitch.raw.base.interface import Interface as BaseInterface
 from pyswitch.utilities import Util
@@ -224,3 +227,97 @@ class Interface(BaseInterface):
                     "duplicate_mac_timer": duplicate_mac_timer,
                     'max_count': max_count
                     }
+
+    def fetch_interfaces_config(self, **kwargs):
+
+        input_intfs = kwargs.get('interfaces', None)
+        if not input_intfs:
+            return True
+
+        intf_dict = {}
+        for item in input_intfs:
+
+            _, intf_type, port = re.split('([a-zA-Z]_?[a-zA-Z]*)',
+                                          item['interface'])
+            intf_type = intf_type.strip()
+
+            if intf_type not in intf_dict:
+                intf_dict[intf_type] = []
+
+            intf_dict[intf_type].append(port.strip())
+
+        configs = []
+
+        for k, v in intf_dict.iteritems():
+
+            interface_names = ''
+            for port in v:
+                interface_names = interface_names + "name=\'" + port + '\' or '
+
+            if len(interface_names) > 4:
+                interface_names = interface_names[0:-4]
+
+                t = Template(template.interfaces_config_get)
+                config = t.render(intf_type=k, interface_names=interface_names)
+                config = ' '.join(config.split())
+                configs.append(config)
+
+        def get_dict(d, result_dict):
+
+            for key, val in d.iteritems():
+                new_key = key.split('}')[-1]
+
+                if isinstance(val, dict):
+                    result_dict[new_key] = {}
+                    get_dict(val, result_dict[new_key])
+                elif isinstance(val, list):
+                    result_dict[new_key] = []
+                    for item in val:
+                        result_dict[new_key].append({})
+                        get_dict(item, result_dict[new_key][-1])
+                else:
+                    result_dict[new_key] = val
+
+        result = []
+        for c in configs:
+            try:
+                rpc_response = self._callback(c, handler='get')
+
+                rsp_elem = None
+                for elem in rpc_response.iter():
+                    if elem.tag.split('}')[-1] == 'interface':
+                        rsp_elem = elem
+                        break
+
+                if rsp_elem:
+                    pd = parker.data(rsp_elem)
+                    resp = json.dumps(pd)
+                    resp = json.loads(resp)
+                    c_result_dict = {}
+                    get_dict(resp, c_result_dict)
+                    result.append(c_result_dict)
+            except Exception as err:
+                print err
+
+        return result
+
+    def single_interface_config(self, interface, parameters):
+
+        parameters.pop('interfaces', None)
+
+        user_data = {'ip': interface['ip'],
+                     'donor': interface['donor'],
+                     'rbridge_id': interface['rbridge_id']}
+
+        _, intf_type, port = re.split('([a-zA-Z]_?[a-zA-Z]*)',
+                                      interface['interface'])
+        if intf_type != 've':
+            user_data['port'] = port.strip()
+            user_data['intf_type'] = intf_type.strip()
+            user_data.update(parameters)
+
+            t = Template(template.interfaces_config_set)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+            self._callback(config)
+        return True
