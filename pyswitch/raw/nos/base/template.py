@@ -282,15 +282,16 @@ interfaces_config_set = """
     <{{intf_type}}>
       <name>{{port}}</name>
 
-     {% if bfd_tx is not none %}
+
+      {% if bfd_tx is not none %}
         <bfd>
-            <interval>
-              <min-tx>{{bfd_tx}}</min-tx>
-              <min-rx>{{bfd_rx}}</min-rx>
-              <multiplier>{{bfd_multiplier}}</multiplier>
-            </interval>
+                <interval>
+                    <min-tx>{{bfd_tx}}</min-tx>
+                    <min-rx>{{bfd_rx}}</min-rx>
+                    <multiplier>{{bfd_multiplier}}</multiplier>
+                </interval>
         </bfd>
-     {% endif %}
+      {% endif %}
 
       <fabric xmlns="urn:brocade.com:mgmt:brocade-fcoe">
           <fabric-isl>
@@ -305,22 +306,60 @@ interfaces_config_set = """
       </fabric>
 
       <mtu>{{mtu}}</mtu>
+      <switchport-basic operation="remove"><basic></basic></switchport-basic>
 
       <ip>
-          <ip-config xmlns="urn:brocade.com:mgmt:brocade-ip-config">
-            <address>
-              <address>{{ip}}</address>
-            </address>
-            <mtu>{{ip_mtu}}</mtu>
-            <proxy-arp></proxy-arp>
+        <ip-config xmlns="urn:brocade.com:mgmt:brocade-ip-config">
+          <address>
+            <address>{{ip}}</address>
+          </address>
+          <mtu>{{ip_mtu}}</mtu>
+          <proxy-arp></proxy-arp>
           </ip-config>
       </ip>
-
-
-      <switchport-basic operation="remove"><basic></basic></switchport-basic>
       <shutdown operation="remove"></shutdown>
     </{{intf_type}}>
 
   </interface>
+</config>
+"""
+
+interfaces_loopback_ip_config_set = """
+<config>
+  <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
+    <rbridge-id>{{rbridge_id}}</rbridge-id>
+
+    <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+      <loopback xmlns="urn:brocade.com:mgmt:brocade-intf-loopback">
+        <id>{{port}}</id>
+        <ip xmlns="urn:brocade.com:mgmt:brocade-ip-config">
+          <ip-config >
+            <address> <address>{{ip}}</address> </address>
+          </ip-config>
+        </ip>
+
+      </loopback>
+    </interface>
+  </rbridge-id>
+</config>
+"""
+
+interfaces_loopback_noshut_config_set = """
+<config>
+  <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
+    <rbridge-id>{{rbridge_id}}</rbridge-id>
+
+    <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+      <loopback xmlns="urn:brocade.com:mgmt:brocade-intf-loopback">
+
+        <id>{{port}}</id>
+
+        <intf-loopback>
+            <shutdown operation="remove"></shutdown>
+        </intf-loopback>
+
+      </loopback>
+    </interface>
+  </rbridge-id>
 </config>
 """

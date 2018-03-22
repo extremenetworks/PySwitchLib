@@ -317,7 +317,19 @@ class Interface(BaseInterface):
             user_data.update(parameters)
 
             # configure interface params
-            t = Template(template.interfaces_config_set)
+            if intf_type == 'loopback':
+
+                # This is limitation with switch, hence spliting
+                # loopback creation and admin state seperately.
+                t = Template(template.interfaces_loopback_ip_config_set)
+                config = t.render(**user_data)
+                config = ' '.join(config.split())
+                self._callback(config)
+
+                t = Template(template.interfaces_loopback_noshut_config_set)
+            else:
+                t = Template(template.interfaces_config_set)
+
             config = t.render(**user_data)
             config = ' '.join(config.split())
             self._callback(config)
