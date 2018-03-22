@@ -306,7 +306,6 @@ class Interface(BaseInterface):
         parameters.pop('interfaces', None)
 
         user_data = {'ip': interface['ip'],
-                     'donor': interface['donor'],
                      'rbridge_id': interface['rbridge_id']}
 
         _, intf_type, port = re.split('([a-zA-Z]_?[a-zA-Z]*)',
@@ -328,6 +327,13 @@ class Interface(BaseInterface):
 
                 t = Template(template.interfaces_loopback_noshut_config_set)
             else:
+
+                if interface['donor']:
+                    _, donor_type, donor_name = re.split('([a-zA-Z]_?[a-zA-Z]*)',
+                                                         interface['donor'])
+                    user_data['donor_type'] = donor_type.strip()
+                    user_data['donor_name'] = donor_name.strip()
+
                 t = Template(template.interfaces_config_set)
 
             config = t.render(**user_data)

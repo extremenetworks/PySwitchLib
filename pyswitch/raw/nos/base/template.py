@@ -310,9 +310,17 @@ interfaces_config_set = """
 
       <ip>
         <ip-config xmlns="urn:brocade.com:mgmt:brocade-ip-config">
-          <address>
-            <address>{{ip}}</address>
-          </address>
+          {% if "unnumbered" == ip %}
+            <unnumbered>
+              <ip-donor-interface-type>{{donor_type}}</ip-donor-interface-type>
+              <ip-donor-interface-name>{{donor_name}}</ip-donor-interface-name>
+            </unnumbered>
+          {% else %}
+            <address>
+              <address>{{ip}}</address>
+            </address>
+          {% endif %}
+
           <mtu>{{ip_mtu}}</mtu>
           <proxy-arp></proxy-arp>
           </ip-config>
