@@ -281,13 +281,16 @@ interfaces_config_set = """
 
     <{{intf_type}}>
       <name>{{port}}</name>
-      <bfd>
-          <interval>
-            <min-tx>{{bfd_tx}}</min-tx>
-            <min-rx>{{bfd_rx}}</min-rx>
-            <multiplier>{{bfd_multiplier}}</multiplier>
-          </interval>
-      </bfd>
+
+     {% if bfd_tx is not none %}
+        <bfd>
+            <interval>
+              <min-tx>{{bfd_tx}}</min-tx>
+              <min-rx>{{bfd_rx}}</min-rx>
+              <multiplier>{{bfd_multiplier}}</multiplier>
+            </interval>
+        </bfd>
+     {% endif %}
 
       <fabric xmlns="urn:brocade.com:mgmt:brocade-fcoe">
           <fabric-isl>
@@ -301,6 +304,8 @@ interfaces_config_set = """
           </fabric-trunk>
       </fabric>
 
+      <mtu>{{mtu}}</mtu>
+
       <ip>
           <ip-config xmlns="urn:brocade.com:mgmt:brocade-ip-config">
             <address>
@@ -311,9 +316,8 @@ interfaces_config_set = """
           </ip-config>
       </ip>
 
-      <mtu>{{mtu}}</mtu>
-      <switchport operation="remove"></switchport>
 
+      <switchport-basic operation="remove"><basic></basic></switchport-basic>
       <shutdown operation="remove"></shutdown>
     </{{intf_type}}>
 

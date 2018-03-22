@@ -316,8 +316,49 @@ class Interface(BaseInterface):
             user_data['intf_type'] = intf_type.strip()
             user_data.update(parameters)
 
+            # configure interface params
             t = Template(template.interfaces_config_set)
             config = t.render(**user_data)
             config = ' '.join(config.split())
             self._callback(config)
+        return True
+
+    def validate_ipfabric_params(self, parameters):
+        mtu = parameters.get('mtu', None)
+        ip_mtu = parameters.get('ip_mtu', None)
+        ipv6_mtu = parameters.get('ipv6_mtu', None)
+        bfd_multiplier = parameters.get('bfd_multiplier', None)
+        bfd_rx = parameters.get('bfd_rx', None)
+        bfd_tx = parameters.get('bfd_tx', None)
+
+        if not mtu or int(mtu) < 1522 and int(mtu) > 9216:
+            raise ValueError("Invalid mtu: {}. Valid mtu range is 1522-9216"
+                             .format(mtu))
+
+        if not ip_mtu or int(ip_mtu) < 1300 and int(ip_mtu) > 9100:
+            raise ValueError("Invalid ip_mtu: {}. Valid ip_mtu range is "
+                             "1300-9100".format(ip_mtu))
+
+        if not ipv6_mtu or int(ipv6_mtu) < 1280 and int(ipv6_mtu) > 9100:
+            raise ValueError("Invalid ipv6_mtu: {}. Valid ipv6_mtu range is "
+                             "1280-9100".format(ipv6_mtu))
+
+        if bfd_multiplier:
+            if int(bfd_multiplier) < 3 and int(bfd_multiplier) > 50:
+                raise ValueError("Invalid bfd_multiplier: {}. Valid "
+                                 "bfd_multiplier range is 3-50"
+                                 .format(bfd_multiplier))
+
+        if bfd_rx:
+            if int(bfd_rx) < 50 and int(bfd_rx) > 30000:
+                raise ValueError("Invalid bfd_rx: {}. Valid "
+                                 "bfd_rx range is 50-30000"
+                                 .format(bfd_rx))
+
+        if bfd_tx:
+            if int(bfd_tx) < 50 and int(bfd_tx) > 30000:
+                raise ValueError("Invalid bfd_tx: {}. Valid "
+                                 "bfd_tx range is 50-30000"
+                                 .format(bfd_tx))
+
         return True
