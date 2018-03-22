@@ -225,7 +225,7 @@ class Acl(SlxNosAcl):
         user_data['source'] = self.ip.parse_source(**kwargs)
         user_data['destination'] = self.ip.parse_destination(**kwargs)
         user_data['dscp'] = self.ip.parse_dscp(**kwargs)
-        user_data['vlan_id'] = self.ip.parse_vlan_id(**kwargs)
+        user_data['vlan_id'] = self.ip.parse_nos_vlan_id(**kwargs)
 
         # All these params of same type. Parsing them together
         bool_params = ['urg', 'ack', 'push', 'fin', 'rst', 'sync',
