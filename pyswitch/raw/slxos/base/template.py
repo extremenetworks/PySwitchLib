@@ -166,6 +166,12 @@ interfaces_config_set = """
       <mtu>{{mtu}}</mtu>
       <switchport-basic operation="remove"><basic></basic></switchport-basic>
 
+      <ipv6>
+        <ipv6-config xmlns="urn:brocade.com:mgmt:brocade-ipv6-config">
+          <mtu>{{ipv6_mtu}}</mtu>
+        </ipv6-config>
+      </ipv6>
+
       <ip>
         <ip-config xmlns="urn:brocade.com:mgmt:brocade-ip-config">
           <address>
