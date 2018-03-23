@@ -312,10 +312,12 @@ class Interface(BaseInterface):
         _, intf_type, port = re.split('([a-zA-Z]_?[a-zA-Z]*)',
                                       interface['interface'])
 
-        if not validate_interface(intf_type, port,
+        if not validate_interface(intf_type.strip(), port.strip(),
                                   interface['rbridge_id'], 'nos'):
-            raise ValueError("Invalid interface: {} on platform type: nos"
-                             .format(intf_type, port))
+            raise ValueError("Invalid interface: {}{} on platform type: nos. "
+                             "rbridge_id MUST be passed ONLY if interface type"
+                             " is loopback. Provided rbridge_id: {}"
+                             .format(intf_type, port, interface['rbridge_id']))
 
         if intf_type != 've':
             user_data['port'] = port.strip()
