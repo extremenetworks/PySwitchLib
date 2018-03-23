@@ -570,6 +570,11 @@ class Acl(SlxNosAcl):
         user_data = {}
         user_data['rbridge_id'] = self.ap.parse_rbridge_id(**kwargs)
         user_data['intf_type'] = self.ap.parse_intf_type(**kwargs)
+        if user_data['intf_type'].lower() == 've' and \
+                not user_data['rbridge_id']:
+            raise ValueError("rbridge_id is a mandatory parameter to apply "
+                             "access-list on ve interface")
+
         user_data['interface_list'] = self.ap.parse_intf_names(**kwargs)
         user_data['acl_name'] = self.ap.parse_acl_name(**kwargs)
         user_data['acl_direction'] = self.ap.parse_acl_direction(**kwargs)
