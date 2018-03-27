@@ -312,6 +312,9 @@ class Interface(BaseInterface):
         _, intf_type, port = re.split('([a-zA-Z]_?[a-zA-Z]*)',
                                       interface['interface'])
 
+        if intf_type.lower() not in ['loopback', 've']:
+            interface['rbridge_id'] = None
+
         if not validate_interface(intf_type.strip(), port.strip(),
                                   interface['rbridge_id'], 'nos'):
             raise ValueError("Invalid interface: {}{} on platform type: nos. "
