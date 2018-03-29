@@ -175,11 +175,16 @@ class Utils(object):
         targets = kwargs.pop('targets', None)
         vrf = kwargs.pop('vrf', 'default-vrf')
         count = kwargs.pop('count', 4)
-        timeout_value = kwargs.pop('timeout_value', 10)
-        if not timeout_value:
-            timeout_value = 10
+        timeout_value = kwargs.pop('timeout_value', 1)
+        if timeout_value is None:
+            timeout_value = 1
+        if timeout_value < 1 or timeout_value > 60:
+            raise AttributeError("Invalid timeout value. Valid range 1 to 60")
         size = kwargs.pop('size', 56)
-
+        if size is None:
+            size = 56
+        if size < 36 or size > 9100:
+            raise AttributeError("Invalid size - valid range 36 to 9100")
         opt = {'device_type': 'brocade_vdx'}
         opt['ip'] = self._host
         opt['username'] = self._auth[0]

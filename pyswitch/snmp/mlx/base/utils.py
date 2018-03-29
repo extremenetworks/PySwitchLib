@@ -57,17 +57,17 @@ class Utils(BaseUtils):
 
                 if valid_address.version == 4:
                     if vrf != 'default-vrf':
-                        cli = "ping vrf {} {} count {} datagram-size {} timeout {}".format(
+                        cli = "ping vrf {} {} count {} size {} timeout {}".format(
                             vrf, numips, count, size, timeout_value)
                     else:
-                        cli = "ping {} count {} datagram-size {} timeout {}".format(
+                        cli = "ping {} count {} size {} timeout {}".format(
                             numips, count, size, timeout_value)
                 elif valid_address.version == 6:
                     if vrf != 'default-vrf':
-                        cli = "ping ipv6 vrf {} {} count {} datagram-size {} timeout {}".format(
+                        cli = "ping ipv6 vrf {} {} count {} size {} timeout {}".format(
                             vrf, numips, count, size, timeout_value)
                     else:
-                        cli = "ping ipv6 {} count {} datagram-size {} timeout {}".format(
+                        cli = "ping ipv6 {} count {} size {} timeout {}".format(
                             numips, count, size, timeout_value)
 
                 cli_cmd.append(cli)
@@ -172,10 +172,16 @@ class Utils(BaseUtils):
         targets = kwargs.pop('targets', None)
         vrf = kwargs.pop('vrf', 'default-vrf')
         count = kwargs.pop('count', 4)
-        timeout_value = kwargs.pop('timeout_value', 50)
-        if not timeout_value:
-            timeout_value = 50
-        size = kwargs.pop('size', 56)
+        timeout_value = kwargs.pop('timeout_value', 5000)
+        if timeout_value is None:
+            timeout_value = 5000
+        if timeout_value < 50:
+            raise AttributeError("Minimum timeout value is 50")
+        size = kwargs.pop('size', 16)
+        if size is None:
+            size = 16
+        if size > 31954:
+            raise AttributeError("Invalid size - valid range 0 to 31954")
         try:
             cli_list = self._create_ping_cmd(targets, vrf, count, timeout_value, size)
             cli_output = self._execute_cli(cli_list)

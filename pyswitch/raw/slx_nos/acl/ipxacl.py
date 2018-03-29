@@ -357,6 +357,29 @@ class IpAcl(AclParamParser):
         raise ValueError("Invalid \'vlan_id\' {} in kwargs"
                          .format(vlan_id))
 
+    def parse_nos_vlan_id(self, **kwargs):
+        """
+        parse the protocol type param.
+        Args:
+            kwargs contains:
+                vlan_id(integer): VLAN interface to which the ACL is bound
+        Returns:
+            Return None or parsed string on success
+        Raise:
+            Raise ValueError exception
+        Examples:
+        """
+        if 'vlan_id' not in kwargs or not kwargs['vlan_id']:
+            return None
+
+        vlan_id = kwargs['vlan_id']
+
+        if vlan_id >= 1 and vlan_id <= 8191:
+            return str(vlan_id)
+
+        raise ValueError("Invalid \'vlan_id\' {} in kwargs"
+                         .format(vlan_id))
+
     def parse_tcp_specific_params(self, user_data, **kwargs):
         """
         parse the protocol type param.
