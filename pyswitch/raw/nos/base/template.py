@@ -266,3 +266,108 @@ acl_rule_ip = """
    </{address_type}-acl>
 </config>
 """
+
+
+interfaces_config_get = """
+<get-config> <source> <running/> </source>
+  <nc:filter type="xpath" select="//{{intf_type}}[{{interface_names}}]"></nc:filter>
+</get-config>
+"""
+
+
+interfaces_config_set = """
+<config>
+  <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+
+    <{{intf_type}}>
+      <name>{{port}}</name>
+
+
+      {% if bfd_tx is not none %}
+        <bfd>
+                <interval>
+                    <min-tx>{{bfd_tx}}</min-tx>
+                    <min-rx>{{bfd_rx}}</min-rx>
+                    <multiplier>{{bfd_multiplier}}</multiplier>
+                </interval>
+        </bfd>
+      {% endif %}
+
+      <fabric xmlns="urn:brocade.com:mgmt:brocade-fcoe">
+          <fabric-isl>
+            <fabric-isl-enable operation="remove"></fabric-isl-enable>
+          </fabric-isl>
+
+          <neighbor-discovery> <disable></disable> </neighbor-discovery>
+
+          <fabric-trunk>
+            <fabric-trunk-enable operation="remove"></fabric-trunk-enable>
+          </fabric-trunk>
+      </fabric>
+
+      <mtu>{{mtu}}</mtu>
+      <switchport-basic operation="remove"><basic></basic></switchport-basic>
+
+      <ip>
+        <ip-config xmlns="urn:brocade.com:mgmt:brocade-ip-config">
+          {% if "unnumbered" == ip %}
+            <unnumbered>
+              <ip-donor-interface-type>{{donor_type}}</ip-donor-interface-type>
+              <ip-donor-interface-name>{{donor_name}}</ip-donor-interface-name>
+            </unnumbered>
+          {% else %}
+            <address>
+              <address>{{ip}}</address>
+            </address>
+          {% endif %}
+
+          <mtu>{{ip_mtu}}</mtu>
+          <proxy-arp></proxy-arp>
+          </ip-config>
+      </ip>
+      <shutdown operation="remove"></shutdown>
+    </{{intf_type}}>
+
+  </interface>
+</config>
+"""
+
+interfaces_loopback_ip_config_set = """
+<config>
+  <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
+    <rbridge-id>{{rbridge_id}}</rbridge-id>
+
+    <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+      <loopback xmlns="urn:brocade.com:mgmt:brocade-intf-loopback">
+        <id>{{port}}</id>
+        <ip xmlns="urn:brocade.com:mgmt:brocade-ip-config">
+          <ip-config >
+            <address> <address>{{ip}}</address> </address>
+          </ip-config>
+        </ip>
+
+      </loopback>
+    </interface>
+  </rbridge-id>
+</config>
+"""
+
+interfaces_loopback_noshut_config_set = """
+<config>
+  <rbridge-id xmlns="urn:brocade.com:mgmt:brocade-rbridge">
+    <rbridge-id>{{rbridge_id}}</rbridge-id>
+
+    <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+      <loopback xmlns="urn:brocade.com:mgmt:brocade-intf-loopback">
+
+        <id>{{port}}</id>
+
+        <intf-loopback>
+            <shutdown operation="remove"></shutdown>
+        </intf-loopback>
+
+      </loopback>
+    </interface>
+  </rbridge-id>
+</config>
+"""

@@ -1,8 +1,12 @@
 from jinja2 import Template
 
+import re
+from xmljson import parker
+import json
 import template
 from pyswitch.raw.base.interface import Interface as BaseInterface
 from pyswitch.utilities import Util
+from pyswitch.utilities import validate_interface
 
 
 class Interface(BaseInterface):
@@ -224,3 +228,172 @@ class Interface(BaseInterface):
                     "duplicate_mac_timer": duplicate_mac_timer,
                     'max_count': max_count
                     }
+
+    def fetch_interfaces_config(self, **kwargs):
+
+        input_intfs = kwargs.get('interfaces', None)
+        if not input_intfs:
+            return True
+
+        intf_dict = {}
+        for item in input_intfs:
+
+            _, intf_type, port = re.split('([a-zA-Z]_?[a-zA-Z]*)',
+                                          item['interface'])
+            intf_type = intf_type.strip()
+
+            if intf_type not in intf_dict:
+                intf_dict[intf_type] = []
+
+            intf_dict[intf_type].append(port.strip())
+
+        configs = []
+
+        for k, v in intf_dict.iteritems():
+
+            interface_names = ''
+            for port in v:
+                interface_names = interface_names + "name=\'" + port + '\' or '
+
+            if len(interface_names) > 4:
+                interface_names = interface_names[0:-4]
+
+                t = Template(template.interfaces_config_get)
+                config = t.render(intf_type=k, interface_names=interface_names)
+                config = ' '.join(config.split())
+                configs.append(config)
+
+        def get_dict(d, result_dict):
+
+            for key, val in d.iteritems():
+                new_key = key.split('}')[-1]
+
+                if isinstance(val, dict):
+                    result_dict[new_key] = {}
+                    get_dict(val, result_dict[new_key])
+                elif isinstance(val, list):
+                    result_dict[new_key] = []
+                    for item in val:
+                        result_dict[new_key].append({})
+                        get_dict(item, result_dict[new_key][-1])
+                else:
+                    result_dict[new_key] = val
+
+        result = []
+        for c in configs:
+            try:
+                rpc_response = self._callback(c, handler='get')
+
+                rsp_elem = None
+                for elem in rpc_response.iter():
+                    if elem.tag.split('}')[-1] == 'interface':
+                        rsp_elem = elem
+                        break
+
+                if rsp_elem:
+                    pd = parker.data(rsp_elem)
+                    resp = json.dumps(pd)
+                    resp = json.loads(resp)
+                    c_result_dict = {}
+                    get_dict(resp, c_result_dict)
+                    result.append(c_result_dict)
+            except Exception as err:
+                print err
+
+        return result
+
+    def single_interface_config(self, interface, parameters):
+
+        parameters.pop('interfaces', None)
+
+        user_data = {'ip': interface['ip'],
+                     'rbridge_id': interface['rbridge_id']}
+
+        _, intf_type, port = re.split('([a-zA-Z]_?[a-zA-Z]*)',
+                                      interface['interface'])
+
+        if intf_type.lower() not in ['loopback', 've']:
+            interface['rbridge_id'] = None
+
+        if not validate_interface(intf_type.strip(), port.strip(),
+                                  interface['rbridge_id'], 'nos'):
+            raise ValueError("Invalid interface: {}{} on platform type: nos. "
+                             "rbridge_id MUST be passed ONLY if interface type"
+                             " is loopback. Provided rbridge_id: {}"
+                             .format(intf_type, port, interface['rbridge_id']))
+
+        if intf_type != 've':
+            user_data['port'] = port.strip()
+            user_data['intf_type'] = intf_type.strip()
+            user_data.update(parameters)
+
+            # configure interface params
+            if intf_type == 'loopback':
+
+                if interface['ip']:
+                    if interface['ip'].split('/')[-1] != '32':
+                        raise ValueError("{} is invalid ip address/mask"
+                                         .format(interface['ip']))
+
+                # This is limitation with switch, hence spliting
+                # loopback creation and admin state seperately.
+                t = Template(template.interfaces_loopback_ip_config_set)
+                config = t.render(**user_data)
+                config = ' '.join(config.split())
+                self._callback(config)
+
+                t = Template(template.interfaces_loopback_noshut_config_set)
+            else:
+
+                if interface['donor']:
+                    _, donor_type, donor_name = re.split('([a-zA-Z]_?[a-zA-Z]*)',
+                                                         interface['donor'])
+                    user_data['donor_type'] = donor_type.strip()
+                    user_data['donor_name'] = donor_name.strip()
+
+                t = Template(template.interfaces_config_set)
+
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+            self._callback(config)
+        return True
+
+    def validate_ipfabric_params(self, parameters):
+        mtu = parameters.get('mtu', None)
+        ip_mtu = parameters.get('ip_mtu', None)
+        ipv6_mtu = parameters.get('ipv6_mtu', None)
+        bfd_multiplier = parameters.get('bfd_multiplier', None)
+        bfd_rx = parameters.get('bfd_rx', None)
+        bfd_tx = parameters.get('bfd_tx', None)
+
+        if not mtu or int(mtu) < 1522 or int(mtu) > 9216:
+            raise ValueError("Invalid mtu: {}. Valid mtu range is 1522-9216"
+                             .format(mtu))
+
+        if not ip_mtu or int(ip_mtu) < 1300 or int(ip_mtu) > 9100:
+            raise ValueError("Invalid ip_mtu: {}. Valid ip_mtu range is "
+                             "1300-9100".format(ip_mtu))
+
+        if not ipv6_mtu or int(ipv6_mtu) < 1280 or int(ipv6_mtu) > 9100:
+            raise ValueError("Invalid ipv6_mtu: {}. Valid ipv6_mtu range is "
+                             "1280-9100".format(ipv6_mtu))
+
+        if bfd_multiplier:
+            if int(bfd_multiplier) < 3 or int(bfd_multiplier) > 50:
+                raise ValueError("Invalid bfd_multiplier: {}. Valid "
+                                 "bfd_multiplier range is 3-50"
+                                 .format(bfd_multiplier))
+
+        if bfd_rx:
+            if int(bfd_rx) < 50 or int(bfd_rx) > 30000:
+                raise ValueError("Invalid bfd_rx: {}. Valid "
+                                 "bfd_rx range is 50-30000"
+                                 .format(bfd_rx))
+
+        if bfd_tx:
+            if int(bfd_tx) < 50 or int(bfd_tx) > 30000:
+                raise ValueError("Invalid bfd_tx: {}. Valid "
+                                 "bfd_tx range is 50-30000"
+                                 .format(bfd_tx))
+
+        return True

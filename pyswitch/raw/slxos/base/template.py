@@ -137,3 +137,90 @@ set_intf_admin_state = """
       </interface>
 </config>
 """
+
+interfaces_config_get = """
+<get-config> <source> <running/> </source>
+  <nc:filter type="xpath" select="//{{intf_type}}[{{interface_names}}]"></nc:filter>
+</get-config>
+"""
+
+
+interfaces_config_set = """
+<config>
+  <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+
+    <{{intf_type}}>
+      <name>{{port}}</name>
+
+
+      {% if bfd_tx is not none %}
+        <bfd>
+                <interval>
+                    <min-tx>{{bfd_tx}}</min-tx>
+                    <min-rx>{{bfd_rx}}</min-rx>
+                    <multiplier>{{bfd_multiplier}}</multiplier>
+                </interval>
+        </bfd>
+      {% endif %}
+
+      <mtu>{{mtu}}</mtu>
+      <switchport-basic operation="remove"><basic></basic></switchport-basic>
+
+      <ipv6>
+        <ipv6-config xmlns="urn:brocade.com:mgmt:brocade-ipv6-config">
+          <mtu>{{ipv6_mtu}}</mtu>
+        </ipv6-config>
+      </ipv6>
+
+      <ip>
+        <ip-config xmlns="urn:brocade.com:mgmt:brocade-ip-config">
+          <address>
+            <address>{{ip}}</address>
+          </address>
+
+          <mtu>{{ip_mtu}}</mtu>
+          <proxy-arp></proxy-arp>
+          </ip-config>
+      </ip>
+      <shutdown operation="remove"></shutdown>
+    </{{intf_type}}>
+
+  </interface>
+</config>
+"""
+
+interfaces_loopback_ip_config_set = """
+<config>
+  <routing-system xmlns="urn:brocade.com:mgmt:brocade-common-def">
+
+    <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+        <loopback xmlns="urn:brocade.com:mgmt:brocade-intf-loopback">
+          <id>{{port}}</id>
+          <ip xmlns="urn:brocade.com:mgmt:brocade-ip-config">
+            <ip-config >
+              <address> <address>{{ip}}</address> </address>
+            </ip-config>
+          </ip>
+        </loopback>
+    </interface>
+
+  </routing-system>
+</config>
+"""
+
+interfaces_loopback_noshut_config_set = """
+<config>
+  <routing-system xmlns="urn:brocade.com:mgmt:brocade-common-def">
+
+    <interface xmlns="urn:brocade.com:mgmt:brocade-interface">
+        <loopback xmlns="urn:brocade.com:mgmt:brocade-intf-loopback">
+
+          <id>{{port}}</id>
+          <shutdown operation="remove"></shutdown>
+
+        </loopback>
+    </interface>
+
+  </routing-system>
+</config>
+"""
