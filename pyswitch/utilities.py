@@ -374,11 +374,7 @@ def expand_vlan_range(vlan_id):
             extended = "false"
 
         tmp_vlan_id = valid_vlan_id(vid, extended=extended)
-
-        reserved_vlan_list = range(4087, 4096)
         if not tmp_vlan_id:
-            return None
-        elif vid in reserved_vlan_list:
             return None
 
     return vlan_id
