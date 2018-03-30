@@ -1877,8 +1877,6 @@ class Interface(BaseInterface):
         result = util.findall(util.root, './/bridge-domain-id')
         return result
 
-
-
     def bd_arp_suppression(self, **kwargs):
         """
         Enable Arp Suppression on a BD.
@@ -1921,7 +1919,7 @@ class Interface(BaseInterface):
         callback = kwargs.pop('callback', self._callback)
         get = kwargs.pop('get', False)
         arp_args = dict(bridge_domain=(name, 'p2mp'))
-        if int(name) < 1 or int(name) > 4096 :
+        if int(name) < 1 or int(name) > 4096:
             raise ValueError("`name` must be between `1` and `4096`")
 
         if get:
@@ -1986,7 +1984,7 @@ class Interface(BaseInterface):
         callback = kwargs.pop('callback', self._callback)
         get = kwargs.pop('get', False)
         arp_args = dict(bridge_domain=(name, 'p2mp'))
-        if int(name) < 1 or int(name) > 4096 :
+        if int(name) < 1 or int(name) > 4096:
             raise ValueError("`name` must be between `1` and `4096`")
 
         if get:
