@@ -7255,3 +7255,82 @@ class Interface(object):
                             'vendor_name': vendor_name}
             result.append(item_results)
         return result
+
+    def bd_arp_suppression(self, **kwargs):
+        raise ValueError('Bridge Domain Arp Suppression is not available'
+                         ' on this Platform')
+
+    def bd_nd_suppression(self, **kwargs):
+        raise ValueError('Bridge Domain ND Suppression is not available'
+                         ' on this Platform')
+
+    def nd_suppression(self, **kwargs):
+        """
+        Enable ND Suppression on a VLAN.
+
+        Args:
+            name: VLAN name on which the ND suppression needs to be enabled.
+            enable (bool): If ND suppression should be enabled
+                or disabled.Default:``True``.
+            get (bool) : Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+               method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `name` is not passed.
+            ValueError: if `name` is invalid.
+           output2 = dev.interface.nd_suppression(name='89')
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.nd_suppression(
+            ...         name='89')
+            ...         output = dev.interface.nd_suppression(
+            ...         get=True,name='89')
+            ...         output = dev.interface.nd_suppression(
+            ...         enable=False,name='89')
+            ...         # doctest: +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            KeyError
+         """
+        name = kwargs.pop('name')
+        enable = kwargs.pop('enable', True)
+
+        callback = kwargs.pop('callback', self._callback)
+        get = kwargs.pop('get', False)
+        arp_args = dict(vlan=name)
+        if name:
+            if not pyswitch.utilities.valid_vlan_id(name):
+                raise InvalidVlanId("`name` must be between `1` and `8191`")
+
+        if get:
+            if self.has_rbridge_id:
+                method_name = 'interface_vlan_suppress_nd_get'
+            else:
+                method_name = 'vlan_suppress_nd_get'
+            config = (method_name, arp_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            enable_item = util.find(util.root, './/enable')
+
+            if enable_item is not None and enable_item == 'true':
+                return True
+            else:
+                return None
+        if self.has_rbridge_id:
+            method_name = 'interface_vlan_suppress_nd_update'
+        else:
+            method_name = 'vlan_suppress_nd_update'
+        if not enable:
+            arp_args['suppress_nd_enable'] = False
+        else:
+            arp_args['suppress_nd_enable'] = True
+
+        config = (method_name, arp_args)
+        return callback(config)

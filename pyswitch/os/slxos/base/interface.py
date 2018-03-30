@@ -1876,3 +1876,135 @@ class Interface(BaseInterface):
         util = Util(output.data)
         result = util.findall(util.root, './/bridge-domain-id')
         return result
+
+
+
+    def bd_arp_suppression(self, **kwargs):
+        """
+        Enable Arp Suppression on a BD.
+
+        Args:
+            name: BD name on which the Arp suppression needs to be enabled.
+            enable (bool): If arp suppression should be enabled
+                or disabled.Default:``True``.
+            get (bool) : Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+               method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `name` is not passed.
+            ValueError: if `name` is invalid.
+           output2 = dev.interface.bd_arp_suppression(name='89')
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.bd_arp_suppression(
+            ...         name='89')
+            ...         output = dev.interface.bd_arp_suppression(
+            ...         get=True,name='89')
+            ...         output = dev.interface.bd_arp_suppression(
+            ...         enable=False,name='89')
+            ...         # doctest: +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            KeyError
+         """
+
+        name = kwargs.pop('name')
+        enable = kwargs.pop('enable', True)
+
+        callback = kwargs.pop('callback', self._callback)
+        get = kwargs.pop('get', False)
+        arp_args = dict(bridge_domain=(name, 'p2mp'))
+        if int(name) < 1 or int(name) > 4096 :
+            raise ValueError("`name` must be between `1` and `4096`")
+
+        if get:
+            method_name = 'bridge_domain_suppress_arp_get'
+            config = (method_name, arp_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            enable_item = util.find(util.root, './/enable')
+
+            if enable_item is not None and enable_item == 'true':
+                return True
+            else:
+                return None
+        method_name = 'bridge_domain_suppress_arp_update'
+        if not enable:
+            arp_args['suppress_arp_enable'] = False
+        else:
+            arp_args['suppress_arp_enable'] = True
+
+        config = (method_name, arp_args)
+        return callback(config)
+
+    def bd_nd_suppression(self, **kwargs):
+        """
+        Enable ND Suppression on a BD.
+
+        Args:
+            name: BD name on which the BD suppression needs to be enabled.
+            enable (bool): If arp suppression should be enabled
+                or disabled.Default:``True``.
+            get (bool) : Get config instead of editing config. (True, False)
+            callback (function): A function executed upon completion of the
+               method.  The only parameter passed to `callback` will be the
+                ``ElementTree`` `config`.
+        Returns:
+            Return value of `callback`.
+        Raises:
+            KeyError: if `name` is not passed.
+            ValueError: if `name` is invalid.
+           output2 = dev.interface.bd_arp_suppression(name='89')
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.211', '10.24.39.203']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.interface.bd_nd_suppression(
+            ...         name='89')
+            ...         output = dev.interface.bd_nd_suppression(
+            ...         get=True,name='89')
+            ...         output = dev.interface.bd_nd_suppression(
+            ...         enable=False,name='89')
+            ...         # doctest: +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            KeyError
+         """
+
+        name = kwargs.pop('name')
+        enable = kwargs.pop('enable', True)
+
+        callback = kwargs.pop('callback', self._callback)
+        get = kwargs.pop('get', False)
+        arp_args = dict(bridge_domain=(name, 'p2mp'))
+        if int(name) < 1 or int(name) > 4096 :
+            raise ValueError("`name` must be between `1` and `4096`")
+
+        if get:
+            method_name = 'bridge_domain_suppress_nd_get'
+            config = (method_name, arp_args)
+            output = callback(config, handler='get_config')
+            util = Util(output.data)
+            enable_item = util.find(util.root, './/enable')
+
+            if enable_item is not None and enable_item == 'true':
+                return True
+            else:
+                return None
+        method_name = 'bridge_domain_suppress_nd_update'
+        if not enable:
+            arp_args['suppress_nd_enable'] = False
+        else:
+            arp_args['suppress_nd_enable'] = True
+
+        config = (method_name, arp_args)
+        return callback(config)
