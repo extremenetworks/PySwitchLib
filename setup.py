@@ -1,18 +1,23 @@
 """setup.py file."""
 
-import os
-import sys
 import atexit
-import uuid
+import os
 import subprocess
+import sys
 
 from setuptools import setup, find_packages
 from setuptools.command.install import install
-from pip.req import parse_requirements
-from distutils.sysconfig import get_python_lib
 
-install_reqs = parse_requirements('requirements.txt', session=uuid.uuid1())
+
+def parse_requirements(filename):
+    """ load requirements from a pip requirements file """
+    lineiter = (line.strip() for line in open(filename))
+    return [line for line in lineiter if line and not line.startswith("#")]
+
+
+install_reqs = parse_requirements('requirements.txt')
 reqs = [str(ir.req) for ir in install_reqs]
+
 
 class PostInstallCommand(install):
     def run(self):
