@@ -273,7 +273,6 @@ acl_rule_ip_bulk = """
                 {% if ud.source.host_any != "any" %}
                   {% if ud.source.host_any == "host" %}
                     <src-host-ip>{{ud.source.host_ip}}</src-host-ip>
-                  {% elif address_type == "ip" %}
                   {% elif ud.source.mask is not none %}
                     <src-mask>{{ud.source.mask}}</src-mask>
                   {% endif %}
