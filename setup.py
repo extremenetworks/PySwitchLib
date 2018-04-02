@@ -61,10 +61,10 @@ class PostInstallCommand(install):
 
 setup(
     name="pyswitchlib",
-    version="1.0.0",
+    version="1.2.0",
     packages=find_packages(),
-    author="Brocade Communications Inc",
-    description="pySwitchLib Library for Brocade switches (SLXOS/NOS)",
+    author="Extreme Networks Inc Inc",
+    description="pySwitchLib Library for Extreme switches (SLXOS/NOS)",
     classifiers=[
         'Topic :: Utilities',
          'Programming Language :: Python',
