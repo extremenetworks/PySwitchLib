@@ -4,23 +4,14 @@ import atexit
 import os
 import subprocess
 import sys
+import uuid
 
+from pip.req import parse_requirements
 from setuptools import setup, find_packages
 from setuptools.command.install import install
 
-try:
-    from pip.req import parse_requirements
-except ImportError:
-    def requirements(f):
-        reqs = open(f, 'r').read().splitlines()
-        reqs = [r for r in reqs if not r.strip().startswith('#')]
-        return reqs
-else:
-    def requirements(f):
-        install_reqs = parse_requirements(f)
-        reqs = [str(r.req) for r in install_reqs]
-        return reqs
-
+install_reqs = parse_requirements('requirements.txt', session=uuid.uuid1())
+reqs = [str(ir.req) for ir in install_reqs]
 
 class PostInstallCommand(install):
     def run(self):
