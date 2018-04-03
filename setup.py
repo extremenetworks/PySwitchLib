@@ -8,7 +8,7 @@ import subprocess
 
 from setuptools import setup, find_packages
 from setuptools.command.install import install
-from pip.req import parse_requirements
+from pip._internal.req import parse_requirements
 from distutils.sysconfig import get_python_lib
 
 install_reqs = parse_requirements('requirements.txt', session=uuid.uuid1())
