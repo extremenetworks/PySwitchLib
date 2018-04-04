@@ -67,7 +67,7 @@ setup(
     version="1.2.0",
     packages=find_packages(),
     author="Extreme Networks Inc",
-    description="pySwitchLib Library for Extreme switches (SLXOS/NOS)",
+    description="pySwitchLib Library for Extreme switches (SLXOS/NOS/NI)",
     classifiers=[
         'Topic :: Utilities',
          'Programming Language :: Python',
