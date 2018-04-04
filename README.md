@@ -15,9 +15,9 @@ The pyswitchlib-api-daemon service is installed with a default configuration fil
 - Default config file is installed at /etc/pyswitchlib/pyswitchlib.conf.default
 - Working config file is at /etc/pyswitchlib/pyswitchlib.conf.  If a working config file does not exist then the default config file will be copied and used as the working.
 - The config file specifies how many api daemons will be launched and which sys.prefixes should be associated to the daemon.  When multiple sys.prefixes or virtualenv prefixes are associated to the api daemon (delimited by a colon), then any pyswitchlib assets created under these virtualenvs will utilize this single api daemon.
-- The 'cacert = <Path to trusted CA certificate file>' is optional.  If ca certificate file is populated then it will be used when https protocol is specified when assets are constructed.
-- The 'ns_port = <tcp port #>' configuration is optional.  If specified, then a pyswitchlib_ns_daemon will be luanched as well as the configured api daemons and pyswitchlib assets will use the name server daemon to lookup which api daemons to use.
-- When the ns_port configuration is not specified, then a file is maintained to list which api daemons are running and how to connect to them.  Pyswitchlib assets will look up this file to connect to the proper api daemon.  The file is located at /tmp/.pswitchlib_ns_daemon.uri.
+- The 'cacert = <Path to trusted CA certificate file>' is optional.  If ca certificate file is populated then it will be used for client side validations when https protocol is specified when assets are constructed.  If the 'cacert' option is not specified and https protocol is used then client side validations are bypassed and https protocol is still used.
+- The 'ns_port = <tcp port #>' configuration is optional.  If specified, then a pyswitchlib_ns_daemon will be launched as well as the configured api daemons and pyswitchlib assets will use the name server daemon to lookup which api daemons to use.
+- When the ns_port configuration is not specified, then a file is maintained to list which api daemons are running and how to connect to them.  Pyswitchlib assets will look up this file to connect to the proper api daemon.  The file is located at /etc/pyswitchlib/.pswitchlib_ns_daemon.uri.
 - Any python virtualenv that is not found in the config file will try to connect to the default API daemon that is started on the host's base python.
 
 #### Pyswitchlib-api-daemon Default Configuration
