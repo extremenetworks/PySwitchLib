@@ -1,21 +1,21 @@
 """setup.py file."""
 
-import os
-import sys
 import atexit
-import uuid
+import os
 import subprocess
-
+import sys
+import uuid
 from setuptools import setup, find_packages
 from setuptools.command.install import install
+
 try:
     from pip.req import parse_requirements
 except:
     from pip._internal.req import parse_requirements
-from distutils.sysconfig import get_python_lib
 
 install_reqs = parse_requirements('requirements.txt', session=uuid.uuid1())
 reqs = [str(ir.req) for ir in install_reqs]
+
 
 class PostInstallCommand(install):
     def run(self):
@@ -64,10 +64,10 @@ class PostInstallCommand(install):
 
 setup(
     name="pyswitchlib",
-    version="1.0.0",
+    version="1.2.0",
     packages=find_packages(),
-    author="Brocade Communications Inc",
-    description="pySwitchLib Library for Brocade switches (SLXOS/NOS)",
+    author="Extreme Networks Inc",
+    description="pySwitchLib Library for Extreme switches (SLXOS/NOS/NI)",
     classifiers=[
         'Topic :: Utilities',
          'Programming Language :: Python',
