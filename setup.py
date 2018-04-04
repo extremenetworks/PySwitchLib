@@ -5,13 +5,17 @@ import os
 import subprocess
 import sys
 import uuid
-
-from pip.req import parse_requirements
 from setuptools import setup, find_packages
 from setuptools.command.install import install
 
+try:
+    from pip.req import parse_requirements
+except:
+    from pip._internal.req import parse_requirements
+
 install_reqs = parse_requirements('requirements.txt', session=uuid.uuid1())
 reqs = [str(ir.req) for ir in install_reqs]
+
 
 class PostInstallCommand(install):
     def run(self):
