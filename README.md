@@ -43,7 +43,7 @@ The pyswitchlib-api-daemon service is installed with a default configuration fil
 
 # pySwitchLib Version History
 
-## 1.0.0
+## 1.2.0
 * Pyswitchlib uses an API daemon to convert pyswitchlib APIs into REST requests.
 ## 0.1.88
 * Changed requirements to be locked to pybind 0.1.29.
