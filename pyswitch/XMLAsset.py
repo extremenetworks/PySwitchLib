@@ -130,9 +130,6 @@ class XMLAsset(Asset):
 
         return self._get_results()
 
-    def close(self):
-        self.close()
-
     def get_xml_output(self):
         """
         This is an auto-generated method for the PySwitchLib.
