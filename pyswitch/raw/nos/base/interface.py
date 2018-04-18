@@ -363,7 +363,7 @@ class Interface(BaseInterface):
                 if err_str in e.message:
                     print err_str, user_data['port']
                 else:
-                    raise Exception(e.message)
+                    raise Exception(e.message, user_data['port'])
         return True
 
     def validate_ipfabric_params(self, parameters):
