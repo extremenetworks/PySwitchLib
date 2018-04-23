@@ -355,7 +355,15 @@ class Interface(BaseInterface):
 
             config = t.render(**user_data)
             config = ' '.join(config.split())
-            self._callback(config)
+            try:
+                self._callback(config)
+            except Exception as e:
+                err_str = 'IP Unnumbered interface configuration is already '\
+                          'done on this interface'
+                if err_str in e.message:
+                    print err_str, user_data['port']
+                else:
+                    raise Exception(e.message, user_data['port'])
         return True
 
     def validate_ipfabric_params(self, parameters):
