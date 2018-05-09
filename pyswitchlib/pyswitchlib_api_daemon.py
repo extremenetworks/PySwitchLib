@@ -107,6 +107,7 @@ class PySwitchLibApiDaemon(object):
             if self._check_auth_string(existing_hash, auth):
                 # case 2: check if connection object is alive
                 if conn_obj.is_alive() is True:
+                    conn_obj.set_base_prompt()
                     return
             # case 3: Assume user value is new so delete existing
             # and add new connection object for this
