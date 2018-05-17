@@ -43,6 +43,8 @@ The pyswitchlib-api-daemon service is installed with a default configuration fil
 
 # pySwitchLib Version History
 
+## 1.2.1
+* Added close method for asset.py class.
 ## 1.2.0
 * Pyswitchlib uses an API daemon to convert pyswitchlib APIs into REST requests.
 ## 0.1.88

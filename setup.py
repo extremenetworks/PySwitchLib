@@ -28,15 +28,26 @@ class PostInstallCommand(install):
             pyswitchlib_default_conf_filename = 'pyswitchlib.conf.default'
             pyswitchlib_conf_filename = 'pyswitchlib.conf'
             pyswitchlib_default_cacert_filename = 'cacert.pem'
-            pyswitchlib_default_conf_path = os.path.join(os.sep, 'etc', 'pyswitchlib', pyswitchlib_default_conf_filename)
-            pyswitchlib_conf_path = os.path.join(os.sep, 'etc', 'pyswitchlib', pyswitchlib_conf_filename)
-            pyswitchlib_default_cacert_path = os.path.join(os.sep, 'etc', 'pyswitchlib', pyswitchlib_default_cacert_filename)
+            pyswitchlib_initd_path = os.path.join(os.sep, 'etc', 'init.d')
+            pyswitchlib_etc_path = os.path.join(os.sep, 'etc', 'pyswitchlib')
+            pyswitchlib_default_conf_path = os.path.join(pyswitchlib_etc_path, pyswitchlib_default_conf_filename)
+            pyswitchlib_conf_path = os.path.join(pyswitchlib_etc_path, pyswitchlib_conf_filename)
+            pyswitchlib_default_cacert_path = os.path.join(pyswitchlib_etc_path, pyswitchlib_default_cacert_filename)
 
             ubuntu_init_script_cmd = 'update-rc.d ' + pyswitchlib_init_scriptname + ' defaults 95 05'
             centos_init_script_cmd = 'chkconfig --add ' + pyswitchlib_init_scriptname
 
             python_prefix = os.path.join(sys.prefix, 'bin', 'python')
             pyswitchlib_api_daemon = os.path.join(_get_latest_lib_path(), pyswitchlib_daemon_scriptname)
+
+            if not os.path.isdir(pyswitchlib_etc_path):
+		os.makedirs(pyswitchlib_etc_path)
+
+            if os.path.isdir(pyswitchlib_etc_path):
+                os.system('cp ' + pyswitchlib_default_conf_filename + ' ' + pyswitchlib_etc_path)
+
+            if os.path.isdir(pyswitchlib_initd_path):
+                os.system('cp ' + pyswitchlib_init_scriptname + ' ' + pyswitchlib_initd_path)
 
             try:
                 subprocess.check_call(ubuntu_init_script_cmd, shell=True)
@@ -64,7 +75,7 @@ class PostInstallCommand(install):
 
 setup(
     name="pyswitchlib",
-    version="1.2.0",
+    version="1.2.1",
     packages=find_packages(),
     author="Extreme Networks Inc",
     description="pySwitchLib Library for Extreme switches (SLXOS/NOS/NI)",
@@ -82,6 +93,4 @@ setup(
     cmdclass={
         'install': PostInstallCommand,
     },
-    data_files=[('/etc/pyswitchlib', ['pyswitchlib.conf.default']),
-                ('/etc/init.d', ['pyswitchlib-api-daemon'])]
 )
