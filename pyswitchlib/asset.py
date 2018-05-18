@@ -595,6 +595,12 @@ class Asset(object):
                 for elem in container:
                     self._format_dict_output(container=elem, keys=keys)
 
+    def close(self):
+        self._cleanup_timer_handle()
+        self._session.close()
+        self._response.close()
+        self._proxied._pyroRelease()
+
     def get_os_type(self):
         """
         This is an auto-generated method for the PySwitchLib.

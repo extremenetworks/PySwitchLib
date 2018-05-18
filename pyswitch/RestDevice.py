@@ -446,7 +446,7 @@ class RestDevice(AbstractDevice):
             False
         """
         if self._mgr:
-            self._mgr._session.close()
+            self._mgr.close()
 
 
 if __name__ == '__main__':
