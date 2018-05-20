@@ -16,27 +16,30 @@ limitations under the License.
 """
 import re
 import sys
-import json
+
+from netmiko import ConnectHandler
+from netmiko.ssh_exception import NetMikoTimeoutException, \
+    NetMikoAuthenticationException
+from paramiko.ssh_exception import SSHException
 
 import pyswitch.os.base.fabric_service
+import pyswitch.os.base.firmware
 import pyswitch.os.base.lldp
 import pyswitch.os.base.snmp
+import pyswitch.os.base.utils
 import pyswitch.os.base.vcs
 import pyswitch.os.nos.base.bgp
 import pyswitch.os.nos.base.interface
 import pyswitch.os.nos.base.services
 import pyswitch.os.nos.base.system
 import pyswitch.os.slxos.base.bgp
-import pyswitch.os.slxos.base.interface
+import pyswitch.os.slxos.base.cluster
 import pyswitch.os.slxos.base.isis
-import pyswitch.os.slxos.base.mpls
-import pyswitch.os.base.firmware
-import pyswitch.os.base.utils
-import pyswitch.os.slxos.base.ospf
 import pyswitch.os.slxos.base.mct
+import pyswitch.os.slxos.base.mpls
+import pyswitch.os.slxos.base.ospf
 import pyswitch.os.slxos.base.services
 import pyswitch.os.slxos.base.system
-import pyswitch.os.slxos.base.cluster
 import pyswitch.os.slxos.slxr.interface
 import pyswitch.os.slxos.slxs.interface
 import pyswitch.utilities as util
@@ -284,10 +287,10 @@ class RestDevice(AbstractDevice):
           will vary
         """
         if self.platform_type_val is None:
-            response = self._mgr.run_command(command="show chassis \| inc Chassis")
-            output = response[1][0][self.host]['response']['text']
-            dict_output = json.loads(output)
-            self.platform_type_val = dict_output['output'][0].split(":")[1].strip()
+            cmd = "show chassis | inc Chassis"
+            output = self._execute_cli(cmd).split('\n')
+            model = output[0]
+            self.platform_type_val = model.split()[2]
         return self.platform_type_val
 
     @property
@@ -374,6 +377,36 @@ class RestDevice(AbstractDevice):
             xml_ns = re.sub(' xmlns[^ \t\n\r\f\v>]+', '', xml)
             return Reply(xml_ns)
         return Reply(self._mgr.get_xml_output())
+
+    def _execute_cli(self, cmd):
+        """
+           Internal method to create netmiko connection and
+           execute CLI.
+        """
+        cli_output = ''
+        try:
+            opt = {'device_type': 'brocade_vdx'}
+            opt['ip'] = self.host
+            opt['username'] = self._auth[0]
+            opt['password'] = self._auth[1]
+            net_connect = ConnectHandler(**opt)
+            cli_output = net_connect.send_command(cmd)
+        except (NetMikoTimeoutException, NetMikoAuthenticationException,) as e:
+            reason = e.message
+            raise ValueError('Failed to execute cli on %s due to %s', opt['ip'], reason)
+
+        except SSHException as e:
+            reason = e.message
+            raise ValueError('Failed to execute cli on %s due to %s', opt['ip'], reason)
+        except Exception as e:
+            reason = e.message
+            # This is in case of I/O Error, which could be due to
+            # connectivity issue or due to pushing commands faster than what
+            #  the switch can handle
+            raise ValueError('Failed to execute cli on %s due to %s', opt['ip'], reason)
+        if not net_connect:
+            net_connect.disconnect()
+        return cli_output
 
     def reconnect(self):
         """
