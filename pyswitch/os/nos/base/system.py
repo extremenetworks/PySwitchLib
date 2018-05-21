@@ -49,6 +49,30 @@ class System(BaseSystem):
 
         return chassis_name
 
+    def get_chassis_virtual_ip(self, **kwargs):
+        """dict: device uptime
+        Examples:
+            >>> import pyswitch.device
+            >>> switches = ['10.24.39.231']
+            >>> auth = ('admin', 'password')
+            >>> for switch in switches:
+            ...     conn = (switch, '22')
+            ...     with pyswitch.device.Device(conn=conn, auth=auth) as dev:
+            ...         output = dev.system.get_chassis_virtual_ip(rbridge_id=5)
+        """
+        rbridge_id = kwargs.pop('rbridge_id')
+        chip_args = dict(rbridge_id=rbridge_id)
+        config = ('rbridge_id_chassis_virtual_ip_oper_address_get', chip_args)
+
+        output = self._callback(config, handler='get_config')
+
+        util = Util(output.data)
+
+        chassis_ip = util.find(util.root, './/virtual-ip')
+        if chassis_ip is not None and chassis_ip != '':
+            chassis_ip = chassis_ip.split('/')[0]
+        return chassis_ip
+
     def router_id(self, **kwargs):
         """Configures device's Router ID.
         Args:
