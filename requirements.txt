@@ -8,7 +8,7 @@ jsonpath-rw==1.4.0
 ncclient==0.5.3
 netmiko==1.4.3
 git+https://github.com/StackStorm/pybind.git@MLX-404#egg=pybind
-git+https://github.com/StackStorm/pyangbind.git@MLX-404#egg=pyangbind
+git+https://github.com/StackStorm/pyangbind.git@MLX-404#egg=pyangbind-brcd
 requests==2.18.4
 xmltodict==0.11.0
 fasteners==0.14.1
