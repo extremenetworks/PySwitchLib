@@ -1629,7 +1629,7 @@ class Acl(BaseAcl):
             elif acl_type == 'extended':
                 rules_list = self._parse_ext_ip_rule(output, seq_range)
         elif address_type == 'ipv6':
-            pass
+            rules_list = self._parse_ext_ipv6_rule(output, seq_range)
 
         return rules_list
 
@@ -1879,6 +1879,138 @@ class Acl(BaseAcl):
                                          'timestamp-reply',
                                          'timestamp-request',
                                          'ttl-exceeded',
+                                         'unreachable']:
+                                config['icmp_filter'] = val
+                        rules_list.append(config)
+        return rules_list
+
+    def _parse_ext_ipv6_rule(self, output, seq_range):
+
+        rules_list = []
+        for line in output.split('\n'):
+            if line:
+                rule = line.split()
+
+                index = 0
+                if rule[index][:-1].isdigit():
+
+                    if int(rule[index][:-1]) in seq_range:
+                        config = {}
+
+                        config['seq_id'] = rule[index][:-1]
+                        index += 1
+
+                        config['action'] = rule[index]
+                        index += 1
+
+                        if rule[index] == 'vlan':
+                            config['vlan_id'] = rule[index + 1]
+                            index += 2
+
+                        config['protocol_type'] = rule[index]
+                        index += 1
+
+                        config['source'] = rule[index]
+                        index += 1
+
+                        if config['source'] == 'host':
+                            config['source'] += ',' + rule[index]
+                            index += 1
+                        elif config['source'] != 'any':
+                            config['source'] += '/' + rule[index]
+                            index += 1
+
+                        if rule[index] in ['eq', 'lt', 'gt', 'neq']:
+                            config['source'] += ' ' + rule[index] + \
+                                ' ' + rule[index + 1]
+                            index += 2
+
+                        elif rule[index] == 'range':
+                            config['source'] += ' ' + rule[index] + \
+                                ' ' + rule[index + 1] + ' ' + rule[index + 2]
+                            index += 3
+
+                        config['destination'] = rule[index]
+                        index += 1
+
+                        if config['destination'] == 'host':
+                            config['destination'] += ',' + rule[index]
+                            index += 1
+                        elif config['destination'] != 'any':
+                            config['destination'] += '/' + rule[index]
+                            index += 1
+
+                        if len(rule) == index:
+                            rules_list.append(config)
+                            continue
+
+                        if rule[index] in ['eq', 'lt', 'gt', 'neq']:
+                            config['destination'] += ' ' + rule[index] + \
+                                ' ' + rule[index + 1]
+                            index += 2
+                        elif rule[index] == 'range':
+                            config['destination'] += ' ' + rule[index] + \
+                                ' ' + rule[index + 1] + ' ' + rule[index + 2]
+                            index += 3
+
+                        if len(rule) == index:
+                            rules_list.append(config)
+                            continue
+
+                        for j, val in enumerate(rule[index:]):
+                            i = index + j
+                            if val == 'priority-force':
+                                config['priority_force'] = rule[i + 1]
+                            elif val == 'priority-mapping':
+                                config['priority_mapping'] = rule[i + 1]
+                            elif val == 'drop-precedence-force':
+                                config['drop_precedence_force'] = rule[i + 1]
+                            elif val == 'drop-precedence':
+                                config['drop_precedence'] = rule[i + 1]
+                            elif val == 'precedence':
+                                config['precedence'] = rule[i + 1]
+                            elif val == 'dscp-marking':
+                                config['dscp_marking'] = rule[i + 1]
+                            elif val == 'dscp-mapping':
+                                config['dscp'] = rule[i + 1]
+                            elif val == 'mirror':
+                                config['mirror'] = "True"
+                            elif val == 'log':
+                                config['log'] = "True"
+                            elif val == 'suppress-rpf-drop':
+                                config['suppress_rpf_drop'] = "true"
+                            elif val == 'fragment':
+                                config['fragment'] = "True"
+                            elif val == 'copy-sflow':
+                                config['copy_sflow'] = "True"
+                            elif val == 'established':
+                                if 'tcp_operator' in config:
+                                    config['tcp_operator'] = 'established syn'
+                                else:
+                                    config['tcp_operator'] = 'established'
+                            elif val == 'syn':
+                                if 'tcp_operator' in config:
+                                    config['tcp_operator'] = 'established syn'
+                                else:
+                                    config['tcp_operator'] = 'syn'
+
+                            elif val in ['beyond-scope',
+                                         'destination-unreachable',
+                                         'dscp', 'echo-reply', 'echo-request',
+                                         'flow-label', 'fragments', 'header',
+                                         'hop-limit', 'mld-query',
+                                         'mld-reduction', 'mld-report',
+                                         'nd-na', 'nd-ns', 'next-header',
+                                         'no-admin', 'no-route',
+                                         'packet-too-big', 'parameter-option',
+                                         'parameter-problem',
+                                         'port-unreachable',
+                                         'reassembly-timeout', 'renum-command',
+                                         'renum-result', 'renum-seq-number',
+                                         'router-advertisement',
+                                         'router-renumbering',
+                                         'router-solicitation', 'routing',
+                                         'sequence', 'time-exceeded',
                                          'unreachable']:
                                 config['icmp_filter'] = val
                         rules_list.append(config)
