@@ -193,6 +193,9 @@ class MacAcl(AclParamParser):
 
     def parse_vlan_id(self, vlan):
 
+        if vlan == 'null':
+            return None
+
         if vlan == "any":
             return vlan
 
