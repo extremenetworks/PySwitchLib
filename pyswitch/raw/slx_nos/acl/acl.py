@@ -588,7 +588,14 @@ class SlxNosAcl(BaseAcl):
                 if seq_id in sequences:
                     sequences.remove(seq_id)
                     pd = parker.data(rcvd_seq)
-                    rules_list.append(pd)
+
+                    new_pd = {}
+                    # Replace "-" with "_"
+                    for k, v in pd.iteritems():
+                        nk = k.replace("-", "_")
+                        new_pd[nk] = v
+
+                    rules_list.append(new_pd)
 
         return rules_list
 

@@ -521,7 +521,7 @@ def validate_params_nos_add_or_remove_l2_acl_std_rule(**parameters):
 
 def validate_params_get_acl_rules(**parameters):
     required_params = ['acl_name']
-    accepted_params = ['acl_name', 'seq_id']
+    accepted_params = ['acl_name', 'seq_id', 'device']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]
