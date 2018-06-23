@@ -2048,3 +2048,50 @@ class Acl(BaseAcl):
 
         resp_body = json.dumps(rules_list)
         return resp_body
+
+    def resequence_acl_rules(self, **kwargs):
+        """
+        Returns the number of congiured rules
+        Args:
+            acl_name (str): Name of the access list.
+        Returns:
+            Number of rules configured,
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.resequence_acl_rules(acl_name='Acl_1')
+        """
+
+        cli_arr = []
+        # Validate required and accepted parameters
+        params_validator.validate_params_mlx_resequence_acl_rules(**kwargs)
+
+        # Parse params
+        acl_name = self.mac.parse_acl_name(**kwargs)
+
+
+        acl = self.get_acl_address_and_acl_type(acl_name)
+        acl_type = acl['type']
+        address_type = acl['protocol']
+
+
+        if address_type == 'mac':
+            config = 'mac access-list ' + acl_name
+        elif address_type == 'ip':
+            if not acl_type:
+                raise ValueError("acl_type is required param for ip ACL")
+            config = 'ip access-list ' + acl_type + ' ' + acl_name
+        elif address_type == 'ipv6':
+            config = 'ipv6 access-list ' + acl_name
+        else:
+            raise ValueError("Address Type: {} not supported".format(
+                             address_type))
+
+        cli_arr.append(config)
+
+        # Resequence cli
+        cli_arr.append('regenerate-seq-num')
+
+        output = self._callback(cli_arr, handler='cli-set')
+        return self._process_cli_output(inspect.stack()[0][3], config, output)

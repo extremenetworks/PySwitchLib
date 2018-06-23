@@ -503,3 +503,19 @@ class Acl(object):
                                                 seq_id='all')
         """
         return
+
+    @abc.abstractmethod
+    def resequence_acl_rules(self, **kwargs):
+        """
+        Returns the number of congiured rules
+        Args:
+            acl_name (str): Name of the access list.
+        Returns:
+            Number of rules configured,
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.resequence_acl_rules(acl_name='Acl_1')
+        """
+        return
