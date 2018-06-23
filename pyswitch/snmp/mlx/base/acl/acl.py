@@ -1649,6 +1649,9 @@ class Acl(BaseAcl):
                         config['seq_id'] = rule[index][:-1]
                         index += 1
 
+                        if rule[index] == 'sequence':
+                            index += 2
+
                         config['action'] = rule[index]
                         index += 1
 
@@ -1710,6 +1713,9 @@ class Acl(BaseAcl):
                         config['seq_id'] = rule[index][:-1]
                         index += 1
 
+                        if rule[index] == 'sequence':
+                            index += 2
+
                         config['action'] = rule[index]
                         index += 1
 
@@ -1741,6 +1747,9 @@ class Acl(BaseAcl):
 
                         config['seq_id'] = rule[index][:-1]
                         index += 1
+
+                        if rule[index] == 'sequence':
+                            index += 2
 
                         config['action'] = rule[index]
                         index += 1
@@ -1900,6 +1909,9 @@ class Acl(BaseAcl):
                         config['seq_id'] = rule[index][:-1]
                         index += 1
 
+                        if rule[index] == 'sequence':
+                            index += 2
+
                         config['action'] = rule[index]
                         index += 1
 
@@ -1959,6 +1971,7 @@ class Acl(BaseAcl):
 
                         for j, val in enumerate(rule[index:]):
                             i = index + j
+
                             if val == 'priority-force':
                                 config['priority_force'] = rule[i + 1]
                             elif val == 'priority-mapping':
@@ -2010,9 +2023,14 @@ class Acl(BaseAcl):
                                          'router-advertisement',
                                          'router-renumbering',
                                          'router-solicitation', 'routing',
-                                         'sequence', 'time-exceeded',
+                                         'time-exceeded',
                                          'unreachable']:
                                 config['icmp_filter'] = val
+                            elif val.isdigit():
+                                if 'icmp_filter' not in config:
+                                    config['icmp_filter'] = val
+                                else:
+                                    config['icmp_filter'] += ' ' + val
                         rules_list.append(config)
         return rules_list
 
