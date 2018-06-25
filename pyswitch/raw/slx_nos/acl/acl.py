@@ -649,6 +649,9 @@ class SlxNosAcl(BaseAcl):
         for r in rules_list:
             self._decorate_ip_source(r)
             self._decorate_ip_destination(r)
+            for k,v in r.iteritems():
+                if isinstance(v, int) or isinstance(v, bool):
+                    r[k] = str(v)
 
     def _decorate_ip_source(self, rule):
         if 'src_host_any_sip' in rule:
