@@ -639,3 +639,50 @@ class SlxNosAcl(BaseAcl):
                                              seq_range)
             resp_body = json.dumps(rules_list)
             return resp_body
+
+    def resequence_acl_rules(self, **kwargs):
+        """
+        Returns the number of congiured rules
+        Args:
+            acl_name (str): Name of the access list.
+        Returns:
+            Number of rules configured,
+        Examples:
+            >>> from pyswitch.device import Device
+            >>> with Device(conn=conn, auth=auth,
+                            connection_type='NETCONF') as dev:
+            >>>     print dev.acl.resequence_acl_rules(acl_name='Acl_1')
+        """
+        # Validate required and accepted parameters
+        params_validator.validate_params_slx_nos_resequence_acl_rules(**kwargs)
+
+        # Parse params
+        acl_name = self.ap.parse_acl_name(**kwargs)
+
+        netc_device = kwargs['device'].device_type
+        with pyswitch.device.Device(conn=netc_device._conn,
+                                    auth=netc_device._auth,
+                                    connection_type='REST') as rest_device:
+
+            acl = self._get_acl_info_rest(rest_device.device_type,
+                                          acl_name, get_seqs=True)
+            acl_type = acl['type']
+            address_type = acl['protocol']
+
+            # Parse params
+            user_data = {}
+            user_data['acl_name'] = acl_name
+            user_data['acl_type'] = acl_type
+            user_data['address_type'] = address_type
+
+            callback = kwargs.pop('callback', self._callback)
+
+            cmd = acl_template.resequence_acl_rules
+
+            t = jinja2.Template(cmd)
+            config = t.render(**user_data)
+            config = ' '.join(config.split())
+
+
+            self._callback(config, handler='get')
+            return True

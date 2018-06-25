@@ -536,3 +536,22 @@ def validate_params_get_acl_rules(**parameters):
         if set(unaccepted_params) != set(st2_specific_params):
             raise ValueError("unaccepted parameters provided: {}"
                              .format(unaccepted_params))
+
+
+def validate_params_slx_nos_resequence_acl_rules(**parameters):
+    required_params = ['acl_name']
+    accepted_params = ['acl_name', 'device']
+    st2_specific_params = []
+
+    received_params = [k for k, v in parameters.iteritems() if v]
+
+    absent_required = list(set(required_params) - set(received_params))
+    if len(absent_required) > 0:
+        raise ValueError("missing required parameters: {}"
+                         .format(absent_required))
+
+    unaccepted_params = list(set(received_params) - set(accepted_params))
+    if len(unaccepted_params) > 0:
+        if set(unaccepted_params) != set(st2_specific_params):
+            raise ValueError("unaccepted parameters provided: {}"
+                             .format(unaccepted_params))
