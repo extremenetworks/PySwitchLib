@@ -637,8 +637,144 @@ class SlxNosAcl(BaseAcl):
             rules_list = self._get_acl_rules(rest_device.device_type,
                                              address_type, acl_type, acl_name,
                                              seq_range)
+            if address_type == 'ip':
+                self._decorate_ip_rules_list(rules_list)
+
+                
             resp_body = json.dumps(rules_list)
             return resp_body
+
+
+    def _decorate_ip_rules_list(self, rules_list):
+        for r in rules_list:
+            self._decorate_ip_source(r)
+            self._decorate_ip_destination(r)
+
+    def _decorate_ip_source(self, rule):
+        if 'src_host_any_sip' in rule:
+            if 'src_host_ip' in rule:
+                rule['source'] = rule['src_host_any_sip'] + ',' + \
+                    rule['src_host_ip']
+                del rule['src_host_ip']
+            elif 'src_mask' in rule:
+                rule['source'] = rule['src_host_any_sip'] + '/' + \
+                    rule['src_mask']
+                del rule['src_mask']
+            else:
+                rule['source'] = 'any'
+
+            del rule['src_host_any_sip']
+
+        if 'sport' in rule:
+            if rule['sport'] == 'gt':
+                if 'sport_number_gt_tcp' in rule:
+                    rule['source'] += ' ' + rule['sport'] + ' ' + \
+                        rule['sport_number_gt_tcp']
+                    del rule['sport_number_gt_tcp']
+                elif 'sport_number_gt_udp' in rule:
+                    rule['source'] += ' ' + rule['sport'] + ' ' + \
+                        rule['sport_number_gt_udp']
+                    del rule['sport_number_gt_udp']
+            elif rule['sport'] == 'lt':
+                if 'sport_number_lt_tcp' in rule:
+                    rule['source'] += ' ' + rule['sport'] + ' ' + \
+                        rule['sport_number_lt_tcp']
+                    del rule['sport_number_lt_tcp']
+                elif 'sport_number_lt_udp' in rule:
+                    rule['source'] += ' ' + rule['sport'] + ' ' + \
+                        rule['sport_number_lt_udp']
+                    del rule['sport_number_lt_udp']
+            elif rule['sport'] == 'neq' or rule['sport'] == 'eq':
+                if 'sport_number_eq_neq_tcp' in rule:
+                    rule['source'] += ' ' + rule['sport'] + ' ' + \
+                        rule['sport_number_eq_neq_tcp']
+                    del rule['sport_number_eq_neq_tcp']
+                elif 'sport_number_eq_neq_udp' in rule:
+                    rule['source'] += ' ' + rule['sport'] + ' ' + \
+                        rule['sport_number_eq_neq_udp']
+                    del rule['sport_number_eq_neq_udp']
+            elif rule['sport'] == 'range':
+                rule['source'] += ' ' + rule['sport']
+                if 'sport_number_range_lower_tcp' in rule:
+                    rule['source'] += ' ' + rule['sport_number_range_lower_tcp']
+                    del rule['sport_number_range_lower_tcp']
+
+                if 'sport_number_range_higher_tcp' in rule:
+                    rule['source'] += ' ' + rule['sport_number_range_higher_tcp']
+                    del rule['sport_number_range_higher_tcp']
+
+                if 'sport_number_range_lower_udp' in rule:
+                    rule['source'] += ' ' + rule['sport_number_range_lower_udp']
+                    del rule['sport_number_range_lower_udp']
+
+                if 'sport_number_range_higher_udp' in rule:
+                    rule['source'] += ' ' + rule['sport_number_range_higher_udp']
+                    del rule['sport_number_range_higher_udp']
+
+            del rule['sport']
+
+    def _decorate_ip_destination(self, rule):
+        if 'dst_host_any_dip' in rule:
+            if 'dst_host_ip' in rule:
+                rule['destination'] = rule['dst_host_any_dip'] + ',' + \
+                    rule['dst_host_ip']
+                del rule['dst_host_ip']
+            elif 'dst_mask' in rule:
+                rule['destination'] = rule['dst_host_any_dip'] + '/' + \
+                    rule['dst_mask']
+                del rule['dst_mask']
+            else:
+                rule['destination'] = 'any'
+
+            del rule['dst_host_any_dip']
+
+        if 'dport' in rule:
+            if rule['dport'] == 'gt':
+                if 'dport_number_gt_tcp' in rule:
+                    rule['destination'] += ' ' + rule['dport'] + ' ' + \
+                        rule['dport_number_gt_tcp']
+                    del rule['dport_number_gt_tcp']
+                elif 'dport_number_gt_udp' in rule:
+                    rule['destination'] += ' ' + rule['dport'] + ' ' + \
+                        rule['dport_number_gt_udp']
+                    del rule['dport_number_gt_udp']
+            elif rule['dport'] == 'lt':
+                if 'dport_number_lt_tcp' in rule:
+                    rule['destination'] += ' ' + rule['dport'] + ' ' + \
+                        rule['dport_number_lt_tcp']
+                    del rule['dport_number_lt_tcp']
+                elif 'dport_number_lt_udp' in rule:
+                    rule['destination'] += ' ' + rule['dport'] + ' ' + \
+                        rule['dport_number_lt_udp']
+                    del rule['dport_number_lt_udp']
+            elif rule['dport'] == 'neq' or rule['dport'] == 'eq':
+                if 'dport_number_eq_neq_tcp' in rule:
+                    rule['destination'] += ' ' + rule['dport'] + ' ' + \
+                        rule['dport_number_eq_neq_tcp']
+                    del rule['dport_number_eq_neq_tcp']
+                elif 'dport_number_eq_neq_udp' in rule:
+                    rule['destination'] += ' ' + rule['dport'] + ' ' + \
+                        rule['dport_number_eq_neq_udp']
+                    del rule['dport_number_eq_neq_udp']
+            elif rule['dport'] == 'range':
+                rule['destination'] += ' ' + rule['dport']
+                if 'dport_number_range_lower_tcp' in rule:
+                    rule['destination'] += ' ' + rule['dport_number_range_lower_tcp']
+                    del rule['dport_number_range_lower_tcp']
+
+                if 'dport_number_range_higher_tcp' in rule:
+                    rule['destination'] += ' ' + rule['dport_number_range_higher_tcp']
+                    del rule['dport_number_range_higher_tcp']
+
+                if 'dport_number_range_lower_udp' in rule:
+                    rule['destination'] += ' ' + rule['dport_number_range_lower_udp']
+                    del rule['dport_number_range_lower_udp']
+
+                if 'dport_number_range_higher_udp' in rule:
+                    rule['destination'] += ' ' + rule['dport_number_range_higher_udp']
+                    del rule['dport_number_range_higher_udp']
+
+            del rule['dport']
 
     def resequence_acl_rules(self, **kwargs):
         """
