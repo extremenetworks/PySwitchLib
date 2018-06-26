@@ -1843,7 +1843,9 @@ class Acl(BaseAcl):
                             elif val == 'suppress-rpf-drop':
                                 config['suppress_rpf_drop'] = "true"
                             elif val == 'fragment':
-                                config['fragment'] = "True"
+                                config['fragment'] = "fragment"
+                            elif val == 'non-fragment':
+                                config['fragment'] = "non-fragment"
                             elif val == 'copy-sflow':
                                 config['copy_sflow'] = "True"
                             elif val == 'established':
@@ -2002,6 +2004,8 @@ class Acl(BaseAcl):
                                 config['suppress_rpf_drop'] = "true"
                             elif val == 'fragment':
                                 config['fragment'] = "True"
+                            elif val == 'non-fragment':
+                                config['fragment'] = "non-fragment"
                             elif val == 'copy-sflow':
                                 config['copy_sflow'] = "True"
                             elif val == 'established':
