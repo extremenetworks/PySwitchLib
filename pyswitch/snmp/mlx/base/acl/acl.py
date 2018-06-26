@@ -1639,6 +1639,8 @@ class Acl(BaseAcl):
         for line in output.split('\n'):
             if line:
                 rule = line.split()
+                if len(rule) < 4:
+                    continue
 
                 index = 0
                 if rule[index][:-1].isdigit():
@@ -1703,6 +1705,8 @@ class Acl(BaseAcl):
         for line in output.split('\n'):
             if line:
                 rule = line.split()
+                if len(rule) < 3:
+                    continue
 
                 index = 0
                 if rule[index][:-1].isdigit():
@@ -1738,6 +1742,8 @@ class Acl(BaseAcl):
         for line in output.split('\n'):
             if line:
                 rule = line.split()
+                if len(rule) < 4:
+                    continue
 
                 index = 0
                 if rule[index][:-1].isdigit():
@@ -1899,6 +1905,8 @@ class Acl(BaseAcl):
         for line in output.split('\n'):
             if line:
                 rule = line.split()
+                if len(rule) < 4:
+                    continue
 
                 index = 0
                 if rule[index][:-1].isdigit():
