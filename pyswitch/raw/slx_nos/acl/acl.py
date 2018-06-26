@@ -641,13 +641,12 @@ class SlxNosAcl(BaseAcl):
                 self._decorate_ip_rules_list(rules_list)
 
             for r in rules_list:
-                for k,v in r.iteritems():
+                for k, v in r.iteritems():
                     if isinstance(v, int) or isinstance(v, bool):
                         r[k] = str(v)
 
             resp_body = json.dumps(rules_list)
             return resp_body
-
 
     def _decorate_ip_rules_list(self, rules_list):
         for r in rules_list:
@@ -820,7 +819,6 @@ class SlxNosAcl(BaseAcl):
             t = jinja2.Template(cmd)
             config = t.render(**user_data)
             config = ' '.join(config.split())
-
 
             self._callback(config, handler='get')
             return True

@@ -2100,11 +2100,9 @@ class Acl(BaseAcl):
         # Parse params
         acl_name = self.mac.parse_acl_name(**kwargs)
 
-
         acl = self.get_acl_address_and_acl_type(acl_name)
         acl_type = acl['type']
         address_type = acl['protocol']
-
 
         if address_type == 'mac':
             config = 'mac access-list ' + acl_name
