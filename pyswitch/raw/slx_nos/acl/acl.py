@@ -815,8 +815,6 @@ class SlxNosAcl(BaseAcl):
             user_data['acl_type'] = acl_type
             user_data['address_type'] = address_type
 
-            callback = kwargs.pop('callback', self._callback)
-
             cmd = acl_template.resequence_acl_rules
 
             t = jinja2.Template(cmd)
