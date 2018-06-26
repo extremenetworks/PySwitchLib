@@ -793,7 +793,7 @@ class SlxNosAcl(BaseAcl):
             >>>     print dev.acl.resequence_acl_rules(acl_name='Acl_1')
         """
 
-       # Validate required and accepted parameters
+        # Validate required and accepted parameters
         params_validator.validate_params_slx_nos_resequence_acl_rules(**kwargs)
 
         # Parse params
@@ -808,7 +808,7 @@ class SlxNosAcl(BaseAcl):
         else:
             start_seq_id = 10
 
-        if 'increament_by' in kwargs and  kwargs['increament_by']:
+        if 'increament_by' in kwargs and kwargs['increament_by']:
             increament_by = str(kwargs['increament_by'])
             if not increament_by.isdigit():
                     raise ValueError("Exception increament_by is not integer")
