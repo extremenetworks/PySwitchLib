@@ -2100,6 +2100,16 @@ class Acl(BaseAcl):
         # Parse params
         acl_name = self.mac.parse_acl_name(**kwargs)
 
+        if 'start_seq_id' in kwargs and kwargs['start_seq_id']:
+            start_seq_id = str(kwargs['start_seq_id'])
+            if not start_seq_id.isdigit():
+                raise ValueError("Exception start_seq_id is not integer")
+
+            if int(start_seq_id) < 1 or int(start_seq_id) > 214748364:
+                raise ValueError("Exception start_seq_id is out of range")
+        else:
+            start_seq_id = 10
+
         acl = self.get_acl_address_and_acl_type(acl_name)
         acl_type = acl['type']
         address_type = acl['protocol']
@@ -2119,7 +2129,7 @@ class Acl(BaseAcl):
         cli_arr.append(config)
 
         # Resequence cli
-        cli_arr.append('regenerate-seq-num')
+        cli_arr.append('regenerate-seq-num ' + start_seq_id)
 
         output = self._callback(cli_arr, handler='cli-set')
         return self._process_cli_output(inspect.stack()[0][3], config, output)

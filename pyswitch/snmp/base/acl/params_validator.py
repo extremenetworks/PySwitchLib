@@ -270,7 +270,7 @@ def validate_params_mlx_get_acl_rules(**parameters):
 
 def validate_params_mlx_resequence_acl_rules(**parameters):
     required_params = ['acl_name']
-    accepted_params = ['acl_name']
+    accepted_params = ['acl_name', 'start_seq_id']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]

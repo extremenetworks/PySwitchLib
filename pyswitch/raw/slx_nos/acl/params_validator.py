@@ -540,7 +540,7 @@ def validate_params_get_acl_rules(**parameters):
 
 def validate_params_slx_nos_resequence_acl_rules(**parameters):
     required_params = ['acl_name']
-    accepted_params = ['acl_name', 'device']
+    accepted_params = ['acl_name', 'device', 'start_seq_id', 'increament_by']
     st2_specific_params = []
 
     received_params = [k for k, v in parameters.iteritems() if v]

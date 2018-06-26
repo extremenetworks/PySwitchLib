@@ -792,4 +792,48 @@ class SlxNosAcl(BaseAcl):
                             connection_type='NETCONF') as dev:
             >>>     print dev.acl.resequence_acl_rules(acl_name='Acl_1')
         """
-        pass
+
+       # Validate required and accepted parameters
+        params_validator.validate_params_slx_nos_resequence_acl_rules(**kwargs)
+
+        # Parse params
+        acl_name = self.ap.parse_acl_name(**kwargs)
+        if 'start_seq_id' in kwargs and kwargs['start_seq_id']:
+            start_seq_id = str(kwargs['start_seq_id'])
+            if not start_seq_id.isdigit():
+                raise ValueError("Exception start_seq_id is not integer")
+
+            if int(start_seq_id) < 1 or int(start_seq_id) > 65535:
+                raise ValueError("Exception start_seq_id is out of range")
+        else:
+            start_seq_id = 10
+
+        if 'increament_by' in kwargs and  kwargs['increament_by']:
+            increament_by = str(kwargs['increament_by'])
+            if not increament_by.isdigit():
+                    raise ValueError("Exception increament_by is not integer")
+
+            if int(increament_by) < 1 or int(increament_by) > 65534:
+                    raise ValueError("Exception increament_by is out of range")
+        else:
+            increament_by = 10
+
+        netc_device = kwargs['device'].device_type
+        with pyswitch.device.Device(conn=netc_device._conn,
+                                    auth=netc_device._auth,
+                                    connection_type='REST') as rest_device:
+
+            acl = self._get_acl_info_rest(rest_device.device_type,
+                                          acl_name, get_seqs=True)
+            acl_addr_type = acl['protocol']
+
+            try:
+                command = 'resequence ' + 'access-list' + ' ' + \
+                          acl_addr_type + ' ' + acl_name + ' ' + \
+                          str(start_seq_id) + ' ' + str(increament_by)
+                rest_device.asset.run_command(command=command)
+            except Exception, exc:
+                raise ValueError("Exception when running run_command, error:%s",
+                                 exc.message)
+
+        return True
