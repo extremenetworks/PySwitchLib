@@ -792,20 +792,4 @@ class SlxNosAcl(BaseAcl):
                             connection_type='NETCONF') as dev:
             >>>     print dev.acl.resequence_acl_rules(acl_name='Acl_1')
         """
-        # Validate required and accepted parameters
-        params_validator.validate_params_slx_nos_resequence_acl_rules(**kwargs)
-
-        # Parse params
-        acl_name = self.ap.parse_acl_name(**kwargs)
-
-        netc_device = kwargs['device'].device_type
-        with pyswitch.device.Device(conn=netc_device._conn,
-                                    auth=netc_device._auth,
-                                    connection_type='REST') as rest_device:
-
-            acl = self._get_acl_info_rest(rest_device.device_type,
-                                          acl_name, get_seqs=True)
-            acl_type = acl['type']
-            address_type = acl['protocol']
-
-            return True
+        pass
