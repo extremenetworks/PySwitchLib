@@ -808,17 +808,4 @@ class SlxNosAcl(BaseAcl):
             acl_type = acl['type']
             address_type = acl['protocol']
 
-            # Parse params
-            user_data = {}
-            user_data['acl_name'] = acl_name
-            user_data['acl_type'] = acl_type
-            user_data['address_type'] = address_type
-
-            cmd = acl_template.resequence_acl_rules
-
-            t = jinja2.Template(cmd)
-            config = t.render(**user_data)
-            config = ' '.join(config.split())
-
-            self._callback(config, handler='get')
             return True
