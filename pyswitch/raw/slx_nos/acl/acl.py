@@ -808,15 +808,15 @@ class SlxNosAcl(BaseAcl):
         else:
             start_seq_id = 10
 
-        if 'increament_by' in kwargs and kwargs['increament_by']:
-            increament_by = str(kwargs['increament_by'])
-            if not increament_by.isdigit():
-                    raise ValueError("Exception increament_by is not integer")
+        if 'increment_by' in kwargs and kwargs['increment_by']:
+            increment_by = str(kwargs['increment_by'])
+            if not increment_by.isdigit():
+                    raise ValueError("Exception increment_by is not integer")
 
-            if int(increament_by) < 1 or int(increament_by) > 65534:
-                    raise ValueError("Exception increament_by is out of range")
+            if int(increment_by) < 1 or int(increment_by) > 65534:
+                    raise ValueError("Exception increment_by is out of range")
         else:
-            increament_by = 10
+            increment_by = 10
 
         netc_device = kwargs['device'].device_type
         with pyswitch.device.Device(conn=netc_device._conn,
@@ -830,7 +830,7 @@ class SlxNosAcl(BaseAcl):
             try:
                 command = 'resequence ' + 'access-list' + ' ' + \
                           acl_addr_type + ' ' + acl_name + ' ' + \
-                          str(start_seq_id) + ' ' + str(increament_by)
+                          str(start_seq_id) + ' ' + str(increment_by)
                 rest_device.asset.run_command(command=command)
             except Exception, exc:
                 raise ValueError("Exception when running run_command, error:%s",
