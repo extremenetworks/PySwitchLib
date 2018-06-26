@@ -2129,7 +2129,7 @@ class Acl(BaseAcl):
         cli_arr.append(config)
 
         # Resequence cli
-        cli_arr.append('regenerate-seq-num ' + start_seq_id)
+        cli_arr.append('regenerate-seq-num ' + str(start_seq_id))
 
         output = self._callback(cli_arr, handler='cli-set')
         return self._process_cli_output(inspect.stack()[0][3], config, output)
