@@ -43,6 +43,8 @@ The pyswitchlib-api-daemon service is installed with a default configuration fil
 
 # pySwitchLib Version History
 
+## 1.2.2
+* Upgraded requests library version to latest (2.22.0)
 ## 1.2.1
 * Added close method for asset.py class.
 ## 1.2.0
